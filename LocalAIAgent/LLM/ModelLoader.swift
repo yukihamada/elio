@@ -235,8 +235,8 @@ final class ModelLoader: ObservableObject {
                 name: "Qwen3-VL 2B",
                 description: "📷 最新Qwen3ベースの画像認識。軽量で全デバイス対応。",
                 descriptionEn: "📷 Latest Qwen3-based vision. Light, works on all devices.",
-                size: "約1.5GB",
-                downloadURL: "https://huggingface.co/Qwen/Qwen3-VL-2B-Instruct-GGUF/resolve/main/qwen3-vl-2b-instruct-q4_k_m.gguf",
+                size: "約1.1GB",
+                downloadURL: "https://huggingface.co/Qwen/Qwen3-VL-2B-Instruct-GGUF/resolve/main/Qwen3VL-2B-Instruct-Q4_K_M.gguf",
                 config: ModelInfo.ModelConfigData(
                     maxContextLength: 32768,
                     vocabularySize: 151936,
@@ -252,7 +252,7 @@ final class ModelLoader: ObservableObject {
                 description: "📷 バランス良好な画像認識。Pro以上推奨。",
                 descriptionEn: "📷 Well-balanced vision model. Pro or higher recommended.",
                 size: "約2.5GB",
-                downloadURL: "https://huggingface.co/Qwen/Qwen3-VL-4B-Instruct-GGUF/resolve/main/qwen3-vl-4b-instruct-q4_k_m.gguf",
+                downloadURL: "https://huggingface.co/Qwen/Qwen3-VL-4B-Instruct-GGUF/resolve/main/Qwen3VL-4B-Instruct-Q4_K_M.gguf",
                 config: ModelInfo.ModelConfigData(
                     maxContextLength: 32768,
                     vocabularySize: 151936,
@@ -268,7 +268,7 @@ final class ModelLoader: ObservableObject {
                 description: "📷 最高性能の画像認識。詳細分析・動画理解対応。Pro Max推奨。",
                 descriptionEn: "📷 Best vision performance. Detailed analysis & video. Pro Max recommended.",
                 size: "約5GB",
-                downloadURL: "https://huggingface.co/Qwen/Qwen3-VL-8B-Instruct-GGUF/resolve/main/qwen3-vl-8b-instruct-q4_k_m.gguf",
+                downloadURL: "https://huggingface.co/Qwen/Qwen3-VL-8B-Instruct-GGUF/resolve/main/Qwen3VL-8B-Instruct-Q4_K_M.gguf",
                 config: ModelInfo.ModelConfigData(
                     maxContextLength: 32768,
                     vocabularySize: 151936,
