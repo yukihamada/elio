@@ -8,13 +8,23 @@ enum DeviceTier: Int, Comparable {
     case low = 1      // iPhone 12 and below, 4GB RAM
     case medium = 2   // iPhone 13/14, 6GB RAM
     case high = 3     // iPhone 15 Pro/16, 8GB RAM
-    case ultra = 4    // iPhone 15 Pro Max/16 Pro Max, 8GB RAM with larger thermal envelope
+    case ultra = 4    // iPhone 15 Pro Max/16 Pro Max, Mac, 8GB+ RAM
 
     static func < (lhs: DeviceTier, rhs: DeviceTier) -> Bool {
         lhs.rawValue < rhs.rawValue
     }
 
     static var current: DeviceTier {
+        #if targetEnvironment(macCatalyst)
+        // Mac Catalyst - use memory-based detection
+        let memory = ProcessInfo.processInfo.physicalMemory
+        if memory >= 16 * 1024 * 1024 * 1024 {
+            return .ultra
+        } else if memory >= 8 * 1024 * 1024 * 1024 {
+            return .high
+        }
+        return .medium
+        #else
         var systemInfo = utsname()
         uname(&systemInfo)
         let machineMirror = Mirror(reflecting: systemInfo.machine)
@@ -23,71 +33,82 @@ enum DeviceTier: Int, Comparable {
             return identifier + String(UnicodeScalar(UInt8(value)))
         }
 
-        // iPhone identifiers: iPhone15,x = iPhone 15 series, iPhone16,x = iPhone 16 series, iPhone17,x = iPhone 17 series
-        // Pro Max models typically have higher numbers in the minor version
+        // iPad identifiers
         switch identifier {
-        // iPhone 17 Pro Max (future)
+        // iPad Pro M4 / M2 / M1
+        case let id where id.hasPrefix("iPad16"), let id where id.hasPrefix("iPad14"), let id where id.hasPrefix("iPad13"):
+            return .ultra
+        // iPad Air M2 / M1
+        case let id where id.hasPrefix("iPad15"):
+            return .high
+        // iPad mini 6, iPad 10th gen
+        case let id where id.hasPrefix("iPad11"), let id where id.hasPrefix("iPad12"):
+            return .medium
+        // Older iPads
+        case let id where id.hasPrefix("iPad"):
+            return .medium
+        // iPhone identifiers
         case let id where id.hasPrefix("iPhone18"):
             return .ultra
-        // iPhone 16 Pro Max
         case "iPhone17,2":
             return .ultra
-        // iPhone 16 Pro
         case "iPhone17,1":
             return .high
-        // iPhone 16 Plus
-        case "iPhone17,4":
+        case "iPhone17,4", "iPhone17,3":
             return .medium
-        // iPhone 16
-        case "iPhone17,3":
-            return .medium
-        // iPhone 15 Pro Max
         case "iPhone16,2":
             return .ultra
-        // iPhone 15 Pro
         case "iPhone16,1":
             return .high
-        // iPhone 15 Plus
-        case "iPhone16,4":
+        case "iPhone16,4", "iPhone16,3":
             return .medium
-        // iPhone 15
-        case "iPhone16,3":
-            return .medium
-        // iPhone 14 Pro Max, 14 Pro
         case "iPhone15,3", "iPhone15,2":
             return .high
-        // iPhone 14 Plus, 14
         case "iPhone15,4", "iPhone15,5":
             return .medium
-        // iPhone 13 Pro Max, 13 Pro
-        case "iPhone14,3", "iPhone14,2":
+        case "iPhone14,3", "iPhone14,2", "iPhone14,5", "iPhone14,4":
             return .medium
-        // iPhone 13, 13 mini
-        case "iPhone14,5", "iPhone14,4":
-            return .medium
-        // Simulator
+        // Simulator or Mac
         case "x86_64", "arm64":
-            // Check available memory for simulator
             let memory = ProcessInfo.processInfo.physicalMemory
-            if memory >= 8 * 1024 * 1024 * 1024 {
+            if memory >= 16 * 1024 * 1024 * 1024 {
+                return .ultra
+            } else if memory >= 8 * 1024 * 1024 * 1024 {
                 return .high
             } else if memory >= 6 * 1024 * 1024 * 1024 {
                 return .medium
             }
             return .low
         default:
-            // Older devices
             return .low
         }
+        #endif
     }
 
     var displayName: String {
+        #if targetEnvironment(macCatalyst)
+        switch self {
+        case .low: return "Mac (ベーシック)"
+        case .medium: return "Mac (スタンダード)"
+        case .high: return "Mac (Pro)"
+        case .ultra: return "Mac (高性能)"
+        }
+        #else
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            switch self {
+            case .low: return "iPad (ベーシック)"
+            case .medium: return "iPad"
+            case .high: return "iPad Air"
+            case .ultra: return "iPad Pro"
+            }
+        }
         switch self {
         case .low: return "エントリー"
         case .medium: return "スタンダード"
         case .high: return "Pro"
         case .ultra: return "Pro Max"
         }
+        #endif
     }
 
     var recommendedModelSize: String {
