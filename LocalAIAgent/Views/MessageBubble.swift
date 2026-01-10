@@ -125,14 +125,39 @@ struct MessageBubble: View {
     }
 
     private var messageContent: some View {
-        Text(parseMarkdown(message.content))
-            .textSelection(.enabled)
-            .padding(.horizontal, 16)
-            .padding(.vertical, 12)
-            .background(bubbleBackground)
-            .foregroundStyle(isUser ? .white : .primary)
-            .clipShape(RoundedRectangle(cornerRadius: 20))
-            .shadow(color: isUser ? Color.accentColor.opacity(0.2) : Color.black.opacity(0.05), radius: 4, y: 2)
+        VStack(alignment: isUser ? .trailing : .leading, spacing: 8) {
+            // Display attached image if present
+            if let image = message.image {
+                Image(uiImage: image)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(maxWidth: 240, maxHeight: 240)
+                    .clipShape(RoundedRectangle(cornerRadius: 16))
+                    .shadow(color: Color.black.opacity(0.1), radius: 4, y: 2)
+            }
+
+            // Text content
+            if !message.content.isEmpty && message.content != String(localized: "chat.image.sent") {
+                Text(parseMarkdown(message.content))
+                    .textSelection(.enabled)
+                    .padding(.horizontal, 16)
+                    .padding(.vertical, 12)
+                    .background(bubbleBackground)
+                    .foregroundStyle(isUser ? .white : .primary)
+                    .clipShape(RoundedRectangle(cornerRadius: 20))
+                    .shadow(color: isUser ? Color.accentColor.opacity(0.2) : Color.black.opacity(0.05), radius: 4, y: 2)
+            } else if message.content == String(localized: "chat.image.sent") && message.image == nil {
+                // Show placeholder if image data couldn't be loaded
+                Text(parseMarkdown(message.content))
+                    .textSelection(.enabled)
+                    .padding(.horizontal, 16)
+                    .padding(.vertical, 12)
+                    .background(bubbleBackground)
+                    .foregroundStyle(isUser ? .white : .primary)
+                    .clipShape(RoundedRectangle(cornerRadius: 20))
+                    .shadow(color: isUser ? Color.accentColor.opacity(0.2) : Color.black.opacity(0.05), radius: 4, y: 2)
+            }
+        }
     }
 
     private var bubbleBackground: some View {
