@@ -1,0 +1,584 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		001 /* LocalAIAgentApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 101 /* LocalAIAgentApp.swift */; };
+		002 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 102 /* AppState.swift */; };
+		003 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 103 /* ChatView.swift */; };
+		004 /* MessageBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104 /* MessageBubble.swift */; };
+		005 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105 /* SettingsView.swift */; };
+		006 /* MCPServerListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106 /* MCPServerListView.swift */; };
+		007 /* ModelSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 107 /* ModelSelectionView.swift */; };
+		008 /* AgentOrchestrator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 108 /* AgentOrchestrator.swift */; };
+		009 /* ToolParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109 /* ToolParser.swift */; };
+		010 /* ConversationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110 /* ConversationManager.swift */; };
+		011 /* CoreMLInference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111 /* CoreMLInference.swift */; };
+		012 /* ModelLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112 /* ModelLoader.swift */; };
+		013 /* Tokenizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113 /* Tokenizer.swift */; };
+		014 /* StreamingDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114 /* StreamingDecoder.swift */; };
+		015 /* MCPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115 /* MCPClient.swift */; };
+		016 /* MCPProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116 /* MCPProtocol.swift */; };
+		017 /* MCPServerRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117 /* MCPServerRegistry.swift */; };
+		018 /* FileSystemServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118 /* FileSystemServer.swift */; };
+		019 /* CalendarServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119 /* CalendarServer.swift */; };
+		020 /* RemindersServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120 /* RemindersServer.swift */; };
+		021 /* ContactsServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121 /* ContactsServer.swift */; };
+		022 /* PhotosServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122 /* PhotosServer.swift */; };
+		023 /* LocationServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123 /* LocationServer.swift */; };
+		024 /* HealthServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124 /* HealthServer.swift */; };
+		025 /* ShortcutsServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125 /* ShortcutsServer.swift */; };
+		026 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126 /* Message.swift */; };
+		027 /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127 /* Conversation.swift */; };
+		028 /* MCPTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128 /* MCPTool.swift */; };
+		029 /* LlamaInference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130 /* LlamaInference.swift */; };
+		030 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 131 /* ThemeManager.swift */; };
+		031 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 132 /* Assets.xcassets */; };
+		032 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 133 /* LaunchScreen.storyboard */; };
+		033 /* WebSearchServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134 /* WebSearchServer.swift */; };
+		034 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135 /* OnboardingView.swift */; };
+		035 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136 /* AboutView.swift */; };
+		036 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 140 /* Localizable.strings */; };
+		037 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 137 /* NetworkMonitor.swift */; };
+		B63B0EBF2F1214F5006BCDD0 /* LlamaSwift in Frameworks */ = {isa = PBXBuildFile; productRef = B63B0EBF2F121377006BCDD0 /* LlamaSwift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		100 /* LocalAIAgent.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LocalAIAgent.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		101 /* LocalAIAgentApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalAIAgentApp.swift; sourceTree = "<group>"; };
+		102 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		103 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
+		104 /* MessageBubble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageBubble.swift; sourceTree = "<group>"; };
+		105 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		106 /* MCPServerListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MCPServerListView.swift; sourceTree = "<group>"; };
+		107 /* ModelSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelSelectionView.swift; sourceTree = "<group>"; };
+		135 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		136 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
+		108 /* AgentOrchestrator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgentOrchestrator.swift; sourceTree = "<group>"; };
+		109 /* ToolParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolParser.swift; sourceTree = "<group>"; };
+		110 /* ConversationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationManager.swift; sourceTree = "<group>"; };
+		111 /* CoreMLInference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreMLInference.swift; sourceTree = "<group>"; };
+		112 /* ModelLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelLoader.swift; sourceTree = "<group>"; };
+		113 /* Tokenizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tokenizer.swift; sourceTree = "<group>"; };
+		114 /* StreamingDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamingDecoder.swift; sourceTree = "<group>"; };
+		115 /* MCPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MCPClient.swift; sourceTree = "<group>"; };
+		116 /* MCPProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MCPProtocol.swift; sourceTree = "<group>"; };
+		117 /* MCPServerRegistry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MCPServerRegistry.swift; sourceTree = "<group>"; };
+		118 /* FileSystemServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSystemServer.swift; sourceTree = "<group>"; };
+		119 /* CalendarServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarServer.swift; sourceTree = "<group>"; };
+		120 /* RemindersServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemindersServer.swift; sourceTree = "<group>"; };
+		121 /* ContactsServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsServer.swift; sourceTree = "<group>"; };
+		122 /* PhotosServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosServer.swift; sourceTree = "<group>"; };
+		123 /* LocationServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationServer.swift; sourceTree = "<group>"; };
+		124 /* HealthServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthServer.swift; sourceTree = "<group>"; };
+		125 /* ShortcutsServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutsServer.swift; sourceTree = "<group>"; };
+		134 /* WebSearchServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSearchServer.swift; sourceTree = "<group>"; };
+		126 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		127 /* Conversation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conversation.swift; sourceTree = "<group>"; };
+		128 /* MCPTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MCPTool.swift; sourceTree = "<group>"; };
+		129 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		130 /* LlamaInference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LlamaInference.swift; sourceTree = "<group>"; };
+		131 /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
+		132 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		133 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		141 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		142 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
+		137 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		200 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B63B0EBF2F1214F5006BCDD0 /* LlamaSwift in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		300 = {
+			isa = PBXGroup;
+			children = (
+				301 /* LocalAIAgent */,
+				302 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		301 /* LocalAIAgent */ = {
+			isa = PBXGroup;
+			children = (
+				310 /* App */,
+				311 /* Views */,
+				312 /* Agent */,
+				313 /* LLM */,
+				314 /* MCP */,
+				315 /* Models */,
+				316 /* Resources */,
+			);
+			path = LocalAIAgent;
+			sourceTree = "<group>";
+		};
+		302 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				100 /* LocalAIAgent.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		310 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				101 /* LocalAIAgentApp.swift */,
+				102 /* AppState.swift */,
+				131 /* ThemeManager.swift */,
+				137 /* NetworkMonitor.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		311 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				103 /* ChatView.swift */,
+				104 /* MessageBubble.swift */,
+				105 /* SettingsView.swift */,
+				106 /* MCPServerListView.swift */,
+				107 /* ModelSelectionView.swift */,
+				135 /* OnboardingView.swift */,
+				136 /* AboutView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		312 /* Agent */ = {
+			isa = PBXGroup;
+			children = (
+				108 /* AgentOrchestrator.swift */,
+				109 /* ToolParser.swift */,
+				110 /* ConversationManager.swift */,
+			);
+			path = Agent;
+			sourceTree = "<group>";
+		};
+		313 /* LLM */ = {
+			isa = PBXGroup;
+			children = (
+				111 /* CoreMLInference.swift */,
+				130 /* LlamaInference.swift */,
+				112 /* ModelLoader.swift */,
+				113 /* Tokenizer.swift */,
+				114 /* StreamingDecoder.swift */,
+			);
+			path = LLM;
+			sourceTree = "<group>";
+		};
+		314 /* MCP */ = {
+			isa = PBXGroup;
+			children = (
+				115 /* MCPClient.swift */,
+				116 /* MCPProtocol.swift */,
+				117 /* MCPServerRegistry.swift */,
+				320 /* Servers */,
+			);
+			path = MCP;
+			sourceTree = "<group>";
+		};
+		315 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				126 /* Message.swift */,
+				127 /* Conversation.swift */,
+				128 /* MCPTool.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		316 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				129 /* Info.plist */,
+				132 /* Assets.xcassets */,
+				133 /* LaunchScreen.storyboard */,
+				140 /* Localizable.strings */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		320 /* Servers */ = {
+			isa = PBXGroup;
+			children = (
+				118 /* FileSystemServer.swift */,
+				119 /* CalendarServer.swift */,
+				120 /* RemindersServer.swift */,
+				121 /* ContactsServer.swift */,
+				122 /* PhotosServer.swift */,
+				123 /* LocationServer.swift */,
+				124 /* HealthServer.swift */,
+				125 /* ShortcutsServer.swift */,
+				134 /* WebSearchServer.swift */,
+			);
+			path = Servers;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXVariantGroup section */
+		140 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				141 /* en */,
+				142 /* ja */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin PBXNativeTarget section */
+		400 /* LocalAIAgent */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 500 /* Build configuration list for PBXNativeTarget "LocalAIAgent" */;
+			buildPhases = (
+				401 /* Sources */,
+				200 /* Frameworks */,
+				402 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LocalAIAgent;
+			packageProductDependencies = (
+				B63B0EBF2F121377006BCDD0 /* LlamaSwift */,
+			);
+			productName = LocalAIAgent;
+			productReference = 100 /* LocalAIAgent.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		600 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1500;
+				LastUpgradeCheck = 1620;
+				TargetAttributes = {
+					400 = {
+						CreatedOnToolsVersion = 15.0;
+					};
+				};
+			};
+			buildConfigurationList = 601 /* Build configuration list for PBXProject "LocalAIAgent" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = ja;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				ja,
+				Base,
+			);
+			mainGroup = 300;
+			packageReferences = (
+				B63B0EBE2F121377006BCDD0 /* XCRemoteSwiftPackageReference "llama" */,
+			);
+			productRefGroup = 302 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				400 /* LocalAIAgent */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		402 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				031 /* Assets.xcassets in Resources */,
+				032 /* LaunchScreen.storyboard in Resources */,
+				036 /* Localizable.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		401 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				001 /* LocalAIAgentApp.swift in Sources */,
+				002 /* AppState.swift in Sources */,
+				003 /* ChatView.swift in Sources */,
+				004 /* MessageBubble.swift in Sources */,
+				005 /* SettingsView.swift in Sources */,
+				006 /* MCPServerListView.swift in Sources */,
+				007 /* ModelSelectionView.swift in Sources */,
+				008 /* AgentOrchestrator.swift in Sources */,
+				009 /* ToolParser.swift in Sources */,
+				010 /* ConversationManager.swift in Sources */,
+				011 /* CoreMLInference.swift in Sources */,
+				012 /* ModelLoader.swift in Sources */,
+				013 /* Tokenizer.swift in Sources */,
+				014 /* StreamingDecoder.swift in Sources */,
+				015 /* MCPClient.swift in Sources */,
+				016 /* MCPProtocol.swift in Sources */,
+				017 /* MCPServerRegistry.swift in Sources */,
+				018 /* FileSystemServer.swift in Sources */,
+				019 /* CalendarServer.swift in Sources */,
+				020 /* RemindersServer.swift in Sources */,
+				021 /* ContactsServer.swift in Sources */,
+				022 /* PhotosServer.swift in Sources */,
+				023 /* LocationServer.swift in Sources */,
+				024 /* HealthServer.swift in Sources */,
+				025 /* ShortcutsServer.swift in Sources */,
+				026 /* Message.swift in Sources */,
+				027 /* Conversation.swift in Sources */,
+				028 /* MCPTool.swift in Sources */,
+				029 /* LlamaInference.swift in Sources */,
+				030 /* ThemeManager.swift in Sources */,
+				033 /* WebSearchServer.swift in Sources */,
+				034 /* OnboardingView.swift in Sources */,
+				035 /* AboutView.swift in Sources */,
+				037 /* NetworkMonitor.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		700 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		701 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		702 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5BV85JW8US;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = LocalAIAgent/Resources/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = elio;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = love.elio.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		703 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5BV85JW8US;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = LocalAIAgent/Resources/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = elio;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = love.elio.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		500 /* Build configuration list for PBXNativeTarget "LocalAIAgent" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				702 /* Debug */,
+				703 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		601 /* Build configuration list for PBXProject "LocalAIAgent" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				700 /* Debug */,
+				701 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		B63B0EBE2F121377006BCDD0 /* XCRemoteSwiftPackageReference "llama.swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mattt/llama.swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B63B0EBF2F121377006BCDD0 /* LlamaSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B63B0EBE2F121377006BCDD0 /* XCRemoteSwiftPackageReference "llama.swift" */;
+			productName = LlamaSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 600 /* Project object */;
+}

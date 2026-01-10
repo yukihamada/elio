@@ -1,0 +1,363 @@
+/*
+  Localizable.strings (Japanese)
+  elio
+*/
+
+// MARK: - App General
+"app.name" = "Elio";
+"app.tagline" = "あなたの秘密を守る、第2の脳。";
+
+// MARK: - Common Actions
+"common.done" = "完了";
+"common.cancel" = "キャンセル";
+"common.delete" = "削除";
+"common.save" = "保存";
+"common.edit" = "編集";
+"common.share" = "共有";
+"common.copy" = "コピー";
+"common.copied" = "コピー済み";
+"common.loading" = "読み込み中...";
+"common.error" = "エラー";
+"common.retry" = "再試行";
+"common.skip" = "スキップ";
+"common.next" = "次へ";
+"common.start" = "始める";
+"common.add" = "追加";
+"common.close" = "閉じる";
+"common.details" = "詳細";
+"common.yes" = "はい";
+"common.no" = "いいえ";
+"common.unknown" = "不明";
+
+// MARK: - Chat
+"chat.placeholder" = "質問してみましょう";
+"chat.model.not.loaded" = "モデル未読み込み";
+"chat.model.not.loaded.description" = "設定からモデルをダウンロードしてください";
+"chat.go.to.settings" = "設定へ";
+"chat.new.conversation" = "新規チャット";
+"chat.stop.generation" = "停止";
+"chat.generation.stopped" = "\n\n[生成を停止しました]";
+"chat.thinking" = "考え中...";
+"chat.generating" = "応答を生成中...";
+"chat.welcome" = "何をお手伝いしましょうか？";
+"chat.suggestion.schedule" = "今日の予定を教えて";
+"chat.suggestion.reminder" = "リマインダーを作成";
+"chat.suggestion.help" = "使い方を教えて";
+
+// MARK: - Settings
+"settings.title" = "設定";
+"settings.model.section" = "AIモデル";
+"settings.model.recommended" = "推奨: %@";
+"settings.model.local.execution" = "モデルはデバイス上でローカル実行されます";
+"settings.model.show.more" = "その他のモデル (%d)";
+"settings.model.show.less" = "閉じる";
+"settings.appearance.section" = "外観";
+"settings.tools.section" = "スマート連携";
+"settings.mcp.servers" = "連携機能";
+"settings.mcp.servers.description" = "カレンダー・ファイル・リマインダーなど";
+"settings.mcp.enabled.count" = "%d個有効";
+"settings.mcp.enabled.count.suffix" = "個有効";
+"settings.about.section" = "情報";
+"settings.version" = "バージョン";
+"settings.about.app" = "このアプリについて";
+"settings.about.mcp" = "連携機能について";
+"settings.privacy.badge" = "完全オフライン対応";
+"settings.privacy.description" = "機内モードでも動作します";
+"settings.airplane.mode" = "機内モードで動作中";
+"settings.offline.ready" = "オフライン対応";
+
+// MARK: - Model States
+"model.status.downloading" = "ダウンロード中... %d%%";
+"model.status.loading" = "読み込み中...";
+"model.status.in.use" = "使用中";
+"model.status.recommended" = "おすすめ";
+"model.status.heavy" = "高負荷";
+"model.action.download" = "ダウンロード";
+"model.action.load" = "読み込む";
+"model.action.delete" = "削除";
+"model.action.use" = "このモデルを使用";
+"model.delete.confirm.title" = "モデルを削除";
+"model.delete.confirm.message" = "%@ を削除しますか？再度使用するには再ダウンロードが必要です。";
+"model.select.title" = "モデルを選択";
+"model.select.prompt" = "モデルを選択してください";
+"model.downloaded" = "ダウンロード済み";
+
+// MARK: - Inference Mode
+"inference.mode.title" = "アクセラレーション";
+"inference.mode.auto" = "自動";
+"inference.mode.auto.desc" = "最適なパフォーマンスを自動選択";
+"inference.mode.gpu" = "GPU (Metal)";
+"inference.mode.gpu.desc" = "Metalで最高速度";
+"inference.mode.cpu" = "CPUのみ";
+"inference.mode.cpu.desc" = "省電力モード";
+"inference.mode.hybrid" = "ハイブリッド";
+"inference.mode.hybrid.desc" = "速度とバッテリーのバランス";
+
+// MARK: - Theme
+"theme.system" = "システム";
+"theme.light" = "ライト";
+"theme.dark" = "ダーク";
+
+// MARK: - Onboarding
+"onboarding.welcome.title" = "Elioへようこそ";
+"onboarding.welcome.subtitle" = "あなたの秘密を守る、第2の脳。";
+"onboarding.features.title" = "ChatGPTより安心";
+"onboarding.feature.offline" = "機内モードでも動作";
+"onboarding.feature.offline.desc" = "地下鉄や飛行機でも使える";
+"onboarding.feature.privacy" = "データ送信ゼロ";
+"onboarding.feature.privacy.desc" = "会話が外部に漏れない";
+"onboarding.feature.vault" = "スマート連携";
+"onboarding.feature.vault.desc" = "カレンダーやファイルと連携";
+"onboarding.feature.secure" = "仕事でも安心";
+"onboarding.feature.secure.desc" = "社内規定でChatGPT禁止でもOK";
+"onboarding.feature.thinking" = "思考プロセス";
+"onboarding.privacy.title" = "あなたのデータは、あなただけのもの";
+"onboarding.privacy.item1" = "すべての処理はiPhone内で完結";
+"onboarding.privacy.item2" = "クラウドへのデータ送信なし";
+"onboarding.privacy.item3" = "AIの学習に使われることもなし";
+"onboarding.getstarted.title" = "1タップで準備完了";
+"onboarding.getstarted.subtitle" = "推奨AIモデルをダウンロードして\nすぐに使い始められます";
+"onboarding.step1" = "推奨モデルをダウンロード";
+"onboarding.step2" = "数分待つだけ";
+"onboarding.step3" = "もう準備完了！";
+
+// MARK: - About
+"about.title" = "このアプリについて";
+"about.rate.app" = "アプリを評価";
+"about.share.app" = "友達に共有";
+"about.privacy.policy" = "プライバシーポリシー";
+"about.terms" = "利用規約";
+"about.tech.info" = "技術情報";
+"about.tech.engine" = "AIエンジン";
+"about.tech.format" = "対応モデル";
+"about.tech.inference" = "推論";
+"about.data.management" = "データ管理";
+"about.delete.all" = "すべての会話を削除";
+"about.credits" = "クレジット";
+"about.credits.description" = "このアプリはオープンソースライブラリを使用しています";
+"about.privacy.section" = "プライバシー";
+"about.gguf.format" = "GGUF形式";
+"about.metal.gpu" = "Metal GPU加速";
+
+// MARK: - Privacy Policy
+"privacy.title" = "プライバシーポリシー";
+"privacy.data.collection.title" = "データの収集について";
+"privacy.data.collection.content" = "このアプリは完全オフラインで動作するローカルAIです。\n外部サーバーへのデータ送信は一切行いません。\nすべての会話はデバイス内にのみ保存されます。";
+"privacy.stored.data.title" = "保存されるデータ";
+"privacy.stored.data.content" = "会話履歴（デバイス内のみ）\nAIモデルファイル（デバイス内のみ）\nアプリ設定（デバイス内のみ）\n\nこれらのデータが外部に共有されることはありません。";
+"privacy.data.deletion.title" = "データの削除";
+"privacy.data.deletion.content" = "設定 > データ管理からいつでも全データを削除できます。\nアプリをアンインストールすると、すべてのデータが削除されます。";
+
+// MARK: - Terms of Service
+"terms.title" = "利用規約";
+"terms.service.title" = "サービスの説明";
+"terms.service.content" = "このアプリは、ローカルで動作するAIモデルを使用したAIアシスタント機能を提供します。";
+"terms.disclaimer.title" = "免責事項";
+"terms.disclaimer.content" = "AIの回答には誤りが含まれる可能性があります。\n重要な判断は必ず専門家に確認してください。\n本アプリの使用により生じたいかなる損害についても責任を負いません。";
+"terms.prohibited.title" = "禁止事項";
+"terms.prohibited.content" = "違法行為\n他者の権利を侵害する行為\n本アプリのリバースエンジニアリング\n本アプリの不正コピー";
+"terms.ip.title" = "知的財産権";
+"terms.ip.content" = "本アプリの知的財産権は開発者に帰属します。\n無断使用は禁止されています。";
+
+// MARK: - Conversations
+"conversations.title" = "会話履歴";
+"conversations.new" = "新しい会話";
+"conversations.empty" = "会話がありません";
+"conversations.delete" = "会話を削除";
+"conversations.default.title" = "新しい会話";
+"conversations.today" = "今日";
+"conversations.yesterday" = "昨日";
+"conversations.past7days" = "過去7日間";
+"conversations.past30days" = "過去30日間";
+"conversations.older" = "それ以前";
+"conversations.created" = "作成日: %@";
+"conversations.user" = "ユーザー";
+"conversations.assistant" = "アシスタント";
+
+// MARK: - Message Actions
+"message.copy" = "コピー";
+"message.speak" = "読み上げ";
+"message.stop.speaking" = "読み上げ停止";
+"message.share" = "共有";
+"message.like" = "いいね";
+"message.dislike" = "よくない";
+"message.thinking.process" = "思考プロセス";
+"message.tool.running" = "ツール実行中";
+"message.tool.error" = "エラー";
+"message.tool.completed" = "実行完了";
+
+// MARK: - Attachment
+"attachment.title" = "添付ファイル";
+"attachment.photo.library" = "写真を選択";
+"attachment.camera" = "カメラで撮影";
+
+// MARK: - Errors
+"error.model.not.found" = "モデルファイルが見つかりません";
+"error.model.not.loaded" = "モデルが読み込まれていません";
+"error.context.failed" = "コンテキストの作成に失敗しました";
+"error.tokenization.failed" = "トークン化に失敗しました";
+"error.generation.failed" = "生成エラー: %@";
+"error.occurred" = "エラーが発生しました: %@";
+"error.invalid.url" = "無効なURL";
+"error.download.failed" = "ダウンロードに失敗しました";
+"error.extraction.failed" = "展開に失敗しました";
+"error.config.not.found" = "設定ファイルが見つかりません";
+
+// MARK: - Ghost Search
+"ghost.search.title" = "Ghost Search";
+"ghost.search.description" = "DuckDuckGoで匿名検索（追跡なし）";
+"ghost.search.connecting" = "匿名回線に接続中...";
+"ghost.search.privacy.note" = "検索履歴は追跡されません";
+
+// MARK: - MCP Servers
+"mcp.filesystem" = "ファイルシステム";
+"mcp.filesystem.desc" = "アプリ内のファイル読み書き";
+"mcp.calendar" = "カレンダー";
+"mcp.calendar.desc" = "予定の読み書き";
+"mcp.reminders" = "リマインダー";
+"mcp.reminders.desc" = "リマインダーの管理";
+"mcp.contacts" = "連絡先";
+"mcp.contacts.desc" = "連絡先の検索・閲覧";
+"mcp.photos" = "写真";
+"mcp.photos.desc" = "写真ライブラリへのアクセス";
+"mcp.location" = "位置情報";
+"mcp.location.desc" = "現在地の取得・場所検索";
+"mcp.health" = "ヘルスケア";
+"mcp.health.desc" = "健康データへのアクセス";
+"mcp.shortcuts" = "ショートカット";
+"mcp.shortcuts.desc" = "ショートカットの実行";
+"mcp.websearch" = "Web検索";
+"mcp.websearch.desc" = "匿名でWeb検索";
+"mcp.custom" = "カスタム連携";
+"mcp.custom.add" = "連携機能を追加";
+"mcp.custom.setup" = "外部サービスとの連携を設定";
+"mcp.custom.title" = "カスタム連携";
+"mcp.settings.title" = "連携設定";
+"mcp.server.name" = "サーバー名";
+"mcp.server.name.placeholder" = "例: My Custom Server";
+"mcp.config.url" = "設定ファイルURL";
+"mcp.import.file" = "ファイルからインポート";
+"mcp.config.example" = "設定ファイル例";
+"mcp.permission.note" = "必要な権限は各機能の初回使用時に確認されます";
+
+// MARK: - MCP Tool Messages
+"mcp.tool.available" = "利用可能なツール:";
+"mcp.tool.parameters" = "パラメータ:";
+"mcp.prompt.available" = "利用可能なプロンプト:";
+"mcp.prompt.arguments" = "引数:";
+"mcp.tool.name" = "ツール名";
+"mcp.tool.arg.name" = "引数名";
+"mcp.tool.arg.value" = "値";
+"mcp.tool.no.result" = "結果がありません";
+"mcp.tool.running" = "ツール実行中: %@";
+"mcp.tool.error" = "ツール実行エラー: %@";
+
+// MARK: - MCP Error Messages
+"mcp.error.server.not.found" = "サーバーが見つかりません: %@";
+"mcp.error.tool.not.found" = "ツールが見つかりません: %@";
+"mcp.error.invalid.args" = "無効な引数: %@";
+"mcp.error.execution" = "実行エラー: %@";
+"mcp.error.permission" = "権限がありません: %@";
+
+// MARK: - Calendar Messages
+"calendar.no.events" = "予定はありません";
+"calendar.event.created" = "予定を作成しました: %@";
+"calendar.event.deleted" = "予定を削除しました: %@";
+"calendar.allday.created" = "終日予定を作成しました: %@";
+"calendar.access.denied" = "カレンダーへのアクセスが拒否されました";
+"calendar.today.none" = "今日の予定はありません";
+"calendar.untitled" = "無題";
+
+// MARK: - Reminders Messages
+"reminders.none" = "リマインダーはありません";
+"reminders.created" = "リマインダーを作成しました: %@";
+"reminders.completed" = "リマインダーを完了にしました: %@";
+"reminders.deleted" = "リマインダーを削除しました: %@";
+"reminders.access.denied" = "リマインダーへのアクセスが拒否されました";
+"reminders.untitled" = "無題";
+
+// MARK: - Photos Messages
+"photos.access.denied" = "写真ライブラリへのアクセスが拒否されました";
+"photos.not.found" = "写真が見つかりません";
+"photos.untitled" = "無題";
+"photos.count" = "写真: %d枚";
+"photos.videos.count" = "動画: %d本";
+"photos.albums.count" = "アルバム: %d個";
+"photos.favorites.count" = "お気に入り: %d件";
+"photos.date" = "撮影日時: %@";
+"photos.size" = "サイズ: %d x %d";
+"photos.location" = "位置: %@, %@";
+"photos.media.type" = "メディアタイプ: %@";
+"photos.duration" = "長さ: %d分%d秒";
+"photos.favorite" = "お気に入り: %@";
+"photos.type.image" = "写真";
+"photos.type.video" = "動画";
+"photos.type.audio" = "オーディオ";
+
+// MARK: - Contacts Messages
+"contacts.access.denied" = "連絡先へのアクセスが拒否されました";
+"contacts.not.found" = "該当する連絡先が見つかりませんでした";
+"contacts.no.groups" = "グループがありません";
+"contacts.no.card" = "自分の連絡先カードが設定されていません";
+"contacts.name" = "名前: %@";
+"contacts.company" = "会社: %@";
+"contacts.job" = "役職: %@";
+
+// MARK: - Location Messages
+"location.access.denied" = "位置情報へのアクセスが拒否されました";
+"location.not.found" = "住所が見つかりませんでした";
+"location.latitude" = "緯度: %@";
+"location.longitude" = "経度: %@";
+"location.accuracy" = "精度: %dm";
+"location.altitude" = "高度: %dm";
+"location.search" = "検索: %@";
+"location.address" = "住所: %@";
+"location.country" = "国: %@";
+"location.postal" = "郵便番号: %@";
+"location.from" = "出発地: (%@, %@)";
+"location.to" = "目的地: (%@, %@)";
+"location.distance.km" = "距離: %.2f km";
+"location.distance.m" = "距離: %d m";
+
+// MARK: - Health Messages
+"health.not.available" = "ヘルスケアはこのデバイスで利用できません";
+"health.date" = "日付: %@";
+"health.steps" = "歩数: %@ 歩";
+"health.goal.progress" = "目標達成率: %d%% (10,000歩目標)";
+"health.no.data" = "データがありません";
+"health.avg.bpm" = "平均: %d bpm";
+"health.min.bpm" = "最低: %d bpm";
+"health.max.bpm" = "最高: %d bpm";
+"health.measurements" = "測定回数: %d回";
+"health.no.sleep" = "睡眠データがありません";
+"health.sleep.total" = "合計睡眠時間: %d時間%d分";
+"health.bedtime" = "就寝時刻: %@";
+"health.waketime" = "起床時刻: %@";
+"health.calories" = "消費カロリー: %d kcal";
+
+// MARK: - File System Messages
+"filesystem.not.found" = "ファイルが見つかりません: %@";
+"filesystem.written" = "ファイルを書き込みました: %@";
+"filesystem.dir.created" = "ディレクトリを作成しました: %@";
+"filesystem.deleted" = "削除しました: %@";
+"filesystem.size" = "サイズ: %@";
+"filesystem.created" = "作成日: %@";
+"filesystem.modified" = "更新日: %@";
+"filesystem.type" = "種類: %@";
+
+// MARK: - Shortcuts Messages
+"shortcuts.executed" = "ショートカット '%@' を実行しました";
+"shortcuts.opened" = "ショートカットアプリを開きました";
+"shortcuts.settings.opened" = "設定(%@)を開きました";
+"shortcuts.mail.opened" = "メール作成画面を開きました";
+"shortcuts.calling" = "電話をかけています: %@";
+"shortcuts.message.opened" = "メッセージ作成画面を開きました";
+"shortcuts.failed" = "ショートカットを開けませんでした";
+
+// MARK: - Model Tiers
+"model.tier.entry" = "エントリー";
+"model.tier.standard" = "スタンダード";
+"model.tier.pro" = "プロ";
+
+// MARK: - Tool Parser
+"tool.arguments" = "引数:";

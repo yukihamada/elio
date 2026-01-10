@@ -1,0 +1,363 @@
+/*
+  Localizable.strings (English)
+  elio
+*/
+
+// MARK: - App General
+"app.name" = "Elio";
+"app.tagline" = "Your secret-keeping second brain.";
+
+// MARK: - Common Actions
+"common.done" = "Done";
+"common.cancel" = "Cancel";
+"common.delete" = "Delete";
+"common.save" = "Save";
+"common.edit" = "Edit";
+"common.share" = "Share";
+"common.copy" = "Copy";
+"common.copied" = "Copied";
+"common.loading" = "Loading...";
+"common.error" = "Error";
+"common.retry" = "Retry";
+"common.skip" = "Skip";
+"common.next" = "Next";
+"common.start" = "Get Started";
+"common.add" = "Add";
+"common.close" = "Close";
+"common.details" = "Details";
+"common.yes" = "Yes";
+"common.no" = "No";
+"common.unknown" = "Unknown";
+
+// MARK: - Chat
+"chat.placeholder" = "Ask me anything";
+"chat.model.not.loaded" = "No Model Loaded";
+"chat.model.not.loaded.description" = "Please download a model from Settings";
+"chat.go.to.settings" = "Go to Settings";
+"chat.new.conversation" = "New Chat";
+"chat.stop.generation" = "Stop";
+"chat.generation.stopped" = "\n\n[Generation stopped]";
+"chat.thinking" = "Thinking...";
+"chat.generating" = "Generating response...";
+"chat.welcome" = "How can I help you?";
+"chat.suggestion.schedule" = "Show today's schedule";
+"chat.suggestion.reminder" = "Create a reminder";
+"chat.suggestion.help" = "How to use this app";
+
+// MARK: - Settings
+"settings.title" = "Settings";
+"settings.model.section" = "AI Models";
+"settings.model.recommended" = "Recommended: %@";
+"settings.model.local.execution" = "Models run locally on your device";
+"settings.model.show.more" = "Other Models (%d)";
+"settings.model.show.less" = "Show Less";
+"settings.appearance.section" = "Appearance";
+"settings.tools.section" = "Smart Features";
+"settings.mcp.servers" = "Integrations";
+"settings.mcp.servers.description" = "Calendar, Files, Reminders & more";
+"settings.mcp.enabled.count" = "%d enabled";
+"settings.mcp.enabled.count.suffix" = " enabled";
+"settings.about.section" = "About";
+"settings.version" = "Version";
+"settings.about.app" = "About This App";
+"settings.about.mcp" = "About Integrations";
+"settings.privacy.badge" = "Works Offline";
+"settings.privacy.description" = "Works in Airplane Mode";
+"settings.airplane.mode" = "Running in Airplane Mode";
+"settings.offline.ready" = "Offline Ready";
+
+// MARK: - Model States
+"model.status.downloading" = "Downloading... %d%%";
+"model.status.loading" = "Loading...";
+"model.status.in.use" = "In Use";
+"model.status.recommended" = "Recommended";
+"model.status.heavy" = "Heavy";
+"model.action.download" = "Download";
+"model.action.load" = "Load";
+"model.action.delete" = "Delete";
+"model.action.use" = "Use This Model";
+"model.delete.confirm.title" = "Delete Model";
+"model.delete.confirm.message" = "Delete %@? You'll need to re-download it to use again.";
+"model.select.title" = "Select Model";
+"model.select.prompt" = "Please select a model";
+"model.downloaded" = "Downloaded";
+
+// MARK: - Inference Mode
+"inference.mode.title" = "Acceleration";
+"inference.mode.auto" = "Auto";
+"inference.mode.auto.desc" = "Optimal performance automatically";
+"inference.mode.gpu" = "GPU (Metal)";
+"inference.mode.gpu.desc" = "Maximum speed with Metal";
+"inference.mode.cpu" = "CPU Only";
+"inference.mode.cpu.desc" = "Battery saving mode";
+"inference.mode.hybrid" = "Hybrid";
+"inference.mode.hybrid.desc" = "Balance of speed and battery";
+
+// MARK: - Theme
+"theme.system" = "System";
+"theme.light" = "Light";
+"theme.dark" = "Dark";
+
+// MARK: - Onboarding
+"onboarding.welcome.title" = "Welcome to Elio";
+"onboarding.welcome.subtitle" = "Your secret-keeping second brain.";
+"onboarding.features.title" = "Safer than ChatGPT";
+"onboarding.feature.offline" = "Works in Airplane Mode";
+"onboarding.feature.offline.desc" = "Use it on flights or underground";
+"onboarding.feature.privacy" = "Zero Data Transmission";
+"onboarding.feature.privacy.desc" = "Your chats never leave your phone";
+"onboarding.feature.vault" = "Smart Integrations";
+"onboarding.feature.vault.desc" = "Connect with Calendar & Files";
+"onboarding.feature.secure" = "Work-Safe AI";
+"onboarding.feature.secure.desc" = "Even if your company bans ChatGPT";
+"onboarding.feature.thinking" = "Thinking Process";
+"onboarding.privacy.title" = "Your Data Stays Yours";
+"onboarding.privacy.item1" = "All processing happens on your iPhone";
+"onboarding.privacy.item2" = "No data sent to cloud servers";
+"onboarding.privacy.item3" = "Never used for AI training";
+"onboarding.getstarted.title" = "Ready in One Tap";
+"onboarding.getstarted.subtitle" = "Download the recommended AI model\nand start chatting right away";
+"onboarding.step1" = "Download recommended model";
+"onboarding.step2" = "Wait a few minutes";
+"onboarding.step3" = "You're all set!";
+
+// MARK: - About
+"about.title" = "About This App";
+"about.rate.app" = "Rate App";
+"about.share.app" = "Share with Friends";
+"about.privacy.policy" = "Privacy Policy";
+"about.terms" = "Terms of Service";
+"about.tech.info" = "Technical Info";
+"about.tech.engine" = "AI Engine";
+"about.tech.format" = "Supported Format";
+"about.tech.inference" = "Inference";
+"about.data.management" = "Data Management";
+"about.delete.all" = "Delete All Conversations";
+"about.credits" = "Credits";
+"about.credits.description" = "This app uses open source libraries";
+"about.privacy.section" = "Privacy";
+"about.gguf.format" = "GGUF Format";
+"about.metal.gpu" = "Metal GPU Acceleration";
+
+// MARK: - Privacy Policy
+"privacy.title" = "Privacy Policy";
+"privacy.data.collection.title" = "Data Collection";
+"privacy.data.collection.content" = "This app runs a local AI completely offline.\nNo data is sent to external servers.\nAll conversations are stored only on your device.";
+"privacy.stored.data.title" = "Stored Data";
+"privacy.stored.data.content" = "Conversation history (stored only on device)\nAI model files (stored only on device)\nApp settings (stored only on device)\n\nThis data is never shared externally.";
+"privacy.data.deletion.title" = "Data Deletion";
+"privacy.data.deletion.content" = "You can delete all data anytime from Settings > Data Management.\nUninstalling the app will delete all data.";
+
+// MARK: - Terms of Service
+"terms.title" = "Terms of Service";
+"terms.service.title" = "Service Description";
+"terms.service.content" = "This app provides AI assistant functionality using a locally running AI model.";
+"terms.disclaimer.title" = "Disclaimer";
+"terms.disclaimer.content" = "AI responses may contain errors.\nImportant decisions should always be verified by a professional.\nWe are not liable for any damages arising from the use of this app.";
+"terms.prohibited.title" = "Prohibited Activities";
+"terms.prohibited.content" = "Illegal activities\nActivities that infringe on others' rights\nReverse engineering of this app\nUnauthorized copying of this app";
+"terms.ip.title" = "Intellectual Property";
+"terms.ip.content" = "The intellectual property rights of this app belong to the developer.\nUnauthorized use is prohibited.";
+
+// MARK: - Conversations
+"conversations.title" = "Conversations";
+"conversations.new" = "New Conversation";
+"conversations.empty" = "No conversations yet";
+"conversations.delete" = "Delete Conversation";
+"conversations.default.title" = "New Conversation";
+"conversations.today" = "Today";
+"conversations.yesterday" = "Yesterday";
+"conversations.past7days" = "Past 7 Days";
+"conversations.past30days" = "Past 30 Days";
+"conversations.older" = "Older";
+"conversations.created" = "Created: %@";
+"conversations.user" = "User";
+"conversations.assistant" = "Assistant";
+
+// MARK: - Message Actions
+"message.copy" = "Copy";
+"message.speak" = "Speak";
+"message.stop.speaking" = "Stop Speaking";
+"message.share" = "Share";
+"message.like" = "Like";
+"message.dislike" = "Dislike";
+"message.thinking.process" = "Thinking Process";
+"message.tool.running" = "Running Tool";
+"message.tool.error" = "Error";
+"message.tool.completed" = "Completed";
+
+// MARK: - Attachment
+"attachment.title" = "Attachment";
+"attachment.photo.library" = "Choose Photo";
+"attachment.camera" = "Take Photo";
+
+// MARK: - Errors
+"error.model.not.found" = "Model file not found";
+"error.model.not.loaded" = "Model not loaded";
+"error.context.failed" = "Failed to create context";
+"error.tokenization.failed" = "Tokenization failed";
+"error.generation.failed" = "Generation error: %@";
+"error.occurred" = "An error occurred: %@";
+"error.invalid.url" = "Invalid URL";
+"error.download.failed" = "Download failed";
+"error.extraction.failed" = "Extraction failed";
+"error.config.not.found" = "Config file not found";
+
+// MARK: - Ghost Search
+"ghost.search.title" = "Ghost Search";
+"ghost.search.description" = "Anonymous search via DuckDuckGo (no tracking)";
+"ghost.search.connecting" = "Connecting to anonymous network...";
+"ghost.search.privacy.note" = "Your search history is never tracked";
+
+// MARK: - MCP Servers
+"mcp.filesystem" = "File System";
+"mcp.filesystem.desc" = "Read and write files in app";
+"mcp.calendar" = "Calendar";
+"mcp.calendar.desc" = "Read and write events";
+"mcp.reminders" = "Reminders";
+"mcp.reminders.desc" = "Manage reminders";
+"mcp.contacts" = "Contacts";
+"mcp.contacts.desc" = "Search and view contacts";
+"mcp.photos" = "Photos";
+"mcp.photos.desc" = "Access photo library";
+"mcp.location" = "Location";
+"mcp.location.desc" = "Get current location and search places";
+"mcp.health" = "Health";
+"mcp.health.desc" = "Access health data";
+"mcp.shortcuts" = "Shortcuts";
+"mcp.shortcuts.desc" = "Run shortcuts";
+"mcp.websearch" = "Web Search";
+"mcp.websearch.desc" = "Anonymous web search";
+"mcp.custom" = "Custom Integration";
+"mcp.custom.add" = "Add Integration";
+"mcp.custom.setup" = "Set up external service integration";
+"mcp.custom.title" = "Custom Integrations";
+"mcp.settings.title" = "Integration Settings";
+"mcp.server.name" = "Server Name";
+"mcp.server.name.placeholder" = "e.g., My Custom Server";
+"mcp.config.url" = "Config File URL";
+"mcp.import.file" = "Import from File";
+"mcp.config.example" = "Config File Example";
+"mcp.permission.note" = "Permissions will be requested when first using each feature";
+
+// MARK: - MCP Tool Messages
+"mcp.tool.available" = "Available Tools:";
+"mcp.tool.parameters" = "Parameters:";
+"mcp.prompt.available" = "Available Prompts:";
+"mcp.prompt.arguments" = "Arguments:";
+"mcp.tool.name" = "tool_name";
+"mcp.tool.arg.name" = "arg_name";
+"mcp.tool.arg.value" = "value";
+"mcp.tool.no.result" = "No result";
+"mcp.tool.running" = "Running tool: %@";
+"mcp.tool.error" = "Tool execution error: %@";
+
+// MARK: - MCP Error Messages
+"mcp.error.server.not.found" = "Server not found: %@";
+"mcp.error.tool.not.found" = "Tool not found: %@";
+"mcp.error.invalid.args" = "Invalid arguments: %@";
+"mcp.error.execution" = "Execution error: %@";
+"mcp.error.permission" = "Permission denied: %@";
+
+// MARK: - Calendar Messages
+"calendar.no.events" = "No events";
+"calendar.event.created" = "Event created: %@";
+"calendar.event.deleted" = "Event deleted: %@";
+"calendar.allday.created" = "All-day event created: %@";
+"calendar.access.denied" = "Calendar access denied";
+"calendar.today.none" = "No events today";
+"calendar.untitled" = "Untitled";
+
+// MARK: - Reminders Messages
+"reminders.none" = "No reminders";
+"reminders.created" = "Reminder created: %@";
+"reminders.completed" = "Reminder completed: %@";
+"reminders.deleted" = "Reminder deleted: %@";
+"reminders.access.denied" = "Reminders access denied";
+"reminders.untitled" = "Untitled";
+
+// MARK: - Photos Messages
+"photos.access.denied" = "Photos access denied";
+"photos.not.found" = "Photo not found";
+"photos.untitled" = "Untitled";
+"photos.count" = "Photos: %d";
+"photos.videos.count" = "Videos: %d";
+"photos.albums.count" = "Albums: %d";
+"photos.favorites.count" = "Favorites: %d";
+"photos.date" = "Date: %@";
+"photos.size" = "Size: %d x %d";
+"photos.location" = "Location: %@, %@";
+"photos.media.type" = "Media Type: %@";
+"photos.duration" = "Duration: %dm %ds";
+"photos.favorite" = "Favorite: %@";
+"photos.type.image" = "Photo";
+"photos.type.video" = "Video";
+"photos.type.audio" = "Audio";
+
+// MARK: - Contacts Messages
+"contacts.access.denied" = "Contacts access denied";
+"contacts.not.found" = "No matching contacts found";
+"contacts.no.groups" = "No groups";
+"contacts.no.card" = "No contact card set";
+"contacts.name" = "Name: %@";
+"contacts.company" = "Company: %@";
+"contacts.job" = "Job Title: %@";
+
+// MARK: - Location Messages
+"location.access.denied" = "Location access denied";
+"location.not.found" = "Address not found";
+"location.latitude" = "Latitude: %@";
+"location.longitude" = "Longitude: %@";
+"location.accuracy" = "Accuracy: %dm";
+"location.altitude" = "Altitude: %dm";
+"location.search" = "Search: %@";
+"location.address" = "Address: %@";
+"location.country" = "Country: %@";
+"location.postal" = "Postal Code: %@";
+"location.from" = "From: (%@, %@)";
+"location.to" = "To: (%@, %@)";
+"location.distance.km" = "Distance: %.2f km";
+"location.distance.m" = "Distance: %d m";
+
+// MARK: - Health Messages
+"health.not.available" = "Health is not available on this device";
+"health.date" = "Date: %@";
+"health.steps" = "Steps: %@ steps";
+"health.goal.progress" = "Goal progress: %d%% (10,000 steps goal)";
+"health.no.data" = "No data available";
+"health.avg.bpm" = "Average: %d bpm";
+"health.min.bpm" = "Minimum: %d bpm";
+"health.max.bpm" = "Maximum: %d bpm";
+"health.measurements" = "Measurements: %d";
+"health.no.sleep" = "No sleep data";
+"health.sleep.total" = "Total sleep: %dh %dm";
+"health.bedtime" = "Bedtime: %@";
+"health.waketime" = "Wake time: %@";
+"health.calories" = "Calories: %d kcal";
+
+// MARK: - File System Messages
+"filesystem.not.found" = "File not found: %@";
+"filesystem.written" = "File written: %@";
+"filesystem.dir.created" = "Directory created: %@";
+"filesystem.deleted" = "Deleted: %@";
+"filesystem.size" = "Size: %@";
+"filesystem.created" = "Created: %@";
+"filesystem.modified" = "Modified: %@";
+"filesystem.type" = "Type: %@";
+
+// MARK: - Shortcuts Messages
+"shortcuts.executed" = "Shortcut '%@' executed";
+"shortcuts.opened" = "Shortcuts app opened";
+"shortcuts.settings.opened" = "Settings (%@) opened";
+"shortcuts.mail.opened" = "Mail compose opened";
+"shortcuts.calling" = "Calling: %@";
+"shortcuts.message.opened" = "Message compose opened";
+"shortcuts.failed" = "Could not open shortcut";
+
+// MARK: - Model Tiers
+"model.tier.entry" = "Entry";
+"model.tier.standard" = "Standard";
+"model.tier.pro" = "Pro";
+
+// MARK: - Tool Parser
+"tool.arguments" = "Arguments:";
