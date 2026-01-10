@@ -37,6 +37,7 @@
 "chat.new.conversation" = "新規チャット";
 "chat.stop.generation" = "停止";
 "chat.generation.stopped" = "\n\n[生成を停止しました]";
+"chat.image.sent" = "[画像を送信しました]";
 "chat.thinking" = "考え中...";
 "chat.generating" = "応答を生成中...";
 "chat.welcome" = "何をお手伝いしましょうか？";

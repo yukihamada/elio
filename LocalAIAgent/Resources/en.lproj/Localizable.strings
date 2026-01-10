@@ -37,6 +37,7 @@
 "chat.new.conversation" = "New Chat";
 "chat.stop.generation" = "Stop";
 "chat.generation.stopped" = "\n\n[Generation stopped]";
+"chat.image.sent" = "[Image sent]";
 "chat.thinking" = "Thinking...";
 "chat.generating" = "Generating response...";
 "chat.welcome" = "How can I help you?";

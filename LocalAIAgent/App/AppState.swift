@@ -257,7 +257,7 @@ final class AppState: ObservableObject {
         }
     }
 
-    func sendMessageWithStreaming(_ content: String, onToken: @escaping (String) -> Void) async -> String {
+    func sendMessageWithStreaming(_ content: String, imageData: Data? = nil, onToken: @escaping (String) -> Void) async -> String {
         guard isModelLoaded else {
             let msg = String(localized: "chat.model.not.loaded.description")
             onToken(msg)
@@ -273,7 +273,9 @@ final class AppState: ObservableObject {
             conversations.insert(currentConversation!, at: 0)
         }
 
-        let userMessage = Message(role: .user, content: content)
+        // Create message with optional image
+        let messageContent = content.isEmpty ? String(localized: "chat.image.sent") : content
+        let userMessage = Message(role: .user, content: messageContent, imageData: imageData)
         currentConversation?.messages.append(userMessage)
         currentConversation?.updatedAt = Date()
 

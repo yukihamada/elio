@@ -1,4 +1,5 @@
 import Foundation
+import UIKit
 
 struct Message: Identifiable, Codable, Equatable {
     let id: UUID
@@ -8,6 +9,7 @@ struct Message: Identifiable, Codable, Equatable {
     var toolCalls: [ToolCall]?
     var toolResults: [ToolResult]?
     var thinkingContent: String?
+    var imageData: Data?  // Store image as JPEG data
 
     enum Role: String, Codable {
         case user
@@ -23,7 +25,8 @@ struct Message: Identifiable, Codable, Equatable {
         timestamp: Date = Date(),
         toolCalls: [ToolCall]? = nil,
         toolResults: [ToolResult]? = nil,
-        thinkingContent: String? = nil
+        thinkingContent: String? = nil,
+        imageData: Data? = nil
     ) {
         self.id = id
         self.role = role
@@ -32,6 +35,18 @@ struct Message: Identifiable, Codable, Equatable {
         self.toolCalls = toolCalls
         self.toolResults = toolResults
         self.thinkingContent = thinkingContent
+        self.imageData = imageData
+    }
+
+    /// Get UIImage from stored data
+    var image: UIImage? {
+        guard let data = imageData else { return nil }
+        return UIImage(data: data)
+    }
+
+    /// Check if message has an image attachment
+    var hasImage: Bool {
+        imageData != nil
     }
 
     /// Parse raw response to extract thinking content and main content

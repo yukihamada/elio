@@ -17,6 +17,7 @@ struct ChatView: View {
     @State private var showingAttachmentOptions = false
     @State private var showingImagePicker = false
     @State private var showingCamera = false
+    @State private var attachedImage: UIImage?
     @FocusState private var isInputFocused: Bool
 
     var body: some View {
@@ -55,12 +56,12 @@ struct ChatView: View {
         }
         .sheet(isPresented: $showingImagePicker) {
             ImagePicker(onImageSelected: { image in
-                // TODO: Handle image attachment
+                attachedImage = image
             })
         }
         .fullScreenCover(isPresented: $showingCamera) {
             CameraPicker(onImageCaptured: { image in
-                // TODO: Handle captured image
+                attachedImage = image
             })
         }
     }
@@ -249,6 +250,30 @@ struct ChatView: View {
 
     private var inputBar: some View {
         VStack(spacing: 0) {
+            // Attached image preview
+            if let image = attachedImage {
+                HStack {
+                    Image(uiImage: image)
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: 80, height: 80)
+                        .clipShape(RoundedRectangle(cornerRadius: 12))
+                        .overlay(
+                            Button(action: { attachedImage = nil }) {
+                                Image(systemName: "xmark.circle.fill")
+                                    .font(.system(size: 20))
+                                    .foregroundStyle(.white)
+                                    .background(Color.black.opacity(0.5))
+                                    .clipShape(Circle())
+                            }
+                            .offset(x: 30, y: -30)
+                        )
+                    Spacer()
+                }
+                .padding(.horizontal, 16)
+                .padding(.bottom, 8)
+            }
+
             // Loading indicator when model is loading
             if appState.isLoading {
                 HStack(spacing: 8) {
@@ -345,16 +370,21 @@ struct ChatView: View {
     }
 
     private var canSend: Bool {
-        !inputText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty &&
+        (!inputText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty || attachedImage != nil) &&
         !isGenerating &&
         appState.isModelLoaded
     }
 
     private func sendMessage() {
         let trimmedText = inputText.trimmingCharacters(in: .whitespacesAndNewlines)
-        guard !trimmedText.isEmpty else { return }
+        guard !trimmedText.isEmpty || attachedImage != nil else { return }
+
+        // Capture and clear attached image
+        let imageToSend = attachedImage
+        let imageData: Data? = imageToSend?.jpegData(compressionQuality: 0.8)
 
         inputText = ""
+        attachedImage = nil
         isInputFocused = false
         isGenerating = true
         streamingResponse = ""
@@ -364,7 +394,7 @@ struct ChatView: View {
         startUpdateTimer()
 
         generationTask = Task {
-            _ = await appState.sendMessageWithStreaming(trimmedText) { token in
+            _ = await appState.sendMessageWithStreaming(trimmedText, imageData: imageData) { token in
                 guard !Task.isCancelled else { return }
                 streamingResponse += token
             }
