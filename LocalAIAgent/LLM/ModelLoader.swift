@@ -229,14 +229,14 @@ final class ModelLoader: ObservableObject {
 
     private func loadAvailableModels() {
         availableModels = [
-            // Vision Models (画像対応)
+            // Vision Models (画像対応) - Qwen3-VL Series
             ModelInfo(
-                id: "qwen2-vl-2b",
-                name: "Qwen2-VL 2B",
-                description: "📷 Qwen2ベースの画像認識モデル。軽量で高精度。",
-                descriptionEn: "📷 Qwen2-based vision model. Light and accurate.",
+                id: "qwen3-vl-2b",
+                name: "Qwen3-VL 2B",
+                description: "📷 最新Qwen3ベースの画像認識。軽量で全デバイス対応。",
+                descriptionEn: "📷 Latest Qwen3-based vision. Light, works on all devices.",
                 size: "約1.5GB",
-                downloadURL: "https://huggingface.co/Qwen/Qwen2-VL-2B-Instruct-GGUF/resolve/main/qwen2-vl-2b-instruct-q4_k_m.gguf",
+                downloadURL: "https://huggingface.co/Qwen/Qwen3-VL-2B-Instruct-GGUF/resolve/main/qwen3-vl-2b-instruct-q4_k_m.gguf",
                 config: ModelInfo.ModelConfigData(
                     maxContextLength: 32768,
                     vocabularySize: 151936,
@@ -247,12 +247,28 @@ final class ModelLoader: ObservableObject {
                 supportsVision: true
             ),
             ModelInfo(
-                id: "qwen2-vl-7b",
-                name: "Qwen2-VL 7B",
-                description: "📷 高性能画像認識。詳細な画像分析が可能。Pro Max推奨。",
-                descriptionEn: "📷 High-performance vision. Detailed image analysis. Pro Max recommended.",
-                size: "約4.5GB",
-                downloadURL: "https://huggingface.co/Qwen/Qwen2-VL-7B-Instruct-GGUF/resolve/main/qwen2-vl-7b-instruct-q4_k_m.gguf",
+                id: "qwen3-vl-4b",
+                name: "Qwen3-VL 4B",
+                description: "📷 バランス良好な画像認識。Pro以上推奨。",
+                descriptionEn: "📷 Well-balanced vision model. Pro or higher recommended.",
+                size: "約2.5GB",
+                downloadURL: "https://huggingface.co/Qwen/Qwen3-VL-4B-Instruct-GGUF/resolve/main/qwen3-vl-4b-instruct-q4_k_m.gguf",
+                config: ModelInfo.ModelConfigData(
+                    maxContextLength: 32768,
+                    vocabularySize: 151936,
+                    eosTokenId: 151645,
+                    bosTokenId: 151643
+                ),
+                tier: .large,
+                supportsVision: true
+            ),
+            ModelInfo(
+                id: "qwen3-vl-8b",
+                name: "Qwen3-VL 8B",
+                description: "📷 最高性能の画像認識。詳細分析・動画理解対応。Pro Max推奨。",
+                descriptionEn: "📷 Best vision performance. Detailed analysis & video. Pro Max recommended.",
+                size: "約5GB",
+                downloadURL: "https://huggingface.co/Qwen/Qwen3-VL-8B-Instruct-GGUF/resolve/main/qwen3-vl-8b-instruct-q4_k_m.gguf",
                 config: ModelInfo.ModelConfigData(
                     maxContextLength: 32768,
                     vocabularySize: 151936,
@@ -262,22 +278,7 @@ final class ModelLoader: ObservableObject {
                 tier: .xlarge,
                 supportsVision: true
             ),
-            ModelInfo(
-                id: "llava-1.6-mistral-7b",
-                name: "LLaVA 1.6 7B",
-                description: "📷 画像認識対応。写真の説明・分析が可能。",
-                descriptionEn: "📷 Vision capable. Can describe and analyze images.",
-                size: "約4.5GB",
-                downloadURL: "https://huggingface.co/cjpais/llava-1.6-mistral-7b-gguf/resolve/main/llava-v1.6-mistral-7b.Q4_K_M.gguf",
-                config: ModelInfo.ModelConfigData(
-                    maxContextLength: 32768,
-                    vocabularySize: 32064,
-                    eosTokenId: 2,
-                    bosTokenId: 1
-                ),
-                tier: .xlarge,
-                supportsVision: true
-            ),
+            // Legacy Vision Models
             ModelInfo(
                 id: "smolvlm-instruct",
                 name: "SmolVLM 2B",
