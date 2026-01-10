@@ -4,7 +4,26 @@ struct OnboardingView: View {
     @Binding var hasCompletedOnboarding: Bool
     @EnvironmentObject var appState: AppState
     @State private var currentPage = 0
+    @State private var isDownloading = false
+    @State private var downloadProgress: Double = 0
+    @State private var downloadError: String?
+    @State private var downloadCompleted = false
     @Environment(\.dismiss) private var dismiss
+    @StateObject private var modelLoader = ModelLoader()
+
+    // Get recommended model based on device spec
+    private var recommendedModel: ModelLoader.ModelInfo? {
+        let deviceTier = DeviceTier.current
+        // For high/ultra devices: Qwen3 4B, for medium/low: Qwen3 1.7B
+        switch deviceTier {
+        case .ultra, .high:
+            return modelLoader.availableModels.first { $0.id == "qwen3-4b" }
+        case .medium:
+            return modelLoader.availableModels.first { $0.id == "qwen3-1.7b" }
+        case .low:
+            return modelLoader.availableModels.first { $0.id == "qwen3-0.6b" }
+        }
+    }
 
     var body: some View {
         ZStack {
@@ -52,14 +71,51 @@ struct OnboardingView: View {
                                 .cornerRadius(12)
                         }
                     } else {
-                        Button(action: { completeOnboarding() }) {
-                            Text("始める")
-                                .font(.headline)
+                        // Last page - download or complete
+                        if downloadCompleted {
+                            Button(action: { completeOnboarding() }) {
+                                Text("始める")
+                                    .font(.headline)
+                                    .frame(maxWidth: .infinity)
+                                    .padding(.vertical, 16)
+                                    .background(Color.accentColor)
+                                    .foregroundColor(.white)
+                                    .cornerRadius(12)
+                            }
+                        } else if isDownloading {
+                            Button(action: {}) {
+                                HStack {
+                                    ProgressView()
+                                        .tint(.white)
+                                    Text("ダウンロード中...")
+                                        .font(.headline)
+                                }
                                 .frame(maxWidth: .infinity)
                                 .padding(.vertical, 16)
-                                .background(Color.accentColor)
+                                .background(Color.gray)
                                 .foregroundColor(.white)
                                 .cornerRadius(12)
+                            }
+                            .disabled(true)
+                        } else {
+                            Button(action: { startModelDownload() }) {
+                                HStack {
+                                    Image(systemName: "arrow.down.circle.fill")
+                                    Text("ダウンロード開始")
+                                        .font(.headline)
+                                }
+                                .frame(maxWidth: .infinity)
+                                .padding(.vertical, 16)
+                                .background(Color.cyan)
+                                .foregroundColor(.white)
+                                .cornerRadius(12)
+                            }
+
+                            Button(action: { completeOnboarding() }) {
+                                Text("後でダウンロード")
+                                    .font(.subheadline)
+                                    .foregroundStyle(.secondary)
+                            }
                         }
                     }
                 }
@@ -198,35 +254,152 @@ struct OnboardingView: View {
         VStack(spacing: 24) {
             Spacer()
 
-            ZStack {
-                Circle()
-                    .fill(Color.blue.opacity(0.15))
-                    .frame(width: 100, height: 100)
+            if let model = recommendedModel {
+                // Model download section
+                ZStack {
+                    Circle()
+                        .fill(downloadCompleted ? Color.green.opacity(0.15) : Color.cyan.opacity(0.15))
+                        .frame(width: 100, height: 100)
 
-                Image(systemName: "hand.tap.fill")
-                    .font(.system(size: 50))
-                    .foregroundStyle(.blue)
+                    if isDownloading {
+                        CircularProgressView(progress: downloadProgress)
+                            .frame(width: 80, height: 80)
+                    } else if downloadCompleted {
+                        Image(systemName: "checkmark.circle.fill")
+                            .font(.system(size: 50))
+                            .foregroundStyle(.green)
+                    } else {
+                        Image(systemName: "arrow.down.circle.fill")
+                            .font(.system(size: 50))
+                            .foregroundStyle(.cyan)
+                    }
+                }
+
+                Text(downloadCompleted ? "準備完了！" : "AIモデルをダウンロード")
+                    .font(.system(size: 24, weight: .bold))
+
+                // Device tier info
+                HStack(spacing: 8) {
+                    Image(systemName: "iphone")
+                        .foregroundStyle(.secondary)
+                    Text("お使いのデバイス: \(DeviceTier.current.displayName)")
+                        .font(.subheadline)
+                        .foregroundStyle(.secondary)
+                }
+
+                // Recommended model card
+                VStack(spacing: 12) {
+                    HStack {
+                        VStack(alignment: .leading, spacing: 4) {
+                            HStack {
+                                Text(model.name)
+                                    .font(.headline)
+                                Text("おすすめ")
+                                    .font(.caption)
+                                    .padding(.horizontal, 8)
+                                    .padding(.vertical, 2)
+                                    .background(Color.green.opacity(0.2))
+                                    .foregroundStyle(.green)
+                                    .cornerRadius(8)
+                            }
+                            Text(model.description)
+                                .font(.caption)
+                                .foregroundStyle(.secondary)
+                        }
+                        Spacer()
+                        Text(model.size)
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                    }
+
+                    if isDownloading {
+                        VStack(spacing: 8) {
+                            ProgressView(value: downloadProgress)
+                                .tint(.cyan)
+                            Text("\(Int(downloadProgress * 100))% ダウンロード中...")
+                                .font(.caption)
+                                .foregroundStyle(.secondary)
+                        }
+                    }
+
+                    if let error = downloadError {
+                        Text(error)
+                            .font(.caption)
+                            .foregroundStyle(.red)
+                    }
+                }
+                .padding(16)
+                .background(Color(.systemGray6))
+                .cornerRadius(12)
+
+                if !downloadCompleted && !isDownloading {
+                    Text("AIを使うにはモデルのダウンロードが必要です")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                        .multilineTextAlignment(.center)
+                }
+            } else {
+                // Fallback if no model found
+                ZStack {
+                    Circle()
+                        .fill(Color.blue.opacity(0.15))
+                        .frame(width: 100, height: 100)
+
+                    Image(systemName: "hand.tap.fill")
+                        .font(.system(size: 50))
+                        .foregroundStyle(.blue)
+                }
+
+                Text(String(localized: "onboarding.getstarted.title"))
+                    .font(.system(size: 24, weight: .bold))
+
+                Text(String(localized: "onboarding.getstarted.subtitle"))
+                    .font(.body)
+                    .foregroundStyle(.secondary)
+                    .multilineTextAlignment(.center)
             }
-
-            Text(String(localized: "onboarding.getstarted.title"))
-                .font(.system(size: 24, weight: .bold))
-
-            Text(String(localized: "onboarding.getstarted.subtitle"))
-                .font(.body)
-                .foregroundStyle(.secondary)
-                .multilineTextAlignment(.center)
-
-            VStack(spacing: 16) {
-                SetupStepRow(number: 1, text: String(localized: "onboarding.step1"), isActive: true)
-                SetupStepRow(number: 2, text: String(localized: "onboarding.step2"), isActive: false)
-                SetupStepRow(number: 3, text: String(localized: "onboarding.step3"), isActive: false)
-            }
-            .padding(.horizontal, 16)
 
             Spacer()
             Spacer()
         }
         .padding(.horizontal, 32)
+    }
+
+    private func startModelDownload() {
+        guard let model = recommendedModel else { return }
+
+        isDownloading = true
+        downloadError = nil
+
+        Task {
+            do {
+                // Monitor download progress
+                let progressTask = Task {
+                    while !Task.isCancelled {
+                        if let progress = await modelLoader.downloadProgress[model.id] {
+                            await MainActor.run {
+                                self.downloadProgress = progress
+                            }
+                        }
+                        try? await Task.sleep(nanoseconds: 100_000_000) // 0.1s
+                    }
+                }
+
+                try await modelLoader.downloadModel(model)
+                progressTask.cancel()
+
+                await MainActor.run {
+                    downloadProgress = 1.0
+                    isDownloading = false
+                    downloadCompleted = true
+                }
+            } catch {
+                await MainActor.run {
+                    isDownloading = false
+                    downloadError = "ダウンロードに失敗しました: \(error.localizedDescription)"
+                }
+            }
+        }
     }
 
     private func completeOnboarding() {
@@ -306,6 +479,29 @@ struct SetupStepRow: View {
                 Image(systemName: "checkmark.circle.fill")
                     .foregroundStyle(.green)
             }
+        }
+    }
+}
+
+// MARK: - Circular Progress View
+
+struct CircularProgressView: View {
+    let progress: Double
+
+    var body: some View {
+        ZStack {
+            Circle()
+                .stroke(Color.gray.opacity(0.3), lineWidth: 6)
+
+            Circle()
+                .trim(from: 0, to: progress)
+                .stroke(Color.cyan, style: StrokeStyle(lineWidth: 6, lineCap: .round))
+                .rotationEffect(.degrees(-90))
+                .animation(.easeInOut(duration: 0.2), value: progress)
+
+            Text("\(Int(progress * 100))%")
+                .font(.system(size: 16, weight: .bold))
+                .foregroundStyle(.cyan)
         }
     }
 }

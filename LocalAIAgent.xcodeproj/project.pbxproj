@@ -38,7 +38,6 @@
 		029 /* LlamaInference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130 /* LlamaInference.swift */; };
 		030 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 131 /* ThemeManager.swift */; };
 		031 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 132 /* Assets.xcassets */; };
-		032 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 133 /* LaunchScreen.storyboard */; };
 		033 /* WebSearchServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134 /* WebSearchServer.swift */; };
 		034 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135 /* OnboardingView.swift */; };
 		035 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136 /* AboutView.swift */; };
@@ -84,7 +83,6 @@
 		130 /* LlamaInference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LlamaInference.swift; sourceTree = "<group>"; };
 		131 /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
 		132 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		133 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		141 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		142 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		137 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
@@ -205,7 +203,6 @@
 			children = (
 				129 /* Info.plist */,
 				132 /* Assets.xcassets */,
-				133 /* LaunchScreen.storyboard */,
 				140 /* Localizable.strings */,
 			);
 			path = Resources;
@@ -305,7 +302,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				031 /* Assets.xcassets in Resources */,
-				032 /* LaunchScreen.storyboard in Resources */,
 				036 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
