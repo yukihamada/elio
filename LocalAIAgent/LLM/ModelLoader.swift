@@ -231,6 +231,38 @@ final class ModelLoader: ObservableObject {
         availableModels = [
             // Vision Models (画像対応)
             ModelInfo(
+                id: "qwen2-vl-2b",
+                name: "Qwen2-VL 2B",
+                description: "📷 Qwen2ベースの画像認識モデル。軽量で高精度。",
+                descriptionEn: "📷 Qwen2-based vision model. Light and accurate.",
+                size: "約1.5GB",
+                downloadURL: "https://huggingface.co/Qwen/Qwen2-VL-2B-Instruct-GGUF/resolve/main/qwen2-vl-2b-instruct-q4_k_m.gguf",
+                config: ModelInfo.ModelConfigData(
+                    maxContextLength: 32768,
+                    vocabularySize: 151936,
+                    eosTokenId: 151645,
+                    bosTokenId: 151643
+                ),
+                tier: .medium,
+                supportsVision: true
+            ),
+            ModelInfo(
+                id: "qwen2-vl-7b",
+                name: "Qwen2-VL 7B",
+                description: "📷 高性能画像認識。詳細な画像分析が可能。Pro Max推奨。",
+                descriptionEn: "📷 High-performance vision. Detailed image analysis. Pro Max recommended.",
+                size: "約4.5GB",
+                downloadURL: "https://huggingface.co/Qwen/Qwen2-VL-7B-Instruct-GGUF/resolve/main/qwen2-vl-7b-instruct-q4_k_m.gguf",
+                config: ModelInfo.ModelConfigData(
+                    maxContextLength: 32768,
+                    vocabularySize: 151936,
+                    eosTokenId: 151645,
+                    bosTokenId: 151643
+                ),
+                tier: .xlarge,
+                supportsVision: true
+            ),
+            ModelInfo(
                 id: "llava-1.6-mistral-7b",
                 name: "LLaVA 1.6 7B",
                 description: "📷 画像認識対応。写真の説明・分析が可能。",
