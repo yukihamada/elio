@@ -374,12 +374,10 @@ struct OnboardingView: View {
         Task {
             do {
                 // Monitor download progress
-                let progressTask = Task {
+                let progressTask = Task { @MainActor in
                     while !Task.isCancelled {
-                        if let progress = await modelLoader.downloadProgress[model.id] {
-                            await MainActor.run {
-                                self.downloadProgress = progress
-                            }
+                        if let progress = modelLoader.downloadProgress[model.id] {
+                            self.downloadProgress = progress
                         }
                         try? await Task.sleep(nanoseconds: 100_000_000) // 0.1s
                     }
