@@ -393,8 +393,8 @@ final class LlamaInference: ObservableObject {
                 break
             }
 
-            // Yield to allow UI updates every few tokens
-            if tokenIndex % 4 == 0 {
+            // Yield to allow UI updates every 2 tokens for better responsiveness
+            if tokenIndex % 2 == 0 {
                 await Task.yield()
             }
         }

@@ -200,13 +200,9 @@ final class WhisperManager: ObservableObject {
         defer { isTranscribing = false }
 
         do {
-            // Japanese context prompt to improve transcription accuracy
-            // Include common phrases, proper punctuation, and natural speech patterns
-            let japanesePrompt = """
-            こんにちは。今日の予定を教えてください。リマインダーを設定して。
-            明日の天気はどうですか？検索してください。写真を見せて。
-            ありがとうございます。お願いします。了解しました。
-            """
+            // Japanese transcription prompt - concise and effective
+            // Instructs proper punctuation usage for natural Japanese output
+            let japanesePrompt = "以下は日本語の音声入力です。句読点「、」「。」「？」「！」を適切に使用し、自然な日本語で書き起こしてください。"
 
             let results = try await whisper.transcribe(audioPath: url.path, decodeOptions: DecodingOptions(
                 task: .transcribe,

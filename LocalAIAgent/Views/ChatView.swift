@@ -61,6 +61,13 @@ struct ChatView: View {
 
                 inputBar
             }
+
+            // Processing overlay - prevents white screen during CPU-heavy operations
+            if isGenerating {
+                Color.black.opacity(0.02)
+                    .ignoresSafeArea()
+                    .allowsHitTesting(false)
+            }
         }
         .sheet(isPresented: $showingConversationList) {
             ConversationListView()
@@ -1020,9 +1027,9 @@ struct ChatView: View {
 
     private func startUpdateTimer() {
         updateTimer?.invalidate()
-        // Update display every 100ms (~10fps) for efficient streaming
-        // Reduced from 33ms to lower CPU usage while maintaining readable text flow
-        updateTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { _ in
+        // Update display every 150ms (~6fps) for efficient streaming
+        // This reduces CPU usage while maintaining readable text flow
+        updateTimer = Timer.scheduledTimer(withTimeInterval: 0.15, repeats: true) { _ in
             if displayedResponse != streamingResponse {
                 // Use transaction to reduce animation overhead during rapid updates
                 var transaction = Transaction()
@@ -1180,12 +1187,16 @@ struct ChatMessageRow: View {
             .buttonStyle(.plain)
 
             if isThinkingExpanded {
-                Text(thinking)
-                    .font(.system(size: 14))
-                    .foregroundStyle(.secondary)
-                    .padding(12)
-                    .background(Color.purple.opacity(0.08))
-                    .clipShape(RoundedRectangle(cornerRadius: 8))
+                ScrollView {
+                    Text(thinking)
+                        .font(.system(size: 14))
+                        .foregroundStyle(.secondary)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                }
+                .frame(maxHeight: 200)  // Limit height to prevent overflow
+                .padding(12)
+                .background(Color.purple.opacity(0.08))
+                .clipShape(RoundedRectangle(cornerRadius: 8))
             }
         }
     }
@@ -1409,12 +1420,16 @@ struct StreamingMessageRow: View {
             .buttonStyle(.plain)
 
             if isThinkingExpanded {
-                Text(thinking)
-                    .font(.system(size: 14))
-                    .foregroundStyle(.secondary)
-                    .padding(12)
-                    .background(Color.purple.opacity(0.08))
-                    .clipShape(RoundedRectangle(cornerRadius: 8))
+                ScrollView {
+                    Text(thinking)
+                        .font(.system(size: 14))
+                        .foregroundStyle(.secondary)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                }
+                .frame(maxHeight: 200)  // Limit height to prevent overflow
+                .padding(12)
+                .background(Color.purple.opacity(0.08))
+                .clipShape(RoundedRectangle(cornerRadius: 8))
             }
         }
     }
