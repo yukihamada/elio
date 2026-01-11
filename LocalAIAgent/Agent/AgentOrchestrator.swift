@@ -43,7 +43,7 @@ final class AgentOrchestrator: ObservableObject {
             let response = try await llm.generateWithMessages(
                 messages: workingHistory,
                 systemPrompt: systemPrompt,
-                maxTokens: 1024
+                maxTokens: 2048
             ) { token in
                 generatedText += token
             }
@@ -241,6 +241,9 @@ final class AgentOrchestrator: ObservableObject {
         """
     }
 
+    // Maximum characters for tool results to prevent context overflow
+    private let maxToolResultLength = 3000
+
     private func executeToolCall(
         name: String,
         arguments: [String: JSONValue],
@@ -253,7 +256,14 @@ final class AgentOrchestrator: ObservableObject {
                 enabledServers: enabledServers
             )
 
-            let content = mcpClient.formatToolResult(result)
+            var content = mcpClient.formatToolResult(result)
+
+            // Truncate very long results to prevent context overflow
+            if content.count > maxToolResultLength {
+                let truncated = String(content.prefix(maxToolResultLength))
+                content = truncated + (isJapanese ? "\n...(結果が長いため省略)" : "\n...(truncated)")
+            }
+
             return (content, result.isError ?? false)
         } catch {
             return ("ツール実行エラー: \(error.localizedDescription)", true)
@@ -300,7 +310,7 @@ extension AgentOrchestrator {
             _ = try await llm.generateWithMessages(
                 messages: workingHistory,
                 systemPrompt: systemPrompt,
-                maxTokens: 1024
+                maxTokens: 2048
             ) { token in
                 buffer += token
 

@@ -198,13 +198,15 @@ final class CalendarServer: MCPServer {
             throw MCPClientError.invalidArguments("title and start_date are required")
         }
 
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+        // Try multiple date formats for flexibility
+        let startDate = parseDateTime(startStr)
 
-        guard let startDate = dateFormatter.date(from: startStr) else {
+        guard let startDate = startDate else {
+            // Try all-day format
+            let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "yyyy-MM-dd"
             guard let allDayStart = dateFormatter.date(from: startStr) else {
-                throw MCPClientError.invalidArguments("Invalid date format")
+                throw MCPClientError.invalidArguments("Invalid date format. Use: YYYY-MM-DD HH:mm or YYYY-MM-DDTHH:mm")
             }
 
             return try await createAllDayEvent(title: title, date: allDayStart, arguments: arguments)
@@ -212,7 +214,7 @@ final class CalendarServer: MCPServer {
 
         let endDate: Date
         if let endStr = arguments["end_date"]?.stringValue,
-           let date = dateFormatter.date(from: endStr) {
+           let date = parseDateTime(endStr) {
             endDate = date
         } else {
             endDate = Calendar.current.date(byAdding: .hour, value: 1, to: startDate)!
@@ -330,5 +332,28 @@ final class CalendarServer: MCPServer {
         formatter.locale = Locale(identifier: "ja_JP")
         formatter.dateFormat = "M月d日 HH:mm"
         return "\(formatter.string(from: start)) 〜 \(formatter.string(from: end))"
+    }
+
+    /// Parse datetime string with multiple format support
+    private func parseDateTime(_ string: String) -> Date? {
+        let formats = [
+            "yyyy-MM-dd HH:mm",      // Space separator
+            "yyyy-MM-dd'T'HH:mm",    // ISO 8601 with T
+            "yyyy-MM-dd'T'HH:mm:ss", // ISO 8601 full
+            "yyyy/MM/dd HH:mm",      // Slash separator
+            "yyyy-MM-dd HH:mm:ss",   // With seconds
+        ]
+
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "en_US_POSIX")
+
+        for format in formats {
+            formatter.dateFormat = format
+            if let date = formatter.date(from: string) {
+                return date
+            }
+        }
+
+        return nil
     }
 }

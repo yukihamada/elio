@@ -2,11 +2,17 @@ import SwiftUI
 
 struct MessageBubble: View {
     let message: Message
+    var onFeedback: ((Message.FeedbackRating) -> Void)?
     @State private var isExpanded = false
     @State private var isThinkingExpanded = false
+    @State private var showCopied = false
 
     private var isUser: Bool {
         message.role == .user
+    }
+
+    private var isAssistant: Bool {
+        message.role == .assistant
     }
 
     var body: some View {
@@ -36,8 +42,15 @@ struct MessageBubble: View {
                     toolResultsView(toolResults)
                 }
 
-                // Timestamp
-                timestampView
+                // Timestamp and feedback buttons
+                HStack(spacing: 12) {
+                    timestampView
+
+                    if isAssistant && onFeedback != nil {
+                        Spacer()
+                        feedbackButtons
+                    }
+                }
             }
 
             if isUser {
@@ -138,14 +151,38 @@ struct MessageBubble: View {
 
             // Text content
             if !message.content.isEmpty && message.content != String(localized: "chat.image.sent") {
-                Text(parseMarkdown(message.content))
-                    .textSelection(.enabled)
-                    .padding(.horizontal, 16)
-                    .padding(.vertical, 12)
-                    .background(bubbleBackground)
-                    .foregroundStyle(isUser ? .white : .primary)
-                    .clipShape(RoundedRectangle(cornerRadius: 20))
-                    .shadow(color: isUser ? Color.accentColor.opacity(0.2) : Color.black.opacity(0.05), radius: 4, y: 2)
+                ZStack(alignment: isUser ? .bottomLeading : .bottomTrailing) {
+                    Text(parseMarkdown(message.content))
+                        .textSelection(.enabled)
+                        .padding(.horizontal, 16)
+                        .padding(.vertical, 12)
+                        .background(bubbleBackground)
+                        .foregroundStyle(isUser ? .white : .primary)
+                        .clipShape(RoundedRectangle(cornerRadius: 20))
+                        .shadow(color: isUser ? Color.accentColor.opacity(0.2) : Color.black.opacity(0.05), radius: 4, y: 2)
+
+                    // Copy feedback
+                    if showCopied {
+                        HStack(spacing: 4) {
+                            Image(systemName: "checkmark")
+                                .font(.system(size: 10, weight: .bold))
+                            Text(String(localized: "common.copied"))
+                                .font(.system(size: 11, weight: .medium))
+                        }
+                        .foregroundStyle(.white)
+                        .padding(.horizontal, 8)
+                        .padding(.vertical, 4)
+                        .background(Color.green)
+                        .clipShape(Capsule())
+                        .offset(y: 24)
+                        .transition(.scale.combined(with: .opacity))
+                    }
+                }
+                .contextMenu {
+                    Button(action: copyMessage) {
+                        Label(String(localized: "common.copy"), systemImage: "doc.on.doc")
+                    }
+                }
             } else if message.content == String(localized: "chat.image.sent") && message.image == nil {
                 // Show placeholder if image data couldn't be loaded
                 Text(parseMarkdown(message.content))
@@ -156,6 +193,18 @@ struct MessageBubble: View {
                     .foregroundStyle(isUser ? .white : .primary)
                     .clipShape(RoundedRectangle(cornerRadius: 20))
                     .shadow(color: isUser ? Color.accentColor.opacity(0.2) : Color.black.opacity(0.05), radius: 4, y: 2)
+            }
+        }
+    }
+
+    private func copyMessage() {
+        UIPasteboard.general.string = message.content
+        withAnimation(.spring(response: 0.3)) {
+            showCopied = true
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+            withAnimation {
+                showCopied = false
             }
         }
     }
@@ -195,6 +244,25 @@ struct MessageBubble: View {
             .font(.system(size: 11))
             .foregroundStyle(.tertiary)
             .padding(.horizontal, 4)
+    }
+
+    private var feedbackButtons: some View {
+        HStack(spacing: 8) {
+            Button(action: { onFeedback?(.good) }) {
+                Image(systemName: message.feedbackRating == .good ? "hand.thumbsup.fill" : "hand.thumbsup")
+                    .font(.system(size: 14))
+                    .foregroundStyle(message.feedbackRating == .good ? .green : .secondary)
+            }
+            .buttonStyle(.plain)
+
+            Button(action: { onFeedback?(.bad) }) {
+                Image(systemName: message.feedbackRating == .bad ? "hand.thumbsdown.fill" : "hand.thumbsdown")
+                    .font(.system(size: 14))
+                    .foregroundStyle(message.feedbackRating == .bad ? .red : .secondary)
+            }
+            .buttonStyle(.plain)
+        }
+        .padding(.horizontal, 4)
     }
 
     private func formatTime(_ date: Date) -> String {

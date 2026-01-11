@@ -10,12 +10,18 @@ struct Message: Identifiable, Codable, Equatable {
     var toolResults: [ToolResult]?
     var thinkingContent: String?
     var imageData: Data?  // Store image as JPEG data
+    var feedbackRating: FeedbackRating?  // Good/Bad feedback state
 
     enum Role: String, Codable {
         case user
         case assistant
         case system
         case tool
+    }
+
+    enum FeedbackRating: String, Codable {
+        case good
+        case bad
     }
 
     init(
@@ -26,7 +32,8 @@ struct Message: Identifiable, Codable, Equatable {
         toolCalls: [ToolCall]? = nil,
         toolResults: [ToolResult]? = nil,
         thinkingContent: String? = nil,
-        imageData: Data? = nil
+        imageData: Data? = nil,
+        feedbackRating: FeedbackRating? = nil
     ) {
         self.id = id
         self.role = role
@@ -36,6 +43,7 @@ struct Message: Identifiable, Codable, Equatable {
         self.toolResults = toolResults
         self.thinkingContent = thinkingContent
         self.imageData = imageData
+        self.feedbackRating = feedbackRating
     }
 
     /// Get UIImage from stored data

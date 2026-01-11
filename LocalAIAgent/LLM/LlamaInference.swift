@@ -35,14 +35,29 @@ enum InferenceMode: String, CaseIterable, Codable {
         }
     }
 
-    /// Number of GPU layers to use
+    /// Number of GPU layers to use (device-aware)
     var gpuLayers: Int32 {
         switch self {
-        case .auto, .gpu: return 999  // All layers on GPU
+        case .auto, .gpu:
+            // Device-aware GPU layer allocation based on available memory (cached)
+            return Self.cachedOptimalGPULayers
         case .cpu: return 0           // No GPU layers
         case .hybrid: return 20       // Some layers on GPU
         }
     }
+
+    /// Cached GPU layers calculation (computed once at startup)
+    private static let cachedOptimalGPULayers: Int32 = {
+        let physicalMemory = ProcessInfo.processInfo.physicalMemory
+        let memoryGB = Double(physicalMemory) / 1_073_741_824
+
+        switch memoryGB {
+        case 8...:   return 999  // 8GB+ (Pro models) - all layers
+        case 6..<8:  return 32   // 6GB - most layers
+        case 4..<6:  return 20   // 4GB - moderate layers
+        default:     return 10   // <4GB - minimal layers
+        }
+    }()
 }
 
 /// GGUF model inference using llama.cpp via llama.swift
@@ -58,6 +73,9 @@ final class LlamaInference: ObservableObject {
     private var context: OpaquePointer?
     private var modelPath: URL?
 
+    // Reusable buffer for token-to-bytes conversion (avoids allocation per token)
+    private var tokenBuffer = [CChar](repeating: 0, count: 256)
+
     // Model configuration
     struct Config: Sendable {
         let name: String
@@ -65,33 +83,55 @@ final class LlamaInference: ObservableObject {
         let eosTokenId: Int32
         let bosTokenId: Int32
 
-        static let qwen3 = Config(
-            name: "Qwen3",
-            contextSize: 4096,
-            eosTokenId: 151645,
-            bosTokenId: 151643
-        )
+        // Dynamic context size based on device tier
+        private static var deviceContextSize: UInt32 {
+            switch DeviceTier.current {
+            case .ultra:
+                return 8192   // 8GB+ RAM devices can handle larger context
+            case .high:
+                return 6144   // 8GB RAM devices
+            case .medium:
+                return 4096   // 6GB RAM devices
+            case .low:
+                return 2048   // 4GB RAM devices - minimal context
+            }
+        }
 
-        static let llama3 = Config(
-            name: "Llama3",
-            contextSize: 4096,
-            eosTokenId: 128001,
-            bosTokenId: 128000
-        )
+        static var qwen3: Config {
+            Config(
+                name: "Qwen3",
+                contextSize: deviceContextSize,
+                eosTokenId: 151645,
+                bosTokenId: 151643
+            )
+        }
 
-        static let deepseekR1Qwen = Config(
-            name: "DeepSeek-R1-Qwen",
-            contextSize: 4096,  // Reduced from 32768 for iPhone memory constraints
-            eosTokenId: 151645,
-            bosTokenId: 151643
-        )
+        static var llama3: Config {
+            Config(
+                name: "Llama3",
+                contextSize: deviceContextSize,
+                eosTokenId: 128001,
+                bosTokenId: 128000
+            )
+        }
 
-        static let deepseekR1Llama = Config(
-            name: "DeepSeek-R1-Llama",
-            contextSize: 4096,
-            eosTokenId: 128001,
-            bosTokenId: 128000
-        )
+        static var deepseekR1Qwen: Config {
+            Config(
+                name: "DeepSeek-R1-Qwen",
+                contextSize: deviceContextSize,
+                eosTokenId: 151645,
+                bosTokenId: 151643
+            )
+        }
+
+        static var deepseekR1Llama: Config {
+            Config(
+                name: "DeepSeek-R1-Llama",
+                contextSize: deviceContextSize,
+                eosTokenId: 128001,
+                bosTokenId: 128000
+            )
+        }
     }
 
     private var config: Config
@@ -157,11 +197,13 @@ final class LlamaInference: ObservableObject {
             throw LlamaError.modelNotFound
         }
 
-        // Context parameters - optimized for speed
+        // Context parameters - optimized for mobile memory efficiency
         var contextParams = llama_context_default_params()
         contextParams.n_ctx = config.contextSize
-        contextParams.n_batch = 2048  // Increased batch size for faster prompt processing
-        contextParams.n_ubatch = 512  // Micro-batch for better memory efficiency
+        // Reduced batch size for better memory efficiency on mobile
+        // Note: For very long prompts, this may require multiple decode passes
+        contextParams.n_batch = min(512, config.contextSize)
+        contextParams.n_ubatch = 256  // Smaller micro-batch for mobile memory constraints
         // Use performance cores for speed
         let perfCores = max(4, ProcessInfo.processInfo.activeProcessorCount - 2)
         contextParams.n_threads = Int32(perfCores)
@@ -179,11 +221,32 @@ final class LlamaInference: ObservableObject {
         self.isLoaded = true
     }
 
+    /// Generate with ModelSettings
+    func generate(
+        prompt: String,
+        settings: ModelSettings,
+        stopSequences: [String] = [],
+        onToken: @escaping @MainActor (String) -> Void
+    ) async throws -> String {
+        try await generate(
+            prompt: prompt,
+            maxTokens: settings.maxTokens,
+            temperature: settings.temperature,
+            topP: settings.topP,
+            topK: Int32(settings.topK),
+            repeatPenalty: settings.repeatPenalty,
+            stopSequences: stopSequences,
+            onToken: onToken
+        )
+    }
+
     func generate(
         prompt: String,
         maxTokens: Int = 512,
         temperature: Float = 0.7,
         topP: Float = 0.9,
+        topK: Int32 = 40,
+        repeatPenalty: Float = 1.1,
         stopSequences: [String] = [],
         onToken: @escaping @MainActor (String) -> Void
     ) async throws -> String {
@@ -208,35 +271,66 @@ final class LlamaInference: ObservableObject {
             throw LlamaError.tokenizationFailed
         }
 
+        // Check for context overflow before processing
+        let maxContextWithBuffer = Int(config.contextSize) - maxTokens
+        if promptTokens.count > maxContextWithBuffer {
+            logWarning("LLM", "Context overflow detected", [
+                "tokenCount": "\(promptTokens.count)",
+                "maxContext": "\(maxContextWithBuffer)"
+            ])
+            throw LlamaError.contextOverflow(tokenCount: promptTokens.count, maxContext: maxContextWithBuffer)
+        }
+
         // Clear memory
         let memory = llama_get_memory(context)
         llama_memory_clear(memory, true)
 
-        // Process prompt - copy count before closure to avoid overlapping access
-        let tokenCount = Int32(promptTokens.count)
-        let decodeResult: Int32 = promptTokens.withUnsafeMutableBufferPointer { bufferPtr in
-            let batch = llama_batch_get_one(bufferPtr.baseAddress!, tokenCount)
-            return llama_decode(context, batch)
+        // Process prompt in chunks to avoid exceeding n_batch limit
+        // n_batch is set to min(512, contextSize), so we process in chunks of 512
+        let batchSize = 512
+        let totalTokens = promptTokens.count
+        var processedTokens = 0
+
+        while processedTokens < totalTokens {
+            let remainingTokens = totalTokens - processedTokens
+            let chunkSize = min(batchSize, remainingTokens)
+
+            let decodeResult: Int32 = promptTokens.withUnsafeMutableBufferPointer { bufferPtr in
+                let chunkPtr = bufferPtr.baseAddress! + processedTokens
+                let batch = llama_batch_get_one(chunkPtr, Int32(chunkSize))
+                return llama_decode(context, batch)
+            }
+
+            if decodeResult != 0 {
+                throw LlamaError.generationFailed("Failed to process prompt chunk at offset \(processedTokens): \(decodeResult)")
+            }
+
+            processedTokens += chunkSize
+
+            // Yield to allow UI updates during long prompt processing
+            if processedTokens < totalTokens {
+                await Task.yield()
+            }
         }
 
-        if decodeResult != 0 {
-            throw LlamaError.generationFailed("Failed to process prompt: \(decodeResult)")
-        }
-
-        // Create sampler chain - optimized for speed
+        // Create sampler chain
         let samplerParams = llama_sampler_chain_default_params()
         guard let sampler = llama_sampler_chain_init(samplerParams) else {
             throw LlamaError.generationFailed("Failed to create sampler chain")
         }
         defer { llama_sampler_free(sampler) }
 
-        // Faster sampling: smaller top_k and use greedy for low temperatures
+        // Faster sampling: use greedy for low temperatures
         if temperature < 0.1 {
             // Greedy decoding - fastest
             llama_sampler_chain_add(sampler, llama_sampler_init_greedy())
         } else {
-            // Add samplers to chain - optimized order and values
-            llama_sampler_chain_add(sampler, llama_sampler_init_top_k(20))  // Reduced from 40
+            // Add repeat penalty first
+            if repeatPenalty > 1.0 {
+                llama_sampler_chain_add(sampler, llama_sampler_init_penalties(64, repeatPenalty, 0.0, 0.0))
+            }
+            // Add samplers to chain with user-specified values
+            llama_sampler_chain_add(sampler, llama_sampler_init_top_k(topK))
             llama_sampler_chain_add(sampler, llama_sampler_init_top_p(topP, 1))
             llama_sampler_chain_add(sampler, llama_sampler_init_temp(temperature))
             llama_sampler_chain_add(sampler, llama_sampler_init_dist(UInt32.random(in: 0..<UInt32.max)))
@@ -330,11 +424,11 @@ final class LlamaInference: ObservableObject {
     }
 
     private func tokenToBytes(_ token: llama_token, vocab: OpaquePointer) -> [UInt8] {
-        var buffer = [CChar](repeating: 0, count: 256)
-        let length = llama_token_to_piece(vocab, token, &buffer, Int32(buffer.count), 0, true)
+        // Use reusable buffer to avoid allocation per token
+        let length = llama_token_to_piece(vocab, token, &tokenBuffer, Int32(tokenBuffer.count), 0, true)
 
         if length > 0 {
-            return buffer.prefix(Int(length)).map { UInt8(bitPattern: $0) }
+            return tokenBuffer.prefix(Int(length)).map { UInt8(bitPattern: $0) }
         }
         return []
     }
@@ -462,6 +556,7 @@ enum LlamaError: Error, LocalizedError {
     case contextCreationFailed
     case tokenizationFailed
     case generationFailed(String)
+    case contextOverflow(tokenCount: Int, maxContext: Int)
 
     var errorDescription: String? {
         switch self {
@@ -470,6 +565,8 @@ enum LlamaError: Error, LocalizedError {
         case .contextCreationFailed: return String(localized: "error.context.failed")
         case .tokenizationFailed: return String(localized: "error.tokenization.failed")
         case .generationFailed(let msg): return String(localized: "error.generation.failed") + ": \(msg)"
+        case .contextOverflow(let tokenCount, let maxContext):
+            return String(localized: "error.context.overflow", defaultValue: "Context overflow: \(tokenCount) tokens exceeds maximum \(maxContext)")
         }
     }
 }

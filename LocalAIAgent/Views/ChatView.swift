@@ -1,6 +1,8 @@
 import SwiftUI
 import AVFoundation
 import PhotosUI
+import PDFKit
+import UniformTypeIdentifiers
 
 struct ChatView: View {
     @EnvironmentObject var appState: AppState
@@ -17,7 +19,26 @@ struct ChatView: View {
     @State private var showingAttachmentOptions = false
     @State private var showingImagePicker = false
     @State private var showingCamera = false
-    @State private var attachedImage: UIImage?
+    @State private var attachedImages: [UIImage] = []
+    @State private var showingVisionModelAlert = false
+    @State private var showingDownloadVisionModel = false
+    @State private var isSwitchingToVisionModel = false
+    @State private var showingModelSettings = false
+    @StateObject private var whisperManager = WhisperManager.shared
+    @State private var showingWhisperDownload = false
+    @State private var isVoiceRecording = false
+    @State private var showingDocumentPicker = false
+    @State private var attachedPDFText: String?
+    @State private var attachedPDFName: String?
+    @State private var attachedPDFImages: [UIImage] = []
+    @State private var attachedPDFPageCount: Int = 0
+    @State private var showingURLInput = false
+    @State private var urlInputText = ""
+    @State private var attachedWebContent: WebContent?
+    @State private var isLoadingWebContent = false
+    @State private var webContentError: String?
+    @State private var showingTemplates = false
+    @StateObject private var templateManager = PromptTemplateManager.shared
     @FocusState private var isInputFocused: Bool
 
     var body: some View {
@@ -30,7 +51,9 @@ struct ChatView: View {
                 // Header
                 headerView
 
-                if !appState.isModelLoaded {
+                if appState.isInitialLoading {
+                    skeletonView
+                } else if !appState.isModelLoaded {
                     modelNotLoadedView
                 } else {
                     chatContent
@@ -47,22 +70,262 @@ struct ChatView: View {
         }
         .confirmationDialog(String(localized: "attachment.title"), isPresented: $showingAttachmentOptions) {
             Button(String(localized: "attachment.photo.library")) {
-                showingImagePicker = true
+                handleImageAttachment()
             }
             Button(String(localized: "attachment.camera")) {
-                showingCamera = true
+                handleCameraAttachment()
+            }
+            Button(String(localized: "attachment.pdf")) {
+                showingDocumentPicker = true
+            }
+            Button(String(localized: "attachment.url")) {
+                showingURLInput = true
             }
             Button(String(localized: "common.cancel"), role: .cancel) {}
         }
+        .alert(String(localized: "attachment.url.title"), isPresented: $showingURLInput) {
+            TextField(String(localized: "attachment.url.placeholder"), text: $urlInputText)
+                .textInputAutocapitalization(.never)
+                .keyboardType(.URL)
+            Button(String(localized: "common.cancel"), role: .cancel) {
+                urlInputText = ""
+            }
+            Button(String(localized: "attachment.url.fetch")) {
+                fetchWebContent()
+            }
+        } message: {
+            Text(String(localized: "attachment.url.message"))
+        }
         .sheet(isPresented: $showingImagePicker) {
-            ImagePicker(onImageSelected: { image in
-                attachedImage = image
+            ImagePicker(maxSelection: 5, onImagesSelected: { images in
+                // Create thumbnails to reduce memory usage
+                let thumbnails = images.map { createThumbnail($0) }
+                attachedImages.append(contentsOf: thumbnails)
             })
         }
         .fullScreenCover(isPresented: $showingCamera) {
             CameraPicker(onImageCaptured: { image in
-                attachedImage = image
+                // Create thumbnail to reduce memory usage
+                attachedImages.append(createThumbnail(image))
             })
+        }
+        .sheet(isPresented: $showingDocumentPicker) {
+            DocumentPicker(onDocumentSelected: { content in
+                attachedPDFName = content.url.lastPathComponent
+                attachedPDFText = content.text
+                attachedPDFImages = content.pageImages
+                attachedPDFPageCount = content.pageCount
+            })
+        }
+        .alert(String(localized: "vision.model.required.title"), isPresented: $showingVisionModelAlert) {
+            if appState.hasDownloadedVisionModel {
+                // Has a downloaded vision model - offer to switch
+                Button(String(localized: "vision.model.switch")) {
+                    switchToVisionModel()
+                }
+                Button(String(localized: "common.cancel"), role: .cancel) {}
+            } else {
+                // No downloaded vision model - offer to download
+                Button(String(localized: "vision.model.download")) {
+                    showingDownloadVisionModel = true
+                }
+                Button(String(localized: "common.cancel"), role: .cancel) {}
+            }
+        } message: {
+            if appState.hasDownloadedVisionModel {
+                if let visionModel = appState.downloadedVisionModels.first {
+                    Text(String(localized: "vision.model.switch.message \(visionModel.name)"))
+                }
+            } else {
+                if let recommended = appState.recommendedVisionModel {
+                    Text(String(localized: "vision.model.download.message \(recommended.name) \(recommended.size)"))
+                } else {
+                    Text(String(localized: "vision.model.not.available"))
+                }
+            }
+        }
+        .sheet(isPresented: $showingDownloadVisionModel) {
+            VisionModelDownloadView()
+        }
+        .sheet(isPresented: $showingModelSettings) {
+            if let modelId = appState.currentModelId, let modelName = appState.currentModelName {
+                ModelSettingsView(modelId: modelId, modelName: modelName)
+            }
+        }
+        .alert(String(localized: "whisper.download.title"), isPresented: $showingWhisperDownload) {
+            Button(String(localized: "whisper.download.action")) {
+                downloadWhisperModel()
+            }
+            Button(String(localized: "common.cancel"), role: .cancel) {}
+        } message: {
+            Text(String(localized: "whisper.download.message"))
+        }
+        .alert("URL読み込みエラー", isPresented: Binding(
+            get: { webContentError != nil },
+            set: { if !$0 { webContentError = nil } }
+        )) {
+            Button("OK", role: .cancel) {
+                webContentError = nil
+            }
+        } message: {
+            if let error = webContentError {
+                Text(error)
+            }
+        }
+        .overlay {
+            // Whisper download progress
+            if whisperManager.isDownloading {
+                Color.black.opacity(0.4)
+                    .ignoresSafeArea()
+                VStack(spacing: 12) {
+                    ProgressView(value: whisperManager.downloadProgress)
+                        .progressViewStyle(.linear)
+                        .frame(width: 200)
+                    Text(String(localized: "whisper.downloading"))
+                        .font(.system(size: 14, weight: .medium))
+                        .foregroundStyle(.white)
+                    Text("\(Int(whisperManager.downloadProgress * 100))%")
+                        .font(.system(size: 12))
+                        .foregroundStyle(.white.opacity(0.8))
+                }
+                .padding(24)
+                .background(
+                    RoundedRectangle(cornerRadius: 16)
+                        .fill(Color(.systemBackground).opacity(0.95))
+                )
+            }
+        }
+        .overlay {
+            if isSwitchingToVisionModel {
+                Color.black.opacity(0.4)
+                    .ignoresSafeArea()
+                VStack(spacing: 12) {
+                    ProgressView()
+                        .scaleEffect(1.2)
+                    Text(String(localized: "vision.model.switching"))
+                        .font(.system(size: 14, weight: .medium))
+                        .foregroundStyle(.white)
+                }
+                .padding(24)
+                .background(
+                    RoundedRectangle(cornerRadius: 16)
+                        .fill(Color(.systemBackground).opacity(0.95))
+                )
+            }
+        }
+        .sheet(isPresented: $showingTemplates) {
+            PromptTemplatesView(onSelectTemplate: { template in
+                inputText = template.content
+                isInputFocused = true
+            })
+        }
+        // Handle pending quick question from widget
+        .onAppear {
+            if let question = appState.pendingQuickQuestion {
+                inputText = question
+                appState.pendingQuickQuestion = nil
+                isInputFocused = true
+            }
+        }
+        .onChange(of: appState.pendingQuickQuestion) { _, newValue in
+            if let question = newValue {
+                inputText = question
+                appState.pendingQuickQuestion = nil
+                isInputFocused = true
+            }
+        }
+        // Handle showConversationList from widget deep link
+        .onChange(of: appState.showConversationList) { _, newValue in
+            if newValue {
+                showingConversationList = true
+                appState.showConversationList = false
+            }
+        }
+    }
+
+    private func handleAttachmentTap() {
+        // Always show attachment options - PDF works without vision model
+        showingAttachmentOptions = true
+    }
+
+    private func handleImageAttachment() {
+        if appState.currentModelSupportsVision {
+            showingImagePicker = true
+        } else if appState.hasDownloadedVisionModel {
+            showingVisionModelAlert = true
+        } else {
+            showingVisionModelAlert = true
+        }
+    }
+
+    private func handleCameraAttachment() {
+        if appState.currentModelSupportsVision {
+            showingCamera = true
+        } else if appState.hasDownloadedVisionModel {
+            showingVisionModelAlert = true
+        } else {
+            showingVisionModelAlert = true
+        }
+    }
+
+    private func switchToVisionModel() {
+        isSwitchingToVisionModel = true
+        Task {
+            let success = await appState.switchToVisionModel()
+            isSwitchingToVisionModel = false
+            if success {
+                // After switching, show attachment options
+                showingAttachmentOptions = true
+            }
+        }
+    }
+
+    private func handleMicrophoneTap() {
+        if isVoiceRecording {
+            // Stop recording and transcribe
+            isVoiceRecording = false
+            Task {
+                do {
+                    let text = try await whisperManager.stopRecording()
+                    if !text.isEmpty {
+                        inputText = text
+                    }
+                } catch {
+                    print("Transcription error: \(error)")
+                }
+            }
+        } else {
+            // Check if model is downloaded
+            if whisperManager.isModelDownloaded {
+                // Start recording
+                startVoiceRecording()
+            } else {
+                // Show download prompt
+                showingWhisperDownload = true
+            }
+        }
+    }
+
+    private func startVoiceRecording() {
+        Task {
+            do {
+                try await whisperManager.startRecording()
+                isVoiceRecording = true
+            } catch {
+                print("Recording error: \(error)")
+            }
+        }
+    }
+
+    private func downloadWhisperModel() {
+        Task {
+            do {
+                try await whisperManager.downloadModelIfNeeded()
+                // After download, start recording
+                startVoiceRecording()
+            } catch {
+                print("Download error: \(error)")
+            }
         }
     }
 
@@ -103,6 +366,15 @@ struct ChatView: View {
             }
             .foregroundStyle(.primary)
 
+            // Quick settings button (for model parameters)
+            if appState.isModelLoaded {
+                Button(action: { showingModelSettings = true }) {
+                    Image(systemName: "slider.horizontal.3")
+                        .font(.system(size: 16, weight: .medium))
+                        .foregroundStyle(.secondary)
+                }
+            }
+
             // Offline badge - shows when not connected
             if !networkMonitor.isConnected {
                 HStack(spacing: 4) {
@@ -137,6 +409,35 @@ struct ChatView: View {
         }
         .padding(.horizontal, 16)
         .padding(.vertical, 12)
+    }
+
+    // MARK: - Skeleton Loading View
+
+    private var skeletonView: some View {
+        VStack(spacing: 0) {
+            ScrollView {
+                VStack(spacing: 16) {
+                    // Skeleton welcome message
+                    VStack(spacing: 12) {
+                        SkeletonCircle(size: 60)
+                        SkeletonRectangle(width: 120, height: 24)
+                        SkeletonRectangle(width: 200, height: 16)
+                    }
+                    .frame(maxWidth: .infinity)
+                    .padding(.top, 60)
+                    .padding(.bottom, 40)
+
+                    // Skeleton suggestion chips
+                    HStack(spacing: 12) {
+                        SkeletonRectangle(width: 100, height: 36, cornerRadius: 18)
+                        SkeletonRectangle(width: 80, height: 36, cornerRadius: 18)
+                        SkeletonRectangle(width: 90, height: 36, cornerRadius: 18)
+                    }
+                    .padding(.horizontal, 16)
+                }
+            }
+            .scrollDisabled(true)
+        }
     }
 
     // MARK: - Model Not Loaded View
@@ -201,12 +502,18 @@ struct ChatView: View {
             .scrollDismissesKeyboard(.interactively)
             .scrollIndicators(.hidden)
             .onChange(of: appState.currentConversation?.messages.count) { _, _ in
-                // Use immediate scroll without animation for new messages
+                // Scroll immediately to new message - no animation for instant feedback
                 proxy.scrollTo(appState.currentConversation?.messages.last?.id, anchor: .bottom)
             }
+            .onChange(of: isGenerating) { _, newValue in
+                // Scroll to typing indicator immediately when generation starts
+                if newValue {
+                    proxy.scrollTo("typing", anchor: .bottom)
+                }
+            }
             .onChange(of: displayedResponse) { _, _ in
-                // Scroll every 30 characters or on newline for smooth streaming
-                if displayedResponse.count % 30 == 0 || displayedResponse.hasSuffix("\n") {
+                // Scroll every 50 characters or on newline for smooth streaming
+                if displayedResponse.count % 50 == 0 || displayedResponse.hasSuffix("\n") {
                     proxy.scrollTo("streaming", anchor: .bottom)
                 }
             }
@@ -250,32 +557,191 @@ struct ChatView: View {
 
     private var inputBar: some View {
         VStack(spacing: 0) {
-            // Attached image preview
-            if let image = attachedImage {
-                HStack {
-                    Image(uiImage: image)
-                        .resizable()
-                        .scaledToFill()
-                        .frame(width: 80, height: 80)
-                        .clipShape(RoundedRectangle(cornerRadius: 12))
-                        .overlay(
-                            Button(action: { attachedImage = nil }) {
-                                Image(systemName: "xmark.circle.fill")
-                                    .font(.system(size: 20))
-                                    .foregroundStyle(.white)
-                                    .background(Color.black.opacity(0.5))
-                                    .clipShape(Circle())
+            // Attached images preview (multiple)
+            if !attachedImages.isEmpty {
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(spacing: 8) {
+                        ForEach(Array(attachedImages.enumerated()), id: \.offset) { index, image in
+                            ZStack(alignment: .topTrailing) {
+                                Image(uiImage: image)
+                                    .resizable()
+                                    .scaledToFill()
+                                    .frame(width: 70, height: 70)
+                                    .clipShape(RoundedRectangle(cornerRadius: 10))
+
+                                Button(action: {
+                                    attachedImages.remove(at: index)
+                                }) {
+                                    Image(systemName: "xmark.circle.fill")
+                                        .font(.system(size: 18))
+                                        .foregroundStyle(.white)
+                                        .background(Color.black.opacity(0.6))
+                                        .clipShape(Circle())
+                                }
+                                .offset(x: 6, y: -6)
                             }
-                            .offset(x: 30, y: -30)
-                        )
-                    Spacer()
+                        }
+
+                        // Add more images button (if under limit)
+                        if attachedImages.count < 5 {
+                            Button(action: { showingImagePicker = true }) {
+                                VStack(spacing: 4) {
+                                    Image(systemName: "plus")
+                                        .font(.system(size: 20, weight: .medium))
+                                    Text("\(attachedImages.count)/5")
+                                        .font(.system(size: 10))
+                                }
+                                .foregroundStyle(.secondary)
+                                .frame(width: 70, height: 70)
+                                .background(Color(.secondarySystemBackground))
+                                .clipShape(RoundedRectangle(cornerRadius: 10))
+                            }
+                        }
+                    }
+                    .padding(.horizontal, 16)
                 }
+                .padding(.bottom, 8)
+            }
+
+            // Attached PDF preview
+            if let pdfName = attachedPDFName {
+                HStack(spacing: 12) {
+                    // Show first page thumbnail if available, otherwise icon
+                    if let firstImage = attachedPDFImages.first {
+                        Image(uiImage: firstImage)
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .frame(width: 60, height: 60)
+                            .clipShape(RoundedRectangle(cornerRadius: 8))
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 8)
+                                    .stroke(Color.gray.opacity(0.3), lineWidth: 1)
+                            )
+                    } else {
+                        ZStack {
+                            RoundedRectangle(cornerRadius: 12)
+                                .fill(Color.red.opacity(0.1))
+                                .frame(width: 60, height: 60)
+                            Image(systemName: "doc.fill")
+                                .font(.system(size: 28))
+                                .foregroundStyle(.red)
+                        }
+                    }
+
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text(pdfName)
+                            .font(.system(size: 14, weight: .medium))
+                            .lineLimit(1)
+
+                        // Show page count and character count
+                        HStack(spacing: 8) {
+                            if attachedPDFPageCount > 0 {
+                                Text(String(format: NSLocalizedString("attachment.pdf.pages", comment: ""), attachedPDFPageCount))
+                                    .font(.system(size: 12))
+                                    .foregroundStyle(.secondary)
+                            }
+                            if let text = attachedPDFText, !text.isEmpty {
+                                Text(String(format: NSLocalizedString("attachment.pdf.chars", comment: ""), text.count))
+                                    .font(.system(size: 12))
+                                    .foregroundStyle(.secondary)
+                            }
+                        }
+
+                        // Vision mode indicator
+                        if !attachedPDFImages.isEmpty {
+                            if appState.currentModelSupportsVision {
+                                Label(String(localized: "attachment.pdf.vision.enabled"), systemImage: "eye.fill")
+                                    .font(.system(size: 11))
+                                    .foregroundStyle(.green)
+                            } else {
+                                Label(String(localized: "attachment.pdf.text.only"), systemImage: "doc.text")
+                                    .font(.system(size: 11))
+                                    .foregroundStyle(.orange)
+                            }
+                        }
+                    }
+
+                    Spacer()
+
+                    Button(action: {
+                        attachedPDFName = nil
+                        attachedPDFText = nil
+                        attachedPDFImages = []
+                        attachedPDFPageCount = 0
+                    }) {
+                        Image(systemName: "xmark.circle.fill")
+                            .font(.system(size: 22))
+                            .foregroundStyle(.secondary)
+                    }
+                }
+                .padding(12)
+                .background(
+                    RoundedRectangle(cornerRadius: 12)
+                        .fill(Color(.secondarySystemBackground))
+                )
                 .padding(.horizontal, 16)
                 .padding(.bottom, 8)
             }
 
-            // Loading indicator when model is loading
-            if appState.isLoading {
+            // Web content preview
+            if let webContent = attachedWebContent {
+                HStack(spacing: 12) {
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 12)
+                            .fill(Color.blue.opacity(0.1))
+                            .frame(width: 60, height: 60)
+                        Image(systemName: "globe")
+                            .font(.system(size: 28))
+                            .foregroundStyle(.blue)
+                    }
+
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text(webContent.title)
+                            .font(.system(size: 14, weight: .medium))
+                            .lineLimit(1)
+
+                        Text(webContent.url.host ?? "")
+                            .font(.system(size: 12))
+                            .foregroundStyle(.secondary)
+
+                        Text(String(format: NSLocalizedString("attachment.pdf.chars", comment: ""), webContent.text.count))
+                            .font(.system(size: 11))
+                            .foregroundStyle(.secondary)
+                    }
+
+                    Spacer()
+
+                    Button(action: {
+                        attachedWebContent = nil
+                    }) {
+                        Image(systemName: "xmark.circle.fill")
+                            .font(.system(size: 22))
+                            .foregroundStyle(.secondary)
+                    }
+                }
+                .padding(12)
+                .background(
+                    RoundedRectangle(cornerRadius: 12)
+                        .fill(Color(.secondarySystemBackground))
+                )
+                .padding(.horizontal, 16)
+                .padding(.bottom, 8)
+            }
+
+            // Loading web content indicator
+            if isLoadingWebContent {
+                HStack(spacing: 8) {
+                    ProgressView()
+                        .scaleEffect(0.8)
+                    Text(String(localized: "attachment.url.loading"))
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                }
+                .padding(.bottom, 8)
+            }
+
+            // Loading indicator when model is loading (not during initial startup)
+            if appState.isLoading && !appState.isInitialLoading {
                 HStack(spacing: 8) {
                     ProgressView()
                         .scaleEffect(0.8)
@@ -287,30 +753,26 @@ struct ChatView: View {
             }
 
             HStack(alignment: .bottom, spacing: 12) {
-                // Attachment button (only enabled for vision models)
-                Button(action: { showingAttachmentOptions = true }) {
-                    Image(systemName: appState.currentModelSupportsVision ? "plus" : "plus")
+                // Attachment button - always enabled, handles vision model switching
+                Button(action: handleAttachmentTap) {
+                    Image(systemName: "plus")
                         .font(.system(size: 20, weight: .medium))
-                        .foregroundStyle(appState.currentModelSupportsVision ? Color.primary : Color.secondary.opacity(0.5))
+                        .foregroundStyle(Color.primary)
                         .frame(width: 36, height: 36)
                         .background(Color.chatInputBackgroundDynamic)
                         .clipShape(Circle())
                         .overlay(
-                            // Show camera badge for vision models
-                            Group {
-                                if appState.currentModelSupportsVision {
-                                    Image(systemName: "camera.fill")
-                                        .font(.system(size: 8))
-                                        .foregroundStyle(.white)
-                                        .padding(3)
-                                        .background(Color.blue)
-                                        .clipShape(Circle())
-                                        .offset(x: 10, y: -10)
-                                }
-                            }
+                            // Show camera badge - blue if vision ready, gray otherwise
+                            Image(systemName: "camera.fill")
+                                .font(.system(size: 8))
+                                .foregroundStyle(.white)
+                                .padding(3)
+                                .background(appState.currentModelSupportsVision ? Color.blue : Color.gray)
+                                .clipShape(Circle())
+                                .offset(x: 10, y: -10)
                         )
                 }
-                .disabled(isGenerating || !appState.currentModelSupportsVision)
+                .disabled(isGenerating)
 
                 // Text input - allow input even during generation
                 HStack(alignment: .bottom, spacing: 8) {
@@ -323,14 +785,30 @@ struct ChatView: View {
                             if canSend { sendMessage() }
                         }
                         .disabled(!appState.isModelLoaded)
+
+                        // Template button for quick prompts
+                    Button(action: { showingTemplates = true }) {
+                        Image(systemName: "text.badge.star")
+                            .font(.system(size: 18))
+                            .foregroundStyle(.secondary)
+                    }
+                    .disabled(isGenerating)
+
+                    // Microphone button for voice input
+                    Button(action: handleMicrophoneTap) {
+                        Image(systemName: isVoiceRecording ? "stop.circle.fill" : "mic.fill")
+                            .font(.system(size: 18))
+                            .foregroundStyle(isVoiceRecording ? .red : .secondary)
+                    }
+                    .disabled(isGenerating || whisperManager.isTranscribing)
                 }
                 .padding(.horizontal, 16)
                 .padding(.vertical, 10)
                 .background(Color.chatInputBackgroundDynamic)
-                .clipShape(Capsule())
+                .clipShape(RoundedRectangle(cornerRadius: 20))
                 .overlay(
-                    Capsule()
-                        .stroke(Color.chatBorderDynamic, lineWidth: 1)
+                    RoundedRectangle(cornerRadius: 20)
+                        .stroke(isVoiceRecording ? Color.red : Color.chatBorderDynamic, lineWidth: isVoiceRecording ? 2 : 1)
                 )
 
                 // Send button - always visible
@@ -370,34 +848,129 @@ struct ChatView: View {
     }
 
     private var canSend: Bool {
-        (!inputText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty || attachedImage != nil) &&
+        (!inputText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty || !attachedImages.isEmpty || attachedPDFText != nil || attachedWebContent != nil) &&
         !isGenerating &&
         appState.isModelLoaded
     }
 
     private func sendMessage() {
         let trimmedText = inputText.trimmingCharacters(in: .whitespacesAndNewlines)
-        guard !trimmedText.isEmpty || attachedImage != nil else { return }
+        let hasImages = !attachedImages.isEmpty
+        let hasPDF = attachedPDFText != nil
+        let hasWeb = attachedWebContent != nil
+        guard !trimmedText.isEmpty || hasImages || hasPDF || hasWeb else { return }
 
-        // Capture and clear attached image
-        let imageToSend = attachedImage
-        let imageData: Data? = imageToSend?.jpegData(compressionQuality: 0.8)
+        // Capture values BEFORE clearing
+        let savedImages = attachedImages
+        let savedPDFText = attachedPDFText
+        let savedPDFName = attachedPDFName
+        let savedPDFImages = attachedPDFImages
+        let savedWebContent = attachedWebContent
 
+        // IMMEDIATELY clear UI and hide keyboard - before any processing
         inputText = ""
-        attachedImage = nil
+        attachedImages = []
+        attachedPDFText = nil
+        attachedPDFName = nil
+        attachedPDFImages = []
+        attachedPDFPageCount = 0
+        attachedWebContent = nil
         isInputFocused = false
+
+        // Force keyboard dismissal immediately
+        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+
         isGenerating = true
         streamingResponse = ""
         displayedResponse = ""
 
-        // Start UI update timer for batched updates (smoother scrolling)
+        // Start timer for streaming updates
         startUpdateTimer()
 
+        // All heavy processing in background Task
         generationTask = Task {
-            _ = await appState.sendMessageWithStreaming(trimmedText, imageData: imageData) { token in
+            // JPEG conversion (heavy) - now in background
+            var imageData: Data? = savedImages.first?.jpegData(compressionQuality: 0.8)
+            let pdfImageData: Data? = appState.currentModelSupportsVision && !savedPDFImages.isEmpty
+                ? savedPDFImages.first?.jpegData(compressionQuality: 0.8)
+                : nil
+
+            // Use saved values
+            let pdfText = savedPDFText
+            let pdfName = savedPDFName
+            let webContent = savedWebContent
+
+            // Build message content
+            var displayContent: String
+            var fullContent: String
+
+            if let pdfName = pdfName {
+                let hasVisionAnalysis = pdfImageData != nil
+                if hasVisionAnalysis {
+                    displayContent = trimmedText.isEmpty
+                        ? String(format: NSLocalizedString("chat.pdf.sent.vision", comment: ""), pdfName)
+                        : trimmedText
+                    if let pdfText = pdfText, !pdfText.isEmpty {
+                        let pdfContext = String(format: NSLocalizedString("chat.pdf.context.vision", comment: ""), pdfName, pdfText)
+                        fullContent = trimmedText.isEmpty ? pdfContext : "\(pdfContext)\n\n\(trimmedText)"
+                    } else {
+                        fullContent = trimmedText.isEmpty
+                            ? String(format: NSLocalizedString("chat.pdf.analyze", comment: ""), pdfName)
+                            : trimmedText
+                    }
+                    imageData = pdfImageData
+                } else if let pdfText = pdfText {
+                    displayContent = trimmedText.isEmpty
+                        ? String(format: NSLocalizedString("chat.pdf.sent", comment: ""), pdfName)
+                        : trimmedText
+                    let pdfContext = String(format: NSLocalizedString("chat.pdf.context", comment: ""), pdfName, pdfText)
+                    fullContent = trimmedText.isEmpty ? pdfContext : "\(pdfContext)\n\n\(trimmedText)"
+                } else {
+                    displayContent = trimmedText.isEmpty
+                        ? String(format: NSLocalizedString("chat.pdf.sent", comment: ""), pdfName)
+                        : trimmedText
+                    fullContent = trimmedText
+                }
+            } else if let webContent = webContent {
+                displayContent = trimmedText.isEmpty
+                    ? String(format: NSLocalizedString("chat.url.sent", comment: ""), webContent.title)
+                    : trimmedText
+                let webContext = String(format: NSLocalizedString("chat.url.context", comment: ""), webContent.title, webContent.url.absoluteString, webContent.text)
+                fullContent = trimmedText.isEmpty ? webContext : "\(webContext)\n\n\(trimmedText)"
+            } else if !savedImages.isEmpty {
+                let imageCountStr = savedImages.count > 1
+                    ? String(format: NSLocalizedString("chat.images.sent", comment: ""), savedImages.count)
+                    : String(localized: "chat.image.sent")
+                displayContent = trimmedText.isEmpty ? imageCountStr : trimmedText
+                fullContent = trimmedText
+            } else {
+                displayContent = trimmedText
+                fullContent = trimmedText
+            }
+
+            // Add user message to conversation
+            await MainActor.run {
+                if appState.currentConversation == nil {
+                    appState.currentConversation = Conversation()
+                    appState.conversations.insert(appState.currentConversation!, at: 0)
+                }
+                let userMessage = Message(role: .user, content: displayContent, imageData: imageData)
+                appState.currentConversation?.messages.append(userMessage)
+                // Update title for first message
+                if appState.currentConversation?.messages.count == 1 {
+                    let titleText = trimmedText.isEmpty ? (webContent?.title ?? pdfName ?? "Untitled") : trimmedText
+                    appState.currentConversation?.title = String(titleText.prefix(30)) + (titleText.count > 30 ? "..." : "")
+                }
+                // Force UI update
+                appState.currentConversation = appState.currentConversation
+            }
+
+            // Generate response
+            _ = await appState.sendMessageWithStreamingNoUserMessage(fullContent, imageData: imageData) { token in
                 guard !Task.isCancelled else { return }
                 streamingResponse += token
             }
+
             // Final update
             stopUpdateTimer()
             displayedResponse = streamingResponse
@@ -427,9 +1000,9 @@ struct ChatView: View {
 
     private func startUpdateTimer() {
         updateTimer?.invalidate()
-        // Update display every 33ms (~30fps) for smooth UI without overwhelming SwiftUI
-        // Using shorter interval reduces perceived latency while maintaining smoothness
-        updateTimer = Timer.scheduledTimer(withTimeInterval: 0.033, repeats: true) { _ in
+        // Update display every 100ms (~10fps) for efficient streaming
+        // Reduced from 33ms to lower CPU usage while maintaining readable text flow
+        updateTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { _ in
             if displayedResponse != streamingResponse {
                 // Use transaction to reduce animation overhead during rapid updates
                 var transaction = Transaction()
@@ -444,6 +1017,48 @@ struct ChatView: View {
     private func stopUpdateTimer() {
         updateTimer?.invalidate()
         updateTimer = nil
+    }
+
+    /// Creates a thumbnail of the image to reduce memory usage
+    /// Max width is 800px which is sufficient for display while saving memory
+    private func createThumbnail(_ image: UIImage, maxWidth: CGFloat = 800) -> UIImage {
+        let originalSize = image.size
+        guard originalSize.width > maxWidth else { return image }
+
+        let scale = maxWidth / originalSize.width
+        let newSize = CGSize(width: maxWidth, height: originalSize.height * scale)
+
+        return UIGraphicsImageRenderer(size: newSize).image { _ in
+            image.draw(in: CGRect(origin: .zero, size: newSize))
+        }
+    }
+
+    private func fetchWebContent() {
+        guard !urlInputText.isEmpty else { return }
+
+        var urlString = urlInputText.trimmingCharacters(in: .whitespacesAndNewlines)
+        // Add https:// if no scheme
+        if !urlString.hasPrefix("http://") && !urlString.hasPrefix("https://") {
+            urlString = "https://" + urlString
+        }
+
+        isLoadingWebContent = true
+        urlInputText = ""
+
+        Task {
+            do {
+                let content = try await WebContentExtractor.shared.extractContent(from: urlString)
+                await MainActor.run {
+                    attachedWebContent = content
+                    isLoadingWebContent = false
+                }
+            } catch {
+                await MainActor.run {
+                    isLoadingWebContent = false
+                    webContentError = error.localizedDescription
+                }
+            }
+        }
     }
 }
 
@@ -680,15 +1295,21 @@ struct StreamingMessageRow: View {
                         .fill(Color.primary)
                         .frame(width: 2, height: 18)
                         .opacity(0.6)
+
+                    Spacer()
                 }
             } else if !parsedContent.isThinking {
                 // Show cursor when waiting for content
-                Rectangle()
-                    .fill(Color.primary)
-                    .frame(width: 2, height: 18)
-                    .opacity(0.6)
+                HStack {
+                    Rectangle()
+                        .fill(Color.primary)
+                        .frame(width: 2, height: 18)
+                        .opacity(0.6)
+                    Spacer()
+                }
             }
         }
+        .frame(maxWidth: .infinity, alignment: .leading)
         .padding(.horizontal, 16)
         .padding(.vertical, 12)
     }
@@ -701,23 +1322,29 @@ struct StreamingMessageRow: View {
                     .foregroundStyle(.purple)
                     .symbolEffect(.pulse)
 
-                Text(String(localized: "chat.thinking", defaultValue: "Thinking..."))
+                Text(String(localized: "chat.thinking"))
                     .font(.system(size: 13, weight: .medium))
                     .foregroundStyle(.purple)
 
                 Spacer()
             }
 
+            // Show abbreviated thinking content during streaming (max 100 chars)
             if let thinking = parsedContent.thinking, !thinking.isEmpty {
-                Text(thinking)
+                let displayText = thinking.count > 100
+                    ? String(thinking.prefix(100)) + "..."
+                    : thinking
+                Text(displayText)
                     .font(.system(size: 14))
                     .foregroundStyle(.secondary)
-                    .lineLimit(5)
+                    .lineLimit(3)
+                    .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(12)
                     .background(Color.purple.opacity(0.08))
                     .clipShape(RoundedRectangle(cornerRadius: 8))
             }
         }
+        .frame(maxWidth: .infinity, alignment: .leading)
     }
 
     private func completedThinking(_ thinking: String) -> some View {
@@ -829,6 +1456,11 @@ struct SuggestionChip: View {
 struct ConversationListView: View {
     @EnvironmentObject var appState: AppState
     @Environment(\.dismiss) private var dismiss
+    @State private var showingExportOptions = false
+    @State private var conversationToExport: Conversation?
+    @State private var isExporting = false
+    @State private var showingShareSheet = false
+    @State private var exportedFileURL: URL?
 
     var body: some View {
         NavigationStack {
@@ -889,18 +1521,66 @@ struct ConversationListView: View {
                     .padding(.vertical, 4)
                 }
                 .foregroundStyle(.primary)
-            }
-            .onDelete { indexSet in
-                for index in indexSet {
-                    let conversation = appState.conversations[index]
-                    if appState.currentConversation?.id == conversation.id {
-                        appState.currentConversation = nil
+                .swipeActions(edge: .leading, allowsFullSwipe: false) {
+                    Button {
+                        conversationToExport = conversation
+                        showingExportOptions = true
+                    } label: {
+                        Label(String(localized: "common.share"), systemImage: "square.and.arrow.up")
+                    }
+                    .tint(.blue)
+                }
+                .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+                    Button(role: .destructive) {
+                        if appState.currentConversation?.id == conversation.id {
+                            appState.currentConversation = nil
+                        }
+                        appState.conversations.removeAll { $0.id == conversation.id }
+                    } label: {
+                        Label(String(localized: "common.delete"), systemImage: "trash")
                     }
                 }
-                appState.conversations.remove(atOffsets: indexSet)
             }
         }
         .listStyle(.plain)
+        .confirmationDialog(String(localized: "export.title"), isPresented: $showingExportOptions) {
+            Button(String(localized: "export.format.markdown")) {
+                exportConversation(format: .markdown)
+            }
+            Button(String(localized: "export.format.pdf")) {
+                exportConversation(format: .pdf)
+            }
+            Button(String(localized: "export.format.text")) {
+                exportConversation(format: .plainText)
+            }
+            Button(String(localized: "common.cancel"), role: .cancel) {}
+        }
+        .sheet(isPresented: $showingShareSheet) {
+            if let url = exportedFileURL {
+                ShareSheet(items: [url])
+            }
+        }
+    }
+
+    private func exportConversation(format: ConversationExporter.ExportFormat) {
+        guard let conversation = conversationToExport else { return }
+
+        isExporting = true
+        Task {
+            do {
+                let result = try await ConversationExporter.shared.export(conversation, format: format)
+                await MainActor.run {
+                    exportedFileURL = result.url
+                    showingShareSheet = true
+                    isExporting = false
+                }
+            } catch {
+                await MainActor.run {
+                    isExporting = false
+                    print("Export error: \(error)")
+                }
+            }
+        }
     }
 
     private func formatDate(_ date: Date) -> String {
@@ -910,16 +1590,23 @@ struct ConversationListView: View {
     }
 }
 
-// MARK: - Image Picker
+// MARK: - Image Picker (Multiple Selection)
 
 struct ImagePicker: UIViewControllerRepresentable {
-    let onImageSelected: (UIImage) -> Void
+    let maxSelection: Int
+    let onImagesSelected: ([UIImage]) -> Void
     @Environment(\.dismiss) private var dismiss
+
+    init(maxSelection: Int = 5, onImagesSelected: @escaping ([UIImage]) -> Void) {
+        self.maxSelection = maxSelection
+        self.onImagesSelected = onImagesSelected
+    }
 
     func makeUIViewController(context: Context) -> PHPickerViewController {
         var config = PHPickerConfiguration()
         config.filter = .images
-        config.selectionLimit = 1
+        config.selectionLimit = maxSelection
+        config.selection = .ordered  // Preserve selection order
         let picker = PHPickerViewController(configuration: config)
         picker.delegate = context.coordinator
         return picker
@@ -941,14 +1628,23 @@ struct ImagePicker: UIViewControllerRepresentable {
         func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
             parent.dismiss()
 
-            guard let result = results.first else { return }
+            guard !results.isEmpty else { return }
 
-            result.itemProvider.loadObject(ofClass: UIImage.self) { object, error in
-                if let image = object as? UIImage {
-                    DispatchQueue.main.async {
-                        self.parent.onImageSelected(image)
+            var loadedImages: [UIImage] = []
+            let dispatchGroup = DispatchGroup()
+
+            for result in results {
+                dispatchGroup.enter()
+                result.itemProvider.loadObject(ofClass: UIImage.self) { object, error in
+                    if let image = object as? UIImage {
+                        loadedImages.append(image)
                     }
+                    dispatchGroup.leave()
                 }
+            }
+
+            dispatchGroup.notify(queue: .main) {
+                self.parent.onImagesSelected(loadedImages)
             }
         }
     }
@@ -1041,6 +1737,88 @@ extension SpeechManager: AVSpeechSynthesizerDelegate {
             self.currentMessageId = nil
         }
     }
+}
+
+// MARK: - Skeleton Components
+
+struct SkeletonRectangle: View {
+    let width: CGFloat
+    let height: CGFloat
+    var cornerRadius: CGFloat = 8
+
+    @State private var isAnimating = false
+
+    var body: some View {
+        RoundedRectangle(cornerRadius: cornerRadius)
+            .fill(Color.gray.opacity(0.15))
+            .frame(width: width, height: height)
+            .overlay(
+                RoundedRectangle(cornerRadius: cornerRadius)
+                    .fill(
+                        LinearGradient(
+                            colors: [
+                                Color.clear,
+                                Color.white.opacity(0.3),
+                                Color.clear
+                            ],
+                            startPoint: .leading,
+                            endPoint: .trailing
+                        )
+                    )
+                    .offset(x: isAnimating ? width : -width)
+            )
+            .clipShape(RoundedRectangle(cornerRadius: cornerRadius))
+            .onAppear {
+                withAnimation(.linear(duration: 1.5).repeatForever(autoreverses: false)) {
+                    isAnimating = true
+                }
+            }
+    }
+}
+
+struct SkeletonCircle: View {
+    let size: CGFloat
+
+    @State private var isAnimating = false
+
+    var body: some View {
+        Circle()
+            .fill(Color.gray.opacity(0.15))
+            .frame(width: size, height: size)
+            .overlay(
+                Circle()
+                    .fill(
+                        LinearGradient(
+                            colors: [
+                                Color.clear,
+                                Color.white.opacity(0.3),
+                                Color.clear
+                            ],
+                            startPoint: .leading,
+                            endPoint: .trailing
+                        )
+                    )
+                    .offset(x: isAnimating ? size : -size)
+            )
+            .clipShape(Circle())
+            .onAppear {
+                withAnimation(.linear(duration: 1.5).repeatForever(autoreverses: false)) {
+                    isAnimating = true
+                }
+            }
+    }
+}
+
+// MARK: - Share Sheet
+
+struct ShareSheet: UIViewControllerRepresentable {
+    let items: [Any]
+
+    func makeUIViewController(context: Context) -> UIActivityViewController {
+        UIActivityViewController(activityItems: items, applicationActivities: nil)
+    }
+
+    func updateUIViewController(_ uiViewController: UIActivityViewController, context: Context) {}
 }
 
 #Preview {
