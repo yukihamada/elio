@@ -8,21 +8,24 @@ struct OnboardingView: View {
     @State private var downloadProgress: Double = 0
     @State private var downloadError: String?
     @State private var downloadCompleted = false
+    @State private var textModelDownloaded = false
+    @State private var visionModelDownloaded = false
+    @State private var currentDownloadingModel: String = ""
     @Environment(\.dismiss) private var dismiss
     @StateObject private var modelLoader = ModelLoader()
 
-    // Get recommended model based on device spec
+    // Models to download: Qwen3 1.7B (text) and Qwen3-VL 2B (vision)
+    private var textModel: ModelLoader.ModelInfo? {
+        modelLoader.availableModels.first { $0.id == "qwen3-1.7b" }
+    }
+
+    private var visionModel: ModelLoader.ModelInfo? {
+        modelLoader.availableModels.first { $0.id == "qwen3-vl-2b" }
+    }
+
+    // For backward compatibility
     private var recommendedModel: ModelLoader.ModelInfo? {
-        let deviceTier = DeviceTier.current
-        // For high/ultra devices: Qwen3 4B, for medium/low: Qwen3 1.7B
-        switch deviceTier {
-        case .ultra, .high:
-            return modelLoader.availableModels.first { $0.id == "qwen3-4b" }
-        case .medium:
-            return modelLoader.availableModels.first { $0.id == "qwen3-1.7b" }
-        case .low:
-            return modelLoader.availableModels.first { $0.id == "qwen3-0.6b" }
-        }
+        textModel
     }
 
     var body: some View {
@@ -251,10 +254,10 @@ struct OnboardingView: View {
     }
 
     private var getStartedPage: some View {
-        VStack(spacing: 24) {
+        VStack(spacing: 20) {
             Spacer()
 
-            if let model = recommendedModel {
+            if textModel != nil || visionModel != nil {
                 // Model download section
                 ZStack {
                     Circle()
@@ -287,50 +290,45 @@ struct OnboardingView: View {
                         .foregroundStyle(.secondary)
                 }
 
-                // Recommended model card
+                // Two model cards
                 VStack(spacing: 12) {
-                    HStack {
-                        VStack(alignment: .leading, spacing: 4) {
-                            HStack {
-                                Text(model.name)
-                                    .font(.headline)
-                                Text("おすすめ")
-                                    .font(.caption)
-                                    .padding(.horizontal, 8)
-                                    .padding(.vertical, 2)
-                                    .background(Color.green.opacity(0.2))
-                                    .foregroundStyle(.green)
-                                    .cornerRadius(8)
-                            }
-                            Text(model.description)
-                                .font(.caption)
-                                .foregroundStyle(.secondary)
-                        }
-                        Spacer()
-                        Text(model.size)
-                            .font(.caption)
-                            .foregroundStyle(.secondary)
+                    // Text model (Qwen3 1.7B)
+                    if let model = textModel {
+                        ModelDownloadCard(
+                            model: model,
+                            label: "テキスト",
+                            labelColor: .blue,
+                            isDownloaded: textModelDownloaded || modelLoader.isModelDownloaded(model.id),
+                            isDownloading: isDownloading && currentDownloadingModel == model.id,
+                            progress: currentDownloadingModel == model.id ? downloadProgress : 0
+                        )
                     }
 
-                    if isDownloading {
-                        VStack(spacing: 8) {
-                            ProgressView(value: downloadProgress)
-                                .tint(.cyan)
-                            Text("\(Int(downloadProgress * 100))% ダウンロード中...")
-                                .font(.caption)
-                                .foregroundStyle(.secondary)
-                        }
+                    // Vision model (Qwen3-VL 2B)
+                    if let model = visionModel {
+                        ModelDownloadCard(
+                            model: model,
+                            label: "画像認識",
+                            labelColor: .purple,
+                            isDownloaded: visionModelDownloaded || modelLoader.isModelDownloaded(model.id),
+                            isDownloading: isDownloading && currentDownloadingModel == model.id,
+                            progress: currentDownloadingModel == model.id ? downloadProgress : 0
+                        )
                     }
 
-                    if let error = downloadError {
-                        Text(error)
-                            .font(.caption)
-                            .foregroundStyle(.red)
-                    }
+                    // Total size info
+                    let totalSize = (textModel?.sizeBytes ?? 0) + (visionModel?.sizeBytes ?? 0)
+                    Text("合計: \(ModelLoader.formatSize(totalSize))")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
                 }
-                .padding(16)
-                .background(Color(.systemGray6))
-                .cornerRadius(12)
+
+                if let error = downloadError {
+                    Text(error)
+                        .font(.caption)
+                        .foregroundStyle(.red)
+                        .padding(.horizontal)
+                }
 
                 if !downloadCompleted && !isDownloading {
                     Text("AIを使うにはモデルのダウンロードが必要です")
@@ -364,39 +362,88 @@ struct OnboardingView: View {
         }
         .padding(.horizontal, 32)
         .onAppear {
-            // Auto-start download when reaching this page
-            if recommendedModel != nil && !isDownloading && !downloadCompleted && !modelLoader.isModelDownloaded(recommendedModel!.id) {
-                startModelDownload()
+            // Check if models are already downloaded
+            if let text = textModel, modelLoader.isModelDownloaded(text.id) {
+                textModelDownloaded = true
+            }
+            if let vision = visionModel, modelLoader.isModelDownloaded(vision.id) {
+                visionModelDownloaded = true
+            }
+            // Mark complete if both already downloaded
+            if textModelDownloaded && visionModelDownloaded {
+                downloadCompleted = true
             }
         }
     }
 
     private func startModelDownload() {
-        guard let model = recommendedModel else { return }
-
         isDownloading = true
         downloadError = nil
 
         Task {
             do {
-                // Monitor download progress
-                let progressTask = Task { @MainActor in
-                    while !Task.isCancelled {
-                        if let progress = modelLoader.downloadProgress[model.id] {
-                            self.downloadProgress = progress
+                // Download text model first (Qwen3 1.7B)
+                if let text = textModel, !modelLoader.isModelDownloaded(text.id) {
+                    await MainActor.run {
+                        currentDownloadingModel = text.id
+                        downloadProgress = 0
+                    }
+
+                    let progressTask = Task { @MainActor in
+                        while !Task.isCancelled {
+                            if let progress = modelLoader.downloadProgress[text.id] {
+                                self.downloadProgress = progress
+                            }
+                            try? await Task.sleep(nanoseconds: 100_000_000)
                         }
-                        try? await Task.sleep(nanoseconds: 100_000_000) // 0.1s
+                    }
+
+                    try await modelLoader.downloadModel(text)
+                    progressTask.cancel()
+
+                    await MainActor.run {
+                        textModelDownloaded = true
+                        downloadProgress = 1.0
                     }
                 }
 
-                try await modelLoader.downloadModel(model)
-                progressTask.cancel()
+                // Download vision model (Qwen3-VL 2B)
+                if let vision = visionModel, !modelLoader.isModelDownloaded(vision.id) {
+                    await MainActor.run {
+                        currentDownloadingModel = vision.id
+                        downloadProgress = 0
+                    }
 
+                    let progressTask = Task { @MainActor in
+                        while !Task.isCancelled {
+                            if let progress = modelLoader.downloadProgress[vision.id] {
+                                self.downloadProgress = progress
+                            }
+                            try? await Task.sleep(nanoseconds: 100_000_000)
+                        }
+                    }
+
+                    try await modelLoader.downloadModel(vision)
+                    progressTask.cancel()
+
+                    await MainActor.run {
+                        visionModelDownloaded = true
+                        downloadProgress = 1.0
+                    }
+                }
+
+                // Both downloads complete - auto-load text model
                 await MainActor.run {
-                    downloadProgress = 1.0
                     isDownloading = false
                     downloadCompleted = true
+                    currentDownloadingModel = ""
                 }
+
+                // Auto-load Qwen3 1.7B
+                if let text = textModel {
+                    try await appState.loadModel(named: text.id)
+                }
+
             } catch {
                 await MainActor.run {
                     isDownloading = false
@@ -484,6 +531,71 @@ struct SetupStepRow: View {
                     .foregroundStyle(.green)
             }
         }
+    }
+}
+
+// MARK: - Model Download Card
+
+struct ModelDownloadCard: View {
+    let model: ModelLoader.ModelInfo
+    let label: String
+    let labelColor: Color
+    let isDownloaded: Bool
+    let isDownloading: Bool
+    let progress: Double
+
+    var body: some View {
+        HStack(spacing: 12) {
+            // Status icon
+            ZStack {
+                Circle()
+                    .fill(isDownloaded ? Color.green.opacity(0.15) : labelColor.opacity(0.15))
+                    .frame(width: 40, height: 40)
+
+                if isDownloaded {
+                    Image(systemName: "checkmark.circle.fill")
+                        .foregroundStyle(.green)
+                } else if isDownloading {
+                    CircularProgressView(progress: progress)
+                        .frame(width: 30, height: 30)
+                } else {
+                    Image(systemName: "arrow.down.circle")
+                        .foregroundStyle(labelColor)
+                }
+            }
+
+            VStack(alignment: .leading, spacing: 2) {
+                HStack(spacing: 6) {
+                    Text(model.name)
+                        .font(.subheadline.weight(.medium))
+                    Text(label)
+                        .font(.caption2)
+                        .padding(.horizontal, 6)
+                        .padding(.vertical, 2)
+                        .background(labelColor.opacity(0.2))
+                        .foregroundStyle(labelColor)
+                        .cornerRadius(4)
+                }
+                Text(model.size)
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+            }
+
+            Spacer()
+
+            if isDownloaded {
+                Text("完了")
+                    .font(.caption)
+                    .foregroundStyle(.green)
+            } else if isDownloading {
+                Text("\(Int(progress * 100))%")
+                    .font(.caption.monospacedDigit())
+                    .foregroundStyle(.secondary)
+            }
+        }
+        .padding(12)
+        .background(Color(.systemGray6))
+        .cornerRadius(10)
     }
 }
 

@@ -71,51 +71,78 @@ struct ModelSelectionView: View {
     }
 
     private var actionButton: some View {
-        VStack(spacing: 8) {
-            if let selectedModelId = selectedModelId {
+        VStack(spacing: 12) {
+            if let selectedModelId = selectedModelId,
+               let selectedModel = modelLoader.availableModels.first(where: { $0.id == selectedModelId }) {
+
+                // Show selected model name
+                HStack {
+                    Text("選択中:")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                    Text(selectedModel.name)
+                        .font(.subheadline.weight(.medium))
+                    Spacer()
+                }
+                .padding(.horizontal, 4)
+
                 if modelLoader.isModelDownloaded(selectedModelId) {
+                    // Load button - more prominent
                     Button(action: loadSelectedModel) {
-                        HStack {
+                        HStack(spacing: 12) {
                             if appState.isLoading {
                                 ProgressView()
                                     .tint(.white)
                             } else {
-                                Text("このモデルを使用")
+                                Image(systemName: "play.circle.fill")
+                                    .font(.title2)
+                                Text("モデルをロード")
+                                    .font(.headline)
                             }
                         }
                         .frame(maxWidth: .infinity)
-                        .padding()
-                        .background(Color.accentColor)
+                        .padding(.vertical, 16)
+                        .background(
+                            LinearGradient(
+                                colors: [.green, .green.opacity(0.8)],
+                                startPoint: .leading,
+                                endPoint: .trailing
+                            )
+                        )
                         .foregroundStyle(.white)
-                        .clipShape(RoundedRectangle(cornerRadius: 12))
+                        .clipShape(RoundedRectangle(cornerRadius: 14))
+                        .shadow(color: .green.opacity(0.3), radius: 8, y: 4)
                     }
                     .disabled(appState.isLoading)
                 } else {
+                    // Download button
                     Button(action: downloadSelectedModel) {
-                        HStack {
+                        HStack(spacing: 12) {
                             if isDownloading {
                                 ProgressView()
                                     .tint(.white)
                             } else {
-                                Image(systemName: "arrow.down.circle")
-                                Text("ダウンロード")
+                                Image(systemName: "arrow.down.circle.fill")
+                                    .font(.title2)
+                                Text("ダウンロード (\(selectedModel.size))")
+                                    .font(.headline)
                             }
                         }
                         .frame(maxWidth: .infinity)
-                        .padding()
+                        .padding(.vertical, 16)
                         .background(Color.accentColor)
                         .foregroundStyle(.white)
-                        .clipShape(RoundedRectangle(cornerRadius: 12))
+                        .clipShape(RoundedRectangle(cornerRadius: 14))
                     }
                     .disabled(isDownloading)
                 }
             } else {
                 Text("モデルを選択してください")
                     .frame(maxWidth: .infinity)
-                    .padding()
+                    .padding(.vertical, 16)
                     .background(Color(.secondarySystemBackground))
                     .foregroundStyle(.secondary)
-                    .clipShape(RoundedRectangle(cornerRadius: 12))
+                    .clipShape(RoundedRectangle(cornerRadius: 14))
             }
         }
         .padding()
@@ -164,11 +191,13 @@ struct ModelCard: View {
     var body: some View {
         Button(action: onSelect) {
             VStack(alignment: .leading, spacing: 12) {
-                HStack {
+                HStack(alignment: .top) {
                     VStack(alignment: .leading, spacing: 4) {
+                        // Full model name - no truncation
                         Text(model.name)
                             .font(.headline)
                             .foregroundStyle(.primary)
+                            .fixedSize(horizontal: false, vertical: true)
 
                         HStack(spacing: 8) {
                             Text(model.size)
@@ -178,6 +207,15 @@ struct ModelCard: View {
                                     .font(.system(size: 10))
                                 Text(model.recommendedDeviceName)
                             }
+                            if model.supportsVision {
+                                Text("•")
+                                HStack(spacing: 2) {
+                                    Image(systemName: "camera")
+                                        .font(.system(size: 10))
+                                    Text("画像対応")
+                                }
+                                .foregroundStyle(.purple)
+                            }
                         }
                         .font(.caption)
                         .foregroundStyle(.secondary)
@@ -185,15 +223,21 @@ struct ModelCard: View {
 
                     Spacer()
 
-                    HStack(spacing: 8) {
-                        if isDownloaded {
-                            Label("ダウンロード済み", systemImage: "checkmark.circle.fill")
-                                .font(.caption)
-                                .foregroundStyle(.green)
-                        }
-
+                    VStack(alignment: .trailing, spacing: 4) {
+                        // Selection indicator
                         Image(systemName: isSelected ? "checkmark.circle.fill" : "circle")
-                            .foregroundStyle(isSelected ? Color.accentColor : Color.secondary)
+                            .font(.title2)
+                            .foregroundStyle(isSelected ? Color.accentColor : Color.secondary.opacity(0.5))
+
+                        if isDownloaded {
+                            HStack(spacing: 2) {
+                                Image(systemName: "checkmark.circle.fill")
+                                    .font(.system(size: 10))
+                                Text("DL済")
+                            }
+                            .font(.caption2)
+                            .foregroundStyle(.green)
+                        }
                     }
                 }
 
@@ -201,11 +245,13 @@ struct ModelCard: View {
                     .font(.subheadline)
                     .foregroundStyle(.secondary)
                     .multilineTextAlignment(.leading)
+                    .fixedSize(horizontal: false, vertical: true)
 
                 if let progress = downloadProgress {
                     VStack(alignment: .leading, spacing: 4) {
                         ProgressView(value: progress)
                             .progressViewStyle(.linear)
+                            .tint(.accentColor)
 
                         Text("ダウンロード中... \(Int(progress * 100))%")
                             .font(.caption)
@@ -213,15 +259,17 @@ struct ModelCard: View {
                     }
                 }
 
+                // Show context length in readable format
                 HStack(spacing: 16) {
-                    Label("\(model.config.maxContextLength)", systemImage: "text.quote")
+                    let contextK = model.config.maxContextLength / 1000
+                    Label("\(contextK)Kコンテキスト", systemImage: "text.quote")
                     Label("4-bit量子化", systemImage: "square.stack.3d.up")
                 }
                 .font(.caption)
                 .foregroundStyle(.tertiary)
             }
             .padding()
-            .background(Color(.secondarySystemBackground))
+            .background(isSelected ? Color.accentColor.opacity(0.08) : Color(.secondarySystemBackground))
             .clipShape(RoundedRectangle(cornerRadius: 12))
             .overlay(
                 RoundedRectangle(cornerRadius: 12)
