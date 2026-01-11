@@ -47,15 +47,18 @@ enum InferenceMode: String, CaseIterable, Codable {
     }
 
     /// Cached GPU layers calculation (computed once at startup)
+    /// Conservative values to avoid Metal synchronization crashes on A18 Pro
     private static let cachedOptimalGPULayers: Int32 = {
         let physicalMemory = ProcessInfo.processInfo.physicalMemory
         let memoryGB = Double(physicalMemory) / 1_073_741_824
 
+        // More conservative GPU layer allocation to prevent Metal crashes
+        // A18 Pro has issues with too many GPU layers
         switch memoryGB {
-        case 8...:   return 999  // 8GB+ (Pro models) - all layers
-        case 6..<8:  return 32   // 6GB - most layers
-        case 4..<6:  return 20   // 4GB - moderate layers
-        default:     return 10   // <4GB - minimal layers
+        case 8...:   return 40   // 8GB+ (Pro models) - limited layers for stability
+        case 6..<8:  return 28   // 6GB - moderate layers
+        case 4..<6:  return 18   // 4GB - fewer layers
+        default:     return 8    // <4GB - minimal layers
         }
     }()
 }
@@ -141,6 +144,8 @@ final class LlamaInference: ObservableObject {
         // Disable Metal concurrency to avoid crash on A18 Pro
         // See: https://github.com/ggml-org/llama.cpp/pull/14849
         setenv("GGML_METAL_NO_CONCURRENCY", "1", 1)
+        // Additional Metal stability settings for A18 Pro
+        setenv("GGML_METAL_FULL_THREADS", "0", 1)
         // Initialize llama backend
         llama_backend_init()
     }
@@ -350,6 +355,11 @@ final class LlamaInference: ObservableObject {
         for tokenIndex in 0..<maxTokens {
             // Check for cancellation
             try Task.checkCancellation()
+
+            // Small yield before Metal-heavy sampling to avoid sync issues
+            if tokenIndex % 8 == 0 {
+                await Task.yield()
+            }
 
             // Sample next token using the sampler chain
             let newToken = llama_sampler_sample(sampler, context, -1)
