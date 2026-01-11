@@ -378,16 +378,23 @@ struct ChatView: View {
             // Offline badge - shows when not connected
             if !networkMonitor.isConnected {
                 HStack(spacing: 4) {
-                    Image(systemName: "airplane")
-                        .font(.system(size: 11, weight: .semibold))
-                    Text("Offline")
-                        .font(.system(size: 11, weight: .semibold))
+                    Image(systemName: "wifi.slash")
+                        .font(.system(size: 12, weight: .bold))
+                    Text("オフライン")
+                        .font(.system(size: 12, weight: .bold))
                 }
                 .foregroundStyle(.white)
-                .padding(.horizontal, 8)
-                .padding(.vertical, 4)
-                .background(Color.green)
+                .padding(.horizontal, 10)
+                .padding(.vertical, 5)
+                .background(
+                    LinearGradient(
+                        colors: [.orange, .red],
+                        startPoint: .leading,
+                        endPoint: .trailing
+                    )
+                )
                 .clipShape(Capsule())
+                .shadow(color: .orange.opacity(0.4), radius: 4, y: 2)
             }
 
             Spacer()

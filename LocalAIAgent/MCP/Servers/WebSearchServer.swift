@@ -1,4 +1,5 @@
 import Foundation
+import Network
 
 /// MCP Server for Ghost Search - Privacy-focused web search via DuckDuckGo
 final class WebSearchServer: MCPServer {
@@ -6,6 +7,27 @@ final class WebSearchServer: MCPServer {
     let name = "Ghost Search"
     let serverDescription = "DuckDuckGoで匿名検索（追跡なし）"
     let icon = "theatermasks.fill"
+
+    /// Check network connectivity
+    private var isOnline: Bool {
+        // Quick sync check using NWPathMonitor cached state
+        let monitor = NWPathMonitor()
+        let queue = DispatchQueue(label: "NetworkCheck")
+        var isConnected = false
+        let semaphore = DispatchSemaphore(value: 0)
+
+        monitor.pathUpdateHandler = { path in
+            isConnected = path.status == .satisfied
+            semaphore.signal()
+        }
+        monitor.start(queue: queue)
+
+        // Wait briefly for network status
+        _ = semaphore.wait(timeout: .now() + 0.5)
+        monitor.cancel()
+
+        return isConnected
+    }
 
     func listPrompts() -> [MCPPrompt] {
         [
@@ -80,6 +102,25 @@ final class WebSearchServer: MCPServer {
     private func performGhostSearch(_ arguments: [String: JSONValue]) async throws -> MCPResult {
         guard case .string(let query) = arguments["query"] else {
             throw MCPClientError.invalidArguments("queryは必須です")
+        }
+
+        // Check network connectivity first
+        guard isOnline else {
+            let offlineResult = """
+            【オフラインモード】
+
+            現在インターネットに接続されていないため、Web検索は利用できません。
+
+            🔒 オフラインでも利用可能な機能:
+            • ローカルAIによる質問回答
+            • カレンダー・リマインダーの確認
+            • 連絡先の検索
+            • 写真の閲覧
+            • ヘルスデータの確認
+
+            インターネットに接続すると、Web検索が利用可能になります。
+            """
+            return MCPResult(content: [MCPContent.text(offlineResult)])
         }
 
         let limit: Int
