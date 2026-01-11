@@ -1,4 +1,5 @@
 import Foundation
+import Network
 
 @MainActor
 final class AgentOrchestrator: ObservableObject {
@@ -8,6 +9,11 @@ final class AgentOrchestrator: ObservableObject {
     private let llm: CoreMLInference
     private let mcpClient: MCPClient
     private let maxIterations = 10
+
+    /// Check if device is online (uses NetworkMonitor singleton)
+    private var isOnline: Bool {
+        NetworkMonitor.shared.isConnected
+    }
 
     enum AgentStep: Equatable {
         case thinking
@@ -181,6 +187,9 @@ final class AgentOrchestrator: ObservableObject {
         - 自信がない情報について確認したい場合
         検索結果に基づいて回答し、出典を明記してください。
 
+        # ネットワーク状態
+        \(isOnline ? "オンライン - Web検索が利用可能です" : "⚠️ オフラインモード - Web検索は利用できません。ローカル機能（カレンダー、連絡先、リマインダー、写真、ヘルスデータ）とAIの知識のみで回答してください。")
+
         今日の日付: \(formattedDate())
         """
     }
@@ -236,6 +245,9 @@ final class AgentOrchestrator: ObservableObject {
         - When specific facts or numbers need verification
         - When you're uncertain about information
         Base your answers on search results and cite your sources.
+
+        # Network Status
+        \(isOnline ? "Online - Web search is available" : "⚠️ Offline Mode - Web search is unavailable. Please respond using only local features (calendar, contacts, reminders, photos, health data) and your knowledge.")
 
         Today's date: \(formattedDate())
         """
