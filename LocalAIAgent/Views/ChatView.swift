@@ -352,7 +352,7 @@ struct ChatView: View {
 
     private var truncatedModelName: String {
         guard let modelName = appState.currentModelName else {
-            return "elio"
+            return "Elio"
         }
         // Truncate to max 15 characters
         if modelName.count > 15 {
