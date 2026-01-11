@@ -115,24 +115,38 @@ final class AgentOrchestrator: ObservableObject {
         currentLocale.language.languageCode?.identifier == "ja"
     }
 
+    /// Custom system prompt from UserDefaults (set via Settings)
+    private var customSystemPrompt: String {
+        UserDefaults.standard.string(forKey: "custom_system_prompt") ?? ""
+    }
+
     private func buildSystemPrompt(enabledServers: Set<String>) -> String {
         let toolsDescription = mcpClient.getToolsDescription(enabledServers: enabledServers, locale: currentLocale)
         let promptsDescription = mcpClient.getPromptsDescription(enabledServers: enabledServers, locale: currentLocale)
         let toolCallFormat = MCPClient.toolCallFormat(locale: currentLocale)
 
+        var basePrompt: String
         if isJapanese {
-            return buildJapaneseSystemPrompt(
+            basePrompt = buildJapaneseSystemPrompt(
                 toolsDescription: toolsDescription,
                 promptsDescription: promptsDescription,
                 toolCallFormat: toolCallFormat
             )
         } else {
-            return buildEnglishSystemPrompt(
+            basePrompt = buildEnglishSystemPrompt(
                 toolsDescription: toolsDescription,
                 promptsDescription: promptsDescription,
                 toolCallFormat: toolCallFormat
             )
         }
+
+        // Append custom prompt if set
+        if !customSystemPrompt.isEmpty {
+            let customHeader = isJapanese ? "\n\n# ユーザー設定の追加指示\n" : "\n\n# User Custom Instructions\n"
+            basePrompt += customHeader + customSystemPrompt
+        }
+
+        return basePrompt
     }
 
     private func buildJapaneseSystemPrompt(
