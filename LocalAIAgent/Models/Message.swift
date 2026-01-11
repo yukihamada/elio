@@ -58,27 +58,51 @@ struct Message: Identifiable, Codable, Equatable {
     }
 
     /// Parse raw response to extract thinking content and main content
+    /// Supports both <think> and <thinking> tag formats
     static func parseThinkingContent(_ rawContent: String) -> (thinking: String?, content: String) {
-        // Pattern: <think>...</think> or </think> at the end
-        let thinkPattern = #"<think>([\s\S]*?)</think>"#
-
-        guard let regex = try? NSRegularExpression(pattern: thinkPattern, options: []) else {
-            return (nil, rawContent)
-        }
-
-        let range = NSRange(rawContent.startIndex..., in: rawContent)
         var thinkingParts: [String] = []
         var cleanContent = rawContent
 
-        // Find all thinking blocks
-        let matches = regex.matches(in: rawContent, options: [], range: range)
-        for match in matches.reversed() {
-            if let thinkRange = Range(match.range(at: 1), in: rawContent) {
-                thinkingParts.insert(String(rawContent[thinkRange]).trimmingCharacters(in: .whitespacesAndNewlines), at: 0)
+        // Process <think>...</think> tags
+        let thinkPattern = #"<think>([\s\S]*?)</think>"#
+        if let thinkRegex = try? NSRegularExpression(pattern: thinkPattern, options: []) {
+            let range = NSRange(cleanContent.startIndex..., in: cleanContent)
+            let matches = thinkRegex.matches(in: cleanContent, options: [], range: range)
+
+            // Extract thinking content from all matches
+            for match in matches {
+                if let thinkRange = Range(match.range(at: 1), in: cleanContent) {
+                    thinkingParts.append(String(cleanContent[thinkRange]).trimmingCharacters(in: .whitespacesAndNewlines))
+                }
             }
-            if let fullRange = Range(match.range, in: cleanContent) {
-                cleanContent.removeSubrange(fullRange)
+
+            // Remove all <think>...</think> blocks using replacement
+            cleanContent = thinkRegex.stringByReplacingMatches(
+                in: cleanContent,
+                options: [],
+                range: NSRange(cleanContent.startIndex..., in: cleanContent),
+                withTemplate: ""
+            )
+        }
+
+        // Also process <thinking>...</thinking> tags
+        let thinkingPattern = #"<thinking>([\s\S]*?)</thinking>"#
+        if let thinkingRegex = try? NSRegularExpression(pattern: thinkingPattern, options: []) {
+            let range = NSRange(cleanContent.startIndex..., in: cleanContent)
+            let matches = thinkingRegex.matches(in: cleanContent, options: [], range: range)
+
+            for match in matches {
+                if let thinkRange = Range(match.range(at: 1), in: cleanContent) {
+                    thinkingParts.append(String(cleanContent[thinkRange]).trimmingCharacters(in: .whitespacesAndNewlines))
+                }
             }
+
+            cleanContent = thinkingRegex.stringByReplacingMatches(
+                in: cleanContent,
+                options: [],
+                range: NSRange(cleanContent.startIndex..., in: cleanContent),
+                withTemplate: ""
+            )
         }
 
         let thinking = thinkingParts.isEmpty ? nil : thinkingParts.joined(separator: "\n\n")
