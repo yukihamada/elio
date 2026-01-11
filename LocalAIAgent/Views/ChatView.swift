@@ -219,8 +219,14 @@ struct ChatView: View {
                 isInputFocused = true
             })
         }
-        // Handle pending quick question from widget
+        // Handle pending quick question from widget and restore draft
         .onAppear {
+            // Restore draft input from crash recovery
+            if inputText.isEmpty, let savedDraft = UserDefaults.standard.string(forKey: "chat_draft_input"), !savedDraft.isEmpty {
+                inputText = savedDraft
+            }
+
+            // Handle widget quick question
             if let question = appState.pendingQuickQuestion {
                 inputText = question
                 appState.pendingQuickQuestion = nil
@@ -239,6 +245,12 @@ struct ChatView: View {
             if newValue {
                 showingConversationList = true
                 appState.showConversationList = false
+            }
+        }
+        // Save draft input for crash recovery
+        .onChange(of: inputText) { _, newValue in
+            if !newValue.isEmpty {
+                UserDefaults.standard.set(newValue, forKey: "chat_draft_input")
             }
         }
     }
@@ -876,6 +888,7 @@ struct ChatView: View {
 
         // IMMEDIATELY clear UI and hide keyboard - before any processing
         inputText = ""
+        UserDefaults.standard.removeObject(forKey: "chat_draft_input")  // Clear saved draft
         attachedImages = []
         attachedPDFText = nil
         attachedPDFName = nil
