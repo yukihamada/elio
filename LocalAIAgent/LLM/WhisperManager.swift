@@ -200,10 +200,7 @@ final class WhisperManager: ObservableObject {
         defer { isTranscribing = false }
 
         do {
-            // Japanese transcription prompt - concise and effective
-            // Instructs proper punctuation usage for natural Japanese output
-            let japanesePrompt = "以下は日本語の音声入力です。句読点「、」「。」「？」「！」を適切に使用し、自然な日本語で書き起こしてください。"
-
+            // Japanese transcription settings - optimized for accuracy
             let results = try await whisper.transcribe(audioPath: url.path, decodeOptions: DecodingOptions(
                 task: .transcribe,
                 language: "ja",
@@ -214,10 +211,7 @@ final class WhisperManager: ObservableObject {
                 usePrefillCache: true,
                 skipSpecialTokens: true,
                 withoutTimestamps: true,
-                suppressBlank: true,
-                promptTokens: nil,
-                prefixTokens: nil,
-                prompt: japanesePrompt
+                suppressBlank: true
             ))
 
             let text = results.map { $0.text }.joined(separator: " ").trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)

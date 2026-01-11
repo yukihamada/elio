@@ -209,7 +209,7 @@ final class AppState: ObservableObject {
 
             do {
                 // Generate summary using LLM
-                if let llm = await self.llmEngine, let modelId = await self.currentModelId {
+                if let llm = self.llmEngine, let modelId = self.currentModelId {
                     var settings = self.settingsManager.settings(for: modelId)
                     settings.maxTokens = 150  // Short summary
                     var summary = ""
