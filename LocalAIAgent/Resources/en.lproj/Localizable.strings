@@ -452,6 +452,19 @@
 "settings.language.changed.message" = "Please restart the app to apply the changes";
 "common.ok" = "OK";
 
+// MARK: - System Prompt Settings
+"settings.prompt.section" = "System Prompt";
+"settings.prompt.edit" = "Edit Prompt";
+"settings.prompt.default" = "Using default";
+"settings.prompt.custom" = "Custom prompt set";
+"settings.prompt.hint" = "Customize AI behavior";
+"settings.prompt.editor.title" = "Edit Prompt";
+"settings.prompt.editor.instruction" = "Add custom instructions for the AI. Leave empty to use the default prompt.";
+"settings.prompt.default.preview" = "Default prompt (excerpt):";
+"settings.prompt.reset" = "Reset";
+"settings.prompt.reset.title" = "Reset Prompt";
+"settings.prompt.reset.message" = "Delete custom prompt and restore to default?";
+
 // MARK: - Prompt Templates
 "templates.title" = "Prompt Templates";
 "templates.empty" = "No templates yet";

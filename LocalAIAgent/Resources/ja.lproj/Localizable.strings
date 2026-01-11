@@ -452,6 +452,19 @@
 "settings.language.changed.message" = "変更を反映するにはアプリを再起動してください";
 "common.ok" = "OK";
 
+// MARK: - System Prompt Settings
+"settings.prompt.section" = "システムプロンプト";
+"settings.prompt.edit" = "プロンプトを編集";
+"settings.prompt.default" = "デフォルトを使用中";
+"settings.prompt.custom" = "カスタム設定中";
+"settings.prompt.hint" = "AIの振る舞いをカスタマイズできます";
+"settings.prompt.editor.title" = "プロンプト編集";
+"settings.prompt.editor.instruction" = "AIに追加の指示を与えることができます。空にするとデフォルトのプロンプトが使用されます。";
+"settings.prompt.default.preview" = "デフォルトのプロンプト（一部）:";
+"settings.prompt.reset" = "リセット";
+"settings.prompt.reset.title" = "プロンプトをリセット";
+"settings.prompt.reset.message" = "カスタムプロンプトを削除してデフォルトに戻しますか？";
+
 // MARK: - Prompt Templates
 "templates.title" = "プロンプトテンプレート";
 "templates.empty" = "テンプレートがありません";

@@ -104,18 +104,16 @@ final class ResponseParser {
                 }
 
                 remaining = String(remaining[toolCallEndRange.upperBound...])
-            } else if let thinkingRange = remaining.range(of: "<thinking>"),
-                      let thinkingEndRange = remaining.range(of: "</thinking>") {
-                let beforeThinking = String(remaining[..<thinkingRange.lowerBound])
-                if !beforeThinking.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
-                    results.append(.text(beforeThinking))
+            } else if let (thinkStart, thinkEnd, beforeThink) = findThinkingTags(in: remaining) {
+                if !beforeThink.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+                    results.append(.text(beforeThink))
                 }
 
-                let thinkingContent = String(remaining[thinkingRange.upperBound..<thinkingEndRange.lowerBound])
+                let thinkingContent = String(remaining[thinkStart.upperBound..<thinkEnd.lowerBound])
                     .trimmingCharacters(in: .whitespacesAndNewlines)
                 results.append(.thinking(thinkingContent))
 
-                remaining = String(remaining[thinkingEndRange.upperBound...])
+                remaining = String(remaining[thinkEnd.upperBound...])
             } else {
                 results.append(.text(remaining))
                 remaining = ""
@@ -123,6 +121,25 @@ final class ResponseParser {
         }
 
         return results
+    }
+
+    /// Find thinking tags - supports both <think> and <thinking> formats
+    private static func findThinkingTags(in text: String) -> (start: Range<String.Index>, end: Range<String.Index>, before: String)? {
+        // Try <think> first (more common with Qwen models)
+        if let thinkRange = text.range(of: "<think>"),
+           let thinkEndRange = text.range(of: "</think>") {
+            let before = String(text[..<thinkRange.lowerBound])
+            return (thinkRange, thinkEndRange, before)
+        }
+
+        // Try <thinking> as fallback
+        if let thinkingRange = text.range(of: "<thinking>"),
+           let thinkingEndRange = text.range(of: "</thinking>") {
+            let before = String(text[..<thinkingRange.lowerBound])
+            return (thinkingRange, thinkingEndRange, before)
+        }
+
+        return nil
     }
 
     private static func parseToolCall(_ content: String) -> ParsedContent? {

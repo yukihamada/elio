@@ -9,6 +9,8 @@ struct SettingsView: View {
     @State private var loadingModelId: String?
     @State private var showMoreModels = false
     @State private var showLanguageChangeAlert = false
+    @State private var showingPromptEditor = false
+    @AppStorage("custom_system_prompt") private var customSystemPrompt: String = ""
 
     // Models grouped by category
     private func modelsForCategory(_ category: ModelCategory) -> [ModelLoader.ModelInfo] {
@@ -57,6 +59,9 @@ struct SettingsView: View {
 
                         // Language Section
                         languageSection
+
+                        // System Prompt Section
+                        systemPromptSection
 
                         // MCP Server Section
                         mcpSection
@@ -456,6 +461,57 @@ struct SettingsView: View {
             Button(String(localized: "common.ok")) {}
         } message: {
             Text(String(localized: "settings.language.changed.message"))
+        }
+    }
+
+    // MARK: - System Prompt Section
+
+    private var systemPromptSection: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            SectionHeader(title: String(localized: "settings.prompt.section"), icon: "text.bubble", color: .purple)
+
+            Button(action: { showingPromptEditor = true }) {
+                HStack(spacing: 14) {
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 10)
+                            .fill(Color.purple.opacity(0.1))
+                            .frame(width: 44, height: 44)
+                        Image(systemName: "pencil.and.outline")
+                            .font(.system(size: 18))
+                            .foregroundStyle(.purple)
+                    }
+
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text(String(localized: "settings.prompt.edit"))
+                            .font(.system(size: 15, weight: .medium))
+                            .foregroundStyle(.primary)
+                        Text(customSystemPrompt.isEmpty ? String(localized: "settings.prompt.default") : String(localized: "settings.prompt.custom"))
+                            .font(.system(size: 13))
+                            .foregroundStyle(.secondary)
+                    }
+
+                    Spacer()
+
+                    Image(systemName: "chevron.right")
+                        .font(.system(size: 14, weight: .semibold))
+                        .foregroundStyle(.secondary)
+                }
+                .padding(.horizontal, 16)
+                .padding(.vertical, 14)
+                .background(
+                    RoundedRectangle(cornerRadius: 16)
+                        .fill(Color.chatInputBackgroundDynamic)
+                )
+            }
+            .buttonStyle(.plain)
+
+            Text(String(localized: "settings.prompt.hint"))
+                .font(.caption)
+                .foregroundStyle(.secondary)
+                .padding(.horizontal, 4)
+        }
+        .sheet(isPresented: $showingPromptEditor) {
+            SystemPromptEditorView(customPrompt: $customSystemPrompt)
         }
     }
 
@@ -978,6 +1034,121 @@ struct AboutLinkRow: View {
             }
             .padding(.horizontal, 16)
             .padding(.vertical, 14)
+        }
+    }
+}
+
+// MARK: - System Prompt Editor View
+
+struct SystemPromptEditorView: View {
+    @Binding var customPrompt: String
+    @Environment(\.dismiss) private var dismiss
+    @State private var editingPrompt: String = ""
+    @State private var showingResetAlert = false
+
+    private var isJapanese: Bool {
+        Locale.current.language.languageCode?.identifier == "ja"
+    }
+
+    private var defaultPromptPreview: String {
+        if isJapanese {
+            return """
+            # 絶対ルール：知らないことは「知らない」と言う
+            **これは最も重要なルールです。**
+            - 知らないこと、自信がないことは絶対に推測や創作で答えない
+            - 「分かりません」「知りません」と正直に言う
+            - 嘘や作り話は絶対にしない
+            """
+        } else {
+            return """
+            # Absolute Rule: Say "I don't know" when you don't know
+            **This is the most important rule.**
+            - Never guess or make up answers
+            - Say "I don't know" honestly
+            - Never lie or fabricate
+            """
+        }
+    }
+
+    var body: some View {
+        NavigationStack {
+            ZStack {
+                Color.chatBackgroundDynamic
+                    .ignoresSafeArea()
+
+                VStack(spacing: 16) {
+                    // Instructions
+                    Text(String(localized: "settings.prompt.editor.instruction"))
+                        .font(.system(size: 14))
+                        .foregroundStyle(.secondary)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.horizontal, 20)
+
+                    // Text Editor
+                    TextEditor(text: $editingPrompt)
+                        .font(.system(size: 14, design: .monospaced))
+                        .scrollContentBackground(.hidden)
+                        .padding(12)
+                        .background(
+                            RoundedRectangle(cornerRadius: 12)
+                                .fill(Color.chatInputBackgroundDynamic)
+                        )
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 12)
+                                .stroke(Color.chatBorderDynamic, lineWidth: 1)
+                        )
+                        .padding(.horizontal, 20)
+
+                    // Default prompt preview
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text(String(localized: "settings.prompt.default.preview"))
+                            .font(.system(size: 12, weight: .semibold))
+                            .foregroundStyle(.secondary)
+
+                        Text(defaultPromptPreview)
+                            .font(.system(size: 11, design: .monospaced))
+                            .foregroundStyle(.tertiary)
+                            .lineLimit(6)
+                    }
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.horizontal, 20)
+
+                    Spacer()
+                }
+                .padding(.top, 16)
+            }
+            .navigationTitle(String(localized: "settings.prompt.editor.title"))
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .cancellationAction) {
+                    Button(String(localized: "common.cancel")) {
+                        dismiss()
+                    }
+                }
+                ToolbarItem(placement: .primaryAction) {
+                    Button(String(localized: "common.save")) {
+                        customPrompt = editingPrompt.trimmingCharacters(in: .whitespacesAndNewlines)
+                        dismiss()
+                    }
+                }
+                ToolbarItem(placement: .bottomBar) {
+                    Button(action: { showingResetAlert = true }) {
+                        Label(String(localized: "settings.prompt.reset"), systemImage: "arrow.counterclockwise")
+                    }
+                    .disabled(editingPrompt.isEmpty)
+                }
+            }
+            .alert(String(localized: "settings.prompt.reset.title"), isPresented: $showingResetAlert) {
+                Button(String(localized: "settings.prompt.reset"), role: .destructive) {
+                    editingPrompt = ""
+                }
+                Button(String(localized: "common.cancel"), role: .cancel) {}
+            } message: {
+                Text(String(localized: "settings.prompt.reset.message"))
+            }
+        }
+        .onAppear {
+            editingPrompt = customPrompt
         }
     }
 }
