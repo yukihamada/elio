@@ -520,7 +520,7 @@ struct ChatView: View {
                 }
                 .padding(.vertical, 16)
             }
-            .scrollDismissesKeyboard(.interactively)
+            .scrollDismissesKeyboard(.immediately)
             .scrollIndicators(.hidden)
             .onChange(of: appState.currentConversation?.messages.count) { _, _ in
                 // Scroll immediately to new message - no animation for instant feedback
@@ -866,6 +866,7 @@ struct ChatView: View {
             .padding(.horizontal, 16)
             .padding(.vertical, 12)
         }
+        .animation(nil, value: isInputFocused)
     }
 
     private var canSend: Bool {
