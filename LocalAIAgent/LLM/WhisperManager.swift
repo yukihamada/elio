@@ -31,13 +31,36 @@ final class WhisperManager: ObservableObject {
     }
 
     private func checkModelStatus() {
+        // WhisperKit stores models in subdirectory with .mlmodelc files
         let modelPath = modelsDirectory.appendingPathComponent(modelName)
-        isModelDownloaded = FileManager.default.fileExists(atPath: modelPath.path)
+
+        // Check if directory exists and contains model files
+        if FileManager.default.fileExists(atPath: modelPath.path) {
+            do {
+                let contents = try FileManager.default.contentsOfDirectory(atPath: modelPath.path)
+                // Check for essential WhisperKit model files (.mlmodelc directories)
+                let hasModelFiles = contents.contains { $0.hasSuffix(".mlmodelc") || $0.hasSuffix(".mlpackage") }
+                isModelDownloaded = hasModelFiles
+
+                // Also save to UserDefaults as backup check
+                if hasModelFiles {
+                    UserDefaults.standard.set(true, forKey: "whisper_model_downloaded")
+                }
+            } catch {
+                isModelDownloaded = false
+            }
+        } else {
+            // Fallback: check UserDefaults (in case file check fails but model was downloaded)
+            isModelDownloaded = UserDefaults.standard.bool(forKey: "whisper_model_downloaded")
+        }
     }
 
     // MARK: - Model Management
 
     func downloadModelIfNeeded() async throws {
+        // Re-check model status before downloading
+        checkModelStatus()
+
         guard !isModelDownloaded else {
             try await loadModel()
             return
@@ -62,6 +85,9 @@ final class WhisperManager: ObservableObject {
             isModelDownloaded = true
             isDownloading = false
             downloadProgress = 1.0
+
+            // Save download status to UserDefaults
+            UserDefaults.standard.set(true, forKey: "whisper_model_downloaded")
         } catch {
             isDownloading = false
             errorMessage = String(localized: "whisper.download.error") + ": \(error.localizedDescription)"
@@ -73,13 +99,21 @@ final class WhisperManager: ObservableObject {
         guard whisperKit == nil else { return }
 
         do {
+            // Load from local storage - WhisperKit will find the existing model
             whisperKit = try await WhisperKit(
                 model: modelName,
                 downloadBase: modelsDirectory,
                 verbose: false,
                 prewarm: true
             )
+
+            // Ensure status is correct after successful load
+            isModelDownloaded = true
+            UserDefaults.standard.set(true, forKey: "whisper_model_downloaded")
         } catch {
+            // If loading fails, model might be corrupted - reset status
+            isModelDownloaded = false
+            UserDefaults.standard.set(false, forKey: "whisper_model_downloaded")
             errorMessage = String(localized: "whisper.load.error") + ": \(error.localizedDescription)"
             throw error
         }
