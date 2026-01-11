@@ -1110,10 +1110,18 @@ struct ChatMessageRow: View {
                 HStack {
                     Spacer(minLength: 60)
                     Text(message.content)
+                        .textSelection(.enabled)
                         .padding(.horizontal, 16)
                         .padding(.vertical, 12)
                         .background(Color.chatUserBubbleDynamic)
                         .clipShape(RoundedRectangle(cornerRadius: 20))
+                        .contextMenu {
+                            Button(action: {
+                                UIPasteboard.general.string = message.content
+                            }) {
+                                Label("コピー", systemImage: "doc.on.doc")
+                            }
+                        }
                 }
                 .padding(.horizontal, 16)
                 .padding(.vertical, 8)
@@ -1128,6 +1136,18 @@ struct ChatMessageRow: View {
                     // Main content
                     Text(parseMarkdown(message.content))
                         .textSelection(.enabled)
+                        .contextMenu {
+                            Button(action: {
+                                UIPasteboard.general.string = message.content
+                            }) {
+                                Label("コピー", systemImage: "doc.on.doc")
+                            }
+                            Button(action: {
+                                shareContent()
+                            }) {
+                                Label("共有", systemImage: "square.and.arrow.up")
+                            }
+                        }
 
                     // Action buttons
                     actionButtons
