@@ -38,6 +38,14 @@
 "chat.stop.generation" = "Stop";
 "chat.generation.stopped" = "\n\n[Generation stopped]";
 "chat.image.sent" = "[Image sent]";
+"chat.images.sent" = "[%d images sent]";
+"chat.pdf.sent" = "[PDF attached: %@]";
+"chat.pdf.sent.vision" = "[PDF with image: %@]";
+"chat.pdf.context" = "The following is text content extracted from the PDF document \"%@\":\n\n%@";
+"chat.pdf.context.vision" = "This is page 1 of the PDF document \"%@\". The extracted text content is:\n\n%@\n\nPlease analyze both the visual content and the text.";
+"chat.pdf.analyze" = "Please analyze this PDF page from \"%@\".";
+"chat.url.sent" = "[Web page: %@]";
+"chat.url.context" = "The following is content extracted from the web page \"%@\" (%@):\n\n%@";
 "chat.thinking" = "Thinking...";
 "chat.generating" = "Generating response...";
 "chat.welcome" = "How can I help you?";
@@ -191,6 +199,17 @@
 "attachment.title" = "Attachment";
 "attachment.photo.library" = "Choose Photo";
 "attachment.camera" = "Take Photo";
+"attachment.pdf" = "Select PDF";
+"attachment.pdf.chars" = "%d chars";
+"attachment.pdf.pages" = "%d pages";
+"attachment.pdf.vision.enabled" = "Image analysis enabled";
+"attachment.pdf.text.only" = "Text only mode";
+"attachment.url" = "Read Web Page";
+"attachment.url.title" = "Enter URL";
+"attachment.url.placeholder" = "https://example.com";
+"attachment.url.message" = "Paste a URL to extract its content";
+"attachment.url.fetch" = "Fetch";
+"attachment.url.loading" = "Loading page...";
 
 // MARK: - Errors
 "error.model.not.found" = "Model file not found";
@@ -362,3 +381,101 @@
 
 // MARK: - Tool Parser
 "tool.arguments" = "Arguments:";
+
+// MARK: - Model Settings
+"model.action.settings" = "Settings";
+"settings.model.parameters" = "Model Settings";
+"settings.model.parameters.description" = "Customize generation parameters for this model";
+"settings.preset.title" = "Presets";
+"settings.preset.custom" = "Custom";
+"settings.preset.balanced" = "Balanced";
+"settings.preset.creative" = "Creative";
+"settings.preset.precise" = "Precise";
+"settings.preset.coding" = "Coding";
+"settings.preset.japanese" = "Japanese";
+"settings.parameters.title" = "Parameters";
+"settings.parameter.temperature" = "Temperature";
+"settings.parameter.temperature.description" = "Higher = more creative, lower = more focused";
+"settings.parameter.top.p" = "Top P";
+"settings.parameter.top.p.description" = "Nucleus sampling probability";
+"settings.parameter.top.k" = "Top K";
+"settings.parameter.top.k.description" = "Number of top tokens to consider";
+"settings.parameter.max.tokens" = "Max Tokens";
+"settings.parameter.max.tokens.description" = "Maximum response length";
+"settings.parameter.repeat.penalty" = "Repeat Penalty";
+"settings.parameter.repeat.penalty.description" = "Higher = less repetitive output";
+"settings.parameter.thinking" = "Thinking Mode";
+"settings.parameter.thinking.description" = "Show AI's reasoning process";
+"settings.system.prompt.title" = "System Prompt";
+"settings.system.prompt.description" = "Custom instructions for the AI";
+"settings.reset.to.default" = "Reset to Default";
+
+// MARK: - Vision Model
+"vision.model.required.title" = "Vision Model Required";
+"vision.model.required.header" = "Image Recognition Required";
+"vision.model.required.description" = "To analyze images, you need a vision-capable AI model";
+"vision.model.switch" = "Switch Model";
+"vision.model.switch.message %@" = "Switch to %@ to enable image analysis?";
+"vision.model.download" = "Download";
+"vision.model.download.message %@ %@" = "Download %@ (%@) to analyze images?";
+"vision.model.not.available" = "No compatible vision model available for your device";
+"vision.model.switching" = "Switching model...";
+"vision.model.download.title" = "Vision Models";
+"vision.model.recommended" = "Recommended for your device";
+"vision.model.recommended.size %@" = "Recommended: %@";
+"vision.model.use.this" = "Use This Model";
+"vision.model.download.button %@" = "Download (%@)";
+"vision.model.other.options" = "Other Vision Models";
+"vision.model.download.complete" = "Download Complete";
+"vision.model.download.complete.message" = "Ready to analyze images";
+
+// MARK: - Whisper Voice Input
+"whisper.download.title" = "Voice Recognition Required";
+"whisper.download.action" = "Download";
+"whisper.download.message" = "To use voice input, you need to download the speech recognition model (~150MB).";
+"whisper.downloading" = "Downloading speech recognition model...";
+"whisper.download.error" = "Download Error";
+"whisper.load.error" = "Model Load Error";
+"whisper.permission.denied" = "Microphone access not allowed";
+"whisper.transcribe.error" = "Transcription Error";
+"whisper.error.permission" = "Microphone permission required";
+"whisper.error.not.recording" = "Not currently recording";
+"whisper.error.no.recording" = "No recording data";
+"whisper.error.model.not.loaded" = "Speech recognition model not loaded";
+"whisper.error.transcription" = "Transcription failed";
+
+// MARK: - Language Settings
+"settings.language.section" = "Language";
+"language.system" = "Use System Language";
+"settings.language.restart.hint" = "Language changes will take effect after restarting the app";
+"settings.language.changed.title" = "Language Changed";
+"settings.language.changed.message" = "Please restart the app to apply the changes";
+"common.ok" = "OK";
+
+// MARK: - Prompt Templates
+"templates.title" = "Prompt Templates";
+"templates.empty" = "No templates yet";
+"templates.add" = "Add Template";
+"template.add.title" = "Add Template";
+"template.edit.title" = "Edit Template";
+"template.name.header" = "Name";
+"template.name.placeholder" = "Template name";
+"template.content.header" = "Prompt Content";
+"template.icon.header" = "Icon";
+"template.translate.name" = "Translate";
+"template.translate.content" = "Please translate the following: ";
+"template.summarize.name" = "Summarize";
+"template.summarize.content" = "Please summarize the following: ";
+"template.explain.name" = "Explain";
+"template.explain.content" = "Please explain the following: ";
+"template.code.name" = "Code";
+"template.code.content" = "Please write code for: ";
+
+// MARK: - Export
+"export.title" = "Export Conversation";
+"export.format.markdown" = "Markdown";
+"export.format.pdf" = "PDF";
+"export.format.text" = "Plain Text";
+"export.created" = "Created";
+"export.image.attached" = "Image attached";
+"export.generated.by" = "Generated by";

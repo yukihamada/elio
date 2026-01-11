@@ -4,23 +4,33 @@ struct SettingsView: View {
     @EnvironmentObject var appState: AppState
     @EnvironmentObject var themeManager: ThemeManager
     @StateObject private var modelLoader = ModelLoader()
+    @StateObject private var languageManager = LanguageManager.shared
     @Environment(\.dismiss) private var dismiss
     @State private var loadingModelId: String?
     @State private var showMoreModels = false
+    @State private var showLanguageChangeAlert = false
 
-    // Models filtered and categorized based on device capability
-    private var recommendedModels: [ModelLoader.ModelInfo] {
+    // Models grouped by category
+    private func modelsForCategory(_ category: ModelCategory) -> [ModelLoader.ModelInfo] {
         modelLoader.availableModels.filter { model in
-            !model.isTooHeavy(for: modelLoader.deviceTier) &&
-            model.isRecommended(for: modelLoader.deviceTier)
+            model.category == category && !model.isTooHeavy(for: modelLoader.deviceTier)
         }
     }
 
-    private var otherModels: [ModelLoader.ModelInfo] {
-        modelLoader.availableModels.filter { model in
-            !model.isTooHeavy(for: modelLoader.deviceTier) &&
-            !model.isRecommended(for: modelLoader.deviceTier)
-        }
+    // Categories to show (excluding empty ones)
+    private var visibleCategories: [ModelCategory] {
+        ModelCategory.allCases.filter { !modelsForCategory($0).isEmpty }
+    }
+
+    // Main categories (always expanded)
+    private var mainCategories: [ModelCategory] {
+        [.recommended, .japanese, .efficient, .vision]
+    }
+
+    // Total downloaded size
+    private var totalDownloadedSizeText: String {
+        let totalBytes = modelLoader.totalDownloadedSize()
+        return ModelLoader.formatSize(totalBytes)
     }
 
     var body: some View {
@@ -45,11 +55,17 @@ struct SettingsView: View {
                         // Appearance Section
                         appearanceSection
 
+                        // Language Section
+                        languageSection
+
                         // MCP Server Section
                         mcpSection
 
                         // About Section
                         aboutSection
+
+                        // Feedback Section
+                        feedbackSection
 
                         // Privacy Badge
                         privacyBadge
@@ -118,26 +134,53 @@ struct SettingsView: View {
     // MARK: - Model Section
 
     private var modelSection: some View {
-        VStack(alignment: .leading, spacing: 12) {
+        VStack(alignment: .leading, spacing: 16) {
+            // Header with device tier and total size
             HStack {
                 SectionHeader(title: String(localized: "settings.model.section"), icon: "brain.head.profile", color: .purple)
 
                 Spacer()
 
-                // Device tier indicator
-                Text(String(localized: "settings.model.recommended", defaultValue: "推奨: \(modelLoader.deviceTier.recommendedModelSize)"))
-                    .font(.system(size: 12, weight: .medium))
-                    .foregroundStyle(.secondary)
+                // Total downloaded size badge
+                if modelLoader.totalDownloadedSize() > 0 {
+                    HStack(spacing: 4) {
+                        Image(systemName: "internaldrive.fill")
+                            .font(.system(size: 10))
+                        Text(totalDownloadedSizeText)
+                    }
+                    .font(.system(size: 11, weight: .medium))
+                    .padding(.horizontal, 8)
+                    .padding(.vertical, 4)
+                    .background(Color.purple.opacity(0.1))
+                    .foregroundStyle(.purple)
+                    .clipShape(Capsule())
+                }
             }
 
-            VStack(spacing: 10) {
-                // Recommended models (always shown)
-                ForEach(recommendedModels) { model in
-                    modelCard(for: model)
-                }
+            // Device tier indicator
+            HStack(spacing: 6) {
+                Image(systemName: "cpu")
+                    .font(.system(size: 11))
+                Text(modelLoader.deviceTier.displayName)
+                Text("•")
+                Text("推奨: \(modelLoader.deviceTier.recommendedModelSize)")
+            }
+            .font(.system(size: 12, weight: .medium))
+            .foregroundStyle(.secondary)
+            .padding(.leading, 4)
 
-                // Show More button (if there are other models)
-                if !otherModels.isEmpty {
+            // Main categories (always shown)
+            ForEach(mainCategories, id: \.self) { category in
+                let models = modelsForCategory(category)
+                if !models.isEmpty {
+                    categorySection(category: category, models: models)
+                }
+            }
+
+            // Others section (collapsible)
+            let othersModels = modelsForCategory(.others)
+            if !othersModels.isEmpty {
+                VStack(spacing: 10) {
                     Button(action: {
                         withAnimation(.spring(response: 0.3)) {
                             showMoreModels.toggle()
@@ -148,7 +191,7 @@ struct SettingsView: View {
                                 .font(.system(size: 12, weight: .semibold))
                             Text(showMoreModels
                                  ? String(localized: "settings.model.show.less")
-                                 : String(format: NSLocalizedString("settings.model.show.more", comment: ""), otherModels.count))
+                                 : "その他 (\(othersModels.count))")
                                 .font(.system(size: 14, weight: .medium))
                         }
                         .foregroundStyle(.secondary)
@@ -160,9 +203,8 @@ struct SettingsView: View {
                         )
                     }
 
-                    // Other models (collapsible)
                     if showMoreModels {
-                        ForEach(otherModels) { model in
+                        ForEach(othersModels) { model in
                             modelCard(for: model)
                                 .transition(.opacity.combined(with: .move(edge: .top)))
                         }
@@ -174,6 +216,46 @@ struct SettingsView: View {
                 .font(.caption)
                 .foregroundStyle(.secondary)
                 .padding(.horizontal, 4)
+        }
+    }
+
+    // Category section with header
+    private func categorySection(category: ModelCategory, models: [ModelLoader.ModelInfo]) -> some View {
+        VStack(alignment: .leading, spacing: 8) {
+            // Category header
+            HStack(spacing: 6) {
+                Image(systemName: categoryIcon(for: category))
+                    .font(.system(size: 12, weight: .semibold))
+                    .foregroundStyle(categoryColor(for: category))
+                Text(category.displayName)
+                    .font(.system(size: 13, weight: .semibold))
+                    .foregroundStyle(.secondary)
+            }
+            .padding(.leading, 4)
+
+            ForEach(models) { model in
+                modelCard(for: model)
+            }
+        }
+    }
+
+    private func categoryIcon(for category: ModelCategory) -> String {
+        switch category {
+        case .recommended: return "star.fill"
+        case .japanese: return "character.ja"
+        case .vision: return "camera.fill"
+        case .efficient: return "bolt.fill"
+        case .others: return "ellipsis.circle"
+        }
+    }
+
+    private func categoryColor(for category: ModelCategory) -> Color {
+        switch category {
+        case .recommended: return .orange
+        case .japanese: return .red
+        case .vision: return .blue
+        case .efficient: return .green
+        case .others: return .gray
         }
     }
 
@@ -317,6 +399,66 @@ struct SettingsView: View {
         }
     }
 
+    // MARK: - Language Section
+
+    private var languageSection: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            SectionHeader(title: String(localized: "settings.language.section"), icon: "globe", color: .cyan)
+
+            VStack(spacing: 0) {
+                ForEach(Array(AppLanguage.allCases.enumerated()), id: \.element) { index, language in
+                    Button(action: {
+                        if language != languageManager.currentLanguage {
+                            languageManager.currentLanguage = language
+                            showLanguageChangeAlert = true
+                        }
+                    }) {
+                        HStack(spacing: 12) {
+                            Image(systemName: language.icon)
+                                .font(.system(size: 18))
+                                .foregroundStyle(language == languageManager.currentLanguage ? .primary : .secondary)
+                                .frame(width: 28)
+
+                            Text(language.displayName)
+                                .font(.system(size: 15))
+                                .foregroundStyle(.primary)
+
+                            Spacer()
+
+                            if language == languageManager.currentLanguage {
+                                Image(systemName: "checkmark")
+                                    .font(.system(size: 14, weight: .semibold))
+                                    .foregroundStyle(.blue)
+                            }
+                        }
+                        .padding(.horizontal, 16)
+                        .padding(.vertical, 14)
+                    }
+                    .buttonStyle(.plain)
+
+                    if index < AppLanguage.allCases.count - 1 {
+                        Divider()
+                            .padding(.leading, 56)
+                    }
+                }
+            }
+            .background(
+                RoundedRectangle(cornerRadius: 16)
+                    .fill(Color.chatInputBackgroundDynamic)
+            )
+
+            Text(String(localized: "settings.language.restart.hint"))
+                .font(.caption)
+                .foregroundStyle(.secondary)
+                .padding(.horizontal, 4)
+        }
+        .alert(String(localized: "settings.language.changed.title"), isPresented: $showLanguageChangeAlert) {
+            Button(String(localized: "common.ok")) {}
+        } message: {
+            Text(String(localized: "settings.language.changed.message"))
+        }
+    }
+
     // MARK: - MCP Section (Smart Features)
 
     private var mcpSection: some View {
@@ -370,6 +512,7 @@ struct SettingsView: View {
     // MARK: - About Section
 
     @State private var showingAbout = false
+    @State private var feedbackOptIn = FeedbackManager.shared.isOptedIn
 
     private var aboutSection: some View {
         VStack(alignment: .leading, spacing: 12) {
@@ -416,6 +559,46 @@ struct SettingsView: View {
         }
         .sheet(isPresented: $showingAbout) {
             AboutView()
+        }
+    }
+
+    // MARK: - Feedback Section
+
+    private var feedbackSection: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            SectionHeader(title: String(localized: "settings.feedback.section"), icon: "hand.thumbsup", color: .pink)
+
+            VStack(spacing: 0) {
+                Toggle(isOn: $feedbackOptIn) {
+                    HStack(spacing: 12) {
+                        Image(systemName: "chart.bar.xaxis")
+                            .font(.system(size: 16))
+                            .foregroundStyle(.secondary)
+                            .frame(width: 28)
+
+                        VStack(alignment: .leading, spacing: 2) {
+                            Text(String(localized: "settings.feedback.toggle"))
+                                .font(.system(size: 15))
+                                .foregroundStyle(.primary)
+                        }
+                    }
+                }
+                .toggleStyle(.switch)
+                .padding(.horizontal, 16)
+                .padding(.vertical, 14)
+                .onChange(of: feedbackOptIn) { _, newValue in
+                    FeedbackManager.shared.isOptedIn = newValue
+                }
+            }
+            .background(
+                RoundedRectangle(cornerRadius: 16)
+                    .fill(Color.chatInputBackgroundDynamic)
+            )
+
+            Text(String(localized: "settings.feedback.description"))
+                .font(.caption)
+                .foregroundStyle(.secondary)
+                .padding(.horizontal, 4)
         }
     }
 
@@ -497,31 +680,83 @@ struct SettingsModelCard: View {
     let onDelete: () -> Void
 
     @State private var showingDeleteAlert = false
+    @State private var showingSettings = false
+
+    // Category-based colors
+    private var categoryColors: [Color] {
+        switch model.category {
+        case .recommended: return [.orange.opacity(0.15), .yellow.opacity(0.15)]
+        case .japanese: return [.red.opacity(0.15), .pink.opacity(0.15)]
+        case .vision: return [.blue.opacity(0.15), .cyan.opacity(0.15)]
+        case .efficient: return [.green.opacity(0.15), .mint.opacity(0.15)]
+        case .others: return [.purple.opacity(0.15), .indigo.opacity(0.15)]
+        }
+    }
+
+    private var categoryGradient: [Color] {
+        switch model.category {
+        case .recommended: return [.orange, .yellow]
+        case .japanese: return [.red, .pink]
+        case .vision: return [.blue, .cyan]
+        case .efficient: return [.green, .mint]
+        case .others: return [.purple, .indigo]
+        }
+    }
+
+    private var categoryIcon: String {
+        switch model.category {
+        case .recommended: return "star.fill"
+        case .japanese: return "character.ja"
+        case .vision: return "camera.fill"
+        case .efficient: return "bolt.fill"
+        case .others: return "cube.fill"
+        }
+    }
+
+    // Model logo image name (if available)
+    private var modelLogo: String? {
+        let name = model.name.lowercased()
+        if name.contains("qwen") { return "qwen-logo" }
+        if name.contains("llama") { return "meta-logo" }
+        if name.contains("deepseek") { return "deepseek-logo" }
+        if name.contains("gemma") { return "google-logo" }
+        if name.contains("phi") { return "microsoft-logo" }
+        if name.contains("smolvlm") || name.contains("smol") { return "huggingface-logo" }
+        if name.contains("rakuten") { return "rakuten-logo" }
+        if name.contains("swallow") || name.contains("tinyswallow") { return "tokyotech-logo" }
+        if name.contains("stablelm") || name.contains("japanese-stablelm") { return "stability-logo" }
+        if name.contains("lfm") || name.contains("liquid") { return "liquid-logo" }
+        return nil
+    }
 
     var body: some View {
         VStack(spacing: 12) {
             HStack(spacing: 12) {
-                // Model icon
+                // Model icon - logo or category icon
                 ZStack {
                     RoundedRectangle(cornerRadius: 12)
                         .fill(.linearGradient(
-                            colors: isRecommended
-                                ? [.green.opacity(0.15), .mint.opacity(0.15)]
-                                : [.purple.opacity(0.15), .blue.opacity(0.15)],
+                            colors: categoryColors,
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing
                         ))
                         .frame(width: 44, height: 44)
 
-                    Image(systemName: isRecommended ? "star.fill" : "cube.fill")
-                        .font(.system(size: 20))
-                        .foregroundStyle(.linearGradient(
-                            colors: isRecommended
-                                ? [.green, .mint]
-                                : [.purple, .blue],
-                            startPoint: .topLeading,
-                            endPoint: .bottomTrailing
-                        ))
+                    if let logo = modelLogo, let uiImage = UIImage(named: logo) {
+                        Image(uiImage: uiImage)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 28, height: 28)
+                            .clipShape(RoundedRectangle(cornerRadius: 6))
+                    } else {
+                        Image(systemName: categoryIcon)
+                            .font(.system(size: 20))
+                            .foregroundStyle(.linearGradient(
+                                colors: categoryGradient,
+                                startPoint: .topLeading,
+                                endPoint: .bottomTrailing
+                            ))
+                    }
                 }
 
                 // Model info - fixed layout
@@ -535,25 +770,18 @@ struct SettingsModelCard: View {
                         // Status badge (only one shown)
                         if isLoaded {
                             StatusBadge(text: String(localized: "model.status.in.use"), color: .green)
-                        } else if isRecommended {
-                            StatusBadge(text: String(localized: "model.status.recommended"), color: .orange)
+                        } else if isDownloaded {
+                            StatusBadge(text: String(localized: "model.downloaded"), color: .blue)
                         }
 
                         Spacer(minLength: 0)
                     }
 
-                    // Description with Vision badge inline
-                    HStack(spacing: 4) {
-                        if model.supportsVision {
-                            Image(systemName: "camera.fill")
-                                .font(.system(size: 10))
-                                .foregroundStyle(.blue)
-                        }
-                        Text(model.description)
-                            .font(.system(size: 12))
-                            .foregroundStyle(.secondary)
-                            .lineLimit(1)
-                    }
+                    // Description
+                    Text(model.description)
+                        .font(.system(size: 12))
+                        .foregroundStyle(.secondary)
+                        .lineLimit(1)
                 }
 
                 Spacer(minLength: 8)
@@ -602,6 +830,9 @@ struct SettingsModelCard: View {
         } message: {
             Text(String(localized: "model.delete.confirm.message", defaultValue: "\(model.name) を削除しますか？再度使用するにはダウンロードが必要です。"))
         }
+        .sheet(isPresented: $showingSettings) {
+            ModelSettingsView(modelId: model.id, modelName: model.name)
+        }
     }
 
     @ViewBuilder
@@ -629,6 +860,14 @@ struct SettingsModelCard: View {
                 }
 
                 Menu {
+                    Button {
+                        showingSettings = true
+                    } label: {
+                        Label(String(localized: "model.action.settings"), systemImage: "slider.horizontal.3")
+                    }
+
+                    Divider()
+
                     Button(role: .destructive) {
                         showingDeleteAlert = true
                     } label: {
@@ -641,18 +880,29 @@ struct SettingsModelCard: View {
                 }
             }
         } else {
-            Button(action: onDownload) {
-                HStack(spacing: 3) {
-                    Image(systemName: "arrow.down.circle.fill")
-                        .font(.system(size: 14))
-                    Text(model.size)
+            VStack(alignment: .trailing, spacing: 4) {
+                Button(action: onDownload) {
+                    HStack(spacing: 3) {
+                        Image(systemName: "arrow.down.circle.fill")
+                            .font(.system(size: 14))
+                        Text(model.size)
+                    }
+                    .font(.system(size: 12, weight: .medium))
+                    .padding(.horizontal, 10)
+                    .padding(.vertical, 7)
+                    .background(Color(.tertiarySystemBackground))
+                    .foregroundStyle(.primary)
+                    .clipShape(Capsule())
                 }
-                .font(.system(size: 12, weight: .medium))
-                .padding(.horizontal, 10)
-                .padding(.vertical, 7)
-                .background(Color(.tertiarySystemBackground))
-                .foregroundStyle(.primary)
-                .clipShape(Capsule())
+
+                // Recommended device badge
+                HStack(spacing: 2) {
+                    Image(systemName: "iphone")
+                        .font(.system(size: 9))
+                    Text(model.recommendedDeviceName)
+                }
+                .font(.system(size: 10, weight: .medium))
+                .foregroundStyle(.secondary)
             }
         }
     }

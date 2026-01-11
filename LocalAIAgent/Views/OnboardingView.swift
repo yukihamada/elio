@@ -363,6 +363,12 @@ struct OnboardingView: View {
             Spacer()
         }
         .padding(.horizontal, 32)
+        .onAppear {
+            // Auto-start download when reaching this page
+            if recommendedModel != nil && !isDownloading && !downloadCompleted && !modelLoader.isModelDownloaded(recommendedModel!.id) {
+                startModelDownload()
+            }
+        }
     }
 
     private func startModelDownload() {

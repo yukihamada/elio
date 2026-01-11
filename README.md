@@ -5,10 +5,11 @@
 <h1 align="center">Elio</h1>
 
 <p align="center">
-  <strong>完全オフラインで動作するローカルAIエージェント for iOS</strong>
+  <strong>Your secret-keeping second brain</strong>
 </p>
 
 <p align="center">
+  <a href="https://elio.love">🌐 Website</a> •
   <a href="#features">Features</a> •
   <a href="#installation">Installation</a> •
   <a href="#supported-models">Models</a> •
@@ -21,155 +22,180 @@
   <img src="https://img.shields.io/badge/platform-iOS%2017%2B-blue" alt="Platform">
   <img src="https://img.shields.io/badge/swift-5.9-orange" alt="Swift">
   <img src="https://img.shields.io/badge/license-MIT-green" alt="License">
+  <img src="https://img.shields.io/badge/website-elio.love-purple" alt="Website">
+</p>
+
+<p align="center">
+  <a href="README.ja.md">🇯🇵 日本語</a> | <strong>🇺🇸 English</strong>
 </p>
 
 ---
 
 ## Overview
 
-**Elio**は、iPhone上で完全にローカル動作するAIアシスタントアプリです。インターネット接続不要で、プライバシーを完全に保護しながら、カレンダー、リマインダー、連絡先、ヘルスケアなどiOSの機能と連携できます。
+**Elio** is a fully local AI assistant app that runs entirely on your iPhone. It works without an internet connection, completely protects your privacy, and integrates with iOS features like Calendar, Reminders, Contacts, and Health.
 
-### Why Elio?
+### Why Elio? - Safer than ChatGPT
 
-- **完全オフライン** - 機内モードでも動作。データは端末から出ません
-- **MCP対応** - Model Context Protocolでシステム機能と連携
-- **複数モデル対応** - Qwen3、Llama 3.2、Gemmaなど好みのモデルを選択
-- **日本語対応** - UIとAI応答の両方で日本語をサポート
+| | Elio | ChatGPT |
+|-----|------|---------|
+| **Offline** | ✅ Works in Airplane Mode | ❌ Requires Internet |
+| **Data Transmission** | ✅ Zero (fully local) | ❌ Sent to cloud |
+| **Used for AI Training** | ✅ Never | ⚠️ May be used |
+| **Enterprise Use** | ✅ OK even if ChatGPT is banned | ⚠️ Depends on policy |
+| **Privacy** | ✅ Stays on device only | ❌ Stored on servers |
+
+- **MCP Support** - Integrates with system features via Model Context Protocol
+- **Multiple Models** - Choose from Qwen3, Llama 3.2, Gemma and more
+- **Japanese Support** - Full Japanese UI and AI responses
 
 ---
 
 ## Features
 
-### 🧠 ローカルLLM推論
+### 🧠 Local LLM Inference
 
-| モデル | サイズ | 特徴 |
-|--------|--------|------|
-| Qwen3 4B | ~2.7GB | 高性能、日本語優秀 |
-| Qwen3 8B | ~5GB | 最高性能 |
-| Llama 3.2 3B | ~2GB | 軽量・高速 |
-| Gemma 2 2B | ~1.5GB | 超軽量 |
+| Model | Size | Features |
+|-------|------|----------|
+| Qwen3 4B | ~2.7GB | High performance, excellent Japanese |
+| Qwen3 8B | ~5GB | Best performance |
+| Llama 3.2 3B | ~2GB | Lightweight & fast |
+| Gemma 2 2B | ~1.5GB | Ultra lightweight |
 
-- llama.cpp による高速推論
-- CoreML最適化（対応モデル）
-- ストリーミング出力
+- Fast inference with llama.cpp
+- CoreML optimization (for supported models)
+- Streaming output
 
-### 🔌 MCP (Model Context Protocol) 連携
+### 🔌 MCP (Model Context Protocol) Integration
 
-Elioは以下のiOS機能とAIを連携させます：
+Elio connects AI with iOS system features:
 
-| サーバー | 機能 |
-|----------|------|
-| 📅 Calendar | 予定の確認・作成・削除 |
-| ✅ Reminders | リマインダーの管理 |
-| 👥 Contacts | 連絡先の検索・表示 |
-| 📍 Location | 現在地の取得 |
-| 🏥 Health | ヘルスケアデータの読み取り |
-| 📷 Photos | 写真ライブラリへのアクセス |
-| 📁 FileSystem | ドキュメントの読み書き |
-| 🔍 Web Search | DuckDuckGo匿名検索 |
+| Server | Function |
+|--------|----------|
+| 📅 Calendar | View, create, delete events |
+| ✅ Reminders | Manage reminders |
+| 👥 Contacts | Search and view contacts |
+| 📍 Location | Get current location |
+| 🏥 Health | Read health data |
+| 📷 Photos | Access photo library |
+| 📁 FileSystem | Read and write documents |
+| 🔍 Web Search | Anonymous DuckDuckGo search |
+
+### 🖼️ Vision (Image Recognition)
+
+- Attach images and ask AI questions about them
+- Analyze photos taken with your camera
+- Supports vision models (Llava, Qwen2-VL, etc.)
+
+### 🎤 Voice Input
+
+- On-device speech recognition with WhisperKit
+- Japanese & English support
+- Auto-downloads model on first use
 
 ### 🎨 UI/UX
 
-- ダーク/ライトモード対応
-- スワイプで操作できるオンボーディング
-- リアルタイムストリーミング表示
-- 会話履歴の保存・管理
+- Dark/Light mode support
+- Swipe-based onboarding
+- Real-time streaming display
+- Conversation history management
+- Skeleton loading for fast perceived startup
 
 ---
 
 ## Installation
 
-### 必要要件
+### Requirements
 
-- iOS 17.0以上
-- iPhone（arm64）
-- Xcode 15.0以上
+- iOS 17.0 or later
+- iPhone (arm64)
+- Xcode 15.0 or later
 
-### ビルド手順
+### Build Steps
 
 ```bash
-# リポジトリをクローン
+# Clone the repository
 git clone https://github.com/yukihamada/elio.git
 cd elio
 
-# Xcodeで開く
+# Open in Xcode
 open LocalAIAgent.xcodeproj
 ```
 
-1. Xcode で Signing & Capabilities を設定
-2. 実機を接続して Run (⌘R)
+1. Configure Signing & Capabilities in Xcode
+2. Connect your device and Run (⌘R)
 
-### モデルのダウンロード
+### Downloading Models
 
-アプリ内の設定画面からモデルをダウンロードできます。初回起動時に推奨モデル（Qwen3 4B）の案内が表示されます。
+You can download models from the Settings screen in the app. On first launch, you'll be prompted to download the recommended model (Qwen3 4B).
 
 ---
 
 ## Supported Models
 
-Elioは GGUF 形式のモデルに対応しています。
+Elio supports GGUF format models.
 
 ```
-推奨: Qwen3-4B-Q4_K_M.gguf
-- バランスの取れた性能
-- 日本語応答が優秀
-- ~2.7GB のストレージ
+Recommended: Qwen3-4B-Q4_K_M.gguf
+- Balanced performance
+- Excellent Japanese responses
+- ~2.7GB storage
 ```
 
-### 対応フォーマット
+### Supported Formats
 
 - GGUF (llama.cpp)
-- CoreML (一部モデル)
+- CoreML (select models)
 
 ---
 
 ## MCP Integration
 
-ElioはAnthropicの[Model Context Protocol](https://modelcontextprotocol.io/)を採用し、AIとiOSシステム機能をシームレスに連携させます。
+Elio uses Anthropic's [Model Context Protocol](https://modelcontextprotocol.io/) to seamlessly connect AI with iOS system features.
 
-### 使用例
-
-```
-ユーザー: 今日の予定を教えて
-
-Elio: カレンダーを確認しました。今日の予定は以下の通りです：
-• 10:00 - 11:30 週次デザイン定例
-• 13:00 - 14:00 ランチミーティング w/ 佐藤さん
-• 16:00 - 17:30 プロジェクトX 進捗報告会
-```
+### Examples
 
 ```
-ユーザー: 明日の午前10時に「歯医者」のリマインダーを作成して
+User: Show me today's schedule
 
-Elio: リマインダーを作成しました：
-📋 歯医者
-📅 明日 10:00
+Elio: I checked your calendar. Here are today's events:
+• 10:00 - 11:30 Weekly Design Meeting
+• 13:00 - 14:00 Lunch with Sato-san
+• 16:00 - 17:30 Project X Progress Review
+```
+
+```
+User: Create a reminder for "Dentist" tomorrow at 10am
+
+Elio: Reminder created:
+📋 Dentist
+📅 Tomorrow 10:00
 ```
 
 ---
 
 ## Privacy
 
-Elioはプライバシーファーストで設計されています。
+Elio is designed with privacy first.
 
-- ✅ **すべての処理が端末上で完結**
-- ✅ **外部サーバーへのデータ送信なし**
-- ✅ **会話履歴は端末内にのみ保存**
-- ✅ **オープンソース** - コードを確認可能
+- ✅ **All processing happens on device**
+- ✅ **No data sent to external servers**
+- ✅ **Conversation history stored only on device**
+- ✅ **Open source** - verify the code yourself
 
-### 必要な権限
+### Required Permissions
 
-| 権限 | 用途 |
-|------|------|
-| カレンダー | 予定の読み書き |
-| リマインダー | リマインダーの管理 |
-| 連絡先 | 連絡先の検索 |
-| 位置情報 | 現在地の取得 |
-| ヘルスケア | 健康データの読み取り |
-| 写真 | 画像の読み込み・保存 |
-| マイク | 音声入力 |
+| Permission | Purpose |
+|------------|---------|
+| Calendar | Read/write events |
+| Reminders | Manage reminders |
+| Contacts | Search contacts |
+| Location | Get current location |
+| Health | Read health data |
+| Photos | Load/save images |
+| Microphone | Voice input |
 
-すべての権限は必要に応じてユーザーに許可を求めます。
+All permissions are requested only when needed.
 
 ---
 
@@ -177,33 +203,34 @@ Elioはプライバシーファーストで設計されています。
 
 ```
 LocalAIAgent/
-├── App/                    # アプリケーション層
+├── App/                    # Application layer
 │   ├── LocalAIAgentApp.swift
-│   ├── AppState.swift      # 状態管理
+│   ├── AppState.swift      # State management
 │   └── ThemeManager.swift
-├── Agent/                  # AIエージェント
+├── Agent/                  # AI Agent
 │   ├── AgentOrchestrator.swift
 │   ├── ConversationManager.swift
 │   └── ToolParser.swift
-├── LLM/                    # 推論エンジン
+├── LLM/                    # Inference engine
 │   ├── LlamaInference.swift
 │   ├── CoreMLInference.swift
 │   ├── ModelLoader.swift
+│   ├── WhisperManager.swift
 │   └── Tokenizer.swift
-├── MCP/                    # MCPプロトコル
+├── MCP/                    # MCP Protocol
 │   ├── MCPClient.swift
 │   ├── MCPProtocol.swift
-│   └── Servers/           # MCPサーバー実装
-├── Models/                 # データモデル
-├── Views/                  # SwiftUI画面
-└── Resources/              # アセット・ローカライズ
+│   └── Servers/           # MCP server implementations
+├── Models/                 # Data models
+├── Views/                  # SwiftUI views
+└── Resources/              # Assets & localization
 ```
 
 ---
 
 ## Contributing
 
-プルリクエストを歓迎します！
+Pull requests are welcome!
 
 1. Fork this repository
 2. Create your feature branch (`git checkout -b feature/amazing-feature`)
@@ -215,14 +242,15 @@ LocalAIAgent/
 
 ## License
 
-MIT License - 詳細は [LICENSE](LICENSE) を参照してください。
+MIT License - See [LICENSE](LICENSE) for details.
 
 ---
 
 ## Acknowledgments
 
-- [llama.cpp](https://github.com/ggerganov/llama.cpp) - GGUF推論エンジン
-- [Model Context Protocol](https://modelcontextprotocol.io/) - AI連携プロトコル
+- [llama.cpp](https://github.com/ggerganov/llama.cpp) - GGUF inference engine
+- [Model Context Protocol](https://modelcontextprotocol.io/) - AI integration protocol
+- [WhisperKit](https://github.com/argmaxinc/WhisperKit) - On-device speech recognition
 
 ---
 

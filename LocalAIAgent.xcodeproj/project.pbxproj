@@ -43,7 +43,22 @@
 		035 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136 /* AboutView.swift */; };
 		036 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 140 /* Localizable.strings */; };
 		037 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 137 /* NetworkMonitor.swift */; };
+		60B47A4DC9139314BB0DC2C9 /* ModelSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F274E62F73576596B9AD3FA /* ModelSettings.swift */; };
+		7D3A20EA65A3530286F7DD7E /* ModelSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D655A6B9516B5885047F78E7 /* ModelSettingsView.swift */; };
 		B63B0EBF2F1214F5006BCDD0 /* LlamaSwift in Frameworks */ = {isa = PBXBuildFile; productRef = B63B0EBF2F121377006BCDD0 /* LlamaSwift */; };
+		C60A36CCF98A62B5906FE569 /* VisionModelDownloadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED5CCB34FA4BFAD3E5BEBD2 /* VisionModelDownloadView.swift */; };
+		CONVEXP001 /* ConversationExporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CONVEXP002 /* ConversationExporter.swift */; };
+		DOCPICKER001 /* DocumentPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = DOCPICKER002 /* DocumentPicker.swift */; };
+		LANG001 /* LanguageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = LANG002 /* LanguageManager.swift */; };
+		PROMPTMGR001 /* PromptTemplateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = PROMPTMGR002 /* PromptTemplateManager.swift */; };
+		PROMPTTMPL001 /* PromptTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = PROMPTTMPL002 /* PromptTemplate.swift */; };
+		PROMPTVIEW001 /* PromptTemplatesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = PROMPTVIEW002 /* PromptTemplatesView.swift */; };
+		SHAREDDATAMGR001 /* SharedDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = SHAREDDATAMGR002 /* SharedDataManager.swift */; };
+		WEBEXT001 /* WebContentExtractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = WEBEXT002 /* WebContentExtractor.swift */; };
+		WHISPER001 /* WhisperKit in Frameworks */ = {isa = PBXBuildFile; productRef = WHISPER002 /* WhisperKit */; };
+		WHISPER003 /* WhisperManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = WHISPER004 /* WhisperManager.swift */; };
+		SESSLOG001 /* SessionLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = SESSLOG002 /* SessionLogger.swift */; };
+		FEEDMGR001 /* FeedbackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEEDMGR002 /* FeedbackManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,8 +70,6 @@
 		105 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		106 /* MCPServerListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MCPServerListView.swift; sourceTree = "<group>"; };
 		107 /* ModelSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelSelectionView.swift; sourceTree = "<group>"; };
-		135 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
-		136 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		108 /* AgentOrchestrator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgentOrchestrator.swift; sourceTree = "<group>"; };
 		109 /* ToolParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolParser.swift; sourceTree = "<group>"; };
 		110 /* ConversationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationManager.swift; sourceTree = "<group>"; };
@@ -75,7 +88,6 @@
 		123 /* LocationServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationServer.swift; sourceTree = "<group>"; };
 		124 /* HealthServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthServer.swift; sourceTree = "<group>"; };
 		125 /* ShortcutsServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutsServer.swift; sourceTree = "<group>"; };
-		134 /* WebSearchServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSearchServer.swift; sourceTree = "<group>"; };
 		126 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		127 /* Conversation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conversation.swift; sourceTree = "<group>"; };
 		128 /* MCPTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MCPTool.swift; sourceTree = "<group>"; };
@@ -83,9 +95,27 @@
 		130 /* LlamaInference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LlamaInference.swift; sourceTree = "<group>"; };
 		131 /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
 		132 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		134 /* WebSearchServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSearchServer.swift; sourceTree = "<group>"; };
+		135 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		136 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
+		137 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 		141 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		142 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
-		137 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
+		8F274E62F73576596B9AD3FA /* ModelSettings.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ModelSettings.swift; sourceTree = "<group>"; };
+		B6BA22092F132EEA00C7353F /* LocalAIAgent.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LocalAIAgent.entitlements; sourceTree = "<group>"; };
+		CONVEXP002 /* ConversationExporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationExporter.swift; sourceTree = "<group>"; };
+		D655A6B9516B5885047F78E7 /* ModelSettingsView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ModelSettingsView.swift; sourceTree = "<group>"; };
+		DOCPICKER002 /* DocumentPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentPicker.swift; sourceTree = "<group>"; };
+		EED5CCB34FA4BFAD3E5BEBD2 /* VisionModelDownloadView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = VisionModelDownloadView.swift; sourceTree = "<group>"; };
+		LANG002 /* LanguageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageManager.swift; sourceTree = "<group>"; };
+		PROMPTMGR002 /* PromptTemplateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromptTemplateManager.swift; sourceTree = "<group>"; };
+		PROMPTTMPL002 /* PromptTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromptTemplate.swift; sourceTree = "<group>"; };
+		PROMPTVIEW002 /* PromptTemplatesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromptTemplatesView.swift; sourceTree = "<group>"; };
+		SHAREDDATAMGR002 /* SharedDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedDataManager.swift; sourceTree = "<group>"; };
+		WEBEXT002 /* WebContentExtractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebContentExtractor.swift; sourceTree = "<group>"; };
+		WHISPER004 /* WhisperManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhisperManager.swift; sourceTree = "<group>"; };
+		SESSLOG002 /* SessionLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionLogger.swift; sourceTree = "<group>"; };
+		FEEDMGR002 /* FeedbackManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +124,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B63B0EBF2F1214F5006BCDD0 /* LlamaSwift in Frameworks */,
+				WHISPER001 /* WhisperKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -111,6 +142,7 @@
 		301 /* LocalAIAgent */ = {
 			isa = PBXGroup;
 			children = (
+				B6BA22092F132EEA00C7353F /* LocalAIAgent.entitlements */,
 				310 /* App */,
 				311 /* Views */,
 				312 /* Agent */,
@@ -118,6 +150,8 @@
 				314 /* MCP */,
 				315 /* Models */,
 				316 /* Resources */,
+				317 /* Utils */,
+				318 /* Services */,
 			);
 			path = LocalAIAgent;
 			sourceTree = "<group>";
@@ -137,6 +171,11 @@
 				102 /* AppState.swift */,
 				131 /* ThemeManager.swift */,
 				137 /* NetworkMonitor.swift */,
+				LANG002 /* LanguageManager.swift */,
+				WEBEXT002 /* WebContentExtractor.swift */,
+				PROMPTMGR002 /* PromptTemplateManager.swift */,
+				CONVEXP002 /* ConversationExporter.swift */,
+				SHAREDDATAMGR002 /* SharedDataManager.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -151,6 +190,10 @@
 				107 /* ModelSelectionView.swift */,
 				135 /* OnboardingView.swift */,
 				136 /* AboutView.swift */,
+				D655A6B9516B5885047F78E7 /* ModelSettingsView.swift */,
+				EED5CCB34FA4BFAD3E5BEBD2 /* VisionModelDownloadView.swift */,
+				DOCPICKER002 /* DocumentPicker.swift */,
+				PROMPTVIEW002 /* PromptTemplatesView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -173,6 +216,7 @@
 				112 /* ModelLoader.swift */,
 				113 /* Tokenizer.swift */,
 				114 /* StreamingDecoder.swift */,
+				WHISPER004 /* WhisperManager.swift */,
 			);
 			path = LLM;
 			sourceTree = "<group>";
@@ -194,6 +238,8 @@
 				126 /* Message.swift */,
 				127 /* Conversation.swift */,
 				128 /* MCPTool.swift */,
+				8F274E62F73576596B9AD3FA /* ModelSettings.swift */,
+				PROMPTTMPL002 /* PromptTemplate.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -206,6 +252,22 @@
 				140 /* Localizable.strings */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		317 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				SESSLOG002 /* SessionLogger.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		318 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				FEEDMGR002 /* FeedbackManager.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 		320 /* Servers */ = {
@@ -226,18 +288,6 @@
 		};
 /* End PBXGroup section */
 
-/* Begin PBXVariantGroup section */
-		140 /* Localizable.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				141 /* en */,
-				142 /* ja */,
-			);
-			name = Localizable.strings;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
 /* Begin PBXNativeTarget section */
 		400 /* LocalAIAgent */ = {
 			isa = PBXNativeTarget;
@@ -254,6 +304,7 @@
 			name = LocalAIAgent;
 			packageProductDependencies = (
 				B63B0EBF2F121377006BCDD0 /* LlamaSwift */,
+				WHISPER002 /* WhisperKit */,
 			);
 			productName = LocalAIAgent;
 			productReference = 100 /* LocalAIAgent.app */;
@@ -285,7 +336,8 @@
 			);
 			mainGroup = 300;
 			packageReferences = (
-				B63B0EBE2F121377006BCDD0 /* XCRemoteSwiftPackageReference "llama" */,
+				B63B0EBE2F121377006BCDD0 /* XCRemoteSwiftPackageReference "llama.swift" */,
+				WHISPER005 /* XCRemoteSwiftPackageReference "WhisperKit" */,
 			);
 			productRefGroup = 302 /* Products */;
 			projectDirPath = "";
@@ -342,15 +394,41 @@
 				027 /* Conversation.swift in Sources */,
 				028 /* MCPTool.swift in Sources */,
 				029 /* LlamaInference.swift in Sources */,
+				WHISPER003 /* WhisperManager.swift in Sources */,
+				LANG001 /* LanguageManager.swift in Sources */,
 				030 /* ThemeManager.swift in Sources */,
 				033 /* WebSearchServer.swift in Sources */,
 				034 /* OnboardingView.swift in Sources */,
 				035 /* AboutView.swift in Sources */,
 				037 /* NetworkMonitor.swift in Sources */,
+				60B47A4DC9139314BB0DC2C9 /* ModelSettings.swift in Sources */,
+				7D3A20EA65A3530286F7DD7E /* ModelSettingsView.swift in Sources */,
+				C60A36CCF98A62B5906FE569 /* VisionModelDownloadView.swift in Sources */,
+				DOCPICKER001 /* DocumentPicker.swift in Sources */,
+				WEBEXT001 /* WebContentExtractor.swift in Sources */,
+				PROMPTTMPL001 /* PromptTemplate.swift in Sources */,
+				PROMPTMGR001 /* PromptTemplateManager.swift in Sources */,
+				PROMPTVIEW001 /* PromptTemplatesView.swift in Sources */,
+				CONVEXP001 /* ConversationExporter.swift in Sources */,
+				SHAREDDATAMGR001 /* SharedDataManager.swift in Sources */,
+				SESSLOG001 /* SessionLogger.swift in Sources */,
+				FEEDMGR001 /* FeedbackManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		140 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				141 /* en */,
+				142 /* ja */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		700 /* Debug */ = {
@@ -479,6 +557,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = LocalAIAgent/LocalAIAgent.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
@@ -512,6 +591,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = LocalAIAgent/LocalAIAgent.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
@@ -572,6 +652,14 @@
 				minimumVersion = 2.0.0;
 			};
 		};
+		WHISPER005 /* XCRemoteSwiftPackageReference "WhisperKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/argmaxinc/WhisperKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.9.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -579,6 +667,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = B63B0EBE2F121377006BCDD0 /* XCRemoteSwiftPackageReference "llama.swift" */;
 			productName = LlamaSwift;
+		};
+		WHISPER002 /* WhisperKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = WHISPER005 /* XCRemoteSwiftPackageReference "WhisperKit" */;
+			productName = WhisperKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

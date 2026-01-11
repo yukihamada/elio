@@ -1,6 +1,29 @@
 import SwiftUI
 import Combine
 
+// MARK: - Character Extension for Japanese Detection
+
+extension Character {
+    /// Check if character is Japanese (Hiragana, Katakana, or CJK)
+    var isJapanese: Bool {
+        guard let scalar = unicodeScalars.first else { return false }
+        let value = scalar.value
+
+        // Hiragana: U+3040-U+309F
+        if value >= 0x3040 && value <= 0x309F { return true }
+        // Katakana: U+30A0-U+30FF
+        if value >= 0x30A0 && value <= 0x30FF { return true }
+        // CJK Unified Ideographs: U+4E00-U+9FFF
+        if value >= 0x4E00 && value <= 0x9FFF { return true }
+        // CJK Unified Ideographs Extension A: U+3400-U+4DBF
+        if value >= 0x3400 && value <= 0x4DBF { return true }
+        // Katakana Phonetic Extensions: U+31F0-U+31FF
+        if value >= 0x31F0 && value <= 0x31FF { return true }
+
+        return false
+    }
+}
+
 @MainActor
 final class AppState: ObservableObject {
     @Published var isModelLoaded = false
@@ -14,17 +37,254 @@ final class AppState: ObservableObject {
     @Published var errorMessage: String?
     @Published var isGenerating = false  // Track if currently generating response
     @Published var inferenceMode: InferenceMode = .auto
+    @Published var isInitialLoading = true  // Suppress UI during initial startup
+    @Published var shouldStopGeneration = false  // Flag to stop generation
+
+    // Widget support
+    @Published var pendingQuickQuestion: String?  // Question from widget deep link
+    @Published var showConversationList = false   // Trigger to show conversation list
 
     private var llmEngine: CoreMLInference?
     private var llamaInference: LlamaInference?
     private var mcpClient: MCPClient?
     private var orchestrator: AgentOrchestrator?
     private let modelLoaderRef = ModelLoader()
+    private let settingsManager = ModelSettingsManager.shared
+
+    // Debounce task for saving conversations
+    private var saveDebounceTask: Task<Void, Never>?
+
+    // Token context limits based on device tier
+    // These values correspond to LlamaInference context sizes:
+    // ultra: 8192, high: 6144, medium: 4096, low: 2048
+    // Reserve ~1000 tokens for system prompt and ~500 for generation
+    private var maxContextTokens: Int {
+        switch DeviceTier.current {
+        case .ultra:
+            return 6500  // 8192 context - 1500 reserved
+        case .high:
+            return 4600  // 6144 context - 1500 reserved
+        case .medium:
+            return 2600  // 4096 context - 1500 reserved
+        case .low:
+            return 1000  // 2048 context - 1000 reserved (minimal)
+        }
+    }
+
+    private var summaryTokenBudget: Int {
+        switch DeviceTier.current {
+        case .ultra:
+            return 800
+        case .high:
+            return 600
+        case .medium:
+            return 400
+        case .low:
+            return 200
+        }
+    }
+
+    // Background summarization task
+    private var summarizationTask: Task<Void, Never>?
+
+    // MARK: - Token Context Management
+
+    /// Estimate token count for a string (conservative estimate to prevent overflow)
+    /// Japanese: ~2 tokens per character (conservative), English: ~0.3 tokens per character
+    private func estimateTokens(_ text: String) -> Int {
+        var japaneseCount = 0
+        var otherCount = 0
+
+        for char in text {
+            if char.isJapanese {
+                japaneseCount += 1
+            } else {
+                otherCount += 1
+            }
+        }
+
+        // Conservative: Japanese ~2 tokens/char, English ~0.3 tokens/char, plus overhead
+        // Better to underestimate context size than overflow
+        return japaneseCount * 2 + Int(Double(otherCount) * 0.3) + 20
+    }
+
+    /// Trim conversation history to fit within context window
+    /// Uses LLM-generated summary for older messages when available
+    private func trimHistoryToFitContext(_ messages: [Message]) -> [Message] {
+        guard !messages.isEmpty else { return [] }
+
+        // Check if we have a cached summary
+        var hasSummary = false
+        var summaryContent = ""
+        var summarizedIndex = 0
+
+        if let conversation = currentConversation,
+           let summary = conversation.historySummary,
+           let summaryIdx = conversation.summarizedUpToIndex,
+           summaryIdx > 0 {
+            hasSummary = true
+            summaryContent = summary
+            summarizedIndex = summaryIdx
+        }
+
+        // Calculate available tokens (reserve space for summary if exists)
+        let availableTokens = hasSummary
+            ? maxContextTokens - estimateTokens(summaryContent)
+            : maxContextTokens
+
+        var result: [Message] = []
+        var estimatedTokens = 0
+        var trimStartIndex: Int? = nil
+
+        // Process from newest to oldest, keeping messages that fit
+        for (index, message) in messages.enumerated().reversed() {
+            // Skip already summarized messages
+            if hasSummary && index < summarizedIndex {
+                continue
+            }
+
+            let messageTokens = estimateTokens(message.content)
+            let thinkingTokens = message.thinkingContent.map { estimateTokens($0) } ?? 0
+            let totalMessageTokens = messageTokens + thinkingTokens
+
+            if estimatedTokens + totalMessageTokens > availableTokens {
+                trimStartIndex = index + 1
+                break
+            }
+
+            result.insert(message, at: 0)
+            estimatedTokens += totalMessageTokens
+        }
+
+        // If we had to trim messages, queue summarization
+        if let trimIdx = trimStartIndex, trimIdx > summarizedIndex {
+            logInfo("Context", "Queueing summarization", [
+                "newMessagesToSummarize": "\(trimIdx - summarizedIndex)",
+                "totalMessagesKept": "\(result.count)"
+            ])
+            queueSummarization(messages: messages, upToIndex: trimIdx)
+        }
+
+        // Prepend summary as system context if available
+        if hasSummary && !summaryContent.isEmpty {
+            let summaryMessage = Message(
+                role: .system,
+                content: "【これまでの会話の要約】\n\(summaryContent)"
+            )
+            result.insert(summaryMessage, at: 0)
+            logInfo("Context", "Using cached summary", [
+                "summaryTokens": "\(estimateTokens(summaryContent))",
+                "recentMessages": "\(result.count - 1)"
+            ])
+        }
+
+        return result
+    }
+
+    /// Queue background summarization of old messages
+    private func queueSummarization(messages: [Message], upToIndex: Int) {
+        summarizationTask?.cancel()
+
+        summarizationTask = Task { [weak self] in
+            guard let self = self else { return }
+
+            // Get messages to summarize
+            let messagesToSummarize = Array(messages.prefix(upToIndex))
+            guard !messagesToSummarize.isEmpty else { return }
+
+            // Build summary prompt
+            let conversationText = messagesToSummarize.map { msg in
+                let role = msg.role == .user ? "ユーザー" : "アシスタント"
+                return "\(role): \(msg.content)"
+            }.joined(separator: "\n")
+
+            let summaryPrompt = """
+            以下の会話を簡潔に要約してください。重要なポイントと結論のみを残してください。
+
+            会話:
+            \(conversationText)
+
+            要約（200文字以内）:
+            """
+
+            do {
+                // Generate summary using LLM
+                if let llm = await self.llmEngine, let modelId = await self.currentModelId {
+                    var settings = self.settingsManager.settings(for: modelId)
+                    settings.maxTokens = 150  // Short summary
+                    var summary = ""
+
+                    _ = try await llm.generate(
+                        prompt: summaryPrompt,
+                        settings: settings
+                    ) { token in
+                        summary += token
+                    }
+
+                    // Update conversation with summary
+                    await MainActor.run {
+                        if var conversation = self.currentConversation {
+                            // Merge with existing summary if any
+                            if let existingSummary = conversation.historySummary {
+                                conversation.historySummary = existingSummary + "\n\n" + summary.trimmingCharacters(in: .whitespacesAndNewlines)
+                            } else {
+                                conversation.historySummary = summary.trimmingCharacters(in: .whitespacesAndNewlines)
+                            }
+                            conversation.summarizedUpToIndex = upToIndex
+                            self.currentConversation = conversation
+
+                            // Update in conversations array
+                            if let idx = self.conversations.firstIndex(where: { $0.id == conversation.id }) {
+                                self.conversations[idx] = conversation
+                            }
+                            self.saveConversations()
+
+                            logInfo("Context", "Summary generated", [
+                                "summarizedMessages": "\(upToIndex)",
+                                "summaryLength": "\(summary.count)"
+                            ])
+                        }
+                    }
+                }
+            } catch {
+                logError("Context", "Summarization failed: \(error.localizedDescription)")
+            }
+        }
+    }
 
     /// Check if the currently loaded model supports vision/image input
     var currentModelSupportsVision: Bool {
         guard let modelId = currentModelId else { return false }
         return modelLoaderRef.modelSupportsVision(modelId)
+    }
+
+    /// Get downloaded vision models
+    var downloadedVisionModels: [ModelLoader.ModelInfo] {
+        modelLoaderRef.getDownloadedVisionModels()
+    }
+
+    /// Get the best vision model to download for this device
+    var recommendedVisionModel: ModelLoader.ModelInfo? {
+        modelLoaderRef.getRecommendedVisionModel(for: modelLoaderRef.deviceTier)
+    }
+
+    /// Check if any vision model is downloaded
+    var hasDownloadedVisionModel: Bool {
+        !downloadedVisionModels.isEmpty
+    }
+
+    /// Switch to a downloaded vision model (returns true if successful)
+    func switchToVisionModel() async -> Bool {
+        guard let visionModel = downloadedVisionModels.first else {
+            return false
+        }
+        do {
+            try await loadModel(named: visionModel.id)
+            return true
+        } catch {
+            print("Failed to switch to vision model: \(error)")
+            return false
+        }
     }
 
     // Persist last used model and settings
@@ -34,49 +294,57 @@ final class AppState: ObservableObject {
     init() {
         // Restore saved inference mode
         self.inferenceMode = InferenceMode(rawValue: storedInferenceMode) ?? .auto
-        setupMCPClient()
-        // Load saved conversations
-        loadConversations()
-        // Auto-load last used model on startup
-        loadLastUsedModelIfAvailable()
+
+        // Start with empty conversations for faster startup
+        // Load asynchronously to not block the UI
+        Task { @MainActor in
+            await loadConversationsAsync()
+            setupMCPClient()
+            await loadLastUsedModelIfAvailableAsync()
+        }
     }
 
     // MARK: - Persistence
 
-    private var conversationsURL: URL {
-        let documentsPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-        return documentsPath.appendingPathComponent("conversations.json")
+    private func loadConversationsAsync() async {
+        // Migrate existing data if needed (synchronous but fast check)
+        SharedDataManager.migrateIfNeeded()
+        // Load from shared container asynchronously
+        conversations = await SharedDataManager.loadConversationsAsync()
     }
 
-    private func loadConversations() {
-        do {
-            let data = try Data(contentsOf: conversationsURL)
-            conversations = try JSONDecoder().decode([Conversation].self, from: data)
-        } catch {
-            // No saved conversations or error loading - start fresh
-            conversations = []
-        }
-    }
-
+    /// Save conversations with debouncing (non-blocking)
     func saveConversations() {
-        do {
-            let data = try JSONEncoder().encode(conversations)
-            try data.write(to: conversationsURL)
-        } catch {
-            print("Failed to save conversations: \(error)")
+        // Cancel any pending save
+        saveDebounceTask?.cancel()
+
+        // Schedule new save after 1 second delay
+        saveDebounceTask = Task { @MainActor in
+            try? await Task.sleep(nanoseconds: 1_000_000_000) // 1 second debounce
+            guard !Task.isCancelled else { return }
+            // Save asynchronously to avoid blocking UI
+            SharedDataManager.saveConversationsAsync(conversations)
         }
     }
 
-    private func loadLastUsedModelIfAvailable() {
-        guard !lastUsedModel.isEmpty else { return }
+    /// Force immediate save (for app termination)
+    func saveConversationsImmediately() {
+        saveDebounceTask?.cancel()
+        SharedDataManager.saveConversations(conversations)
+    }
 
-        // Check if model is downloaded
-        let modelLoader = ModelLoader()
-        if modelLoader.isModelDownloaded(lastUsedModel) {
-            Task {
-                try? await loadModel(named: lastUsedModel)
-            }
+    private func loadLastUsedModelIfAvailableAsync() async {
+        guard !lastUsedModel.isEmpty else {
+            // No saved model, end initial loading immediately
+            isInitialLoading = false
+            return
         }
+
+        // Check if model is downloaded using existing modelLoaderRef
+        if modelLoaderRef.isModelDownloaded(lastUsedModel) {
+            try? await loadModel(named: lastUsedModel)
+        }
+        isInitialLoading = false
     }
 
     private func setupMCPClient() {
@@ -144,20 +412,26 @@ final class AppState: ObservableObject {
         do {
             let response: String
 
+            // Trim history to prevent context overflow
+            let trimmedHistory = trimHistoryToFitContext(currentConversation?.messages ?? [])
+
             if let orchestrator = orchestrator {
                 response = try await orchestrator.process(
                     message: content,
-                    history: currentConversation?.messages ?? [],
+                    history: trimmedHistory,
                     enabledServers: enabledMCPServers
                 )
-            } else if let llm = llmEngine {
+            } else if let llm = llmEngine, let modelId = currentModelId {
+                // Get per-model settings
+                let settings = settingsManager.settings(for: modelId)
+
                 // Direct LLM call with proper chat formatting including date/time context
                 let systemPrompt = buildSystemPrompt()
                 var generatedText = ""
                 _ = try await llm.generateWithMessages(
-                    messages: currentConversation?.messages ?? [userMessage],
+                    messages: trimmedHistory.isEmpty ? [userMessage] : trimmedHistory,
                     systemPrompt: systemPrompt,
-                    maxTokens: 512
+                    settings: settings
                 ) { token in
                     generatedText += token
                 }
@@ -189,20 +463,26 @@ final class AppState: ObservableObject {
         Locale.current.language.languageCode?.identifier == "ja"
     }
 
-    private func buildSystemPrompt() -> String {
-        // Current date/time info
-        let dateFormatter = DateFormatter()
-        let currentDateTime: String
+    // Cached DateFormatters for performance
+    private static let japaneseDateFormatter: DateFormatter = {
+        let f = DateFormatter()
+        f.locale = Locale(identifier: "ja_JP")
+        f.dateFormat = "yyyy年M月d日(EEEE) HH:mm"
+        return f
+    }()
 
-        if isJapanese {
-            dateFormatter.locale = Locale(identifier: "ja_JP")
-            dateFormatter.dateFormat = "yyyy年M月d日(EEEE) HH:mm"
-            currentDateTime = dateFormatter.string(from: Date())
-        } else {
-            dateFormatter.locale = Locale(identifier: "en_US")
-            dateFormatter.dateFormat = "EEEE, MMMM d, yyyy HH:mm"
-            currentDateTime = dateFormatter.string(from: Date())
-        }
+    private static let englishDateFormatter: DateFormatter = {
+        let f = DateFormatter()
+        f.locale = Locale(identifier: "en_US")
+        f.dateFormat = "EEEE, MMMM d, yyyy HH:mm"
+        return f
+    }()
+
+    private func buildSystemPrompt() -> String {
+        // Current date/time info - use cached formatters
+        let currentDateTime = isJapanese
+            ? Self.japaneseDateFormatter.string(from: Date())
+            : Self.englishDateFormatter.string(from: Date())
 
         // Build context with date and past conversation titles
         var contextParts: [String] = []
@@ -287,13 +567,31 @@ final class AppState: ObservableObject {
         do {
             var fullResponse = ""
 
-            if let llm = llmEngine {
-                // Use proper chat formatting with system prompt including date/time
+            // Trim history to prevent context overflow
+            let trimmedHistory = trimHistoryToFitContext(currentConversation?.messages ?? [])
+
+            // Use orchestrator for tool support (calendar, reminders, etc.)
+            if let orchestrator = orchestrator {
+                fullResponse = try await orchestrator.processWithStreaming(
+                    message: content,
+                    history: trimmedHistory,
+                    enabledServers: enabledMCPServers,
+                    onToken: { token in
+                        onToken(token)
+                    },
+                    onToolCall: { toolInfo in
+                        // Tool call notification (could show in UI)
+                        logInfo("Tool", "Tool call: \(toolInfo)")
+                    }
+                )
+            } else if let llm = llmEngine, let modelId = currentModelId {
+                // Fallback to direct LLM without tools
+                let settings = settingsManager.settings(for: modelId)
                 let systemPrompt = buildSystemPrompt()
                 _ = try await llm.generateWithMessages(
-                    messages: currentConversation?.messages ?? [userMessage],
+                    messages: trimmedHistory.isEmpty ? [userMessage] : trimmedHistory,
                     systemPrompt: systemPrompt,
-                    maxTokens: 1024
+                    settings: settings
                 ) { token in
                     fullResponse += token
                     onToken(token)
@@ -320,6 +618,94 @@ final class AppState: ObservableObject {
             return fullResponse
         } catch {
             let errorResponse = "エラーが発生しました: \(error.localizedDescription)"
+            logError("LLM", "Generation error: \(error.localizedDescription)")
+            onToken(errorResponse)
+            let assistantMessage = Message(role: .assistant, content: errorResponse)
+            currentConversation?.messages.append(assistantMessage)
+
+            // Save even on error
+            if let current = currentConversation,
+               let index = conversations.firstIndex(where: { $0.id == current.id }) {
+                conversations[index] = current
+            }
+            saveConversations()
+
+            return errorResponse
+        }
+    }
+
+    /// Streaming version that doesn't add user message (for immediate UI feedback)
+    func sendMessageWithStreamingNoUserMessage(_ content: String, imageData: Data? = nil, onToken: @escaping (String) -> Void) async -> String {
+        guard isModelLoaded else {
+            let msg = String(localized: "chat.model.not.loaded.description")
+            onToken(msg)
+            return msg
+        }
+
+        // Set generating flag immediately
+        isGenerating = true
+        defer { isGenerating = false }
+
+        // Update conversation title if this is the first message
+        currentConversation?.updatedAt = Date()
+        if currentConversation?.messages.count == 1 {
+            currentConversation?.title = String(content.prefix(30)) + (content.count > 30 ? "..." : "")
+        }
+
+        do {
+            var fullResponse = ""
+
+            // Trim history to prevent context overflow
+            let trimmedHistory = trimHistoryToFitContext(currentConversation?.messages ?? [])
+
+            // Use orchestrator for tool support (calendar, reminders, etc.)
+            if let orchestrator = orchestrator {
+                fullResponse = try await orchestrator.processWithStreaming(
+                    message: content,
+                    history: trimmedHistory,
+                    enabledServers: enabledMCPServers,
+                    onToken: { token in
+                        onToken(token)
+                    },
+                    onToolCall: { toolInfo in
+                        logInfo("Tool", "Tool call: \(toolInfo)")
+                    }
+                )
+            } else if let llm = llmEngine, let modelId = currentModelId {
+                // Fallback to direct LLM without tools
+                let settings = settingsManager.settings(for: modelId)
+                let systemPrompt = buildSystemPrompt()
+                _ = try await llm.generateWithMessages(
+                    messages: trimmedHistory,
+                    systemPrompt: systemPrompt,
+                    settings: settings
+                ) { token in
+                    fullResponse += token
+                    onToken(token)
+                }
+            }
+
+            // Parse thinking content from response
+            let parsed = Message.parseThinkingContent(fullResponse)
+            let assistantMessage = Message(
+                role: .assistant,
+                content: parsed.content.isEmpty ? fullResponse : parsed.content,
+                thinkingContent: parsed.thinking
+            )
+            currentConversation?.messages.append(assistantMessage)
+            currentConversation?.updatedAt = Date()
+
+            // Update conversation in array and save
+            if let current = currentConversation,
+               let index = conversations.firstIndex(where: { $0.id == current.id }) {
+                conversations[index] = current
+            }
+            saveConversations()
+
+            return fullResponse
+        } catch {
+            let errorResponse = "エラーが発生しました: \(error.localizedDescription)"
+            logError("LLM", "Generation error: \(error.localizedDescription)")
             onToken(errorResponse)
             let assistantMessage = Message(role: .assistant, content: errorResponse)
             currentConversation?.messages.append(assistantMessage)

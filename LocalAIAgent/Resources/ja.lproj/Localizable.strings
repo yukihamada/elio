@@ -38,6 +38,14 @@
 "chat.stop.generation" = "停止";
 "chat.generation.stopped" = "\n\n[生成を停止しました]";
 "chat.image.sent" = "[画像を送信しました]";
+"chat.images.sent" = "[%d枚の画像を送信しました]";
+"chat.pdf.sent" = "[PDF添付: %@]";
+"chat.pdf.sent.vision" = "[PDF画像付き: %@]";
+"chat.pdf.context" = "以下はPDFドキュメント「%@」から抽出されたテキスト内容です:\n\n%@";
+"chat.pdf.context.vision" = "これはPDFドキュメント「%@」の1ページ目です。抽出されたテキスト内容:\n\n%@\n\n画像とテキストの両方を分析してください。";
+"chat.pdf.analyze" = "「%@」のこのPDFページを分析してください。";
+"chat.url.sent" = "[Webページ: %@]";
+"chat.url.context" = "以下はWebページ「%@」(%@)から抽出された内容です:\n\n%@";
 "chat.thinking" = "考え中...";
 "chat.generating" = "応答を生成中...";
 "chat.welcome" = "何をお手伝いしましょうか？";
@@ -191,6 +199,17 @@
 "attachment.title" = "添付ファイル";
 "attachment.photo.library" = "写真を選択";
 "attachment.camera" = "カメラで撮影";
+"attachment.pdf" = "PDFを選択";
+"attachment.pdf.chars" = "%d文字";
+"attachment.pdf.pages" = "%dページ";
+"attachment.pdf.vision.enabled" = "画像分析有効";
+"attachment.pdf.text.only" = "テキストのみ";
+"attachment.url" = "Webページを読み込む";
+"attachment.url.title" = "URLを入力";
+"attachment.url.placeholder" = "https://example.com";
+"attachment.url.message" = "URLを貼り付けて内容を抽出します";
+"attachment.url.fetch" = "取得";
+"attachment.url.loading" = "ページを読み込み中...";
 
 // MARK: - Errors
 "error.model.not.found" = "モデルファイルが見つかりません";
@@ -362,3 +381,101 @@
 
 // MARK: - Tool Parser
 "tool.arguments" = "引数:";
+
+// MARK: - Model Settings
+"model.action.settings" = "設定";
+"settings.model.parameters" = "モデル設定";
+"settings.model.parameters.description" = "このモデルの生成パラメータをカスタマイズ";
+"settings.preset.title" = "プリセット";
+"settings.preset.custom" = "カスタム";
+"settings.preset.balanced" = "バランス";
+"settings.preset.creative" = "クリエイティブ";
+"settings.preset.precise" = "正確";
+"settings.preset.coding" = "コーディング";
+"settings.preset.japanese" = "日本語";
+"settings.parameters.title" = "パラメータ";
+"settings.parameter.temperature" = "Temperature";
+"settings.parameter.temperature.description" = "高い = より創造的、低い = より正確";
+"settings.parameter.top.p" = "Top P";
+"settings.parameter.top.p.description" = "サンプリング確率";
+"settings.parameter.top.k" = "Top K";
+"settings.parameter.top.k.description" = "考慮するトークン数";
+"settings.parameter.max.tokens" = "最大トークン数";
+"settings.parameter.max.tokens.description" = "応答の最大長";
+"settings.parameter.repeat.penalty" = "繰り返しペナルティ";
+"settings.parameter.repeat.penalty.description" = "高い = 繰り返しを抑制";
+"settings.parameter.thinking" = "思考モード";
+"settings.parameter.thinking.description" = "AIの推論過程を表示";
+"settings.system.prompt.title" = "システムプロンプト";
+"settings.system.prompt.description" = "AIへのカスタム指示";
+"settings.reset.to.default" = "デフォルトに戻す";
+
+// MARK: - Vision Model
+"vision.model.required.title" = "画像認識モデルが必要";
+"vision.model.required.header" = "画像認識が必要です";
+"vision.model.required.description" = "画像を分析するには、画像認識対応のAIモデルが必要です";
+"vision.model.switch" = "切り替える";
+"vision.model.switch.message %@" = "%@ に切り替えて画像分析を有効にしますか？";
+"vision.model.download" = "ダウンロード";
+"vision.model.download.message %@ %@" = "画像分析のために %@ (%@) をダウンロードしますか？";
+"vision.model.not.available" = "このデバイスに対応する画像認識モデルがありません";
+"vision.model.switching" = "モデルを切り替え中...";
+"vision.model.download.title" = "画像認識モデル";
+"vision.model.recommended" = "このデバイスにおすすめ";
+"vision.model.recommended.size %@" = "推奨: %@";
+"vision.model.use.this" = "このモデルを使用";
+"vision.model.download.button %@" = "ダウンロード (%@)";
+"vision.model.other.options" = "その他の画像認識モデル";
+"vision.model.download.complete" = "ダウンロード完了";
+"vision.model.download.complete.message" = "画像分析の準備ができました";
+
+// MARK: - Whisper Voice Input
+"whisper.download.title" = "音声認識モデルが必要";
+"whisper.download.action" = "ダウンロード";
+"whisper.download.message" = "音声入力を使用するには、音声認識モデル（約150MB）をダウンロードする必要があります。";
+"whisper.downloading" = "音声認識モデルをダウンロード中...";
+"whisper.download.error" = "ダウンロードエラー";
+"whisper.load.error" = "モデル読み込みエラー";
+"whisper.permission.denied" = "マイクの使用が許可されていません";
+"whisper.transcribe.error" = "文字起こしエラー";
+"whisper.error.permission" = "マイクのアクセス許可が必要です";
+"whisper.error.not.recording" = "録音中ではありません";
+"whisper.error.no.recording" = "録音データがありません";
+"whisper.error.model.not.loaded" = "音声認識モデルが読み込まれていません";
+"whisper.error.transcription" = "文字起こしに失敗しました";
+
+// MARK: - Language Settings
+"settings.language.section" = "言語";
+"language.system" = "システム設定に従う";
+"settings.language.restart.hint" = "言語の変更はアプリの再起動後に反映されます";
+"settings.language.changed.title" = "言語を変更しました";
+"settings.language.changed.message" = "変更を反映するにはアプリを再起動してください";
+"common.ok" = "OK";
+
+// MARK: - Prompt Templates
+"templates.title" = "プロンプトテンプレート";
+"templates.empty" = "テンプレートがありません";
+"templates.add" = "テンプレートを追加";
+"template.add.title" = "テンプレートを追加";
+"template.edit.title" = "テンプレートを編集";
+"template.name.header" = "名前";
+"template.name.placeholder" = "テンプレート名";
+"template.content.header" = "プロンプト内容";
+"template.icon.header" = "アイコン";
+"template.translate.name" = "翻訳";
+"template.translate.content" = "以下のテキストを翻訳してください: ";
+"template.summarize.name" = "要約";
+"template.summarize.content" = "以下の内容を簡潔に要約してください: ";
+"template.explain.name" = "解説";
+"template.explain.content" = "以下について分かりやすく解説してください: ";
+"template.code.name" = "コード";
+"template.code.content" = "以下のコードを書いてください: ";
+
+// MARK: - Export
+"export.title" = "会話をエクスポート";
+"export.format.markdown" = "Markdown";
+"export.format.pdf" = "PDF";
+"export.format.text" = "テキスト";
+"export.created" = "作成日時";
+"export.image.attached" = "画像添付";
+"export.generated.by" = "出力:";

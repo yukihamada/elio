@@ -307,6 +307,41 @@ final class CoreMLInference: ObservableObject {
         )
     }
 
+    /// Generate with ModelSettings
+    func generate(
+        prompt: String,
+        settings: ModelSettings,
+        stopSequences: [String] = [],
+        onToken: @escaping (String) -> Void
+    ) async throws -> String {
+        guard isLoaded else {
+            throw LLMError.modelNotLoaded
+        }
+
+        isGenerating = true
+        defer { isGenerating = false }
+
+        // Use GGUF inference if model is GGUF format
+        if isGGUFModel, let llamaInference = llamaInference {
+            return try await llamaInference.generate(
+                prompt: prompt,
+                settings: settings,
+                stopSequences: stopSequences,
+                onToken: onToken
+            )
+        }
+
+        // Fall back to original implementation for CoreML models
+        return try await generate(
+            prompt: prompt,
+            maxTokens: settings.maxTokens,
+            temperature: settings.temperature,
+            topP: settings.topP,
+            stopSequences: stopSequences,
+            onToken: onToken
+        )
+    }
+
     func generateWithMessages(
         messages: [Message],
         systemPrompt: String,
@@ -319,6 +354,47 @@ final class CoreMLInference: ObservableObject {
             maxTokens: maxTokens,
             temperature: 0.6,  // Lower temperature for faster, more focused generation
             topP: 0.85,        // Slightly tighter top_p for speed
+            stopSequences: ["</tool_call>", "\n\nUser:", "\n\nHuman:", "<|im_end|>", "<|eot_id|>"],
+            onToken: onToken
+        )
+    }
+
+    /// Generate with messages using ModelSettings
+    func generateWithMessages(
+        messages: [Message],
+        systemPrompt: String,
+        settings: ModelSettings,
+        onToken: @escaping (String) -> Void
+    ) async throws -> String {
+        // Combine base system prompt with custom prompt from settings
+        let effectiveSystemPrompt: String
+        if settings.systemPrompt.isEmpty {
+            effectiveSystemPrompt = systemPrompt
+        } else {
+            // Append custom prompt to base prompt
+            effectiveSystemPrompt = systemPrompt + "\n\n" + settings.systemPrompt
+        }
+
+        // Use llama.cpp's formatChatPrompt for GGUF models
+        if isGGUFModel, let llamaInference = llamaInference {
+            let formattedPrompt = llamaInference.formatChatPrompt(
+                messages: messages,
+                systemPrompt: effectiveSystemPrompt,
+                enableThinking: settings.enableThinking
+            )
+            return try await llamaInference.generate(
+                prompt: formattedPrompt,
+                settings: settings,
+                stopSequences: ["</tool_call>", "\n\nUser:", "\n\nHuman:", "<|im_end|>", "<|eot_id|>"],
+                onToken: onToken
+            )
+        }
+
+        // CoreML models
+        let formattedPrompt = formatMessages(messages, systemPrompt: effectiveSystemPrompt)
+        return try await generate(
+            prompt: formattedPrompt,
+            settings: settings,
             stopSequences: ["</tool_call>", "\n\nUser:", "\n\nHuman:", "<|im_end|>", "<|eot_id|>"],
             onToken: onToken
         )

@@ -170,9 +170,17 @@ struct ModelCard: View {
                             .font(.headline)
                             .foregroundStyle(.primary)
 
-                        Text(model.size)
-                            .font(.caption)
-                            .foregroundStyle(.secondary)
+                        HStack(spacing: 8) {
+                            Text(model.size)
+                            Text("•")
+                            HStack(spacing: 2) {
+                                Image(systemName: "iphone")
+                                    .font(.system(size: 10))
+                                Text(model.recommendedDeviceName)
+                            }
+                        }
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
                     }
 
                     Spacer()
