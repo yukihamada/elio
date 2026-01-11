@@ -200,9 +200,17 @@ final class WhisperManager: ObservableObject {
         defer { isTranscribing = false }
 
         do {
+            // Japanese context prompt to improve transcription accuracy
+            // Include common phrases, proper punctuation, and natural speech patterns
+            let japanesePrompt = """
+            こんにちは。今日の予定を教えてください。リマインダーを設定して。
+            明日の天気はどうですか？検索してください。写真を見せて。
+            ありがとうございます。お願いします。了解しました。
+            """
+
             let results = try await whisper.transcribe(audioPath: url.path, decodeOptions: DecodingOptions(
                 task: .transcribe,
-                language: "ja",  // Japanese language
+                language: "ja",
                 temperature: 0.0,
                 temperatureFallbackCount: 3,
                 sampleLength: 224,
@@ -210,7 +218,10 @@ final class WhisperManager: ObservableObject {
                 usePrefillCache: true,
                 skipSpecialTokens: true,
                 withoutTimestamps: true,
-                suppressBlank: true
+                suppressBlank: true,
+                promptTokens: nil,
+                prefixTokens: nil,
+                prompt: japanesePrompt
             ))
 
             let text = results.map { $0.text }.joined(separator: " ").trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
