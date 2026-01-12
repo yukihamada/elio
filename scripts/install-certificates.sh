@@ -17,8 +17,9 @@ security create-keychain -p "$KEYCHAIN_PASSWORD" "$KEYCHAIN_PATH" || true
 security set-keychain-settings -lut 21600 "$KEYCHAIN_PATH"
 security unlock-keychain -p "$KEYCHAIN_PASSWORD" "$KEYCHAIN_PATH"
 
-# Add to search list
+# Add to search list and set as default
 security list-keychains -d user -s "$KEYCHAIN_PATH" $(security list-keychains -d user | tr -d '"')
+security default-keychain -s "$KEYCHAIN_PATH"
 
 # Import certificate
 if [ -n "${CERTIFICATE_BASE64:-}" ]; then
@@ -62,5 +63,14 @@ if [ -n "${PROVISIONING_PROFILE_BASE64:-}" ]; then
 else
     echo "Warning: PROVISIONING_PROFILE_BASE64 not set, skipping provisioning profile installation"
 fi
+
+# Verify installation
+echo "=== Verification ==="
+echo "Default keychain:"
+security default-keychain
+echo "Keychain search list:"
+security list-keychains
+echo "Provisioning profiles:"
+ls -la "${HOME}/Library/MobileDevice/Provisioning Profiles/" || true
 
 echo "=== Certificate installation complete ==="
