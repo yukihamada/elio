@@ -76,7 +76,8 @@ jobs:
         run: |
           xcodebuild -resolvePackageDependencies \
             -project LocalAIAgent.xcodeproj \
-            -scheme LocalAIAgent
+            -scheme LocalAIAgent \
+            -sdk iphoneos
 
       - name: Deploy to TestFlight
         env:
