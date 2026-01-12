@@ -20,7 +20,7 @@ concurrency:
 jobs:
   test:
     name: Run Tests
-    runs-on: macos-15
+    runs-on: macos-14
     if: ${{ !inputs.skip_tests }}
 
     steps:
@@ -28,7 +28,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Select Xcode
-        run: sudo xcode-select -s /Applications/Xcode_16.app/Contents/Developer
+        run: sudo xcode-select -s /Applications/Xcode_15.4.app/Contents/Developer
 
       - name: Cache Swift packages
         uses: actions/cache@v4
@@ -45,14 +45,14 @@ jobs:
           xcodebuild test \
             -project LocalAIAgent.xcodeproj \
             -scheme LocalAIAgent \
-            -destination 'platform=iOS Simulator,name=iPhone 16 Pro,OS=latest' \
+            -destination 'platform=iOS Simulator,name=iPhone 15 Pro' \
             -only-testing:LocalAIAgentTests \
             CODE_SIGN_IDENTITY="" \
             CODE_SIGNING_REQUIRED=NO
 
   release:
     name: Release to App Store
-    runs-on: macos-15
+    runs-on: macos-14
     needs: [test]
     if: always() && (needs.test.result == 'success' || needs.test.result == 'skipped')
     environment: production
@@ -62,7 +62,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Select Xcode
-        run: sudo xcode-select -s /Applications/Xcode_16.app/Contents/Developer
+        run: sudo xcode-select -s /Applications/Xcode_15.4.app/Contents/Developer
 
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1

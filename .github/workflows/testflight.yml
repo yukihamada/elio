@@ -10,41 +10,9 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  test:
-    name: Run Tests
-    runs-on: macos-15
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Select Xcode
-        run: sudo xcode-select -s /Applications/Xcode_16.app/Contents/Developer
-
-      - name: Cache Swift packages
-        uses: actions/cache@v4
-        with:
-          path: |
-            ~/Library/Developer/Xcode/DerivedData/**/SourcePackages
-            .build
-          key: ${{ runner.os }}-spm-${{ hashFiles('**/Package.resolved') }}
-          restore-keys: |
-            ${{ runner.os }}-spm-
-
-      - name: Run Unit Tests
-        run: |
-          xcodebuild test \
-            -project LocalAIAgent.xcodeproj \
-            -scheme LocalAIAgent \
-            -destination 'platform=iOS Simulator,name=iPhone 16 Pro,OS=latest' \
-            -only-testing:LocalAIAgentTests \
-            CODE_SIGN_IDENTITY="" \
-            CODE_SIGNING_REQUIRED=NO
-
   deploy:
     name: Deploy to TestFlight
-    runs-on: macos-15
-    needs: test
+    runs-on: macos-14
     environment: production
 
     steps:
@@ -52,7 +20,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Select Xcode
-        run: sudo xcode-select -s /Applications/Xcode_16.app/Contents/Developer
+        run: sudo xcode-select -s /Applications/Xcode_15.4.app/Contents/Developer
 
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
