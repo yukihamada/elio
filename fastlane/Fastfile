@@ -49,7 +49,7 @@ platform :ios do
       key_id: ENV["APP_STORE_CONNECT_API_KEY_ID"],
       issuer_id: ENV["APP_STORE_CONNECT_ISSUER_ID"],
       key_content: ENV["APP_STORE_CONNECT_API_KEY"],
-      is_key_content_base64: true
+      is_key_content_base64: false
     )
 
     # Increment build number
@@ -64,7 +64,7 @@ platform :ios do
       export_method: "app-store",
       export_options: {
         provisioningProfiles: {
-          "love.elio.app" => "Elio App Store"
+          "love.elio.app" => "Elio AppStore"
         }
       }
     )
@@ -88,7 +88,7 @@ platform :ios do
       key_id: ENV["APP_STORE_CONNECT_API_KEY_ID"],
       issuer_id: ENV["APP_STORE_CONNECT_ISSUER_ID"],
       key_content: ENV["APP_STORE_CONNECT_API_KEY"],
-      is_key_content_base64: true
+      is_key_content_base64: false
     )
 
     # Increment build number
@@ -103,7 +103,7 @@ platform :ios do
       export_method: "app-store",
       export_options: {
         provisioningProfiles: {
-          "love.elio.app" => "Elio App Store"
+          "love.elio.app" => "Elio AppStore"
         }
       }
     )
