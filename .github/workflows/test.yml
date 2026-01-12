@@ -49,7 +49,8 @@ jobs:
           xcodebuild build \
             -project LocalAIAgent.xcodeproj \
             -scheme LocalAIAgent \
-            -destination 'generic/platform=iOS Simulator' \
+            -destination 'platform=macOS,variant=Mac Catalyst' \
             -configuration Debug \
             CODE_SIGN_IDENTITY="" \
-            CODE_SIGNING_REQUIRED=NO
+            CODE_SIGNING_REQUIRED=NO \
+            SUPPORTS_MACCATALYST=YES
