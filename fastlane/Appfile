@@ -1,0 +1,14 @@
+app_identifier("love.elio.app")
+apple_id(ENV["APPLE_ID"] || "")
+team_id("5BV85JW8US")
+
+# App Store Connect API Key
+# Configure using environment variables or Fastlane Match
+for_platform :ios do
+  for_lane :beta do
+    app_identifier "love.elio.app"
+  end
+  for_lane :release do
+    app_identifier "love.elio.app"
+  end
+end

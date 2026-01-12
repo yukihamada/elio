@@ -1043,7 +1043,8 @@ final class ModelLoader: ObservableObject {
         }
 
         // Use URLSessionDownloadTask with delegate for progress
-        let (tempURL, _) = try await downloadWithProgress(from: url, modelId: model.id)
+        // Pass expected size from model info for accurate progress when Content-Length is missing
+        let (tempURL, _) = try await downloadWithProgress(from: url, modelId: model.id, expectedSize: model.sizeBytes)
 
         // Determine file extension from URL or response
         let fileExtension = url.pathExtension.lowercased()
@@ -1071,11 +1072,21 @@ final class ModelLoader: ObservableObject {
         }
     }
 
-    private func downloadWithProgress(from url: URL, modelId: String) async throws -> (URL, URLResponse) {
+    private func downloadWithProgress(from url: URL, modelId: String, expectedSize: Int64) async throws -> (URL, URLResponse) {
         try await withCheckedThrowingContinuation { continuation in
-            let delegate = DownloadDelegate { [weak self] progress in
+            let delegate = DownloadDelegate(expectedSize: expectedSize) { [weak self] progress, bytesWritten, totalBytes in
                 Task { @MainActor in
-                    self?.downloadProgress[modelId] = progress
+                    if progress >= 0 {
+                        self?.downloadProgress[modelId] = progress
+                    }
+                    // Log progress for debugging
+                    #if DEBUG
+                    let mbWritten = Double(bytesWritten) / 1_000_000
+                    let mbTotal = Double(totalBytes) / 1_000_000
+                    if Int(mbWritten) % 50 == 0 {
+                        print("Download progress: \(String(format: "%.1f", mbWritten))MB / \(String(format: "%.1f", mbTotal))MB (\(Int(progress * 100))%)")
+                    }
+                    #endif
                 }
             }
 
@@ -1237,18 +1248,30 @@ private final class ZIPArchive {
 // MARK: - Download Delegate
 
 private final class DownloadDelegate: NSObject, URLSessionDownloadDelegate {
-    private let progressHandler: (Double) -> Void
+    private let progressHandler: (Double, Int64, Int64) -> Void
+    private let expectedSize: Int64
 
-    init(progressHandler: @escaping (Double) -> Void) {
+    init(expectedSize: Int64, progressHandler: @escaping (Double, Int64, Int64) -> Void) {
+        self.expectedSize = expectedSize
         self.progressHandler = progressHandler
         super.init()
     }
 
     func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didWriteData bytesWritten: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64) {
+        // Use server-provided size if available, otherwise use expected size from model info
+        let totalSize: Int64
         if totalBytesExpectedToWrite > 0 {
-            let progress = Double(totalBytesWritten) / Double(totalBytesExpectedToWrite)
-            progressHandler(progress)
+            totalSize = totalBytesExpectedToWrite
+        } else if expectedSize > 0 {
+            totalSize = expectedSize
+        } else {
+            // Fallback: show indeterminate progress
+            progressHandler(-1, totalBytesWritten, 0)
+            return
         }
+
+        let progress = Double(totalBytesWritten) / Double(totalSize)
+        progressHandler(min(progress, 1.0), totalBytesWritten, totalSize)
     }
 
     func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {

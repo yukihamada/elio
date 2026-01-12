@@ -72,6 +72,9 @@ struct SettingsView: View {
                         // Feedback Section
                         feedbackSection
 
+                        // Reset Section
+                        resetSection
+
                         // Privacy Badge
                         privacyBadge
                             .padding(.bottom, 20)
@@ -569,6 +572,9 @@ struct SettingsView: View {
 
     @State private var showingAbout = false
     @State private var feedbackOptIn = FeedbackManager.shared.isOptedIn
+    @State private var showingResetAlert = false
+    @State private var showingResetWithModelsAlert = false
+    @State private var deleteModelsOnReset = false
 
     private var aboutSection: some View {
         VStack(alignment: .leading, spacing: 12) {
@@ -656,6 +662,144 @@ struct SettingsView: View {
                 .foregroundStyle(.secondary)
                 .padding(.horizontal, 4)
         }
+    }
+
+    // MARK: - Reset Section
+
+    private var resetSection: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            SectionHeader(title: String(localized: "settings.reset.section", defaultValue: "リセット"), icon: "arrow.counterclockwise", color: .red)
+
+            VStack(spacing: 0) {
+                // Reset app (keep models)
+                Button(action: { showingResetAlert = true }) {
+                    HStack(spacing: 12) {
+                        Image(systemName: "arrow.counterclockwise")
+                            .font(.system(size: 16))
+                            .foregroundStyle(.orange)
+                            .frame(width: 28)
+
+                        VStack(alignment: .leading, spacing: 2) {
+                            Text(String(localized: "settings.reset.app", defaultValue: "アプリをリセット"))
+                                .font(.system(size: 15))
+                                .foregroundStyle(.primary)
+                            Text(String(localized: "settings.reset.app.description", defaultValue: "チュートリアルや設定を初期化（モデルは保持）"))
+                                .font(.system(size: 12))
+                                .foregroundStyle(.secondary)
+                        }
+
+                        Spacer()
+
+                        Image(systemName: "chevron.right")
+                            .font(.system(size: 12, weight: .semibold))
+                            .foregroundStyle(.tertiary)
+                    }
+                    .padding(.horizontal, 16)
+                    .padding(.vertical, 14)
+                }
+                .buttonStyle(.plain)
+
+                Divider()
+                    .padding(.leading, 56)
+
+                // Reset app with model deletion
+                Button(action: { showingResetWithModelsAlert = true }) {
+                    HStack(spacing: 12) {
+                        Image(systemName: "trash")
+                            .font(.system(size: 16))
+                            .foregroundStyle(.red)
+                            .frame(width: 28)
+
+                        VStack(alignment: .leading, spacing: 2) {
+                            Text(String(localized: "settings.reset.all", defaultValue: "完全リセット"))
+                                .font(.system(size: 15))
+                                .foregroundStyle(.red)
+                            Text(String(localized: "settings.reset.all.description", defaultValue: "全データとダウンロード済みモデルを削除"))
+                                .font(.system(size: 12))
+                                .foregroundStyle(.secondary)
+                        }
+
+                        Spacer()
+
+                        Image(systemName: "chevron.right")
+                            .font(.system(size: 12, weight: .semibold))
+                            .foregroundStyle(.tertiary)
+                    }
+                    .padding(.horizontal, 16)
+                    .padding(.vertical, 14)
+                }
+                .buttonStyle(.plain)
+            }
+            .background(
+                RoundedRectangle(cornerRadius: 16)
+                    .fill(Color.chatInputBackgroundDynamic)
+            )
+
+            Text(String(localized: "settings.reset.hint", defaultValue: "リセット後はアプリを再起動してください。チュートリアルから再開します。"))
+                .font(.caption)
+                .foregroundStyle(.secondary)
+                .padding(.horizontal, 4)
+        }
+        .alert(String(localized: "settings.reset.confirm.title", defaultValue: "アプリをリセット"), isPresented: $showingResetAlert) {
+            Button(String(localized: "common.cancel"), role: .cancel) {}
+            Button(String(localized: "settings.reset.action", defaultValue: "リセット"), role: .destructive) {
+                performReset(deleteModels: false)
+            }
+        } message: {
+            Text(String(localized: "settings.reset.confirm.message", defaultValue: "会話履歴、設定、チュートリアル状態がリセットされます。ダウンロード済みのモデルは保持されます。"))
+        }
+        .alert(String(localized: "settings.reset.all.confirm.title", defaultValue: "完全リセット"), isPresented: $showingResetWithModelsAlert) {
+            Button(String(localized: "common.cancel"), role: .cancel) {}
+            Button(String(localized: "settings.reset.all.action", defaultValue: "全て削除"), role: .destructive) {
+                performReset(deleteModels: true)
+            }
+        } message: {
+            Text(String(localized: "settings.reset.all.confirm.message", defaultValue: "全てのデータとダウンロード済みモデルが削除されます。この操作は取り消せません。"))
+        }
+    }
+
+    private func performReset(deleteModels: Bool) {
+        // Unload current model
+        appState.unloadModel()
+
+        // Clear conversation history
+        appState.clearAllConversations()
+
+        // Reset onboarding state
+        UserDefaults.standard.removeObject(forKey: "hasCompletedOnboarding")
+
+        // Reset custom system prompt
+        customSystemPrompt = ""
+
+        // Reset MCP servers to default
+        appState.enabledMCPServers = ["filesystem", "calendar", "reminders", "websearch", "weather", "notes"]
+
+        // Reset feedback opt-in
+        FeedbackManager.shared.isOptedIn = false
+        feedbackOptIn = false
+
+        // Reset language to system default
+        LanguageManager.shared.currentLanguage = .system
+
+        // Reset theme
+        themeManager.currentTheme = .system
+
+        // Reset inference mode
+        appState.setInferenceMode(.auto)
+
+        // Clear notes
+        UserDefaults.standard.removeObject(forKey: "elio_notes")
+
+        // Delete models if requested
+        if deleteModels {
+            for model in modelLoader.availableModels {
+                if modelLoader.isModelDownloaded(model.id) {
+                    try? modelLoader.deleteModel(model.id)
+                }
+            }
+        }
+
+        // The app will show onboarding on next launch because hasCompletedOnboarding is false
     }
 
     // MARK: - Privacy Badge

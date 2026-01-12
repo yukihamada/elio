@@ -59,6 +59,12 @@
 		WEBEXT001 /* WebContentExtractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = WEBEXT002 /* WebContentExtractor.swift */; };
 		WHISPER001 /* WhisperKit in Frameworks */ = {isa = PBXBuildFile; productRef = WHISPER002 /* WhisperKit */; };
 		WHISPER003 /* WhisperManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = WHISPER004 /* WhisperManager.swift */; };
+		WEATHER001 /* WeatherServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = WEATHER002 /* WeatherServer.swift */; };
+		TRANS001 /* TranslationServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = TRANS002 /* TranslationServer.swift */; };
+		NOTES001 /* NotesServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = NOTES002 /* NotesServer.swift */; };
+		ONBMCP001 /* OnboardingMCPView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ONBMCP002 /* OnboardingMCPView.swift */; };
+		TEST004 /* LocalAIAgentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = TEST001 /* LocalAIAgentTests.swift */; };
+		UITEST004 /* LocalAIAgentUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = UITEST001 /* LocalAIAgentUITests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -116,7 +122,32 @@
 		SHAREDDATAMGR002 /* SharedDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedDataManager.swift; sourceTree = "<group>"; };
 		WEBEXT002 /* WebContentExtractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebContentExtractor.swift; sourceTree = "<group>"; };
 		WHISPER004 /* WhisperManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhisperManager.swift; sourceTree = "<group>"; };
+		WEATHER002 /* WeatherServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherServer.swift; sourceTree = "<group>"; };
+		TRANS002 /* TranslationServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationServer.swift; sourceTree = "<group>"; };
+		NOTES002 /* NotesServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesServer.swift; sourceTree = "<group>"; };
+		ONBMCP002 /* OnboardingMCPView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingMCPView.swift; sourceTree = "<group>"; };
+		TEST001 /* LocalAIAgentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalAIAgentTests.swift; sourceTree = "<group>"; };
+		TEST002 /* LocalAIAgentTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LocalAIAgentTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		UITEST001 /* LocalAIAgentUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalAIAgentUITests.swift; sourceTree = "<group>"; };
+		UITEST002 /* LocalAIAgentUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LocalAIAgentUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
+
+/* Begin PBXContainerItemProxy section */
+		TEST010 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 600 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 400;
+			remoteInfo = LocalAIAgent;
+		};
+		UITEST010 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 600 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 400;
+			remoteInfo = LocalAIAgent;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		200 /* Frameworks */ = {
@@ -128,6 +159,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		TEST005 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		UITEST005 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -135,6 +180,8 @@
 			isa = PBXGroup;
 			children = (
 				301 /* LocalAIAgent */,
+				TEST003 /* LocalAIAgentTests */,
+				UITEST003 /* LocalAIAgentUITests */,
 				302 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -160,8 +207,26 @@
 			isa = PBXGroup;
 			children = (
 				100 /* LocalAIAgent.app */,
+				TEST002 /* LocalAIAgentTests.xctest */,
+				UITEST002 /* LocalAIAgentUITests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		TEST003 /* LocalAIAgentTests */ = {
+			isa = PBXGroup;
+			children = (
+				TEST001 /* LocalAIAgentTests.swift */,
+			);
+			path = LocalAIAgentTests;
+			sourceTree = "<group>";
+		};
+		UITEST003 /* LocalAIAgentUITests */ = {
+			isa = PBXGroup;
+			children = (
+				UITEST001 /* LocalAIAgentUITests.swift */,
+			);
+			path = LocalAIAgentUITests;
 			sourceTree = "<group>";
 		};
 		310 /* App */ = {
@@ -194,6 +259,7 @@
 				EED5CCB34FA4BFAD3E5BEBD2 /* VisionModelDownloadView.swift */,
 				DOCPICKER002 /* DocumentPicker.swift */,
 				PROMPTVIEW002 /* PromptTemplatesView.swift */,
+				ONBMCP002 /* OnboardingMCPView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -282,6 +348,9 @@
 				124 /* HealthServer.swift */,
 				125 /* ShortcutsServer.swift */,
 				134 /* WebSearchServer.swift */,
+				WEATHER002 /* WeatherServer.swift */,
+				TRANS002 /* TranslationServer.swift */,
+				NOTES002 /* NotesServer.swift */,
 			);
 			path = Servers;
 			sourceTree = "<group>";
@@ -310,6 +379,42 @@
 			productReference = 100 /* LocalAIAgent.app */;
 			productType = "com.apple.product-type.application";
 		};
+		TEST008 /* LocalAIAgentTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = TEST013 /* Build configuration list for PBXNativeTarget "LocalAIAgentTests" */;
+			buildPhases = (
+				TEST006 /* Sources */,
+				TEST005 /* Frameworks */,
+				TEST007 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				TEST009 /* PBXTargetDependency */,
+			);
+			name = LocalAIAgentTests;
+			productName = LocalAIAgentTests;
+			productReference = TEST002 /* LocalAIAgentTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		UITEST008 /* LocalAIAgentUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = UITEST013 /* Build configuration list for PBXNativeTarget "LocalAIAgentUITests" */;
+			buildPhases = (
+				UITEST006 /* Sources */,
+				UITEST005 /* Frameworks */,
+				UITEST007 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				UITEST009 /* PBXTargetDependency */,
+			);
+			name = LocalAIAgentUITests;
+			productName = LocalAIAgentUITests;
+			productReference = UITEST002 /* LocalAIAgentUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -322,6 +427,14 @@
 				TargetAttributes = {
 					400 = {
 						CreatedOnToolsVersion = 15.0;
+					};
+					TEST008 = {
+						CreatedOnToolsVersion = 16.0;
+						TestTargetID = 400;
+					};
+					UITEST008 = {
+						CreatedOnToolsVersion = 16.0;
+						TestTargetID = 400;
 					};
 				};
 			};
@@ -344,6 +457,8 @@
 			projectRoot = "";
 			targets = (
 				400 /* LocalAIAgent */,
+				TEST008 /* LocalAIAgentTests */,
+				UITEST008 /* LocalAIAgentUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -355,6 +470,20 @@
 			files = (
 				031 /* Assets.xcassets in Resources */,
 				036 /* Localizable.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		TEST007 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		UITEST007 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -413,10 +542,43 @@
 				SHAREDDATAMGR001 /* SharedDataManager.swift in Sources */,
 				SESSLOG001 /* SessionLogger.swift in Sources */,
 				FEEDMGR001 /* FeedbackManager.swift in Sources */,
+				WEATHER001 /* WeatherServer.swift in Sources */,
+				TRANS001 /* TranslationServer.swift in Sources */,
+				NOTES001 /* NotesServer.swift in Sources */,
+				ONBMCP001 /* OnboardingMCPView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		TEST006 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				TEST004 /* LocalAIAgentTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		UITEST006 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				UITEST004 /* LocalAIAgentUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		TEST009 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 400 /* LocalAIAgent */;
+			targetProxy = TEST010 /* PBXContainerItemProxy */;
+		};
+		UITEST009 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 400 /* LocalAIAgent */;
+			targetProxy = UITEST010 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		140 /* Localizable.strings */ = {
@@ -559,7 +721,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = LocalAIAgent/LocalAIAgent.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_TEAM = 5BV85JW8US;
 				ENABLE_PREVIEWS = YES;
@@ -576,7 +738,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = love.elio.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTS_MACCATALYST = YES;
@@ -594,7 +756,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = LocalAIAgent/LocalAIAgent.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_TEAM = 5BV85JW8US;
 				ENABLE_PREVIEWS = YES;
@@ -611,7 +773,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = love.elio.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTS_MACCATALYST = YES;
@@ -619,6 +781,80 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		TEST011 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_TEAM = 5BV85JW8US;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = love.elio.app.tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LocalAIAgent.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/LocalAIAgent";
+			};
+			name = Debug;
+		};
+		TEST012 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_TEAM = 5BV85JW8US;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = love.elio.app.tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LocalAIAgent.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/LocalAIAgent";
+			};
+			name = Release;
+		};
+		UITEST011 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_TEAM = 5BV85JW8US;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = love.elio.app.uitests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = LocalAIAgent;
+			};
+			name = Debug;
+		};
+		UITEST012 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_TEAM = 5BV85JW8US;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = love.elio.app.uitests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = LocalAIAgent;
 			};
 			name = Release;
 		};
@@ -639,6 +875,24 @@
 			buildConfigurations = (
 				700 /* Debug */,
 				701 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		TEST013 /* Build configuration list for PBXNativeTarget "LocalAIAgentTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				TEST011 /* Debug */,
+				TEST012 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		UITEST013 /* Build configuration list for PBXNativeTarget "LocalAIAgentUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				UITEST011 /* Debug */,
+				UITEST012 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -8,6 +8,8 @@ struct ModelSelectionView: View {
     @State private var selectedModelId: String?
     @State private var isDownloading = false
     @State private var downloadError: String?
+    @State private var currentDownloadProgress: Double = 0
+    @State private var downloadingModelId: String?
 
     var body: some View {
         NavigationStack {
@@ -21,7 +23,7 @@ struct ModelSelectionView: View {
                                 model: model,
                                 isSelected: selectedModelId == model.id,
                                 isDownloaded: modelLoader.isModelDownloaded(model.id),
-                                downloadProgress: modelLoader.downloadProgress[model.id],
+                                downloadProgress: downloadingModelId == model.id ? currentDownloadProgress : nil,
                                 onSelect: {
                                     selectedModelId = model.id
                                 }
@@ -156,6 +158,20 @@ struct ModelSelectionView: View {
         }
 
         isDownloading = true
+        downloadingModelId = modelId
+        currentDownloadProgress = 0
+
+        // Start progress monitoring task
+        let progressTask = Task {
+            while !Task.isCancelled {
+                if let progress = modelLoader.downloadProgress[modelId] {
+                    await MainActor.run {
+                        currentDownloadProgress = progress
+                    }
+                }
+                try? await Task.sleep(nanoseconds: 100_000_000) // 0.1 second
+            }
+        }
 
         Task {
             do {
@@ -163,7 +179,10 @@ struct ModelSelectionView: View {
             } catch {
                 downloadError = error.localizedDescription
             }
+            progressTask.cancel()
             isDownloading = false
+            downloadingModelId = nil
+            currentDownloadProgress = 0
         }
     }
 
