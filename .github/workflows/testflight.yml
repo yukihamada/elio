@@ -22,9 +22,17 @@ jobs:
       - name: Select Xcode
         run: sudo xcode-select -s /Applications/Xcode_16.2.app/Contents/Developer
 
-      - name: Install iOS platform
-        run: xcodebuild -downloadPlatform iOS || echo "iOS platform download skipped (may already be installed)"
-        continue-on-error: true
+      - name: Check iOS SDK availability
+        run: |
+          echo "=== Available SDKs ==="
+          xcodebuild -showsdks
+          echo "=== Checking for iOS SDK ==="
+          if xcodebuild -showsdks | grep -q "iphoneos"; then
+            echo "iOS SDK is available"
+          else
+            echo "Attempting to download iOS platform..."
+            xcodebuild -downloadPlatform iOS || echo "Download failed, continuing anyway"
+          fi
 
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1

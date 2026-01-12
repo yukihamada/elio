@@ -62,6 +62,7 @@ platform :ios do
       project: "LocalAIAgent.xcodeproj",
       scheme: "LocalAIAgent",
       export_method: "app-store",
+      destination: "generic/platform=iOS",
       xcargs: "CODE_SIGN_STYLE=Manual PROVISIONING_PROFILE_SPECIFIER='Elio AppStore' CODE_SIGN_IDENTITY='Apple Distribution' DEVELOPMENT_TEAM=5BV85JW8US",
       export_options: {
         provisioningProfiles: {
@@ -104,6 +105,7 @@ platform :ios do
       project: "LocalAIAgent.xcodeproj",
       scheme: "LocalAIAgent",
       export_method: "app-store",
+      destination: "generic/platform=iOS",
       xcargs: "CODE_SIGN_STYLE=Manual PROVISIONING_PROFILE_SPECIFIER='Elio AppStore' CODE_SIGN_IDENTITY='Apple Distribution' DEVELOPMENT_TEAM=5BV85JW8US",
       export_options: {
         provisioningProfiles: {
