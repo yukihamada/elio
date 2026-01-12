@@ -23,8 +23,20 @@ jobs:
         run: sudo xcode-select -s /Applications/Xcode_16.2.app/Contents/Developer
 
       - name: Install iOS platform
-        run: xcodebuild -downloadPlatform iOS || echo "iOS platform download skipped"
-        continue-on-error: true
+        run: |
+          echo "=== Downloading iOS platform (with retry) ==="
+          for i in 1 2 3 4 5; do
+            echo "Attempt $i..."
+            if xcodebuild -downloadPlatform iOS 2>&1 && xcodebuild -showsdks | grep -q "iphoneos"; then
+              echo "iOS platform installed successfully"
+              exit 0
+            fi
+            echo "Attempt $i failed, waiting 30 seconds..."
+            sleep 30
+          done
+          echo "=== Final SDK check ==="
+          xcodebuild -showsdks
+          xcodebuild -showsdks | grep -q "iphoneos" || { echo "ERROR: iOS SDK not available"; exit 1; }
 
       - name: Show Xcode version
         run: xcodebuild -version
