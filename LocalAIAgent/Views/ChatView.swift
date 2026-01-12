@@ -499,7 +499,7 @@ struct ChatView: View {
         ScrollViewReader { proxy in
             ScrollView {
                 LazyVStack(spacing: 0) {
-                    if appState.currentConversation?.messages.isEmpty ?? true {
+                    if (appState.currentConversation?.messages.isEmpty ?? true) && !isGenerating {
                         welcomeView
                     } else {
                         ForEach(appState.currentConversation?.messages ?? []) { message in
@@ -800,6 +800,7 @@ struct ChatView: View {
                     TextField(String(localized: "chat.placeholder"), text: $inputText, axis: .vertical)
                         .textFieldStyle(.plain)
                         .lineLimit(1...6)
+                        .autocorrectionDisabled()
                         .focused($isInputFocused)
                         .submitLabel(.send)
                         .onSubmit {
@@ -903,6 +904,25 @@ struct ChatView: View {
         // Force keyboard dismissal immediately
         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
 
+        // Add user message IMMEDIATELY (before async processing) for instant UI feedback
+        let displayContent = trimmedText.isEmpty
+            ? (savedWebContent != nil ? String(localized: "chat.web.analyzing") :
+               savedPDFName != nil ? String(format: NSLocalizedString("chat.pdf.sent", comment: ""), savedPDFName!) :
+               String(localized: "chat.image.sent"))
+            : trimmedText
+
+        if appState.currentConversation == nil {
+            appState.currentConversation = Conversation()
+            appState.conversations.insert(appState.currentConversation!, at: 0)
+        }
+        let userMessage = Message(role: .user, content: displayContent, imageData: savedImages.first?.jpegData(compressionQuality: 0.6))
+        appState.currentConversation?.messages.append(userMessage)
+        // Update title for first message
+        if appState.currentConversation?.messages.count == 1 {
+            let titleText = trimmedText.isEmpty ? (savedWebContent?.title ?? savedPDFName ?? "Untitled") : trimmedText
+            appState.currentConversation?.title = String(titleText.prefix(30)) + (titleText.count > 30 ? "..." : "")
+        }
+
         isGenerating = true
         streamingResponse = ""
         displayedResponse = ""
@@ -912,7 +932,7 @@ struct ChatView: View {
 
         // All heavy processing in background Task
         generationTask = Task {
-            // JPEG conversion (heavy) - now in background
+            // JPEG conversion (heavy) - now in background for full quality
             var imageData: Data? = savedImages.first?.jpegData(compressionQuality: 0.8)
             let pdfImageData: Data? = appState.currentModelSupportsVision && !savedPDFImages.isEmpty
                 ? savedPDFImages.first?.jpegData(compressionQuality: 0.8)
@@ -924,15 +944,11 @@ struct ChatView: View {
             let webContent = savedWebContent
 
             // Build message content
-            var displayContent: String
             var fullContent: String
 
             if let pdfName = pdfName {
                 let hasVisionAnalysis = pdfImageData != nil
                 if hasVisionAnalysis {
-                    displayContent = trimmedText.isEmpty
-                        ? String(format: NSLocalizedString("chat.pdf.sent.vision", comment: ""), pdfName)
-                        : trimmedText
                     if let pdfText = pdfText, !pdfText.isEmpty {
                         let pdfContext = String(format: NSLocalizedString("chat.pdf.context.vision", comment: ""), pdfName, pdfText)
                         fullContent = trimmedText.isEmpty ? pdfContext : "\(pdfContext)\n\n\(trimmedText)"
@@ -943,52 +959,19 @@ struct ChatView: View {
                     }
                     imageData = pdfImageData
                 } else if let pdfText = pdfText {
-                    displayContent = trimmedText.isEmpty
-                        ? String(format: NSLocalizedString("chat.pdf.sent", comment: ""), pdfName)
-                        : trimmedText
                     let pdfContext = String(format: NSLocalizedString("chat.pdf.context", comment: ""), pdfName, pdfText)
                     fullContent = trimmedText.isEmpty ? pdfContext : "\(pdfContext)\n\n\(trimmedText)"
                 } else {
-                    displayContent = trimmedText.isEmpty
-                        ? String(format: NSLocalizedString("chat.pdf.sent", comment: ""), pdfName)
-                        : trimmedText
                     fullContent = trimmedText
                 }
             } else if let webContent = webContent {
-                displayContent = trimmedText.isEmpty
-                    ? String(format: NSLocalizedString("chat.url.sent", comment: ""), webContent.title)
-                    : trimmedText
                 let webContext = String(format: NSLocalizedString("chat.url.context", comment: ""), webContent.title, webContent.url.absoluteString, webContent.text)
                 fullContent = trimmedText.isEmpty ? webContext : "\(webContext)\n\n\(trimmedText)"
-            } else if !savedImages.isEmpty {
-                let imageCountStr = savedImages.count > 1
-                    ? String(format: NSLocalizedString("chat.images.sent", comment: ""), savedImages.count)
-                    : String(localized: "chat.image.sent")
-                displayContent = trimmedText.isEmpty ? imageCountStr : trimmedText
-                fullContent = trimmedText
             } else {
-                displayContent = trimmedText
                 fullContent = trimmedText
             }
 
-            // Add user message to conversation
-            await MainActor.run {
-                if appState.currentConversation == nil {
-                    appState.currentConversation = Conversation()
-                    appState.conversations.insert(appState.currentConversation!, at: 0)
-                }
-                let userMessage = Message(role: .user, content: displayContent, imageData: imageData)
-                appState.currentConversation?.messages.append(userMessage)
-                // Update title for first message
-                if appState.currentConversation?.messages.count == 1 {
-                    let titleText = trimmedText.isEmpty ? (webContent?.title ?? pdfName ?? "Untitled") : trimmedText
-                    appState.currentConversation?.title = String(titleText.prefix(30)) + (titleText.count > 30 ? "..." : "")
-                }
-                // Force UI update
-                appState.currentConversation = appState.currentConversation
-            }
-
-            // Generate response
+            // Generate response (user message already added before Task)
             _ = await appState.sendMessageWithStreamingNoUserMessage(fullContent, imageData: imageData) { token in
                 guard !Task.isCancelled else { return }
                 streamingResponse += token

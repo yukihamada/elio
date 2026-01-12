@@ -33,7 +33,7 @@ final class AppState: ObservableObject {
     @Published var currentModelId: String?
     @Published var conversations: [Conversation] = []
     @Published var currentConversation: Conversation?
-    @Published var enabledMCPServers: Set<String> = ["filesystem", "calendar", "reminders", "websearch"]
+    @Published var enabledMCPServers: Set<String> = ["filesystem", "calendar", "reminders", "websearch", "weather", "notes"]
     @Published var errorMessage: String?
     @Published var isGenerating = false  // Track if currently generating response
     @Published var inferenceMode: InferenceMode = .auto
@@ -739,6 +739,12 @@ final class AppState: ObservableObject {
             }
             saveConversations()
         }
+    }
+
+    func clearAllConversations() {
+        conversations.removeAll()
+        currentConversation = nil
+        saveConversations()
     }
 
     func toggleMCPServer(_ serverId: String) {

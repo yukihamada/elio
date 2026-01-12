@@ -1,6 +1,13 @@
 import Foundation
 import LlamaSwift
 
+/// Wrapper to safely pass OpaquePointer across actor boundaries
+/// OpaquePointer is thread-safe for llama.cpp operations
+private struct SendablePointer: @unchecked Sendable {
+    let model: OpaquePointer
+    let context: OpaquePointer
+}
+
 /// Inference acceleration mode
 enum InferenceMode: String, CaseIterable, Codable {
     case auto = "auto"           // Automatic (GPU if available)
@@ -47,18 +54,18 @@ enum InferenceMode: String, CaseIterable, Codable {
     }
 
     /// Cached GPU layers calculation (computed once at startup)
-    /// Conservative values to avoid Metal synchronization crashes on A18 Pro
+    /// Aggressive values for maximum speed - offload all layers to GPU when possible
     private static let cachedOptimalGPULayers: Int32 = {
         let physicalMemory = ProcessInfo.processInfo.physicalMemory
         let memoryGB = Double(physicalMemory) / 1_073_741_824
 
-        // More conservative GPU layer allocation to prevent Metal crashes
-        // A18 Pro has issues with too many GPU layers
+        // Aggressive GPU layer allocation for maximum inference speed
+        // Most models have 28-32 layers; offload all to GPU for best performance
         switch memoryGB {
-        case 8...:   return 40   // 8GB+ (Pro models) - limited layers for stability
-        case 6..<8:  return 28   // 6GB - moderate layers
-        case 4..<6:  return 18   // 4GB - fewer layers
-        default:     return 8    // <4GB - minimal layers
+        case 8...:   return 99   // 8GB+ (Pro models) - offload ALL layers to GPU
+        case 6..<8:  return 40   // 6GB - most layers on GPU
+        case 4..<6:  return 28   // 4GB - majority on GPU
+        default:     return 16   // <4GB - balanced
         }
     }()
 }
@@ -146,6 +153,8 @@ final class LlamaInference: ObservableObject {
         setenv("GGML_METAL_NO_CONCURRENCY", "1", 1)
         // Additional Metal stability settings for A18 Pro
         setenv("GGML_METAL_FULL_THREADS", "0", 1)
+        // Set Metal resource path for optimized kernel loading
+        setenv("GGML_METAL_PATH_RESOURCES", Bundle.main.bundlePath, 1)
         // Initialize llama backend
         llama_backend_init()
     }
@@ -192,36 +201,55 @@ final class LlamaInference: ObservableObject {
 
         loadingProgress = 0.1
 
-        // Model parameters - configure based on inference mode
-        var modelParams = llama_model_default_params()
-        // Set GPU layers based on inference mode
-        modelParams.n_gpu_layers = inferenceMode.gpuLayers
+        // Capture values needed for background thread
+        let gpuLayers = inferenceMode.gpuLayers
+        let contextSize = config.contextSize
+        let modelUrl = url
 
-        // Load model
-        guard let loadedModel = llama_model_load_from_file(url.path, modelParams) else {
-            throw LlamaError.modelNotFound
-        }
+        // Perform heavy model loading on background thread to avoid blocking UI
+        let pointers = try await Task.detached(priority: .userInitiated) {
+            // Model parameters - configure based on inference mode
+            var modelParams = llama_model_default_params()
+            modelParams.n_gpu_layers = gpuLayers
 
-        // Context parameters - optimized for mobile memory efficiency
-        var contextParams = llama_context_default_params()
-        contextParams.n_ctx = config.contextSize
-        // Reduced batch size for better memory efficiency on mobile
-        // Note: For very long prompts, this may require multiple decode passes
-        contextParams.n_batch = min(512, config.contextSize)
-        contextParams.n_ubatch = 256  // Smaller micro-batch for mobile memory constraints
-        // Use performance cores for speed
-        let perfCores = max(4, ProcessInfo.processInfo.activeProcessorCount - 2)
-        contextParams.n_threads = Int32(perfCores)
-        contextParams.n_threads_batch = Int32(perfCores)
+            // Load model (this is the main blocking operation - can take 1-7 seconds)
+            guard let model = llama_model_load_from_file(modelUrl.path, modelParams) else {
+                throw LlamaError.modelNotFound
+            }
 
-        // Create context
-        guard let loadedContext = llama_init_from_model(loadedModel, contextParams) else {
-            llama_model_free(loadedModel)
-            throw LlamaError.contextCreationFailed
-        }
+            // Context parameters - optimized for speed on iOS
+            var contextParams = llama_context_default_params()
+            contextParams.n_ctx = contextSize
+            // Larger batch sizes for faster prompt processing
+            contextParams.n_batch = min(1024, contextSize)  // Increased from 512
+            contextParams.n_ubatch = 512  // Increased micro-batch for better throughput
+            // Use all performance cores for maximum speed
+            let perfCores = max(4, ProcessInfo.processInfo.activeProcessorCount)
+            contextParams.n_threads = Int32(perfCores)
+            contextParams.n_threads_batch = Int32(perfCores)
 
-        self.model = loadedModel
-        self.context = loadedContext
+            // KV Cache quantization for faster inference (reduces memory bandwidth)
+            contextParams.type_k = GGML_TYPE_Q8_0
+            contextParams.type_v = GGML_TYPE_Q8_0
+
+            // Enable Flash Attention for Metal GPU acceleration
+            contextParams.flash_attn_type = LLAMA_FLASH_ATTN_TYPE_ENABLED
+
+            // Offload KQV operations to GPU for maximum speed
+            contextParams.offload_kqv = true
+
+            // Create context (secondary blocking operation)
+            guard let context = llama_init_from_model(model, contextParams) else {
+                llama_model_free(model)
+                throw LlamaError.contextCreationFailed
+            }
+
+            return SendablePointer(model: model, context: context)
+        }.value
+
+        // Back on MainActor - update state
+        self.model = pointers.model
+        self.context = pointers.context
         self.loadingProgress = 1.0
         self.isLoaded = true
     }
@@ -356,8 +384,8 @@ final class LlamaInference: ObservableObject {
             // Check for cancellation
             try Task.checkCancellation()
 
-            // Small yield before Metal-heavy sampling to avoid sync issues
-            if tokenIndex % 8 == 0 {
+            // Yield periodically for cancellation responsiveness (less frequent = faster throughput)
+            if tokenIndex % 64 == 0 {
                 await Task.yield()
             }
 

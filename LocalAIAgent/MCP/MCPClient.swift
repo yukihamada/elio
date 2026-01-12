@@ -27,6 +27,13 @@ final class MCPClient: ObservableObject {
         registerServer(HealthServer())
         registerServer(ShortcutsServer())
         registerServer(WebSearchServer())
+        registerServer(WeatherServer())
+        registerServer(NotesServer())
+        // Translation requires iOS 18.0+ and uses SwiftUI view modifiers
+        // Disabled for now - needs UI-based implementation
+        // if #available(iOS 18.0, *) {
+        //     registerServer(TranslationServer())
+        // }
     }
 
     private func updateServerInfos() {

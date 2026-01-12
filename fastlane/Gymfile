@@ -1,0 +1,18 @@
+project("LocalAIAgent.xcodeproj")
+scheme("LocalAIAgent")
+clean(true)
+
+# Output configuration
+output_directory("./build")
+output_name("Elio")
+
+# Build configuration
+configuration("Release")
+destination("generic/platform=iOS")
+
+# Archive options
+include_bitcode(false)
+include_symbols(true)
+
+# Export options for App Store
+export_method("app-store")
