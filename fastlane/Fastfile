@@ -61,10 +61,10 @@ platform :ios do
     build_app(
       project: "LocalAIAgent.xcodeproj",
       scheme: "LocalAIAgent",
+      configuration: "Release",
       export_method: "app-store",
       destination: "generic/platform=iOS",
       sdk: "iphoneos",
-      xcargs: "-allowProvisioningUpdates DEVELOPMENT_TEAM=5BV85JW8US",
       export_options: {
         provisioningProfiles: {
           "love.elio.app" => "Elio AppStore"
@@ -105,10 +105,10 @@ platform :ios do
     build_app(
       project: "LocalAIAgent.xcodeproj",
       scheme: "LocalAIAgent",
+      configuration: "Release",
       export_method: "app-store",
       destination: "generic/platform=iOS",
       sdk: "iphoneos",
-      xcargs: "-allowProvisioningUpdates DEVELOPMENT_TEAM=5BV85JW8US",
       export_options: {
         provisioningProfiles: {
           "love.elio.app" => "Elio AppStore"
