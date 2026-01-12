@@ -163,10 +163,32 @@ enum ModelCategory: String, Codable, CaseIterable {
     }
 }
 
+// ダウンロード進捗情報
+struct DownloadProgressInfo {
+    let progress: Double              // 0.0 - 1.0
+    let bytesDownloaded: Int64
+    let totalBytes: Int64
+    let speed: Double                 // bytes per second
+    let estimatedTimeRemaining: TimeInterval?  // seconds
+
+    var speedFormatted: String {
+        let mbps = speed / 1_000_000
+        return String(format: "%.1f MB/s", mbps)
+    }
+
+    var etaFormatted: String? {
+        guard let eta = estimatedTimeRemaining, eta > 0 && eta < 86400 else { return nil }
+        let mins = Int(eta) / 60
+        let secs = Int(eta) % 60
+        return String(format: "残り %d:%02d", mins, secs)
+    }
+}
+
 @MainActor
 final class ModelLoader: ObservableObject {
     @Published var availableModels: [ModelInfo] = []
     @Published var downloadProgress: [String: Double] = [:]
+    @Published var downloadProgressInfo: [String: DownloadProgressInfo] = [:]
     @Published var isDownloading = false
 
     private let fileManager = FileManager.default
@@ -1031,10 +1053,18 @@ final class ModelLoader: ObservableObject {
 
         isDownloading = true
         downloadProgress[model.id] = 0
+        downloadProgressInfo[model.id] = DownloadProgressInfo(
+            progress: 0,
+            bytesDownloaded: 0,
+            totalBytes: model.sizeBytes,
+            speed: 0,
+            estimatedTimeRemaining: nil
+        )
 
         defer {
             isDownloading = false
             downloadProgress.removeValue(forKey: model.id)
+            downloadProgressInfo.removeValue(forKey: model.id)
         }
 
         // Create models directory if needed
@@ -1074,17 +1104,25 @@ final class ModelLoader: ObservableObject {
 
     private func downloadWithProgress(from url: URL, modelId: String, expectedSize: Int64) async throws -> (URL, URLResponse) {
         try await withCheckedThrowingContinuation { continuation in
-            let delegate = DownloadDelegate(expectedSize: expectedSize) { [weak self] progress, bytesWritten, totalBytes in
+            let delegate = DownloadDelegate(expectedSize: expectedSize) { [weak self] progress, bytesWritten, totalBytes, speed, eta in
                 Task { @MainActor in
                     if progress >= 0 {
                         self?.downloadProgress[modelId] = progress
+                        self?.downloadProgressInfo[modelId] = DownloadProgressInfo(
+                            progress: progress,
+                            bytesDownloaded: bytesWritten,
+                            totalBytes: totalBytes,
+                            speed: speed,
+                            estimatedTimeRemaining: eta
+                        )
                     }
                     // Log progress for debugging
                     #if DEBUG
                     let mbWritten = Double(bytesWritten) / 1_000_000
                     let mbTotal = Double(totalBytes) / 1_000_000
+                    let mbps = speed / 1_000_000
                     if Int(mbWritten) % 50 == 0 {
-                        print("Download progress: \(String(format: "%.1f", mbWritten))MB / \(String(format: "%.1f", mbTotal))MB (\(Int(progress * 100))%)")
+                        print("Download progress: \(String(format: "%.1f", mbWritten))MB / \(String(format: "%.1f", mbTotal))MB (\(Int(progress * 100))%) - \(String(format: "%.1f", mbps)) MB/s")
                     }
                     #endif
                 }
@@ -1248,16 +1286,26 @@ private final class ZIPArchive {
 // MARK: - Download Delegate
 
 private final class DownloadDelegate: NSObject, URLSessionDownloadDelegate {
-    private let progressHandler: (Double, Int64, Int64) -> Void
+    private let progressHandler: (Double, Int64, Int64, Double, TimeInterval?) -> Void
     private let expectedSize: Int64
+    private var startTime: Date?
+    private var lastUpdateTime: Date?
+    private var lastBytesWritten: Int64 = 0
+    private var speedSamples: [Double] = []  // 速度のサンプルを保持して平滑化
 
-    init(expectedSize: Int64, progressHandler: @escaping (Double, Int64, Int64) -> Void) {
+    init(expectedSize: Int64, progressHandler: @escaping (Double, Int64, Int64, Double, TimeInterval?) -> Void) {
         self.expectedSize = expectedSize
         self.progressHandler = progressHandler
         super.init()
     }
 
     func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didWriteData bytesWritten: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64) {
+        let now = Date()
+        if startTime == nil {
+            startTime = now
+            lastUpdateTime = now
+        }
+
         // Use server-provided size if available, otherwise use expected size from model info
         let totalSize: Int64
         if totalBytesExpectedToWrite > 0 {
@@ -1266,12 +1314,36 @@ private final class DownloadDelegate: NSObject, URLSessionDownloadDelegate {
             totalSize = expectedSize
         } else {
             // Fallback: show indeterminate progress
-            progressHandler(-1, totalBytesWritten, 0)
+            progressHandler(-1, totalBytesWritten, 0, 0, nil)
             return
         }
 
+        // 速度計算 (直近の間隔から計算)
+        let elapsed = now.timeIntervalSince(lastUpdateTime ?? now)
+        var currentSpeed: Double = 0
+        if elapsed > 0.1 {  // 最低0.1秒間隔で更新
+            let bytesInInterval = totalBytesWritten - lastBytesWritten
+            currentSpeed = Double(bytesInInterval) / elapsed
+
+            // 速度サンプルを追加 (最大10個で平滑化)
+            speedSamples.append(currentSpeed)
+            if speedSamples.count > 10 {
+                speedSamples.removeFirst()
+            }
+
+            lastUpdateTime = now
+            lastBytesWritten = totalBytesWritten
+        }
+
+        // 平均速度を計算
+        let averageSpeed = speedSamples.isEmpty ? 0 : speedSamples.reduce(0, +) / Double(speedSamples.count)
+
+        // 残り時間計算
+        let remainingBytes = totalSize - totalBytesWritten
+        let eta: TimeInterval? = averageSpeed > 0 ? TimeInterval(remainingBytes) / averageSpeed : nil
+
         let progress = Double(totalBytesWritten) / Double(totalSize)
-        progressHandler(min(progress, 1.0), totalBytesWritten, totalSize)
+        progressHandler(min(progress, 1.0), totalBytesWritten, totalSize, averageSpeed, eta)
     }
 
     func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {

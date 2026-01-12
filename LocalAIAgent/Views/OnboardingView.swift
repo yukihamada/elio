@@ -6,6 +6,7 @@ struct OnboardingView: View {
     @State private var currentPage = 0
     @State private var isDownloading = false
     @State private var downloadProgress: Double = 0
+    @State private var downloadProgressInfo: DownloadProgressInfo?
     @State private var downloadError: String?
     @State private var downloadCompleted = false
     @State private var textModelDownloaded = false
@@ -300,7 +301,7 @@ struct OnboardingView: View {
                             labelColor: .blue,
                             isDownloaded: textModelDownloaded || modelLoader.isModelDownloaded(model.id),
                             isDownloading: isDownloading && currentDownloadingModel == model.id,
-                            progress: currentDownloadingModel == model.id ? downloadProgress : 0
+                            progressInfo: currentDownloadingModel == model.id ? downloadProgressInfo : nil
                         )
                     }
 
@@ -312,7 +313,7 @@ struct OnboardingView: View {
                             labelColor: .purple,
                             isDownloaded: visionModelDownloaded || modelLoader.isModelDownloaded(model.id),
                             isDownloading: isDownloading && currentDownloadingModel == model.id,
-                            progress: currentDownloadingModel == model.id ? downloadProgress : 0
+                            progressInfo: currentDownloadingModel == model.id ? downloadProgressInfo : nil
                         )
                     }
 
@@ -387,12 +388,14 @@ struct OnboardingView: View {
                     await MainActor.run {
                         currentDownloadingModel = text.id
                         downloadProgress = 0
+                        downloadProgressInfo = nil
                     }
 
                     let progressTask = Task { @MainActor in
                         while !Task.isCancelled {
-                            if let progress = modelLoader.downloadProgress[text.id] {
-                                self.downloadProgress = progress
+                            if let info = modelLoader.downloadProgressInfo[text.id] {
+                                self.downloadProgress = info.progress
+                                self.downloadProgressInfo = info
                             }
                             try? await Task.sleep(nanoseconds: 100_000_000)
                         }
@@ -404,6 +407,7 @@ struct OnboardingView: View {
                     await MainActor.run {
                         textModelDownloaded = true
                         downloadProgress = 1.0
+                        downloadProgressInfo = nil
                     }
                 }
 
@@ -412,12 +416,14 @@ struct OnboardingView: View {
                     await MainActor.run {
                         currentDownloadingModel = vision.id
                         downloadProgress = 0
+                        downloadProgressInfo = nil
                     }
 
                     let progressTask = Task { @MainActor in
                         while !Task.isCancelled {
-                            if let progress = modelLoader.downloadProgress[vision.id] {
-                                self.downloadProgress = progress
+                            if let info = modelLoader.downloadProgressInfo[vision.id] {
+                                self.downloadProgress = info.progress
+                                self.downloadProgressInfo = info
                             }
                             try? await Task.sleep(nanoseconds: 100_000_000)
                         }
@@ -429,6 +435,7 @@ struct OnboardingView: View {
                     await MainActor.run {
                         visionModelDownloaded = true
                         downloadProgress = 1.0
+                        downloadProgressInfo = nil
                     }
                 }
 
@@ -542,55 +549,78 @@ struct ModelDownloadCard: View {
     let labelColor: Color
     let isDownloaded: Bool
     let isDownloading: Bool
-    let progress: Double
+    let progressInfo: DownloadProgressInfo?
 
     var body: some View {
-        HStack(spacing: 12) {
-            // Status icon
-            ZStack {
-                Circle()
-                    .fill(isDownloaded ? Color.green.opacity(0.15) : labelColor.opacity(0.15))
-                    .frame(width: 40, height: 40)
+        VStack(spacing: 8) {
+            HStack(spacing: 12) {
+                // Status icon
+                ZStack {
+                    Circle()
+                        .fill(isDownloaded ? Color.green.opacity(0.15) : labelColor.opacity(0.15))
+                        .frame(width: 40, height: 40)
+
+                    if isDownloaded {
+                        Image(systemName: "checkmark.circle.fill")
+                            .foregroundStyle(.green)
+                    } else if isDownloading {
+                        CircularProgressView(progress: progressInfo?.progress ?? 0)
+                            .frame(width: 30, height: 30)
+                    } else {
+                        Image(systemName: "arrow.down.circle")
+                            .foregroundStyle(labelColor)
+                    }
+                }
+
+                VStack(alignment: .leading, spacing: 2) {
+                    HStack(spacing: 6) {
+                        Text(model.name)
+                            .font(.subheadline.weight(.medium))
+                        Text(label)
+                            .font(.caption2)
+                            .padding(.horizontal, 6)
+                            .padding(.vertical, 2)
+                            .background(labelColor.opacity(0.2))
+                            .foregroundStyle(labelColor)
+                            .cornerRadius(4)
+                    }
+                    Text(model.size)
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                }
+
+                Spacer()
 
                 if isDownloaded {
-                    Image(systemName: "checkmark.circle.fill")
+                    Text("完了")
+                        .font(.caption)
                         .foregroundStyle(.green)
-                } else if isDownloading {
-                    CircularProgressView(progress: progress)
-                        .frame(width: 30, height: 30)
-                } else {
-                    Image(systemName: "arrow.down.circle")
-                        .foregroundStyle(labelColor)
+                } else if isDownloading, let info = progressInfo {
+                    VStack(alignment: .trailing, spacing: 2) {
+                        Text("\(Int(info.progress * 100))%")
+                            .font(.caption.monospacedDigit())
+                        if info.speed > 0 {
+                            Text(info.speedFormatted)
+                                .font(.caption2)
+                        }
+                    }
+                    .foregroundStyle(.secondary)
                 }
             }
 
-            VStack(alignment: .leading, spacing: 2) {
-                HStack(spacing: 6) {
-                    Text(model.name)
-                        .font(.subheadline.weight(.medium))
-                    Text(label)
-                        .font(.caption2)
-                        .padding(.horizontal, 6)
-                        .padding(.vertical, 2)
-                        .background(labelColor.opacity(0.2))
-                        .foregroundStyle(labelColor)
-                        .cornerRadius(4)
+            // Progress bar with ETA
+            if isDownloading, let info = progressInfo {
+                VStack(spacing: 4) {
+                    ProgressView(value: info.progress)
+                        .progressViewStyle(.linear)
+                        .tint(labelColor)
+
+                    if let eta = info.etaFormatted {
+                        Text(eta)
+                            .font(.caption2)
+                            .foregroundStyle(.secondary)
+                    }
                 }
-                Text(model.size)
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
-            }
-
-            Spacer()
-
-            if isDownloaded {
-                Text("完了")
-                    .font(.caption)
-                    .foregroundStyle(.green)
-            } else if isDownloading {
-                Text("\(Int(progress * 100))%")
-                    .font(.caption.monospacedDigit())
-                    .foregroundStyle(.secondary)
             }
         }
         .padding(12)
