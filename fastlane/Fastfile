@@ -2,8 +2,8 @@ default_platform(:ios)
 
 platform :ios do
   before_all do
-    # Ensure we're using the correct Xcode version
-    xcversion(version: "~> 16.0") if is_ci
+    # Xcode version is set via xcode-select in CI workflow
+    # Do not use xcversion as it may select a different version
   end
 
   desc "Run all tests"
