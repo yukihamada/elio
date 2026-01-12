@@ -64,7 +64,7 @@ platform :ios do
       export_method: "app-store",
       destination: "generic/platform=iOS",
       sdk: "iphoneos",
-      xcargs: "-allowProvisioningUpdates CODE_SIGN_STYLE=Manual PROVISIONING_PROFILE_SPECIFIER='Elio AppStore' CODE_SIGN_IDENTITY='Apple Distribution' DEVELOPMENT_TEAM=5BV85JW8US",
+      xcargs: "CODE_SIGN_IDENTITY='Apple Distribution' DEVELOPMENT_TEAM=5BV85JW8US",
       export_options: {
         provisioningProfiles: {
           "love.elio.app" => "Elio AppStore"
@@ -108,7 +108,7 @@ platform :ios do
       export_method: "app-store",
       destination: "generic/platform=iOS",
       sdk: "iphoneos",
-      xcargs: "-allowProvisioningUpdates CODE_SIGN_STYLE=Manual PROVISIONING_PROFILE_SPECIFIER='Elio AppStore' CODE_SIGN_IDENTITY='Apple Distribution' DEVELOPMENT_TEAM=5BV85JW8US",
+      xcargs: "CODE_SIGN_IDENTITY='Apple Distribution' DEVELOPMENT_TEAM=5BV85JW8US",
       export_options: {
         provisioningProfiles: {
           "love.elio.app" => "Elio AppStore"
