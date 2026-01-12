@@ -8,7 +8,7 @@ struct ModelSelectionView: View {
     @State private var selectedModelId: String?
     @State private var isDownloading = false
     @State private var downloadError: String?
-    @State private var currentDownloadProgress: Double = 0
+    @State private var currentProgressInfo: DownloadProgressInfo?
     @State private var downloadingModelId: String?
 
     var body: some View {
@@ -23,7 +23,7 @@ struct ModelSelectionView: View {
                                 model: model,
                                 isSelected: selectedModelId == model.id,
                                 isDownloaded: modelLoader.isModelDownloaded(model.id),
-                                downloadProgress: downloadingModelId == model.id ? currentDownloadProgress : nil,
+                                progressInfo: downloadingModelId == model.id ? currentProgressInfo : nil,
                                 onSelect: {
                                     selectedModelId = model.id
                                 }
@@ -159,14 +159,14 @@ struct ModelSelectionView: View {
 
         isDownloading = true
         downloadingModelId = modelId
-        currentDownloadProgress = 0
+        currentProgressInfo = nil
 
         // Start progress monitoring task
         let progressTask = Task {
             while !Task.isCancelled {
-                if let progress = modelLoader.downloadProgress[modelId] {
+                if let info = modelLoader.downloadProgressInfo[modelId] {
                     await MainActor.run {
-                        currentDownloadProgress = progress
+                        currentProgressInfo = info
                     }
                 }
                 try? await Task.sleep(nanoseconds: 100_000_000) // 0.1 second
@@ -182,7 +182,7 @@ struct ModelSelectionView: View {
             progressTask.cancel()
             isDownloading = false
             downloadingModelId = nil
-            currentDownloadProgress = 0
+            currentProgressInfo = nil
         }
     }
 
@@ -204,7 +204,7 @@ struct ModelCard: View {
     let model: ModelLoader.ModelInfo
     let isSelected: Bool
     let isDownloaded: Bool
-    let downloadProgress: Double?
+    let progressInfo: DownloadProgressInfo?
     let onSelect: () -> Void
 
     var body: some View {
@@ -266,15 +266,27 @@ struct ModelCard: View {
                     .multilineTextAlignment(.leading)
                     .fixedSize(horizontal: false, vertical: true)
 
-                if let progress = downloadProgress {
+                if let info = progressInfo {
                     VStack(alignment: .leading, spacing: 4) {
-                        ProgressView(value: progress)
+                        ProgressView(value: info.progress)
                             .progressViewStyle(.linear)
                             .tint(.accentColor)
 
-                        Text("ダウンロード中... \(Int(progress * 100))%")
-                            .font(.caption)
-                            .foregroundStyle(.secondary)
+                        HStack {
+                            Text("\(Int(info.progress * 100))%")
+
+                            Spacer()
+
+                            if info.speed > 0 {
+                                Text(info.speedFormatted)
+                            }
+
+                            if let eta = info.etaFormatted {
+                                Text(eta)
+                            }
+                        }
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
                     }
                 }
 

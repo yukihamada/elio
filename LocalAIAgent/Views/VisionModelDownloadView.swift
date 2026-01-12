@@ -180,14 +180,23 @@ struct VisionModelDownloadView: View {
                         .foregroundStyle(.white)
                         .clipShape(RoundedRectangle(cornerRadius: 12))
                     }
-                } else if let progress = modelLoader.downloadProgress[model.id] {
+                } else if let info = modelLoader.downloadProgressInfo[model.id] {
                     VStack(spacing: 8) {
-                        ProgressView(value: progress)
+                        ProgressView(value: info.progress)
                             .progressViewStyle(.linear)
                             .tint(.blue)
-                        Text(String(format: NSLocalizedString("model.status.downloading", comment: ""), Int(progress * 100)))
-                            .font(.system(size: 12))
-                            .foregroundStyle(.secondary)
+                        HStack {
+                            Text("\(Int(info.progress * 100))%")
+                            Spacer()
+                            if info.speed > 0 {
+                                Text(info.speedFormatted)
+                            }
+                            if let eta = info.etaFormatted {
+                                Text(eta)
+                            }
+                        }
+                        .font(.system(size: 12))
+                        .foregroundStyle(.secondary)
                     }
                 } else {
                     Button(action: {
@@ -273,10 +282,16 @@ struct VisionModelDownloadView: View {
                         .foregroundStyle(.white)
                         .clipShape(Capsule())
                 }
-            } else if let progress = modelLoader.downloadProgress[model.id] {
-                Text("\(Int(progress * 100))%")
-                    .font(.system(size: 13, weight: .medium))
-                    .foregroundStyle(.secondary)
+            } else if let info = modelLoader.downloadProgressInfo[model.id] {
+                VStack(alignment: .trailing, spacing: 2) {
+                    Text("\(Int(info.progress * 100))%")
+                        .font(.system(size: 13, weight: .medium))
+                    if info.speed > 0 {
+                        Text(info.speedFormatted)
+                            .font(.system(size: 10))
+                    }
+                }
+                .foregroundStyle(.secondary)
             } else {
                 VStack(alignment: .trailing, spacing: 4) {
                     Button(action: {
