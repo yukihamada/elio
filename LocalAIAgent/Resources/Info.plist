@@ -47,10 +47,6 @@
 	<string>Elioが写真ライブラリにアクセスするために使用します。</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Elioが現在地を取得するために使用します。</string>
-	<key>NSHealthShareUsageDescription</key>
-	<string>Elioが健康データを読み取るために使用します。</string>
-	<key>NSHealthUpdateUsageDescription</key>
-	<string>Elioが健康データを更新するために使用します。</string>
 	<key>NSRemindersUsageDescription</key>
 	<string>Elioがリマインダーを読み書きするために使用します。</string>
 	<key>NSCameraUsageDescription</key>
