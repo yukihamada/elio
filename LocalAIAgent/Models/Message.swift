@@ -105,6 +105,37 @@ struct Message: Identifiable, Codable, Equatable {
             )
         }
 
+        // Handle incomplete <think> tags (no closing tag)
+        if cleanContent.contains("<think>") && !cleanContent.contains("</think>") {
+            if let startRange = cleanContent.range(of: "<think>") {
+                let remainingThinking = String(cleanContent[startRange.upperBound...])
+                    .trimmingCharacters(in: .whitespacesAndNewlines)
+                if !remainingThinking.isEmpty {
+                    thinkingParts.append(remainingThinking)
+                }
+                cleanContent = String(cleanContent[..<startRange.lowerBound])
+            }
+        }
+
+        // Handle incomplete <thinking> tags
+        if cleanContent.contains("<thinking>") && !cleanContent.contains("</thinking>") {
+            if let startRange = cleanContent.range(of: "<thinking>") {
+                let remainingThinking = String(cleanContent[startRange.upperBound...])
+                    .trimmingCharacters(in: .whitespacesAndNewlines)
+                if !remainingThinking.isEmpty {
+                    thinkingParts.append(remainingThinking)
+                }
+                cleanContent = String(cleanContent[..<startRange.lowerBound])
+            }
+        }
+
+        // Clean up any remaining raw tags that might have slipped through
+        cleanContent = cleanContent
+            .replacingOccurrences(of: "<think>", with: "")
+            .replacingOccurrences(of: "</think>", with: "")
+            .replacingOccurrences(of: "<thinking>", with: "")
+            .replacingOccurrences(of: "</thinking>", with: "")
+
         let thinking = thinkingParts.isEmpty ? nil : thinkingParts.joined(separator: "\n\n")
         let finalContent = cleanContent.trimmingCharacters(in: .whitespacesAndNewlines)
 
