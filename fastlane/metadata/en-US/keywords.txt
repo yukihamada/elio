@@ -1,0 +1,1 @@
+AI,local AI,offline AI,private,ChatGPT,assistant,secure,LLM,artificial intelligence,confidential

@@ -149,6 +149,20 @@
 "about.gguf.format" = "GGUF Format";
 "about.metal.gpu" = "Metal GPU Acceleration";
 
+// MARK: - Referral
+"referral.title" = "Refer Friends";
+"referral.code.title" = "Your Referral Code";
+"referral.code.copy" = "Copy Code";
+"referral.code.copied" = "Copied";
+"referral.share.button" = "Share with Friends";
+"referral.share.description" = "Share Elio with your friends!";
+"referral.count" = "Referred %d people";
+"referral.enter.title" = "Enter Referral Code";
+"referral.enter.placeholder" = "Referral Code";
+"referral.enter.button" = "Apply";
+"referral.enter.success" = "Referral code applied";
+"referral.enter.error" = "Invalid referral code";
+
 // MARK: - Privacy Policy
 "privacy.title" = "Privacy Policy";
 "privacy.data.collection.title" = "Data Collection";
@@ -191,7 +205,13 @@
 "message.speak" = "Speak";
 "message.stop.speaking" = "Stop Speaking";
 "message.share" = "Share";
+"message.share.card" = "Share as Card";
 "message.like" = "Like";
+
+// MARK: - Share Card
+"share.card.title" = "Share Card";
+"share.card.preview" = "Preview";
+"share.card.button" = "Share Image";
 "message.dislike" = "Dislike";
 "message.thinking.process" = "Thinking Process";
 "message.tool.running" = "Running Tool";

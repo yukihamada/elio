@@ -149,6 +149,20 @@
 "about.gguf.format" = "GGUF形式";
 "about.metal.gpu" = "Metal GPU加速";
 
+// MARK: - Referral
+"referral.title" = "友達を紹介";
+"referral.code.title" = "あなたの紹介コード";
+"referral.code.copy" = "コードをコピー";
+"referral.code.copied" = "コピーしました";
+"referral.share.button" = "友達にシェア";
+"referral.share.description" = "Elioを友達に紹介しよう！";
+"referral.count" = "%d人を紹介";
+"referral.enter.title" = "紹介コードを入力";
+"referral.enter.placeholder" = "紹介コード";
+"referral.enter.button" = "適用";
+"referral.enter.success" = "紹介コードを適用しました";
+"referral.enter.error" = "無効な紹介コードです";
+
 // MARK: - Privacy Policy
 "privacy.title" = "プライバシーポリシー";
 "privacy.data.collection.title" = "データの収集について";
@@ -191,7 +205,13 @@
 "message.speak" = "読み上げ";
 "message.stop.speaking" = "読み上げ停止";
 "message.share" = "共有";
+"message.share.card" = "カードで共有";
 "message.like" = "いいね";
+
+// MARK: - Share Card
+"share.card.title" = "シェアカード";
+"share.card.preview" = "プレビュー";
+"share.card.button" = "画像をシェア";
 "message.dislike" = "よくない";
 "message.thinking.process" = "思考プロセス";
 "message.tool.running" = "ツール実行中";
