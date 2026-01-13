@@ -69,6 +69,8 @@
 		ONBMCP001 /* OnboardingMCPView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ONBMCP002 /* OnboardingMCPView.swift */; };
 		TEST004 /* LocalAIAgentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = TEST001 /* LocalAIAgentTests.swift */; };
 		UITEST004 /* LocalAIAgentUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = UITEST001 /* LocalAIAgentUITests.swift */; };
+		SNAPSHOT001 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = SNAPSHOT002 /* SnapshotHelper.swift */; };
+		SNAPSHOT003 /* SnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = SNAPSHOT004 /* SnapshotTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -138,6 +140,8 @@
 		TEST002 /* LocalAIAgentTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LocalAIAgentTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		UITEST001 /* LocalAIAgentUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalAIAgentUITests.swift; sourceTree = "<group>"; };
 		UITEST002 /* LocalAIAgentUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LocalAIAgentUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		SNAPSHOT002 /* SnapshotHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = "<group>"; };
+		SNAPSHOT004 /* SnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXContainerItemProxy section */
@@ -233,6 +237,8 @@
 			isa = PBXGroup;
 			children = (
 				UITEST001 /* LocalAIAgentUITests.swift */,
+				SNAPSHOT002 /* SnapshotHelper.swift */,
+				SNAPSHOT004 /* SnapshotTests.swift */,
 			);
 			path = LocalAIAgentUITests;
 			sourceTree = "<group>";
@@ -578,6 +584,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				UITEST004 /* LocalAIAgentUITests.swift in Sources */,
+				SNAPSHOT001 /* SnapshotHelper.swift in Sources */,
+				SNAPSHOT003 /* SnapshotTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
