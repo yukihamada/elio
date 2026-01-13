@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		001 /* LocalAIAgentApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 101 /* LocalAIAgentApp.swift */; };
+		APPINTENT001 /* AppIntents.swift in Sources */ = {isa = PBXBuildFile; fileRef = APPINTENT002 /* AppIntents.swift */; };
 		002 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 102 /* AppState.swift */; };
 		003 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 103 /* ChatView.swift */; };
 		004 /* MessageBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104 /* MessageBubble.swift */; };
@@ -41,6 +42,7 @@
 		033 /* WebSearchServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134 /* WebSearchServer.swift */; };
 		034 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135 /* OnboardingView.swift */; };
 		035 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136 /* AboutView.swift */; };
+		SHARECARD001 /* ShareCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = SHARECARD002 /* ShareCardView.swift */; };
 		036 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 140 /* Localizable.strings */; };
 		037 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 137 /* NetworkMonitor.swift */; };
 		60B47A4DC9139314BB0DC2C9 /* ModelSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F274E62F73576596B9AD3FA /* ModelSettings.swift */; };
@@ -51,6 +53,7 @@
 		DOCPICKER001 /* DocumentPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = DOCPICKER002 /* DocumentPicker.swift */; };
 		FEEDMGR001 /* FeedbackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEEDMGR002 /* FeedbackManager.swift */; };
 		REVMGR001 /* ReviewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = REVMGR002 /* ReviewManager.swift */; };
+		REFMGR001 /* ReferralManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = REFMGR002 /* ReferralManager.swift */; };
 		LANG001 /* LanguageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = LANG002 /* LanguageManager.swift */; };
 		PROMPTMGR001 /* PromptTemplateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = PROMPTMGR002 /* PromptTemplateManager.swift */; };
 		PROMPTTMPL001 /* PromptTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = PROMPTTMPL002 /* PromptTemplate.swift */; };
@@ -71,6 +74,7 @@
 /* Begin PBXFileReference section */
 		100 /* LocalAIAgent.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LocalAIAgent.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		101 /* LocalAIAgentApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalAIAgentApp.swift; sourceTree = "<group>"; };
+		APPINTENT002 /* AppIntents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIntents.swift; sourceTree = "<group>"; };
 		102 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		103 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
 		104 /* MessageBubble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageBubble.swift; sourceTree = "<group>"; };
@@ -105,6 +109,7 @@
 		134 /* WebSearchServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSearchServer.swift; sourceTree = "<group>"; };
 		135 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		136 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
+		SHARECARD002 /* ShareCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareCardView.swift; sourceTree = "<group>"; };
 		137 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 		141 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		142 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -116,6 +121,7 @@
 		EED5CCB34FA4BFAD3E5BEBD2 /* VisionModelDownloadView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = VisionModelDownloadView.swift; sourceTree = "<group>"; };
 		FEEDMGR002 /* FeedbackManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackManager.swift; sourceTree = "<group>"; };
 		REVMGR002 /* ReviewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewManager.swift; sourceTree = "<group>"; };
+		REFMGR002 /* ReferralManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferralManager.swift; sourceTree = "<group>"; };
 		LANG002 /* LanguageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageManager.swift; sourceTree = "<group>"; };
 		PROMPTMGR002 /* PromptTemplateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromptTemplateManager.swift; sourceTree = "<group>"; };
 		PROMPTTMPL002 /* PromptTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromptTemplate.swift; sourceTree = "<group>"; };
@@ -235,6 +241,7 @@
 			isa = PBXGroup;
 			children = (
 				101 /* LocalAIAgentApp.swift */,
+				APPINTENT002 /* AppIntents.swift */,
 				102 /* AppState.swift */,
 				131 /* ThemeManager.swift */,
 				137 /* NetworkMonitor.swift */,
@@ -257,6 +264,7 @@
 				107 /* ModelSelectionView.swift */,
 				135 /* OnboardingView.swift */,
 				136 /* AboutView.swift */,
+				SHARECARD002 /* ShareCardView.swift */,
 				D655A6B9516B5885047F78E7 /* ModelSettingsView.swift */,
 				EED5CCB34FA4BFAD3E5BEBD2 /* VisionModelDownloadView.swift */,
 				DOCPICKER002 /* DocumentPicker.swift */,
@@ -335,6 +343,7 @@
 			children = (
 				FEEDMGR002 /* FeedbackManager.swift */,
 				REVMGR002 /* ReviewManager.swift */,
+				REFMGR002 /* ReferralManager.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -498,6 +507,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				001 /* LocalAIAgentApp.swift in Sources */,
+				APPINTENT001 /* AppIntents.swift in Sources */,
 				002 /* AppState.swift in Sources */,
 				003 /* ChatView.swift in Sources */,
 				004 /* MessageBubble.swift in Sources */,
@@ -532,6 +542,7 @@
 				033 /* WebSearchServer.swift in Sources */,
 				034 /* OnboardingView.swift in Sources */,
 				035 /* AboutView.swift in Sources */,
+				SHARECARD001 /* ShareCardView.swift in Sources */,
 				037 /* NetworkMonitor.swift in Sources */,
 				60B47A4DC9139314BB0DC2C9 /* ModelSettings.swift in Sources */,
 				7D3A20EA65A3530286F7DD7E /* ModelSettingsView.swift in Sources */,
@@ -546,6 +557,7 @@
 				SESSLOG001 /* SessionLogger.swift in Sources */,
 				FEEDMGR001 /* FeedbackManager.swift in Sources */,
 				REVMGR001 /* ReviewManager.swift in Sources */,
+				REFMGR001 /* ReferralManager.swift in Sources */,
 				WEATHER001 /* WeatherServer.swift in Sources */,
 				TRANS001 /* TranslationServer.swift in Sources */,
 				NOTES001 /* NotesServer.swift in Sources */,
