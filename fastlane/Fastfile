@@ -141,6 +141,78 @@ platform :ios do
     )
   end
 
+  desc "Upload metadata to App Store Connect"
+  lane :upload_metadata do
+    api_key = app_store_connect_api_key(
+      key_id: ENV["APP_STORE_CONNECT_API_KEY_ID"],
+      issuer_id: ENV["APP_STORE_CONNECT_ISSUER_ID"],
+      key_content: ENV["APP_STORE_CONNECT_API_KEY"],
+      is_key_content_base64: false
+    )
+
+    deliver(
+      api_key: api_key,
+      skip_binary_upload: true,
+      skip_screenshots: true,
+      skip_metadata: false,
+      force: true,
+      submit_for_review: false,
+      automatic_release: false,
+      precheck_include_in_app_purchases: false
+    )
+  end
+
+  desc "Upload screenshots to App Store Connect"
+  lane :upload_screenshots do
+    api_key = app_store_connect_api_key(
+      key_id: ENV["APP_STORE_CONNECT_API_KEY_ID"],
+      issuer_id: ENV["APP_STORE_CONNECT_ISSUER_ID"],
+      key_content: ENV["APP_STORE_CONNECT_API_KEY"],
+      is_key_content_base64: false
+    )
+
+    deliver(
+      api_key: api_key,
+      skip_binary_upload: true,
+      skip_screenshots: false,
+      skip_metadata: true,
+      overwrite_screenshots: true,
+      force: true,
+      submit_for_review: false
+    )
+  end
+
+  desc "Capture screenshots using snapshot"
+  lane :screenshots do
+    capture_screenshots(
+      project: "LocalAIAgent.xcodeproj",
+      scheme: "LocalAIAgentUITests",
+      devices: [
+        "iPhone 16 Pro Max",
+        "iPhone 16 Pro",
+        "iPhone SE (3rd generation)"
+      ],
+      languages: ["ja", "en-US"],
+      clear_previous_screenshots: true,
+      output_directory: "./fastlane/screenshots"
+    )
+  end
+
+  desc "Add device frames and promotional text to screenshots"
+  lane :frame_screenshots do
+    frame_screenshots(
+      path: "./fastlane/screenshots",
+      white: false,
+      force_device_type: "iPhone 16 Pro Max"
+    )
+  end
+
+  desc "Create App Store screenshots (capture + frame)"
+  lane :create_app_store_screenshots do
+    screenshots
+    frame_screenshots
+  end
+
   # Error handling
   error do |lane, exception|
     UI.error("Lane #{lane} failed with exception: #{exception}")
