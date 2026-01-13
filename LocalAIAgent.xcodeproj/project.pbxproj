@@ -31,7 +31,6 @@
 		021 /* ContactsServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121 /* ContactsServer.swift */; };
 		022 /* PhotosServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122 /* PhotosServer.swift */; };
 		023 /* LocationServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123 /* LocationServer.swift */; };
-		024 /* HealthServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124 /* HealthServer.swift */; };
 		025 /* ShortcutsServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125 /* ShortcutsServer.swift */; };
 		026 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126 /* Message.swift */; };
 		027 /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127 /* Conversation.swift */; };
@@ -99,7 +98,6 @@
 		121 /* ContactsServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsServer.swift; sourceTree = "<group>"; };
 		122 /* PhotosServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosServer.swift; sourceTree = "<group>"; };
 		123 /* LocationServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationServer.swift; sourceTree = "<group>"; };
-		124 /* HealthServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthServer.swift; sourceTree = "<group>"; };
 		125 /* ShortcutsServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutsServer.swift; sourceTree = "<group>"; };
 		126 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		127 /* Conversation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conversation.swift; sourceTree = "<group>"; };
@@ -363,7 +361,6 @@
 				121 /* ContactsServer.swift */,
 				122 /* PhotosServer.swift */,
 				123 /* LocationServer.swift */,
-				124 /* HealthServer.swift */,
 				125 /* ShortcutsServer.swift */,
 				134 /* WebSearchServer.swift */,
 				WEATHER002 /* WeatherServer.swift */,
@@ -536,7 +533,6 @@
 				021 /* ContactsServer.swift in Sources */,
 				022 /* PhotosServer.swift in Sources */,
 				023 /* LocationServer.swift in Sources */,
-				024 /* HealthServer.swift in Sources */,
 				025 /* ShortcutsServer.swift in Sources */,
 				026 /* Message.swift in Sources */,
 				027 /* Conversation.swift in Sources */,
