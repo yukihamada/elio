@@ -1,0 +1,52 @@
+name: Update App Store Metadata
+
+on:
+  workflow_dispatch:
+    inputs:
+      upload_metadata:
+        description: 'Upload metadata (description, keywords, etc.)'
+        required: true
+        default: true
+        type: boolean
+      upload_screenshots:
+        description: 'Upload screenshots'
+        required: true
+        default: false
+        type: boolean
+
+jobs:
+  update-metadata:
+    name: Update App Store Connect Metadata
+    runs-on: macos-15
+    environment: production
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.2'
+          bundler-cache: true
+
+      - name: Install Fastlane
+        run: |
+          gem install fastlane
+          fastlane --version
+
+      - name: Upload Metadata
+        if: ${{ inputs.upload_metadata }}
+        env:
+          APP_STORE_CONNECT_API_KEY_ID: ${{ secrets.APP_STORE_CONNECT_API_KEY_ID }}
+          APP_STORE_CONNECT_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}
+          APP_STORE_CONNECT_API_KEY: ${{ secrets.APP_STORE_CONNECT_API_KEY }}
+        run: fastlane upload_metadata
+
+      - name: Upload Screenshots
+        if: ${{ inputs.upload_screenshots }}
+        env:
+          APP_STORE_CONNECT_API_KEY_ID: ${{ secrets.APP_STORE_CONNECT_API_KEY_ID }}
+          APP_STORE_CONNECT_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}
+          APP_STORE_CONNECT_API_KEY: ${{ secrets.APP_STORE_CONNECT_API_KEY }}
+        run: fastlane upload_screenshots
