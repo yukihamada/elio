@@ -24,7 +24,6 @@ final class MCPClient: ObservableObject {
         registerServer(ContactsServer())
         registerServer(PhotosServer())
         registerServer(LocationServer())
-        registerServer(HealthServer())
         registerServer(ShortcutsServer())
         registerServer(WebSearchServer())
         registerServer(WeatherServer())
