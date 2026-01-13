@@ -100,6 +100,23 @@ Elio connects AI with iOS system features:
 - Real-time streaming display
 - Conversation history management
 - Skeleton loading for fast perceived startup
+- **Conversation search** - Find past conversations instantly
+- **Share cards** - Create beautiful images to share on social media
+
+### 📱 Siri Shortcuts
+
+Control Elio with your voice:
+- "Hey Siri, ask Elio" - Start a conversation
+- "Hey Siri, check my schedule with Elio" - View calendar
+- "Hey Siri, what's the weather via Elio" - Check weather
+- "Hey Siri, create reminder with Elio" - Add a reminder
+
+### 👥 Referral Program
+
+Share Elio with friends:
+- Generate your unique referral code
+- Share with one tap
+- Track how many friends joined
 
 ---
 
