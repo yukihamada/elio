@@ -492,3 +492,8 @@
 "export.created" = "作成日時";
 "export.image.attached" = "画像添付";
 "export.generated.by" = "出力:";
+
+// MARK: - Feedback
+"settings.feedback.section" = "フィードバック";
+"settings.feedback.toggle" = "使用状況データを送信";
+"settings.feedback.description" = "アプリの改善に役立てるため、匿名の使用状況データを送信します。個人情報は含まれません。";
