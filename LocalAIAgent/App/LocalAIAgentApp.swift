@@ -45,6 +45,18 @@ struct LocalAIAgentApp: App {
             // Open specific conversation (could add ID parameter)
             break
 
+        case "schedule":
+            // Quick action: Check today's schedule
+            appState.pendingQuickQuestion = "今日の予定を教えて"
+
+        case "weather":
+            // Quick action: Check weather
+            appState.pendingQuickQuestion = "今日の天気は？"
+
+        case "reminder":
+            // Quick action: Create reminder
+            appState.pendingQuickQuestion = "リマインダーを作成して"
+
         default:
             break
         }
