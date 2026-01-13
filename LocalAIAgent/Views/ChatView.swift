@@ -563,6 +563,11 @@ struct ChatView: View {
                     sendMessage()
                 }
 
+                SuggestionChip(text: String(localized: "chat.suggestion.weather"), icon: "cloud.sun") {
+                    inputText = String(localized: "chat.suggestion.weather")
+                    sendMessage()
+                }
+
                 SuggestionChip(text: String(localized: "chat.suggestion.help"), icon: "questionmark.circle") {
                     inputText = String(localized: "chat.suggestion.help")
                     sendMessage()
@@ -987,6 +992,9 @@ struct ChatView: View {
             streamingResponse = ""
             displayedResponse = ""
             generationTask = nil
+
+            // 会話完了を記録（レビュー促進用）
+            ReviewManager.shared.recordConversationCompleted()
         }
     }
 
@@ -1254,6 +1262,12 @@ struct ChatMessageRow: View {
                 feedbackGiven = nil
             } else {
                 feedbackGiven = type
+                // ポジティブフィードバック時にレビュー促進をトリガー
+                if type == .positive {
+                    Task { @MainActor in
+                        ReviewManager.shared.recordPositiveRating()
+                    }
+                }
             }
         }
         // Haptic feedback
@@ -1495,18 +1509,40 @@ struct ConversationListView: View {
     @State private var isExporting = false
     @State private var showingShareSheet = false
     @State private var exportedFileURL: URL?
+    @State private var searchText = ""
+
+    /// 検索でフィルタされた会話リスト
+    private var filteredConversations: [Conversation] {
+        if searchText.isEmpty {
+            return appState.conversations
+        }
+        let query = searchText.lowercased()
+        return appState.conversations.filter { conversation in
+            // タイトルで検索
+            if conversation.title.lowercased().contains(query) {
+                return true
+            }
+            // メッセージ内容で検索
+            return conversation.messages.contains { message in
+                message.content.lowercased().contains(query)
+            }
+        }
+    }
 
     var body: some View {
         NavigationStack {
             Group {
                 if appState.conversations.isEmpty {
                     emptyState
+                } else if filteredConversations.isEmpty && !searchText.isEmpty {
+                    noSearchResultsView
                 } else {
                     conversationList
                 }
             }
             .navigationTitle(String(localized: "conversations.title"))
             .navigationBarTitleDisplayMode(.inline)
+            .searchable(text: $searchText, prompt: String(localized: "conversations.search.placeholder"))
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button(String(localized: "common.done")) { dismiss() }
@@ -1514,6 +1550,18 @@ struct ConversationListView: View {
                 }
             }
             .background(Color.chatBackgroundDynamic)
+        }
+    }
+
+    private var noSearchResultsView: some View {
+        VStack(spacing: 16) {
+            Image(systemName: "magnifyingglass")
+                .font(.system(size: 50))
+                .foregroundStyle(.secondary)
+
+            Text(String(localized: "conversations.search.no_results"))
+                .font(.headline)
+                .foregroundStyle(.secondary)
         }
     }
 
@@ -1531,7 +1579,7 @@ struct ConversationListView: View {
 
     private var conversationList: some View {
         List {
-            ForEach(appState.conversations) { conversation in
+            ForEach(filteredConversations) { conversation in
                 Button(action: {
                     appState.currentConversation = conversation
                     dismiss()

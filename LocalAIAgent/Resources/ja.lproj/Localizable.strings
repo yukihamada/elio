@@ -51,6 +51,7 @@
 "chat.welcome" = "何をお手伝いしましょうか？";
 "chat.suggestion.schedule" = "今日の予定を教えて";
 "chat.suggestion.reminder" = "リマインダーを作成";
+"chat.suggestion.weather" = "今日の天気は？";
 "chat.suggestion.help" = "使い方を教えて";
 
 // MARK: - Settings
@@ -182,6 +183,8 @@
 "conversations.created" = "作成日: %@";
 "conversations.user" = "ユーザー";
 "conversations.assistant" = "アシスタント";
+"conversations.search.placeholder" = "会話を検索";
+"conversations.search.no_results" = "検索結果がありません";
 
 // MARK: - Message Actions
 "message.copy" = "コピー";
