@@ -50,6 +50,7 @@
 		CONVEXP001 /* ConversationExporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CONVEXP002 /* ConversationExporter.swift */; };
 		DOCPICKER001 /* DocumentPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = DOCPICKER002 /* DocumentPicker.swift */; };
 		FEEDMGR001 /* FeedbackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEEDMGR002 /* FeedbackManager.swift */; };
+		REVMGR001 /* ReviewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = REVMGR002 /* ReviewManager.swift */; };
 		LANG001 /* LanguageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = LANG002 /* LanguageManager.swift */; };
 		PROMPTMGR001 /* PromptTemplateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = PROMPTMGR002 /* PromptTemplateManager.swift */; };
 		PROMPTTMPL001 /* PromptTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = PROMPTTMPL002 /* PromptTemplate.swift */; };
@@ -114,6 +115,7 @@
 		DOCPICKER002 /* DocumentPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentPicker.swift; sourceTree = "<group>"; };
 		EED5CCB34FA4BFAD3E5BEBD2 /* VisionModelDownloadView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = VisionModelDownloadView.swift; sourceTree = "<group>"; };
 		FEEDMGR002 /* FeedbackManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackManager.swift; sourceTree = "<group>"; };
+		REVMGR002 /* ReviewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewManager.swift; sourceTree = "<group>"; };
 		LANG002 /* LanguageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageManager.swift; sourceTree = "<group>"; };
 		PROMPTMGR002 /* PromptTemplateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromptTemplateManager.swift; sourceTree = "<group>"; };
 		PROMPTTMPL002 /* PromptTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromptTemplate.swift; sourceTree = "<group>"; };
@@ -332,6 +334,7 @@
 			isa = PBXGroup;
 			children = (
 				FEEDMGR002 /* FeedbackManager.swift */,
+				REVMGR002 /* ReviewManager.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -542,6 +545,7 @@
 				SHAREDDATAMGR001 /* SharedDataManager.swift in Sources */,
 				SESSLOG001 /* SessionLogger.swift in Sources */,
 				FEEDMGR001 /* FeedbackManager.swift in Sources */,
+				REVMGR001 /* ReviewManager.swift in Sources */,
 				WEATHER001 /* WeatherServer.swift in Sources */,
 				TRANS001 /* TranslationServer.swift in Sources */,
 				NOTES001 /* NotesServer.swift in Sources */,

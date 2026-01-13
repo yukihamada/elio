@@ -51,6 +51,7 @@
 "chat.welcome" = "How can I help you?";
 "chat.suggestion.schedule" = "Show today's schedule";
 "chat.suggestion.reminder" = "Create a reminder";
+"chat.suggestion.weather" = "What's the weather today?";
 "chat.suggestion.help" = "How to use this app";
 
 // MARK: - Settings
@@ -182,6 +183,8 @@
 "conversations.created" = "Created: %@";
 "conversations.user" = "User";
 "conversations.assistant" = "Assistant";
+"conversations.search.placeholder" = "Search conversations";
+"conversations.search.no_results" = "No results found";
 
 // MARK: - Message Actions
 "message.copy" = "Copy";
