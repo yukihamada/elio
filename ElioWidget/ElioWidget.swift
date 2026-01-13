@@ -136,68 +136,97 @@ struct MediumWidgetView: View {
     let entry: ElioEntry
 
     var body: some View {
-        HStack(spacing: 16) {
+        HStack(spacing: 12) {
             // Left side - Status
-            VStack(alignment: .leading, spacing: 8) {
+            VStack(alignment: .leading, spacing: 6) {
                 HStack {
                     Image(systemName: "brain.head.profile")
-                        .font(.title2)
+                        .font(.title3)
                         .foregroundStyle(.blue)
+
+                    Text("Elio")
+                        .font(.headline)
+
+                    Spacer()
 
                     Circle()
                         .fill(entry.isModelLoaded ? Color.green : Color.gray)
                         .frame(width: 8, height: 8)
                 }
 
-                Text("Elio")
-                    .font(.headline)
-
-                Text(entry.modelName ?? "AI Assistant")
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
-
                 if let title = entry.recentConversationTitle {
-                    Divider()
                     Text(title)
                         .font(.caption)
                         .foregroundStyle(.secondary)
-                        .lineLimit(2)
+                        .lineLimit(1)
                 }
 
                 Spacer()
-            }
 
-            // Right side - Actions
-            VStack(spacing: 8) {
-                Link(destination: URL(string: "elio://ask")!) {
-                    VStack(spacing: 4) {
-                        Image(systemName: "bubble.left.fill")
-                            .font(.title2)
-                        Text("New Chat")
-                            .font(.caption2)
+                // Quick actions grid
+                HStack(spacing: 8) {
+                    Link(destination: URL(string: "elio://ask")!) {
+                        QuickActionButton(icon: "bubble.left.fill", label: "Chat", color: .blue)
                     }
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    .background(Color.blue.opacity(0.1))
-                    .clipShape(RoundedRectangle(cornerRadius: 12))
-                }
-                .foregroundStyle(.blue)
 
-                Link(destination: URL(string: "elio://conversations")!) {
-                    VStack(spacing: 4) {
-                        Image(systemName: "list.bullet")
-                            .font(.title2)
-                        Text("History")
-                            .font(.caption2)
+                    Link(destination: URL(string: "elio://schedule")!) {
+                        QuickActionButton(icon: "calendar", label: "Schedule", color: .orange)
                     }
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    .background(Color.secondary.opacity(0.1))
-                    .clipShape(RoundedRectangle(cornerRadius: 12))
+
+                    Link(destination: URL(string: "elio://weather")!) {
+                        QuickActionButton(icon: "cloud.sun.fill", label: "Weather", color: .cyan)
+                    }
+
+                    Link(destination: URL(string: "elio://reminder")!) {
+                        QuickActionButton(icon: "checklist", label: "Reminder", color: .green)
+                    }
                 }
-                .foregroundStyle(.secondary)
             }
-            .frame(width: 80)
         }
         .padding()
+    }
+}
+
+// MARK: - Quick Action Button
+
+struct QuickActionButton: View {
+    let icon: String
+    let label: String
+    let color: Color
+
+    var body: some View {
+        VStack(spacing: 2) {
+            Image(systemName: icon)
+                .font(.body)
+                .foregroundStyle(color)
+            Text(label)
+                .font(.system(size: 9))
+                .foregroundStyle(.secondary)
+        }
+        .frame(maxWidth: .infinity)
+        .padding(.vertical, 8)
+        .background(color.opacity(0.1))
+        .clipShape(RoundedRectangle(cornerRadius: 8))
+    }
+}
+
+struct LargeQuickActionButton: View {
+    let icon: String
+    let label: String
+    let color: Color
+    var isPrimary: Bool = false
+
+    var body: some View {
+        HStack {
+            Image(systemName: icon)
+            Text(label)
+        }
+        .font(.subheadline.weight(.semibold))
+        .foregroundStyle(isPrimary ? .white : .primary)
+        .frame(maxWidth: .infinity)
+        .padding(.vertical, 10)
+        .background(isPrimary ? color : color.opacity(0.15))
+        .clipShape(RoundedRectangle(cornerRadius: 10))
     }
 }
 
@@ -262,32 +291,26 @@ struct LargeWidgetView: View {
 
             Spacer()
 
-            // Quick actions
-            HStack(spacing: 12) {
-                Link(destination: URL(string: "elio://ask")!) {
-                    HStack {
-                        Image(systemName: "plus.bubble.fill")
-                        Text("New Chat")
+            // Quick actions - 2 rows
+            VStack(spacing: 8) {
+                HStack(spacing: 8) {
+                    Link(destination: URL(string: "elio://ask")!) {
+                        LargeQuickActionButton(icon: "bubble.left.fill", label: "New Chat", color: .blue, isPrimary: true)
                     }
-                    .font(.subheadline.weight(.semibold))
-                    .foregroundStyle(.white)
-                    .frame(maxWidth: .infinity)
-                    .padding(.vertical, 12)
-                    .background(Color.blue)
-                    .clipShape(RoundedRectangle(cornerRadius: 12))
+
+                    Link(destination: URL(string: "elio://schedule")!) {
+                        LargeQuickActionButton(icon: "calendar", label: "Schedule", color: .orange)
+                    }
                 }
 
-                Link(destination: URL(string: "elio://conversations")!) {
-                    HStack {
-                        Image(systemName: "list.bullet")
-                        Text("History")
+                HStack(spacing: 8) {
+                    Link(destination: URL(string: "elio://weather")!) {
+                        LargeQuickActionButton(icon: "cloud.sun.fill", label: "Weather", color: .cyan)
                     }
-                    .font(.subheadline.weight(.semibold))
-                    .foregroundStyle(.primary)
-                    .frame(maxWidth: .infinity)
-                    .padding(.vertical, 12)
-                    .background(Color.secondary.opacity(0.15))
-                    .clipShape(RoundedRectangle(cornerRadius: 12))
+
+                    Link(destination: URL(string: "elio://reminder")!) {
+                        LargeQuickActionButton(icon: "checklist", label: "Reminder", color: .green)
+                    }
                 }
             }
         }
