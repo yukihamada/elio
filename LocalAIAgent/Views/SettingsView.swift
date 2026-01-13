@@ -66,6 +66,9 @@ struct SettingsView: View {
                         // MCP Server Section
                         mcpSection
 
+                        // Data Access Section
+                        dataAccessSection
+
                         // About Section
                         aboutSection
 
@@ -565,6 +568,62 @@ struct SettingsView: View {
                 )
             }
             .buttonStyle(.plain)
+        }
+    }
+
+    // MARK: - Data Access Section
+
+    private var dataAccessSection: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            SectionHeader(title: String(localized: "settings.data.access.section", defaultValue: "データアクセス"), icon: "hand.raised.fill", color: .red)
+
+            VStack(spacing: 0) {
+                // HealthKit row
+                Button(action: {
+                    if let url = URL(string: UIApplication.openSettingsURLString) {
+                        UIApplication.shared.open(url)
+                    }
+                }) {
+                    HStack(spacing: 12) {
+                        ZStack {
+                            RoundedRectangle(cornerRadius: 10)
+                                .fill(Color.red.opacity(0.1))
+                                .frame(width: 44, height: 44)
+
+                            Image(systemName: "heart.fill")
+                                .font(.system(size: 20))
+                                .foregroundStyle(.red)
+                        }
+
+                        VStack(alignment: .leading, spacing: 2) {
+                            Text(String(localized: "settings.healthkit.title", defaultValue: "ヘルスケア"))
+                                .font(.system(size: 16, weight: .semibold))
+                                .foregroundStyle(.primary)
+
+                            Text(String(localized: "settings.healthkit.description", defaultValue: "AIが歩数、心拍数などの健康データを読み取れます"))
+                                .font(.system(size: 13))
+                                .foregroundStyle(.secondary)
+                        }
+
+                        Spacer()
+
+                        Image(systemName: "chevron.right")
+                            .font(.system(size: 12, weight: .semibold))
+                            .foregroundStyle(.tertiary)
+                    }
+                    .padding(14)
+                }
+                .buttonStyle(.plain)
+            }
+            .background(
+                RoundedRectangle(cornerRadius: 16)
+                    .fill(Color(.secondarySystemBackground))
+            )
+
+            Text(String(localized: "settings.healthkit.hint", defaultValue: "ヘルスケアへのアクセスは「設定」アプリから管理できます。データはデバイス上でのみ処理され、外部に送信されません。"))
+                .font(.caption)
+                .foregroundStyle(.secondary)
+                .padding(.horizontal, 4)
         }
     }
 
