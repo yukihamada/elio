@@ -10,6 +10,7 @@
 		001 /* LocalAIAgentApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 101 /* LocalAIAgentApp.swift */; };
 		APPINTENT001 /* AppIntents.swift in Sources */ = {isa = PBXBuildFile; fileRef = APPINTENT002 /* AppIntents.swift */; };
 		002 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 102 /* AppState.swift */; };
+		705 /* ScreenshotMockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 704 /* ScreenshotMockData.swift */; };
 		003 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 103 /* ChatView.swift */; };
 		004 /* MessageBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104 /* MessageBubble.swift */; };
 		005 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105 /* SettingsView.swift */; };
@@ -77,6 +78,7 @@
 		101 /* LocalAIAgentApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalAIAgentApp.swift; sourceTree = "<group>"; };
 		APPINTENT002 /* AppIntents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIntents.swift; sourceTree = "<group>"; };
 		102 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		704 /* ScreenshotMockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotMockData.swift; sourceTree = "<group>"; };
 		103 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
 		104 /* MessageBubble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageBubble.swift; sourceTree = "<group>"; };
 		105 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
@@ -247,6 +249,7 @@
 				101 /* LocalAIAgentApp.swift */,
 				APPINTENT002 /* AppIntents.swift */,
 				102 /* AppState.swift */,
+				704 /* ScreenshotMockData.swift */,
 				131 /* ThemeManager.swift */,
 				137 /* NetworkMonitor.swift */,
 				LANG002 /* LanguageManager.swift */,
@@ -512,6 +515,7 @@
 				001 /* LocalAIAgentApp.swift in Sources */,
 				APPINTENT001 /* AppIntents.swift in Sources */,
 				002 /* AppState.swift in Sources */,
+				705 /* ScreenshotMockData.swift in Sources */,
 				003 /* ChatView.swift in Sources */,
 				004 /* MessageBubble.swift in Sources */,
 				005 /* SettingsView.swift in Sources */,
