@@ -7,6 +7,7 @@
 
 import XCTest
 
+@MainActor
 final class SnapshotTests: XCTestCase {
 
     var app: XCUIApplication!
@@ -25,7 +26,6 @@ final class SnapshotTests: XCTestCase {
     // MARK: - Screenshot Tests
 
     /// 01. ウェルカム画面 - メイン訴求ポイント
-    @MainActor
     func testSnapshot01_WelcomeScreen() throws {
         // Wait for app to fully load
         sleep(3)
@@ -35,7 +35,6 @@ final class SnapshotTests: XCTestCase {
     }
 
     /// 02. チャット画面 - 会話例
-    @MainActor
     func testSnapshot02_ChatConversation() throws {
         sleep(2)
 
@@ -59,7 +58,6 @@ final class SnapshotTests: XCTestCase {
     }
 
     /// 03. カレンダー連携 - 予定確認機能
-    @MainActor
     func testSnapshot03_CalendarIntegration() throws {
         sleep(2)
 
@@ -80,7 +78,6 @@ final class SnapshotTests: XCTestCase {
     }
 
     /// 04. 設定画面 - カスタマイズ性
-    @MainActor
     func testSnapshot04_Settings() throws {
         sleep(2)
 
@@ -95,7 +92,6 @@ final class SnapshotTests: XCTestCase {
     }
 
     /// 05. 会話一覧 - 検索機能
-    @MainActor
     func testSnapshot05_ConversationList() throws {
         sleep(2)
 
@@ -110,7 +106,6 @@ final class SnapshotTests: XCTestCase {
     }
 
     /// 06. オフライン表示 - プライバシー訴求
-    @MainActor
     func testSnapshot06_PrivacyFeature() throws {
         sleep(2)
 
