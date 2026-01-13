@@ -44,6 +44,12 @@ final class AppState: ObservableObject {
     @Published var pendingQuickQuestion: String?  // Question from widget deep link
     @Published var showConversationList = false   // Trigger to show conversation list
 
+    // Screenshot mode for App Store screenshots
+    static var isScreenshotMode: Bool {
+        ProcessInfo.processInfo.arguments.contains("-UITest_Screenshots") ||
+        ProcessInfo.processInfo.environment["FASTLANE_SNAPSHOT"] == "YES"
+    }
+
     private var llmEngine: CoreMLInference?
     private var llamaInference: LlamaInference?
     private var mcpClient: MCPClient?

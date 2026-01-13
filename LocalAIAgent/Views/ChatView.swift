@@ -51,9 +51,9 @@ struct ChatView: View {
                 // Header
                 headerView
 
-                if appState.isInitialLoading {
+                if appState.isInitialLoading && !AppState.isScreenshotMode {
                     skeletonView
-                } else if !appState.isModelLoaded {
+                } else if !appState.isModelLoaded && !AppState.isScreenshotMode {
                     modelNotLoadedView
                 } else {
                     chatContent
@@ -228,6 +228,14 @@ struct ChatView: View {
         }
         // Handle pending quick question from widget and restore draft
         .onAppear {
+            // Screenshot mode: Load mock data
+            if AppState.isScreenshotMode {
+                appState.currentConversation = ScreenshotMockData.getMockConversation()
+                appState.conversations = ScreenshotMockData.getMockConversations()
+                appState.currentModelName = ScreenshotMockData.getMockModelName()
+                return
+            }
+
             // Restore draft input from crash recovery
             if inputText.isEmpty, let savedDraft = UserDefaults.standard.string(forKey: "chat_draft_input"), !savedDraft.isEmpty {
                 inputText = savedDraft
@@ -386,7 +394,7 @@ struct ChatView: View {
             .foregroundStyle(.primary)
 
             // Quick settings button (for model parameters)
-            if appState.isModelLoaded {
+            if appState.isModelLoaded || AppState.isScreenshotMode {
                 Button(action: { showingModelSettings = true }) {
                     Image(systemName: "slider.horizontal.3")
                         .font(.system(size: 16, weight: .medium))
@@ -811,7 +819,7 @@ struct ChatView: View {
                         .onSubmit {
                             if canSend { sendMessage() }
                         }
-                        .disabled(!appState.isModelLoaded)
+                        .disabled(!appState.isModelLoaded && !AppState.isScreenshotMode)
 
                         // Template button for quick prompts
                     Button(action: { showingTemplates = true }) {
@@ -878,7 +886,7 @@ struct ChatView: View {
     private var canSend: Bool {
         (!inputText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty || !attachedImages.isEmpty || attachedPDFText != nil || attachedWebContent != nil) &&
         !isGenerating &&
-        appState.isModelLoaded
+        (appState.isModelLoaded || AppState.isScreenshotMode)
     }
 
     private func sendMessage() {
