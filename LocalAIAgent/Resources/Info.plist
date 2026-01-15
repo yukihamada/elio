@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>Elio</string>
+	<string>ElioChat</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -40,23 +40,23 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>NSCalendarsUsageDescription</key>
-	<string>Elioがカレンダーの予定を読み書きするために使用します。</string>
+	<string>ElioChatがカレンダーの予定を読み書きするために使用します。</string>
 	<key>NSContactsUsageDescription</key>
-	<string>Elioが連絡先を検索・表示するために使用します。</string>
+	<string>ElioChatが連絡先を検索・表示するために使用します。</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Elioが写真ライブラリにアクセスするために使用します。</string>
+	<string>ElioChatが写真ライブラリにアクセスするために使用します。</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Elioが現在地を取得するために使用します。</string>
+	<string>ElioChatが現在地を取得するために使用します。</string>
 	<key>NSRemindersUsageDescription</key>
-	<string>Elioがリマインダーを読み書きするために使用します。</string>
+	<string>ElioChatがリマインダーを読み書きするために使用します。</string>
 	<key>NSCameraUsageDescription</key>
-	<string>Elioが写真を撮影してAIに送信するために使用します。</string>
+	<string>ElioChatが写真を撮影してAIに送信するために使用します。</string>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>Elioが音声入力を行うために使用します。</string>
+	<string>ElioChatが音声入力を行うために使用します。</string>
 	<key>NSSpeechRecognitionUsageDescription</key>
-	<string>Elioが音声をテキストに変換するために使用します。</string>
+	<string>ElioChatが音声をテキストに変換するために使用します。</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>Elioが生成した画像を保存するために使用します。</string>
+	<string>ElioChatが生成した画像を保存するために使用します。</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 	<key>NSAppTransportSecurity</key>

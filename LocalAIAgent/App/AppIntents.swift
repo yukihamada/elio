@@ -1,12 +1,12 @@
 import AppIntents
 import SwiftUI
 
-// MARK: - Ask Elio Intent
+// MARK: - Ask ElioChat Intent
 
-/// Siriから「Elioに聞いて」で起動できるインテント
-struct AskElioIntent: AppIntent {
-    static var title: LocalizedStringResource = "Ask Elio"
-    static var description = IntentDescription("Ask Elio a question")
+/// Siriから「ElioChatに聞いて」で起動できるインテント
+struct AskElioChatIntent: AppIntent {
+    static var title: LocalizedStringResource = "Ask ElioChat"
+    static var description = IntentDescription("Ask ElioChat a question")
     static var openAppWhenRun: Bool = true
 
     @Parameter(title: "Question")
@@ -22,9 +22,9 @@ struct AskElioIntent: AppIntent {
                 object: nil,
                 userInfo: ["question": question]
             )
-            return .result(dialog: "Elioに「\(question)」を聞きます")
+            return .result(dialog: "ElioChatに「\(question)」を聞きます")
         }
-        return .result(dialog: "Elioを開きます")
+        return .result(dialog: "ElioChatを開きます")
     }
 }
 
@@ -70,8 +70,8 @@ struct CheckWeatherIntent: AppIntent {
 
 /// リマインダーを作成するインテント
 struct CreateReminderIntent: AppIntent {
-    static var title: LocalizedStringResource = "Create Reminder with Elio"
-    static var description = IntentDescription("Create a reminder using Elio")
+    static var title: LocalizedStringResource = "Create Reminder with ElioChat"
+    static var description = IntentDescription("Create a reminder using ElioChat")
     static var openAppWhenRun: Bool = true
 
     @Parameter(title: "Reminder")
@@ -98,16 +98,16 @@ struct CreateReminderIntent: AppIntent {
 // MARK: - App Shortcuts Provider
 
 /// Siri Shortcutsに表示されるショートカット
-struct ElioShortcuts: AppShortcutsProvider {
+struct ElioChatShortcuts: AppShortcutsProvider {
     static var appShortcuts: [AppShortcut] {
         AppShortcut(
-            intent: AskElioIntent(),
+            intent: AskElioChatIntent(),
             phrases: [
                 "Ask \(.applicationName)",
                 "\(.applicationName)に聞いて",
-                "Elioに質問"
+                "ElioChatに質問"
             ],
-            shortTitle: "Ask Elio",
+            shortTitle: "Ask ElioChat",
             systemImageName: "brain.head.profile"
         )
 

@@ -4,7 +4,8 @@
 devices([
   "iPhone 16 Pro Max",      # 6.9インチ (6.7インチ互換)
   "iPhone 16 Pro",          # 6.3インチ (6.1インチ互換)
-  "iPhone SE (3rd generation)"  # 4.7インチ
+  "iPhone SE (3rd generation)",  # 4.7インチ
+  "iPad Pro 13-inch (M4)"   # 13インチiPad Pro
 ])
 
 # 言語設定
@@ -19,7 +20,7 @@ scheme("LocalAIAgentUITests")
 
 # 出力設定
 output_directory("./fastlane/screenshots")
-clear_previous_screenshots(true)
+clear_previous_screenshots(false)
 
 # クリーンビルド
 clean(true)

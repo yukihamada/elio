@@ -360,7 +360,7 @@ struct ChatView: View {
 
     private var truncatedModelName: String {
         guard let modelName = appState.currentModelName else {
-            return "Elio"
+            return "ElioChat"
         }
         // Truncate to max 15 characters
         if modelName.count > 15 {
@@ -379,6 +379,7 @@ struct ChatView: View {
                     .font(.system(size: 20, weight: .medium))
                     .foregroundStyle(.primary)
             }
+            .accessibilityIdentifier("menuButton")
 
             // Model name (truncated if too long)
             Button(action: { showingSettings = true }) {
@@ -391,6 +392,7 @@ struct ChatView: View {
                         .foregroundStyle(.secondary)
                 }
             }
+            .accessibilityIdentifier("settingsButton")
             .foregroundStyle(.primary)
 
             // Quick settings button (for model parameters)

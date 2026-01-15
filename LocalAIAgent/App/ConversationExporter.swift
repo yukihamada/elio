@@ -63,7 +63,7 @@ actor ConversationExporter {
             markdown += "---\n\n"
         }
 
-        markdown += "_\(String(localized: "export.generated.by")) Elio_\n"
+        markdown += "_\(String(localized: "export.generated.by")) ElioChat_\n"
 
         let filename = sanitizeFilename(conversation.title) + ".md"
         let url = try saveToFile(content: markdown, filename: filename)
@@ -171,7 +171,7 @@ actor ConversationExporter {
 
             // Footer
             checkPageBreak(height: 30)
-            let footerText = "\(String(localized: "export.generated.by")) Elio"
+            let footerText = "\(String(localized: "export.generated.by")) ElioChat"
             let footerFont = UIFont.italicSystemFont(ofSize: 10)
             footerText.draw(at: CGPoint(x: leftMargin, y: yPosition), withAttributes: [
                 .font: footerFont,
@@ -209,7 +209,7 @@ actor ConversationExporter {
             text += String(repeating: "-", count: 40) + "\n\n"
         }
 
-        text += "\(String(localized: "export.generated.by")) Elio\n"
+        text += "\(String(localized: "export.generated.by")) ElioChat\n"
 
         let filename = sanitizeFilename(conversation.title) + ".txt"
         let url = try saveToFile(content: text, filename: filename)
@@ -223,7 +223,7 @@ actor ConversationExporter {
     func exportSessionLogs() async throws -> ExportResult {
         let logText = SessionLogger.shared.exportAsText()
 
-        var content = "Elio Session Logs\n"
+        var content = "ElioChat Session Logs\n"
         content += String(repeating: "=", count: 20) + "\n\n"
         content += "Exported: \(formatDate(Date()))\n"
         content += "Log entries: \(SessionLogger.shared.count)\n\n"

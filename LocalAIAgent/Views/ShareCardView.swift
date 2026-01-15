@@ -19,7 +19,7 @@ struct ShareCardView: View {
                     .font(.system(size: 24))
                     .foregroundStyle(.purple)
 
-                Text("Elio")
+                Text("ElioChat")
                     .font(.system(size: 20, weight: .bold))
 
                 Spacer()
@@ -61,7 +61,7 @@ struct ShareCardView: View {
                 HStack {
                     Image(systemName: "sparkles")
                         .foregroundStyle(.purple)
-                    Text("Elio")
+                    Text("ElioChat")
                         .font(.caption)
                         .foregroundStyle(.secondary)
                 }
@@ -201,7 +201,7 @@ struct ShareCardSheet: View {
         ) else { return }
 
         let activityVC = UIActivityViewController(
-            activityItems: [image, "Elioで生成しました - elio.love"],
+            activityItems: [image, "ElioChatで生成しました - elio.love"],
             applicationActivities: nil
         )
 

@@ -55,13 +55,6 @@ struct MCPServerListView: View {
             color: .blue
         ),
         MCPServerDisplayInfo(
-            id: "health",
-            name: "ヘルスケア",
-            description: "健康データへのアクセス",
-            icon: "heart.fill",
-            color: .red
-        ),
-        MCPServerDisplayInfo(
             id: "shortcuts",
             name: "ショートカット",
             description: "ショートカットの実行",
@@ -121,7 +114,7 @@ struct MCPServerListView: View {
                 Text("\(appState.enabledMCPServers.count)個の連携機能が有効")
                     .font(.system(size: 15, weight: .semibold))
 
-                Text("Elioがこれらの情報にアクセスできます")
+                Text("ElioChatがこれらの情報にアクセスできます")
                     .font(.system(size: 13))
                     .foregroundStyle(.secondary)
             }

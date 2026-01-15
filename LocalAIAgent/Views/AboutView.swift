@@ -16,7 +16,7 @@ struct AboutView: View {
                             .foregroundStyle(.purple)
 
                         VStack(alignment: .leading, spacing: 4) {
-                            Text("Elio")
+                            Text("ElioChat")
                                 .font(.headline)
                             Text("バージョン \(appVersion)")
                                 .font(.caption)
@@ -129,7 +129,7 @@ struct PrivacyPolicyView: View {
 
                 Group {
                     PolicySection(title: "データの収集について", content: """
-                    Elioは、ユーザーのプライバシーを最優先に設計されています。
+                    ElioChatは、ユーザーのプライバシーを最優先に設計されています。
 
                     - すべてのAI処理はデバイス上で完結します
                     - 会話データは端末内のみに保存されます
@@ -173,7 +173,7 @@ struct TermsOfServiceView: View {
 
                 Group {
                     PolicySection(title: "サービスの説明", content: """
-                    Elioは、デバイス上で動作するAIアシスタントアプリケーションです。大規模言語モデル（LLM）を使用して、テキストベースの対話を提供します。
+                    ElioChatは、デバイス上で動作するAIアシスタントアプリケーションです。大規模言語モデル（LLM）を使用して、テキストベースの対話を提供します。
                     """)
 
                     PolicySection(title: "免責事項", content: """
