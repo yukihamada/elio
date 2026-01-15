@@ -21,8 +21,7 @@ struct OnboardingMCPView: View {
             ServerOption(id: "contacts", name: "連絡先", icon: "person.crop.circle", description: "連絡先の検索"),
             ServerOption(id: "photos", name: "写真", icon: "photo", description: "写真ライブラリへのアクセス")
         ]),
-        ("ヘルス・位置情報", [
-            ServerOption(id: "health", name: "ヘルスケア", icon: "heart", description: "歩数・睡眠などの健康データ"),
+        ("位置情報", [
             ServerOption(id: "location", name: "位置情報", icon: "location", description: "現在地の取得")
         ]),
         ("ユーティリティ", [
@@ -47,7 +46,7 @@ struct OnboardingMCPView: View {
                         .font(.system(size: 50))
                         .foregroundStyle(.blue)
 
-                    Text("Elioの機能を選択")
+                    Text("ElioChatの機能を選択")
                         .font(.title.bold())
 
                     Text("使用したい機能を選んでください。\n後から設定で変更できます。")

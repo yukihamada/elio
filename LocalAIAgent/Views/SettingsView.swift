@@ -118,7 +118,7 @@ struct SettingsView: View {
             }
 
             VStack(spacing: 4) {
-                Text("Elio")
+                Text("ElioChat")
                     .font(.system(size: 22, weight: .bold, design: .rounded))
 
                 if appState.isModelLoaded, let modelName = appState.currentModelName {

@@ -313,6 +313,11 @@ final class AppState: ObservableObject {
     // MARK: - Persistence
 
     private func loadConversationsAsync() async {
+        // Skip loading from storage in screenshot mode - use mock data instead
+        if AppState.isScreenshotMode {
+            conversations = ScreenshotMockData.getMockConversations()
+            return
+        }
         // Migrate existing data if needed (synchronous but fast check)
         SharedDataManager.migrateIfNeeded()
         // Load from shared container asynchronously
@@ -503,8 +508,8 @@ final class AppState: ObservableObject {
             let context = contextParts.joined(separator: "\n\n")
 
             return """
-            # Elio について
-            あなたは「Elio」（エリオ）です。プライバシーを最優先するローカルAIアシスタントとして、ユーザーのデバイス上で完全に動作します。
+            # ElioChat について
+            あなたは「ElioChat」（エリオチャット）です。プライバシーを最優先するローカルAIアシスタントとして、ユーザーのデバイス上で完全に動作します。
             - すべての処理はデバイス内で完結し、データは外部に送信されません
             - ユーザーのプライバシーと信頼を守ることが最も重要な使命です
 
@@ -526,8 +531,8 @@ final class AppState: ObservableObject {
             let context = contextParts.joined(separator: "\n\n")
 
             return """
-            # About Elio
-            You are Elio, a privacy-first local AI assistant that runs entirely on the user's device.
+            # About ElioChat
+            You are ElioChat, a privacy-first local AI assistant that runs entirely on the user's device.
             - All processing happens locally; no data is sent externally
             - Protecting user privacy and trust is your most important mission
 

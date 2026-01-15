@@ -74,10 +74,21 @@ final class WhisperManager: ObservableObject {
             // Create models directory if needed
             try FileManager.default.createDirectory(at: modelsDirectory, withIntermediateDirectories: true)
 
-            // Download and initialize WhisperKit
-            whisperKit = try await WhisperKit(
-                model: modelName,
+            // Download model with progress callback
+            let modelFolder = try await WhisperKit.download(
+                variant: modelName,
                 downloadBase: modelsDirectory,
+                useBackgroundSession: false,
+                progressCallback: { [weak self] progress in
+                    Task { @MainActor [weak self] in
+                        self?.downloadProgress = progress.fractionCompleted
+                    }
+                }
+            )
+
+            // Initialize WhisperKit with downloaded model
+            whisperKit = try await WhisperKit(
+                modelFolder: modelFolder.path,
                 verbose: false,
                 prewarm: true
             )
@@ -99,10 +110,12 @@ final class WhisperManager: ObservableObject {
         guard whisperKit == nil else { return }
 
         do {
-            // Load from local storage - WhisperKit will find the existing model
+            // Find existing model folder
+            let modelPath = modelsDirectory.appendingPathComponent(modelName)
+
+            // Load from local storage
             whisperKit = try await WhisperKit(
-                model: modelName,
-                downloadBase: modelsDirectory,
+                modelFolder: modelPath.path,
                 verbose: false,
                 prewarm: true
             )
