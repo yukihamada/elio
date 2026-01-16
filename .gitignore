@@ -1,1 +1,7 @@
 Training/venv/
+
+# Firebase credentials
+fastlane/firebase/service-account.json
+
+fastlane/api_key.json
+firebase-debug.log

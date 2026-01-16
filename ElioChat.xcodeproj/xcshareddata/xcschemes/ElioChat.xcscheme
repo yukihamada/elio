@@ -16,8 +16,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "400"
-               BuildableName = "ElioChat.app"
-               BlueprintName = "ElioChat"
+               BuildableName = "LocalAIAgent.app"
+               BlueprintName = "LocalAIAgent"
                ReferencedContainer = "container:ElioChat.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -45,8 +45,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "400"
-            BuildableName = "ElioChat.app"
-            BlueprintName = "ElioChat"
+            BuildableName = "LocalAIAgent.app"
+            BlueprintName = "LocalAIAgent"
             ReferencedContainer = "container:ElioChat.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -62,8 +62,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "400"
-            BuildableName = "ElioChat.app"
-            BlueprintName = "ElioChat"
+            BuildableName = "LocalAIAgent.app"
+            BlueprintName = "LocalAIAgent"
             ReferencedContainer = "container:ElioChat.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

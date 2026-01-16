@@ -1,5 +1,5 @@
-project("LocalAIAgent.xcodeproj")
-scheme("LocalAIAgent")
+project("ElioChat.xcodeproj")
+scheme("ElioChat")
 clean(true)
 
 # Output configuration
