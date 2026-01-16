@@ -231,18 +231,21 @@ platform :ios do
 
   desc "Build test bundle for Firebase Test Lab"
   lane :build_for_testing do
+    # Create build directory
+    sh("mkdir -p ../build")
+
     # Build for testing (creates xctestrun file)
     scan(
       project: "ElioChat.xcodeproj",
       scheme: "ElioChat",
       build_for_testing: true,
-      derived_data_path: "./build/DerivedData",
+      derived_data_path: "../build/DerivedData",
       sdk: "iphoneos",
       destination: "generic/platform=iOS"
     )
 
     # Copy xctestrun file to build directory
-    sh("cp ./build/DerivedData/Build/Products/*.xctestrun ./build/")
+    sh("cp ../build/DerivedData/Build/Products/*.xctestrun ../build/")
     UI.success("Test bundle ready for Firebase Test Lab")
   end
 

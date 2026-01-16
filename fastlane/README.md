@@ -103,6 +103,38 @@ Add device frames and promotional text to screenshots
 
 Create App Store screenshots (capture + frame)
 
+### ios build_for_testing
+
+```sh
+[bundle exec] fastlane ios build_for_testing
+```
+
+Build test bundle for Firebase Test Lab
+
+### ios firebase_test
+
+```sh
+[bundle exec] fastlane ios firebase_test
+```
+
+Run tests on Firebase Test Lab using Flank (parallel)
+
+### ios firebase_test_device
+
+```sh
+[bundle exec] fastlane ios firebase_test_device
+```
+
+Run tests on Firebase Test Lab with specific device
+
+### ios firebase_devices
+
+```sh
+[bundle exec] fastlane ios firebase_devices
+```
+
+List available iOS devices on Firebase Test Lab
+
 ----
 
 This README.md is auto-generated and will be re-generated every time [_fastlane_](https://fastlane.tools) is run.
