@@ -1,0 +1,54 @@
+gcloud:
+  # GCP project ID
+  project: elio-chat-app
+
+  # Results storage bucket (auto-created if not exists)
+  results-bucket: elio-chat-test-results
+
+  # Results history name
+  results-history-name: ElioChat-test-results
+
+  # iOS specific settings
+  test: ./build/ElioChat_iphoneos_test.xctestrun
+  xcode-version: 16.0
+
+  # Devices to test on (check available: fastlane firebase_devices)
+  device:
+    - model: iphone14pro
+      version: 16.6
+    - model: iphone16pro
+      version: 18.3
+    - model: iphonese3
+      version: 18.4
+
+  # Test timeout
+  timeout: 30m
+
+  # Number of flaky test attempts
+  num-flaky-test-attempts: 2
+
+flank:
+  # Maximum test shards for parallel execution
+  max-test-shards: 10
+
+  # Number of test runs per test
+  num-test-runs: 1
+
+  # Keep results on success
+  keep-file-path: true
+
+  # Output directory
+  local-result-dir: ./test-results
+
+  # Smart flank settings (for test caching)
+  smart-flank-gcs-path: gs://elio-chat-test-results/smart-flank/
+  smart-flank-disable-upload: false
+
+  # Full junit result
+  full-junit-result: true
+
+  # Output style
+  output-style: single
+
+  # Disable sharding for specific tests
+  # disable-sharding: false

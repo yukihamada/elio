@@ -4,10 +4,10 @@
     {
       "identity" : "llama.swift",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/mattt/llama.swift",
+      "location" : "https://github.com/mattt/llama.swift.git",
       "state" : {
-        "revision" : "bca881ff85aa518e4c3afe4106d05f59c0654e65",
-        "version" : "2.7690.0"
+        "revision" : "e732542d80647cd37f99938948115a39db698282",
+        "version" : "2.7751.0"
       }
     },
     {
