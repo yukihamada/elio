@@ -9,27 +9,25 @@ gcloud:
   results-history-name: ElioChat-test-results
 
   # iOS specific settings
-  test: ./build/ElioChat_iphoneos_test.xctestrun
-  xcode-version: 16.0
+  test: ./build/DerivedData/Build/Products/test_bundle.zip
+  xctestrun-file: ./build/DerivedData/Build/Products/ElioChat_iphoneos18.2-arm64.xctestrun
+  xcode-version: 16.4
 
-  # Devices to test on (check available: fastlane firebase_devices)
+  # Single device for E2E test (faster, cheaper)
   device:
-    - model: iphone14pro
-      version: 16.6
     - model: iphone16pro
       version: 18.3
-    - model: iphonese3
-      version: 18.4
 
-  # Test timeout
-  timeout: 30m
+  # Long timeout for model download + LLM inference
+  timeout: 45m
 
-  # Number of flaky test attempts
-  num-flaky-test-attempts: 2
+  # Retry flaky tests
+  num-flaky-test-attempts: 1
 
 flank:
-  # Maximum test shards for parallel execution
-  max-test-shards: 10
+  # Run tests
+  max-test-shards: 1
+  disable-sharding: false
 
   # Number of test runs per test
   num-test-runs: 1
@@ -41,7 +39,7 @@ flank:
   local-result-dir: ./test-results
 
   # Smart flank settings (for test caching)
-  smart-flank-gcs-path: gs://elio-chat-test-results/smart-flank/
+  smart-flank-gcs-path: gs://elio-chat-test-results/smart-flank/flank.xml
   smart-flank-disable-upload: false
 
   # Full junit result
@@ -50,5 +48,4 @@ flank:
   # Output style
   output-style: single
 
-  # Disable sharding for specific tests
-  # disable-sharding: false
+  # Run all tests

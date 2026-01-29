@@ -72,7 +72,7 @@ platform :ios do
       sdk: "iphoneos",
       export_options: {
         provisioningProfiles: {
-          "love.elio.app" => "match AppStore love.elio.app"
+          "love.elio.app" => ENV["sigh_love.elio.app_appstore_profile-name"] || "match AppStore love.elio.app"
         },
         signingStyle: "manual",
         teamID: "5BV85JW8US"
@@ -91,14 +91,12 @@ platform :ios do
 
   desc "Deploy to App Store"
   lane :release do
-    # Note: Keychain setup is handled by install-certificates.sh script
-    # Do not use setup_ci as it creates a separate keychain
-
+    # Use local API key file for local execution
     api_key = app_store_connect_api_key(
-      key_id: ENV["APP_STORE_CONNECT_API_KEY_ID"],
-      issuer_id: ENV["APP_STORE_CONNECT_ISSUER_ID"],
-      key_content: ENV["APP_STORE_CONNECT_API_KEY"],
-      is_key_content_base64: false
+      key_id: "5KT46G9Y29",
+      issuer_id: "e0d22675-afb3-45f0-a821-06b477f44da0",
+      key_filepath: File.expand_path("~/.appstoreconnect/private_keys/AuthKey_5KT46G9Y29.p8"),
+      in_house: false
     )
 
     # Increment build number
@@ -106,14 +104,14 @@ platform :ios do
       build_number: latest_testflight_build_number(api_key: api_key) + 1
     )
 
-    # Sync certificates using match
-    sync_code_signing(
-      type: "appstore",
-      readonly: true,
-      api_key_path: "./fastlane/api_key.json"
+    # Get latest provisioning profile from App Store Connect
+    get_provisioning_profile(
+      api_key: api_key,
+      app_identifier: "love.elio.app",
+      team_id: "5BV85JW8US"
     )
 
-    # Build the app with match provisioning profile
+    # Build the app with automatic signing
     build_app(
       project: "ElioChat.xcodeproj",
       scheme: "ElioChat",
@@ -122,22 +120,20 @@ platform :ios do
       destination: "generic/platform=iOS",
       sdk: "iphoneos",
       export_options: {
-        provisioningProfiles: {
-          "love.elio.app" => "match AppStore love.elio.app"
-        },
-        signingStyle: "manual",
+        signingStyle: "automatic",
         teamID: "5BV85JW8US"
       }
     )
 
-    # Upload to App Store Connect
+    # Upload to App Store Connect with metadata
     upload_to_app_store(
       api_key: api_key,
-      submit_for_review: false,
+      submit_for_review: true,
       automatic_release: false,
       skip_screenshots: true,
-      skip_metadata: true,
-      precheck_include_in_app_purchases: false
+      skip_metadata: false,
+      precheck_include_in_app_purchases: false,
+      force: true
     )
 
     # Clean up

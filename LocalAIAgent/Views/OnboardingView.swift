@@ -12,12 +12,36 @@ struct OnboardingView: View {
     @State private var textModelDownloaded = false
     @State private var visionModelDownloaded = false
     @State private var currentDownloadingModel: String = ""
+    @State private var isViewReady = false  // For initial loading state
+    @State private var goroAnimation = false  // Goro mascot animation
+    @State private var showContent = false  // Content fade-in animation
+    @State private var showDownloadConfirmation = false  // App Store 4.2.3 compliance: explicit download confirmation
     @Environment(\.dismiss) private var dismiss
-    @StateObject private var modelLoader = ModelLoader()
+    @ObservedObject private var modelLoader = ModelLoader.shared
+    @AppStorage("justCompletedOnboarding") private var justCompletedOnboarding = false
 
-    // Models to download: Qwen3 1.7B (text) and Qwen3-VL 2B (vision)
+    // Check if running in test mode (Firebase Test Lab or UI Tests)
+    private var isTestMode: Bool {
+        ProcessInfo.processInfo.arguments.contains("-UITest") ||
+        ProcessInfo.processInfo.environment["FIREBASE_TEST_LAB"] == "1" ||
+        ProcessInfo.processInfo.arguments.contains("-TestMode")
+    }
+
+    // Check if running in skip download mode (for UI testing without model)
+    private var isSkipDownloadMode: Bool {
+        ProcessInfo.processInfo.arguments.contains("-SkipDownload")
+    }
+
+    // Models to download: ElioChat v3 (text) and Qwen3-VL 2B (vision)
+    // In test mode, use smallest model (qwen3-0.6b) for faster testing
     private var textModel: ModelLoader.ModelInfo? {
-        modelLoader.availableModels.first { $0.id == "qwen3-1.7b" }
+        if isTestMode {
+            // Use smallest model for testing
+            return modelLoader.availableModels.first { $0.id == "qwen3-0.6b" }
+        }
+        // Prefer ElioChat v3 > Qwen3 1.7B as fallback
+        return modelLoader.availableModels.first { $0.id == "eliochat-1.7b-v3" }
+            ?? modelLoader.availableModels.first { $0.id == "qwen3-1.7b" }
     }
 
     private var visionModel: ModelLoader.ModelInfo? {
@@ -31,133 +55,197 @@ struct OnboardingView: View {
 
     var body: some View {
         ZStack {
-            Color.chatBackgroundDynamic
-                .ignoresSafeArea()
+            // Animated gradient background
+            LinearGradient(
+                colors: [
+                    Color.purple.opacity(0.1),
+                    Color.blue.opacity(0.05),
+                    Color.chatBackgroundDynamic
+                ],
+                startPoint: .topLeading,
+                endPoint: .bottomTrailing
+            )
+            .ignoresSafeArea()
 
-            VStack(spacing: 0) {
-                // Skip button
-                HStack {
-                    Spacer()
-                    Button("スキップ") {
-                        completeOnboarding()
-                    }
-                    .foregroundStyle(.secondary)
-                    .padding(.trailing, 20)
-                    .padding(.top, 16)
+            if !isViewReady {
+                // Beautiful loading state with Goro mascot
+                VStack(spacing: 24) {
+                    // Animated Goro mascot
+                    AppLogo(isAnimating: true, size: 100)
+
+                    Text("ElioChatを準備中...")
+                        .font(.title3.weight(.medium))
+                        .foregroundStyle(.primary)
+
+                    ProgressView()
+                        .scaleEffect(1.0)
                 }
-
-                // Page content
-                TabView(selection: $currentPage) {
-                    welcomePage
-                        .tag(0)
-
-                    featuresPage
-                        .tag(1)
-
-                    privacyPage
-                        .tag(2)
-
-                    getStartedPage
-                        .tag(3)
-                }
-                .tabViewStyle(.page(indexDisplayMode: .always))
-
-                // Bottom buttons
-                VStack(spacing: 16) {
+                .transition(.opacity)
+            } else {
+                VStack(spacing: 0) {
+                    // Spacer for pages 0-2, reduced for page 3
                     if currentPage < 3 {
-                        Button(action: { withAnimation { currentPage += 1 } }) {
-                            Text("次へ")
-                                .font(.headline)
-                                .frame(maxWidth: .infinity)
-                                .padding(.vertical, 16)
-                                .background(Color.accentColor)
-                                .foregroundColor(.white)
-                                .cornerRadius(12)
-                        }
+                        Spacer().frame(height: 20)
                     } else {
-                        // Last page - download or complete
-                        if downloadCompleted {
-                            Button(action: { completeOnboarding() }) {
-                                Text("始める")
+                        Spacer().frame(height: 8)
+                    }
+
+                    // Page content
+                    TabView(selection: $currentPage) {
+                        welcomePage
+                            .tag(0)
+
+                        featuresPage
+                            .tag(1)
+
+                        privacyPage
+                            .tag(2)
+
+                        getStartedPage
+                            .tag(3)
+                    }
+                    .tabViewStyle(.page(indexDisplayMode: currentPage == 3 ? .never : .always))
+
+                    // Bottom buttons (only show for pages 0-2, page 3 has its own buttons)
+                    if currentPage < 3 {
+                        VStack(spacing: 16) {
+                            Button(action: {
+                                withAnimation(.spring(response: 0.4, dampingFraction: 0.8)) {
+                                    currentPage += 1
+                                }
+                            }) {
+                                Text("次へ")
                                     .font(.headline)
                                     .frame(maxWidth: .infinity)
                                     .padding(.vertical, 16)
-                                    .background(Color.accentColor)
+                                    .background(
+                                        LinearGradient(
+                                            colors: [.purple, .blue],
+                                            startPoint: .leading,
+                                            endPoint: .trailing
+                                        )
+                                    )
                                     .foregroundColor(.white)
-                                    .cornerRadius(12)
-                            }
-                        } else if isDownloading {
-                            Button(action: {}) {
-                                HStack {
-                                    ProgressView()
-                                        .tint(.white)
-                                    Text("ダウンロード中...")
-                                        .font(.headline)
-                                }
-                                .frame(maxWidth: .infinity)
-                                .padding(.vertical, 16)
-                                .background(Color.gray)
-                                .foregroundColor(.white)
-                                .cornerRadius(12)
-                            }
-                            .disabled(true)
-                        } else {
-                            Button(action: { startModelDownload() }) {
-                                HStack {
-                                    Image(systemName: "arrow.down.circle.fill")
-                                    Text("ダウンロード開始")
-                                        .font(.headline)
-                                }
-                                .frame(maxWidth: .infinity)
-                                .padding(.vertical, 16)
-                                .background(Color.cyan)
-                                .foregroundColor(.white)
-                                .cornerRadius(12)
-                            }
-
-                            Button(action: { completeOnboarding() }) {
-                                Text("後でダウンロード")
-                                    .font(.subheadline)
-                                    .foregroundStyle(.secondary)
+                                    .cornerRadius(14)
+                                    .shadow(color: .purple.opacity(0.3), radius: 8, y: 4)
                             }
                         }
+                        .padding(.horizontal, 24)
+                        .padding(.bottom, 40)
+                        .opacity(showContent ? 1 : 0)
                     }
                 }
-                .padding(.horizontal, 24)
-                .padding(.bottom, 40)
+                .opacity(showContent ? 1 : 0)
+            }
+        }
+        .onAppear {
+            // Skip download mode for UI testing - immediately complete onboarding
+            if isSkipDownloadMode {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    justCompletedOnboarding = true
+                    hasCompletedOnboarding = true
+                    dismiss()
+                }
+                return
+            }
+
+            // NOTE: Do NOT start download automatically here.
+            // Per App Store Guideline 4.2.3, we must disclose download size
+            // and prompt the user before starting the download.
+            // Download will start when user taps the button on getStartedPage.
+
+            // Delay to let view initialize properly, then show with animation
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                withAnimation(.easeOut(duration: 0.3)) {
+                    isViewReady = true
+                }
+                // Staggered content animation
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                    withAnimation(.easeOut(duration: 0.4)) {
+                        showContent = true
+                    }
+                }
+            }
+            // Start Goro animation
+            withAnimation(.easeInOut(duration: 1.5).repeatForever(autoreverses: true)) {
+                goroAnimation = true
+            }
+        }
+    }
+
+    /// Start model download in background without blocking UI
+    private func startBackgroundDownload() {
+        // Check if already downloading or completed
+        guard !isDownloading && !downloadCompleted else { return }
+
+        // Check if model is already downloaded
+        if let text = textModel, modelLoader.isModelDownloaded(text.id) {
+            textModelDownloaded = true
+            downloadCompleted = true
+            return
+        }
+
+        // Start background download
+        isDownloading = true
+        downloadError = nil
+
+        Task {
+            do {
+                if let text = textModel, !modelLoader.isModelDownloaded(text.id) {
+                    await MainActor.run {
+                        currentDownloadingModel = text.id
+                        downloadProgress = 0
+                        downloadProgressInfo = nil
+                    }
+
+                    print("[OnboardingView] Starting background download for model: \(text.id)")
+
+                    // Poll progress in background
+                    let progressTask = Task { @MainActor in
+                        while !Task.isCancelled {
+                            if let progress = modelLoader.downloadProgress[text.id] {
+                                self.downloadProgress = progress
+                            }
+                            if let info = modelLoader.downloadProgressInfo[text.id] {
+                                self.downloadProgressInfo = info
+                            }
+                            try? await Task.sleep(nanoseconds: 100_000_000) // 100ms
+                        }
+                    }
+
+                    try await modelLoader.downloadModel(text)
+                    progressTask.cancel()
+
+                    await MainActor.run {
+                        textModelDownloaded = true
+                        downloadProgress = 1.0
+                        downloadProgressInfo = nil
+                        downloadCompleted = true
+                        currentDownloadingModel = ""
+                        print("[OnboardingView] Background download completed")
+                    }
+                }
+            } catch {
+                await MainActor.run {
+                    isDownloading = false
+                    downloadCompleted = false
+                    downloadError = "ダウンロードに失敗しました: \(error.localizedDescription)"
+                    print("[OnboardingView] Background download failed: \(error)")
+                }
             }
         }
     }
 
     private var welcomePage: some View {
-        VStack(spacing: 24) {
+        VStack(spacing: 20) {
             Spacer()
 
-            // Gradient brain icon
-            ZStack {
-                Circle()
-                    .fill(
-                        LinearGradient(
-                            colors: [.purple.opacity(0.3), .blue.opacity(0.2)],
-                            startPoint: .topLeading,
-                            endPoint: .bottomTrailing
-                        )
-                    )
-                    .frame(width: 120, height: 120)
-
-                Image(systemName: "brain.head.profile")
-                    .font(.system(size: 60))
-                    .foregroundStyle(
-                        LinearGradient(
-                            colors: [.purple, .blue],
-                            startPoint: .topLeading,
-                            endPoint: .bottomTrailing
-                        )
-                    )
-            }
+            // Animated Goro mascot
+            AppLogo(isAnimating: goroAnimation, size: 140)
+                .padding(.bottom, 8)
 
             Text(String(localized: "onboarding.welcome.title"))
-                .font(.system(size: 32, weight: .bold))
+                .font(.system(size: 34, weight: .bold))
                 .multilineTextAlignment(.center)
 
             Text(String(localized: "onboarding.welcome.subtitle"))
@@ -165,214 +253,325 @@ struct OnboardingView: View {
                 .foregroundStyle(.secondary)
                 .multilineTextAlignment(.center)
 
-            // Airplane mode badge
-            HStack(spacing: 8) {
-                Image(systemName: "airplane")
-                    .foregroundStyle(.green)
-                Text("機内モードでも動作")
-                    .font(.subheadline.weight(.medium))
+            // Feature badges
+            VStack(spacing: 12) {
+                HStack(spacing: 12) {
+                    FeatureBadge(icon: "airplane", text: "オフライン", color: .green)
+                    FeatureBadge(icon: "lock.shield.fill", text: "プライベート", color: .blue)
+                }
+                HStack(spacing: 12) {
+                    FeatureBadge(icon: "sparkles", text: "日本語最適化", color: .purple)
+                    FeatureBadge(icon: "bolt.fill", text: "高速", color: .orange)
+                }
             }
-            .padding(.horizontal, 16)
-            .padding(.vertical, 8)
-            .background(Color.green.opacity(0.15))
-            .cornerRadius(20)
+            .padding(.top, 8)
 
             Spacer()
             Spacer()
         }
-        .padding(.horizontal, 32)
+        .padding(.horizontal, 24)
     }
 
     private var featuresPage: some View {
-        VStack(spacing: 32) {
+        VStack(spacing: 24) {
             Spacer()
 
-            Text(String(localized: "onboarding.features.title"))
-                .font(.system(size: 24, weight: .bold))
+            // Goro with speech bubble
+            HStack(alignment: .top, spacing: 12) {
+                AppLogo(isAnimating: goroAnimation, size: 60)
 
-            VStack(alignment: .leading, spacing: 20) {
-                FeatureRow(
+                Text("私ができることを\n紹介しますね！")
+                    .font(.subheadline)
+                    .padding(12)
+                    .background(Color(.secondarySystemBackground))
+                    .clipShape(RoundedRectangle(cornerRadius: 12))
+            }
+
+            Text(String(localized: "onboarding.features.title"))
+                .font(.system(size: 26, weight: .bold))
+
+            VStack(alignment: .leading, spacing: 16) {
+                AnimatedFeatureRow(
                     icon: "airplane",
                     iconColor: .green,
                     title: String(localized: "onboarding.feature.offline"),
                     description: String(localized: "onboarding.feature.offline.desc")
                 )
-                FeatureRow(
+                AnimatedFeatureRow(
                     icon: "lock.shield.fill",
                     iconColor: .blue,
                     title: String(localized: "onboarding.feature.privacy"),
                     description: String(localized: "onboarding.feature.privacy.desc")
                 )
-                FeatureRow(
-                    icon: "calendar.badge.clock",
-                    iconColor: .orange,
-                    title: String(localized: "onboarding.feature.vault"),
-                    description: String(localized: "onboarding.feature.vault.desc")
-                )
-                FeatureRow(
-                    icon: "briefcase.fill",
+                AnimatedFeatureRow(
+                    icon: "cpu.fill",
                     iconColor: .purple,
-                    title: String(localized: "onboarding.feature.secure"),
-                    description: String(localized: "onboarding.feature.secure.desc")
+                    title: "独自のAIモデル",
+                    description: "日本語に最適化した専用モデル"
+                )
+                AnimatedFeatureRow(
+                    icon: "slider.horizontal.3",
+                    iconColor: .orange,
+                    title: "複数モデル対応",
+                    description: "用途に合わせてモデル切り替え"
                 )
             }
 
             Spacer()
             Spacer()
         }
-        .padding(.horizontal, 32)
+        .padding(.horizontal, 24)
     }
 
     private var privacyPage: some View {
         VStack(spacing: 24) {
             Spacer()
 
+            // Goro with lock
             ZStack {
                 Circle()
-                    .fill(Color.green.opacity(0.15))
-                    .frame(width: 100, height: 100)
+                    .fill(
+                        LinearGradient(
+                            colors: [.green.opacity(0.2), .blue.opacity(0.1)],
+                            startPoint: .topLeading,
+                            endPoint: .bottomTrailing
+                        )
+                    )
+                    .frame(width: 120, height: 120)
 
+                AppLogo(isAnimating: goroAnimation, size: 80)
+
+                // Lock badge
                 Image(systemName: "lock.shield.fill")
-                    .font(.system(size: 50))
+                    .font(.system(size: 28))
                     .foregroundStyle(.green)
+                    .padding(8)
+                    .background(Color(.systemBackground))
+                    .clipShape(Circle())
+                    .offset(x: 40, y: 35)
             }
 
             Text(String(localized: "onboarding.privacy.title"))
                 .font(.system(size: 24, weight: .bold))
                 .multilineTextAlignment(.center)
 
-            VStack(alignment: .leading, spacing: 16) {
-                PrivacyItem(icon: "iphone", text: String(localized: "onboarding.privacy.item1"))
-                PrivacyItem(icon: "xmark.icloud.fill", text: String(localized: "onboarding.privacy.item2"))
-                PrivacyItem(icon: "brain.head.profile", text: String(localized: "onboarding.privacy.item3"))
+            VStack(alignment: .leading, spacing: 14) {
+                AnimatedPrivacyItem(icon: "iphone", text: String(localized: "onboarding.privacy.item1"))
+                AnimatedPrivacyItem(icon: "xmark.icloud.fill", text: String(localized: "onboarding.privacy.item2"))
+                AnimatedPrivacyItem(icon: "hand.raised.fill", text: String(localized: "onboarding.privacy.item3"))
             }
             .padding(.horizontal, 16)
+
+            // Trust badge
+            HStack(spacing: 6) {
+                Image(systemName: "checkmark.seal.fill")
+                    .foregroundStyle(.green)
+                Text("100% ローカル処理")
+                    .font(.footnote.weight(.medium))
+            }
+            .padding(.horizontal, 14)
+            .padding(.vertical, 8)
+            .background(Color.green.opacity(0.1))
+            .clipShape(Capsule())
 
             Spacer()
             Spacer()
         }
-        .padding(.horizontal, 32)
+        .padding(.horizontal, 24)
     }
 
     private var getStartedPage: some View {
-        VStack(spacing: 20) {
-            Spacer()
+        VStack(spacing: 0) {
+            if isDownloading || downloadCompleted {
+                // Show interactive chat during download
+                OnboardingChatView(
+                    downloadProgress: $downloadProgress,
+                    isDownloadComplete: $downloadCompleted,
+                    downloadProgressInfo: downloadProgressInfo,
+                    onComplete: {
+                        completeOnboarding()
+                    }
+                )
+            } else if textModel != nil || visionModel != nil {
+                // Pre-download view
+                VStack(spacing: 20) {
+                    Spacer()
 
-            if textModel != nil || visionModel != nil {
-                // Model download section
-                ZStack {
-                    Circle()
-                        .fill(downloadCompleted ? Color.green.opacity(0.15) : Color.cyan.opacity(0.15))
-                        .frame(width: 100, height: 100)
+                    // Model download section
+                    ZStack {
+                        Circle()
+                            .fill(Color.cyan.opacity(0.15))
+                            .frame(width: 100, height: 100)
 
-                    if isDownloading {
-                        CircularProgressView(progress: downloadProgress)
-                            .frame(width: 80, height: 80)
-                    } else if downloadCompleted {
-                        Image(systemName: "checkmark.circle.fill")
-                            .font(.system(size: 50))
-                            .foregroundStyle(.green)
-                    } else {
                         Image(systemName: "arrow.down.circle.fill")
                             .font(.system(size: 50))
                             .foregroundStyle(.cyan)
                     }
-                }
 
-                Text(downloadCompleted ? "準備完了！" : "AIモデルをダウンロード")
-                    .font(.system(size: 24, weight: .bold))
+                    Text("AIモデルをダウンロード")
+                        .font(.system(size: 24, weight: .bold))
 
-                // Device tier info
-                HStack(spacing: 8) {
-                    Image(systemName: "iphone")
-                        .foregroundStyle(.secondary)
-                    Text("お使いのデバイス: \(DeviceTier.current.displayName)")
-                        .font(.subheadline)
-                        .foregroundStyle(.secondary)
-                }
+                    // Device tier info
+                    HStack(spacing: 8) {
+                        Image(systemName: "iphone")
+                            .foregroundStyle(.secondary)
+                        Text("お使いのデバイス: \(DeviceTier.current.displayName)")
+                            .font(.subheadline)
+                            .foregroundStyle(.secondary)
+                    }
 
-                // Two model cards
-                VStack(spacing: 12) {
-                    // Text model (Qwen3 1.7B)
+                    // Model info card
                     if let model = textModel {
-                        ModelDownloadCard(
-                            model: model,
-                            label: "テキスト",
-                            labelColor: .blue,
-                            isDownloaded: textModelDownloaded || modelLoader.isModelDownloaded(model.id),
-                            isDownloading: isDownloading && currentDownloadingModel == model.id,
-                            progressInfo: currentDownloadingModel == model.id ? downloadProgressInfo : nil
-                        )
+                        VStack(alignment: .leading, spacing: 12) {
+                            HStack {
+                                Image(systemName: "cpu.fill")
+                                    .foregroundStyle(.purple)
+                                Text(model.name)
+                                    .font(.headline)
+                                Spacer()
+                                Text(model.size)
+                                    .font(.subheadline)
+                                    .foregroundStyle(.secondary)
+                            }
+
+                            Text(model.description)
+                                .font(.subheadline)
+                                .foregroundStyle(.secondary)
+
+                            HStack(spacing: 16) {
+                                Label("日本語対応", systemImage: "globe.asia.australia.fill")
+                                Label("オフライン可", systemImage: "airplane")
+                            }
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                        }
+                        .padding()
+                        .background(Color(.secondarySystemBackground))
+                        .clipShape(RoundedRectangle(cornerRadius: 16))
                     }
 
-                    // Vision model (Qwen3-VL 2B)
-                    if let model = visionModel {
-                        ModelDownloadCard(
-                            model: model,
-                            label: "画像認識",
-                            labelColor: .purple,
-                            isDownloaded: visionModelDownloaded || modelLoader.isModelDownloaded(model.id),
-                            isDownloading: isDownloading && currentDownloadingModel == model.id,
-                            progressInfo: currentDownloadingModel == model.id ? downloadProgressInfo : nil
-                        )
+                    // Download size disclosure (App Store Guideline 4.2.3)
+                    if let model = textModel {
+                        VStack(spacing: 8) {
+                            HStack(spacing: 4) {
+                                Image(systemName: "arrow.down.doc.fill")
+                                    .foregroundStyle(.orange)
+                                Text("ダウンロードサイズ: \(model.size)")
+                                    .font(.subheadline.weight(.semibold))
+                            }
+
+                            HStack(spacing: 4) {
+                                Image(systemName: "wifi")
+                                    .foregroundStyle(.secondary)
+                                Text("Wi-Fi接続での利用を推奨します")
+                                    .font(.caption)
+                                    .foregroundStyle(.secondary)
+                            }
+                        }
+                        .padding(.vertical, 12)
+                        .padding(.horizontal, 16)
+                        .background(Color.orange.opacity(0.1))
+                        .clipShape(RoundedRectangle(cornerRadius: 12))
                     }
 
-                    // Total size info
-                    let totalSize = (textModel?.sizeBytes ?? 0) + (visionModel?.sizeBytes ?? 0)
-                    Text("合計: \(ModelLoader.formatSize(totalSize))")
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
-                }
-
-                if let error = downloadError {
-                    Text(error)
-                        .font(.caption)
-                        .foregroundStyle(.red)
-                        .padding(.horizontal)
-                }
-
-                if !downloadCompleted && !isDownloading {
-                    Text("AIを使うにはモデルのダウンロードが必要です")
+                    Text("ダウンロード中にElioChatについて説明します")
                         .font(.caption)
                         .foregroundStyle(.secondary)
                         .multilineTextAlignment(.center)
+
+                    Spacer()
+
+                    // Download button - shows confirmation alert (App Store Guideline 4.2.3)
+                    Button(action: {
+                        showDownloadConfirmation = true
+                    }) {
+                        HStack {
+                            Image(systemName: "arrow.down.circle.fill")
+                            if let model = textModel {
+                                Text("ダウンロード (\(model.size))")
+                            } else {
+                                Text("ダウンロードを開始")
+                            }
+                        }
+                        .font(.headline)
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical, 16)
+                        .background(
+                            LinearGradient(
+                                colors: [.purple, .blue],
+                                startPoint: .leading,
+                                endPoint: .trailing
+                            )
+                        )
+                        .foregroundStyle(.white)
+                        .clipShape(RoundedRectangle(cornerRadius: 14))
+                    }
+                    .padding(.horizontal, 20)
+                    .padding(.bottom, 20)
+                    // App Store Guideline 4.2.3: Explicit download confirmation with size disclosure
+                    .alert("AIモデルをダウンロード", isPresented: $showDownloadConfirmation) {
+                        Button("ダウンロード開始", role: nil) {
+                            startModelDownload()
+                        }
+                        Button("キャンセル", role: .cancel) {}
+                    } message: {
+                        if let model = textModel {
+                            Text("\(model.name)（\(model.size)）をダウンロードします。\n\nWi-Fi環境でのダウンロードを推奨します。\n\n今すぐダウンロードしますか？")
+                        } else {
+                            Text("AIモデルをダウンロードします。続行しますか？")
+                        }
+                    }
                 }
+                .padding(.horizontal, 32)
             } else {
                 // Fallback if no model found
-                ZStack {
-                    Circle()
-                        .fill(Color.blue.opacity(0.15))
-                        .frame(width: 100, height: 100)
+                VStack(spacing: 20) {
+                    Spacer()
 
-                    Image(systemName: "hand.tap.fill")
-                        .font(.system(size: 50))
-                        .foregroundStyle(.blue)
+                    ZStack {
+                        Circle()
+                            .fill(Color.blue.opacity(0.15))
+                            .frame(width: 100, height: 100)
+
+                        Image(systemName: "hand.tap.fill")
+                            .font(.system(size: 50))
+                            .foregroundStyle(.blue)
+                    }
+
+                    Text(String(localized: "onboarding.getstarted.title"))
+                        .font(.system(size: 24, weight: .bold))
+
+                    Text(String(localized: "onboarding.getstarted.subtitle"))
+                        .font(.body)
+                        .foregroundStyle(.secondary)
+                        .multilineTextAlignment(.center)
+
+                    Spacer()
                 }
-
-                Text(String(localized: "onboarding.getstarted.title"))
-                    .font(.system(size: 24, weight: .bold))
-
-                Text(String(localized: "onboarding.getstarted.subtitle"))
-                    .font(.body)
-                    .foregroundStyle(.secondary)
-                    .multilineTextAlignment(.center)
+                .padding(.horizontal, 32)
             }
-
-            Spacer()
-            Spacer()
         }
-        .padding(.horizontal, 32)
         .onAppear {
-            // Check if models are already downloaded
+            // Check if model is already downloaded
             if let text = textModel, modelLoader.isModelDownloaded(text.id) {
                 textModelDownloaded = true
-            }
-            if let vision = visionModel, modelLoader.isModelDownloaded(vision.id) {
-                visionModelDownloaded = true
-            }
-            // Mark complete if both already downloaded
-            if textModelDownloaded && visionModelDownloaded {
                 downloadCompleted = true
+            }
+        }
+        .onChange(of: modelLoader.downloadProgress) { _, newProgress in
+            // Update local progress from shared ModelLoader
+            print("[OnboardingView] downloadProgress onChange - keys: \(Array(newProgress.keys))")
+            if let modelId = textModel?.id, let progress = newProgress[modelId] {
+                print("[OnboardingView] downloadProgress onChange - Setting progress to \(Int(progress * 100))%")
+                self.downloadProgress = progress
+            }
+        }
+        .onChange(of: modelLoader.downloadProgressInfo) { _, newInfo in
+            // Update local progress info from shared ModelLoader
+            print("[OnboardingView] onChange triggered - keys: \(Array(newInfo.keys)), textModel?.id: \(textModel?.id ?? "nil")")
+            if let modelId = textModel?.id, let info = newInfo[modelId] {
+                print("[OnboardingView] onChange - Setting progress to \(Int(info.progress * 100))%")
+                self.downloadProgressInfo = info
             }
         }
     }
@@ -383,7 +582,7 @@ struct OnboardingView: View {
 
         Task {
             do {
-                // Download text model first (Qwen3 1.7B)
+                // Download ElioChat model (or fallback text model)
                 if let text = textModel, !modelLoader.isModelDownloaded(text.id) {
                     await MainActor.run {
                         currentDownloadingModel = text.id
@@ -391,13 +590,32 @@ struct OnboardingView: View {
                         downloadProgressInfo = nil
                     }
 
+                    print("[OnboardingView] Starting download for model: \(text.id)")
+
+                    // Poll progress more frequently (every 100ms)
                     let progressTask = Task { @MainActor in
+                        print("[OnboardingView] Progress polling task started for: \(text.id)")
+                        // Wait a moment for download to initialize
+                        try? await Task.sleep(nanoseconds: 200_000_000) // 200ms
+                        var logCounter = 0
                         while !Task.isCancelled {
-                            if let info = modelLoader.downloadProgressInfo[text.id] {
-                                self.downloadProgress = info.progress
+                            let progress = modelLoader.downloadProgress[text.id]
+                            let info = modelLoader.downloadProgressInfo[text.id]
+
+                            // Debug log every 1 second (10 iterations at 100ms)
+                            logCounter += 1
+                            if logCounter % 10 == 0 {
+                                print("[OnboardingView] Polling - modelId: \(text.id), progress: \(progress ?? -1), info: \(info != nil ? "\(Int((info?.progress ?? 0) * 100))%" : "nil")")
+                                print("[OnboardingView] Available keys in downloadProgress: \(Array(modelLoader.downloadProgress.keys))")
+                            }
+
+                            if let progress = progress {
+                                self.downloadProgress = progress
+                            }
+                            if let info = info {
                                 self.downloadProgressInfo = info
                             }
-                            try? await Task.sleep(nanoseconds: 100_000_000)
+                            try? await Task.sleep(nanoseconds: 100_000_000) // 100ms
                         }
                     }
 
@@ -411,49 +629,17 @@ struct OnboardingView: View {
                     }
                 }
 
-                // Download vision model (Qwen3-VL 2B)
-                if let vision = visionModel, !modelLoader.isModelDownloaded(vision.id) {
-                    await MainActor.run {
-                        currentDownloadingModel = vision.id
-                        downloadProgress = 0
-                        downloadProgressInfo = nil
-                    }
-
-                    let progressTask = Task { @MainActor in
-                        while !Task.isCancelled {
-                            if let info = modelLoader.downloadProgressInfo[vision.id] {
-                                self.downloadProgress = info.progress
-                                self.downloadProgressInfo = info
-                            }
-                            try? await Task.sleep(nanoseconds: 100_000_000)
-                        }
-                    }
-
-                    try await modelLoader.downloadModel(vision)
-                    progressTask.cancel()
-
-                    await MainActor.run {
-                        visionModelDownloaded = true
-                        downloadProgress = 1.0
-                        downloadProgressInfo = nil
-                    }
-                }
-
-                // Both downloads complete - auto-load text model
+                // Download complete - don't auto-load yet, wait for chat to finish
                 await MainActor.run {
-                    isDownloading = false
                     downloadCompleted = true
                     currentDownloadingModel = ""
-                }
-
-                // Auto-load Qwen3 1.7B
-                if let text = textModel {
-                    try await appState.loadModel(named: text.id)
+                    // Keep isDownloading true until chat finishes (for UI state)
                 }
 
             } catch {
                 await MainActor.run {
                     isDownloading = false
+                    downloadCompleted = false
                     downloadError = "ダウンロードに失敗しました: \(error.localizedDescription)"
                 }
             }
@@ -461,8 +647,23 @@ struct OnboardingView: View {
     }
 
     private func completeOnboarding() {
-        hasCompletedOnboarding = true
-        dismiss()
+        // Load the downloaded model before completing
+        Task {
+            if let text = textModel {
+                do {
+                    try await appState.loadModel(named: text.id)
+                } catch {
+                    print("Failed to load model: \(error)")
+                }
+            }
+
+            await MainActor.run {
+                isDownloading = false
+                justCompletedOnboarding = true  // Prevent keyboard from auto-showing
+                hasCompletedOnboarding = true
+                dismiss()
+            }
+        }
     }
 }
 
@@ -648,6 +849,145 @@ struct CircularProgressView: View {
             Text("\(Int(progress * 100))%")
                 .font(.system(size: 16, weight: .bold))
                 .foregroundStyle(.cyan)
+        }
+    }
+}
+
+// MARK: - App Logo
+
+struct AppLogo: View {
+    var isAnimating: Bool = false
+    var size: CGFloat = 80
+
+    @State private var scale: CGFloat = 1.0
+
+    var body: some View {
+        ZStack {
+            // Outer glow
+            Circle()
+                .fill(
+                    RadialGradient(
+                        colors: [.purple.opacity(0.3), .blue.opacity(0.1), .clear],
+                        center: .center,
+                        startRadius: size * 0.3,
+                        endRadius: size * 0.6
+                    )
+                )
+                .frame(width: size * 1.2, height: size * 1.2)
+                .scaleEffect(isAnimating ? 1.1 : 1.0)
+
+            // App Icon (uses AppLogo image asset which is a copy of AppIcon)
+            if let uiImage = UIImage(named: "AppLogo") {
+                Image(uiImage: uiImage)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: size, height: size)
+                    .clipShape(RoundedRectangle(cornerRadius: size * 0.22, style: .continuous))
+                    .shadow(color: .purple.opacity(0.4), radius: 10, y: 5)
+                    .scaleEffect(scale)
+            } else {
+                // Fallback if AppIcon not found
+                RoundedRectangle(cornerRadius: size * 0.22, style: .continuous)
+                    .fill(
+                        LinearGradient(
+                            colors: [
+                                Color(red: 0.5, green: 0.3, blue: 0.9),
+                                Color(red: 0.3, green: 0.4, blue: 0.95)
+                            ],
+                            startPoint: .topLeading,
+                            endPoint: .bottomTrailing
+                        )
+                    )
+                    .frame(width: size, height: size)
+                    .shadow(color: .purple.opacity(0.4), radius: 10, y: 5)
+                    .overlay(
+                        Image(systemName: "brain.head.profile")
+                            .font(.system(size: size * 0.5, weight: .medium))
+                            .foregroundStyle(.white)
+                    )
+                    .scaleEffect(scale)
+            }
+        }
+        .onAppear {
+            if isAnimating {
+                withAnimation(.easeInOut(duration: 2).repeatForever(autoreverses: true)) {
+                    scale = 1.05
+                }
+            }
+        }
+    }
+}
+
+// MARK: - Feature Badge
+
+struct FeatureBadge: View {
+    let icon: String
+    let text: String
+    let color: Color
+
+    var body: some View {
+        HStack(spacing: 6) {
+            Image(systemName: icon)
+                .font(.system(size: 12, weight: .semibold))
+                .foregroundStyle(color)
+            Text(text)
+                .font(.caption.weight(.medium))
+        }
+        .padding(.horizontal, 12)
+        .padding(.vertical, 8)
+        .background(color.opacity(0.12))
+        .clipShape(Capsule())
+    }
+}
+
+// MARK: - Animated Feature Row
+
+struct AnimatedFeatureRow: View {
+    let icon: String
+    var iconColor: Color = .purple
+    let title: String
+    let description: String
+
+    var body: some View {
+        HStack(spacing: 14) {
+            ZStack {
+                Circle()
+                    .fill(iconColor.opacity(0.15))
+                    .frame(width: 44, height: 44)
+
+                Image(systemName: icon)
+                    .font(.system(size: 20))
+                    .foregroundStyle(iconColor)
+            }
+
+            VStack(alignment: .leading, spacing: 2) {
+                Text(title)
+                    .font(.subheadline.weight(.semibold))
+                Text(description)
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+            }
+
+            Spacer()
+        }
+        .padding(.vertical, 4)
+    }
+}
+
+// MARK: - Animated Privacy Item
+
+struct AnimatedPrivacyItem: View {
+    let icon: String
+    let text: String
+
+    var body: some View {
+        HStack(spacing: 12) {
+            Image(systemName: "checkmark.circle.fill")
+                .foregroundStyle(.green)
+                .font(.system(size: 18))
+            Text(text)
+                .font(.subheadline)
+            Spacer()
         }
     }
 }

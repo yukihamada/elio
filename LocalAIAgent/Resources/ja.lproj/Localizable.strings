@@ -53,6 +53,24 @@
 "chat.suggestion.reminder" = "リマインダーを作成";
 "chat.suggestion.weather" = "今日の天気は？";
 "chat.suggestion.help" = "使い方を教えて";
+"chat.websearch.on" = "Web検索オン";
+"chat.websearch.off" = "Web検索オフ";
+"chat.thinking.on" = "思考オン";
+"chat.thinking.off" = "思考オフ";
+"chat.transcribing" = "文字起こし中...";
+"chat.offline" = "オフライン";
+
+// Voice Conversation Mode
+"voice.listening" = "聞いています...";
+"voice.processing" = "処理中...";
+"voice.thinking" = "考え中...";
+"voice.speaking" = "話しています...";
+"voice.tap.to.send" = "タップして送信";
+"chat.templates" = "テンプレート";
+"chat.websearch.privacy.title" = "Web検索について";
+"chat.websearch.privacy.message" = "Web検索を有効にすると、AIがDuckDuckGo経由でインターネットを検索して最新情報を取得できます。検索クエリはDuckDuckGoに送信されますが、追跡はされません。";
+"chat.websearch.privacy.enable" = "有効にする";
+"chat.websearch.privacy.disable" = "無効のまま";
 
 // MARK: - Settings
 "settings.title" = "設定";
@@ -109,9 +127,9 @@
 "theme.dark" = "ダーク";
 
 // MARK: - Onboarding
-"onboarding.welcome.title" = "Elioへようこそ";
-"onboarding.welcome.subtitle" = "あなたの秘密を守る、第2の脳。";
-"onboarding.features.title" = "ChatGPTより安心";
+"onboarding.welcome.title" = "ElioChatへようこそ";
+"onboarding.welcome.subtitle" = "あなたの秘密を守るAIアシスタント";
+"onboarding.features.title" = "完全プライベートAI";
 "onboarding.feature.offline" = "機内モードでも動作";
 "onboarding.feature.offline.desc" = "地下鉄や飛行機でも使える";
 "onboarding.feature.privacy" = "データ送信ゼロ";
@@ -119,7 +137,7 @@
 "onboarding.feature.vault" = "スマート連携";
 "onboarding.feature.vault.desc" = "カレンダーやファイルと連携";
 "onboarding.feature.secure" = "仕事でも安心";
-"onboarding.feature.secure.desc" = "社内規定でChatGPT禁止でもOK";
+"onboarding.feature.secure.desc" = "企業でも安心して使える";
 "onboarding.feature.thinking" = "思考プロセス";
 "onboarding.privacy.title" = "あなたのデータは、あなただけのもの";
 "onboarding.privacy.item1" = "すべての処理はiPhone内で完結";
@@ -452,7 +470,7 @@
 "vision.model.download.complete" = "ダウンロード完了";
 "vision.model.download.complete.message" = "画像分析の準備ができました";
 
-// MARK: - Whisper Voice Input
+// MARK: - Whisper Voice Input (Legacy)
 "whisper.download.title" = "音声認識モデルが必要";
 "whisper.download.action" = "ダウンロード";
 "whisper.download.message" = "音声入力を使用するには、音声認識モデル（約150MB）をダウンロードする必要があります。";
@@ -466,6 +484,12 @@
 "whisper.error.no.recording" = "録音データがありません";
 "whisper.error.model.not.loaded" = "音声認識モデルが読み込まれていません";
 "whisper.error.transcription" = "文字起こしに失敗しました";
+
+// MARK: - Speech Recognition (ReazonSpeech)
+"speech.download.title" = "日本語音声認識モデルが必要";
+"speech.download.action" = "ダウンロード";
+"speech.download.message" = "音声入力を使用するには、ReazonSpeech日本語音声認識モデル（約155MB）をダウンロードする必要があります。";
+"speech.downloading" = "日本語音声認識モデルをダウンロード中...";
 
 // MARK: - Language Settings
 "settings.language.section" = "言語";
@@ -520,3 +544,52 @@
 "settings.feedback.section" = "フィードバック";
 "settings.feedback.toggle" = "使用状況データを送信";
 "settings.feedback.description" = "アプリの改善に役立てるため、匿名の使用状況データを送信します。個人情報は含まれません。";
+
+// MARK: - Loading Phases
+"loading.phase.initializing" = "初期化中...";
+"loading.phase.loading" = "モデルを展開中...";
+"loading.phase.preparing" = "推論エンジンを準備中...";
+"loading.phase.almost" = "もう少しで完了...";
+
+// MARK: - Welcome Screen
+"welcome.greeting" = "何でも聞いてください";
+"welcome.subtitle" = "プライバシーを守りながらお手伝いします";
+"suggestion.idea" = "アイデアを出してほしい";
+"suggestion.write" = "文章を作成してほしい";
+"suggestion.question" = "質問に答えてほしい";
+
+// MARK: - Kokoro TTS
+"tts.download.title" = "高品質音声合成";
+"tts.download.action" = "ダウンロード";
+"tts.download.use_system" = "システム音声を使用";
+"tts.download.message" = "Kokoro TTSモデル（約87MB）をダウンロードすると、より自然な日本語音声で読み上げができます。";
+"tts.downloading" = "音声合成モデルをダウンロード中...";
+
+// MARK: - Feedback
+"feedback.consent.title" = "フィードバックを送信";
+"feedback.send" = "送信";
+"feedback.positive.title" = "良い回答でしたか？";
+"feedback.negative.title" = "改善が必要ですか？";
+"feedback.explanation" = "フィードバックはAIの品質向上に役立てられます。送信前に、どのようなデータが送られるかをご確認ください。";
+"feedback.data.section" = "送信されるデータ";
+"feedback.data.conversation" = "会話内容";
+"feedback.data.conversation.desc" = "AIの回答と、その直前のあなたのメッセージ";
+"feedback.data.model" = "モデル情報";
+"feedback.data.model.desc" = "使用したAIモデルの名前";
+"feedback.data.timestamp" = "日時";
+"feedback.data.timestamp.desc" = "フィードバックの送信日時";
+"feedback.privacy.section" = "プライバシーについて";
+"feedback.privacy.anonymous" = "個人を特定する情報は送信されません";
+"feedback.privacy.improvement" = "AIの品質向上のみに使用されます";
+"feedback.privacy.optional" = "フィードバックの送信は完全に任意です";
+"feedback.comment.section" = "コメント（任意）";
+"feedback.comment.placeholder" = "改善点や良かった点があれば教えてください...";
+"feedback.remember.title" = "この選択を記憶する";
+"feedback.remember.description" = "次回から確認なしでフィードバックを送信します";
+
+// MARK: - Web Search
+"chat.web.search" = "Web検索";
+"search.privacy.title" = "プライバシー保護検索";
+"search.privacy.proceed" = "検索する";
+"search.privacy.message" = "ElioChat の Web 検索はプライバシーを保護します：\n\n🔒 DuckDuckGo 経由で検索\n🚫 追跡・トラッキングなし\n🔐 検索履歴は保存されません\n📱 デバイス外にデータを保存しません\n\n検索クエリのみがDuckDuckGoに送信され、結果はデバイス上で処理されます。";
+"chat.web.analyzing" = "[Webページを分析中]";

@@ -52,7 +52,7 @@ final class ReferralManager: ObservableObject {
         let appStoreURL = "https://apps.apple.com/app/elio/id6740032873"
         return """
         ElioChatを使ってみて！完全オフラインで動くプライベートAIアシスタントだよ。
-        ChatGPTと違って、データがクラウドに送信されないから安心。
+        データがクラウドに送信されないから安心して使えるよ。
 
         \(appStoreURL)
 

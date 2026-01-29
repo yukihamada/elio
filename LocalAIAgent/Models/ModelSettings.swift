@@ -1,6 +1,31 @@
 import Foundation
 import SwiftUI
 
+/// KV Cache quantization type for memory optimization
+enum KVCacheQuantType: String, Codable, CaseIterable, Identifiable {
+    case q8_0 = "Q8_0"
+    case q4_0 = "Q4_0"
+    case f16 = "F16"
+
+    var id: String { rawValue }
+
+    var displayName: String {
+        switch self {
+        case .q8_0: return "Q8_0 (Recommended)"
+        case .q4_0: return "Q4_0 (Memory Saver)"
+        case .f16: return "F16 (High Quality)"
+        }
+    }
+
+    var description: String {
+        switch self {
+        case .q8_0: return String(localized: "kvcache.q8.desc", defaultValue: "Balanced quality and memory usage")
+        case .q4_0: return String(localized: "kvcache.q4.desc", defaultValue: "Maximum memory savings, slight quality loss")
+        case .f16: return String(localized: "kvcache.f16.desc", defaultValue: "Best quality, highest memory usage")
+        }
+    }
+}
+
 /// Per-model generation settings
 struct ModelSettings: Codable, Equatable {
     var temperature: Float
@@ -10,6 +35,8 @@ struct ModelSettings: Codable, Equatable {
     var repeatPenalty: Float
     var enableThinking: Bool
     var systemPrompt: String
+    var kvCacheTypeK: KVCacheQuantType
+    var kvCacheTypeV: KVCacheQuantType
 
     /// Default settings
     static let `default` = ModelSettings(
@@ -19,7 +46,9 @@ struct ModelSettings: Codable, Equatable {
         maxTokens: 1024,
         repeatPenalty: 1.1,
         enableThinking: true,
-        systemPrompt: ""
+        systemPrompt: "",
+        kvCacheTypeK: .q8_0,
+        kvCacheTypeV: .q8_0
     )
 
     /// Preset for creative writing
@@ -30,7 +59,9 @@ struct ModelSettings: Codable, Equatable {
         maxTokens: 2048,
         repeatPenalty: 1.05,
         enableThinking: true,
-        systemPrompt: ""
+        systemPrompt: "",
+        kvCacheTypeK: .q8_0,
+        kvCacheTypeV: .q8_0
     )
 
     /// Preset for precise/factual responses
@@ -41,7 +72,9 @@ struct ModelSettings: Codable, Equatable {
         maxTokens: 512,
         repeatPenalty: 1.15,
         enableThinking: false,
-        systemPrompt: ""
+        systemPrompt: "",
+        kvCacheTypeK: .q8_0,
+        kvCacheTypeV: .q8_0
     )
 
     /// Preset for code generation
@@ -52,7 +85,9 @@ struct ModelSettings: Codable, Equatable {
         maxTokens: 2048,
         repeatPenalty: 1.1,
         enableThinking: false,
-        systemPrompt: ""
+        systemPrompt: "",
+        kvCacheTypeK: .q8_0,
+        kvCacheTypeV: .q8_0
     )
 
     /// Preset for Japanese conversation
@@ -63,7 +98,9 @@ struct ModelSettings: Codable, Equatable {
         maxTokens: 1024,
         repeatPenalty: 1.1,
         enableThinking: true,
-        systemPrompt: "あなたは日本語に特化したAIアシスタントです。自然で丁寧な日本語で回答してください。"
+        systemPrompt: "あなたは日本語に特化したAIアシスタントです。自然で丁寧な日本語で回答してください。",
+        kvCacheTypeK: .q8_0,
+        kvCacheTypeV: .q8_0
     )
 }
 
@@ -124,6 +161,34 @@ final class ModelSettingsManager: ObservableObject {
 
     private init() {
         loadSettings()
+        migrateThinkingSettingsIfNeeded()
+    }
+
+    /// Migrate thinking settings from old inverted logic to new direct logic
+    private func migrateThinkingSettingsIfNeeded() {
+        let migrationKey = "thinkingSettingsMigrated_v2"
+        guard !UserDefaults.standard.bool(forKey: migrationKey) else {
+            return
+        }
+
+        // The old logic was inverted: UI ON = settings.enableThinking = false
+        // The new logic is direct: UI ON = settings.enableThinking = true
+        // So we need to invert all saved enableThinking values
+
+        var needsSave = false
+        for (modelId, var settings) in modelSettings {
+            // Invert the value to fix the migration
+            settings.enableThinking = !settings.enableThinking
+            modelSettings[modelId] = settings
+            needsSave = true
+        }
+
+        if needsSave {
+            saveSettings()
+            print("[ModelSettings] Migrated thinking settings to new logic")
+        }
+
+        UserDefaults.standard.set(true, forKey: migrationKey)
     }
 
     /// Get settings for a specific model (returns model-specific defaults if not customized)
@@ -135,9 +200,11 @@ final class ModelSettingsManager: ObservableObject {
         return defaultSettings(for: modelId)
     }
 
-    /// Get default settings with model-specific maxTokens
+    /// Get default settings with model-specific maxTokens and system prompt
     func defaultSettings(for modelId: String) -> ModelSettings {
-        let recommendedMaxTokens = modelLoader.getModelInfo(modelId)?.recommendedMaxTokens ?? 2048
+        let modelInfo = modelLoader.getModelInfo(modelId)
+        let recommendedMaxTokens = modelInfo?.recommendedMaxTokens ?? 2048
+        let defaultSystemPrompt = modelInfo?.defaultSystemPrompt ?? ""
         return ModelSettings(
             temperature: 0.7,
             topP: 0.9,
@@ -145,7 +212,9 @@ final class ModelSettingsManager: ObservableObject {
             maxTokens: recommendedMaxTokens,
             repeatPenalty: 1.1,
             enableThinking: true,
-            systemPrompt: ""
+            systemPrompt: defaultSystemPrompt,
+            kvCacheTypeK: .q8_0,
+            kvCacheTypeV: .q8_0
         )
     }
 

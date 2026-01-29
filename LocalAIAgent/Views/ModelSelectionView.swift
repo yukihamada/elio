@@ -2,7 +2,7 @@ import SwiftUI
 
 struct ModelSelectionView: View {
     @EnvironmentObject var appState: AppState
-    @StateObject private var modelLoader = ModelLoader()
+    @ObservedObject private var modelLoader = ModelLoader.shared
     @Environment(\.dismiss) private var dismiss
 
     @State private var selectedModelId: String?
@@ -10,6 +10,7 @@ struct ModelSelectionView: View {
     @State private var downloadError: String?
     @State private var currentProgressInfo: DownloadProgressInfo?
     @State private var downloadingModelId: String?
+    @State private var showDownloadConfirmation = false  // App Store 4.2.3 compliance
 
     var body: some View {
         NavigationStack {
@@ -117,8 +118,10 @@ struct ModelSelectionView: View {
                     }
                     .disabled(appState.isLoading)
                 } else {
-                    // Download button
-                    Button(action: downloadSelectedModel) {
+                    // Download button - shows confirmation alert (App Store Guideline 4.2.3)
+                    Button(action: {
+                        showDownloadConfirmation = true
+                    }) {
                         HStack(spacing: 12) {
                             if isDownloading {
                                 ProgressView()
@@ -137,6 +140,15 @@ struct ModelSelectionView: View {
                         .clipShape(RoundedRectangle(cornerRadius: 14))
                     }
                     .disabled(isDownloading)
+                    // App Store Guideline 4.2.3: Explicit download confirmation
+                    .alert("モデルをダウンロード", isPresented: $showDownloadConfirmation) {
+                        Button("ダウンロード開始", role: nil) {
+                            downloadSelectedModel()
+                        }
+                        Button("キャンセル", role: .cancel) {}
+                    } message: {
+                        Text("\(selectedModel.name)（\(selectedModel.size)）をダウンロードします。\n\nWi-Fi環境でのダウンロードを推奨します。\n\n今すぐダウンロードしますか？")
+                    }
                 }
             } else {
                 Text("モデルを選択してください")
@@ -161,13 +173,24 @@ struct ModelSelectionView: View {
         downloadingModelId = modelId
         currentProgressInfo = nil
 
+        print("[ModelSelectionView] Starting download for model: \(modelId)")
+
         // Start progress monitoring task
-        let progressTask = Task {
+        let progressTask = Task { @MainActor in
+            print("[ModelSelectionView] Progress polling task started for: \(modelId)")
+            var logCounter = 0
             while !Task.isCancelled {
-                if let info = modelLoader.downloadProgressInfo[modelId] {
-                    await MainActor.run {
-                        currentProgressInfo = info
-                    }
+                let info = modelLoader.downloadProgressInfo[modelId]
+
+                // Debug log every 1 second
+                logCounter += 1
+                if logCounter % 10 == 0 {
+                    print("[ModelSelectionView] Polling - modelId: \(modelId), info: \(info != nil ? "\(Int((info?.progress ?? 0) * 100))%" : "nil")")
+                    print("[ModelSelectionView] Available keys: \(Array(modelLoader.downloadProgressInfo.keys))")
+                }
+
+                if let info = info {
+                    currentProgressInfo = info
                 }
                 try? await Task.sleep(nanoseconds: 100_000_000) // 0.1 second
             }

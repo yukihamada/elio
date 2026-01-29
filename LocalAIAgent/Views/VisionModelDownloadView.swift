@@ -3,11 +3,13 @@ import SwiftUI
 /// View to download vision-capable models when user tries to attach an image
 struct VisionModelDownloadView: View {
     @EnvironmentObject var appState: AppState
-    @StateObject private var modelLoader = ModelLoader()
+    @ObservedObject private var modelLoader = ModelLoader.shared
     @Environment(\.dismiss) private var dismiss
 
     @State private var isDownloading = false
     @State private var downloadComplete = false
+    @State private var showDownloadConfirmation = false  // App Store 4.2.3 compliance
+    @State private var modelToDownload: ModelLoader.ModelInfo?  // Model pending confirmation
 
     private var deviceTier: DeviceTier {
         modelLoader.deviceTier
@@ -63,6 +65,23 @@ struct VisionModelDownloadView: View {
                     Button(String(localized: "common.close")) {
                         dismiss()
                     }
+                }
+            }
+            // App Store Guideline 4.2.3: Explicit download confirmation with size disclosure
+            .alert("モデルをダウンロード", isPresented: $showDownloadConfirmation) {
+                Button("ダウンロード開始", role: nil) {
+                    if let model = modelToDownload {
+                        downloadModel(model)
+                    }
+                }
+                Button("キャンセル", role: .cancel) {
+                    modelToDownload = nil
+                }
+            } message: {
+                if let model = modelToDownload {
+                    Text("\(model.name)（\(model.size)）をダウンロードします。\n\nWi-Fi環境でのダウンロードを推奨します。\n\n今すぐダウンロードしますか？")
+                } else {
+                    Text("モデルをダウンロードしますか？")
                 }
             }
         }
@@ -200,7 +219,8 @@ struct VisionModelDownloadView: View {
                     }
                 } else {
                     Button(action: {
-                        downloadModel(model)
+                        modelToDownload = model
+                        showDownloadConfirmation = true
                     }) {
                         HStack {
                             Image(systemName: "arrow.down.circle.fill")
@@ -295,7 +315,8 @@ struct VisionModelDownloadView: View {
             } else {
                 VStack(alignment: .trailing, spacing: 4) {
                     Button(action: {
-                        downloadModel(model)
+                        modelToDownload = model
+                        showDownloadConfirmation = true
                     }) {
                         HStack(spacing: 4) {
                             Image(systemName: "arrow.down.circle.fill")

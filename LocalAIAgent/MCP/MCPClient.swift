@@ -26,7 +26,6 @@ final class MCPClient: ObservableObject {
         registerServer(LocationServer())
         registerServer(ShortcutsServer())
         registerServer(WebSearchServer())
-        registerServer(WeatherServer())
         registerServer(NotesServer())
         // Translation requires iOS 18.0+ and uses SwiftUI view modifiers
         // Disabled for now - needs UI-based implementation
@@ -101,6 +100,47 @@ final class MCPClient: ObservableObject {
         return description
     }
 
+    /// Returns tools in JSON Schema format for MCP/Hermes-style tool calling
+    func getToolsSchemaJSON(enabledServers: Set<String>) -> String {
+        let tools = listAllTools(enabledServers: enabledServers)
+        var toolsArray: [[String: Any]] = []
+
+        for tool in tools {
+            var properties: [String: [String: Any]] = [:]
+            if let props = tool.inputSchema.properties {
+                for (key, prop) in props {
+                    var propDict: [String: Any] = ["type": prop.type]
+                    if let desc = prop.description {
+                        propDict["description"] = desc
+                    }
+                    if let enumVals = prop.enumValues {
+                        propDict["enum"] = enumVals
+                    }
+                    properties[key] = propDict
+                }
+            }
+
+            let toolDict: [String: Any] = [
+                "type": "function",
+                "function": [
+                    "name": tool.name,
+                    "description": tool.description,
+                    "parameters": [
+                        "type": "object",
+                        "properties": properties,
+                        "required": tool.inputSchema.required ?? []
+                    ] as [String: Any]
+                ] as [String: Any]
+            ]
+            toolsArray.append(toolDict)
+        }
+
+        guard let jsonData = try? JSONSerialization.data(withJSONObject: toolsArray, options: [.prettyPrinted, .sortedKeys]) else {
+            return "[]"
+        }
+        return String(data: jsonData, encoding: .utf8) ?? "[]"
+    }
+
     // MARK: - Prompt Support
 
     func listAllPrompts(enabledServers: Set<String>) -> [MCPPrompt] {
@@ -160,43 +200,14 @@ final class MCPClient: ObservableObject {
 // MARK: - Tool Call Formatting for LLM
 
 extension MCPClient {
-    static let toolCallFormatJa = """
-    ツールを使用する場合は、以下の形式で回答してください:
+    // 簡素化されたフォーマット（システムプロンプトに例が含まれるため最小限に）
+    static let toolCallFormatJa = ""
 
-    <tool_call>
-    {
-      "name": "ツール名",
-      "arguments": {
-        "引数名": "値"
-      }
-    }
-    </tool_call>
-
-    ツールの結果を受け取った後、ユーザーに分かりやすく回答してください。
-    複数のツールが必要な場合は、一つずつ実行してください。
-    """
-
-    static let toolCallFormatEn = """
-    When using a tool, respond in the following format:
-
-    <tool_call>
-    {
-      "name": "tool_name",
-      "arguments": {
-        "argument_name": "value"
-      }
-    }
-    </tool_call>
-
-    After receiving the tool result, explain it clearly to the user.
-    If multiple tools are needed, execute them one at a time.
-    """
+    static let toolCallFormatEn = ""
 
     static func toolCallFormat(locale: Locale = .current) -> String {
-        if locale.language.languageCode?.identifier == "ja" {
-            return toolCallFormatJa
-        }
-        return toolCallFormatEn
+        // フォーマットはシステムプロンプト内のfew-shot例で示すため、ここでは空を返す
+        return ""
     }
 
     func formatToolResult(_ result: MCPResult, locale: Locale = .current) -> String {
