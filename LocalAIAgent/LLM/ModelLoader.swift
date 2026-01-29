@@ -164,7 +164,7 @@ enum ModelCategory: String, Codable, CaseIterable {
 }
 
 // ダウンロード進捗情報
-struct DownloadProgressInfo {
+struct DownloadProgressInfo: Equatable {
     let progress: Double              // 0.0 - 1.0
     let bytesDownloaded: Int64
     let totalBytes: Int64
@@ -186,6 +186,8 @@ struct DownloadProgressInfo {
 
 @MainActor
 final class ModelLoader: ObservableObject {
+    // Singleton instance for sharing download progress across views
+    @MainActor static let shared = ModelLoader()
     @Published var availableModels: [ModelInfo] = []
     @Published var downloadProgress: [String: Double] = [:]
     @Published var downloadProgressInfo: [String: DownloadProgressInfo] = [:]
@@ -206,6 +208,7 @@ final class ModelLoader: ObservableObject {
         let tier: ModelTier
         let category: ModelCategory
         let supportsVision: Bool
+        let defaultSystemPrompt: String  // Default system prompt for this model
 
         struct ModelConfigData: Codable {
             let maxContextLength: Int
@@ -225,7 +228,8 @@ final class ModelLoader: ObservableObject {
             config: ModelConfigData,
             tier: ModelTier,
             category: ModelCategory = .others,
-            supportsVision: Bool = false
+            supportsVision: Bool = false,
+            defaultSystemPrompt: String = ""
         ) {
             self.id = id
             self.name = name
@@ -238,6 +242,7 @@ final class ModelLoader: ObservableObject {
             self.tier = tier
             self.category = category
             self.supportsVision = supportsVision
+            self.defaultSystemPrompt = defaultSystemPrompt
         }
 
         // Check if this model is recommended for the given device tier
@@ -411,6 +416,78 @@ final class ModelLoader: ObservableObject {
                 tier: .xlarge,
                 category: .recommended
             ),
+
+            // ==================== MEMORY-EFFICIENT (省メモリ版) ====================
+            // For devices with limited memory (4-6GB)
+            ModelInfo(
+                id: "qwen3-1.7b-iq3xxs",
+                name: "Qwen3 1.7B IQ3_XXS",
+                description: "🔋 省メモリ版。iPhone 13/14/15向け。",
+                descriptionEn: "🔋 Memory-efficient. For iPhone 13/14/15.",
+                size: "約730MB",
+                sizeBytes: 730_000_000,
+                downloadURL: "https://huggingface.co/unsloth/Qwen3-1.7B-GGUF/resolve/main/Qwen3-1.7B-UD-IQ3_XXS.gguf",
+                config: ModelInfo.ModelConfigData(
+                    maxContextLength: 40960,
+                    vocabularySize: 151936,
+                    eosTokenId: 151645,
+                    bosTokenId: 151643
+                ),
+                tier: .small,
+                category: .efficient
+            ),
+            ModelInfo(
+                id: "qwen3-1.7b-iq2xxs",
+                name: "Qwen3 1.7B IQ2_XXS",
+                description: "🔋 超省メモリ版。バッテリー優先。",
+                descriptionEn: "🔋 Ultra memory-efficient. Battery priority.",
+                size: "約580MB",
+                sizeBytes: 580_000_000,
+                downloadURL: "https://huggingface.co/unsloth/Qwen3-1.7B-GGUF/resolve/main/Qwen3-1.7B-UD-IQ2_XXS.gguf",
+                config: ModelInfo.ModelConfigData(
+                    maxContextLength: 40960,
+                    vocabularySize: 151936,
+                    eosTokenId: 151645,
+                    bosTokenId: 151643
+                ),
+                tier: .tiny,
+                category: .efficient
+            ),
+            ModelInfo(
+                id: "qwen3-4b-iq3xxs",
+                name: "Qwen3 4B IQ3_XXS",
+                description: "🔋 省メモリ高性能版。iPhone 13/14/15向け。",
+                descriptionEn: "🔋 Memory-efficient high-perf. For iPhone 13/14/15.",
+                size: "約1.7GB",
+                sizeBytes: 1_670_000_000,
+                downloadURL: "https://huggingface.co/unsloth/Qwen3-4B-GGUF/resolve/main/Qwen3-4B-UD-IQ3_XXS.gguf",
+                config: ModelInfo.ModelConfigData(
+                    maxContextLength: 40960,
+                    vocabularySize: 151936,
+                    eosTokenId: 151645,
+                    bosTokenId: 151643
+                ),
+                tier: .medium,
+                category: .efficient
+            ),
+            ModelInfo(
+                id: "qwen3-4b-iq2xxs",
+                name: "Qwen3 4B IQ2_XXS",
+                description: "🔋 4B超省メモリ版。バッテリー優先。",
+                descriptionEn: "🔋 4B ultra memory-efficient. Battery priority.",
+                size: "約1.3GB",
+                sizeBytes: 1_260_000_000,
+                downloadURL: "https://huggingface.co/unsloth/Qwen3-4B-GGUF/resolve/main/Qwen3-4B-UD-IQ2_XXS.gguf",
+                config: ModelInfo.ModelConfigData(
+                    maxContextLength: 40960,
+                    vocabularySize: 151936,
+                    eosTokenId: 151645,
+                    bosTokenId: 151643
+                ),
+                tier: .small,
+                category: .efficient
+            ),
+
             ModelInfo(
                 id: "gemma-3-1b",
                 name: "Gemma 3 1B",
@@ -465,6 +542,24 @@ final class ModelLoader: ObservableObject {
 
             // ==================== JAPANESE OPTIMIZED ====================
             ModelInfo(
+                id: "eliochat-1.7b-v3",
+                name: "ElioChat 1.7B v3",
+                description: "🇯🇵 日本語特化の最新モデル。高品質な日本語応答。",
+                descriptionEn: "🇯🇵 Latest Japanese-optimized model. High-quality Japanese responses.",
+                size: "約1.3GB",
+                sizeBytes: 1_260_000_000,
+                downloadURL: "https://huggingface.co/yukihamada/ElioChat-1.7B-Instruct-v3/resolve/main/ElioChat-1.7B-Instruct-v3-Q5_K_M.gguf",
+                config: ModelInfo.ModelConfigData(
+                    maxContextLength: 32768,
+                    vocabularySize: 151936,
+                    eosTokenId: 151645,
+                    bosTokenId: 151643
+                ),
+                tier: .small,
+                category: .japanese,
+                defaultSystemPrompt: "あなたは日本語に特化したAIアシスタントです。自然で丁寧な日本語で回答してください。"
+            ),
+            ModelInfo(
                 id: "tinyswallow-1.5b",
                 name: "TinySwallow 1.5B",
                 description: "🇯🇵 Sakana AI製。日本語特化の高品質モデル。",
@@ -479,7 +574,8 @@ final class ModelLoader: ObservableObject {
                     bosTokenId: 151643
                 ),
                 tier: .small,
-                category: .japanese
+                category: .japanese,
+                defaultSystemPrompt: "あなたは日本語に特化したAIアシスタントです。自然で丁寧な日本語で回答してください。"
             ),
             ModelInfo(
                 id: "elyza-llama3-8b",
@@ -496,7 +592,8 @@ final class ModelLoader: ObservableObject {
                     bosTokenId: 128000
                 ),
                 tier: .xlarge,
-                category: .japanese
+                category: .japanese,
+                defaultSystemPrompt: "あなたは日本語に特化したAIアシスタントです。自然で丁寧な日本語で回答してください。"
             ),
             ModelInfo(
                 id: "swallow-8b",
@@ -513,7 +610,8 @@ final class ModelLoader: ObservableObject {
                     bosTokenId: 128000
                 ),
                 tier: .xlarge,
-                category: .japanese
+                category: .japanese,
+                defaultSystemPrompt: "あなたは日本語に特化したAIアシスタントです。自然で丁寧な日本語で回答してください。ビジネス文書の作成も得意です。"
             ),
 
             // ==================== EFFICIENT (Small but powerful) ====================
@@ -1047,24 +1145,176 @@ final class ModelLoader: ObservableObject {
     }
 
     func downloadModel(_ model: ModelInfo) async throws {
-        guard let url = URL(string: model.downloadURL) else {
-            throw ModelLoaderError.invalidURL
+        // Check if ODR is available for this model
+        if OnDemandResourceManager.isODRSupported(for: model.id) {
+            try await downloadModelViaODR(model)
+            return
         }
 
+        // Fallback to URL Session download
+        try await downloadModelViaURLSession(model)
+    }
+
+    /// Download model using On-Demand Resources (App Store CDN)
+    private func downloadModelViaODR(_ model: ModelInfo) async throws {
+        let odrManager = OnDemandResourceManager.shared
+
         isDownloading = true
-        downloadProgress[model.id] = 0
-        downloadProgressInfo[model.id] = DownloadProgressInfo(
+
+        // Re-assign entire dictionary to trigger @Published notification
+        var newProgress = downloadProgress
+        newProgress[model.id] = 0
+        downloadProgress = newProgress
+
+        var newInfo = downloadProgressInfo
+        newInfo[model.id] = DownloadProgressInfo(
             progress: 0,
             bytesDownloaded: 0,
             totalBytes: model.sizeBytes,
             speed: 0,
             estimatedTimeRemaining: nil
         )
+        downloadProgressInfo = newInfo
 
         defer {
             isDownloading = false
-            downloadProgress.removeValue(forKey: model.id)
-            downloadProgressInfo.removeValue(forKey: model.id)
+            // Set progress to 100% before removing (allow UI to update)
+            var finalProgress = downloadProgress
+            finalProgress[model.id] = 1.0
+            downloadProgress = finalProgress
+
+            // Delay removal to allow UI to see 100%
+            Task { @MainActor in
+                try? await Task.sleep(nanoseconds: 500_000_000) // 0.5 second delay
+                var newProgress = self.downloadProgress
+                newProgress.removeValue(forKey: model.id)
+                self.downloadProgress = newProgress
+
+                var newInfo = self.downloadProgressInfo
+                newInfo.removeValue(forKey: model.id)
+                self.downloadProgressInfo = newInfo
+            }
+        }
+
+        do {
+            // Request ODR resource with progress tracking
+            let resourceURL = try await odrManager.requestResource(for: model.id) { [weak self] (progress: Double) in
+                Task { @MainActor in
+                    guard let self = self else { return }
+                    var newProgress = self.downloadProgress
+                    newProgress[model.id] = progress
+                    self.downloadProgress = newProgress
+
+                    var newInfo = self.downloadProgressInfo
+                    newInfo[model.id] = DownloadProgressInfo(
+                        progress: progress,
+                        bytesDownloaded: Int64(Double(model.sizeBytes) * progress),
+                        totalBytes: model.sizeBytes,
+                        speed: 0,
+                        estimatedTimeRemaining: nil
+                    )
+                    self.downloadProgressInfo = newInfo
+                }
+            }
+
+            // Create models directory if needed
+            if !fileManager.fileExists(atPath: modelsDirectory.path) {
+                try fileManager.createDirectory(at: modelsDirectory, withIntermediateDirectories: true)
+            }
+
+            // Copy ODR resource to Documents/Models for persistent access
+            let destinationPath = modelsDirectory.appendingPathComponent("\(model.id).gguf")
+            if fileManager.fileExists(atPath: destinationPath.path) {
+                try fileManager.removeItem(at: destinationPath)
+            }
+            try fileManager.copyItem(at: resourceURL, to: destinationPath)
+
+            // Release ODR resources (the copy is in Documents now)
+            odrManager.endAccessingResources(for: model.id)
+
+        } catch {
+            // If ODR fails, try URL Session fallback
+            print("ODR download failed: \(error.localizedDescription). Falling back to URL Session.")
+            try await downloadModelViaURLSession(model)
+        }
+    }
+
+    /// Get actual file size using HEAD request (follows redirects)
+    private func getActualFileSize(from url: URL) async -> Int64? {
+        // Create a session that follows redirects
+        let config = URLSessionConfiguration.default
+        config.httpShouldSetCookies = false
+
+        // Create a delegate that converts redirects to HEAD requests
+        let delegate = HeadRedirectDelegate()
+        let session = URLSession(configuration: config, delegate: delegate, delegateQueue: nil)
+
+        var request = URLRequest(url: url)
+        request.httpMethod = "HEAD"
+        request.timeoutInterval = 15
+
+        do {
+            let (_, response) = try await session.data(for: request)
+            if let httpResponse = response as? HTTPURLResponse {
+                let contentLength = httpResponse.expectedContentLength
+                print("[ModelLoader] HEAD request (status: \(httpResponse.statusCode)) - Content-Length: \(contentLength)")
+                return contentLength > 0 ? contentLength : nil
+            }
+        } catch {
+            print("[ModelLoader] HEAD request failed: \(error.localizedDescription)")
+        }
+        return nil
+    }
+
+    /// Download model using URL Session (direct HTTP download)
+    private func downloadModelViaURLSession(_ model: ModelInfo) async throws {
+        guard let url = URL(string: model.downloadURL) else {
+            throw ModelLoaderError.invalidURL
+        }
+
+        print("[ModelLoader] Starting download for \(model.id) from \(url)")
+
+        isDownloading = true
+
+        // Get actual file size from server (HEAD request) or use model.sizeBytes as fallback
+        let actualSize = await getActualFileSize(from: url) ?? model.sizeBytes
+        print("[ModelLoader] Using file size: \(actualSize) bytes (model.sizeBytes: \(model.sizeBytes))")
+
+        // Re-assign entire dictionary to trigger @Published notification
+        var newProgress = downloadProgress
+        newProgress[model.id] = 0
+        downloadProgress = newProgress
+
+        // Also re-assign downloadProgressInfo dictionary
+        var newInfo = downloadProgressInfo
+        newInfo[model.id] = DownloadProgressInfo(
+            progress: 0,
+            bytesDownloaded: 0,
+            totalBytes: actualSize,
+            speed: 0,
+            estimatedTimeRemaining: nil
+        )
+        downloadProgressInfo = newInfo
+        print("[ModelLoader] Initial progress set for \(model.id) - keys now: \(Array(downloadProgressInfo.keys))")
+
+        defer {
+            isDownloading = false
+            // Set progress to 100% before removing (allow UI to update)
+            var finalProgress = downloadProgress
+            finalProgress[model.id] = 1.0
+            downloadProgress = finalProgress
+
+            // Delay removal to allow UI to see 100%
+            Task { @MainActor in
+                try? await Task.sleep(nanoseconds: 500_000_000) // 0.5 second delay
+                var newProgress = self.downloadProgress
+                newProgress.removeValue(forKey: model.id)
+                self.downloadProgress = newProgress
+
+                var newInfo = self.downloadProgressInfo
+                newInfo.removeValue(forKey: model.id)
+                self.downloadProgressInfo = newInfo
+            }
         }
 
         // Create models directory if needed
@@ -1073,8 +1323,8 @@ final class ModelLoader: ObservableObject {
         }
 
         // Use URLSessionDownloadTask with delegate for progress
-        // Pass expected size from model info for accurate progress when Content-Length is missing
-        let (tempURL, _) = try await downloadWithProgress(from: url, modelId: model.id, expectedSize: model.sizeBytes)
+        // Pass actual size for accurate progress calculation
+        let (tempURL, _) = try await downloadWithProgress(from: url, modelId: model.id, expectedSize: actualSize)
 
         // Determine file extension from URL or response
         let fileExtension = url.pathExtension.lowercased()
@@ -1103,53 +1353,60 @@ final class ModelLoader: ObservableObject {
     }
 
     private func downloadWithProgress(from url: URL, modelId: String, expectedSize: Int64) async throws -> (URL, URLResponse) {
-        try await withCheckedThrowingContinuation { continuation in
-            let delegate = DownloadDelegate(expectedSize: expectedSize) { [weak self] progress, bytesWritten, totalBytes, speed, eta in
-                Task { @MainActor in
-                    if progress >= 0 {
-                        self?.downloadProgress[modelId] = progress
-                        self?.downloadProgressInfo[modelId] = DownloadProgressInfo(
-                            progress: progress,
-                            bytesDownloaded: bytesWritten,
-                            totalBytes: totalBytes,
-                            speed: speed,
-                            estimatedTimeRemaining: eta
-                        )
-                    }
-                    // Log progress for debugging
-                    #if DEBUG
-                    let mbWritten = Double(bytesWritten) / 1_000_000
-                    let mbTotal = Double(totalBytes) / 1_000_000
-                    let mbps = speed / 1_000_000
-                    if Int(mbWritten) % 50 == 0 {
-                        print("Download progress: \(String(format: "%.1f", mbWritten))MB / \(String(format: "%.1f", mbTotal))MB (\(Int(progress * 100))%) - \(String(format: "%.1f", mbps)) MB/s")
-                    }
-                    #endif
-                }
-            }
+        // Keep a strong reference to the session to prevent deallocation
+        var downloadSession: URLSession?
 
+        return try await withCheckedThrowingContinuation { continuation in
+            let delegate = DownloadDelegate(
+                expectedSize: expectedSize,
+                progressHandler: { [weak self] progress, bytesWritten, totalBytes, speed, eta in
+                    Task { @MainActor in
+                        guard let self = self else { return }
+
+                        if progress >= 0 {
+                            // Re-assign entire dictionary to trigger @Published notification
+                            var newProgress = self.downloadProgress
+                            newProgress[modelId] = progress
+                            self.downloadProgress = newProgress
+
+                            var newInfo = self.downloadProgressInfo
+                            newInfo[modelId] = DownloadProgressInfo(
+                                progress: progress,
+                                bytesDownloaded: bytesWritten,
+                                totalBytes: totalBytes,
+                                speed: speed,
+                                estimatedTimeRemaining: eta
+                            )
+                            self.downloadProgressInfo = newInfo
+                        } else {
+                            // Indeterminate progress
+                            print("[ModelLoader] Indeterminate progress: \(bytesWritten) bytes downloaded")
+                        }
+                    }
+                },
+                completionHandler: { result in
+                    // Clean up session
+                    downloadSession?.invalidateAndCancel()
+                    downloadSession = nil
+
+                    switch result {
+                    case .success(let tempURL):
+                        // Create a dummy response since we don't have access to it here
+                        let response = URLResponse(url: url, mimeType: nil, expectedContentLength: Int(expectedSize), textEncodingName: nil)
+                        continuation.resume(returning: (tempURL, response))
+                    case .failure(let error):
+                        continuation.resume(throwing: error)
+                    }
+                }
+            )
+
+            print("[ModelLoader] Starting URLSession download task (delegate-based)...")
             let session = URLSession(configuration: .default, delegate: delegate, delegateQueue: nil)
-            let task = session.downloadTask(with: url) { tempURL, response, error in
-                if let error = error {
-                    continuation.resume(throwing: error)
-                    return
-                }
+            downloadSession = session
 
-                guard let tempURL = tempURL, let response = response else {
-                    continuation.resume(throwing: ModelLoaderError.downloadFailed)
-                    return
-                }
-
-                // Move to a persistent temp location before returning
-                let persistentTemp = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
-                do {
-                    try FileManager.default.moveItem(at: tempURL, to: persistentTemp)
-                    continuation.resume(returning: (persistentTemp, response))
-                } catch {
-                    continuation.resume(throwing: error)
-                }
-            }
-
+            // Use delegate-based download task (NO completion handler)
+            // This ensures didWriteData delegate method gets called
+            let task = session.downloadTask(with: url)
             task.resume()
         }
     }
@@ -1287,15 +1544,20 @@ private final class ZIPArchive {
 
 private final class DownloadDelegate: NSObject, URLSessionDownloadDelegate {
     private let progressHandler: (Double, Int64, Int64, Double, TimeInterval?) -> Void
+    private let completionHandler: (Result<URL, Error>) -> Void
     private let expectedSize: Int64
     private var startTime: Date?
     private var lastUpdateTime: Date?
     private var lastBytesWritten: Int64 = 0
     private var speedSamples: [Double] = []  // 速度のサンプルを保持して平滑化
+    private var lastLoggedPercent: Int = -1  // 重複ログ防止
 
-    init(expectedSize: Int64, progressHandler: @escaping (Double, Int64, Int64, Double, TimeInterval?) -> Void) {
+    init(expectedSize: Int64,
+         progressHandler: @escaping (Double, Int64, Int64, Double, TimeInterval?) -> Void,
+         completionHandler: @escaping (Result<URL, Error>) -> Void) {
         self.expectedSize = expectedSize
         self.progressHandler = progressHandler
+        self.completionHandler = completionHandler
         super.init()
     }
 
@@ -1304,6 +1566,8 @@ private final class DownloadDelegate: NSObject, URLSessionDownloadDelegate {
         if startTime == nil {
             startTime = now
             lastUpdateTime = now
+            // Log first callback with size info
+            print("[Download] First callback - serverSize: \(totalBytesExpectedToWrite), expectedSize: \(expectedSize)")
         }
 
         // Use server-provided size if available, otherwise use expected size from model info
@@ -1314,6 +1578,7 @@ private final class DownloadDelegate: NSObject, URLSessionDownloadDelegate {
             totalSize = expectedSize
         } else {
             // Fallback: show indeterminate progress
+            print("[Download] No size available - indeterminate progress")
             progressHandler(-1, totalBytesWritten, 0, 0, nil)
             return
         }
@@ -1343,11 +1608,57 @@ private final class DownloadDelegate: NSObject, URLSessionDownloadDelegate {
         let eta: TimeInterval? = averageSpeed > 0 ? TimeInterval(remainingBytes) / averageSpeed : nil
 
         let progress = Double(totalBytesWritten) / Double(totalSize)
+
+        // Log progress every 10% (without duplicates)
+        let percentProgress = Int(progress * 100)
+        let roundedPercent = (percentProgress / 10) * 10
+        if roundedPercent > lastLoggedPercent {
+            lastLoggedPercent = roundedPercent
+            let mbWritten = Double(totalBytesWritten) / 1_000_000
+            let mbTotal = Double(totalSize) / 1_000_000
+            let mbps = averageSpeed / 1_000_000
+            print("[Download] \(String(format: "%.1f", mbWritten))MB / \(String(format: "%.1f", mbTotal))MB (\(percentProgress)%) - \(String(format: "%.1f", mbps)) MB/s")
+        }
+
         progressHandler(min(progress, 1.0), totalBytesWritten, totalSize, averageSpeed, eta)
     }
 
     func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
-        // Handled in completion handler
+        print("[Download] Finished downloading to: \(location.path)")
+        // Move to a persistent temp location before returning
+        let persistentTemp = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
+        do {
+            try FileManager.default.moveItem(at: location, to: persistentTemp)
+            completionHandler(.success(persistentTemp))
+        } catch {
+            completionHandler(.failure(error))
+        }
+    }
+
+    func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
+        if let error = error {
+            print("[Download] Completed with error: \(error.localizedDescription)")
+            completionHandler(.failure(error))
+        }
+        // Note: Success case is handled in didFinishDownloadingTo
+    }
+}
+
+/// Delegate to handle redirects for HEAD requests
+/// By default, URLSession converts HEAD to GET on redirects - this preserves HEAD method
+private final class HeadRedirectDelegate: NSObject, URLSessionTaskDelegate {
+    func urlSession(
+        _ session: URLSession,
+        task: URLSessionTask,
+        willPerformHTTPRedirection response: HTTPURLResponse,
+        newRequest request: URLRequest,
+        completionHandler: @escaping (URLRequest?) -> Void
+    ) {
+        // Create a new HEAD request for the redirect URL
+        var newRequest = request
+        newRequest.httpMethod = "HEAD"
+        print("[ModelLoader] Following redirect to: \(request.url?.host ?? "unknown")...")
+        completionHandler(newRequest)
     }
 }
 

@@ -101,7 +101,8 @@ final class CoreMLInference: ObservableObject {
             llamaConfig = .deepseekR1Qwen
         } else if nameLower.contains("deepseek") && nameLower.contains("llama") {
             llamaConfig = .deepseekR1Llama
-        } else if nameLower.contains("qwen") {
+        } else if nameLower.contains("qwen") || nameLower.contains("eliochat") {
+            // ElioChat is based on Qwen3, so use the same config
             llamaConfig = .qwen3
         } else if nameLower.contains("llama") {
             llamaConfig = .llama3
@@ -382,12 +383,17 @@ final class CoreMLInference: ObservableObject {
                 systemPrompt: effectiveSystemPrompt,
                 enableThinking: settings.enableThinking
             )
-            return try await llamaInference.generate(
+            let generatedText = try await llamaInference.generate(
                 prompt: formattedPrompt,
                 settings: settings,
                 stopSequences: ["</tool_call>", "\n\nUser:", "\n\nHuman:", "<|im_end|>", "<|eot_id|>"],
                 onToken: onToken
             )
+            // Prepend <think> tag if thinking mode was enabled (since it was added to prompt but not returned)
+            if settings.enableThinking {
+                return "<think>" + generatedText
+            }
+            return generatedText
         }
 
         // CoreML models
@@ -428,8 +434,8 @@ final class CoreMLInference: ObservableObject {
 
             prompt += "<|start_header_id|>assistant<|end_header_id|>\n\n<think>\n"
 
-        } else if modelName.contains("qwen") {
-            // Qwen3 format
+        } else if modelName.contains("photon") || modelName.contains("qwen") || modelName.contains("eliochat") {
+            // Photon / Qwen3 / ElioChat (Qwen-based) format - ChatML
             prompt = "<|im_start|>system\n\(systemPrompt)<|im_end|>\n"
 
             for message in messages {

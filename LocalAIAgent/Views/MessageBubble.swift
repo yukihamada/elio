@@ -152,12 +152,10 @@ struct MessageBubble: View {
             // Text content
             if !message.content.isEmpty && message.content != String(localized: "chat.image.sent") {
                 ZStack(alignment: isUser ? .bottomLeading : .bottomTrailing) {
-                    Text(parseMarkdown(message.content))
-                        .textSelection(.enabled)
+                    markdownContentView
                         .padding(.horizontal, 16)
                         .padding(.vertical, 12)
                         .background(bubbleBackground)
-                        .foregroundStyle(isUser ? .white : .primary)
                         .clipShape(RoundedRectangle(cornerRadius: 20))
                         .shadow(color: isUser ? Color.accentColor.opacity(0.2) : Color.black.opacity(0.05), radius: 4, y: 2)
 
@@ -185,7 +183,7 @@ struct MessageBubble: View {
                 }
             } else if message.content == String(localized: "chat.image.sent") && message.image == nil {
                 // Show placeholder if image data couldn't be loaded
-                Text(parseMarkdown(message.content))
+                Text(message.content)
                     .textSelection(.enabled)
                     .padding(.horizontal, 16)
                     .padding(.vertical, 12)
@@ -271,13 +269,10 @@ struct MessageBubble: View {
         return formatter.string(from: date)
     }
 
-    private func parseMarkdown(_ text: String) -> AttributedString {
-        do {
-            let result = try AttributedString(markdown: text, options: .init(interpretedSyntax: .inlineOnlyPreservingWhitespace))
-            return result
-        } catch {
-            return AttributedString(text)
-        }
+    private var markdownContentView: some View {
+        Text(message.content)
+            .textSelection(.enabled)
+            .foregroundStyle(isUser ? .white : .primary)
     }
 }
 

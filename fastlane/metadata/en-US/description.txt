@@ -1,4 +1,4 @@
-【Safer than ChatGPT - A Truly Private AI】
+【A Truly Private AI Assistant】
 
 Elio is a completely private AI assistant that runs entirely on your iPhone. All processing happens on-device, meaning your conversations are never sent to the cloud.
 
@@ -6,7 +6,7 @@ Elio is a completely private AI assistant that runs entirely on your iPhone. All
 
 • Fully Offline - Works in airplane mode
 • Privacy First - No data ever leaves your device
-• Works where ChatGPT is banned
+• Works in corporate environments with AI restrictions
 • No subscription - Free forever after download
 
 ■ Deep iOS Integration

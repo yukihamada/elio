@@ -1,12 +1,12 @@
 import Foundation
 import Network
 
-/// MCP Server for Ghost Search - Privacy-focused web search via DuckDuckGo
+/// MCP Server for Web Search - Privacy-focused web search via DuckDuckGo
 final class WebSearchServer: MCPServer {
     let id = "websearch"
-    let name = "Ghost Search"
-    let serverDescription = "DuckDuckGoで匿名検索（追跡なし）"
-    let icon = "theatermasks.fill"
+    let name = "Web検索"
+    let serverDescription = "DuckDuckGoでWeb検索"
+    let icon = "magnifyingglass"
 
     /// Check network connectivity
     private var isOnline: Bool {
@@ -55,12 +55,12 @@ final class WebSearchServer: MCPServer {
         case "ghost_research":
             let topic = arguments["topic"] ?? "topic"
             return MCPPromptResult(messages: [
-                MCPPromptMessage(role: "user", content: .text("Ghost Searchを使って「\(topic)」について調べてください。検索結果をまとめて、重要なポイントを教えてください。"))
+                MCPPromptMessage(role: "user", content: .text("Web検索を使って「\(topic)」について調べてください。検索結果をまとめて、重要なポイントを教えてください。"))
             ])
         case "news_search":
             let topic = arguments["topic"] ?? "最新ニュース"
             return MCPPromptResult(messages: [
-                MCPPromptMessage(role: "user", content: .text("Ghost Searchで「\(topic)」の最新ニュースを検索してください。主要なニュースをまとめてください。"))
+                MCPPromptMessage(role: "user", content: .text("Web検索で「\(topic)」の最新ニュースを検索してください。主要なニュースをまとめてください。"))
             ])
         default:
             return nil
@@ -70,8 +70,8 @@ final class WebSearchServer: MCPServer {
     func listTools() -> [MCPTool] {
         [
             MCPTool(
-                name: "ghost_search",
-                description: "DuckDuckGoで匿名Web検索を行います。追跡なしでプライバシーを守りながら最新情報を検索できます。",
+                name: "web_search",
+                description: "Web検索を行い、最新情報を取得します",
                 inputSchema: MCPInputSchema(
                     type: "object",
                     properties: [
@@ -92,14 +92,14 @@ final class WebSearchServer: MCPServer {
 
     func callTool(name: String, arguments: [String: JSONValue]) async throws -> MCPResult {
         switch name {
-        case "ghost_search", "web_search": // Support both names for compatibility
-            return try await performGhostSearch(arguments)
+        case "web_search":
+            return try await performWebSearch(arguments)
         default:
             throw MCPClientError.toolNotFound(name)
         }
     }
 
-    private func performGhostSearch(_ arguments: [String: JSONValue]) async throws -> MCPResult {
+    private func performWebSearch(_ arguments: [String: JSONValue]) async throws -> MCPResult {
         guard case .string(let query) = arguments["query"] else {
             throw MCPClientError.invalidArguments("queryは必須です")
         }
@@ -125,136 +125,157 @@ final class WebSearchServer: MCPServer {
 
         let limit: Int
         if case .int(let limitValue) = arguments["limit"] {
-            limit = limitValue
+            limit = min(limitValue, 10)
         } else {
             limit = 5
         }
 
-        // Use DuckDuckGo Instant Answer API (no API key required, no tracking)
+        // Use DuckDuckGo HTML search for real web search results
         let encodedQuery = query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? query
-        let urlString = "https://api.duckduckgo.com/?q=\(encodedQuery)&format=json&no_html=1&skip_disambig=1"
+        let urlString = "https://html.duckduckgo.com/html/?q=\(encodedQuery)"
 
         guard let url = URL(string: urlString) else {
             throw MCPClientError.executionFailed("Invalid URL")
         }
 
         do {
-            let (data, response) = try await URLSession.shared.data(from: url)
+            var request = URLRequest(url: url)
+            request.setValue("Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15", forHTTPHeaderField: "User-Agent")
+            request.setValue("text/html", forHTTPHeaderField: "Accept")
+
+            let (data, response) = try await URLSession.shared.data(for: request)
 
             guard let httpResponse = response as? HTTPURLResponse,
                   httpResponse.statusCode == 200 else {
-                throw MCPClientError.executionFailed("Ghost Search接続に失敗しました")
+                throw MCPClientError.executionFailed("Web検索接続に失敗しました")
             }
 
-            let result = try JSONDecoder().decode(DuckDuckGoResponse.self, from: data)
-            let formattedResult = formatGhostSearchResults(result, limit: limit, query: query)
+            guard let html = String(data: data, encoding: .utf8) else {
+                throw MCPClientError.executionFailed("レスポンスの解析に失敗しました")
+            }
+
+            let results = parseHTMLSearchResults(html, limit: limit)
+            let formattedResult = formatSearchResults(results, query: query)
 
             return MCPResult(content: [MCPContent.text(formattedResult)])
         } catch let error as MCPClientError {
             throw error
         } catch {
-            // Fallback: return message when API fails
+            // Fallback: return message when search fails
             let fallbackResult = """
-            【Ghost Search: "\(query)"】
+            【Web検索: "\(query)"】
 
-            匿名回線への接続に失敗しました。
+            検索に失敗しました: \(error.localizedDescription)
             インターネット接続を確認してください。
-            オフライン時は、ローカルAIの知識を使って回答します。
             """
             return MCPResult(content: [MCPContent.text(fallbackResult)])
         }
     }
 
-    private func formatGhostSearchResults(_ response: DuckDuckGoResponse, limit: Int, query: String) -> String {
-        var results: [String] = []
+    /// Parse DuckDuckGo HTML search results
+    private func parseHTMLSearchResults(_ html: String, limit: Int) -> [SearchResult] {
+        var results: [SearchResult] = []
 
-        // Abstract (main answer)
-        if !response.Abstract.isEmpty {
-            results.append("【概要】\n\(response.Abstract)")
-            if !response.AbstractSource.isEmpty {
-                results.append("出典: \(response.AbstractSource)")
-            }
-        }
+        // Find all result links and snippets using simple regex patterns
+        let linkPattern = #"<a rel="nofollow" class="result__a" href="([^"]+)">(.+?)</a>"#
+        let snippetPattern = #"<a class="result__snippet"[^>]*>(.+?)</a>"#
 
-        // Related topics
-        let topics = response.RelatedTopics.prefix(limit)
-        if !topics.isEmpty {
-            results.append("\n【関連情報】")
-            for (index, topic) in topics.enumerated() {
-                if !topic.Text.isEmpty {
-                    results.append("\(index + 1). \(topic.Text)")
-                    if let firstURL = topic.FirstURL, !firstURL.isEmpty {
-                        results.append("   URL: \(firstURL)")
+        // Try to extract using regex
+        do {
+            let linkRegex = try NSRegularExpression(pattern: linkPattern, options: [.dotMatchesLineSeparators])
+            let snippetRegex = try NSRegularExpression(pattern: snippetPattern, options: [.dotMatchesLineSeparators])
+
+            let linkMatches = linkRegex.matches(in: html, options: [], range: NSRange(html.startIndex..., in: html))
+            let snippetMatches = snippetRegex.matches(in: html, options: [], range: NSRange(html.startIndex..., in: html))
+
+            for (index, match) in linkMatches.prefix(limit).enumerated() {
+                guard let urlRange = Range(match.range(at: 1), in: html),
+                      let titleRange = Range(match.range(at: 2), in: html) else {
+                    continue
+                }
+
+                var url = String(html[urlRange])
+                let title = cleanHTML(String(html[titleRange]))
+
+                // DuckDuckGo uses redirect URLs, extract the actual URL
+                if url.contains("uddg=") {
+                    if let encodedURL = url.components(separatedBy: "uddg=").last?.components(separatedBy: "&").first,
+                       let decodedURL = encodedURL.removingPercentEncoding {
+                        url = decodedURL
                     }
                 }
+
+                var snippet = ""
+                if index < snippetMatches.count {
+                    if let snippetRange = Range(snippetMatches[index].range(at: 1), in: html) {
+                        snippet = cleanHTML(String(html[snippetRange]))
+                    }
+                }
+
+                if !title.isEmpty && !url.isEmpty {
+                    results.append(SearchResult(title: title, url: url, snippet: snippet))
+                }
             }
+        } catch {
+            print("[WebSearch] Regex error: \(error)")
         }
 
-        // If no results found
+        return results
+    }
+
+    /// Remove HTML tags and decode entities
+    private func cleanHTML(_ text: String) -> String {
+        var result = text
+
+        // Remove HTML tags
+        result = result.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression)
+
+        // Decode common HTML entities
+        result = result.replacingOccurrences(of: "&amp;", with: "&")
+        result = result.replacingOccurrences(of: "&lt;", with: "<")
+        result = result.replacingOccurrences(of: "&gt;", with: ">")
+        result = result.replacingOccurrences(of: "&quot;", with: "\"")
+        result = result.replacingOccurrences(of: "&#39;", with: "'")
+        result = result.replacingOccurrences(of: "&nbsp;", with: " ")
+        result = result.replacingOccurrences(of: "&#x27;", with: "'")
+        result = result.replacingOccurrences(of: "&#x2F;", with: "/")
+
+        // Trim whitespace
+        result = result.trimmingCharacters(in: .whitespacesAndNewlines)
+
+        return result
+    }
+
+    private func formatSearchResults(_ results: [SearchResult], query: String) -> String {
         if results.isEmpty {
             return """
-            【Ghost Search: "\(query)"】
+            【Web検索: "\(query)"】
 
-            直接的な検索結果は見つかりませんでした。
-            別のキーワードで試すか、ローカルAIの知識を使って回答します。
+            検索結果が見つかりませんでした。
+            別のキーワードで試してください。
             """
         }
 
-        return "【Ghost Search: \"\(query)\" - DuckDuckGo経由・追跡なし】\n\n" + results.joined(separator: "\n")
-    }
-}
+        var output = "【Web検索: \"\(query)\" - DuckDuckGo経由・追跡なし】\n\n"
 
-// MARK: - DuckDuckGo API Response
-
-struct DuckDuckGoResponse: Codable {
-    let Abstract: String
-    let AbstractSource: String
-    let AbstractURL: String
-    let Answer: String
-    let AnswerType: String
-    let Heading: String
-    let RelatedTopics: [DuckDuckGoTopic]
-
-    init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        Abstract = try container.decodeIfPresent(String.self, forKey: .Abstract) ?? ""
-        AbstractSource = try container.decodeIfPresent(String.self, forKey: .AbstractSource) ?? ""
-        AbstractURL = try container.decodeIfPresent(String.self, forKey: .AbstractURL) ?? ""
-        Answer = try container.decodeIfPresent(String.self, forKey: .Answer) ?? ""
-        AnswerType = try container.decodeIfPresent(String.self, forKey: .AnswerType) ?? ""
-        Heading = try container.decodeIfPresent(String.self, forKey: .Heading) ?? ""
-
-        // RelatedTopics can contain mixed types (topics and groups)
-        if let topics = try? container.decode([DuckDuckGoTopic].self, forKey: .RelatedTopics) {
-            RelatedTopics = topics
-        } else {
-            RelatedTopics = []
+        for (index, result) in results.enumerated() {
+            output += "[\(index + 1)] \(result.title)\n"
+            output += "    URL: \(result.url)\n"
+            if !result.snippet.isEmpty {
+                output += "    \(result.snippet)\n"
+            }
+            output += "\n"
         }
-    }
 
-    enum CodingKeys: String, CodingKey {
-        case Abstract
-        case AbstractSource
-        case AbstractURL
-        case Answer
-        case AnswerType
-        case Heading
-        case RelatedTopics
+        return output
     }
 }
 
-struct DuckDuckGoTopic: Codable {
-    let Text: String
-    let FirstURL: String?
+// MARK: - Search Result
 
-    init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        Text = try container.decodeIfPresent(String.self, forKey: .Text) ?? ""
-        FirstURL = try container.decodeIfPresent(String.self, forKey: .FirstURL)
-    }
-
-    enum CodingKeys: String, CodingKey {
-        case Text
-        case FirstURL
-    }
+struct SearchResult {
+    let title: String
+    let url: String
+    let snippet: String
 }
+

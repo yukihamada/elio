@@ -79,6 +79,10 @@ final class LlamaInference: ObservableObject {
     @Published private(set) var modelName: String = ""
     @Published var inferenceMode: InferenceMode = .auto
 
+    /// Current KV cache quantization settings
+    private(set) var kvCacheTypeK: KVCacheQuantType = .q8_0
+    private(set) var kvCacheTypeV: KVCacheQuantType = .q8_0
+
     private var model: OpaquePointer?
     private var context: OpaquePointer?
     private var modelPath: URL?
@@ -94,16 +98,17 @@ final class LlamaInference: ObservableObject {
         let bosTokenId: Int32
 
         // Dynamic context size based on device tier
+        // Note: Minimum 6144 required for system prompt + tools description (~3000 tokens)
         private static var deviceContextSize: UInt32 {
             switch DeviceTier.current {
             case .ultra:
                 return 8192   // 8GB+ RAM devices can handle larger context
             case .high:
-                return 6144   // 8GB RAM devices
+                return 8192   // 8GB RAM devices
             case .medium:
-                return 4096   // 6GB RAM devices
+                return 6144   // 6GB RAM devices
             case .low:
-                return 2048   // 4GB RAM devices - minimal context
+                return 6144   // 4GB RAM devices - need enough for system prompt
             }
         }
 
@@ -185,13 +190,41 @@ final class LlamaInference: ObservableObject {
         }
     }
 
-    func loadModel(from url: URL) async throws {
+    /// Convert KVCacheQuantType to ggml_type
+    private func toGGMLType(_ kvType: KVCacheQuantType) -> ggml_type {
+        switch kvType {
+        case .q8_0: return GGML_TYPE_Q8_0
+        case .q4_0: return GGML_TYPE_Q4_0
+        case .f16: return GGML_TYPE_F16
+        }
+    }
+
+    func loadModel(
+        from url: URL,
+        kvCacheTypeK: KVCacheQuantType = .q8_0,
+        kvCacheTypeV: KVCacheQuantType = .q8_0
+    ) async throws {
+        print("[LlamaInference] loadModel called for: \(url.lastPathComponent)")
+        print("[LlamaInference] KV Cache - type_k: \(kvCacheTypeK.rawValue), type_v: \(kvCacheTypeV.rawValue)")
+
+        // Store KV cache settings
+        self.kvCacheTypeK = kvCacheTypeK
+        self.kvCacheTypeV = kvCacheTypeV
+
         guard FileManager.default.fileExists(atPath: url.path) else {
+            print("[LlamaInference] ERROR: Model file not found at \(url.path)")
             throw LlamaError.modelNotFound
+        }
+
+        // Check file size
+        if let attrs = try? FileManager.default.attributesOfItem(atPath: url.path),
+           let size = attrs[.size] as? Int64 {
+            print("[LlamaInference] Model file size: \(size / 1_000_000) MB")
         }
 
         // Unload any existing model first to free GPU memory
         if isLoaded {
+            print("[LlamaInference] Unloading existing model...")
             cleanup()
             isLoaded = false
         }
@@ -200,22 +233,33 @@ final class LlamaInference: ObservableObject {
         self.modelName = url.deletingPathExtension().lastPathComponent
 
         loadingProgress = 0.1
+        print("[LlamaInference] Starting model load...")
 
         // Capture values needed for background thread
         let gpuLayers = inferenceMode.gpuLayers
         let contextSize = config.contextSize
         let modelUrl = url
+        let ggmlTypeK = toGGMLType(kvCacheTypeK)
+        let ggmlTypeV = toGGMLType(kvCacheTypeV)
+
+        print("[LlamaInference] Config - gpuLayers: \(gpuLayers), contextSize: \(contextSize)")
 
         // Perform heavy model loading on background thread to avoid blocking UI
         let pointers = try await Task.detached(priority: .userInitiated) {
+            print("[LlamaInference] Background task started - loading model file...")
+
             // Model parameters - configure based on inference mode
             var modelParams = llama_model_default_params()
             modelParams.n_gpu_layers = gpuLayers
 
             // Load model (this is the main blocking operation - can take 1-7 seconds)
+            let loadStart = Date()
             guard let model = llama_model_load_from_file(modelUrl.path, modelParams) else {
+                print("[LlamaInference] ERROR: llama_model_load_from_file returned nil")
                 throw LlamaError.modelNotFound
             }
+            let loadDuration = Date().timeIntervalSince(loadStart)
+            print("[LlamaInference] Model loaded in \(String(format: "%.2f", loadDuration))s")
 
             // Context parameters - optimized for speed on iOS
             var contextParams = llama_context_default_params()
@@ -229,8 +273,8 @@ final class LlamaInference: ObservableObject {
             contextParams.n_threads_batch = Int32(perfCores)
 
             // KV Cache quantization for faster inference (reduces memory bandwidth)
-            contextParams.type_k = GGML_TYPE_Q8_0
-            contextParams.type_v = GGML_TYPE_Q8_0
+            contextParams.type_k = ggmlTypeK
+            contextParams.type_v = ggmlTypeV
 
             // Enable Flash Attention for Metal GPU acceleration
             contextParams.flash_attn_type = LLAMA_FLASH_ATTN_TYPE_ENABLED
@@ -239,10 +283,15 @@ final class LlamaInference: ObservableObject {
             contextParams.offload_kqv = true
 
             // Create context (secondary blocking operation)
+            print("[LlamaInference] Creating context...")
+            let ctxStart = Date()
             guard let context = llama_init_from_model(model, contextParams) else {
+                print("[LlamaInference] ERROR: llama_init_from_model returned nil")
                 llama_model_free(model)
                 throw LlamaError.contextCreationFailed
             }
+            let ctxDuration = Date().timeIntervalSince(ctxStart)
+            print("[LlamaInference] Context created in \(String(format: "%.2f", ctxDuration))s")
 
             return SendablePointer(model: model, context: context)
         }.value
@@ -252,6 +301,7 @@ final class LlamaInference: ObservableObject {
         self.context = pointers.context
         self.loadingProgress = 1.0
         self.isLoaded = true
+        print("[LlamaInference] Model load complete!")
     }
 
     /// Generate with ModelSettings
@@ -525,9 +575,25 @@ final class LlamaInference: ObservableObject {
 
     func formatChatPrompt(messages: [Message], systemPrompt: String, enableThinking: Bool = true) -> String {
         var prompt = ""
-        let modelName = config.name.lowercased()
+        let modelMetadataName = config.name.lowercased()
+        let modelFileName = modelPath?.lastPathComponent.lowercased() ?? ""
 
-        if modelName.contains("deepseek") && modelName.contains("qwen") {
+        // Check both metadata name and filename for model identification
+        // Filename takes priority (e.g., "eliochat-1.7b.gguf" should be treated as ElioChat even if metadata says "Photon")
+        let isElioChat = modelFileName.contains("eliochat") || modelMetadataName.contains("eliochat")
+        let isQwen = modelMetadataName.contains("qwen") || modelFileName.contains("qwen")
+        let isDeepSeekQwen = modelMetadataName.contains("deepseek") && modelMetadataName.contains("qwen")
+        let isDeepSeekLlama = modelMetadataName.contains("deepseek") && modelMetadataName.contains("llama")
+        let isPhoton = modelMetadataName.contains("photon") && !isElioChat  // Don't treat as Photon if it's ElioChat
+        let isLlama = modelMetadataName.contains("llama") || modelFileName.contains("llama")
+
+        // Debug: Log model identification
+        print("[LlamaInference] formatChatPrompt - modelFileName: \(modelFileName)")
+        print("[LlamaInference] formatChatPrompt - modelMetadataName: \(modelMetadataName)")
+        print("[LlamaInference] formatChatPrompt - isElioChat: \(isElioChat), isQwen: \(isQwen), isPhoton: \(isPhoton)")
+        print("[LlamaInference] formatChatPrompt - enableThinking: \(enableThinking)")
+
+        if isDeepSeekQwen {
             // DeepSeek-R1 Distill (Qwen-based) format
             prompt = "<|im_start|>system\n\(systemPrompt)<|im_end|>\n"
             for message in messages {
@@ -535,7 +601,7 @@ final class LlamaInference: ObservableObject {
                 prompt += "<|im_start|>\(role)\n\(message.content)<|im_end|>\n"
             }
             prompt += "<|im_start|>assistant\n<think>\n"
-        } else if modelName.contains("deepseek") && modelName.contains("llama") {
+        } else if isDeepSeekLlama {
             // DeepSeek-R1 Distill (Llama-based) format
             prompt = "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\n\(systemPrompt)<|eot_id|>"
             for message in messages {
@@ -543,20 +609,28 @@ final class LlamaInference: ObservableObject {
                 prompt += "<|start_header_id|>\(role)<|end_header_id|>\n\n\(message.content)<|eot_id|>"
             }
             prompt += "<|start_header_id|>assistant<|end_header_id|>\n\n<think>\n"
-        } else if modelName.contains("qwen") {
-            // Qwen3 with thinking mode support
+        } else if isElioChat || isQwen {
+            // ElioChat / Qwen3 (Qwen-based) with thinking mode support
             prompt = "<|im_start|>system\n\(systemPrompt)<|im_end|>\n"
             for message in messages {
                 let role = message.role == .user ? "user" : "assistant"
                 prompt += "<|im_start|>\(role)\n\(message.content)<|im_end|>\n"
             }
-            // Enable thinking mode for Qwen3 by starting with <think>
+            // Enable thinking mode for Qwen3/ElioChat by starting with <think>
             if enableThinking {
                 prompt += "<|im_start|>assistant\n<think>\n"
             } else {
                 prompt += "<|im_start|>assistant\n"
             }
-        } else if modelName.contains("llama") {
+        } else if isPhoton {
+            // Photon (Qwen-based) - does NOT support thinking mode (only if not identified as ElioChat)
+            prompt = "<|im_start|>system\n\(systemPrompt)<|im_end|>\n"
+            for message in messages {
+                let role = message.role == .user ? "user" : "assistant"
+                prompt += "<|im_start|>\(role)\n\(message.content)<|im_end|>\n"
+            }
+            prompt += "<|im_start|>assistant\n"
+        } else if isLlama {
             prompt = "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\n\(systemPrompt)<|eot_id|>"
             for message in messages {
                 let role = message.role == .user ? "user" : "assistant"

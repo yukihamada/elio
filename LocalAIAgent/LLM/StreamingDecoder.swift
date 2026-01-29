@@ -89,6 +89,7 @@ final class ResponseParser {
         var remaining = response
 
         while !remaining.isEmpty {
+            // Try to find <tool_call> tags first (preferred format)
             if let toolCallRange = remaining.range(of: "<tool_call>"),
                let toolCallEndRange = remaining.range(of: "</tool_call>") {
                 let beforeToolCall = String(remaining[..<toolCallRange.lowerBound])
@@ -104,7 +105,9 @@ final class ResponseParser {
                 }
 
                 remaining = String(remaining[toolCallEndRange.upperBound...])
-            } else if let (thinkStart, thinkEnd, beforeThink) = findThinkingTags(in: remaining) {
+            }
+            // Process thinking tags BEFORE bare JSON (thinking content comes first in model output)
+            else if let (thinkStart, thinkEnd, beforeThink) = findThinkingTags(in: remaining) {
                 if !beforeThink.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
                     results.append(.text(beforeThink))
                 }
@@ -114,6 +117,14 @@ final class ResponseParser {
                 results.append(.thinking(thinkingContent))
 
                 remaining = String(remaining[thinkEnd.upperBound...])
+            }
+            // Fallback: Try to find bare JSON tool calls (for smaller models that don't follow exact format)
+            else if let (toolCall, beforeJson, afterJson) = findBareJsonToolCall(in: remaining) {
+                if !beforeJson.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+                    results.append(.text(beforeJson))
+                }
+                results.append(toolCall)
+                remaining = afterJson
             } else {
                 results.append(.text(remaining))
                 remaining = ""
@@ -123,7 +134,64 @@ final class ResponseParser {
         return results
     }
 
+    /// Find bare JSON tool call (without <tool_call> tags) - fallback for smaller models
+    /// Looks for patterns like: {"name": "tool_name", "arguments": {...}}
+    private static func findBareJsonToolCall(in text: String) -> (toolCall: ParsedContent, before: String, after: String)? {
+        // Look for JSON that contains "name" and "arguments" - must be a tool call
+        // Find the opening brace that starts a potential tool call JSON
+        guard let nameMatch = text.range(of: #""name"\s*:"#, options: .regularExpression) else {
+            return nil
+        }
+
+        // Find the opening brace before "name"
+        let beforeName = text[..<nameMatch.lowerBound]
+        guard let openBraceIndex = beforeName.lastIndex(of: "{") else {
+            return nil
+        }
+
+        // Now find the matching closing brace
+        var braceCount = 0
+        var closeBraceIndex: String.Index?
+        var index = openBraceIndex
+
+        while index < text.endIndex {
+            let char = text[index]
+            if char == "{" {
+                braceCount += 1
+            } else if char == "}" {
+                braceCount -= 1
+                if braceCount == 0 {
+                    closeBraceIndex = index
+                    break
+                }
+            }
+            index = text.index(after: index)
+        }
+
+        guard let closeIndex = closeBraceIndex else {
+            return nil
+        }
+
+        let jsonRange = openBraceIndex...closeIndex
+        let jsonString = String(text[jsonRange])
+        let before = String(text[..<openBraceIndex])
+        let after = String(text[text.index(after: closeIndex)...])
+
+        // Verify it's actually a tool call JSON (has "name" and "arguments")
+        guard jsonString.contains("\"arguments\"") else {
+            return nil
+        }
+
+        // Try to parse it as a tool call
+        guard let toolCall = parseToolCall(jsonString) else {
+            return nil
+        }
+
+        return (toolCall, before, after)
+    }
+
     /// Find thinking tags - supports both <think> and <thinking> formats
+    /// Also handles cases where <think> was already in the prompt (only </think> in response)
     private static func findThinkingTags(in text: String) -> (start: Range<String.Index>, end: Range<String.Index>, before: String)? {
         // Try <think> first (more common with Qwen models)
         if let thinkRange = text.range(of: "<think>"),
@@ -137,6 +205,20 @@ final class ResponseParser {
            let thinkingEndRange = text.range(of: "</thinking>") {
             let before = String(text[..<thinkingRange.lowerBound])
             return (thinkingRange, thinkingEndRange, before)
+        }
+
+        // Handle case where <think> was in the prompt, so only </think> is in response
+        // Everything before </think> is thinking content
+        if let thinkEndRange = text.range(of: "</think>") {
+            // Create a synthetic start range at the beginning
+            let syntheticStart = text.startIndex..<text.startIndex
+            return (syntheticStart, thinkEndRange, "")
+        }
+
+        // Same for </thinking>
+        if let thinkingEndRange = text.range(of: "</thinking>") {
+            let syntheticStart = text.startIndex..<text.startIndex
+            return (syntheticStart, thinkingEndRange, "")
         }
 
         return nil

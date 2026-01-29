@@ -129,6 +129,31 @@ struct Message: Identifiable, Codable, Equatable {
             }
         }
 
+        // Handle case where <think> was in the prompt (only </think> in response)
+        // Everything before </think> is thinking content
+        if !cleanContent.contains("<think>") && cleanContent.contains("</think>") {
+            if let endRange = cleanContent.range(of: "</think>") {
+                let thinkingContent = String(cleanContent[..<endRange.lowerBound])
+                    .trimmingCharacters(in: .whitespacesAndNewlines)
+                if !thinkingContent.isEmpty {
+                    thinkingParts.append(thinkingContent)
+                }
+                cleanContent = String(cleanContent[endRange.upperBound...])
+            }
+        }
+
+        // Same for </thinking>
+        if !cleanContent.contains("<thinking>") && cleanContent.contains("</thinking>") {
+            if let endRange = cleanContent.range(of: "</thinking>") {
+                let thinkingContent = String(cleanContent[..<endRange.lowerBound])
+                    .trimmingCharacters(in: .whitespacesAndNewlines)
+                if !thinkingContent.isEmpty {
+                    thinkingParts.append(thinkingContent)
+                }
+                cleanContent = String(cleanContent[endRange.upperBound...])
+            }
+        }
+
         // Clean up any remaining raw tags that might have slipped through
         cleanContent = cleanContent
             .replacingOccurrences(of: "<think>", with: "")

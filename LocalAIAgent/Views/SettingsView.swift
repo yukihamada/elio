@@ -3,7 +3,7 @@ import SwiftUI
 struct SettingsView: View {
     @EnvironmentObject var appState: AppState
     @EnvironmentObject var themeManager: ThemeManager
-    @StateObject private var modelLoader = ModelLoader()
+    @ObservedObject private var modelLoader = ModelLoader.shared
     @StateObject private var languageManager = LanguageManager.shared
     @Environment(\.dismiss) private var dismiss
     @State private var loadingModelId: String?
@@ -12,11 +12,20 @@ struct SettingsView: View {
     @State private var showingPromptEditor = false
     @AppStorage("custom_system_prompt") private var customSystemPrompt: String = ""
 
-    // Models grouped by category
+    // Models grouped by category (ElioChat always first)
     private func modelsForCategory(_ category: ModelCategory) -> [ModelLoader.ModelInfo] {
-        modelLoader.availableModels.filter { model in
-            model.category == category && !model.isTooHeavy(for: modelLoader.deviceTier)
-        }
+        modelLoader.availableModels
+            .filter { model in
+                model.category == category && !model.isTooHeavy(for: modelLoader.deviceTier)
+            }
+            .sorted { model1, model2 in
+                // ElioChat models come first
+                let isElio1 = model1.id.lowercased().contains("eliochat")
+                let isElio2 = model2.id.lowercased().contains("eliochat")
+                if isElio1 && !isElio2 { return true }
+                if !isElio1 && isElio2 { return false }
+                return false // Keep original order for non-ElioChat models
+            }
     }
 
     // Categories to show (excluding empty ones)
@@ -56,6 +65,9 @@ struct SettingsView: View {
 
                         // Appearance Section
                         appearanceSection
+
+                        // Voice Section
+                        voiceSection
 
                         // Language Section
                         languageSection
@@ -277,7 +289,7 @@ struct SettingsView: View {
             downloadProgress: modelLoader.downloadProgress[model.id],
             loadingProgress: loadingModelId == model.id ? appState.loadingProgress : nil,
             onDownload: {
-                Task.detached {
+                Task {
                     try? await modelLoader.downloadModel(model)
                 }
             },
@@ -404,6 +416,121 @@ struct SettingsView: View {
                 RoundedRectangle(cornerRadius: 16)
                     .fill(Color.chatInputBackgroundDynamic)
             )
+        }
+    }
+
+    // MARK: - Voice Section
+
+    @StateObject private var speechManager = SpeechManager.shared
+
+    private var voiceSection: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            SectionHeader(title: String(localized: "settings.voice.section", defaultValue: "音声"), icon: "speaker.wave.2", color: .teal)
+
+            VStack(spacing: 0) {
+                // Kokoro TTS Toggle
+                Toggle(isOn: $speechManager.useKokoroTTS) {
+                    HStack(spacing: 12) {
+                        Image(systemName: "waveform")
+                            .font(.system(size: 16))
+                            .foregroundStyle(.secondary)
+                            .frame(width: 28)
+
+                        VStack(alignment: .leading, spacing: 2) {
+                            Text(String(localized: "settings.voice.kokoro", defaultValue: "高品質音声 (Kokoro)"))
+                                .font(.system(size: 15))
+                                .foregroundStyle(.primary)
+
+                            if speechManager.isKokoroReady {
+                                Text(String(localized: "settings.voice.kokoro.ready", defaultValue: "ダウンロード済み"))
+                                    .font(.system(size: 12))
+                                    .foregroundStyle(.green)
+                            } else if speechManager.isDownloadingTTS {
+                                HStack(spacing: 4) {
+                                    ProgressView()
+                                        .scaleEffect(0.7)
+                                    Text("ダウンロード中... \(Int(speechManager.ttsDownloadProgress * 100))%")
+                                        .font(.system(size: 12))
+                                        .foregroundStyle(.blue)
+                                }
+                            } else {
+                                Text(String(localized: "settings.voice.kokoro.not.ready", defaultValue: "未ダウンロード (87MB)"))
+                                    .font(.system(size: 12))
+                                    .foregroundStyle(.secondary)
+                            }
+                        }
+                    }
+                }
+                .toggleStyle(.switch)
+                .padding(.horizontal, 16)
+                .padding(.vertical, 14)
+
+                // Download button if not downloaded and not downloading
+                if !speechManager.isKokoroReady && !speechManager.isDownloadingTTS {
+                    Divider()
+                        .padding(.leading, 56)
+
+                    Button(action: {
+                        Task {
+                            await speechManager.downloadKokoroTTS()
+                        }
+                    }) {
+                        HStack(spacing: 12) {
+                            Image(systemName: "arrow.down.circle.fill")
+                                .font(.system(size: 16))
+                                .foregroundStyle(.teal)
+                                .frame(width: 28)
+
+                            Text("今すぐダウンロード")
+                                .font(.system(size: 15))
+                                .foregroundStyle(.teal)
+
+                            Spacer()
+
+                            Text("87MB")
+                                .font(.system(size: 13))
+                                .foregroundStyle(.secondary)
+                        }
+                    }
+                    .padding(.horizontal, 16)
+                    .padding(.vertical, 14)
+                }
+
+                // Download progress bar
+                if speechManager.isDownloadingTTS {
+                    ProgressView(value: speechManager.ttsDownloadProgress)
+                        .progressViewStyle(.linear)
+                        .tint(.teal)
+                        .padding(.horizontal, 16)
+                        .padding(.bottom, 14)
+                }
+            }
+            .background(
+                RoundedRectangle(cornerRadius: 16)
+                    .fill(Color.chatInputBackgroundDynamic)
+            )
+
+            Text(String(localized: "settings.voice.description", defaultValue: "オフにするとシステム音声（AVSpeechSynthesizer）を使用します。"))
+                .font(.caption)
+                .foregroundStyle(.secondary)
+                .padding(.horizontal, 4)
+
+            // Reset TTS model button (show when downloaded or if there might be corrupted data)
+            if speechManager.isKokoroReady || KokoroTTSManager.shared.isModelDownloaded {
+                Button(action: {
+                    KokoroTTSManager.shared.resetModel()
+                }) {
+                    HStack(spacing: 8) {
+                        Image(systemName: "arrow.counterclockwise")
+                            .font(.system(size: 14))
+                        Text(String(localized: "settings.voice.reset", defaultValue: "音声モデルをリセット"))
+                            .font(.system(size: 14))
+                    }
+                    .foregroundStyle(.red)
+                    .padding(.vertical, 8)
+                }
+                .padding(.horizontal, 4)
+            }
         }
     }
 
@@ -959,13 +1086,14 @@ struct SettingsModelCard: View {
                     }
                 }
 
-                // Model info - fixed layout
+                // Model info - flexible layout for full model name
                 VStack(alignment: .leading, spacing: 6) {
-                    // Name row - single line with fixed layout
-                    HStack(spacing: 6) {
+                    // Name row - allow wrapping for long model names
+                    HStack(alignment: .top, spacing: 6) {
                         Text(model.name)
                             .font(.system(size: 15, weight: .semibold))
-                            .lineLimit(1)
+                            .lineLimit(2)
+                            .fixedSize(horizontal: false, vertical: true)
 
                         // Status badge (only one shown)
                         if isLoaded {
@@ -981,7 +1109,7 @@ struct SettingsModelCard: View {
                     Text(model.description)
                         .font(.system(size: 12))
                         .foregroundStyle(.secondary)
-                        .lineLimit(1)
+                        .lineLimit(2)
                 }
 
                 Spacer(minLength: 8)

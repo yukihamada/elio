@@ -60,34 +60,33 @@ final class AppState: ObservableObject {
     // Debounce task for saving conversations
     private var saveDebounceTask: Task<Void, Never>?
 
-    // Token context limits based on device tier
-    // These values correspond to LlamaInference context sizes:
-    // ultra: 8192, high: 6144, medium: 4096, low: 2048
-    // Reserve ~1000 tokens for system prompt and ~500 for generation
+    // Token context limits - calculated from model's actual context length
+    // Reserve tokens for: system prompt (~2000), generation output (maxTokens), and safety buffer (~500)
     private var maxContextTokens: Int {
-        switch DeviceTier.current {
-        case .ultra:
-            return 6500  // 8192 context - 1500 reserved
-        case .high:
-            return 4600  // 6144 context - 1500 reserved
-        case .medium:
-            return 2600  // 4096 context - 1500 reserved
-        case .low:
-            return 1000  // 2048 context - 1000 reserved (minimal)
+        guard let modelId = currentModelId else {
+            // Fallback to conservative limit
+            return 2500
         }
+
+        // Get model's actual context length
+        let modelInfo = modelLoaderRef.getModelInfo(modelId)
+        let contextLength = modelInfo?.config.maxContextLength ?? 8192
+
+        // Get user's maxTokens setting for output
+        let settings = settingsManager.settings(for: modelId)
+        let outputTokens = settings.maxTokens
+
+        // Reserve: 2000 for system prompt, outputTokens for generation, 500 safety buffer
+        let reservedTokens = 2000 + outputTokens + 500
+        let availableTokens = contextLength - reservedTokens
+
+        // Ensure reasonable minimum
+        return max(availableTokens, 1000)
     }
 
     private var summaryTokenBudget: Int {
-        switch DeviceTier.current {
-        case .ultra:
-            return 800
-        case .high:
-            return 600
-        case .medium:
-            return 400
-        case .low:
-            return 200
-        }
+        // Use ~15% of available context for summary
+        return max(min(maxContextTokens / 6, 800), 150)
     }
 
     // Background summarization task
@@ -198,44 +197,91 @@ final class AppState: ObservableObject {
             let messagesToSummarize = Array(messages.prefix(upToIndex))
             guard !messagesToSummarize.isEmpty else { return }
 
-            // Build summary prompt
-            let conversationText = messagesToSummarize.map { msg in
-                let role = msg.role == .user ? "ユーザー" : "アシスタント"
-                return "\(role): \(msg.content)"
-            }.joined(separator: "\n")
+            // Build summary prompt - include existing summary if any for re-summarization
+            var conversationText = ""
 
-            let summaryPrompt = """
-            以下の会話を簡潔に要約してください。重要なポイントと結論のみを残してください。
+            // Include existing summary context if we're extending it
+            if let existingSummary = await MainActor.run(body: { self.currentConversation?.historySummary }),
+               let previousIndex = await MainActor.run(body: { self.currentConversation?.summarizedUpToIndex }),
+               previousIndex > 0 {
+                conversationText += "【前回までの要約】\n\(existingSummary)\n\n【追加の会話】\n"
 
-            会話:
-            \(conversationText)
+                // Only summarize new messages since last summary
+                let newMessages = messagesToSummarize.suffix(from: previousIndex)
+                conversationText += newMessages.map { msg in
+                    let role = msg.role == .user ? "ユーザー" : "アシスタント"
+                    return "\(role): \(msg.content)"
+                }.joined(separator: "\n")
+            } else {
+                conversationText = messagesToSummarize.map { msg in
+                    let role = msg.role == .user ? "ユーザー" : "アシスタント"
+                    return "\(role): \(msg.content)"
+                }.joined(separator: "\n")
+            }
 
-            要約（200文字以内）:
-            """
+            // Detect language from conversation
+            let isJapanese = conversationText.contains(where: { $0.isJapanese })
+
+            let summaryPrompt: String
+            if isJapanese {
+                summaryPrompt = """
+                以下の会話の要約を作成してください。
+
+                ルール:
+                - 重要な情報、決定事項、ユーザーの好みを残す
+                - 具体的な数値や固有名詞は省略しない
+                - 箇条書きで簡潔にまとめる
+                - 300文字以内
+
+                会話:
+                \(conversationText)
+
+                要約:
+                """
+            } else {
+                summaryPrompt = """
+                Summarize the following conversation.
+
+                Rules:
+                - Keep important information, decisions, and user preferences
+                - Don't omit specific numbers or proper nouns
+                - Use bullet points for clarity
+                - Maximum 150 words
+
+                Conversation:
+                \(conversationText)
+
+                Summary:
+                """
+            }
 
             do {
                 // Generate summary using LLM
                 if let llm = self.llmEngine, let modelId = self.currentModelId {
                     var settings = self.settingsManager.settings(for: modelId)
-                    settings.maxTokens = 150  // Short summary
+                    settings.maxTokens = 200  // Enough for good summary
+                    settings.temperature = 0.3  // More deterministic for summaries
                     var summary = ""
 
                     _ = try await llm.generate(
                         prompt: summaryPrompt,
-                        settings: settings
+                        settings: settings,
+                        stopSequences: ["<|im_end|>", "<|eot_id|>", "\n\n\n"]
                     ) { token in
                         summary += token
                     }
 
+                    // Clean up summary
+                    let cleanedSummary = summary
+                        .trimmingCharacters(in: .whitespacesAndNewlines)
+                        .replacingOccurrences(of: "<think>", with: "")
+                        .replacingOccurrences(of: "</think>", with: "")
+
                     // Update conversation with summary
                     await MainActor.run {
                         if var conversation = self.currentConversation {
-                            // Merge with existing summary if any
-                            if let existingSummary = conversation.historySummary {
-                                conversation.historySummary = existingSummary + "\n\n" + summary.trimmingCharacters(in: .whitespacesAndNewlines)
-                            } else {
-                                conversation.historySummary = summary.trimmingCharacters(in: .whitespacesAndNewlines)
-                            }
+                            // Replace the summary entirely (we included the old one in the prompt)
+                            conversation.historySummary = cleanedSummary
                             conversation.summarizedUpToIndex = upToIndex
                             self.currentConversation = conversation
 
@@ -247,7 +293,7 @@ final class AppState: ObservableObject {
 
                             logInfo("Context", "Summary generated", [
                                 "summarizedMessages": "\(upToIndex)",
-                                "summaryLength": "\(summary.count)"
+                                "summaryLength": "\(cleanedSummary.count)"
                             ])
                         }
                     }
@@ -301,12 +347,17 @@ final class AppState: ObservableObject {
         // Restore saved inference mode
         self.inferenceMode = InferenceMode(rawValue: storedInferenceMode) ?? .auto
 
-        // Start with empty conversations for faster startup
-        // Load asynchronously to not block the UI
+        // Setup MCP client synchronously (fast operation)
+        setupMCPClient()
+
+        // Immediately make UI interactive
         Task { @MainActor in
-            await loadConversationsAsync()
-            setupMCPClient()
-            await loadLastUsedModelIfAvailableAsync()
+            // Load conversations and model in parallel for faster startup
+            async let conversationsTask: () = loadConversationsAsync()
+            async let modelTask: () = loadLastUsedModelIfAvailableAsync()
+
+            // Wait for both to complete
+            _ = await (conversationsTask, modelTask)
         }
     }
 
@@ -345,9 +396,10 @@ final class AppState: ObservableObject {
     }
 
     private func loadLastUsedModelIfAvailableAsync() async {
+        // End initial loading immediately to show UI faster
+        isInitialLoading = false
+
         guard !lastUsedModel.isEmpty else {
-            // No saved model, end initial loading immediately
-            isInitialLoading = false
             return
         }
 
@@ -355,12 +407,41 @@ final class AppState: ObservableObject {
         if modelLoaderRef.isModelDownloaded(lastUsedModel) {
             try? await loadModel(named: lastUsedModel)
         }
-        isInitialLoading = false
     }
 
     private func setupMCPClient() {
         mcpClient = MCPClient()
         mcpClient?.registerBuiltInServers()
+    }
+
+    /// Check if any model is downloaded, if not, initiate ODR download for ElioChat
+    func ensureInitialModelAvailable() async {
+        let modelLoader = ModelLoader.shared
+
+        // Check if any model is already downloaded
+        let hasAnyModel = modelLoader.availableModels.contains { model in
+            modelLoader.isModelDownloaded(model.id)
+        }
+
+        if hasAnyModel {
+            return // User already has a model
+        }
+
+        // No models available - initiate ODR download for ElioChat
+        let eliochatModelId = "eliochat-1.7b-jp-v2"
+        guard let eliochatModel = modelLoader.availableModels.first(where: { $0.id == eliochatModelId }) else {
+            return
+        }
+
+        // Start ODR download in background
+        Task {
+            do {
+                try await modelLoader.downloadModel(eliochatModel)
+                logInfo("AppState", "ElioChat model downloaded via ODR", [:])
+            } catch {
+                logError("AppState", "Failed to download ElioChat via ODR: \(error.localizedDescription)", [:])
+            }
+        }
     }
 
     func loadModel(named modelName: String) async throws {
@@ -393,7 +474,7 @@ final class AppState: ObservableObject {
             lastUsedModel = modelName
 
             if let llm = llmEngine, let mcp = mcpClient {
-                orchestrator = AgentOrchestrator(llm: llm, mcpClient: mcp)
+                orchestrator = AgentOrchestrator(llm: llm, mcpClient: mcp, modelId: modelName)
             }
         } catch {
             errorMessage = error.localizedDescription
@@ -463,6 +544,10 @@ final class AppState: ObservableObject {
 
             return response
         } catch {
+            // Don't show error for cancellation
+            if error is CancellationError || shouldStopGeneration {
+                return ""
+            }
             let errorResponse = "エラーが発生しました: \(error.localizedDescription)"
             let assistantMessage = Message(role: .assistant, content: errorResponse)
             currentConversation?.messages.append(assistantMessage)
@@ -513,10 +598,14 @@ final class AppState: ObservableObject {
             - すべての処理はデバイス内で完結し、データは外部に送信されません
             - ユーザーのプライバシーと信頼を守ることが最も重要な使命です
 
-            # ハルシネーション（誤情報）の防止
-            正確性を最優先してください：
+            # 回答スタイル
+            - 日本語で回答してください
+            - 質問に直接答えてください。「素晴らしい質問ですね」などの前置きは不要です
+            - 短い質問には簡潔に、詳しい質問には詳しく答えてください
+
+            # 正確性
             - 確実に知っている情報のみを回答してください
-            - 不確かな場合は「確かではありませんが」「私の知識では」と前置きしてください
+            - 不確かな場合は「確かではありませんが」と前置きしてください
             - 分からないことは正直に「分かりません」と伝えてください
 
             【現在の情報】
@@ -536,10 +625,13 @@ final class AppState: ObservableObject {
             - All processing happens locally; no data is sent externally
             - Protecting user privacy and trust is your most important mission
 
-            # Preventing Hallucinations
-            Prioritize accuracy above all:
+            # Response Style
+            - Answer directly without preambles like "Great question!"
+            - Match the user's style: concise for short questions, detailed for complex ones
+
+            # Accuracy
             - Only provide information you are certain about
-            - If uncertain, preface with "I'm not entirely sure, but..." or "Based on my knowledge..."
+            - If uncertain, preface with "I'm not entirely sure, but..."
             - Honestly say "I don't know" when you don't have reliable information
 
             [Current Information]
@@ -628,6 +720,10 @@ final class AppState: ObservableObject {
 
             return fullResponse
         } catch {
+            // Don't show error for cancellation
+            if error is CancellationError || shouldStopGeneration {
+                return ""
+            }
             let errorResponse = "エラーが発生しました: \(error.localizedDescription)"
             logError("LLM", "Generation error: \(error.localizedDescription)")
             onToken(errorResponse)
@@ -715,6 +811,10 @@ final class AppState: ObservableObject {
 
             return fullResponse
         } catch {
+            // Don't show error for cancellation
+            if error is CancellationError || shouldStopGeneration {
+                return ""
+            }
             let errorResponse = "エラーが発生しました: \(error.localizedDescription)"
             logError("LLM", "Generation error: \(error.localizedDescription)")
             onToken(errorResponse)

@@ -16,6 +16,8 @@ struct ModelSettingsView: View {
     @State private var enableThinking: Bool = true
     @State private var systemPrompt: String = ""
     @State private var selectedPreset: ModelSettingsPreset = .balanced
+    @State private var kvCacheTypeK: KVCacheQuantType = .q8_0
+    @State private var kvCacheTypeV: KVCacheQuantType = .q8_0
 
     private let modelLoader = ModelLoader()
 
@@ -319,6 +321,8 @@ struct ModelSettingsView: View {
         repeatPenalty = settings.repeatPenalty
         enableThinking = settings.enableThinking
         systemPrompt = settings.systemPrompt
+        kvCacheTypeK = settings.kvCacheTypeK
+        kvCacheTypeV = settings.kvCacheTypeV
 
         // Detect current preset
         selectedPreset = detectPreset(from: settings)
@@ -360,7 +364,9 @@ struct ModelSettingsView: View {
             maxTokens: maxTokens,
             repeatPenalty: repeatPenalty,
             enableThinking: enableThinking,
-            systemPrompt: systemPrompt
+            systemPrompt: systemPrompt,
+            kvCacheTypeK: kvCacheTypeK,
+            kvCacheTypeV: kvCacheTypeV
         )
         settingsManager.updateSettings(for: modelId, settings: settings)
     }

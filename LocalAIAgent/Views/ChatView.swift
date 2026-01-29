@@ -3,6 +3,8 @@ import AVFoundation
 import PhotosUI
 import PDFKit
 import UniformTypeIdentifiers
+import Combine
+import UIKit
 
 struct ChatView: View {
     @EnvironmentObject var appState: AppState
@@ -16,6 +18,7 @@ struct ChatView: View {
     @State private var displayedResponse = ""  // Batched display for smoother UI
     @State private var updateTimer: Timer?
     @State private var generationTask: Task<Void, Never>?
+    @State private var lastSentText: String = ""  // For restoring on cancel
     @State private var showingAttachmentOptions = false
     @State private var showingImagePicker = false
     @State private var showingCamera = false
@@ -24,8 +27,8 @@ struct ChatView: View {
     @State private var showingDownloadVisionModel = false
     @State private var isSwitchingToVisionModel = false
     @State private var showingModelSettings = false
-    @StateObject private var whisperManager = WhisperManager.shared
-    @State private var showingWhisperDownload = false
+    @StateObject private var speechManager = ReazonSpeechManager.shared
+    @State private var showingSpeechDownload = false
     @State private var isVoiceRecording = false
     @State private var showingDocumentPicker = false
     @State private var attachedPDFText: String?
@@ -40,6 +43,36 @@ struct ChatView: View {
     @State private var showingTemplates = false
     @StateObject private var templateManager = PromptTemplateManager.shared
     @FocusState private var isInputFocused: Bool
+    @State private var isViewReady = false  // Tracks when view is fully rendered
+    @State private var hasTriggeredResponseHaptic = false  // Track haptic for AI response
+    @AppStorage("justCompletedOnboarding") private var justCompletedOnboarding = false
+    @AppStorage("hasCompletedOnboarding") private var hasCompletedOnboarding = false
+    // Web search
+    @State private var showingSearchPrivacyAlert = false
+    @State private var pendingSearchQuery: String = ""
+    @AppStorage("hasShownSearchPrivacyInfo") private var hasShownSearchPrivacyInfo = false
+    @AppStorage("webSearchEnabled") private var webSearchEnabled = true  // Default ON
+    @State private var showingPlusMenu = false  // For + button menu
+    // Thinking mode
+    @AppStorage("thinkingEnabled") private var thinkingEnabled = true  // Default ON
+    @StateObject private var settingsManager = ModelSettingsManager.shared
+    // TTS Manager (separate from voice recognition speechManager)
+    @StateObject private var ttsManager = SpeechManager.shared
+    // Voice conversation mode (interactive voice chat like ChatGPT)
+    @State private var isVoiceConversationMode = false
+    @State private var voiceConversationState: VoiceConversationState = .idle
+    // Expanded text input (fullscreen editor)
+    @State private var showingExpandedInput = false
+    // TTS download alert (local state to prevent view refresh dismissing alert)
+    @State private var showingTTSDownloadAlert = false
+
+    // Calculate number of lines in input text
+    private var inputLineCount: Int {
+        let lines = inputText.components(separatedBy: "\n").count
+        // Also estimate wrapped lines based on character count per line (~30 chars)
+        let estimatedWrappedLines = inputText.count / 30
+        return max(lines, estimatedWrappedLines)
+    }
 
     var body: some View {
         ZStack {
@@ -51,22 +84,28 @@ struct ChatView: View {
                 // Header
                 headerView
 
-                if appState.isInitialLoading && !AppState.isScreenshotMode {
-                    skeletonView
-                } else if !appState.isModelLoaded && !AppState.isScreenshotMode {
-                    modelNotLoadedView
-                } else {
-                    chatContent
-                }
+                // Always show chat content for faster perceived startup
+                // Model loading happens in background
+                chatContent
 
                 inputBar
             }
 
             // Processing overlay - prevents white screen during CPU-heavy operations
-            if isGenerating {
+            if isGenerating && !isVoiceConversationMode {
                 Color.black.opacity(0.02)
                     .ignoresSafeArea()
                     .allowsHitTesting(false)
+            }
+
+            // Voice conversation mode overlay
+            if isVoiceConversationMode {
+                VoiceConversationOverlay(
+                    state: $voiceConversationState,
+                    audioLevel: speechManager.audioLevel,
+                    onClose: { exitVoiceConversationMode() }
+                )
+                .transition(.opacity)
             }
         }
         .sheet(isPresented: $showingConversationList) {
@@ -159,13 +198,40 @@ struct ChatView: View {
                 ModelSettingsView(modelId: modelId, modelName: modelName)
             }
         }
-        .alert(String(localized: "whisper.download.title"), isPresented: $showingWhisperDownload) {
-            Button(String(localized: "whisper.download.action")) {
-                downloadWhisperModel()
+        .alert(String(localized: "speech.download.title"), isPresented: $showingSpeechDownload) {
+            Button(String(localized: "speech.download.action")) {
+                downloadSpeechModel()
             }
             Button(String(localized: "common.cancel"), role: .cancel) {}
         } message: {
-            Text(String(localized: "whisper.download.message"))
+            Text(String(localized: "speech.download.message"))
+        }
+        // Kokoro TTS download prompt (using local state to prevent view refresh dismissal)
+        .onChange(of: ttsManager.showTTSDownloadPrompt) { _, newValue in
+            if newValue {
+                showingTTSDownloadAlert = true
+                ttsManager.showTTSDownloadPrompt = false // Reset ttsManager state, use local state for alert
+            }
+        }
+        .alert(String(localized: "tts.download.title", defaultValue: "高品質音声合成"),
+               isPresented: $showingTTSDownloadAlert) {
+            Button(String(localized: "tts.download.action", defaultValue: "ダウンロード")) {
+                Task {
+                    await ttsManager.downloadKokoroTTS()
+                }
+            }
+            Button(String(localized: "tts.download.use_system", defaultValue: "システム音声を使用")) {
+                ttsManager.useKokoroTTS = false
+                // Use system TTS immediately
+                if ttsManager.currentMessageId != nil {
+                    ttsManager.speakWithSystemTTSPublic(ttsManager.pendingText ?? "")
+                }
+            }
+            Button(String(localized: "common.cancel"), role: .cancel) {
+                ttsManager.currentMessageId = nil
+            }
+        } message: {
+            Text(String(localized: "tts.download.message", defaultValue: "Kokoro TTSモデル（約87MB）をダウンロードすると、より自然な日本語音声で読み上げができます。"))
         }
         .alert("URL読み込みエラー", isPresented: Binding(
             get: { webContentError != nil },
@@ -180,20 +246,43 @@ struct ChatView: View {
             }
         }
         .overlay {
-            // Whisper download progress
-            if whisperManager.isDownloading {
+            // Speech model download progress
+            if speechManager.isDownloading {
                 Color.black.opacity(0.4)
                     .ignoresSafeArea()
                 VStack(spacing: 12) {
-                    ProgressView(value: whisperManager.downloadProgress)
+                    ProgressView(value: speechManager.downloadProgress)
                         .progressViewStyle(.linear)
                         .frame(width: 200)
-                    Text(String(localized: "whisper.downloading"))
+                    Text(String(localized: "speech.downloading"))
                         .font(.system(size: 14, weight: .medium))
                         .foregroundStyle(.white)
-                    Text("\(Int(whisperManager.downloadProgress * 100))%")
+                    Text("\(Int(speechManager.downloadProgress * 100))%")
                         .font(.system(size: 12))
                         .foregroundStyle(.white.opacity(0.8))
+                }
+                .padding(24)
+                .background(
+                    RoundedRectangle(cornerRadius: 16)
+                        .fill(Color(.systemBackground).opacity(0.95))
+                )
+            }
+        }
+        .overlay {
+            // TTS model download progress
+            if ttsManager.isDownloadingTTS {
+                Color.black.opacity(0.4)
+                    .ignoresSafeArea()
+                VStack(spacing: 12) {
+                    ProgressView(value: ttsManager.ttsDownloadProgress)
+                        .progressViewStyle(.linear)
+                        .frame(width: 200)
+                    Text(String(localized: "tts.downloading", defaultValue: "音声合成モデルをダウンロード中..."))
+                        .font(.system(size: 14, weight: .medium))
+                        .foregroundStyle(.primary)
+                    Text("\(Int(ttsManager.ttsDownloadProgress * 100))%")
+                        .font(.system(size: 12))
+                        .foregroundStyle(.secondary)
                 }
                 .padding(24)
                 .background(
@@ -226,6 +315,35 @@ struct ChatView: View {
                 isInputFocused = true
             })
         }
+        // Expanded text input (fullscreen editor)
+        .sheet(isPresented: $showingExpandedInput) {
+            ExpandedInputView(text: $inputText, onSend: {
+                showingExpandedInput = false
+                if canSend {
+                    sendMessage()
+                }
+            })
+        }
+        // Web search privacy explanation alert
+        .alert(String(localized: "search.privacy.title", defaultValue: "プライバシー保護検索"), isPresented: $showingSearchPrivacyAlert) {
+            Button(String(localized: "search.privacy.proceed", defaultValue: "検索する")) {
+                executeWebSearch(query: pendingSearchQuery)
+            }
+            Button(String(localized: "common.cancel"), role: .cancel) {
+                pendingSearchQuery = ""
+            }
+        } message: {
+            Text(String(localized: "search.privacy.message", defaultValue: """
+            ElioChat の Web 検索はプライバシーを保護します：
+
+            🔒 DuckDuckGo 経由で検索
+            🚫 追跡・トラッキングなし
+            🔐 検索履歴は保存されません
+            📱 デバイス外にデータを保存しません
+
+            検索クエリのみがDuckDuckGoに送信され、結果はデバイス上で処理されます。
+            """))
+        }
         // Handle pending quick question from widget and restore draft
         .onAppear {
             // Screenshot mode: Load mock data
@@ -236,6 +354,9 @@ struct ChatView: View {
                 return
             }
 
+            // Check for pending message from crash (user message without response)
+            checkForPendingMessage()
+
             // Restore draft input from crash recovery
             if inputText.isEmpty, let savedDraft = UserDefaults.standard.string(forKey: "chat_draft_input"), !savedDraft.isEmpty {
                 inputText = savedDraft
@@ -245,6 +366,26 @@ struct ChatView: View {
             if let question = appState.pendingQuickQuestion {
                 inputText = question
                 appState.pendingQuickQuestion = nil
+            }
+        }
+        // Use task modifier for keyboard focus - runs after view appears
+        .task {
+            // Wait for view layout to complete
+            try? await Task.sleep(nanoseconds: 100_000_000) // 100ms
+            await MainActor.run {
+                isViewReady = true
+                // Don't auto-focus keyboard during onboarding
+                // The onChange handler will focus after onboarding completes
+                if !hasCompletedOnboarding {
+                    return
+                }
+                // Clear the justCompletedOnboarding flag if it was set
+                if justCompletedOnboarding {
+                    justCompletedOnboarding = false
+                    // Keyboard will be focused by onChange handler
+                    return
+                }
+                // Normal app launch after onboarding - focus keyboard for quick input
                 isInputFocused = true
             }
         }
@@ -253,6 +394,17 @@ struct ChatView: View {
                 inputText = question
                 appState.pendingQuickQuestion = nil
                 isInputFocused = true
+            }
+        }
+        // Focus keyboard when onboarding completes
+        .onChange(of: hasCompletedOnboarding) { oldValue, newValue in
+            if !oldValue && newValue {
+                // Onboarding just completed - focus keyboard after a short delay
+                // to allow the fullScreenCover to dismiss
+                Task { @MainActor in
+                    try? await Task.sleep(nanoseconds: 300_000_000) // 300ms
+                    isInputFocused = true
+                }
             }
         }
         // Handle showConversationList from widget deep link
@@ -267,6 +419,57 @@ struct ChatView: View {
             if !newValue.isEmpty {
                 UserDefaults.standard.set(newValue, forKey: "chat_draft_input")
             }
+        }
+        // Sync web search toggle with MCP servers
+        .onChange(of: webSearchEnabled) { _, newValue in
+            if newValue {
+                appState.enabledMCPServers.insert("websearch")
+            } else {
+                appState.enabledMCPServers.remove("websearch")
+            }
+        }
+        // Sync thinking toggle with model settings
+        .onChange(of: thinkingEnabled) { _, newValue in
+            if let modelId = appState.currentModelId {
+                var settings = settingsManager.settings(for: modelId)
+                settings.enableThinking = newValue  // Direct mapping: UI "on" = enable thinking
+                settingsManager.updateSettings(for: modelId, settings: settings)
+            }
+        }
+        .onAppear {
+            // Sync web search toggle state with MCP servers on appear
+            webSearchEnabled = appState.enabledMCPServers.contains("websearch")
+            // Sync thinking toggle with model settings on appear
+            if let modelId = appState.currentModelId {
+                let settings = settingsManager.settings(for: modelId)
+                thinkingEnabled = settings.enableThinking
+            }
+        }
+        // Also sync when model is loaded (currentModelId changes from nil to a value)
+        .onChange(of: appState.currentModelId) { _, newModelId in
+            if let modelId = newModelId {
+                // Get current settings for this model
+                let settings = settingsManager.settings(for: modelId)
+                // Sync UI toggle with model settings
+                thinkingEnabled = settings.enableThinking
+                // IMPORTANT: Ensure settings are saved if they don't exist yet
+                // This fixes the first-launch issue where defaults aren't persisted
+                if !settingsManager.hasCustomSettings(for: modelId) {
+                    var newSettings = settings
+                    newSettings.enableThinking = thinkingEnabled
+                    settingsManager.updateSettings(for: modelId, settings: newSettings)
+                }
+            }
+        }
+        // Sync when app becomes active (in case settings changed elsewhere)
+        .onReceive(NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification)) { _ in
+            if let modelId = appState.currentModelId {
+                let settings = settingsManager.settings(for: modelId)
+                thinkingEnabled = settings.enableThinking
+            }
+        }
+        .onReceive(NotificationCenter.default.publisher(for: .voiceConversationTapToSend)) { _ in
+            stopVoiceConversationListeningAndSend()
         }
     }
 
@@ -313,7 +516,7 @@ struct ChatView: View {
             isVoiceRecording = false
             Task {
                 do {
-                    let text = try await whisperManager.stopRecording()
+                    let text = try await speechManager.stopRecording()
                     if !text.isEmpty {
                         inputText = text
                     }
@@ -323,12 +526,12 @@ struct ChatView: View {
             }
         } else {
             // Check if model is downloaded
-            if whisperManager.isModelDownloaded {
+            if speechManager.isModelDownloaded {
                 // Start recording
                 startVoiceRecording()
             } else {
                 // Show download prompt
-                showingWhisperDownload = true
+                showingSpeechDownload = true
             }
         }
     }
@@ -336,7 +539,7 @@ struct ChatView: View {
     private func startVoiceRecording() {
         Task {
             do {
-                try await whisperManager.startRecording()
+                try await speechManager.startRecording()
                 isVoiceRecording = true
             } catch {
                 print("Recording error: \(error)")
@@ -344,16 +547,158 @@ struct ChatView: View {
         }
     }
 
-    private func downloadWhisperModel() {
+    private func downloadSpeechModel() {
+        print("[ChatView] downloadSpeechModel called")
         Task {
+            print("[ChatView] Task started, calling downloadModelIfNeeded")
             do {
-                try await whisperManager.downloadModelIfNeeded()
+                try await speechManager.downloadModelIfNeeded()
+                print("[ChatView] Download completed successfully")
                 // After download, start recording
                 startVoiceRecording()
             } catch {
-                print("Download error: \(error)")
+                print("[ChatView] Download error: \(error)")
             }
         }
+    }
+
+    // MARK: - Voice Conversation Mode
+
+    private func enterVoiceConversationMode() {
+        // Check if speech model is downloaded
+        if !speechManager.isModelDownloaded {
+            showingSpeechDownload = true
+            return
+        }
+
+        withAnimation(.easeInOut(duration: 0.3)) {
+            isVoiceConversationMode = true
+            voiceConversationState = .listening
+        }
+
+        // Setup TTS callback for auto-listen after AI speaks
+        ttsManager.onSpeechFinished = { [self] in
+            if isVoiceConversationMode && voiceConversationState == .aiSpeaking {
+                // AI finished speaking, start listening again
+                Task {
+                    try? await Task.sleep(nanoseconds: 300_000_000) // Brief pause
+                    await MainActor.run {
+                        if isVoiceConversationMode {
+                            startVoiceConversationListening()
+                        }
+                    }
+                }
+            }
+        }
+
+        // Start listening
+        startVoiceConversationListening()
+    }
+
+    private func exitVoiceConversationMode() {
+        // Stop everything
+        speechManager.cancelRecording()
+        ttsManager.stop()
+        ttsManager.onSpeechFinished = nil
+
+        withAnimation(.easeInOut(duration: 0.3)) {
+            isVoiceConversationMode = false
+            voiceConversationState = .idle
+            isVoiceRecording = false
+        }
+    }
+
+    private func startVoiceConversationListening() {
+        guard isVoiceConversationMode else { return }
+
+        voiceConversationState = .listening
+        Task {
+            do {
+                try await speechManager.startRecording()
+                isVoiceRecording = true
+            } catch {
+                print("[VoiceConversation] Recording error: \(error)")
+            }
+        }
+    }
+
+    private func stopVoiceConversationListeningAndSend() {
+        guard isVoiceConversationMode && isVoiceRecording else { return }
+
+        voiceConversationState = .processing
+        Task {
+            do {
+                isVoiceRecording = false
+                let text = try await speechManager.stopRecording()
+                if !text.isEmpty {
+                    voiceConversationState = .aiThinking
+                    // Send message and get response
+                    await sendVoiceConversationMessage(text)
+                } else {
+                    // No speech detected, go back to listening
+                    startVoiceConversationListening()
+                }
+            } catch {
+                print("[VoiceConversation] Transcription error: \(error)")
+                startVoiceConversationListening()
+            }
+        }
+    }
+
+    private func sendVoiceConversationMessage(_ text: String) async {
+        guard isVoiceConversationMode else { return }
+
+        // Create conversation if needed
+        if appState.currentConversation == nil {
+            appState.currentConversation = Conversation()
+            appState.conversations.insert(appState.currentConversation!, at: 0)
+        }
+
+        // Add user message
+        let userMessage = Message(role: .user, content: text)
+        appState.currentConversation?.messages.append(userMessage)
+
+        // Update title for first message
+        if appState.currentConversation?.messages.count == 1 {
+            appState.currentConversation?.title = String(text.prefix(30)) + (text.count > 30 ? "..." : "")
+        }
+
+        isGenerating = true
+        var fullResponse = ""
+
+        // Generate response
+        _ = await appState.sendMessageWithStreamingNoUserMessage(text, imageData: nil) { token in
+            guard !Task.isCancelled else { return }
+            fullResponse += token
+        }
+
+        isGenerating = false
+
+        // Speak the response
+        if isVoiceConversationMode && !fullResponse.isEmpty {
+            voiceConversationState = .aiSpeaking
+            // Remove thinking tags for TTS
+            let cleanResponse = Message.parseThinkingContent(fullResponse).content
+            if !cleanResponse.isEmpty {
+                ttsManager.speak(cleanResponse, messageId: UUID())
+            } else {
+                // No content to speak, go back to listening
+                startVoiceConversationListening()
+            }
+        }
+    }
+
+    /// Get the previous user message for feedback context
+    private func getPreviousUserMessage(messages: [Message], currentIndex: Int) -> String? {
+        // Look backwards from current message to find the most recent user message
+        guard currentIndex > 0 else { return nil }
+
+        for i in stride(from: currentIndex - 1, through: 0, by: -1) {
+            if messages[i].role == .user {
+                return messages[i].content
+            }
+        }
+        return nil
     }
 
     // MARK: - Computed Properties
@@ -512,9 +857,15 @@ struct ChatView: View {
                     if (appState.currentConversation?.messages.isEmpty ?? true) && !isGenerating {
                         welcomeView
                     } else {
-                        ForEach(appState.currentConversation?.messages ?? []) { message in
-                            ChatMessageRow(message: message)
-                                .id(message.id)
+                        let messages = appState.currentConversation?.messages ?? []
+                        ForEach(Array(messages.enumerated()), id: \.element.id) { index, message in
+                            ChatMessageRow(
+                                message: message,
+                                previousUserMessage: getPreviousUserMessage(messages: messages, currentIndex: index),
+                                conversationId: appState.currentConversation?.id.uuidString,
+                                modelId: appState.currentModelId
+                            )
+                            .id(message.id)
                         }
                     }
 
@@ -554,34 +905,15 @@ struct ChatView: View {
     // MARK: - Welcome View
 
     private var welcomeView: some View {
-        VStack(spacing: 32) {
+        VStack(spacing: 24) {
             Spacer()
-                .frame(height: 60)
 
-            Text(String(localized: "chat.welcome"))
-                .font(.system(size: 24, weight: .semibold))
-                .multilineTextAlignment(.center)
-
-            VStack(spacing: 12) {
-                SuggestionChip(text: String(localized: "chat.suggestion.schedule"), icon: "calendar") {
-                    inputText = String(localized: "chat.suggestion.schedule")
-                    sendMessage()
-                }
-
-                SuggestionChip(text: String(localized: "chat.suggestion.reminder"), icon: "checklist") {
-                    inputText = String(localized: "chat.suggestion.reminder")
-                    sendMessage()
-                }
-
-                SuggestionChip(text: String(localized: "chat.suggestion.weather"), icon: "cloud.sun") {
-                    inputText = String(localized: "chat.suggestion.weather")
-                    sendMessage()
-                }
-
-                SuggestionChip(text: String(localized: "chat.suggestion.help"), icon: "questionmark.circle") {
-                    inputText = String(localized: "chat.suggestion.help")
-                    sendMessage()
-                }
+            if appState.isLoading || !appState.isModelLoaded {
+                // Loading state - animated and engaging
+                ModelLoadingView(progress: appState.loadingProgress, isLoading: appState.isLoading)
+            } else {
+                // Ready state - welcoming and inviting
+                ReadyWelcomeView()
             }
 
             Spacer()
@@ -776,113 +1108,294 @@ struct ChatView: View {
                 .padding(.bottom, 8)
             }
 
-            // Loading indicator when model is loading (not during initial startup)
-            if appState.isLoading && !appState.isInitialLoading {
-                HStack(spacing: 8) {
-                    ProgressView()
-                        .scaleEffect(0.8)
-                    Text(String(localized: "model.status.loading") + " \(Int(appState.loadingProgress * 100))%")
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
-                }
-                .padding(.bottom, 8)
-            }
-
-            HStack(alignment: .bottom, spacing: 12) {
-                // Attachment button - always enabled, handles vision model switching
-                Button(action: handleAttachmentTap) {
-                    Image(systemName: "plus")
-                        .font(.system(size: 20, weight: .medium))
-                        .foregroundStyle(Color.primary)
-                        .frame(width: 36, height: 36)
-                        .background(Color.chatInputBackgroundDynamic)
-                        .clipShape(Circle())
-                        .overlay(
-                            // Show camera badge - blue if vision ready, gray otherwise
-                            Image(systemName: "camera.fill")
-                                .font(.system(size: 8))
-                                .foregroundStyle(.white)
-                                .padding(3)
-                                .background(appState.currentModelSupportsVision ? Color.blue : Color.gray)
-                                .clipShape(Circle())
-                                .offset(x: 10, y: -10)
-                        )
-                }
-                .disabled(isGenerating)
-
-                // Text input - allow input even during generation
-                HStack(alignment: .bottom, spacing: 8) {
-                    TextField(String(localized: "chat.placeholder"), text: $inputText, axis: .vertical)
-                        .textFieldStyle(.plain)
-                        .lineLimit(1...6)
-                        .autocorrectionDisabled()
-                        .focused($isInputFocused)
-                        .submitLabel(.send)
-                        .onSubmit {
-                            if canSend { sendMessage() }
-                        }
-                        .disabled(!appState.isModelLoaded && !AppState.isScreenshotMode)
-
-                        // Template button for quick prompts
-                    Button(action: { showingTemplates = true }) {
-                        Image(systemName: "text.badge.star")
-                            .font(.system(size: 18))
-                            .foregroundStyle(.secondary)
-                    }
-                    .disabled(isGenerating)
-
-                    // Microphone button for voice input
-                    Button(action: handleMicrophoneTap) {
-                        Image(systemName: isVoiceRecording ? "stop.circle.fill" : "mic.fill")
-                            .font(.system(size: 18))
-                            .foregroundStyle(isVoiceRecording ? .red : .secondary)
-                    }
-                    .disabled(isGenerating || whisperManager.isTranscribing)
-                }
-                .padding(.horizontal, 16)
-                .padding(.vertical, 10)
-                .background(Color.chatInputBackgroundDynamic)
-                .clipShape(RoundedRectangle(cornerRadius: 20))
-                .overlay(
-                    RoundedRectangle(cornerRadius: 20)
-                        .stroke(isVoiceRecording ? Color.red : Color.chatBorderDynamic, lineWidth: isVoiceRecording ? 2 : 1)
-                )
-
-                // Send button - always visible
+            // Web search and thinking toggle row
+            HStack(spacing: 8) {
+                // Thinking toggle (settings updated via onChange handler)
                 Button(action: {
-                    if isGenerating {
-                        stopGeneration()
+                    thinkingEnabled.toggle()
+                }) {
+                    HStack(spacing: 4) {
+                        Image(systemName: thinkingEnabled ? "brain.head.profile.fill" : "brain.head.profile")
+                            .font(.system(size: 12))
+                        Text(thinkingEnabled ? String(localized: "chat.thinking.on") : String(localized: "chat.thinking.off"))
+                            .font(.caption)
+                    }
+                    .foregroundStyle(thinkingEnabled ? Color.purple : .secondary)
+                    .padding(.horizontal, 10)
+                    .padding(.vertical, 5)
+                    .background(
+                        Capsule()
+                            .fill(thinkingEnabled ? Color.purple.opacity(0.15) : Color.secondary.opacity(0.1))
+                    )
+                }
+
+                // Web search toggle
+                Button(action: {
+                    if !hasShownSearchPrivacyInfo {
+                        showingSearchPrivacyAlert = true
                     } else {
-                        sendMessage()
+                        webSearchEnabled.toggle()
                     }
                 }) {
-                    ZStack {
-                        if isGenerating {
-                            // Stop button when generating
+                    HStack(spacing: 4) {
+                        Image(systemName: webSearchEnabled && networkMonitor.isConnected ? "globe" : "globe.badge.chevron.backward")
+                            .font(.system(size: 12))
+                        Text(webSearchEnabled ? String(localized: "chat.websearch.on") : String(localized: "chat.websearch.off"))
+                            .font(.caption)
+                    }
+                    .foregroundStyle(webSearchEnabled && networkMonitor.isConnected ? Color.blue : .secondary)
+                    .padding(.horizontal, 10)
+                    .padding(.vertical, 5)
+                    .background(
+                        Capsule()
+                            .fill(webSearchEnabled && networkMonitor.isConnected ? Color.blue.opacity(0.15) : Color.secondary.opacity(0.1))
+                    )
+                }
+                .disabled(!networkMonitor.isConnected)
+
+                if !networkMonitor.isConnected {
+                    Text(String(localized: "chat.offline"))
+                        .font(.caption2)
+                        .foregroundStyle(.secondary)
+                }
+
+                Spacer()
+            }
+            .padding(.horizontal, 16)
+            .padding(.bottom, 4)
+
+            HStack(alignment: .bottom, spacing: 12) {
+                // Plus menu button - hidden during voice recording/transcribing
+                if !isVoiceRecording && !speechManager.isTranscribing {
+                    Menu {
+                        // Camera/Photo
+                        Button(action: handleAttachmentTap) {
+                            Label(String(localized: "attachment.photo"), systemImage: "camera.fill")
+                        }
+
+                        // Templates
+                        Button(action: { showingTemplates = true }) {
+                            Label(String(localized: "chat.templates"), systemImage: "text.badge.star")
+                        }
+
+                        // Document
+                        Button(action: { showingDocumentPicker = true }) {
+                            Label(String(localized: "attachment.document"), systemImage: "doc.fill")
+                        }
+
+                        // URL
+                        Button(action: { showingURLInput = true }) {
+                            Label(String(localized: "attachment.url"), systemImage: "link")
+                        }
+                    } label: {
+                        Image(systemName: "plus")
+                            .font(.system(size: 20, weight: .medium))
+                            .foregroundStyle(Color.primary)
+                            .frame(width: 36, height: 36)
+                            .background(Color.chatInputBackgroundDynamic)
+                            .clipShape(Circle())
+                            .overlay(
+                                // Show camera badge - blue if vision ready, gray otherwise
+                                Image(systemName: "camera.fill")
+                                    .font(.system(size: 8))
+                                    .foregroundStyle(.white)
+                                    .padding(3)
+                                    .background(appState.currentModelSupportsVision ? Color.blue : Color.gray)
+                                    .clipShape(Circle())
+                                    .offset(x: 10, y: -10)
+                            )
+                    }
+                    .disabled(isGenerating)
+                }
+
+                if isVoiceRecording {
+                    // ChatGPT-style voice recording UI - unified pill with no gaps
+                    HStack(spacing: 0) {
+                        // Stop button (left) - stops and transcribes
+                        Button(action: {
+                            // Stop recording and start transcription
+                            Task {
+                                isVoiceRecording = false
+                                do {
+                                    let text = try await speechManager.stopRecording()
+                                    if !text.isEmpty {
+                                        inputText = text
+                                    }
+                                } catch {
+                                    print("Transcription error: \(error)")
+                                }
+                            }
+                        }) {
                             Image(systemName: "stop.fill")
-                                .font(.system(size: 14, weight: .bold))
-                                .foregroundColor(.white)
-                        } else {
-                            // Send arrow
+                                .font(.system(size: 12, weight: .medium))
+                                .foregroundColor(.primary)
+                                .frame(width: 44, height: 44)
+                        }
+
+                        // Waveform visualization (center) - fills available space
+                        VoiceWaveformView(audioLevel: speechManager.audioLevel)
+                            .frame(maxWidth: .infinity)
+                            .frame(height: 44)
+
+                        // Send button (right) - stops recording and sends immediately
+                        Button(action: {
+                            // Stop recording, transcribe, and send
+                            Task {
+                                isVoiceRecording = false
+                                do {
+                                    let text = try await speechManager.stopRecording()
+                                    if !text.isEmpty {
+                                        inputText = text
+                                        // Small delay to let UI update, then send
+                                        try? await Task.sleep(nanoseconds: 100_000_000)
+                                        sendMessage()
+                                    }
+                                } catch {
+                                    print("Transcription error: \(error)")
+                                }
+                            }
+                        }) {
                             Image(systemName: "arrow.up")
                                 .font(.system(size: 16, weight: .bold))
                                 .foregroundColor(.white)
+                                .frame(width: 36, height: 36)
+                                .background(Color.blue)
+                                .clipShape(Circle())
+                        }
+                        .padding(.trailing, 4)
+                    }
+                    .background(Color(.systemGray5))
+                    .clipShape(RoundedRectangle(cornerRadius: 22))
+                } else if speechManager.isTranscribing {
+                    // Show transcribing placeholder
+                    HStack {
+                        ProgressView()
+                            .scaleEffect(0.8)
+                        Text(String(localized: "chat.transcribing"))
+                            .font(.subheadline)
+                            .foregroundStyle(.secondary)
+                    }
+                    .frame(maxWidth: .infinity)
+                    .padding(.horizontal, 16)
+                    .padding(.vertical, 12)
+                    .background(Color.chatInputBackgroundDynamic)
+                    .clipShape(RoundedRectangle(cornerRadius: 20))
+                } else {
+                    // Normal text input with microphone
+                    ZStack(alignment: .topTrailing) {
+                        HStack(alignment: .bottom, spacing: 8) {
+                            TextField(String(localized: "chat.placeholder"), text: $inputText, axis: .vertical)
+                                .textFieldStyle(.plain)
+                                .lineLimit(1...6)
+                                .autocorrectionDisabled()
+                                .focused($isInputFocused)
+                                .submitLabel(.send)
+                                .onSubmit {
+                                    if canSend { sendMessage() }
+                                }
+                                .disabled(!appState.isModelLoaded && !AppState.isScreenshotMode)
+                                .padding(.trailing, inputLineCount >= 3 ? 24 : 0) // Make room for expand button
+
+                            // Microphone button for voice input
+                            Button(action: handleMicrophoneTap) {
+                                Image(systemName: "mic.fill")
+                                    .font(.system(size: 18))
+                                    .foregroundStyle(.secondary)
+                            }
+                            .disabled(isGenerating || speechManager.isTranscribing)
+                        }
+                        .padding(.horizontal, 16)
+                        .padding(.vertical, 10)
+                        .background(Color.chatInputBackgroundDynamic)
+                        .clipShape(RoundedRectangle(cornerRadius: 20))
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 20)
+                                .stroke(Color.chatBorderDynamic, lineWidth: 1)
+                        )
+
+                        // Expand button (top-right corner) - only show when 3+ lines
+                        if inputLineCount >= 3 {
+                            Button(action: {
+                                showingExpandedInput = true
+                            }) {
+                                Image(systemName: "arrow.up.left.and.arrow.down.right")
+                                    .font(.system(size: 12, weight: .medium))
+                                    .foregroundStyle(.secondary)
+                                    .padding(6)
+                            }
+                            .padding(.top, 6)
+                            .padding(.trailing, 44) // Position before mic button
                         }
                     }
-                    .frame(width: 36, height: 36)
-                    .background(
-                        canSend ? Color.blue :
-                        isGenerating ? Color.red :
-                        Color.gray.opacity(0.4)
-                    )
-                    .clipShape(Circle())
-                }
-                .disabled(!canSend && !isGenerating)
+
+                    // Send button or Interactive button
+                    if inputText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty && attachedImages.isEmpty && attachedPDFText == nil && attachedWebContent == nil && !isGenerating {
+                        // Interactive voice mode button (when no text)
+                        Button(action: {
+                            // Turn off thinking for interactive mode (onChange handles settings update)
+                            if thinkingEnabled {
+                                thinkingEnabled = false
+                            }
+                            // Enter voice conversation mode
+                            enterVoiceConversationMode()
+                        }) {
+                            Image(systemName: "waveform.circle.fill")
+                                .font(.system(size: 28))
+                                .foregroundColor(.blue)
+                                .symbolRenderingMode(.hierarchical)
+                        }
+                        .frame(width: 36, height: 36)
+                        .disabled(!appState.isModelLoaded && !AppState.isScreenshotMode)
+                    } else {
+                        // Send button (when has text or attachments)
+                        Button(action: {
+                            if isGenerating {
+                                stopGeneration()
+                            } else {
+                                sendMessage()
+                            }
+                        }) {
+                            ZStack {
+                                if isGenerating {
+                                    // Stop button when generating
+                                    Image(systemName: "stop.fill")
+                                        .font(.system(size: 14, weight: .bold))
+                                        .foregroundColor(.white)
+                                } else {
+                                    // Send arrow
+                                    Image(systemName: "arrow.up")
+                                        .font(.system(size: 16, weight: .bold))
+                                        .foregroundColor(.white)
+                                }
+                            }
+                            .frame(width: 36, height: 36)
+                            .background(
+                                canSend ? Color.blue :
+                                isGenerating ? Color.red :
+                                Color.gray.opacity(0.4)
+                            )
+                            .clipShape(Circle())
+                        }
+                        .disabled(!canSend && !isGenerating)
+                    }
+                }  // end of non-recording else
             }
             .padding(.horizontal, 16)
             .padding(.vertical, 12)
         }
         .animation(nil, value: isInputFocused)
+        .alert(String(localized: "chat.websearch.privacy.title"), isPresented: $showingSearchPrivacyAlert) {
+            Button(String(localized: "chat.websearch.privacy.enable")) {
+                hasShownSearchPrivacyInfo = true
+                webSearchEnabled = true
+            }
+            Button(String(localized: "chat.websearch.privacy.disable")) {
+                hasShownSearchPrivacyInfo = true
+                webSearchEnabled = false
+            }
+        } message: {
+            Text(String(localized: "chat.websearch.privacy.message"))
+        }
     }
 
     private var canSend: Bool {
@@ -905,6 +1418,15 @@ struct ChatView: View {
         let savedPDFImages = attachedPDFImages
         let savedWebContent = attachedWebContent
 
+        // Save text for potential cancel/restore
+        lastSentText = trimmedText
+
+        // Set isGenerating IMMEDIATELY so cancel button activates right away
+        isGenerating = true
+        streamingResponse = ""
+        displayedResponse = ""
+        hasTriggeredResponseHaptic = false  // Reset for new response
+
         // IMMEDIATELY clear UI and hide keyboard - before any processing
         inputText = ""
         UserDefaults.standard.removeObject(forKey: "chat_draft_input")  // Clear saved draft
@@ -916,7 +1438,7 @@ struct ChatView: View {
         attachedWebContent = nil
         isInputFocused = false
 
-        // Force keyboard dismissal immediately
+        // Force keyboard dismissal and input clearing
         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
 
         // Add user message IMMEDIATELY (before async processing) for instant UI feedback
@@ -932,16 +1454,66 @@ struct ChatView: View {
         }
         let userMessage = Message(role: .user, content: displayContent, imageData: savedImages.first?.jpegData(compressionQuality: 0.6))
         appState.currentConversation?.messages.append(userMessage)
+
+        // Save pending message for crash recovery
+        savePendingMessage(trimmedText)
+
         // Update title for first message
         if appState.currentConversation?.messages.count == 1 {
             let titleText = trimmedText.isEmpty ? (savedWebContent?.title ?? savedPDFName ?? "Untitled") : trimmedText
             appState.currentConversation?.title = String(titleText.prefix(30)) + (titleText.count > 30 ? "..." : "")
         }
 
-        isGenerating = true
-        streamingResponse = ""
-        displayedResponse = ""
+        // Start generation after a short delay to allow keyboard animation to complete
+        // This ensures smooth UI transition before heavy inference starts
+        Task {
+            try? await Task.sleep(nanoseconds: 150_000_000) // 150ms for keyboard animation
+            await MainActor.run {
+                startGeneration(
+                    trimmedText: trimmedText,
+                    savedImages: savedImages,
+                    savedPDFText: savedPDFText,
+                    savedPDFName: savedPDFName,
+                    savedPDFImages: savedPDFImages,
+                    savedWebContent: savedWebContent
+                )
+            }
+        }
+    }
 
+    private func savePendingMessage(_ text: String) {
+        UserDefaults.standard.set(text, forKey: "pending_message")
+        UserDefaults.standard.set(appState.currentConversation?.id.uuidString, forKey: "pending_conversation_id")
+    }
+
+    private func clearPendingMessage() {
+        UserDefaults.standard.removeObject(forKey: "pending_message")
+        UserDefaults.standard.removeObject(forKey: "pending_conversation_id")
+    }
+
+    private func checkForPendingMessage() {
+        guard let pendingText = UserDefaults.standard.string(forKey: "pending_message"),
+              !pendingText.isEmpty else { return }
+
+        // Check if the last message in conversation has no response
+        if let conversation = appState.currentConversation,
+           let lastMessage = conversation.messages.last,
+           lastMessage.role == .user {
+            // Last message was user's and no response - offer to retry
+            inputText = pendingText
+        }
+        clearPendingMessage()
+    }
+
+    private func startGeneration(
+        trimmedText: String,
+        savedImages: [UIImage],
+        savedPDFText: String?,
+        savedPDFName: String?,
+        savedPDFImages: [UIImage],
+        savedWebContent: WebContent?
+    ) {
+        // isGenerating is already set in sendMessage() for immediate cancel button activation
         // Start timer for streaming updates
         startUpdateTimer()
 
@@ -989,12 +1561,25 @@ struct ChatView: View {
             // Generate response (user message already added before Task)
             _ = await appState.sendMessageWithStreamingNoUserMessage(fullContent, imageData: imageData) { token in
                 guard !Task.isCancelled else { return }
+
+                // Haptic feedback when AI starts responding (first token)
+                if !hasTriggeredResponseHaptic {
+                    hasTriggeredResponseHaptic = true
+                    Task { @MainActor in
+                        let impactFeedback = UIImpactFeedbackGenerator(style: .medium)
+                        impactFeedback.impactOccurred()
+                    }
+                }
+
                 streamingResponse += token
             }
 
             // Final update
             stopUpdateTimer()
             displayedResponse = streamingResponse
+
+            // Clear pending message on successful generation
+            clearPendingMessage()
 
             // Small delay then clear
             try? await Task.sleep(nanoseconds: 50_000_000)
@@ -1009,17 +1594,64 @@ struct ChatView: View {
     }
 
     private func stopGeneration() {
+        // Cancel immediately for instant UI response
         generationTask?.cancel()
         generationTask = nil
         stopUpdateTimer()
 
-        // Keep what we have so far
-        if !streamingResponse.isEmpty {
-            displayedResponse = streamingResponse + String(localized: "chat.generation.stopped")
+        // Set flag to stop LLM generation in AppState
+        appState.shouldStopGeneration = true
+
+        // Check if we have any generated content to keep
+        let hasGeneratedContent = !streamingResponse.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+
+        if hasGeneratedContent {
+            // Keep the partial response - save it as an assistant message
+            let partialResponse = streamingResponse.trimmingCharacters(in: .whitespacesAndNewlines)
+
+            // Parse and clean the response (remove thinking tags, tool call artifacts)
+            let parsed = Message.parseThinkingContent(partialResponse)
+            let cleanContent = parsed.content.isEmpty ? partialResponse : parsed.content
+
+            // Only save if there's actual content (not just thinking or tool calls)
+            if !cleanContent.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+                let assistantMessage = Message(
+                    role: .assistant,
+                    content: cleanContent,
+                    thinkingContent: parsed.thinking
+                )
+                appState.currentConversation?.messages.append(assistantMessage)
+            }
+
+            // Clear generation state but keep the conversation
+            isGenerating = false
+            streamingResponse = ""
+            displayedResponse = ""
+            lastSentText = ""
+        } else {
+            // No content generated - restore previous state
+            // Remove the user message that was just added
+            if let lastMessage = appState.currentConversation?.messages.last,
+               lastMessage.role == .user {
+                appState.currentConversation?.messages.removeLast()
+            }
+
+            // Restore text to input field so user can edit and resend
+            inputText = lastSentText
+            isInputFocused = true
+
+            // Clear all generation state
+            isGenerating = false
+            streamingResponse = ""
+            displayedResponse = ""
+            lastSentText = ""
         }
 
-        isGenerating = false
-        streamingResponse = ""
+        // Reset stop flag after a short delay
+        Task {
+            try? await Task.sleep(nanoseconds: 100_000_000)
+            appState.shouldStopGeneration = false
+        }
     }
 
     private func startUpdateTimer() {
@@ -1084,20 +1716,36 @@ struct ChatView: View {
             }
         }
     }
+
+    // MARK: - Web Search
+
+    /// Execute web search and send as new message
+    private func executeWebSearch(query: String) {
+        hasShownSearchPrivacyInfo = true
+        pendingSearchQuery = ""
+
+        // Send a search request message
+        let searchMessage = "「\(query)」を検索して"
+        inputText = searchMessage
+        sendMessage()
+    }
 }
 
 // MARK: - Chat Message Row
 
 struct ChatMessageRow: View {
     let message: Message
-    @State private var isThinkingExpanded = false
+    var previousUserMessage: String? = nil
+    var conversationId: String? = nil
+    var modelId: String? = nil
+
+    @State private var isThinkingExpanded = true  // Default expanded so thinking doesn't "disappear"
     @State private var showCopiedFeedback = false
     @State private var feedbackGiven: FeedbackType? = nil
+    @State private var showingFeedbackConsent = false
+    @State private var pendingFeedbackType: FeedbackType? = nil
     @StateObject private var speechManager = SpeechManager.shared
-
-    enum FeedbackType {
-        case positive, negative
-    }
+    @StateObject private var feedbackService = FeedbackService.shared
 
     private var isUser: Bool {
         message.role == .user
@@ -1158,6 +1806,27 @@ struct ChatMessageRow: View {
                 }
                 .padding(.horizontal, 16)
                 .padding(.vertical, 12)
+            }
+        }
+        .sheet(isPresented: $showingFeedbackConsent) {
+            if let feedbackType = pendingFeedbackType {
+                FeedbackConsentView(
+                    feedbackType: feedbackType,
+                    aiResponse: message.content,
+                    userMessage: previousUserMessage,
+                    conversationId: conversationId,
+                    modelId: modelId,
+                    onSubmit: { rememberChoice, comment in
+                        if rememberChoice {
+                            feedbackService.hasConsented = true
+                            feedbackService.askEveryTime = false
+                        }
+                        submitFeedback(type: feedbackType, comment: comment)
+                    },
+                    onCancel: {
+                        pendingFeedbackType = nil
+                    }
+                )
             }
         }
     }
@@ -1259,30 +1928,72 @@ struct ChatMessageRow: View {
     }
 
     private func toggleSpeech() {
+        print("[ChatMessageRow] toggleSpeech called, isSpeaking: \(isSpeaking)")
         if isSpeaking {
             speechManager.stop()
         } else {
+            print("[ChatMessageRow] Calling speechManager.speak with text length: \(message.content.count)")
             speechManager.speak(message.content, messageId: message.id)
         }
     }
 
     private func giveFeedback(_ type: FeedbackType) {
-        withAnimation(.spring(response: 0.3)) {
-            if feedbackGiven == type {
+        print("[ChatMessageRow] giveFeedback called with type: \(type)")
+
+        // If already selected, toggle off
+        if feedbackGiven == type {
+            withAnimation(.spring(response: 0.3)) {
                 feedbackGiven = nil
-            } else {
-                feedbackGiven = type
-                // ポジティブフィードバック時にレビュー促進をトリガー
-                if type == .positive {
-                    Task { @MainActor in
-                        ReviewManager.shared.recordPositiveRating()
-                    }
-                }
             }
+            // Haptic feedback
+            let generator = UIImpactFeedbackGenerator(style: .light)
+            generator.impactOccurred()
+            print("[ChatMessageRow] Toggled off feedback")
+            return
         }
+
         // Haptic feedback
         let generator = UIImpactFeedbackGenerator(style: .light)
         generator.impactOccurred()
+
+        print("[ChatMessageRow] hasConsented: \(feedbackService.hasConsented), askEveryTime: \(feedbackService.askEveryTime)")
+
+        // Check if we need to show consent dialog
+        if feedbackService.hasConsented && !feedbackService.askEveryTime {
+            // User has already consented, submit directly
+            print("[ChatMessageRow] Submitting feedback directly")
+            submitFeedback(type: type, comment: nil)
+        } else {
+            // Show consent dialog
+            print("[ChatMessageRow] Showing consent dialog")
+            pendingFeedbackType = type
+            showingFeedbackConsent = true
+        }
+    }
+
+    private func submitFeedback(type: FeedbackType, comment: String?) {
+        withAnimation(.spring(response: 0.3)) {
+            feedbackGiven = type
+        }
+
+        // Trigger review prompt on positive feedback
+        if type == .positive {
+            Task { @MainActor in
+                ReviewManager.shared.recordPositiveRating()
+            }
+        }
+
+        // Submit to server
+        Task {
+            await feedbackService.submitFeedback(
+                type: type,
+                aiResponse: message.content,
+                userMessage: previousUserMessage,
+                conversationId: conversationId,
+                modelId: modelId,
+                comment: comment
+            )
+        }
     }
 
     private func shareContent() {
@@ -1299,9 +2010,23 @@ struct ChatMessageRow: View {
 
     private func parseMarkdown(_ text: String) -> AttributedString {
         do {
-            return try AttributedString(markdown: text, options: .init(interpretedSyntax: .inlineOnlyPreservingWhitespace))
+            // Use full markdown interpretation for headers, lists, code blocks, etc.
+            var options = AttributedString.MarkdownParsingOptions()
+            options.interpretedSyntax = .full
+            let result = try AttributedString(markdown: text, options: options)
+
+            // Ensure line breaks are preserved (AttributedString sometimes strips them)
+            // This is a workaround for SwiftUI's markdown handling
+            return result
         } catch {
-            return AttributedString(text)
+            // Fallback: preserve whitespace with inline-only parsing
+            do {
+                var options = AttributedString.MarkdownParsingOptions()
+                options.interpretedSyntax = .inlineOnlyPreservingWhitespace
+                return try AttributedString(markdown: text, options: options)
+            } catch {
+                return AttributedString(text)
+            }
         }
     }
 }
@@ -1315,6 +2040,7 @@ struct StreamingMessageRow: View {
     private var parsedContent: (thinking: String?, content: String, isThinking: Bool) {
         let raw = text
 
+        // Case 1: <think> is in the text (model generated it)
         if raw.contains("<think>") && !raw.contains("</think>") {
             if let startRange = raw.range(of: "<think>") {
                 let thinkContent = String(raw[startRange.upperBound...])
@@ -1322,6 +2048,18 @@ struct StreamingMessageRow: View {
             }
         }
 
+        // Case 2: <think> was in prompt, so text starts with thinking content
+        // If no </think> yet, everything is thinking content (in progress)
+        if !raw.contains("</think>") && !raw.contains("<think>") {
+            // Check if this looks like thinking content (not tool call or regular response)
+            // Thinking is in progress if we haven't seen </think> yet
+            let trimmed = raw.trimmingCharacters(in: .whitespacesAndNewlines)
+            if !trimmed.isEmpty && !trimmed.hasPrefix("<tool_call>") {
+                return (raw, "", true)
+            }
+        }
+
+        // Case 3: Thinking completed (</think> found) or no thinking
         let parsed = Message.parseThinkingContent(raw)
         return (parsed.thinking, parsed.content, false)
     }
@@ -1341,7 +2079,7 @@ struct StreamingMessageRow: View {
             // Main content
             if !parsedContent.content.isEmpty {
                 HStack(alignment: .bottom, spacing: 0) {
-                    Text(parsedContent.content)
+                    Text(parseStreamingMarkdown(parsedContent.content))
                         .textSelection(.enabled)
 
                     // Cursor
@@ -1436,40 +2174,236 @@ struct StreamingMessageRow: View {
             }
         }
     }
+
+    private func parseStreamingMarkdown(_ text: String) -> AttributedString {
+        // Use lightweight markdown parsing during streaming
+        // .inlineOnlyPreservingWhitespace is faster than .full but preserves linebreaks
+        do {
+            var options = AttributedString.MarkdownParsingOptions()
+            options.interpretedSyntax = .inlineOnlyPreservingWhitespace
+            return try AttributedString(markdown: text, options: options)
+        } catch {
+            return AttributedString(text)
+        }
+    }
 }
 
 // MARK: - Typing Indicator Row
 
 struct TypingIndicatorRow: View {
-    @State private var animating = false
+    @State private var isBreathing = false
 
     var body: some View {
-        HStack(spacing: 8) {
-            // Animated dots
-            HStack(spacing: 4) {
-                ForEach(0..<3) { index in
-                    Circle()
-                        .fill(Color.blue)
-                        .frame(width: 8, height: 8)
-                        .scaleEffect(animating ? 1.0 : 0.5)
-                        .animation(
-                            .easeInOut(duration: 0.5)
-                            .repeatForever()
-                            .delay(Double(index) * 0.15),
-                            value: animating
-                        )
-                }
-            }
-
-            Text(String(localized: "chat.generating", defaultValue: "Generating response..."))
-                .font(.system(size: 14))
-                .foregroundStyle(.secondary)
+        HStack {
+            // Single breathing dot (ChatGPT style)
+            Circle()
+                .fill(Color(.systemGray4))
+                .frame(width: 20, height: 20)
+                .scaleEffect(isBreathing ? 1.15 : 0.85)
+                .opacity(isBreathing ? 1.0 : 0.6)
+                .animation(
+                    .easeInOut(duration: 1.0)
+                    .repeatForever(autoreverses: true),
+                    value: isBreathing
+                )
 
             Spacer()
         }
         .padding(.horizontal, 16)
-        .padding(.vertical, 16)
-        .onAppear { animating = true }
+        .padding(.vertical, 12)
+        .onAppear {
+            isBreathing = true
+        }
+    }
+}
+
+// MARK: - Voice Conversation State
+
+enum VoiceConversationState {
+    case idle
+    case listening
+    case processing
+    case aiThinking
+    case aiSpeaking
+
+    var statusText: String {
+        switch self {
+        case .idle: return ""
+        case .listening: return String(localized: "voice.listening")
+        case .processing: return String(localized: "voice.processing")
+        case .aiThinking: return String(localized: "voice.thinking")
+        case .aiSpeaking: return String(localized: "voice.speaking")
+        }
+    }
+}
+
+// MARK: - Voice Conversation Overlay
+
+struct VoiceConversationOverlay: View {
+    @Binding var state: VoiceConversationState
+    var audioLevel: Float
+    var onClose: () -> Void
+
+    @State private var pulseScale: CGFloat = 1.0
+    @State private var innerPulseScale: CGFloat = 1.0
+
+    var body: some View {
+        ZStack {
+            // Dark background
+            Color.black.opacity(0.95)
+                .ignoresSafeArea()
+
+            VStack(spacing: 40) {
+                Spacer()
+
+                // Status text
+                Text(state.statusText)
+                    .font(.title2)
+                    .fontWeight(.medium)
+                    .foregroundColor(.white.opacity(0.8))
+
+                // Animated circle indicator
+                ZStack {
+                    // Outer pulse ring
+                    Circle()
+                        .stroke(pulseColor.opacity(0.3), lineWidth: 2)
+                        .frame(width: 200, height: 200)
+                        .scaleEffect(pulseScale)
+
+                    // Inner pulse ring
+                    Circle()
+                        .stroke(pulseColor.opacity(0.5), lineWidth: 3)
+                        .frame(width: 150, height: 150)
+                        .scaleEffect(innerPulseScale)
+
+                    // Main circle - responds to audio level when listening
+                    Circle()
+                        .fill(
+                            RadialGradient(
+                                gradient: Gradient(colors: [pulseColor, pulseColor.opacity(0.6)]),
+                                center: .center,
+                                startRadius: 0,
+                                endRadius: 60
+                            )
+                        )
+                        .frame(width: circleSize, height: circleSize)
+                        .shadow(color: pulseColor.opacity(0.5), radius: 20)
+
+                    // Icon in center
+                    Image(systemName: stateIcon)
+                        .font(.system(size: 40, weight: .medium))
+                        .foregroundColor(.white)
+                }
+                .frame(width: 220, height: 220)
+
+                Spacer()
+
+                // Tap instruction
+                if state == .listening {
+                    Text(String(localized: "voice.tap.to.send"))
+                        .font(.subheadline)
+                        .foregroundColor(.white.opacity(0.6))
+                }
+
+                // Close button
+                Button(action: onClose) {
+                    Image(systemName: "xmark")
+                        .font(.system(size: 20, weight: .medium))
+                        .foregroundColor(.white)
+                        .frame(width: 60, height: 60)
+                        .background(Color.white.opacity(0.15))
+                        .clipShape(Circle())
+                }
+                .padding(.bottom, 40)
+            }
+        }
+        .contentShape(Rectangle())
+        .onTapGesture {
+            if state == .listening {
+                // Stop listening and send
+                NotificationCenter.default.post(name: .voiceConversationTapToSend, object: nil)
+            }
+        }
+        .onAppear {
+            startPulseAnimation()
+        }
+        .onChange(of: state) { _, _ in
+            startPulseAnimation()
+        }
+    }
+
+    private var pulseColor: Color {
+        switch state {
+        case .idle: return .gray
+        case .listening: return .blue
+        case .processing: return .orange
+        case .aiThinking: return .purple
+        case .aiSpeaking: return .green
+        }
+    }
+
+    private var stateIcon: String {
+        switch state {
+        case .idle: return "mic.slash"
+        case .listening: return "waveform"
+        case .processing: return "ellipsis"
+        case .aiThinking: return "brain.head.profile"
+        case .aiSpeaking: return "speaker.wave.2"
+        }
+    }
+
+    private var circleSize: CGFloat {
+        if state == .listening {
+            // Respond to audio level
+            return 100 + CGFloat(audioLevel) * 40
+        }
+        return 100
+    }
+
+    private func startPulseAnimation() {
+        withAnimation(.easeInOut(duration: 1.5).repeatForever(autoreverses: true)) {
+            pulseScale = state == .listening ? 1.3 : 1.1
+        }
+        withAnimation(.easeInOut(duration: 1.0).repeatForever(autoreverses: true)) {
+            innerPulseScale = state == .listening ? 1.2 : 1.05
+        }
+    }
+}
+
+// Notification for tap-to-send in voice conversation
+extension Notification.Name {
+    static let voiceConversationTapToSend = Notification.Name("voiceConversationTapToSend")
+}
+
+// MARK: - Voice Waveform View
+
+struct VoiceWaveformView: View {
+    var audioLevel: Float = 0
+    @State private var levels: [CGFloat] = Array(repeating: 0.2, count: 30)
+
+    var body: some View {
+        HStack(spacing: 3) {
+            ForEach(0..<levels.count, id: \.self) { index in
+                Capsule()
+                    .fill(Color(.systemGray3))
+                    .frame(width: 3, height: max(4, levels[index] * 30))
+                    .animation(
+                        .easeOut(duration: 0.08),
+                        value: levels[index]
+                    )
+            }
+        }
+        .onChange(of: audioLevel) { _, newLevel in
+            // Shift levels to the left (flow from right)
+            withAnimation(.easeOut(duration: 0.08)) {
+                levels.removeFirst()
+                // Add new level based on audio with some randomness for natural look
+                let baseLevel = CGFloat(newLevel)
+                let variation = CGFloat.random(in: -0.1...0.1)
+                let newLevelValue = max(0.15, min(1.0, baseLevel + variation))
+                levels.append(newLevelValue)
+            }
+        }
     }
 }
 
@@ -1782,14 +2716,32 @@ struct CameraPicker: UIViewControllerRepresentable {
     }
 }
 
-// MARK: - Speech Manager (Singleton for proper state management)
+// MARK: - Speech Manager (Singleton with Kokoro TTS support)
 
 @MainActor
 class SpeechManager: NSObject, ObservableObject {
     static let shared = SpeechManager()
+
+    // Legacy AVSpeechSynthesizer (fallback)
     private var synthesizer: AVSpeechSynthesizer?
+
+    // Published state
     @Published var isSpeaking = false
     @Published var currentMessageId: UUID?
+    @Published var showTTSDownloadPrompt = false
+    @Published var isDownloadingTTS = false
+    @Published var ttsDownloadProgress: Double = 0
+
+    // Use Kokoro TTS when available (default ON - use high quality voice when downloaded)
+    @Published var useKokoroTTS = true
+
+    // Pending text for deferred playback after download prompt
+    var pendingText: String?
+
+    // Callback when speech finishes (for voice conversation mode)
+    var onSpeechFinished: (() -> Void)?
+
+    private var kokoroTTS: KokoroTTSManager { KokoroTTSManager.shared }
 
     override init() {
         super.init()
@@ -1801,22 +2753,173 @@ class SpeechManager: NSObject, ObservableObject {
         synthesizer?.delegate = self
     }
 
+    /// Check if Kokoro TTS model is downloaded
+    var isKokoroReady: Bool {
+        kokoroTTS.isModelDownloaded
+    }
+
+    /// Speak text - uses Kokoro TTS if available, falls back to system TTS
     func speak(_ text: String, messageId: UUID) {
+        print("[SpeechManager] speak() called, useKokoroTTS: \(useKokoroTTS), isKokoroReady: \(isKokoroReady)")
+
         if isSpeaking {
+            print("[SpeechManager] Already speaking, stopping first then playing new speech")
             stop()
+            // Continue to play new speech instead of returning
+        }
+
+        currentMessageId = messageId
+        pendingText = text
+
+        // Check if Kokoro TTS is ready
+        if useKokoroTTS && isKokoroReady {
+            // Use Kokoro TTS
+            print("[SpeechManager] Using Kokoro TTS")
+            isSpeaking = true
+            Task {
+                await kokoroTTS.speak(text, messageId: messageId)
+                // Kokoro handles its own state, but sync our state
+                await MainActor.run {
+                    self.isSpeaking = kokoroTTS.isSpeaking
+                    if !kokoroTTS.isSpeaking {
+                        self.currentMessageId = nil
+                        self.onSpeechFinished?()
+                    }
+                }
+            }
+        } else if useKokoroTTS && !isKokoroReady {
+            // Prompt to download Kokoro TTS
+            print("[SpeechManager] Prompting to download Kokoro TTS")
+            showTTSDownloadPrompt = true
+        } else {
+            // Use system TTS (immediate, no download required)
+            print("[SpeechManager] Using system TTS")
+            speakWithSystemTTS(text)
+        }
+    }
+
+    /// Speak using system AVSpeechSynthesizer (private)
+    private func speakWithSystemTTS(_ text: String) {
+        print("[SpeechManager] speakWithSystemTTS called with text length: \(text.count)")
+
+        guard !text.isEmpty else {
+            print("[SpeechManager] Empty text, skipping")
             return
         }
 
+        // Configure audio session for playback
+        do {
+            let audioSession = AVAudioSession.sharedInstance()
+            try audioSession.setCategory(.playback, mode: .default, options: [.duckOthers])
+            try audioSession.setActive(true)
+            print("[SpeechManager] Audio session configured for speech")
+        } catch {
+            print("[SpeechManager] Failed to configure audio session: \(error)")
+        }
+
         let utterance = AVSpeechUtterance(string: text)
-        utterance.voice = AVSpeechSynthesisVoice(language: "ja-JP")
-        utterance.rate = 0.5
-        currentMessageId = messageId
+
+        // Select voice based on device language, with fallback
+        let preferredLang = Bundle.main.preferredLocalizations.first ?? "en"
+        let langCode: String
+        switch preferredLang {
+        case "ja":
+            langCode = "ja-JP"
+        case "zh-Hans", "zh-Hant", "zh":
+            langCode = "zh-CN"
+        default:
+            langCode = "en-US"
+        }
+
+        // Try preferred language first, fallback to default if not available
+        if let voice = AVSpeechSynthesisVoice(language: langCode) {
+            utterance.voice = voice
+            print("[SpeechManager] Using voice: \(langCode)")
+        } else if let defaultVoice = AVSpeechSynthesisVoice(language: "en-US") {
+            utterance.voice = defaultVoice
+            print("[SpeechManager] Fallback to en-US voice")
+        }
+
+        utterance.rate = AVSpeechUtteranceDefaultSpeechRate
         isSpeaking = true
-        synthesizer?.speak(utterance)
+
+        if let synth = synthesizer {
+            synth.speak(utterance)
+            print("[SpeechManager] Started speaking with system TTS")
+        } else {
+            print("[SpeechManager] ERROR: synthesizer is nil, reinitializing...")
+            setupSynthesizer()
+            if let synth = synthesizer {
+                synth.speak(utterance)
+                print("[SpeechManager] Started speaking after reinitialization")
+            } else {
+                print("[SpeechManager] ERROR: Failed to reinitialize synthesizer")
+                isSpeaking = false
+            }
+        }
+    }
+
+    /// Public method to speak with system TTS (called from alert action)
+    func speakWithSystemTTSPublic(_ text: String) {
+        speakWithSystemTTS(text)
+    }
+
+    /// Download Kokoro TTS model
+    func downloadKokoroTTS() async {
+        isDownloadingTTS = true
+        showTTSDownloadPrompt = false
+
+        print("[SpeechManager] Starting Kokoro TTS download...")
+
+        do {
+            // Observe download progress
+            let observation = kokoroTTS.$downloadProgress.sink { [weak self] progress in
+                Task { @MainActor in
+                    self?.ttsDownloadProgress = progress
+                    print("[SpeechManager] TTS download progress: \(Int(progress * 100))%")
+                }
+            }
+
+            try await kokoroTTS.downloadModelIfNeeded()
+
+            observation.cancel()
+            isDownloadingTTS = false
+            ttsDownloadProgress = 1.0
+
+            print("[SpeechManager] Kokoro TTS download completed successfully")
+
+            // Play the pending text after successful download
+            if let text = pendingText, let messageId = currentMessageId {
+                print("[SpeechManager] Playing pending text after download")
+                isSpeaking = true
+                await kokoroTTS.speak(text, messageId: messageId)
+                await MainActor.run {
+                    self.isSpeaking = kokoroTTS.isSpeaking
+                    if !kokoroTTS.isSpeaking {
+                        self.currentMessageId = nil
+                        self.pendingText = nil
+                        self.onSpeechFinished?()
+                    }
+                }
+            }
+        } catch {
+            isDownloadingTTS = false
+            print("[SpeechManager] TTS download failed: \(error)")
+            // Fallback to system TTS on download failure
+            if let text = pendingText {
+                print("[SpeechManager] Falling back to system TTS")
+                speakWithSystemTTS(text)
+            }
+        }
     }
 
     func stop() {
+        // Stop Kokoro TTS
+        kokoroTTS.stop()
+
+        // Stop system TTS
         synthesizer?.stopSpeaking(at: .immediate)
+
         isSpeaking = false
         currentMessageId = nil
     }
@@ -1827,6 +2930,7 @@ extension SpeechManager: AVSpeechSynthesizerDelegate {
         Task { @MainActor in
             self.isSpeaking = false
             self.currentMessageId = nil
+            self.onSpeechFinished?()
         }
     }
 }
@@ -1911,6 +3015,274 @@ struct ShareSheet: UIViewControllerRepresentable {
     }
 
     func updateUIViewController(_ uiViewController: UIActivityViewController, context: Context) {}
+}
+
+// MARK: - Model Loading View
+
+struct ModelLoadingView: View {
+    let progress: Double
+    let isLoading: Bool
+    @State private var pulseAnimation = false
+    @State private var displayProgress: Double = 0
+    @State private var progressTimer: Timer?
+
+    private var loadingPhase: String {
+        if displayProgress < 0.2 {
+            return String(localized: "loading.phase.initializing")
+        } else if displayProgress < 0.5 {
+            return String(localized: "loading.phase.loading")
+        } else if displayProgress < 0.85 {
+            return String(localized: "loading.phase.preparing")
+        } else {
+            return String(localized: "loading.phase.almost")
+        }
+    }
+
+    var body: some View {
+        VStack(spacing: 28) {
+            // Animated icon
+            ZStack {
+                // Outer ring
+                Circle()
+                    .stroke(
+                        LinearGradient(
+                            colors: [.blue.opacity(0.3), .purple.opacity(0.3)],
+                            startPoint: .topLeading,
+                            endPoint: .bottomTrailing
+                        ),
+                        lineWidth: 3
+                    )
+                    .frame(width: 80, height: 80)
+
+                // Progress ring - smooth animated
+                Circle()
+                    .trim(from: 0, to: displayProgress)
+                    .stroke(
+                        LinearGradient(
+                            colors: [.blue, .purple],
+                            startPoint: .topLeading,
+                            endPoint: .bottomTrailing
+                        ),
+                        style: StrokeStyle(lineWidth: 3, lineCap: .round)
+                    )
+                    .frame(width: 80, height: 80)
+                    .rotationEffect(.degrees(-90))
+                    .animation(.easeOut(duration: 0.3), value: displayProgress)
+
+                // CPU icon with pulse
+                Image(systemName: "cpu.fill")
+                    .font(.system(size: 32, weight: .medium))
+                    .foregroundStyle(
+                        LinearGradient(
+                            colors: [.blue, .purple],
+                            startPoint: .topLeading,
+                            endPoint: .bottomTrailing
+                        )
+                    )
+                    .scaleEffect(pulseAnimation ? 1.05 : 0.95)
+            }
+
+            VStack(spacing: 8) {
+                Text("ElioChat")
+                    .font(.system(size: 24, weight: .bold))
+                    .foregroundStyle(
+                        LinearGradient(
+                            colors: [.primary, .primary.opacity(0.8)],
+                            startPoint: .leading,
+                            endPoint: .trailing
+                        )
+                    )
+
+                Text(loadingPhase)
+                    .font(.system(size: 15, weight: .medium))
+                    .foregroundStyle(.secondary)
+            }
+
+            // Progress indicator
+            VStack(spacing: 6) {
+                // Custom progress bar
+                GeometryReader { geometry in
+                    ZStack(alignment: .leading) {
+                        // Background
+                        RoundedRectangle(cornerRadius: 4)
+                            .fill(Color.gray.opacity(0.2))
+
+                        // Progress - smooth animated
+                        RoundedRectangle(cornerRadius: 4)
+                            .fill(
+                                LinearGradient(
+                                    colors: [.blue, .purple],
+                                    startPoint: .leading,
+                                    endPoint: .trailing
+                                )
+                            )
+                            .frame(width: max(0, geometry.size.width * displayProgress))
+                            .animation(.easeOut(duration: 0.3), value: displayProgress)
+                    }
+                }
+                .frame(width: 160, height: 6)
+
+                Text("\(Int(displayProgress * 100))%")
+                    .font(.system(size: 13, weight: .medium, design: .monospaced))
+                    .foregroundStyle(.tertiary)
+            }
+        }
+        .onAppear {
+            withAnimation(.easeInOut(duration: 1.2).repeatForever(autoreverses: true)) {
+                pulseAnimation = true
+            }
+            startProgressAnimation()
+        }
+        .onDisappear {
+            progressTimer?.invalidate()
+        }
+        .onChange(of: progress) { _, newValue in
+            // When actual progress jumps to 100%, animate to completion
+            if newValue >= 1.0 {
+                withAnimation(.easeOut(duration: 0.5)) {
+                    displayProgress = 1.0
+                }
+            }
+        }
+    }
+
+    private func startProgressAnimation() {
+        // Animate progress slowly from 0 to ~90% over time
+        // This gives visual feedback even when actual progress doesn't update
+        displayProgress = 0.05
+        var elapsed: Double = 0
+
+        progressTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { timer in
+            elapsed += 0.1
+
+            // Slow logarithmic progress - approaches 90% but never reaches it
+            // Fast at first, then slows down
+            let targetProgress = min(0.9, 0.05 + (0.85 * (1 - exp(-elapsed / 8))))
+
+            if progress >= 1.0 {
+                // Actual loading complete
+                displayProgress = 1.0
+                timer.invalidate()
+            } else {
+                displayProgress = targetProgress
+            }
+        }
+    }
+}
+
+// MARK: - Ready Welcome View
+
+struct ReadyWelcomeView: View {
+    @State private var appeared = false
+
+    var body: some View {
+        VStack(spacing: 16) {
+            // App icon and greeting
+            Image(systemName: "bubble.left.and.bubble.right.fill")
+                .font(.system(size: 48))
+                .foregroundStyle(
+                    LinearGradient(
+                        colors: [.blue, .purple],
+                        startPoint: .topLeading,
+                        endPoint: .bottomTrailing
+                    )
+                )
+                .scaleEffect(appeared ? 1 : 0.5)
+                .opacity(appeared ? 1 : 0)
+
+            VStack(spacing: 6) {
+                Text(String(localized: "welcome.greeting"))
+                    .font(.system(size: 22, weight: .semibold))
+
+                Text(String(localized: "welcome.subtitle"))
+                    .font(.system(size: 15))
+                    .foregroundStyle(.secondary)
+            }
+            .opacity(appeared ? 1 : 0)
+            .offset(y: appeared ? 0 : 10)
+        }
+        .onAppear {
+            withAnimation(.spring(response: 0.6, dampingFraction: 0.8)) {
+                appeared = true
+            }
+        }
+    }
+}
+
+// MARK: - Expanded Input View (Fullscreen Text Editor)
+
+struct ExpandedInputView: View {
+    @Binding var text: String
+    let onSend: () -> Void
+    @Environment(\.dismiss) private var dismiss
+    @FocusState private var isFocused: Bool
+
+    var body: some View {
+        NavigationStack {
+            ZStack {
+                Color.chatBackgroundDynamic
+                    .ignoresSafeArea()
+
+                VStack(spacing: 0) {
+                    // Text editor
+                    TextEditor(text: $text)
+                        .font(.body)
+                        .focused($isFocused)
+                        .scrollContentBackground(.hidden)
+                        .background(Color.clear)
+                        .padding(.horizontal, 16)
+                        .padding(.top, 8)
+
+                    // Bottom bar with send button
+                    HStack {
+                        Spacer()
+
+                        Button(action: onSend) {
+                            HStack(spacing: 6) {
+                                Text(String(localized: "common.send", defaultValue: "送信"))
+                                    .font(.system(size: 16, weight: .semibold))
+                                Image(systemName: "arrow.up.circle.fill")
+                                    .font(.system(size: 20))
+                            }
+                            .foregroundColor(.white)
+                            .padding(.horizontal, 16)
+                            .padding(.vertical, 10)
+                            .background(text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ? Color.gray : Color.blue)
+                            .clipShape(Capsule())
+                        }
+                        .disabled(text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
+                    }
+                    .padding(.horizontal, 16)
+                    .padding(.vertical, 12)
+                    .background(Color.chatInputBackgroundDynamic)
+                }
+            }
+            .navigationTitle(String(localized: "chat.expanded.title", defaultValue: "メッセージを編集"))
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .cancellationAction) {
+                    Button(action: { dismiss() }) {
+                        Image(systemName: "xmark")
+                            .font(.system(size: 14, weight: .semibold))
+                            .foregroundStyle(.secondary)
+                    }
+                }
+
+                ToolbarItem(placement: .primaryAction) {
+                    Button(action: {
+                        dismiss()
+                    }) {
+                        Image(systemName: "arrow.down.right.and.arrow.up.left")
+                            .font(.system(size: 14, weight: .medium))
+                            .foregroundStyle(.secondary)
+                    }
+                }
+            }
+        }
+        .onAppear {
+            isFocused = true
+        }
+    }
 }
 
 #Preview {

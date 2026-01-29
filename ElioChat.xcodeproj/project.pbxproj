@@ -47,27 +47,39 @@
 		7D3A20EA65A3530286F7DD7E /* ModelSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D655A6B9516B5885047F78E7 /* ModelSettingsView.swift */; };
 		APPINTENT001 /* AppIntents.swift in Sources */ = {isa = PBXBuildFile; fileRef = APPINTENT002 /* AppIntents.swift */; };
 		B63B0EBF2F1214F5006BCDD0 /* LlamaSwift in Frameworks */ = {isa = PBXBuildFile; productRef = B63B0EBF2F121377006BCDD0 /* LlamaSwift */; };
+		MDVIEW003 /* MarkdownView in Frameworks */ = {isa = PBXBuildFile; productRef = MDVIEW002 /* MarkdownView */; };
+		BAD4260BFA539FDE98FFBC58 /* LLMConversationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D9833BA13FDD02724E72DD /* LLMConversationTests.swift */; };
 		C60A36CCF98A62B5906FE569 /* VisionModelDownloadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED5CCB34FA4BFAD3E5BEBD2 /* VisionModelDownloadView.swift */; };
 		CONVEXP001 /* ConversationExporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CONVEXP002 /* ConversationExporter.swift */; };
 		DOCPICKER001 /* DocumentPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = DOCPICKER002 /* DocumentPicker.swift */; };
+		FEEDCON01 /* FeedbackConsentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEEDCON02 /* FeedbackConsentView.swift */; };
+		MDTHEME001 /* MarkdownTheme+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = MDTHEME002 /* MarkdownTheme+Custom.swift */; };
 		FEEDMGR001 /* FeedbackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEEDMGR002 /* FeedbackManager.swift */; };
+		FEEDSVC01 /* FeedbackService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEEDSVC02 /* FeedbackService.swift */; };
+		KOKORO001 /* KokoroTTSManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = KOKORO002 /* KokoroTTSManager.swift */; };
 		LANG001 /* LanguageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = LANG002 /* LanguageManager.swift */; };
 		NOTES001 /* NotesServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = NOTES002 /* NotesServer.swift */; };
+		ODR001 /* OnDemandResourceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ODR002 /* OnDemandResourceManager.swift */; };
+		ONBCHAT001 /* OnboardingChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ONBCHAT002 /* OnboardingChatView.swift */; };
 		ONBMCP001 /* OnboardingMCPView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ONBMCP002 /* OnboardingMCPView.swift */; };
+		ONNXFW001 /* onnxruntime.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = ONNXFW002 /* onnxruntime.xcframework */; };
+		ONNXFW003 /* onnxruntime.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = ONNXFW002 /* onnxruntime.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		PROMPTMGR001 /* PromptTemplateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = PROMPTMGR002 /* PromptTemplateManager.swift */; };
 		PROMPTTMPL001 /* PromptTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = PROMPTTMPL002 /* PromptTemplate.swift */; };
 		PROMPTVIEW001 /* PromptTemplatesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = PROMPTVIEW002 /* PromptTemplatesView.swift */; };
+		REAZON001 /* ReazonSpeechManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = REAZON002 /* ReazonSpeechManager.swift */; };
 		REFMGR001 /* ReferralManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = REFMGR002 /* ReferralManager.swift */; };
 		REVMGR001 /* ReviewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = REVMGR002 /* ReviewManager.swift */; };
 		SESSLOG001 /* SessionLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = SESSLOG002 /* SessionLogger.swift */; };
 		SHARECARD001 /* ShareCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = SHARECARD002 /* ShareCardView.swift */; };
 		SHAREDDATAMGR001 /* SharedDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = SHAREDDATAMGR002 /* SharedDataManager.swift */; };
+		SHERPA001 /* SherpaOnnx.swift in Sources */ = {isa = PBXBuildFile; fileRef = SHERPA002 /* SherpaOnnx.swift */; };
+		SHERPAFW001 /* sherpa-onnx.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = SHERPAFW002 /* sherpa-onnx.xcframework */; };
+		SHERPAFW003 /* sherpa-onnx.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = SHERPAFW002 /* sherpa-onnx.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		SNAPSHOT001 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = SNAPSHOT002 /* SnapshotHelper.swift */; };
-		SNAPSHOT003 /* SnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = SNAPSHOT004 /* SnapshotTests.swift */; };
 		TEST004 /* LocalAIAgentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = TEST001 /* LocalAIAgentTests.swift */; };
 		TRANS001 /* TranslationServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = TRANS002 /* TranslationServer.swift */; };
 		UITEST004 /* LocalAIAgentUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = UITEST001 /* LocalAIAgentUITests.swift */; };
-		WEATHER001 /* WeatherServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = WEATHER002 /* WeatherServer.swift */; };
 		WEBEXT001 /* WebContentExtractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = WEBEXT002 /* WebContentExtractor.swift */; };
 		WHISPER001 /* WhisperKit in Frameworks */ = {isa = PBXBuildFile; productRef = WHISPER002 /* WhisperKit */; };
 		WHISPER003 /* WhisperManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = WHISPER004 /* WhisperManager.swift */; };
@@ -89,6 +101,19 @@
 			remoteInfo = LocalAIAgent;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		EMBED001 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		100 /* LocalAIAgent.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LocalAIAgent.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -131,32 +156,42 @@
 		142 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		704 /* ScreenshotMockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotMockData.swift; sourceTree = "<group>"; };
 		8F274E62F73576596B9AD3FA /* ModelSettings.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ModelSettings.swift; sourceTree = "<group>"; };
+		91D9833BA13FDD02724E72DD /* LLMConversationTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LLMConversationTests.swift; sourceTree = "<group>"; };
 		APPINTENT002 /* AppIntents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIntents.swift; sourceTree = "<group>"; };
 		B6BA22092F132EEA00C7353F /* LocalAIAgent.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LocalAIAgent.entitlements; sourceTree = "<group>"; };
+		BRIDGING001 /* LocalAIAgent-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LocalAIAgent-Bridging-Header.h"; sourceTree = "<group>"; };
 		CONVEXP002 /* ConversationExporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationExporter.swift; sourceTree = "<group>"; };
 		D655A6B9516B5885047F78E7 /* ModelSettingsView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ModelSettingsView.swift; sourceTree = "<group>"; };
 		DOCPICKER002 /* DocumentPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentPicker.swift; sourceTree = "<group>"; };
 		EED5CCB34FA4BFAD3E5BEBD2 /* VisionModelDownloadView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = VisionModelDownloadView.swift; sourceTree = "<group>"; };
+		FEEDCON02 /* FeedbackConsentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackConsentView.swift; sourceTree = "<group>"; };
+		MDTHEME002 /* MarkdownTheme+Custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MarkdownTheme+Custom.swift"; sourceTree = "<group>"; };
 		FEEDMGR002 /* FeedbackManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackManager.swift; sourceTree = "<group>"; };
+		FEEDSVC02 /* FeedbackService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackService.swift; sourceTree = "<group>"; };
+		KOKORO002 /* KokoroTTSManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KokoroTTSManager.swift; sourceTree = "<group>"; };
 		LANG002 /* LanguageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageManager.swift; sourceTree = "<group>"; };
 		NOTES002 /* NotesServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesServer.swift; sourceTree = "<group>"; };
+		ODR002 /* OnDemandResourceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnDemandResourceManager.swift; sourceTree = "<group>"; };
+		ONBCHAT002 /* OnboardingChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingChatView.swift; sourceTree = "<group>"; };
 		ONBMCP002 /* OnboardingMCPView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingMCPView.swift; sourceTree = "<group>"; };
+		ONNXFW002 /* onnxruntime.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = onnxruntime.xcframework; sourceTree = "<group>"; };
 		PROMPTMGR002 /* PromptTemplateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromptTemplateManager.swift; sourceTree = "<group>"; };
 		PROMPTTMPL002 /* PromptTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromptTemplate.swift; sourceTree = "<group>"; };
 		PROMPTVIEW002 /* PromptTemplatesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromptTemplatesView.swift; sourceTree = "<group>"; };
+		REAZON002 /* ReazonSpeechManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReazonSpeechManager.swift; sourceTree = "<group>"; };
 		REFMGR002 /* ReferralManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferralManager.swift; sourceTree = "<group>"; };
 		REVMGR002 /* ReviewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewManager.swift; sourceTree = "<group>"; };
 		SESSLOG002 /* SessionLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionLogger.swift; sourceTree = "<group>"; };
 		SHARECARD002 /* ShareCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareCardView.swift; sourceTree = "<group>"; };
 		SHAREDDATAMGR002 /* SharedDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedDataManager.swift; sourceTree = "<group>"; };
+		SHERPA002 /* SherpaOnnx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SherpaOnnx.swift; sourceTree = "<group>"; };
+		SHERPAFW002 /* sherpa-onnx.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = "sherpa-onnx.xcframework"; sourceTree = "<group>"; };
 		SNAPSHOT002 /* SnapshotHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = "<group>"; };
-		SNAPSHOT004 /* SnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotTests.swift; sourceTree = "<group>"; };
 		TEST001 /* LocalAIAgentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalAIAgentTests.swift; sourceTree = "<group>"; };
 		TEST002 /* LocalAIAgentTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LocalAIAgentTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		TRANS002 /* TranslationServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationServer.swift; sourceTree = "<group>"; };
 		UITEST001 /* LocalAIAgentUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalAIAgentUITests.swift; sourceTree = "<group>"; };
 		UITEST002 /* LocalAIAgentUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LocalAIAgentUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		WEATHER002 /* WeatherServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherServer.swift; sourceTree = "<group>"; };
 		WEBEXT002 /* WebContentExtractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebContentExtractor.swift; sourceTree = "<group>"; };
 		WHISPER004 /* WhisperManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhisperManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -167,7 +202,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				B63B0EBF2F1214F5006BCDD0 /* LlamaSwift in Frameworks */,
+				MDVIEW003 /* MarkdownView in Frameworks */,
 				WHISPER001 /* WhisperKit in Frameworks */,
+				SHERPAFW001 /* sherpa-onnx.xcframework in Frameworks */,
+				ONNXFW001 /* onnxruntime.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -195,6 +233,7 @@
 				TEST003 /* LocalAIAgentTests */,
 				UITEST003 /* LocalAIAgentUITests */,
 				302 /* Products */,
+				FWGROUP001 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -202,6 +241,7 @@
 			isa = PBXGroup;
 			children = (
 				B6BA22092F132EEA00C7353F /* LocalAIAgent.entitlements */,
+				BRIDGING001 /* LocalAIAgent-Bridging-Header.h */,
 				310 /* App */,
 				311 /* Views */,
 				312 /* Agent */,
@@ -239,6 +279,7 @@
 				PROMPTMGR002 /* PromptTemplateManager.swift */,
 				CONVEXP002 /* ConversationExporter.swift */,
 				SHAREDDATAMGR002 /* SharedDataManager.swift */,
+				FEEDSVC02 /* FeedbackService.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -248,10 +289,12 @@
 			children = (
 				103 /* ChatView.swift */,
 				104 /* MessageBubble.swift */,
+				MDTHEME002 /* MarkdownTheme+Custom.swift */,
 				105 /* SettingsView.swift */,
 				106 /* MCPServerListView.swift */,
 				107 /* ModelSelectionView.swift */,
 				135 /* OnboardingView.swift */,
+				ONBCHAT002 /* OnboardingChatView.swift */,
 				136 /* AboutView.swift */,
 				SHARECARD002 /* ShareCardView.swift */,
 				D655A6B9516B5885047F78E7 /* ModelSettingsView.swift */,
@@ -259,6 +302,7 @@
 				DOCPICKER002 /* DocumentPicker.swift */,
 				PROMPTVIEW002 /* PromptTemplatesView.swift */,
 				ONBMCP002 /* OnboardingMCPView.swift */,
+				FEEDCON02 /* FeedbackConsentView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -279,9 +323,13 @@
 				111 /* CoreMLInference.swift */,
 				130 /* LlamaInference.swift */,
 				112 /* ModelLoader.swift */,
+				ODR002 /* OnDemandResourceManager.swift */,
 				113 /* Tokenizer.swift */,
 				114 /* StreamingDecoder.swift */,
 				WHISPER004 /* WhisperManager.swift */,
+				SHERPA002 /* SherpaOnnx.swift */,
+				REAZON002 /* ReazonSpeechManager.swift */,
+				KOKORO002 /* KokoroTTSManager.swift */,
 			);
 			path = LLM;
 			sourceTree = "<group>";
@@ -348,11 +396,19 @@
 				123 /* LocationServer.swift */,
 				125 /* ShortcutsServer.swift */,
 				134 /* WebSearchServer.swift */,
-				WEATHER002 /* WeatherServer.swift */,
 				TRANS002 /* TranslationServer.swift */,
 				NOTES002 /* NotesServer.swift */,
 			);
 			path = Servers;
+			sourceTree = "<group>";
+		};
+		FWGROUP001 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				SHERPAFW002 /* sherpa-onnx.xcframework */,
+				ONNXFW002 /* onnxruntime.xcframework */,
+			);
+			path = Frameworks;
 			sourceTree = "<group>";
 		};
 		TEST003 /* LocalAIAgentTests */ = {
@@ -368,7 +424,7 @@
 			children = (
 				UITEST001 /* LocalAIAgentUITests.swift */,
 				SNAPSHOT002 /* SnapshotHelper.swift */,
-				SNAPSHOT004 /* SnapshotTests.swift */,
+				91D9833BA13FDD02724E72DD /* LLMConversationTests.swift */,
 			);
 			path = LocalAIAgentUITests;
 			sourceTree = "<group>";
@@ -383,6 +439,7 @@
 				401 /* Sources */,
 				200 /* Frameworks */,
 				402 /* Resources */,
+				EMBED001 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -391,6 +448,7 @@
 			name = LocalAIAgent;
 			packageProductDependencies = (
 				B63B0EBF2F121377006BCDD0 /* LlamaSwift */,
+				MDVIEW002 /* MarkdownView */,
 				WHISPER002 /* WhisperKit */,
 			);
 			productName = LocalAIAgent;
@@ -468,6 +526,7 @@
 			mainGroup = 300;
 			packageReferences = (
 				B63B0EBE2F121377006BCDD0 /* XCRemoteSwiftPackageReference "llama.swift" */,
+				MDVIEW001 /* XCRemoteSwiftPackageReference "MarkdownView" */,
 				WHISPER005 /* XCRemoteSwiftPackageReference "WhisperKit" */,
 			);
 			productRefGroup = 302 /* Products */;
@@ -518,6 +577,7 @@
 				705 /* ScreenshotMockData.swift in Sources */,
 				003 /* ChatView.swift in Sources */,
 				004 /* MessageBubble.swift in Sources */,
+				MDTHEME001 /* MarkdownTheme+Custom.swift in Sources */,
 				005 /* SettingsView.swift in Sources */,
 				006 /* MCPServerListView.swift in Sources */,
 				007 /* ModelSelectionView.swift in Sources */,
@@ -526,6 +586,7 @@
 				010 /* ConversationManager.swift in Sources */,
 				011 /* CoreMLInference.swift in Sources */,
 				012 /* ModelLoader.swift in Sources */,
+				ODR001 /* OnDemandResourceManager.swift in Sources */,
 				013 /* Tokenizer.swift in Sources */,
 				014 /* StreamingDecoder.swift in Sources */,
 				015 /* MCPClient.swift in Sources */,
@@ -547,6 +608,7 @@
 				030 /* ThemeManager.swift in Sources */,
 				033 /* WebSearchServer.swift in Sources */,
 				034 /* OnboardingView.swift in Sources */,
+				ONBCHAT001 /* OnboardingChatView.swift in Sources */,
 				035 /* AboutView.swift in Sources */,
 				SHARECARD001 /* ShareCardView.swift in Sources */,
 				037 /* NetworkMonitor.swift in Sources */,
@@ -564,10 +626,14 @@
 				FEEDMGR001 /* FeedbackManager.swift in Sources */,
 				REVMGR001 /* ReviewManager.swift in Sources */,
 				REFMGR001 /* ReferralManager.swift in Sources */,
-				WEATHER001 /* WeatherServer.swift in Sources */,
 				TRANS001 /* TranslationServer.swift in Sources */,
 				NOTES001 /* NotesServer.swift in Sources */,
 				ONBMCP001 /* OnboardingMCPView.swift in Sources */,
+				SHERPA001 /* SherpaOnnx.swift in Sources */,
+				REAZON001 /* ReazonSpeechManager.swift in Sources */,
+				KOKORO001 /* KokoroTTSManager.swift in Sources */,
+				FEEDSVC01 /* FeedbackService.swift in Sources */,
+				FEEDCON01 /* FeedbackConsentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -585,7 +651,7 @@
 			files = (
 				UITEST004 /* LocalAIAgentUITests.swift in Sources */,
 				SNAPSHOT001 /* SnapshotHelper.swift in Sources */,
-				SNAPSHOT003 /* SnapshotTests.swift in Sources */,
+				BAD4260BFA539FDE98FFBC58 /* LLMConversationTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -744,50 +810,19 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = LocalAIAgent/LocalAIAgent.entitlements;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 22;
-				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
-				DEVELOPMENT_TEAM = 5BV85JW8US;
-				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = LocalAIAgent/Resources/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = Elio;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.2.32;
-				PRODUCT_BUNDLE_IDENTIFIER = love.elio.app;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		703 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = LocalAIAgent/LocalAIAgent.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 22;
+				CURRENT_PROJECT_VERSION = 26;
 				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_TEAM = 5BV85JW8US;
 				ENABLE_PREVIEWS = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Frameworks",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = LocalAIAgent/Resources/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = Elio;
+				INFOPLIST_KEY_CFBundleDisplayName = ElioChat;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -805,6 +840,49 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "LocalAIAgent/LocalAIAgent-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		703 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = LocalAIAgent/LocalAIAgent.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 26;
+				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
+				DEVELOPMENT_TEAM = 5BV85JW8US;
+				ENABLE_PREVIEWS = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Frameworks",
+				);
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = LocalAIAgent/Resources/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ElioChat;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.2.32;
+				PRODUCT_BUNDLE_IDENTIFIER = love.elio.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "LocalAIAgent/LocalAIAgent-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -815,7 +893,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 22;
+				CURRENT_PROJECT_VERSION = 26;
 				DEVELOPMENT_TEAM = 5BV85JW8US;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
@@ -834,7 +912,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 22;
+				CURRENT_PROJECT_VERSION = 26;
 				DEVELOPMENT_TEAM = 5BV85JW8US;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
@@ -852,7 +930,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 22;
+				CURRENT_PROJECT_VERSION = 26;
 				DEVELOPMENT_TEAM = 5BV85JW8US;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
@@ -870,7 +948,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 22;
+				CURRENT_PROJECT_VERSION = 26;
 				DEVELOPMENT_TEAM = 5BV85JW8US;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
@@ -934,6 +1012,14 @@
 				minimumVersion = 2.0.0;
 			};
 		};
+		MDVIEW001 /* XCRemoteSwiftPackageReference "MarkdownView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/LiYanan2004/MarkdownView.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		WHISPER005 /* XCRemoteSwiftPackageReference "WhisperKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/argmaxinc/WhisperKit.git";
@@ -949,6 +1035,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = B63B0EBE2F121377006BCDD0 /* XCRemoteSwiftPackageReference "llama.swift" */;
 			productName = LlamaSwift;
+		};
+		MDVIEW002 /* MarkdownView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = MDVIEW001 /* XCRemoteSwiftPackageReference "MarkdownView" */;
+			productName = MarkdownView;
 		};
 		WHISPER002 /* WhisperKit */ = {
 			isa = XCSwiftPackageProductDependency;
