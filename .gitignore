@@ -5,3 +5,28 @@ fastlane/firebase/service-account.json
 
 fastlane/api_key.json
 firebase-debug.log
+
+# Xcode build directories
+build/
+DerivedData/
+*.xcodeproj/xcuserdata/
+*.xcworkspace/xcuserdata/
+
+# Firebase Test Lab build
+firebase-test-build/
+
+# Swift Package Manager
+.build/
+*.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved
+
+# fastlane
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots/**/
+
+# Provisioning profiles (auto-downloaded)
+*.mobileprovision
+
+# macOS
+.DS_Store
+*.swp
