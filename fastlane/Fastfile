@@ -55,14 +55,14 @@ platform :ios do
       build_number: latest_testflight_build_number(api_key: api_key) + 1
     )
 
-    # Sync certificates using match
-    sync_code_signing(
-      type: "appstore",
-      readonly: true,
-      api_key_path: "./fastlane/api_key.json"
+    # Get latest provisioning profile from App Store Connect (no match password needed)
+    get_provisioning_profile(
+      api_key: api_key,
+      app_identifier: "love.elio.app",
+      team_id: "5BV85JW8US"
     )
 
-    # Build the app with match provisioning profile
+    # Build the app with automatic signing
     build_app(
       project: "ElioChat.xcodeproj",
       scheme: "ElioChat",
@@ -71,10 +71,7 @@ platform :ios do
       destination: "generic/platform=iOS",
       sdk: "iphoneos",
       export_options: {
-        provisioningProfiles: {
-          "love.elio.app" => ENV["sigh_love.elio.app_appstore_profile-name"] || "match AppStore love.elio.app"
-        },
-        signingStyle: "manual",
+        signingStyle: "automatic",
         teamID: "5BV85JW8US"
       }
     )
