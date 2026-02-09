@@ -37,6 +37,7 @@
 		029 /* LlamaInference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130 /* LlamaInference.swift */; };
 		030 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 131 /* ThemeManager.swift */; };
 		031 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 132 /* Assets.xcassets */; };
+		PRIV001 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = PRIV002 /* PrivacyInfo.xcprivacy */; };
 		033 /* WebSearchServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134 /* WebSearchServer.swift */; };
 		034 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135 /* OnboardingView.swift */; };
 		035 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136 /* AboutView.swift */; };
@@ -145,6 +146,7 @@
 		127 /* Conversation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conversation.swift; sourceTree = "<group>"; };
 		128 /* MCPTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MCPTool.swift; sourceTree = "<group>"; };
 		129 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		PRIV002 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		130 /* LlamaInference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LlamaInference.swift; sourceTree = "<group>"; };
 		131 /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
 		132 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -361,6 +363,7 @@
 			isa = PBXGroup;
 			children = (
 				129 /* Info.plist */,
+				PRIV002 /* PrivacyInfo.xcprivacy */,
 				132 /* Assets.xcassets */,
 				140 /* Localizable.strings */,
 			);
@@ -546,6 +549,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				031 /* Assets.xcassets in Resources */,
+				PRIV001 /* PrivacyInfo.xcprivacy in Resources */,
 				036 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -833,7 +837,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.32;
+				MARKETING_VERSION = 1.2.33;
 				PRODUCT_BUNDLE_IDENTIFIER = love.elio.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -875,7 +879,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.32;
+				MARKETING_VERSION = 1.2.33;
 				PRODUCT_BUNDLE_IDENTIFIER = love.elio.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -897,7 +901,7 @@
 				DEVELOPMENT_TEAM = 5BV85JW8US;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				MARKETING_VERSION = 1.2.32;
+				MARKETING_VERSION = 1.2.33;
 				PRODUCT_BUNDLE_IDENTIFIER = love.elio.app.tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
@@ -916,7 +920,7 @@
 				DEVELOPMENT_TEAM = 5BV85JW8US;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				MARKETING_VERSION = 1.2.32;
+				MARKETING_VERSION = 1.2.33;
 				PRODUCT_BUNDLE_IDENTIFIER = love.elio.app.tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
@@ -934,7 +938,7 @@
 				DEVELOPMENT_TEAM = 5BV85JW8US;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				MARKETING_VERSION = 1.2.32;
+				MARKETING_VERSION = 1.2.33;
 				PRODUCT_BUNDLE_IDENTIFIER = love.elio.app.uitests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
@@ -952,7 +956,7 @@
 				DEVELOPMENT_TEAM = 5BV85JW8US;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				MARKETING_VERSION = 1.2.32;
+				MARKETING_VERSION = 1.2.33;
 				PRODUCT_BUNDLE_IDENTIFIER = love.elio.app.uitests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
