@@ -57,14 +57,14 @@ jobs:
       - name: Resolve packages
         run: |
           xcodebuild -resolvePackageDependencies \
-            -project LocalAIAgent.xcodeproj \
-            -scheme LocalAIAgent
+            -project ElioChat.xcodeproj \
+            -scheme ElioChat
 
       - name: Build
         run: |
           xcodebuild build \
-            -project LocalAIAgent.xcodeproj \
-            -scheme LocalAIAgent \
+            -project ElioChat.xcodeproj \
+            -scheme ElioChat \
             -destination 'generic/platform=iOS' \
             -configuration Debug \
             CODE_SIGN_IDENTITY="" \
@@ -77,8 +77,8 @@ jobs:
           echo "Using simulator: $SIMULATOR"
 
           xcodebuild test \
-            -project LocalAIAgent.xcodeproj \
-            -scheme LocalAIAgent \
+            -project ElioChat.xcodeproj \
+            -scheme ElioChat \
             -destination "platform=iOS Simulator,id=$SIMULATOR" \
             -configuration Debug \
             CODE_SIGN_IDENTITY="" \

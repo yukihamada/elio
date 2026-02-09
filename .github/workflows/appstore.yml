@@ -47,8 +47,8 @@ jobs:
       - name: Run Unit Tests
         run: |
           xcodebuild test \
-            -project LocalAIAgent.xcodeproj \
-            -scheme LocalAIAgent \
+            -project ElioChat.xcodeproj \
+            -scheme ElioChat \
             -destination 'platform=iOS Simulator,name=iPhone 15 Pro' \
             -only-testing:LocalAIAgentTests \
             CODE_SIGN_IDENTITY="" \
@@ -106,14 +106,14 @@ jobs:
       - name: Update version
         run: |
           # Update marketing version in project
-          sed -i '' "s/MARKETING_VERSION = .*/MARKETING_VERSION = ${{ inputs.version }};/" LocalAIAgent.xcodeproj/project.pbxproj
+          sed -i '' "s/MARKETING_VERSION = .*/MARKETING_VERSION = ${{ inputs.version }};/" ElioChat.xcodeproj/project.pbxproj
           echo "Updated version to ${{ inputs.version }}"
 
       - name: Resolve packages
         run: |
           xcodebuild -resolvePackageDependencies \
-            -project LocalAIAgent.xcodeproj \
-            -scheme LocalAIAgent
+            -project ElioChat.xcodeproj \
+            -scheme ElioChat
 
       - name: Deploy to App Store
         env:
