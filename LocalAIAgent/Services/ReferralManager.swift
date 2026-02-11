@@ -49,7 +49,7 @@ final class ReferralManager: ObservableObject {
 
     /// アプリを共有する際のテキストを生成
     func getShareText() -> String {
-        let appStoreURL = "https://apps.apple.com/app/elio/id6740032873"
+        let appStoreURL = "https://apps.apple.com/jp/app/elio-chat/id6757635481"
         return """
         ElioChatを使ってみて！完全オフラインで動くプライベートAIアシスタントだよ。
         データがクラウドに送信されないから安心して使えるよ。

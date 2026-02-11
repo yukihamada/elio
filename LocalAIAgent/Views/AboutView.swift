@@ -32,7 +32,7 @@ struct AboutView: View {
                         Label("アプリを評価", systemImage: "star.fill")
                     }
 
-                    ShareLink(item: URL(string: "https://apps.apple.com/app/id0")!) {
+                    ShareLink(item: URL(string: "https://apps.apple.com/jp/app/elio-chat/id6757635481")!) {
                         Label("友達に共有", systemImage: "square.and.arrow.up")
                     }
                 }
