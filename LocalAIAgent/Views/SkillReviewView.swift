@@ -7,7 +7,7 @@ import SwiftUI
 struct SkillReviewView: View {
     let skill: PendingSkill
 
-    @StateObject private var curatorManager = CuratorManager.shared
+    @ObservedObject private var curatorManager = CuratorManager.shared
     @Environment(\.dismiss) private var dismiss
     @State private var comment = ""
     @State private var showingApproveConfirmation = false

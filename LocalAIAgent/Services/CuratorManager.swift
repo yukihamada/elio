@@ -228,8 +228,12 @@ final class CuratorManager: ObservableObject {
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         request.setValue("Elio Chat iOS", forHTTPHeaderField: "User-Agent")
+        // FIXME: elio-api /api/v1/og/verify expects EIP-191 signature verification
+        // (walletAddress, signature, message) but this client only sends the address.
+        // Either implement wallet signing (WalletConnect / MetaMask deep link) on iOS,
+        // or add a simpler balance-check-only endpoint on the API side.
         request.httpBody = try? JSONSerialization.data(withJSONObject: [
-            "wallet_address": trimmedAddress,
+            "walletAddress": trimmedAddress,
             "contract_address": Self.hamadaoContract,
         ])
         request.timeoutInterval = 30
@@ -283,14 +287,21 @@ final class CuratorManager: ObservableObject {
         defer { isLoading = false }
 
         let baseURL = SyncManager.shared.baseURL
-        guard let url = URL(string: "\(baseURL)/api/v1/curator/eligibility") else { return }
+        // API route: GET /api/v1/curators/:userId/status
+        // TODO: Persist userId from LoginResponse in SyncManager and use it here.
+        // For now, fall back to "me" which the server should resolve from the auth token.
+        guard let url = URL(string: "\(baseURL)/api/v1/curators/me/status") else { return }
 
         var request = URLRequest(url: url)
         request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         request.setValue("Elio Chat iOS", forHTTPHeaderField: "User-Agent")
 
         do {
-            let (data, _) = try await URLSession.shared.data(for: request)
+            let (data, response) = try await URLSession.shared.data(for: request)
+            guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+                print("[Curator] Eligibility check HTTP error: \((response as? HTTPURLResponse)?.statusCode ?? 0)")
+                return
+            }
             eligibility = try JSONDecoder().decode(CuratorEligibility.self, from: data)
 
             if eligibility?.isOGHolder == true {
@@ -317,7 +328,7 @@ final class CuratorManager: ObservableObject {
         errorMessage = nil
 
         let baseURL = SyncManager.shared.baseURL
-        guard let url = URL(string: "\(baseURL)/api/v1/curator/apply") else {
+        guard let url = URL(string: "\(baseURL)/api/v1/curators/apply") else {
             isLoading = false
             return false
         }
@@ -329,8 +340,14 @@ final class CuratorManager: ObservableObject {
         request.setValue("Elio Chat iOS", forHTTPHeaderField: "User-Agent")
 
         do {
-            let (data, _) = try await URLSession.shared.data(for: request)
-            if let json = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
+            let (data, response) = try await URLSession.shared.data(for: request)
+            guard let httpResponse = response as? HTTPURLResponse else {
+                errorMessage = String(localized: "curator.error.apply_failed", defaultValue: "申請に失敗しました")
+                isLoading = false
+                return false
+            }
+            if httpResponse.statusCode == 200,
+               let json = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
                let ok = json["ok"] as? Bool, ok {
                 isCurator = true
                 saveLocalState()
@@ -355,14 +372,19 @@ final class CuratorManager: ObservableObject {
         guard let token = SyncManager.shared.authToken else { return }
 
         let baseURL = SyncManager.shared.baseURL
-        guard let url = URL(string: "\(baseURL)/api/v1/curator/stats") else { return }
+        // TODO: This endpoint does not exist in elio-api yet. Needs to be added.
+        guard let url = URL(string: "\(baseURL)/api/v1/curators/me/stats") else { return }
 
         var request = URLRequest(url: url)
         request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         request.setValue("Elio Chat iOS", forHTTPHeaderField: "User-Agent")
 
         do {
-            let (data, _) = try await URLSession.shared.data(for: request)
+            let (data, response) = try await URLSession.shared.data(for: request)
+            guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+                print("[Curator] Stats fetch HTTP error: \((response as? HTTPURLResponse)?.statusCode ?? 0)")
+                return
+            }
             curatorStats = try JSONDecoder().decode(CuratorStats.self, from: data)
 
             // Update curator rank badge
@@ -385,14 +407,18 @@ final class CuratorManager: ObservableObject {
         defer { isLoading = false }
 
         let baseURL = SyncManager.shared.baseURL
-        guard let url = URL(string: "\(baseURL)/api/v1/curator/pending-skills") else { return }
+        guard let url = URL(string: "\(baseURL)/api/v1/skills/pending") else { return }
 
         var request = URLRequest(url: url)
         request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         request.setValue("Elio Chat iOS", forHTTPHeaderField: "User-Agent")
 
         do {
-            let (data, _) = try await URLSession.shared.data(for: request)
+            let (data, response) = try await URLSession.shared.data(for: request)
+            guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+                print("[Curator] Pending skills fetch HTTP error: \((response as? HTTPURLResponse)?.statusCode ?? 0)")
+                return
+            }
             if let json = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
                let skillsData = try? JSONSerialization.data(withJSONObject: json["skills"] ?? []) {
                 pendingSkills = (try? JSONDecoder().decode([PendingSkill].self, from: skillsData)) ?? []
@@ -433,7 +459,11 @@ final class CuratorManager: ObservableObject {
         ])
 
         do {
-            let (data, _) = try await URLSession.shared.data(for: request)
+            let (data, response) = try await URLSession.shared.data(for: request)
+            guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+                print("[Curator] Review submit HTTP error: \((response as? HTTPURLResponse)?.statusCode ?? 0)")
+                return false
+            }
             if let json = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
                let ok = json["ok"] as? Bool, ok {
                 // Remove from pending list

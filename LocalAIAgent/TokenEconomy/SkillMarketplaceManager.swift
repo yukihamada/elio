@@ -66,11 +66,16 @@ class SkillMarketplaceManager: ObservableObject {
         request.setValue("Elio Chat iOS", forHTTPHeaderField: "User-Agent")
 
         do {
-            let (data, _) = try await URLSession.shared.data(for: request)
+            let (data, response) = try await URLSession.shared.data(for: request)
+            guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+                let statusCode = (response as? HTTPURLResponse)?.statusCode ?? 0
+                self.error = "スキルの取得に失敗しました (HTTP \(statusCode))"
+                return
+            }
             let decoder = JSONDecoder()
             decoder.dateDecodingStrategy = .iso8601
-            let response = try decoder.decode(SkillListResponse.self, from: data)
-            skills = response.skills
+            let decoded = try decoder.decode(SkillListResponse.self, from: data)
+            skills = decoded.skills
         } catch {
             self.error = "スキルの取得に失敗しました"
             print("[SkillMarketplace] Fetch error: \(error)")
@@ -90,7 +95,11 @@ class SkillMarketplaceManager: ObservableObject {
         request.setValue("Elio Chat iOS", forHTTPHeaderField: "User-Agent")
 
         do {
-            let (data, _) = try await URLSession.shared.data(for: request)
+            let (data, response) = try await URLSession.shared.data(for: request)
+            guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+                print("[SkillMarketplace] Detail fetch HTTP error: \((response as? HTTPURLResponse)?.statusCode ?? 0)")
+                return nil
+            }
             let decoder = JSONDecoder()
             decoder.dateDecodingStrategy = .iso8601
             return try decoder.decode(SkillDetailResponse.self, from: data)
@@ -133,7 +142,12 @@ class SkillMarketplaceManager: ObservableObject {
         request.setValue("Elio Chat iOS", forHTTPHeaderField: "User-Agent")
 
         do {
-            let (data, _) = try await URLSession.shared.data(for: request)
+            let (data, httpResp) = try await URLSession.shared.data(for: request)
+            guard let httpResponse = httpResp as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+                let statusCode = (httpResp as? HTTPURLResponse)?.statusCode ?? 0
+                error = "インストールに失敗しました (HTTP \(statusCode))"
+                return false
+            }
             let response = try JSONDecoder().decode(SkillInstallResponse.self, from: data)
 
             if response.ok {
@@ -242,7 +256,12 @@ class SkillMarketplaceManager: ObservableObject {
         request.httpBody = try? JSONSerialization.data(withJSONObject: body)
 
         do {
-            let (data, _) = try await URLSession.shared.data(for: request)
+            let (data, httpResp) = try await URLSession.shared.data(for: request)
+            guard let httpResponse = httpResp as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+                let statusCode = (httpResp as? HTTPURLResponse)?.statusCode ?? 0
+                error = "公開に失敗しました (HTTP \(statusCode))"
+                return false
+            }
             let response = try JSONDecoder().decode(SkillPublishResponse.self, from: data)
 
             if response.ok {
@@ -282,7 +301,11 @@ class SkillMarketplaceManager: ObservableObject {
         ])
 
         do {
-            let (data, _) = try await URLSession.shared.data(for: request)
+            let (data, httpResp) = try await URLSession.shared.data(for: request)
+            guard let httpResponse = httpResp as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+                print("[SkillMarketplace] Review HTTP error: \((httpResp as? HTTPURLResponse)?.statusCode ?? 0)")
+                return false
+            }
             let response = try JSONDecoder().decode(SkillReviewResponse.self, from: data)
             return response.ok
         } catch {

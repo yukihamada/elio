@@ -5,7 +5,7 @@ import SwiftUI
 /// Allows HamaDAO NFT holders to verify their OG status.
 /// Flow: Enter wallet address -> Verify -> Success animation with benefits
 struct OGVerificationView: View {
-    @StateObject private var curatorManager = CuratorManager.shared
+    @ObservedObject private var curatorManager = CuratorManager.shared
     @Environment(\.dismiss) private var dismiss
     @State private var walletAddress = ""
     @State private var showSuccess = false

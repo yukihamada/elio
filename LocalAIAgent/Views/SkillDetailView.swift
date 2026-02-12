@@ -5,7 +5,7 @@ import SwiftUI
 struct SkillDetailView: View {
     let skill: Skill
 
-    @StateObject private var manager = SkillMarketplaceManager.shared
+    @ObservedObject private var manager = SkillMarketplaceManager.shared
     @Environment(\.dismiss) private var dismiss
     @State private var reviews: [SkillReview] = []
     @State private var showingMCPConfig = false
@@ -513,7 +513,7 @@ struct WriteReviewSheet: View {
     let skillId: String
     let skillName: String
 
-    @StateObject private var manager = SkillMarketplaceManager.shared
+    @ObservedObject private var manager = SkillMarketplaceManager.shared
     @Environment(\.dismiss) private var dismiss
     @State private var rating = 5
     @State private var comment = ""

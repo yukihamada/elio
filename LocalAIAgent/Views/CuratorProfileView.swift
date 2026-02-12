@@ -6,7 +6,7 @@ import SwiftUI
 /// For non-curators: shows requirements with progress bars.
 /// For curators: shows badge, stats, rank, and pending reviews.
 struct CuratorProfileView: View {
-    @StateObject private var curatorManager = CuratorManager.shared
+    @ObservedObject private var curatorManager = CuratorManager.shared
     @Environment(\.dismiss) private var dismiss
     @State private var showingOGVerification = false
     @State private var showingPendingReviews = false
@@ -676,7 +676,7 @@ struct CuratorProfileView: View {
 // MARK: - Pending Reviews List View
 
 struct PendingReviewsListView: View {
-    @StateObject private var curatorManager = CuratorManager.shared
+    @ObservedObject private var curatorManager = CuratorManager.shared
     @Environment(\.dismiss) private var dismiss
     @State private var selectedSkill: PendingSkill?
 

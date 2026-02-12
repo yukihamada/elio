@@ -3,7 +3,7 @@ import SwiftUI
 // MARK: - Skill Marketplace View
 
 struct SkillMarketplaceView: View {
-    @StateObject private var manager = SkillMarketplaceManager.shared
+    @ObservedObject private var manager = SkillMarketplaceManager.shared
     @Environment(\.dismiss) private var dismiss
     @State private var selectedSort: SkillMarketplaceManager.SortOption = .popular
     @State private var selectedCategory: SkillCategory?
