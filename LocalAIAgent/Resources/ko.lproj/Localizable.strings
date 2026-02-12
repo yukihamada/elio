@@ -1,0 +1,612 @@
+/*
+  Localizable.strings (Korean)
+  Elio
+*/
+
+// MARK: - App General
+"app.name" = "Elio";
+"app.tagline" = "비밀을 지키는 나만의 두 번째 두뇌.";
+
+// MARK: - Common Actions
+"common.done" = "완료";
+"common.cancel" = "취소";
+"common.delete" = "삭제";
+"common.save" = "저장";
+"common.edit" = "편집";
+"common.share" = "공유";
+"common.copy" = "복사";
+"common.copied" = "복사됨";
+"common.loading" = "로딩 중...";
+"common.error" = "오류";
+"common.retry" = "재시도";
+"common.skip" = "건너뛰기";
+"common.next" = "다음";
+"common.start" = "시작하기";
+"common.add" = "추가";
+"common.close" = "닫기";
+"common.details" = "상세 정보";
+"common.yes" = "예";
+"common.no" = "아니오";
+"common.unknown" = "알 수 없음";
+
+// MARK: - Chat
+"chat.placeholder" = "무엇이든 물어보세요";
+"chat.model.not.loaded" = "모델이 로드되지 않았습니다";
+"chat.model.not.loaded.description" = "설정에서 모델을 다운로드해 주세요";
+"chat.go.to.settings" = "설정으로 이동";
+"chat.new.conversation" = "새 채팅";
+"chat.stop.generation" = "중지";
+"chat.generation.stopped" = "\n\n[생성 중지됨]";
+"chat.image.sent" = "[이미지 전송됨]";
+"chat.images.sent" = "[이미지 %d장 전송됨]";
+"chat.pdf.sent" = "[PDF 첨부: %@]";
+"chat.pdf.sent.vision" = "[이미지 포함 PDF: %@]";
+"chat.pdf.context" = "다음은 PDF 문서 \"%@\"에서 추출한 텍스트 내용입니다:\n\n%@";
+"chat.pdf.context.vision" = "이것은 PDF 문서 \"%@\"의 1페이지입니다. 추출된 텍스트 내용은 다음과 같습니다:\n\n%@\n\n시각적 내용과 텍스트를 함께 분석해 주세요.";
+"chat.pdf.analyze" = "\"%@\"의 PDF 페이지를 분석해 주세요.";
+"chat.url.sent" = "[웹 페이지: %@]";
+"chat.url.context" = "다음은 웹 페이지 \"%@\" (%@)에서 추출한 내용입니다:\n\n%@";
+"chat.thinking" = "생각 중...";
+"chat.generating" = "응답 생성 중...";
+"chat.welcome" = "무엇을 도와드릴까요?";
+"chat.suggestion.schedule" = "오늘 일정 보기";
+"chat.suggestion.reminder" = "미리알림 만들기";
+"chat.suggestion.weather" = "오늘 날씨는?";
+"chat.suggestion.help" = "앱 사용법";
+"chat.websearch.on" = "웹 검색 켜짐";
+"chat.websearch.off" = "웹 검색 꺼짐";
+"chat.thinking.on" = "사고 모드 켜짐";
+"chat.thinking.off" = "사고 모드 꺼짐";
+"chat.transcribing" = "음성 인식 중...";
+"chat.offline" = "오프라인";
+
+// Voice Conversation Mode
+"voice.listening" = "듣는 중...";
+"voice.processing" = "처리 중...";
+"voice.thinking" = "생각 중...";
+"voice.speaking" = "말하는 중...";
+"voice.tap.to.send" = "탭하여 전송";
+"chat.templates" = "템플릿";
+"chat.websearch.privacy.title" = "웹 검색 안내";
+"chat.websearch.privacy.message" = "웹 검색을 활성화하면 AI가 DuckDuckGo를 통해 최신 정보를 검색할 수 있습니다. 검색어는 DuckDuckGo로 전송되지만 추적되지 않습니다.";
+"chat.websearch.privacy.enable" = "활성화";
+"chat.websearch.privacy.disable" = "비활성화 유지";
+
+// MARK: - Settings
+"settings.title" = "설정";
+"settings.model.section" = "AI 모델";
+"settings.model.recommended" = "추천: %@";
+"settings.model.local.execution" = "모델은 기기에서 로컬로 실행됩니다";
+"settings.model.show.more" = "기타 모델 (%d)";
+"settings.model.show.less" = "접기";
+"settings.appearance.section" = "외관";
+"settings.tools.section" = "스마트 기능";
+"settings.mcp.servers" = "연동";
+"settings.mcp.servers.description" = "캘린더, 파일, 미리알림 등";
+"settings.mcp.enabled.count" = "%d개 활성화";
+"settings.mcp.enabled.count.suffix" = "개 활성화";
+"settings.about.section" = "정보";
+"settings.version" = "버전";
+"settings.about.app" = "이 앱에 대해";
+"settings.about.mcp" = "연동 기능 소개";
+"settings.privacy.badge" = "오프라인 작동";
+"settings.privacy.description" = "비행기 모드에서도 작동";
+"settings.airplane.mode" = "비행기 모드에서 실행 중";
+"settings.offline.ready" = "오프라인 준비 완료";
+
+// MARK: - Model States
+"model.status.downloading" = "다운로드 중... %d%%";
+"model.status.loading" = "로딩 중...";
+"model.status.in.use" = "사용 중";
+"model.status.recommended" = "추천";
+"model.status.heavy" = "고사양";
+"model.action.download" = "다운로드";
+"model.action.load" = "로드";
+"model.action.delete" = "삭제";
+"model.action.use" = "이 모델 사용";
+"model.delete.confirm.title" = "모델 삭제";
+"model.delete.confirm.message" = "%@을(를) 삭제하시겠습니까? 다시 사용하려면 재다운로드가 필요합니다.";
+"model.select.title" = "모델 선택";
+"model.select.prompt" = "모델을 선택해 주세요";
+"model.downloaded" = "다운로드됨";
+
+// MARK: - Inference Mode
+"inference.mode.title" = "가속";
+"inference.mode.auto" = "자동";
+"inference.mode.auto.desc" = "자동으로 최적 성능";
+"inference.mode.gpu" = "GPU (Metal)";
+"inference.mode.gpu.desc" = "Metal로 최대 속도";
+"inference.mode.cpu" = "CPU 전용";
+"inference.mode.cpu.desc" = "배터리 절약 모드";
+"inference.mode.hybrid" = "하이브리드";
+"inference.mode.hybrid.desc" = "속도와 배터리의 균형";
+
+// MARK: - Theme
+"theme.system" = "시스템";
+"theme.light" = "라이트";
+"theme.dark" = "다크";
+
+// MARK: - Onboarding
+"onboarding.welcome.title" = "Elio에 오신 것을 환영합니다";
+"onboarding.welcome.subtitle" = "나만의 프라이빗 AI 어시스턴트";
+"onboarding.features.title" = "진정한 프라이빗 AI";
+"onboarding.feature.offline" = "비행기 모드에서도 작동";
+"onboarding.feature.offline.desc" = "비행기 안이나 지하에서도 사용 가능";
+"onboarding.feature.privacy" = "데이터 전송 제로";
+"onboarding.feature.privacy.desc" = "대화 내용이 절대 휴대폰 밖으로 나가지 않습니다";
+"onboarding.feature.vault" = "스마트 연동";
+"onboarding.feature.vault.desc" = "캘린더 및 파일과 연결";
+"onboarding.feature.secure" = "업무에 안전한 AI";
+"onboarding.feature.secure.desc" = "기업 환경에서도 안심하고 사용";
+"onboarding.feature.thinking" = "사고 과정";
+"onboarding.privacy.title" = "당신의 데이터는 당신의 것";
+"onboarding.privacy.item1" = "모든 처리는 iPhone에서 이루어집니다";
+"onboarding.privacy.item2" = "클라우드 서버로 데이터가 전송되지 않습니다";
+"onboarding.privacy.item3" = "AI 학습에 절대 사용되지 않습니다";
+"onboarding.getstarted.title" = "한 번의 탭으로 준비 완료";
+"onboarding.getstarted.subtitle" = "추천 AI 모델을 다운로드하고\n바로 대화를 시작하세요";
+"onboarding.step1" = "추천 모델 다운로드";
+"onboarding.step2" = "몇 분만 기다려 주세요";
+"onboarding.step3" = "준비 완료!";
+
+// MARK: - About
+"about.title" = "이 앱에 대해";
+"about.rate.app" = "앱 평가하기";
+"about.share.app" = "친구에게 공유";
+"about.privacy.policy" = "개인정보 처리방침";
+"about.terms" = "이용 약관";
+"about.tech.info" = "기술 정보";
+"about.tech.engine" = "AI 엔진";
+"about.tech.format" = "지원 형식";
+"about.tech.inference" = "추론";
+"about.data.management" = "데이터 관리";
+"about.delete.all" = "모든 대화 삭제";
+"about.credits" = "크레딧";
+"about.credits.description" = "이 앱은 오픈 소스 라이브러리를 사용합니다";
+"about.privacy.section" = "개인정보 보호";
+"about.gguf.format" = "GGUF 형식";
+"about.metal.gpu" = "Metal GPU 가속";
+
+// MARK: - Referral
+"referral.title" = "친구 추천";
+"referral.code.title" = "나의 추천 코드";
+"referral.code.copy" = "코드 복사";
+"referral.code.copied" = "복사됨";
+"referral.share.button" = "친구에게 공유";
+"referral.share.description" = "Elio를 친구에게 공유하세요!";
+"referral.count" = "%d명 추천함";
+"referral.enter.title" = "추천 코드 입력";
+"referral.enter.placeholder" = "추천 코드";
+"referral.enter.button" = "적용";
+"referral.enter.success" = "추천 코드가 적용되었습니다";
+"referral.enter.error" = "유효하지 않은 추천 코드입니다";
+
+// MARK: - Privacy Policy
+"privacy.title" = "개인정보 처리방침";
+"privacy.data.collection.title" = "데이터 수집";
+"privacy.data.collection.content" = "이 앱은 완전히 오프라인으로 로컬 AI를 실행합니다.\n외부 서버로 데이터가 전송되지 않습니다.\n모든 대화는 기기에만 저장됩니다.";
+"privacy.stored.data.title" = "저장되는 데이터";
+"privacy.stored.data.content" = "대화 기록 (기기에만 저장)\nAI 모델 파일 (기기에만 저장)\n앱 설정 (기기에만 저장)\n\n이 데이터는 외부와 절대 공유되지 않습니다.";
+"privacy.data.deletion.title" = "데이터 삭제";
+"privacy.data.deletion.content" = "설정 > 데이터 관리에서 언제든지 모든 데이터를 삭제할 수 있습니다.\n앱을 삭제하면 모든 데이터가 삭제됩니다.";
+
+// MARK: - Terms of Service
+"terms.title" = "이용 약관";
+"terms.service.title" = "서비스 설명";
+"terms.service.content" = "이 앱은 로컬에서 실행되는 AI 모델을 사용하여 AI 어시스턴트 기능을 제공합니다.";
+"terms.disclaimer.title" = "면책 조항";
+"terms.disclaimer.content" = "AI 응답에는 오류가 포함될 수 있습니다.\n중요한 결정은 반드시 전문가의 확인을 받으세요.\n이 앱 사용으로 인한 손해에 대해 책임지지 않습니다.";
+"terms.prohibited.title" = "금지 행위";
+"terms.prohibited.content" = "불법 행위\n타인의 권리를 침해하는 행위\n이 앱의 리버스 엔지니어링\n이 앱의 무단 복제";
+"terms.ip.title" = "지적 재산권";
+"terms.ip.content" = "이 앱의 지적 재산권은 개발자에게 있습니다.\n무단 사용은 금지됩니다.";
+
+// MARK: - Conversations
+"conversations.title" = "대화";
+"conversations.new" = "새 대화";
+"conversations.empty" = "대화가 없습니다";
+"conversations.delete" = "대화 삭제";
+"conversations.default.title" = "새 대화";
+"conversations.today" = "오늘";
+"conversations.yesterday" = "어제";
+"conversations.past7days" = "지난 7일";
+"conversations.past30days" = "지난 30일";
+"conversations.older" = "이전";
+"conversations.created" = "생성일: %@";
+"conversations.user" = "사용자";
+"conversations.assistant" = "어시스턴트";
+"conversations.search.placeholder" = "대화 검색";
+"conversations.search.no_results" = "검색 결과가 없습니다";
+
+// MARK: - Message Actions
+"message.copy" = "복사";
+"message.speak" = "읽어주기";
+"message.stop.speaking" = "읽기 중지";
+"message.share" = "공유";
+"message.share.card" = "카드로 공유";
+"message.like" = "좋아요";
+
+// MARK: - Share Card
+"share.card.title" = "카드 공유";
+"share.card.preview" = "미리보기";
+"share.card.button" = "이미지 공유";
+"message.dislike" = "싫어요";
+"message.thinking.process" = "사고 과정";
+"message.tool.running" = "도구 실행 중";
+"message.tool.error" = "오류";
+"message.tool.completed" = "완료";
+
+// MARK: - Attachment
+"attachment.title" = "첨부";
+"attachment.photo.library" = "사진 선택";
+"attachment.camera" = "사진 촬영";
+"attachment.pdf" = "PDF 선택";
+"attachment.pdf.chars" = "%d자";
+"attachment.pdf.pages" = "%d페이지";
+"attachment.pdf.vision.enabled" = "이미지 분석 활성화됨";
+"attachment.pdf.text.only" = "텍스트 전용 모드";
+"attachment.url" = "웹 페이지 읽기";
+"attachment.url.title" = "URL 입력";
+"attachment.url.placeholder" = "https://example.com";
+"attachment.url.message" = "URL을 붙여넣어 내용을 추출합니다";
+"attachment.url.fetch" = "가져오기";
+"attachment.url.loading" = "페이지 로딩 중...";
+
+// MARK: - Errors
+"error.model.not.found" = "모델 파일을 찾을 수 없습니다";
+"error.model.not.loaded" = "모델이 로드되지 않았습니다";
+"error.context.failed" = "컨텍스트 생성에 실패했습니다";
+"error.tokenization.failed" = "토큰화에 실패했습니다";
+"error.generation.failed" = "생성 오류: %@";
+"error.occurred" = "오류가 발생했습니다: %@";
+"error.invalid.url" = "유효하지 않은 URL";
+"error.download.failed" = "다운로드 실패";
+"error.extraction.failed" = "추출 실패";
+"error.config.not.found" = "설정 파일을 찾을 수 없습니다";
+
+// MARK: - Ghost Search
+"ghost.search.title" = "고스트 검색";
+"ghost.search.description" = "DuckDuckGo를 통한 익명 검색 (추적 없음)";
+"ghost.search.connecting" = "익명 네트워크에 연결 중...";
+"ghost.search.privacy.note" = "검색 기록은 절대 추적되지 않습니다";
+
+// MARK: - MCP Servers
+"mcp.filesystem" = "파일 시스템";
+"mcp.filesystem.desc" = "앱 내 파일 읽기 및 쓰기";
+"mcp.calendar" = "캘린더";
+"mcp.calendar.desc" = "일정 읽기 및 쓰기";
+"mcp.reminders" = "미리알림";
+"mcp.reminders.desc" = "미리알림 관리";
+"mcp.contacts" = "연락처";
+"mcp.contacts.desc" = "연락처 검색 및 보기";
+"mcp.photos" = "사진";
+"mcp.photos.desc" = "사진 라이브러리 접근";
+"mcp.location" = "위치";
+"mcp.location.desc" = "현재 위치 확인 및 장소 검색";
+"mcp.health" = "건강";
+"mcp.health.desc" = "건강 데이터 접근";
+"mcp.shortcuts" = "단축어";
+"mcp.shortcuts.desc" = "단축어 실행";
+"mcp.websearch" = "웹 검색";
+"mcp.websearch.desc" = "익명 웹 검색";
+"mcp.custom" = "사용자 정의 연동";
+"mcp.custom.add" = "연동 추가";
+"mcp.custom.setup" = "외부 서비스 연동 설정";
+"mcp.custom.title" = "사용자 정의 연동";
+"mcp.settings.title" = "연동 설정";
+"mcp.server.name" = "서버 이름";
+"mcp.server.name.placeholder" = "예: 나의 커스텀 서버";
+"mcp.config.url" = "설정 파일 URL";
+"mcp.import.file" = "파일에서 가져오기";
+"mcp.config.example" = "설정 파일 예시";
+"mcp.permission.note" = "각 기능을 처음 사용할 때 권한이 요청됩니다";
+
+// MARK: - MCP Tool Messages
+"mcp.tool.available" = "사용 가능한 도구:";
+"mcp.tool.parameters" = "매개변수:";
+"mcp.prompt.available" = "사용 가능한 프롬프트:";
+"mcp.prompt.arguments" = "인수:";
+"mcp.tool.name" = "tool_name";
+"mcp.tool.arg.name" = "arg_name";
+"mcp.tool.arg.value" = "value";
+"mcp.tool.no.result" = "결과 없음";
+"mcp.tool.running" = "도구 실행 중: %@";
+"mcp.tool.error" = "도구 실행 오류: %@";
+
+// MARK: - MCP Error Messages
+"mcp.error.server.not.found" = "서버를 찾을 수 없습니다: %@";
+"mcp.error.tool.not.found" = "도구를 찾을 수 없습니다: %@";
+"mcp.error.invalid.args" = "유효하지 않은 인수: %@";
+"mcp.error.execution" = "실행 오류: %@";
+"mcp.error.permission" = "권한 거부됨: %@";
+
+// MARK: - Calendar Messages
+"calendar.no.events" = "일정 없음";
+"calendar.event.created" = "일정 생성됨: %@";
+"calendar.event.deleted" = "일정 삭제됨: %@";
+"calendar.allday.created" = "종일 일정 생성됨: %@";
+"calendar.access.denied" = "캘린더 접근이 거부되었습니다";
+"calendar.today.none" = "오늘 일정이 없습니다";
+"calendar.untitled" = "제목 없음";
+
+// MARK: - Reminders Messages
+"reminders.none" = "미리알림 없음";
+"reminders.created" = "미리알림 생성됨: %@";
+"reminders.completed" = "미리알림 완료됨: %@";
+"reminders.deleted" = "미리알림 삭제됨: %@";
+"reminders.access.denied" = "미리알림 접근이 거부되었습니다";
+"reminders.untitled" = "제목 없음";
+
+// MARK: - Photos Messages
+"photos.access.denied" = "사진 접근이 거부되었습니다";
+"photos.not.found" = "사진을 찾을 수 없습니다";
+"photos.untitled" = "제목 없음";
+"photos.count" = "사진: %d";
+"photos.videos.count" = "동영상: %d";
+"photos.albums.count" = "앨범: %d";
+"photos.favorites.count" = "즐겨찾기: %d";
+"photos.date" = "날짜: %@";
+"photos.size" = "크기: %d x %d";
+"photos.location" = "위치: %@, %@";
+"photos.media.type" = "미디어 유형: %@";
+"photos.duration" = "길이: %dm %ds";
+"photos.favorite" = "즐겨찾기: %@";
+"photos.type.image" = "사진";
+"photos.type.video" = "동영상";
+"photos.type.audio" = "오디오";
+
+// MARK: - Contacts Messages
+"contacts.access.denied" = "연락처 접근이 거부되었습니다";
+"contacts.not.found" = "일치하는 연락처를 찾을 수 없습니다";
+"contacts.no.groups" = "그룹 없음";
+"contacts.no.card" = "연락처 카드가 설정되지 않았습니다";
+"contacts.name" = "이름: %@";
+"contacts.company" = "회사: %@";
+"contacts.job" = "직책: %@";
+
+// MARK: - Location Messages
+"location.access.denied" = "위치 접근이 거부되었습니다";
+"location.not.found" = "주소를 찾을 수 없습니다";
+"location.latitude" = "위도: %@";
+"location.longitude" = "경도: %@";
+"location.accuracy" = "정확도: %dm";
+"location.altitude" = "고도: %dm";
+"location.search" = "검색: %@";
+"location.address" = "주소: %@";
+"location.country" = "국가: %@";
+"location.postal" = "우편번호: %@";
+"location.from" = "출발: (%@, %@)";
+"location.to" = "도착: (%@, %@)";
+"location.distance.km" = "거리: %.2f km";
+"location.distance.m" = "거리: %d m";
+
+// MARK: - Health Messages
+"health.not.available" = "이 기기에서는 건강 기능을 사용할 수 없습니다";
+"health.date" = "날짜: %@";
+"health.steps" = "걸음 수: %@보";
+"health.goal.progress" = "목표 달성률: %d%% (10,000보 목표)";
+"health.no.data" = "데이터 없음";
+"health.avg.bpm" = "평균: %d bpm";
+"health.min.bpm" = "최소: %d bpm";
+"health.max.bpm" = "최대: %d bpm";
+"health.measurements" = "측정 횟수: %d";
+"health.no.sleep" = "수면 데이터 없음";
+"health.sleep.total" = "총 수면 시간: %dh %dm";
+"health.bedtime" = "취침 시간: %@";
+"health.waketime" = "기상 시간: %@";
+"health.calories" = "칼로리: %d kcal";
+
+// MARK: - File System Messages
+"filesystem.not.found" = "파일을 찾을 수 없습니다: %@";
+"filesystem.written" = "파일 저장됨: %@";
+"filesystem.dir.created" = "디렉토리 생성됨: %@";
+"filesystem.deleted" = "삭제됨: %@";
+"filesystem.size" = "크기: %@";
+"filesystem.created" = "생성일: %@";
+"filesystem.modified" = "수정일: %@";
+"filesystem.type" = "유형: %@";
+
+// MARK: - Shortcuts Messages
+"shortcuts.executed" = "단축어 '%@' 실행됨";
+"shortcuts.opened" = "단축어 앱 열림";
+"shortcuts.settings.opened" = "설정 (%@) 열림";
+"shortcuts.mail.opened" = "메일 작성 화면 열림";
+"shortcuts.calling" = "전화 중: %@";
+"shortcuts.message.opened" = "메시지 작성 화면 열림";
+"shortcuts.failed" = "단축어를 열 수 없습니다";
+
+// MARK: - Model Tiers
+"model.tier.entry" = "입문";
+"model.tier.standard" = "표준";
+"model.tier.pro" = "프로";
+
+// MARK: - Tool Parser
+"tool.arguments" = "인수:";
+
+// MARK: - Model Settings
+"model.action.settings" = "설정";
+"settings.model.parameters" = "모델 설정";
+"settings.model.parameters.description" = "이 모델의 생성 매개변수를 맞춤 설정합니다";
+"settings.preset.title" = "프리셋";
+"settings.preset.custom" = "사용자 정의";
+"settings.preset.balanced" = "균형";
+"settings.preset.creative" = "창의적";
+"settings.preset.precise" = "정밀";
+"settings.preset.coding" = "코딩";
+"settings.preset.japanese" = "일본어";
+"settings.parameters.title" = "매개변수";
+"settings.parameter.temperature" = "Temperature";
+"settings.parameter.temperature.description" = "높을수록 창의적, 낮을수록 집중적";
+"settings.parameter.top.p" = "Top P";
+"settings.parameter.top.p.description" = "핵 샘플링 확률";
+"settings.parameter.top.k" = "Top K";
+"settings.parameter.top.k.description" = "고려할 상위 토큰 수";
+"settings.parameter.max.tokens" = "최대 토큰";
+"settings.parameter.max.tokens.description" = "최대 응답 길이";
+"settings.parameter.repeat.penalty" = "반복 패널티";
+"settings.parameter.repeat.penalty.description" = "높을수록 반복이 줄어듦";
+"settings.parameter.thinking" = "사고 모드";
+"settings.parameter.thinking.description" = "AI의 추론 과정을 표시";
+"settings.system.prompt.title" = "시스템 프롬프트";
+"settings.system.prompt.description" = "AI에 대한 사용자 정의 지침";
+"settings.reset.to.default" = "기본값으로 초기화";
+
+// MARK: - Vision Model
+"vision.model.required.title" = "비전 모델 필요";
+"vision.model.required.header" = "이미지 인식 필요";
+"vision.model.required.description" = "이미지를 분석하려면 비전 기능이 있는 AI 모델이 필요합니다";
+"vision.model.switch" = "모델 전환";
+"vision.model.switch.message %@" = "이미지 분석을 위해 %@(으)로 전환하시겠습니까?";
+"vision.model.download" = "다운로드";
+"vision.model.download.message %@ %@" = "이미지 분석을 위해 %@ (%@)을(를) 다운로드하시겠습니까?";
+"vision.model.not.available" = "이 기기에 호환되는 비전 모델이 없습니다";
+"vision.model.switching" = "모델 전환 중...";
+"vision.model.download.title" = "비전 모델";
+"vision.model.recommended" = "이 기기에 추천";
+"vision.model.recommended.size %@" = "추천: %@";
+"vision.model.use.this" = "이 모델 사용";
+"vision.model.download.button %@" = "다운로드 (%@)";
+"vision.model.other.options" = "기타 비전 모델";
+"vision.model.download.complete" = "다운로드 완료";
+"vision.model.download.complete.message" = "이미지 분석 준비 완료";
+
+// MARK: - Whisper Voice Input (Legacy)
+"whisper.download.title" = "음성 인식 필요";
+"whisper.download.action" = "다운로드";
+"whisper.download.message" = "음성 입력을 사용하려면 음성 인식 모델을 다운로드해야 합니다 (~150MB).";
+"whisper.downloading" = "음성 인식 모델 다운로드 중...";
+"whisper.download.error" = "다운로드 오류";
+"whisper.load.error" = "모델 로드 오류";
+"whisper.permission.denied" = "마이크 접근이 허용되지 않았습니다";
+"whisper.transcribe.error" = "음성 인식 오류";
+"whisper.error.permission" = "마이크 권한이 필요합니다";
+"whisper.error.not.recording" = "현재 녹음 중이 아닙니다";
+"whisper.error.no.recording" = "녹음 데이터가 없습니다";
+"whisper.error.model.not.loaded" = "음성 인식 모델이 로드되지 않았습니다";
+"whisper.error.transcription" = "음성 인식에 실패했습니다";
+
+// MARK: - Speech Recognition (ReazonSpeech)
+"speech.download.title" = "음성 인식 필요";
+"speech.download.action" = "다운로드";
+"speech.download.message" = "음성 입력을 사용하려면 일본어 음성 인식 모델을 다운로드해야 합니다 (~155MB).";
+"speech.downloading" = "음성 인식 모델 다운로드 중...";
+
+// MARK: - Language Settings
+"settings.language.section" = "언어";
+"language.system" = "시스템 언어 사용";
+"settings.language.restart.hint" = "언어 변경은 앱을 다시 시작한 후 적용됩니다";
+"settings.language.changed.title" = "언어 변경됨";
+"settings.language.changed.message" = "변경 사항을 적용하려면 앱을 다시 시작해 주세요";
+"common.ok" = "확인";
+
+// MARK: - System Prompt Settings
+"settings.prompt.section" = "시스템 프롬프트";
+"settings.prompt.edit" = "프롬프트 편집";
+"settings.prompt.default" = "기본값 사용 중";
+"settings.prompt.custom" = "사용자 정의 프롬프트 설정됨";
+"settings.prompt.hint" = "AI 동작 맞춤 설정";
+"settings.prompt.editor.title" = "프롬프트 편집";
+"settings.prompt.editor.instruction" = "AI에 대한 사용자 정의 지침을 추가하세요. 기본 프롬프트를 사용하려면 비워 두세요.";
+"settings.prompt.default.preview" = "기본 프롬프트 (발췌):";
+"settings.prompt.reset" = "초기화";
+"settings.prompt.reset.title" = "프롬프트 초기화";
+"settings.prompt.reset.message" = "사용자 정의 프롬프트를 삭제하고 기본값으로 복원하시겠습니까?";
+
+// MARK: - Prompt Templates
+"templates.title" = "프롬프트 템플릿";
+"templates.empty" = "템플릿이 없습니다";
+"templates.add" = "템플릿 추가";
+"template.add.title" = "템플릿 추가";
+"template.edit.title" = "템플릿 편집";
+"template.name.header" = "이름";
+"template.name.placeholder" = "템플릿 이름";
+"template.content.header" = "프롬프트 내용";
+"template.icon.header" = "아이콘";
+"template.translate.name" = "번역";
+"template.translate.content" = "다음을 번역해 주세요: ";
+"template.summarize.name" = "요약";
+"template.summarize.content" = "다음을 요약해 주세요: ";
+"template.explain.name" = "설명";
+"template.explain.content" = "다음을 설명해 주세요: ";
+"template.code.name" = "코드";
+"template.code.content" = "다음에 대한 코드를 작성해 주세요: ";
+
+// MARK: - Export
+"export.title" = "대화 내보내기";
+"export.format.markdown" = "Markdown";
+"export.format.pdf" = "PDF";
+"export.format.text" = "일반 텍스트";
+"export.created" = "생성일";
+"export.image.attached" = "이미지 첨부됨";
+"export.generated.by" = "생성자";
+
+// MARK: - Loading Phases
+"loading.phase.initializing" = "초기화 중...";
+"loading.phase.loading" = "모델 로딩 중...";
+"loading.phase.preparing" = "추론 엔진 준비 중...";
+"loading.phase.almost" = "거의 준비됐습니다...";
+
+// MARK: - Welcome Screen
+"welcome.greeting" = "무엇이든 물어보세요";
+"welcome.subtitle" = "프라이버시 우선 AI 어시스턴트";
+"suggestion.idea" = "아이디어 브레인스토밍 도와줘";
+"suggestion.write" = "글쓰기 도와줘";
+"suggestion.question" = "질문에 답해줘";
+
+// MARK: - Kokoro TTS
+"tts.download.title" = "고품질 음성";
+"tts.download.action" = "다운로드";
+"tts.download.use_system" = "시스템 음성 사용";
+"tts.download.message" = "더 자연스러운 일본어 텍스트 음성 변환을 위해 Kokoro TTS 모델을 다운로드하세요 (~87MB).";
+"tts.downloading" = "TTS 모델 다운로드 중...";
+
+// MARK: - Feedback
+"feedback.consent.title" = "피드백 보내기";
+"feedback.send" = "보내기";
+"feedback.positive.title" = "이 응답이 도움이 되었나요?";
+"feedback.negative.title" = "개선이 필요한가요?";
+"feedback.explanation" = "피드백은 AI 품질 향상에 도움이 됩니다. 제출 전에 전송될 데이터를 확인해 주세요.";
+"feedback.data.section" = "전송될 데이터";
+"feedback.data.conversation" = "대화";
+"feedback.data.conversation.desc" = "AI 응답과 이전 메시지";
+"feedback.data.model" = "모델 정보";
+"feedback.data.model.desc" = "사용된 AI 모델의 이름";
+"feedback.data.timestamp" = "타임스탬프";
+"feedback.data.timestamp.desc" = "피드백이 제출된 시간";
+"feedback.privacy.section" = "개인정보 보호";
+"feedback.privacy.anonymous" = "개인 식별 정보는 전송되지 않습니다";
+"feedback.privacy.improvement" = "AI 품질 향상에만 사용됩니다";
+"feedback.privacy.optional" = "피드백 전송은 완전히 선택 사항입니다";
+"feedback.comment.section" = "코멘트 (선택 사항)";
+"feedback.comment.placeholder" = "개선할 점이나 잘된 점을 알려주세요...";
+"feedback.remember.title" = "이 선택 기억하기";
+"feedback.remember.description" = "다음부터 묻지 않고 피드백을 제출합니다";
+
+// MARK: - Web Search
+"chat.web.search" = "웹 검색";
+"search.privacy.title" = "개인정보 보호 검색";
+"search.privacy.proceed" = "검색";
+"search.privacy.message" = "Elio 웹 검색은 개인정보를 보호합니다:\n\n🔒 DuckDuckGo를 통한 검색\n🚫 추적 및 프로파일링 없음\n🔐 검색 기록 미저장\n📱 기기 외부에 데이터 저장 없음\n\n검색어만 DuckDuckGo로 전송되며, 결과는 기기에서 처리됩니다.";
+"chat.web.analyzing" = "[웹 페이지 분석 중]";
+// MARK: - Chat Modes
+"chatmode.local" = "로컬";
+"chatmode.chatweb" = "클라우드";
+"chatmode.private" = "비공개";
+"chatmode.fast" = "빠른";
+"chatmode.genius" = "천재";
+"chatmode.public" = "공개";
+"chatmode.local.desc" = "기기 내 \U2022 무료 \U2022 비공개";
+"chatmode.chatweb.desc" = "ChatWeb.ai \U2022 빠른 클라우드 AI";
+"chatmode.private.desc" = "신뢰할 수 있는 기기 \U2022 내 네트워크";
+"chatmode.fast.desc" = "Groq API \U2022 초고속";
+"chatmode.genius.desc" = "GPT-4o/Claude \U2022 최고 품질";
+"chatmode.public.desc" = "커뮤니티 \U2022 공유 컴퓨팅";
+// MARK: - Inference Errors
+"error.backend.not.ready" = "백엔드가 준비되지 않았습니다";
+"error.api.key.missing" = "API 키가 설정되지 않았습니다";
+"error.network" = "네트워크 오류: %@";
+"error.rate.limited" = "속도 제한에 도달했습니다. 나중에 다시 시도해 주세요.";
+"error.insufficient.tokens" = "토큰이 부족합니다";
+"error.cancelled" = "생성이 취소되었습니다";
+"error.invalid.response" = "서버의 잘못된 응답";
+"error.server" = "서버 오류 (%lld): %@";

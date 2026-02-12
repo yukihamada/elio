@@ -84,6 +84,41 @@
 		WEBEXT001 /* WebContentExtractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = WEBEXT002 /* WebContentExtractor.swift */; };
 		WHISPER001 /* WhisperKit in Frameworks */ = {isa = PBXBuildFile; productRef = WHISPER002 /* WhisperKit */; };
 		WHISPER003 /* WhisperManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = WHISPER004 /* WhisperManager.swift */; };
+		SYNC001 /* SyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = SYNC002 /* SyncManager.swift */; };
+		CWBACK001 /* ChatWebBackend.swift in Sources */ = {isa = PBXBuildFile; fileRef = CWBACK002 /* ChatWebBackend.swift */; };
+		CLBACK001 /* CloudBackend.swift in Sources */ = {isa = PBXBuildFile; fileRef = CLBACK002 /* CloudBackend.swift */; };
+		GRBACK001 /* GroqBackend.swift in Sources */ = {isa = PBXBuildFile; fileRef = GRBACK002 /* GroqBackend.swift */; };
+		LBACK001 /* LocalBackend.swift in Sources */ = {isa = PBXBuildFile; fileRef = LBACK002 /* LocalBackend.swift */; };
+		P2PBACK001 /* P2PBackend.swift in Sources */ = {isa = PBXBuildFile; fileRef = P2PBACK002 /* P2PBackend.swift */; };
+		CHATMODE001 /* ChatMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CHATMODE002 /* ChatMode.swift */; };
+		CHATMODEMGR001 /* ChatModeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CHATMODEMGR002 /* ChatModeManager.swift */; };
+		INFBACK001 /* InferenceBackend.swift in Sources */ = {isa = PBXBuildFile; fileRef = INFBACK002 /* InferenceBackend.swift */; };
+		INTRELAY001 /* InternetRelayHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = INTRELAY002 /* InternetRelayHandler.swift */; };
+		PRIVSVR001 /* PrivateServerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = PRIVSVR002 /* PrivateServerManager.swift */; };
+		BITNET001 /* BitNetInference.swift in Sources */ = {isa = PBXBuildFile; fileRef = BITNET002 /* BitNetInference.swift */; };
+		EMERKB001 /* EmergencyKnowledgeBaseServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EMERKB002 /* EmergencyKnowledgeBaseServer.swift */; };
+		WEATHER001 /* WeatherServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = WEATHER002 /* WeatherServer.swift */; };
+		KEYCHN001 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = KEYCHN002 /* KeychainManager.swift */; };
+		SUBMGR001 /* SubscriptionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = SUBMGR002 /* SubscriptionManager.swift */; };
+		TOKMGR001 /* TokenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = TOKMGR002 /* TokenManager.swift */; };
+		CMSELV001 /* ChatModeSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CMSELV002 /* ChatModeSelectorView.swift */; };
+		CWCONV001 /* ChatWebConnectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CWCONV002 /* ChatWebConnectView.swift */; };
+		CWLOGV001 /* ChatWebLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CWLOGV002 /* ChatWebLoginView.swift */; };
+		EMERQV001 /* EmergencyQuickActionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EMERQV002 /* EmergencyQuickActionsView.swift */; };
+		PEERV001 /* PeerConnectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = PEERV002 /* PeerConnectionView.swift */; };
+		SRVDASH001 /* ServerDashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = SRVDASH002 /* ServerDashboardView.swift */; };
+		VOICESEL01 /* VoiceSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = VOICESEL02 /* VoiceSelectionView.swift */; };
+		VMKT001 /* VoiceMarketplaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = VMKT002 /* VoiceMarketplaceView.swift */; };
+		SKILL001 /* Skill.swift in Sources */ = {isa = PBXBuildFile; fileRef = SKILL002 /* Skill.swift */; };
+		SKILLMGR001 /* SkillMarketplaceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = SKILLMGR002 /* SkillMarketplaceManager.swift */; };
+		SKILLMKT001 /* SkillMarketplaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = SKILLMKT002 /* SkillMarketplaceView.swift */; };
+		SKILLDTL001 /* SkillDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = SKILLDTL002 /* SkillDetailView.swift */; };
+		SKILLPUB001 /* SkillPublishView.swift in Sources */ = {isa = PBXBuildFile; fileRef = SKILLPUB002 /* SkillPublishView.swift */; };
+		CURMGR001 /* CuratorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CURMGR002 /* CuratorManager.swift */; };
+		OGBADGE001 /* OGBadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = OGBADGE002 /* OGBadgeView.swift */; };
+		OGVERIFY001 /* OGVerificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = OGVERIFY002 /* OGVerificationView.swift */; };
+		CURPROFILE001 /* CuratorProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CURPROFILE002 /* CuratorProfileView.swift */; };
+		SKILLREV001 /* SkillReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = SKILLREV002 /* SkillReviewView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -196,6 +231,41 @@
 		UITEST002 /* LocalAIAgentUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LocalAIAgentUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		WEBEXT002 /* WebContentExtractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebContentExtractor.swift; sourceTree = "<group>"; };
 		WHISPER004 /* WhisperManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhisperManager.swift; sourceTree = "<group>"; };
+		SYNC002 /* SyncManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncManager.swift; sourceTree = "<group>"; };
+		CWBACK002 /* ChatWebBackend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatWebBackend.swift; sourceTree = "<group>"; };
+		CLBACK002 /* CloudBackend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudBackend.swift; sourceTree = "<group>"; };
+		GRBACK002 /* GroqBackend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroqBackend.swift; sourceTree = "<group>"; };
+		LBACK002 /* LocalBackend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalBackend.swift; sourceTree = "<group>"; };
+		P2PBACK002 /* P2PBackend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = P2PBackend.swift; sourceTree = "<group>"; };
+		CHATMODE002 /* ChatMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMode.swift; sourceTree = "<group>"; };
+		CHATMODEMGR002 /* ChatModeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatModeManager.swift; sourceTree = "<group>"; };
+		INFBACK002 /* InferenceBackend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InferenceBackend.swift; sourceTree = "<group>"; };
+		INTRELAY002 /* InternetRelayHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternetRelayHandler.swift; sourceTree = "<group>"; };
+		PRIVSVR002 /* PrivateServerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateServerManager.swift; sourceTree = "<group>"; };
+		BITNET002 /* BitNetInference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BitNetInference.swift; sourceTree = "<group>"; };
+		EMERKB002 /* EmergencyKnowledgeBaseServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmergencyKnowledgeBaseServer.swift; sourceTree = "<group>"; };
+		WEATHER002 /* WeatherServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherServer.swift; sourceTree = "<group>"; };
+		KEYCHN002 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
+		SUBMGR002 /* SubscriptionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionManager.swift; sourceTree = "<group>"; };
+		TOKMGR002 /* TokenManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenManager.swift; sourceTree = "<group>"; };
+		CMSELV002 /* ChatModeSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatModeSelectorView.swift; sourceTree = "<group>"; };
+		CWCONV002 /* ChatWebConnectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatWebConnectView.swift; sourceTree = "<group>"; };
+		CWLOGV002 /* ChatWebLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatWebLoginView.swift; sourceTree = "<group>"; };
+		EMERQV002 /* EmergencyQuickActionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmergencyQuickActionsView.swift; sourceTree = "<group>"; };
+		PEERV002 /* PeerConnectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeerConnectionView.swift; sourceTree = "<group>"; };
+		SRVDASH002 /* ServerDashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerDashboardView.swift; sourceTree = "<group>"; };
+		VOICESEL02 /* VoiceSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceSelectionView.swift; sourceTree = "<group>"; };
+		VMKT002 /* VoiceMarketplaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceMarketplaceView.swift; sourceTree = "<group>"; };
+		SKILL002 /* Skill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Skill.swift; sourceTree = "<group>"; };
+		SKILLMGR002 /* SkillMarketplaceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkillMarketplaceManager.swift; sourceTree = "<group>"; };
+		SKILLMKT002 /* SkillMarketplaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkillMarketplaceView.swift; sourceTree = "<group>"; };
+		SKILLDTL002 /* SkillDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkillDetailView.swift; sourceTree = "<group>"; };
+		SKILLPUB002 /* SkillPublishView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkillPublishView.swift; sourceTree = "<group>"; };
+		CURMGR002 /* CuratorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CuratorManager.swift; sourceTree = "<group>"; };
+		OGBADGE002 /* OGBadgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OGBadgeView.swift; sourceTree = "<group>"; };
+		OGVERIFY002 /* OGVerificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OGVerificationView.swift; sourceTree = "<group>"; };
+		CURPROFILE002 /* CuratorProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CuratorProfileView.swift; sourceTree = "<group>"; };
+		SKILLREV002 /* SkillReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkillReviewView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -253,6 +323,9 @@
 				316 /* Resources */,
 				317 /* Utils */,
 				318 /* Services */,
+				CHATMODES_GRP /* ChatModes */,
+				TOKENECO_GRP /* TokenEconomy */,
+				SECURITY_GRP /* Security */,
 			);
 			path = LocalAIAgent;
 			sourceTree = "<group>";
@@ -282,6 +355,7 @@
 				CONVEXP002 /* ConversationExporter.swift */,
 				SHAREDDATAMGR002 /* SharedDataManager.swift */,
 				FEEDSVC02 /* FeedbackService.swift */,
+				SYNC002 /* SyncManager.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -305,6 +379,21 @@
 				PROMPTVIEW002 /* PromptTemplatesView.swift */,
 				ONBMCP002 /* OnboardingMCPView.swift */,
 				FEEDCON02 /* FeedbackConsentView.swift */,
+				CMSELV002 /* ChatModeSelectorView.swift */,
+				CWCONV002 /* ChatWebConnectView.swift */,
+				CWLOGV002 /* ChatWebLoginView.swift */,
+				EMERQV002 /* EmergencyQuickActionsView.swift */,
+				PEERV002 /* PeerConnectionView.swift */,
+				VOICESEL02 /* VoiceSelectionView.swift */,
+				VMKT002 /* VoiceMarketplaceView.swift */,
+				SKILLMKT002 /* SkillMarketplaceView.swift */,
+				SKILLDTL002 /* SkillDetailView.swift */,
+				SKILLPUB002 /* SkillPublishView.swift */,
+				OGBADGE002 /* OGBadgeView.swift */,
+				OGVERIFY002 /* OGVerificationView.swift */,
+				CURPROFILE002 /* CuratorProfileView.swift */,
+				SKILLREV002 /* SkillReviewView.swift */,
+				MACVIEWS001 /* Mac */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -332,6 +421,7 @@
 				SHERPA002 /* SherpaOnnx.swift */,
 				REAZON002 /* ReazonSpeechManager.swift */,
 				KOKORO002 /* KokoroTTSManager.swift */,
+				/* BITNET002 BitNetInference.swift — excluded, requires bitnet C library */
 			);
 			path = LLM;
 			sourceTree = "<group>";
@@ -355,6 +445,7 @@
 				128 /* MCPTool.swift */,
 				8F274E62F73576596B9AD3FA /* ModelSettings.swift */,
 				PROMPTTMPL002 /* PromptTemplate.swift */,
+				SKILL002 /* Skill.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -384,6 +475,7 @@
 				FEEDMGR002 /* FeedbackManager.swift */,
 				REVMGR002 /* ReviewManager.swift */,
 				REFMGR002 /* ReferralManager.swift */,
+				CURMGR002 /* CuratorManager.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -401,6 +493,8 @@
 				134 /* WebSearchServer.swift */,
 				TRANS002 /* TranslationServer.swift */,
 				NOTES002 /* NotesServer.swift */,
+				EMERKB002 /* EmergencyKnowledgeBaseServer.swift */,
+				WEATHER002 /* WeatherServer.swift */,
 			);
 			path = Servers;
 			sourceTree = "<group>";
@@ -430,6 +524,65 @@
 				91D9833BA13FDD02724E72DD /* LLMConversationTests.swift */,
 			);
 			path = LocalAIAgentUITests;
+			sourceTree = "<group>";
+		};
+		CHATMODES_GRP /* ChatModes */ = {
+			isa = PBXGroup;
+			children = (
+				CHATMODE002 /* ChatMode.swift */,
+				CHATMODEMGR002 /* ChatModeManager.swift */,
+				INFBACK002 /* InferenceBackend.swift */,
+				BACKENDS_GRP /* Backends */,
+				P2PSVR_GRP /* P2PServer */,
+			);
+			path = ChatModes;
+			sourceTree = "<group>";
+		};
+		BACKENDS_GRP /* Backends */ = {
+			isa = PBXGroup;
+			children = (
+				CWBACK002 /* ChatWebBackend.swift */,
+				CLBACK002 /* CloudBackend.swift */,
+				GRBACK002 /* GroqBackend.swift */,
+				LBACK002 /* LocalBackend.swift */,
+				P2PBACK002 /* P2PBackend.swift */,
+			);
+			path = Backends;
+			sourceTree = "<group>";
+		};
+		P2PSVR_GRP /* P2PServer */ = {
+			isa = PBXGroup;
+			children = (
+				INTRELAY002 /* InternetRelayHandler.swift */,
+				PRIVSVR002 /* PrivateServerManager.swift */,
+			);
+			path = P2PServer;
+			sourceTree = "<group>";
+		};
+		TOKENECO_GRP /* TokenEconomy */ = {
+			isa = PBXGroup;
+			children = (
+				SUBMGR002 /* SubscriptionManager.swift */,
+				TOKMGR002 /* TokenManager.swift */,
+				SKILLMGR002 /* SkillMarketplaceManager.swift */,
+			);
+			path = TokenEconomy;
+			sourceTree = "<group>";
+		};
+		SECURITY_GRP /* Security */ = {
+			isa = PBXGroup;
+			children = (
+				KEYCHN002 /* KeychainManager.swift */,
+			);
+			path = Security;
+			sourceTree = "<group>";
+		};
+		MACVIEWS001 /* Mac */ = {
+			isa = PBXGroup;
+			children = (
+				SRVDASH002 /* ServerDashboardView.swift */,
+			);
+			path = Mac;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -638,6 +791,41 @@
 				KOKORO001 /* KokoroTTSManager.swift in Sources */,
 				FEEDSVC01 /* FeedbackService.swift in Sources */,
 				FEEDCON01 /* FeedbackConsentView.swift in Sources */,
+				SYNC001 /* SyncManager.swift in Sources */,
+				CWBACK001 /* ChatWebBackend.swift in Sources */,
+				CLBACK001 /* CloudBackend.swift in Sources */,
+				GRBACK001 /* GroqBackend.swift in Sources */,
+				LBACK001 /* LocalBackend.swift in Sources */,
+				P2PBACK001 /* P2PBackend.swift in Sources */,
+				CHATMODE001 /* ChatMode.swift in Sources */,
+				CHATMODEMGR001 /* ChatModeManager.swift in Sources */,
+				INFBACK001 /* InferenceBackend.swift in Sources */,
+				INTRELAY001 /* InternetRelayHandler.swift in Sources */,
+				PRIVSVR001 /* PrivateServerManager.swift in Sources */,
+				/* BITNET001 BitNetInference.swift omitted — requires bitnet C library */
+				EMERKB001 /* EmergencyKnowledgeBaseServer.swift in Sources */,
+				WEATHER001 /* WeatherServer.swift in Sources */,
+				KEYCHN001 /* KeychainManager.swift in Sources */,
+				SUBMGR001 /* SubscriptionManager.swift in Sources */,
+				TOKMGR001 /* TokenManager.swift in Sources */,
+				CMSELV001 /* ChatModeSelectorView.swift in Sources */,
+				CWCONV001 /* ChatWebConnectView.swift in Sources */,
+				CWLOGV001 /* ChatWebLoginView.swift in Sources */,
+				EMERQV001 /* EmergencyQuickActionsView.swift in Sources */,
+				PEERV001 /* PeerConnectionView.swift in Sources */,
+				SRVDASH001 /* ServerDashboardView.swift in Sources */,
+				VOICESEL01 /* VoiceSelectionView.swift in Sources */,
+				VMKT001 /* VoiceMarketplaceView.swift in Sources */,
+				SKILL001 /* Skill.swift in Sources */,
+				SKILLMGR001 /* SkillMarketplaceManager.swift in Sources */,
+				SKILLMKT001 /* SkillMarketplaceView.swift in Sources */,
+				SKILLDTL001 /* SkillDetailView.swift in Sources */,
+				SKILLPUB001 /* SkillPublishView.swift in Sources */,
+				CURMGR001 /* CuratorManager.swift in Sources */,
+				OGBADGE001 /* OGBadgeView.swift in Sources */,
+				OGVERIFY001 /* OGVerificationView.swift in Sources */,
+				CURPROFILE001 /* CuratorProfileView.swift in Sources */,
+				SKILLREV001 /* SkillReviewView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

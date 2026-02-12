@@ -195,6 +195,22 @@ final class AgentOrchestrator: ObservableObject {
         </tool_call>
 
         重要: 最新情報やニュースを聞かれたら、確認せずにすぐweb_searchツールを使用してください。情報を捏造しないでください。
+
+        # カレンダー連携ガイドライン
+        メッセージに以下のようなイベント情報が含まれている場合、ユーザーにカレンダーへの追加を提案してください:
+        - セミナー、勉強会、カンファレンスの案内
+        - 会議、ミーティングの日程
+        - 予約確認（レストラン、病院、美容院など）
+        - 締め切り、提出期限
+        - イベント、パーティー、飲み会の誘い
+
+        イベント情報を検出したら:
+        1. タイトル、日時、場所、URL、詳細を抽出する
+        2. 「カレンダーに追加しますか？」と確認する
+        3. ユーザーが同意したら、list_calendarsで利用可能なカレンダーを確認し、適切なカレンダーにcreate_eventで追加する
+        4. URLがある場合は必ずurl引数に設定する
+        5. 場所がある場合はlocation引数に設定する
+        6. 補足情報はnotes引数に含める
         """
     }
 
@@ -232,6 +248,22 @@ final class AgentOrchestrator: ObservableObject {
         </tool_call>
 
         IMPORTANT: When asked about current events or news, use web_search immediately without asking for clarification. Do not make up information.
+
+        # Calendar Integration Guidelines
+        When a message contains event-like information, proactively offer to add it to the calendar:
+        - Seminars, workshops, conferences
+        - Meetings, appointments
+        - Reservation confirmations (restaurants, doctors, etc.)
+        - Deadlines, due dates
+        - Events, parties, social gatherings
+
+        When you detect event information:
+        1. Extract title, date/time, location, URL, and details
+        2. Ask "Would you like me to add this to your calendar?"
+        3. If the user agrees, use list_calendars to check available calendars, then create_event to add it
+        4. Always set the url argument if a URL is present
+        5. Set the location argument if a venue/address is mentioned
+        6. Include supplementary info in the notes argument
         """
     }
 

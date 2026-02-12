@@ -1,0 +1,612 @@
+/*
+  Localizable.strings (Portuguese - Brazil)
+  Elio
+*/
+
+// MARK: - App General
+"app.name" = "Elio";
+"app.tagline" = "Seu segundo c\U00E9rebro que guarda seus segredos.";
+
+// MARK: - Common Actions
+"common.done" = "Conclu\U00EDdo";
+"common.cancel" = "Cancelar";
+"common.delete" = "Excluir";
+"common.save" = "Salvar";
+"common.edit" = "Editar";
+"common.share" = "Compartilhar";
+"common.copy" = "Copiar";
+"common.copied" = "Copiado";
+"common.loading" = "Carregando...";
+"common.error" = "Erro";
+"common.retry" = "Tentar novamente";
+"common.skip" = "Pular";
+"common.next" = "Pr\U00F3ximo";
+"common.start" = "Come\U00E7ar";
+"common.add" = "Adicionar";
+"common.close" = "Fechar";
+"common.details" = "Detalhes";
+"common.yes" = "Sim";
+"common.no" = "N\U00E3o";
+"common.unknown" = "Desconhecido";
+
+// MARK: - Chat
+"chat.placeholder" = "Pergunte o que quiser";
+"chat.model.not.loaded" = "Nenhum Modelo Carregado";
+"chat.model.not.loaded.description" = "Baixe um modelo em Configura\U00E7\U00F5es";
+"chat.go.to.settings" = "Ir para Configura\U00E7\U00F5es";
+"chat.new.conversation" = "Nova Conversa";
+"chat.stop.generation" = "Parar";
+"chat.generation.stopped" = "\n\n[Gera\U00E7\U00E3o interrompida]";
+"chat.image.sent" = "[Imagem enviada]";
+"chat.images.sent" = "[%d imagens enviadas]";
+"chat.pdf.sent" = "[PDF anexado: %@]";
+"chat.pdf.sent.vision" = "[PDF com imagem: %@]";
+"chat.pdf.context" = "O conte\U00FAdo a seguir foi extra\U00EDdo do documento PDF \"%@\":\n\n%@";
+"chat.pdf.context.vision" = "Esta \U00E9 a p\U00E1gina 1 do documento PDF \"%@\". O conte\U00FAdo de texto extra\U00EDdo \U00E9:\n\n%@\n\nPor favor, analise tanto o conte\U00FAdo visual quanto o texto.";
+"chat.pdf.analyze" = "Por favor, analise esta p\U00E1gina do PDF \"%@\".";
+"chat.url.sent" = "[P\U00E1gina web: %@]";
+"chat.url.context" = "O conte\U00FAdo a seguir foi extra\U00EDdo da p\U00E1gina web \"%@\" (%@):\n\n%@";
+"chat.thinking" = "Pensando...";
+"chat.generating" = "Gerando resposta...";
+"chat.welcome" = "Como posso te ajudar?";
+"chat.suggestion.schedule" = "Mostrar agenda de hoje";
+"chat.suggestion.reminder" = "Criar um lembrete";
+"chat.suggestion.weather" = "Como est\U00E1 o tempo hoje?";
+"chat.suggestion.help" = "Como usar este app";
+"chat.websearch.on" = "Busca Web Ativada";
+"chat.websearch.off" = "Busca Web Desativada";
+"chat.thinking.on" = "Pensamento Ativado";
+"chat.thinking.off" = "Pensamento Desativado";
+"chat.transcribing" = "Transcrevendo...";
+"chat.offline" = "Offline";
+
+// Voice Conversation Mode
+"voice.listening" = "Ouvindo...";
+"voice.processing" = "Processando...";
+"voice.thinking" = "Pensando...";
+"voice.speaking" = "Falando...";
+"voice.tap.to.send" = "Toque para enviar";
+"chat.templates" = "Modelos";
+"chat.websearch.privacy.title" = "Sobre a Busca Web";
+"chat.websearch.privacy.message" = "Ativar a busca web permite que a IA pesquise na internet via DuckDuckGo para obter informa\U00E7\U00F5es atualizadas. As consultas s\U00E3o enviadas ao DuckDuckGo, mas n\U00E3o s\U00E3o rastreadas.";
+"chat.websearch.privacy.enable" = "Ativar";
+"chat.websearch.privacy.disable" = "Manter Desativada";
+
+// MARK: - Settings
+"settings.title" = "Configura\U00E7\U00F5es";
+"settings.model.section" = "Modelos de IA";
+"settings.model.recommended" = "Recomendado: %@";
+"settings.model.local.execution" = "Os modelos rodam localmente no seu dispositivo";
+"settings.model.show.more" = "Outros Modelos (%d)";
+"settings.model.show.less" = "Mostrar Menos";
+"settings.appearance.section" = "Apar\U00EAncia";
+"settings.tools.section" = "Recursos Inteligentes";
+"settings.mcp.servers" = "Integra\U00E7\U00F5es";
+"settings.mcp.servers.description" = "Calend\U00E1rio, Arquivos, Lembretes e mais";
+"settings.mcp.enabled.count" = "%d ativados";
+"settings.mcp.enabled.count.suffix" = " ativados";
+"settings.about.section" = "Sobre";
+"settings.version" = "Vers\U00E3o";
+"settings.about.app" = "Sobre Este App";
+"settings.about.mcp" = "Sobre as Integra\U00E7\U00F5es";
+"settings.privacy.badge" = "Funciona Offline";
+"settings.privacy.description" = "Funciona no Modo Avi\U00E3o";
+"settings.airplane.mode" = "Rodando no Modo Avi\U00E3o";
+"settings.offline.ready" = "Pronto para Uso Offline";
+
+// MARK: - Model States
+"model.status.downloading" = "Baixando... %d%%";
+"model.status.loading" = "Carregando...";
+"model.status.in.use" = "Em Uso";
+"model.status.recommended" = "Recomendado";
+"model.status.heavy" = "Pesado";
+"model.action.download" = "Baixar";
+"model.action.load" = "Carregar";
+"model.action.delete" = "Excluir";
+"model.action.use" = "Usar Este Modelo";
+"model.delete.confirm.title" = "Excluir Modelo";
+"model.delete.confirm.message" = "Excluir %@? Voc\U00EA precisar\U00E1 baix\U00E1-lo novamente para us\U00E1-lo.";
+"model.select.title" = "Selecionar Modelo";
+"model.select.prompt" = "Selecione um modelo";
+"model.downloaded" = "Baixado";
+
+// MARK: - Inference Mode
+"inference.mode.title" = "Acelera\U00E7\U00E3o";
+"inference.mode.auto" = "Autom\U00E1tico";
+"inference.mode.auto.desc" = "Desempenho ideal automaticamente";
+"inference.mode.gpu" = "GPU (Metal)";
+"inference.mode.gpu.desc" = "Velocidade m\U00E1xima com Metal";
+"inference.mode.cpu" = "Somente CPU";
+"inference.mode.cpu.desc" = "Modo de economia de bateria";
+"inference.mode.hybrid" = "H\U00EDbrido";
+"inference.mode.hybrid.desc" = "Equil\U00EDbrio entre velocidade e bateria";
+
+// MARK: - Theme
+"theme.system" = "Sistema";
+"theme.light" = "Claro";
+"theme.dark" = "Escuro";
+
+// MARK: - Onboarding
+"onboarding.welcome.title" = "Bem-vindo ao ElioChat";
+"onboarding.welcome.subtitle" = "Seu assistente de IA privado";
+"onboarding.features.title" = "IA Verdadeiramente Privada";
+"onboarding.feature.offline" = "Funciona no Modo Avi\U00E3o";
+"onboarding.feature.offline.desc" = "Use em voos ou no metr\U00F4";
+"onboarding.feature.privacy" = "Zero Transmiss\U00E3o de Dados";
+"onboarding.feature.privacy.desc" = "Suas conversas nunca saem do seu celular";
+"onboarding.feature.vault" = "Integra\U00E7\U00F5es Inteligentes";
+"onboarding.feature.vault.desc" = "Conecte com Calend\U00E1rio e Arquivos";
+"onboarding.feature.secure" = "IA Segura para o Trabalho";
+"onboarding.feature.secure.desc" = "Seguro para uso corporativo";
+"onboarding.feature.thinking" = "Processo de Racioc\U00EDnio";
+"onboarding.privacy.title" = "Seus Dados S\U00E3o Seus";
+"onboarding.privacy.item1" = "Todo o processamento acontece no seu iPhone";
+"onboarding.privacy.item2" = "Nenhum dado \U00E9 enviado para servidores na nuvem";
+"onboarding.privacy.item3" = "Nunca usado para treinamento de IA";
+"onboarding.getstarted.title" = "Pronto em Um Toque";
+"onboarding.getstarted.subtitle" = "Baixe o modelo de IA recomendado\ne comece a conversar agora mesmo";
+"onboarding.step1" = "Baixar o modelo recomendado";
+"onboarding.step2" = "Aguardar alguns minutos";
+"onboarding.step3" = "Tudo pronto!";
+
+// MARK: - About
+"about.title" = "Sobre Este App";
+"about.rate.app" = "Avaliar o App";
+"about.share.app" = "Compartilhar com Amigos";
+"about.privacy.policy" = "Pol\U00EDtica de Privacidade";
+"about.terms" = "Termos de Servi\U00E7o";
+"about.tech.info" = "Informa\U00E7\U00F5es T\U00E9cnicas";
+"about.tech.engine" = "Motor de IA";
+"about.tech.format" = "Formato Suportado";
+"about.tech.inference" = "Infer\U00EAncia";
+"about.data.management" = "Gerenciamento de Dados";
+"about.delete.all" = "Excluir Todas as Conversas";
+"about.credits" = "Cr\U00E9ditos";
+"about.credits.description" = "Este app utiliza bibliotecas de c\U00F3digo aberto";
+"about.privacy.section" = "Privacidade";
+"about.gguf.format" = "Formato GGUF";
+"about.metal.gpu" = "Acelera\U00E7\U00E3o GPU Metal";
+
+// MARK: - Referral
+"referral.title" = "Indique Amigos";
+"referral.code.title" = "Seu C\U00F3digo de Indica\U00E7\U00E3o";
+"referral.code.copy" = "Copiar C\U00F3digo";
+"referral.code.copied" = "Copiado";
+"referral.share.button" = "Compartilhar com Amigos";
+"referral.share.description" = "Compartilhe o Elio com seus amigos!";
+"referral.count" = "%d pessoas indicadas";
+"referral.enter.title" = "Inserir C\U00F3digo de Indica\U00E7\U00E3o";
+"referral.enter.placeholder" = "C\U00F3digo de Indica\U00E7\U00E3o";
+"referral.enter.button" = "Aplicar";
+"referral.enter.success" = "C\U00F3digo de indica\U00E7\U00E3o aplicado";
+"referral.enter.error" = "C\U00F3digo de indica\U00E7\U00E3o inv\U00E1lido";
+
+// MARK: - Privacy Policy
+"privacy.title" = "Pol\U00EDtica de Privacidade";
+"privacy.data.collection.title" = "Coleta de Dados";
+"privacy.data.collection.content" = "Este app executa uma IA local completamente offline.\nNenhum dado \U00E9 enviado para servidores externos.\nTodas as conversas s\U00E3o armazenadas apenas no seu dispositivo.";
+"privacy.stored.data.title" = "Dados Armazenados";
+"privacy.stored.data.content" = "Hist\U00F3rico de conversas (armazenado apenas no dispositivo)\nArquivos de modelo de IA (armazenados apenas no dispositivo)\nConfigura\U00E7\U00F5es do app (armazenadas apenas no dispositivo)\n\nEstes dados nunca s\U00E3o compartilhados externamente.";
+"privacy.data.deletion.title" = "Exclus\U00E3o de Dados";
+"privacy.data.deletion.content" = "Voc\U00EA pode excluir todos os dados a qualquer momento em Configura\U00E7\U00F5es > Gerenciamento de Dados.\nDesinstalar o app excluir\U00E1 todos os dados.";
+
+// MARK: - Terms of Service
+"terms.title" = "Termos de Servi\U00E7o";
+"terms.service.title" = "Descri\U00E7\U00E3o do Servi\U00E7o";
+"terms.service.content" = "Este app fornece funcionalidade de assistente de IA usando um modelo de IA executado localmente.";
+"terms.disclaimer.title" = "Isen\U00E7\U00E3o de Responsabilidade";
+"terms.disclaimer.content" = "As respostas da IA podem conter erros.\nDecis\U00F5es importantes devem sempre ser verificadas por um profissional.\nN\U00E3o nos responsabilizamos por quaisquer danos decorrentes do uso deste app.";
+"terms.prohibited.title" = "Atividades Proibidas";
+"terms.prohibited.content" = "Atividades ilegais\nAtividades que violem os direitos de terceiros\nEngenharia reversa deste app\nC\U00F3pia n\U00E3o autorizada deste app";
+"terms.ip.title" = "Propriedade Intelectual";
+"terms.ip.content" = "Os direitos de propriedade intelectual deste app pertencem ao desenvolvedor.\nO uso n\U00E3o autorizado \U00E9 proibido.";
+
+// MARK: - Conversations
+"conversations.title" = "Conversas";
+"conversations.new" = "Nova Conversa";
+"conversations.empty" = "Nenhuma conversa ainda";
+"conversations.delete" = "Excluir Conversa";
+"conversations.default.title" = "Nova Conversa";
+"conversations.today" = "Hoje";
+"conversations.yesterday" = "Ontem";
+"conversations.past7days" = "\U00DAltimos 7 Dias";
+"conversations.past30days" = "\U00DAltimos 30 Dias";
+"conversations.older" = "Mais Antigos";
+"conversations.created" = "Criado em: %@";
+"conversations.user" = "Usu\U00E1rio";
+"conversations.assistant" = "Assistente";
+"conversations.search.placeholder" = "Buscar conversas";
+"conversations.search.no_results" = "Nenhum resultado encontrado";
+
+// MARK: - Message Actions
+"message.copy" = "Copiar";
+"message.speak" = "Falar";
+"message.stop.speaking" = "Parar de Falar";
+"message.share" = "Compartilhar";
+"message.share.card" = "Compartilhar como Card";
+"message.like" = "Curtir";
+
+// MARK: - Share Card
+"share.card.title" = "Compartilhar Card";
+"share.card.preview" = "Pr\U00E9-visualiza\U00E7\U00E3o";
+"share.card.button" = "Compartilhar Imagem";
+"message.dislike" = "N\U00E3o Curtir";
+"message.thinking.process" = "Processo de Racioc\U00EDnio";
+"message.tool.running" = "Executando Ferramenta";
+"message.tool.error" = "Erro";
+"message.tool.completed" = "Conclu\U00EDdo";
+
+// MARK: - Attachment
+"attachment.title" = "Anexo";
+"attachment.photo.library" = "Escolher Foto";
+"attachment.camera" = "Tirar Foto";
+"attachment.pdf" = "Selecionar PDF";
+"attachment.pdf.chars" = "%d caracteres";
+"attachment.pdf.pages" = "%d p\U00E1ginas";
+"attachment.pdf.vision.enabled" = "An\U00E1lise de imagem ativada";
+"attachment.pdf.text.only" = "Modo somente texto";
+"attachment.url" = "Ler P\U00E1gina Web";
+"attachment.url.title" = "Inserir URL";
+"attachment.url.placeholder" = "https://example.com";
+"attachment.url.message" = "Cole uma URL para extrair o conte\U00FAdo";
+"attachment.url.fetch" = "Buscar";
+"attachment.url.loading" = "Carregando p\U00E1gina...";
+
+// MARK: - Errors
+"error.model.not.found" = "Arquivo de modelo n\U00E3o encontrado";
+"error.model.not.loaded" = "Modelo n\U00E3o carregado";
+"error.context.failed" = "Falha ao criar contexto";
+"error.tokenization.failed" = "Falha na tokeniza\U00E7\U00E3o";
+"error.generation.failed" = "Erro na gera\U00E7\U00E3o: %@";
+"error.occurred" = "Ocorreu um erro: %@";
+"error.invalid.url" = "URL inv\U00E1lida";
+"error.download.failed" = "Falha no download";
+"error.extraction.failed" = "Falha na extra\U00E7\U00E3o";
+"error.config.not.found" = "Arquivo de configura\U00E7\U00E3o n\U00E3o encontrado";
+
+// MARK: - Ghost Search
+"ghost.search.title" = "Busca Fantasma";
+"ghost.search.description" = "Busca an\U00F4nima via DuckDuckGo (sem rastreamento)";
+"ghost.search.connecting" = "Conectando \U00E0 rede an\U00F4nima...";
+"ghost.search.privacy.note" = "Seu hist\U00F3rico de busca nunca \U00E9 rastreado";
+
+// MARK: - MCP Servers
+"mcp.filesystem" = "Sistema de Arquivos";
+"mcp.filesystem.desc" = "Ler e gravar arquivos no app";
+"mcp.calendar" = "Calend\U00E1rio";
+"mcp.calendar.desc" = "Ler e criar eventos";
+"mcp.reminders" = "Lembretes";
+"mcp.reminders.desc" = "Gerenciar lembretes";
+"mcp.contacts" = "Contatos";
+"mcp.contacts.desc" = "Buscar e visualizar contatos";
+"mcp.photos" = "Fotos";
+"mcp.photos.desc" = "Acessar biblioteca de fotos";
+"mcp.location" = "Localiza\U00E7\U00E3o";
+"mcp.location.desc" = "Obter localiza\U00E7\U00E3o atual e buscar lugares";
+"mcp.health" = "Sa\U00FAde";
+"mcp.health.desc" = "Acessar dados de sa\U00FAde";
+"mcp.shortcuts" = "Atalhos";
+"mcp.shortcuts.desc" = "Executar atalhos";
+"mcp.websearch" = "Busca Web";
+"mcp.websearch.desc" = "Busca web an\U00F4nima";
+"mcp.custom" = "Integra\U00E7\U00E3o Personalizada";
+"mcp.custom.add" = "Adicionar Integra\U00E7\U00E3o";
+"mcp.custom.setup" = "Configurar integra\U00E7\U00E3o com servi\U00E7o externo";
+"mcp.custom.title" = "Integra\U00E7\U00F5es Personalizadas";
+"mcp.settings.title" = "Configura\U00E7\U00F5es de Integra\U00E7\U00E3o";
+"mcp.server.name" = "Nome do Servidor";
+"mcp.server.name.placeholder" = "Ex.: Meu Servidor Personalizado";
+"mcp.config.url" = "URL do Arquivo de Configura\U00E7\U00E3o";
+"mcp.import.file" = "Importar de Arquivo";
+"mcp.config.example" = "Exemplo de Arquivo de Configura\U00E7\U00E3o";
+"mcp.permission.note" = "As permiss\U00F5es ser\U00E3o solicitadas ao usar cada recurso pela primeira vez";
+
+// MARK: - MCP Tool Messages
+"mcp.tool.available" = "Ferramentas Dispon\U00EDveis:";
+"mcp.tool.parameters" = "Par\U00E2metros:";
+"mcp.prompt.available" = "Prompts Dispon\U00EDveis:";
+"mcp.prompt.arguments" = "Argumentos:";
+"mcp.tool.name" = "nome_da_ferramenta";
+"mcp.tool.arg.name" = "nome_do_argumento";
+"mcp.tool.arg.value" = "valor";
+"mcp.tool.no.result" = "Sem resultado";
+"mcp.tool.running" = "Executando ferramenta: %@";
+"mcp.tool.error" = "Erro na execu\U00E7\U00E3o da ferramenta: %@";
+
+// MARK: - MCP Error Messages
+"mcp.error.server.not.found" = "Servidor n\U00E3o encontrado: %@";
+"mcp.error.tool.not.found" = "Ferramenta n\U00E3o encontrada: %@";
+"mcp.error.invalid.args" = "Argumentos inv\U00E1lidos: %@";
+"mcp.error.execution" = "Erro de execu\U00E7\U00E3o: %@";
+"mcp.error.permission" = "Permiss\U00E3o negada: %@";
+
+// MARK: - Calendar Messages
+"calendar.no.events" = "Nenhum evento";
+"calendar.event.created" = "Evento criado: %@";
+"calendar.event.deleted" = "Evento exclu\U00EDdo: %@";
+"calendar.allday.created" = "Evento de dia inteiro criado: %@";
+"calendar.access.denied" = "Acesso ao calend\U00E1rio negado";
+"calendar.today.none" = "Nenhum evento hoje";
+"calendar.untitled" = "Sem t\U00EDtulo";
+
+// MARK: - Reminders Messages
+"reminders.none" = "Nenhum lembrete";
+"reminders.created" = "Lembrete criado: %@";
+"reminders.completed" = "Lembrete conclu\U00EDdo: %@";
+"reminders.deleted" = "Lembrete exclu\U00EDdo: %@";
+"reminders.access.denied" = "Acesso aos lembretes negado";
+"reminders.untitled" = "Sem t\U00EDtulo";
+
+// MARK: - Photos Messages
+"photos.access.denied" = "Acesso \U00E0s fotos negado";
+"photos.not.found" = "Foto n\U00E3o encontrada";
+"photos.untitled" = "Sem t\U00EDtulo";
+"photos.count" = "Fotos: %d";
+"photos.videos.count" = "V\U00EDdeos: %d";
+"photos.albums.count" = "\U00C1lbuns: %d";
+"photos.favorites.count" = "Favoritos: %d";
+"photos.date" = "Data: %@";
+"photos.size" = "Tamanho: %d x %d";
+"photos.location" = "Localiza\U00E7\U00E3o: %@, %@";
+"photos.media.type" = "Tipo de M\U00EDdia: %@";
+"photos.duration" = "Dura\U00E7\U00E3o: %dm %ds";
+"photos.favorite" = "Favorito: %@";
+"photos.type.image" = "Foto";
+"photos.type.video" = "V\U00EDdeo";
+"photos.type.audio" = "\U00C1udio";
+
+// MARK: - Contacts Messages
+"contacts.access.denied" = "Acesso aos contatos negado";
+"contacts.not.found" = "Nenhum contato correspondente encontrado";
+"contacts.no.groups" = "Nenhum grupo";
+"contacts.no.card" = "Nenhum cart\U00E3o de contato definido";
+"contacts.name" = "Nome: %@";
+"contacts.company" = "Empresa: %@";
+"contacts.job" = "Cargo: %@";
+
+// MARK: - Location Messages
+"location.access.denied" = "Acesso \U00E0 localiza\U00E7\U00E3o negado";
+"location.not.found" = "Endere\U00E7o n\U00E3o encontrado";
+"location.latitude" = "Latitude: %@";
+"location.longitude" = "Longitude: %@";
+"location.accuracy" = "Precis\U00E3o: %dm";
+"location.altitude" = "Altitude: %dm";
+"location.search" = "Busca: %@";
+"location.address" = "Endere\U00E7o: %@";
+"location.country" = "Pa\U00EDs: %@";
+"location.postal" = "CEP: %@";
+"location.from" = "De: (%@, %@)";
+"location.to" = "Para: (%@, %@)";
+"location.distance.km" = "Dist\U00E2ncia: %.2f km";
+"location.distance.m" = "Dist\U00E2ncia: %d m";
+
+// MARK: - Health Messages
+"health.not.available" = "Sa\U00FAde n\U00E3o est\U00E1 dispon\U00EDvel neste dispositivo";
+"health.date" = "Data: %@";
+"health.steps" = "Passos: %@ passos";
+"health.goal.progress" = "Progresso da meta: %d%% (meta de 10.000 passos)";
+"health.no.data" = "Nenhum dado dispon\U00EDvel";
+"health.avg.bpm" = "M\U00E9dia: %d bpm";
+"health.min.bpm" = "M\U00EDnimo: %d bpm";
+"health.max.bpm" = "M\U00E1ximo: %d bpm";
+"health.measurements" = "Medi\U00E7\U00F5es: %d";
+"health.no.sleep" = "Sem dados de sono";
+"health.sleep.total" = "Sono total: %dh %dm";
+"health.bedtime" = "Hor\U00E1rio de dormir: %@";
+"health.waketime" = "Hor\U00E1rio de acordar: %@";
+"health.calories" = "Calorias: %d kcal";
+
+// MARK: - File System Messages
+"filesystem.not.found" = "Arquivo n\U00E3o encontrado: %@";
+"filesystem.written" = "Arquivo gravado: %@";
+"filesystem.dir.created" = "Diret\U00F3rio criado: %@";
+"filesystem.deleted" = "Exclu\U00EDdo: %@";
+"filesystem.size" = "Tamanho: %@";
+"filesystem.created" = "Criado: %@";
+"filesystem.modified" = "Modificado: %@";
+"filesystem.type" = "Tipo: %@";
+
+// MARK: - Shortcuts Messages
+"shortcuts.executed" = "Atalho '%@' executado";
+"shortcuts.opened" = "App Atalhos aberto";
+"shortcuts.settings.opened" = "Configura\U00E7\U00F5es (%@) abertas";
+"shortcuts.mail.opened" = "Composi\U00E7\U00E3o de e-mail aberta";
+"shortcuts.calling" = "Ligando para: %@";
+"shortcuts.message.opened" = "Composi\U00E7\U00E3o de mensagem aberta";
+"shortcuts.failed" = "N\U00E3o foi poss\U00EDvel abrir o atalho";
+
+// MARK: - Model Tiers
+"model.tier.entry" = "B\U00E1sico";
+"model.tier.standard" = "Padr\U00E3o";
+"model.tier.pro" = "Pro";
+
+// MARK: - Tool Parser
+"tool.arguments" = "Argumentos:";
+
+// MARK: - Model Settings
+"model.action.settings" = "Configura\U00E7\U00F5es";
+"settings.model.parameters" = "Configura\U00E7\U00F5es do Modelo";
+"settings.model.parameters.description" = "Personalize os par\U00E2metros de gera\U00E7\U00E3o para este modelo";
+"settings.preset.title" = "Predefinidos";
+"settings.preset.custom" = "Personalizado";
+"settings.preset.balanced" = "Equilibrado";
+"settings.preset.creative" = "Criativo";
+"settings.preset.precise" = "Preciso";
+"settings.preset.coding" = "Programa\U00E7\U00E3o";
+"settings.preset.japanese" = "Japon\U00EAs";
+"settings.parameters.title" = "Par\U00E2metros";
+"settings.parameter.temperature" = "Temperatura";
+"settings.parameter.temperature.description" = "Maior = mais criativo, menor = mais focado";
+"settings.parameter.top.p" = "Top P";
+"settings.parameter.top.p.description" = "Probabilidade de amostragem nuclear";
+"settings.parameter.top.k" = "Top K";
+"settings.parameter.top.k.description" = "N\U00FAmero de tokens principais a considerar";
+"settings.parameter.max.tokens" = "Tokens M\U00E1ximos";
+"settings.parameter.max.tokens.description" = "Comprimento m\U00E1ximo da resposta";
+"settings.parameter.repeat.penalty" = "Penalidade de Repeti\U00E7\U00E3o";
+"settings.parameter.repeat.penalty.description" = "Maior = sa\U00EDda menos repetitiva";
+"settings.parameter.thinking" = "Modo de Racioc\U00EDnio";
+"settings.parameter.thinking.description" = "Mostrar o processo de racioc\U00EDnio da IA";
+"settings.system.prompt.title" = "Prompt do Sistema";
+"settings.system.prompt.description" = "Instru\U00E7\U00F5es personalizadas para a IA";
+"settings.reset.to.default" = "Restaurar Padr\U00E3o";
+
+// MARK: - Vision Model
+"vision.model.required.title" = "Modelo de Vis\U00E3o Necess\U00E1rio";
+"vision.model.required.header" = "Reconhecimento de Imagem Necess\U00E1rio";
+"vision.model.required.description" = "Para analisar imagens, voc\U00EA precisa de um modelo de IA com capacidade de vis\U00E3o";
+"vision.model.switch" = "Trocar Modelo";
+"vision.model.switch.message %@" = "Trocar para %@ para ativar a an\U00E1lise de imagens?";
+"vision.model.download" = "Baixar";
+"vision.model.download.message %@ %@" = "Baixar %@ (%@) para analisar imagens?";
+"vision.model.not.available" = "Nenhum modelo de vis\U00E3o compat\U00EDvel dispon\U00EDvel para o seu dispositivo";
+"vision.model.switching" = "Trocando modelo...";
+"vision.model.download.title" = "Modelos de Vis\U00E3o";
+"vision.model.recommended" = "Recomendado para o seu dispositivo";
+"vision.model.recommended.size %@" = "Recomendado: %@";
+"vision.model.use.this" = "Usar Este Modelo";
+"vision.model.download.button %@" = "Baixar (%@)";
+"vision.model.other.options" = "Outros Modelos de Vis\U00E3o";
+"vision.model.download.complete" = "Download Conclu\U00EDdo";
+"vision.model.download.complete.message" = "Pronto para analisar imagens";
+
+// MARK: - Whisper Voice Input (Legacy)
+"whisper.download.title" = "Reconhecimento de Voz Necess\U00E1rio";
+"whisper.download.action" = "Baixar";
+"whisper.download.message" = "Para usar a entrada por voz, voc\U00EA precisa baixar o modelo de reconhecimento de fala (~150MB).";
+"whisper.downloading" = "Baixando modelo de reconhecimento de fala...";
+"whisper.download.error" = "Erro no Download";
+"whisper.load.error" = "Erro ao Carregar Modelo";
+"whisper.permission.denied" = "Acesso ao microfone n\U00E3o permitido";
+"whisper.transcribe.error" = "Erro na Transcri\U00E7\U00E3o";
+"whisper.error.permission" = "Permiss\U00E3o de microfone necess\U00E1ria";
+"whisper.error.not.recording" = "N\U00E3o est\U00E1 gravando no momento";
+"whisper.error.no.recording" = "Sem dados de grava\U00E7\U00E3o";
+"whisper.error.model.not.loaded" = "Modelo de reconhecimento de fala n\U00E3o carregado";
+"whisper.error.transcription" = "Falha na transcri\U00E7\U00E3o";
+
+// MARK: - Speech Recognition (ReazonSpeech)
+"speech.download.title" = "Reconhecimento de Voz Necess\U00E1rio";
+"speech.download.action" = "Baixar";
+"speech.download.message" = "Para usar a entrada por voz, voc\U00EA precisa baixar o modelo de reconhecimento de fala em japon\U00EAs (~155MB).";
+"speech.downloading" = "Baixando modelo de reconhecimento de fala...";
+
+// MARK: - Language Settings
+"settings.language.section" = "Idioma";
+"language.system" = "Usar Idioma do Sistema";
+"settings.language.restart.hint" = "As altera\U00E7\U00F5es de idioma entrar\U00E3o em vigor ap\U00F3s reiniciar o app";
+"settings.language.changed.title" = "Idioma Alterado";
+"settings.language.changed.message" = "Reinicie o app para aplicar as altera\U00E7\U00F5es";
+"common.ok" = "OK";
+
+// MARK: - System Prompt Settings
+"settings.prompt.section" = "Prompt do Sistema";
+"settings.prompt.edit" = "Editar Prompt";
+"settings.prompt.default" = "Usando padr\U00E3o";
+"settings.prompt.custom" = "Prompt personalizado definido";
+"settings.prompt.hint" = "Personalizar comportamento da IA";
+"settings.prompt.editor.title" = "Editar Prompt";
+"settings.prompt.editor.instruction" = "Adicione instru\U00E7\U00F5es personalizadas para a IA. Deixe vazio para usar o prompt padr\U00E3o.";
+"settings.prompt.default.preview" = "Prompt padr\U00E3o (trecho):";
+"settings.prompt.reset" = "Restaurar";
+"settings.prompt.reset.title" = "Restaurar Prompt";
+"settings.prompt.reset.message" = "Excluir prompt personalizado e restaurar o padr\U00E3o?";
+
+// MARK: - Prompt Templates
+"templates.title" = "Modelos de Prompt";
+"templates.empty" = "Nenhum modelo ainda";
+"templates.add" = "Adicionar Modelo";
+"template.add.title" = "Adicionar Modelo";
+"template.edit.title" = "Editar Modelo";
+"template.name.header" = "Nome";
+"template.name.placeholder" = "Nome do modelo";
+"template.content.header" = "Conte\U00FAdo do Prompt";
+"template.icon.header" = "\U00CDcone";
+"template.translate.name" = "Traduzir";
+"template.translate.content" = "Por favor, traduza o seguinte: ";
+"template.summarize.name" = "Resumir";
+"template.summarize.content" = "Por favor, resuma o seguinte: ";
+"template.explain.name" = "Explicar";
+"template.explain.content" = "Por favor, explique o seguinte: ";
+"template.code.name" = "C\U00F3digo";
+"template.code.content" = "Por favor, escreva o c\U00F3digo para: ";
+
+// MARK: - Export
+"export.title" = "Exportar Conversa";
+"export.format.markdown" = "Markdown";
+"export.format.pdf" = "PDF";
+"export.format.text" = "Texto Simples";
+"export.created" = "Criado";
+"export.image.attached" = "Imagem anexada";
+"export.generated.by" = "Gerado por";
+
+// MARK: - Loading Phases
+"loading.phase.initializing" = "Inicializando...";
+"loading.phase.loading" = "Carregando modelo...";
+"loading.phase.preparing" = "Preparando motor de infer\U00EAncia...";
+"loading.phase.almost" = "Quase pronto...";
+
+// MARK: - Welcome Screen
+"welcome.greeting" = "Pergunte o que quiser";
+"welcome.subtitle" = "Seu assistente de IA com privacidade em primeiro lugar";
+"suggestion.idea" = "Me ajude a ter ideias";
+"suggestion.write" = "Me ajude a escrever algo";
+"suggestion.question" = "Responda minhas perguntas";
+
+// MARK: - Kokoro TTS
+"tts.download.title" = "Voz de Alta Qualidade";
+"tts.download.action" = "Baixar";
+"tts.download.use_system" = "Usar Voz do Sistema";
+"tts.download.message" = "Baixe o modelo Kokoro TTS (~87MB) para uma convers\U00E3o de texto em fala em japon\U00EAs mais natural.";
+"tts.downloading" = "Baixando modelo TTS...";
+
+// MARK: - Feedback
+"feedback.consent.title" = "Enviar Feedback";
+"feedback.send" = "Enviar";
+"feedback.positive.title" = "Esta resposta foi \U00FAtil?";
+"feedback.negative.title" = "Isso poderia ser melhorado?";
+"feedback.explanation" = "Seu feedback ajuda a melhorar a qualidade da IA. Revise os dados que ser\U00E3o enviados antes de enviar.";
+"feedback.data.section" = "Dados a serem enviados";
+"feedback.data.conversation" = "Conversa";
+"feedback.data.conversation.desc" = "A resposta da IA e sua mensagem anterior";
+"feedback.data.model" = "Info do modelo";
+"feedback.data.model.desc" = "Nome do modelo de IA utilizado";
+"feedback.data.timestamp" = "Data e hora";
+"feedback.data.timestamp.desc" = "Quando o feedback foi enviado";
+"feedback.privacy.section" = "Privacidade";
+"feedback.privacy.anonymous" = "Nenhuma informa\U00E7\U00E3o pessoal identificável \U00E9 enviada";
+"feedback.privacy.improvement" = "Usado apenas para melhorar a qualidade da IA";
+"feedback.privacy.optional" = "O envio de feedback \U00E9 completamente opcional";
+"feedback.comment.section" = "Coment\U00E1rio (opcional)";
+"feedback.comment.placeholder" = "Conte-nos o que poderia ser melhorado ou o que funcionou bem...";
+"feedback.remember.title" = "Lembrar esta escolha";
+"feedback.remember.description" = "Enviar feedback sem perguntar na pr\U00F3xima vez";
+
+// MARK: - Web Search
+"chat.web.search" = "Busca Web";
+"search.privacy.title" = "Busca com Privacidade Protegida";
+"search.privacy.proceed" = "Buscar";
+"search.privacy.message" = "A Busca Web do ElioChat protege sua privacidade:\n\n🔒 Buscas via DuckDuckGo\n🚫 Sem rastreamento ou perfil\n🔐 Hist\U00F3rico de busca n\U00E3o \U00E9 armazenado\n📱 Nenhum dado armazenado fora do seu dispositivo\n\nApenas sua consulta de busca \U00E9 enviada ao DuckDuckGo, e os resultados s\U00E3o processados no seu dispositivo.";
+"chat.web.analyzing" = "[Analisando p\U00E1gina web]";
+// MARK: - Chat Modes
+"chatmode.local" = "Local";
+"chatmode.chatweb" = "Nuvem";
+"chatmode.private" = "Privado";
+"chatmode.fast" = "Rápido";
+"chatmode.genius" = "Gênio";
+"chatmode.public" = "Público";
+"chatmode.local.desc" = "No dispositivo \U2022 Grátis \U2022 Privado";
+"chatmode.chatweb.desc" = "ChatWeb.ai \U2022 IA na nuvem rápida";
+"chatmode.private.desc" = "Dispositivos confiáveis \U2022 Sua rede";
+"chatmode.fast.desc" = "Groq API \U2022 Super rápido";
+"chatmode.genius.desc" = "GPT-4o/Claude \U2022 Melhor qualidade";
+"chatmode.public.desc" = "Comunidade \U2022 Computação compartilhada";
+// MARK: - Inference Errors
+"error.backend.not.ready" = "Backend não está pronto";
+"error.api.key.missing" = "Chave API não configurada";
+"error.network" = "Erro de rede: %@";
+"error.rate.limited" = "Limite de taxa atingido. Tente novamente mais tarde.";
+"error.insufficient.tokens" = "Tokens insuficientes";
+"error.cancelled" = "Geração cancelada";
+"error.invalid.response" = "Resposta inválida do servidor";
+"error.server" = "Erro do servidor (%lld): %@";

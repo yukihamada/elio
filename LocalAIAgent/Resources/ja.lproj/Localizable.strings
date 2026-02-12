@@ -587,6 +587,51 @@
 "feedback.remember.title" = "この選択を記憶する";
 "feedback.remember.description" = "次回から確認なしでフィードバックを送信します";
 
+// MARK: - Emergency Mode
+"emergency.sos.button" = "緊急モード（長押しで切替）";
+"emergency.mode.active" = "緊急モード有効";
+"emergency.action.firstaid" = "応急処置";
+"emergency.action.firstaid.message" = "応急処置の方法を教えてください。怪我や症状を説明します: ";
+"emergency.action.disaster" = "災害対応";
+"emergency.action.disaster.message" = "災害が発生しました。対応手順を教えてください: ";
+"emergency.action.factcheck" = "情報確認";
+"emergency.action.factcheck.message" = "この情報の信頼性を確認してください: ";
+"emergency.action.contacts" = "緊急連絡先";
+"emergency.action.contacts.message" = "緊急連絡先の一覧を教えてください";
+"emergency.action.evacuation" = "避難";
+"emergency.action.evacuation.message" = "避難チェックリストを作成してください: ";
+"mcp.emergency_kb" = "緊急ナレッジベース";
+"mcp.emergency_kb.desc" = "災害時・緊急時の情報提供";
+
+// MARK: - Emergency Templates
+"template.firstaid.name" = "応急処置ガイド";
+"template.firstaid.content" = "次の症状・怪我の応急処置方法を教えてください: ";
+"template.disaster.name" = "災害対応";
+"template.disaster.content" = "次の災害が発生しました。対応手順を教えてください: ";
+"template.factcheck.name" = "情報の真偽確認";
+"template.factcheck.content" = "次の情報の信頼性を確認してください。事実確認のポイントも教えてください: ";
+"template.evacuation.name" = "避難チェックリスト";
+"template.evacuation.content" = "現在の状況に合った避難チェックリストを作成してください: ";
+
+// MARK: - ChatWeb.ai Integration
+"chatweb.title" = "ChatWeb.ai";
+"chatweb.desc" = "クラウドAIチャット";
+"chatweb.connect" = "ChatWeb.aiに接続";
+"chatweb.qr.title" = "QRコードで接続";
+"chatweb.qr.scan" = "QRコードをスキャン";
+"chatweb.open" = "ChatWeb.aiを開く";
+
+// MARK: - Peer Connection
+"peer.title" = "近くのデバイス";
+"peer.desc" = "近くのElioデバイスとの連携";
+"peer.connect" = "デバイスに接続";
+"peer.code.title" = "接続コード";
+"peer.code.enter" = "4桁のコードを入力";
+"peer.code.your" = "あなたのコード";
+"peer.connected" = "接続済み";
+"peer.disconnected" = "切断済み";
+"peer.inference.offload" = "推論を共有中";
+
 // MARK: - Web Search
 "chat.web.search" = "Web検索";
 "search.privacy.title" = "プライバシー保護検索";

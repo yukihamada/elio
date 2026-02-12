@@ -1,0 +1,2 @@
+- Prise en charge de 12 langues : anglais, japonais, espagnol, français, allemand, italien, portugais (Brésil), chinois (simplifié), chinois (traditionnel), coréen, arabe et hindi
+- Corrections de bugs et améliorations des performances

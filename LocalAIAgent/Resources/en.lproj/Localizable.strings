@@ -582,6 +582,51 @@
 "feedback.remember.title" = "Remember this choice";
 "feedback.remember.description" = "Submit feedback without asking next time";
 
+// MARK: - Emergency Mode
+"emergency.sos.button" = "Emergency Mode (long press to toggle)";
+"emergency.mode.active" = "Emergency Mode Active";
+"emergency.action.firstaid" = "First Aid";
+"emergency.action.firstaid.message" = "Please provide first aid instructions. I will describe the injury or symptoms: ";
+"emergency.action.disaster" = "Disaster";
+"emergency.action.disaster.message" = "A disaster has occurred. Please provide response procedures: ";
+"emergency.action.factcheck" = "Fact Check";
+"emergency.action.factcheck.message" = "Please verify the reliability of this information: ";
+"emergency.action.contacts" = "Emergency";
+"emergency.action.contacts.message" = "Please show me a list of emergency contact numbers";
+"emergency.action.evacuation" = "Evacuate";
+"emergency.action.evacuation.message" = "Please create an evacuation checklist for the current situation: ";
+"mcp.emergency_kb" = "Emergency KB";
+"mcp.emergency_kb.desc" = "Emergency & disaster information";
+
+// MARK: - Emergency Templates
+"template.firstaid.name" = "First Aid Guide";
+"template.firstaid.content" = "Please provide first aid instructions for: ";
+"template.disaster.name" = "Disaster Response";
+"template.disaster.content" = "The following disaster has occurred. Please provide response procedures: ";
+"template.factcheck.name" = "Fact Check";
+"template.factcheck.content" = "Please verify the reliability of this information and provide fact-checking tips: ";
+"template.evacuation.name" = "Evacuation Checklist";
+"template.evacuation.content" = "Please create an evacuation checklist for the current situation: ";
+
+// MARK: - ChatWeb.ai Integration
+"chatweb.title" = "ChatWeb.ai";
+"chatweb.desc" = "Cloud AI Chat";
+"chatweb.connect" = "Connect to ChatWeb.ai";
+"chatweb.qr.title" = "Connect via QR Code";
+"chatweb.qr.scan" = "Scan QR Code";
+"chatweb.open" = "Open ChatWeb.ai";
+
+// MARK: - Peer Connection
+"peer.title" = "Nearby Devices";
+"peer.desc" = "Connect with nearby Elio devices";
+"peer.connect" = "Connect to Device";
+"peer.code.title" = "Connection Code";
+"peer.code.enter" = "Enter 4-digit code";
+"peer.code.your" = "Your Code";
+"peer.connected" = "Connected";
+"peer.disconnected" = "Disconnected";
+"peer.inference.offload" = "Sharing inference";
+
 // MARK: - Web Search
 "chat.web.search" = "Web Search";
 "search.privacy.title" = "Privacy-Protected Search";

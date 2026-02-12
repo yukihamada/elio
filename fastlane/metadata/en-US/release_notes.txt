@@ -1,0 +1,2 @@
+- Added support for 12 languages: English, Japanese, Spanish, French, German, Italian, Portuguese (Brazil), Chinese (Simplified), Chinese (Traditional), Korean, Arabic, and Hindi
+- Bug fixes and performance improvements

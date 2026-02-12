@@ -50,6 +50,27 @@ struct PromptTemplate: Identifiable, Codable, Equatable {
                 name: String(localized: "template.code.name"),
                 content: String(localized: "template.code.content"),
                 icon: "chevron.left.forwardslash.chevron.right"
+            ),
+            // Emergency templates
+            PromptTemplate(
+                name: String(localized: "template.firstaid.name"),
+                content: String(localized: "template.firstaid.content"),
+                icon: "cross.case"
+            ),
+            PromptTemplate(
+                name: String(localized: "template.disaster.name"),
+                content: String(localized: "template.disaster.content"),
+                icon: "exclamationmark.triangle"
+            ),
+            PromptTemplate(
+                name: String(localized: "template.factcheck.name"),
+                content: String(localized: "template.factcheck.content"),
+                icon: "checkmark.shield"
+            ),
+            PromptTemplate(
+                name: String(localized: "template.evacuation.name"),
+                content: String(localized: "template.evacuation.content"),
+                icon: "figure.walk"
             )
         ]
     }

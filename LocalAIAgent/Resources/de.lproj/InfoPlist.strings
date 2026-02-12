@@ -1,0 +1,12 @@
+/* InfoPlist.strings (German) */
+
+"NSCalendarsUsageDescription" = "ElioChat verwendet deinen Kalender, um Termine zu lesen und zu erstellen.";
+"NSContactsUsageDescription" = "ElioChat verwendet deine Kontakte, um sie zu durchsuchen und anzuzeigen.";
+"NSPhotoLibraryUsageDescription" = "ElioChat benötigt Zugriff auf deine Fotobibliothek.";
+"NSLocationWhenInUseUsageDescription" = "ElioChat verwendet deinen Standort für standortbasierte Funktionen.";
+"NSRemindersUsageDescription" = "ElioChat verwendet deine Erinnerungen, um sie zu lesen und neue zu erstellen.";
+"NSCameraUsageDescription" = "ElioChat verwendet die Kamera, um Fotos aufzunehmen und an die KI zu senden.";
+"NSMicrophoneUsageDescription" = "ElioChat verwendet das Mikrofon für die Spracheingabe.";
+"NSSpeechRecognitionUsageDescription" = "ElioChat verwendet die Spracherkennung, um Sprache in Text umzuwandeln.";
+"NSPhotoLibraryAddUsageDescription" = "ElioChat speichert generierte Bilder in deiner Fotobibliothek.";
+"NSLocalNetworkUsageDescription" = "ElioChat verwendet das lokale Netzwerk, um sich mit Geräten in der Nähe zu verbinden und KI-Inferenz zu teilen.";

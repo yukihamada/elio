@@ -1145,6 +1145,14 @@ final class ModelLoader: ObservableObject {
     }
 
     func downloadModel(_ model: ModelInfo) async throws {
+        // Check available storage before downloading
+        switch StorageChecker.checkStorage(for: model.sizeBytes) {
+        case .success:
+            break
+        case .failure(let error):
+            throw error
+        }
+
         // Check if ODR is available for this model
         if OnDemandResourceManager.isODRSupported(for: model.id) {
             try await downloadModelViaODR(model)
@@ -1768,6 +1776,7 @@ enum ModelLoaderError: Error, LocalizedError {
     case extractionFailed
     case modelNotFound
     case configNotFound
+    case insufficientStorage(available: Int64, required: Int64)
 
     var errorDescription: String? {
         switch self {
@@ -1776,6 +1785,74 @@ enum ModelLoaderError: Error, LocalizedError {
         case .extractionFailed: return "展開に失敗しました"
         case .modelNotFound: return "モデルが見つかりません"
         case .configNotFound: return "設定ファイルが見つかりません"
+        case .insufficientStorage(let available, let required):
+            let availableGB = String(format: "%.1f", Double(available) / 1_000_000_000)
+            let requiredGB = String(format: "%.1f", Double(required) / 1_000_000_000)
+            return "ストレージが不足しています（残り: \(availableGB) GB、必要: \(requiredGB) GB）"
         }
+    }
+}
+
+// MARK: - Storage Checker
+
+/// Utility for checking available device storage before model downloads
+struct StorageChecker {
+    /// Buffer size required beyond the model file itself (500 MB)
+    static let requiredBufferBytes: Int64 = 500_000_000
+
+    /// Check available storage on device
+    /// - Returns: Available storage in bytes, or nil if unable to determine
+    static func availableStorageBytes() -> Int64? {
+        let fileManager = FileManager.default
+        guard let documentsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first else {
+            return nil
+        }
+
+        do {
+            let values = try documentsURL.resourceValues(forKeys: [.volumeAvailableCapacityForImportantUsageKey])
+            if let capacity = values.volumeAvailableCapacityForImportantUsage {
+                return capacity
+            }
+        } catch {
+            print("[StorageChecker] Failed to get storage via importantUsage: \(error)")
+        }
+
+        // Fallback to older API
+        do {
+            let values = try documentsURL.resourceValues(forKeys: [.volumeAvailableCapacityKey])
+            if let capacity = values.volumeAvailableCapacity {
+                return Int64(capacity)
+            }
+        } catch {
+            print("[StorageChecker] Failed to get storage via availableCapacity: \(error)")
+        }
+
+        return nil
+    }
+
+    /// Check if there is enough storage for a model download
+    /// - Parameter modelSizeBytes: Size of the model in bytes
+    /// - Returns: A result indicating success or an insufficientStorage error with details
+    static func checkStorage(for modelSizeBytes: Int64) -> Result<Void, ModelLoaderError> {
+        guard let available = availableStorageBytes() else {
+            // If we cannot determine storage, allow the download to proceed
+            print("[StorageChecker] Could not determine available storage, allowing download")
+            return .success(())
+        }
+
+        let required = modelSizeBytes + requiredBufferBytes
+
+        if available >= required {
+            print("[StorageChecker] Storage OK: available=\(available / 1_000_000)MB, required=\(required / 1_000_000)MB")
+            return .success(())
+        } else {
+            print("[StorageChecker] Insufficient storage: available=\(available / 1_000_000)MB, required=\(required / 1_000_000)MB")
+            return .failure(.insufficientStorage(available: available, required: required))
+        }
+    }
+
+    /// Format bytes as a human-readable GB string (e.g., "2.5 GB")
+    static func formatGB(_ bytes: Int64) -> String {
+        String(format: "%.1f GB", Double(bytes) / 1_000_000_000)
     }
 }

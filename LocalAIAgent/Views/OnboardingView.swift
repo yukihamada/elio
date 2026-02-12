@@ -16,6 +16,9 @@ struct OnboardingView: View {
     @State private var goroAnimation = false  // Goro mascot animation
     @State private var showContent = false  // Content fade-in animation
     @State private var showDownloadConfirmation = false  // App Store 4.2.3 compliance: explicit download confirmation
+    @State private var showInsufficientStorageAlert = false
+    @State private var insufficientStorageAvailable: Int64 = 0
+    @State private var insufficientStorageRequired: Int64 = 0
     @Environment(\.dismiss) private var dismiss
     @ObservedObject private var modelLoader = ModelLoader.shared
     @AppStorage("justCompletedOnboarding") private var justCompletedOnboarding = false
@@ -185,6 +188,21 @@ struct OnboardingView: View {
             return
         }
 
+        // Pre-check storage before starting background download
+        if let text = textModel {
+            switch StorageChecker.checkStorage(for: text.sizeBytes) {
+            case .success:
+                break
+            case .failure(.insufficientStorage(let available, let required)):
+                insufficientStorageAvailable = available
+                insufficientStorageRequired = required
+                showInsufficientStorageAlert = true
+                return
+            case .failure:
+                break
+            }
+        }
+
         // Start background download
         isDownloading = true
         downloadError = nil
@@ -227,10 +245,18 @@ struct OnboardingView: View {
                 }
             } catch {
                 await MainActor.run {
-                    isDownloading = false
-                    downloadCompleted = false
-                    downloadError = "ダウンロードに失敗しました: \(error.localizedDescription)"
-                    print("[OnboardingView] Background download failed: \(error)")
+                    if case ModelLoaderError.insufficientStorage(let available, let required) = error {
+                        isDownloading = false
+                        downloadCompleted = false
+                        insufficientStorageAvailable = available
+                        insufficientStorageRequired = required
+                        showInsufficientStorageAlert = true
+                    } else {
+                        isDownloading = false
+                        downloadCompleted = false
+                        downloadError = "ダウンロードに失敗しました: \(error.localizedDescription)"
+                        print("[OnboardingView] Background download failed: \(error)")
+                    }
                 }
             }
         }
@@ -521,6 +547,24 @@ struct OnboardingView: View {
                             Text("AIモデルをダウンロードします。続行しますか？")
                         }
                     }
+                    .alert(
+                        "ストレージが不足しています",
+                        isPresented: $showInsufficientStorageAlert
+                    ) {
+                        Button("不要なデータを削除する") {
+                            if let url = URL(string: UIApplication.openSettingsURLString) {
+                                UIApplication.shared.open(url)
+                            }
+                        }
+                        Button("ChatWeb.aiクラウドを使う（無料で始められます）") {
+                            switchToChatWebAndComplete()
+                        }
+                        Button("キャンセル", role: .cancel) {}
+                    } message: {
+                        let availableStr = StorageChecker.formatGB(insufficientStorageAvailable)
+                        let requiredStr = StorageChecker.formatGB(insufficientStorageRequired)
+                        Text("ストレージが不足しています（残り: \(availableStr)、必要: \(requiredStr)）\n\nモデルをダウンロードしなくても、ChatWeb.aiのクラウドAIをすぐ使えます。一定量まで無料です。")
+                    }
                 }
                 .padding(.horizontal, 32)
             } else {
@@ -577,6 +621,21 @@ struct OnboardingView: View {
     }
 
     private func startModelDownload() {
+        // Pre-check storage before starting download
+        if let text = textModel {
+            switch StorageChecker.checkStorage(for: text.sizeBytes) {
+            case .success:
+                break
+            case .failure(.insufficientStorage(let available, let required)):
+                insufficientStorageAvailable = available
+                insufficientStorageRequired = required
+                showInsufficientStorageAlert = true
+                return
+            case .failure:
+                break // Other errors will be caught during download
+            }
+        }
+
         isDownloading = true
         downloadError = nil
 
@@ -638,12 +697,32 @@ struct OnboardingView: View {
 
             } catch {
                 await MainActor.run {
-                    isDownloading = false
-                    downloadCompleted = false
-                    downloadError = "ダウンロードに失敗しました: \(error.localizedDescription)"
+                    // Handle insufficient storage error from within download flow
+                    if case ModelLoaderError.insufficientStorage(let available, let required) = error {
+                        isDownloading = false
+                        downloadCompleted = false
+                        insufficientStorageAvailable = available
+                        insufficientStorageRequired = required
+                        showInsufficientStorageAlert = true
+                    } else {
+                        isDownloading = false
+                        downloadCompleted = false
+                        downloadError = "ダウンロードに失敗しました: \(error.localizedDescription)"
+                    }
                 }
             }
         }
+    }
+
+    /// Switch to ChatWeb.ai cloud mode and complete onboarding without downloading any model
+    private func switchToChatWebAndComplete() {
+        let chatModeManager = ChatModeManager.shared
+        chatModeManager.setMode(.chatweb)
+
+        // Complete onboarding without a local model
+        justCompletedOnboarding = true
+        hasCompletedOnboarding = true
+        dismiss()
     }
 
     private func completeOnboarding() {

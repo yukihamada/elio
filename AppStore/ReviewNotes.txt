@@ -1,0 +1,70 @@
+【審査メモ - App Store Connect用】
+
+=== App Review Information ===
+
+【Notes for Review】
+
+This is an AI chat application with multiple inference modes:
+
+1. LOCAL MODE (Free)
+- On-device AI inference using CoreML
+- No internet required
+- Works without any configuration
+
+2. PRIVATE MODE (Free)
+- Connects to trusted devices via Bonjour
+- Requires local network permission
+- User must manually trust devices
+
+3. FAST MODE (1 token/message)
+- Uses Groq API
+- Requires user's own API key from groq.com
+
+4. GENIUS MODE (5 tokens/message)
+- Uses OpenAI/Anthropic/Google APIs
+- Requires user's own API key
+
+5. PUBLIC MODE (2 tokens/message)
+- P2P connection to community servers
+
+【How to Test】
+
+For LOCAL MODE:
+- Just open the app and start chatting
+- No API key or account needed
+
+For CLOUD MODES (Fast/Genius):
+- Go to Settings > API Keys
+- Enter your own API key from the provider
+- Get free API keys from:
+  - Groq: https://console.groq.com
+  - OpenAI: https://platform.openai.com
+  - Anthropic: https://console.anthropic.com
+  - Google: https://makersuite.google.com
+
+For P2P MODES:
+- Requires two devices on the same network
+- One device runs as server, other connects
+
+【Demo Account】
+Not required - Local mode works without any account.
+
+【Contact】
+Email: support@elio.love
+
+---
+
+=== サブスクリプション審査用情報 ===
+
+【商品名】
+- love.elio.subscription.basic (Basic - ¥500/月)
+- love.elio.subscription.pro (Pro - ¥1,500/月)
+
+【機能説明】
+サブスクリプションを購入すると、毎月トークンが付与されます。
+トークンはFast/Genius/Publicモードで消費されます。
+Localモードは無料で無制限に使用できます。
+
+【自動更新】
+サブスクリプションは自動更新されます。
+更新の24時間前までに設定アプリからキャンセル可能です。

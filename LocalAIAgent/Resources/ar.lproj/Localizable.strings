@@ -1,0 +1,612 @@
+/*
+  Localizable.strings (Arabic)
+  Elio
+*/
+
+// MARK: - App General
+"app.name" = "Elio";
+"app.tagline" = "عقلك الثاني الذي يحفظ أسرارك.";
+
+// MARK: - Common Actions
+"common.done" = "تم";
+"common.cancel" = "إلغاء";
+"common.delete" = "حذف";
+"common.save" = "حفظ";
+"common.edit" = "تعديل";
+"common.share" = "مشاركة";
+"common.copy" = "نسخ";
+"common.copied" = "تم النسخ";
+"common.loading" = "جارٍ التحميل...";
+"common.error" = "خطأ";
+"common.retry" = "إعادة المحاولة";
+"common.skip" = "تخطي";
+"common.next" = "التالي";
+"common.start" = "ابدأ الآن";
+"common.add" = "إضافة";
+"common.close" = "إغلاق";
+"common.details" = "التفاصيل";
+"common.yes" = "نعم";
+"common.no" = "لا";
+"common.unknown" = "غير معروف";
+
+// MARK: - Chat
+"chat.placeholder" = "اسألني أي شيء";
+"chat.model.not.loaded" = "لم يتم تحميل أي نموذج";
+"chat.model.not.loaded.description" = "يرجى تنزيل نموذج من الإعدادات";
+"chat.go.to.settings" = "الذهاب إلى الإعدادات";
+"chat.new.conversation" = "محادثة جديدة";
+"chat.stop.generation" = "إيقاف";
+"chat.generation.stopped" = "\n\n[تم إيقاف التوليد]";
+"chat.image.sent" = "[تم إرسال صورة]";
+"chat.images.sent" = "[تم إرسال %d صور]";
+"chat.pdf.sent" = "[ملف PDF مرفق: %@]";
+"chat.pdf.sent.vision" = "[ملف PDF مع صورة: %@]";
+"chat.pdf.context" = "فيما يلي محتوى نصي مستخرج من مستند PDF بعنوان \"%@\":\n\n%@";
+"chat.pdf.context.vision" = "هذه هي الصفحة الأولى من مستند PDF بعنوان \"%@\". المحتوى النصي المستخرج هو:\n\n%@\n\nيرجى تحليل كل من المحتوى المرئي والنصي.";
+"chat.pdf.analyze" = "يرجى تحليل صفحة PDF هذه من \"%@\".";
+"chat.url.sent" = "[صفحة ويب: %@]";
+"chat.url.context" = "فيما يلي محتوى مستخرج من صفحة الويب \"%@\" (%@):\n\n%@";
+"chat.thinking" = "جارٍ التفكير...";
+"chat.generating" = "جارٍ إنشاء الرد...";
+"chat.welcome" = "كيف يمكنني مساعدتك؟";
+"chat.suggestion.schedule" = "عرض جدول اليوم";
+"chat.suggestion.reminder" = "إنشاء تذكير";
+"chat.suggestion.weather" = "ما حالة الطقس اليوم؟";
+"chat.suggestion.help" = "كيفية استخدام هذا التطبيق";
+"chat.websearch.on" = "البحث على الويب مفعّل";
+"chat.websearch.off" = "البحث على الويب معطّل";
+"chat.thinking.on" = "وضع التفكير مفعّل";
+"chat.thinking.off" = "وضع التفكير معطّل";
+"chat.transcribing" = "جارٍ النسخ...";
+"chat.offline" = "غير متصل";
+
+// Voice Conversation Mode
+"voice.listening" = "جارٍ الاستماع...";
+"voice.processing" = "جارٍ المعالجة...";
+"voice.thinking" = "جارٍ التفكير...";
+"voice.speaking" = "جارٍ التحدث...";
+"voice.tap.to.send" = "انقر للإرسال";
+"chat.templates" = "القوالب";
+"chat.websearch.privacy.title" = "حول البحث على الويب";
+"chat.websearch.privacy.message" = "يتيح تفعيل البحث على الويب للذكاء الاصطناعي البحث في الإنترنت عبر DuckDuckGo للحصول على معلومات محدّثة. تُرسل استعلامات البحث إلى DuckDuckGo ولكن لا يتم تتبعها.";
+"chat.websearch.privacy.enable" = "تفعيل";
+"chat.websearch.privacy.disable" = "الإبقاء معطّلاً";
+
+// MARK: - Settings
+"settings.title" = "الإعدادات";
+"settings.model.section" = "نماذج الذكاء الاصطناعي";
+"settings.model.recommended" = "موصى به: %@";
+"settings.model.local.execution" = "تعمل النماذج محلياً على جهازك";
+"settings.model.show.more" = "نماذج أخرى (%d)";
+"settings.model.show.less" = "عرض أقل";
+"settings.appearance.section" = "المظهر";
+"settings.tools.section" = "الميزات الذكية";
+"settings.mcp.servers" = "عمليات التكامل";
+"settings.mcp.servers.description" = "التقويم والملفات والتذكيرات والمزيد";
+"settings.mcp.enabled.count" = "%d مفعّل";
+"settings.mcp.enabled.count.suffix" = " مفعّل";
+"settings.about.section" = "حول";
+"settings.version" = "الإصدار";
+"settings.about.app" = "حول هذا التطبيق";
+"settings.about.mcp" = "حول عمليات التكامل";
+"settings.privacy.badge" = "يعمل بدون إنترنت";
+"settings.privacy.description" = "يعمل في وضع الطيران";
+"settings.airplane.mode" = "يعمل في وضع الطيران";
+"settings.offline.ready" = "جاهز للعمل بدون إنترنت";
+
+// MARK: - Model States
+"model.status.downloading" = "جارٍ التنزيل... %d%%";
+"model.status.loading" = "جارٍ التحميل...";
+"model.status.in.use" = "قيد الاستخدام";
+"model.status.recommended" = "موصى به";
+"model.status.heavy" = "ثقيل";
+"model.action.download" = "تنزيل";
+"model.action.load" = "تحميل";
+"model.action.delete" = "حذف";
+"model.action.use" = "استخدام هذا النموذج";
+"model.delete.confirm.title" = "حذف النموذج";
+"model.delete.confirm.message" = "هل تريد حذف %@؟ ستحتاج إلى إعادة تنزيله لاستخدامه مجدداً.";
+"model.select.title" = "اختيار النموذج";
+"model.select.prompt" = "يرجى اختيار نموذج";
+"model.downloaded" = "تم التنزيل";
+
+// MARK: - Inference Mode
+"inference.mode.title" = "التسريع";
+"inference.mode.auto" = "تلقائي";
+"inference.mode.auto.desc" = "أداء مثالي تلقائياً";
+"inference.mode.gpu" = "GPU (Metal)";
+"inference.mode.gpu.desc" = "أقصى سرعة مع Metal";
+"inference.mode.cpu" = "المعالج فقط";
+"inference.mode.cpu.desc" = "وضع توفير البطارية";
+"inference.mode.hybrid" = "هجين";
+"inference.mode.hybrid.desc" = "توازن بين السرعة والبطارية";
+
+// MARK: - Theme
+"theme.system" = "النظام";
+"theme.light" = "فاتح";
+"theme.dark" = "داكن";
+
+// MARK: - Onboarding
+"onboarding.welcome.title" = "مرحباً بك في ElioChat";
+"onboarding.welcome.subtitle" = "مساعدك الذكي الخاص";
+"onboarding.features.title" = "ذكاء اصطناعي خاص بالكامل";
+"onboarding.feature.offline" = "يعمل في وضع الطيران";
+"onboarding.feature.offline.desc" = "استخدمه على متن الطائرات أو تحت الأرض";
+"onboarding.feature.privacy" = "صفر نقل للبيانات";
+"onboarding.feature.privacy.desc" = "محادثاتك لا تغادر هاتفك أبداً";
+"onboarding.feature.vault" = "عمليات تكامل ذكية";
+"onboarding.feature.vault.desc" = "اتصل بالتقويم والملفات";
+"onboarding.feature.secure" = "ذكاء اصطناعي آمن للعمل";
+"onboarding.feature.secure.desc" = "آمن للاستخدام المؤسسي";
+"onboarding.feature.thinking" = "عملية التفكير";
+"onboarding.privacy.title" = "بياناتك تبقى ملكك";
+"onboarding.privacy.item1" = "تتم جميع العمليات على جهاز iPhone الخاص بك";
+"onboarding.privacy.item2" = "لا تُرسل أي بيانات إلى خوادم سحابية";
+"onboarding.privacy.item3" = "لا تُستخدم أبداً لتدريب الذكاء الاصطناعي";
+"onboarding.getstarted.title" = "جاهز بنقرة واحدة";
+"onboarding.getstarted.subtitle" = "قم بتنزيل نموذج الذكاء الاصطناعي الموصى به\nوابدأ المحادثة فوراً";
+"onboarding.step1" = "تنزيل النموذج الموصى به";
+"onboarding.step2" = "انتظر بضع دقائق";
+"onboarding.step3" = "أنت جاهز!";
+
+// MARK: - About
+"about.title" = "حول هذا التطبيق";
+"about.rate.app" = "تقييم التطبيق";
+"about.share.app" = "مشاركة مع الأصدقاء";
+"about.privacy.policy" = "سياسة الخصوصية";
+"about.terms" = "شروط الخدمة";
+"about.tech.info" = "معلومات تقنية";
+"about.tech.engine" = "محرك الذكاء الاصطناعي";
+"about.tech.format" = "التنسيق المدعوم";
+"about.tech.inference" = "الاستدلال";
+"about.data.management" = "إدارة البيانات";
+"about.delete.all" = "حذف جميع المحادثات";
+"about.credits" = "الاعتمادات";
+"about.credits.description" = "يستخدم هذا التطبيق مكتبات مفتوحة المصدر";
+"about.privacy.section" = "الخصوصية";
+"about.gguf.format" = "تنسيق GGUF";
+"about.metal.gpu" = "تسريع Metal GPU";
+
+// MARK: - Referral
+"referral.title" = "إحالة الأصدقاء";
+"referral.code.title" = "رمز الإحالة الخاص بك";
+"referral.code.copy" = "نسخ الرمز";
+"referral.code.copied" = "تم النسخ";
+"referral.share.button" = "مشاركة مع الأصدقاء";
+"referral.share.description" = "شارك Elio مع أصدقائك!";
+"referral.count" = "تمت إحالة %d أشخاص";
+"referral.enter.title" = "أدخل رمز الإحالة";
+"referral.enter.placeholder" = "رمز الإحالة";
+"referral.enter.button" = "تطبيق";
+"referral.enter.success" = "تم تطبيق رمز الإحالة";
+"referral.enter.error" = "رمز إحالة غير صالح";
+
+// MARK: - Privacy Policy
+"privacy.title" = "سياسة الخصوصية";
+"privacy.data.collection.title" = "جمع البيانات";
+"privacy.data.collection.content" = "يعمل هذا التطبيق بذكاء اصطناعي محلي بالكامل دون اتصال بالإنترنت.\nلا تُرسل أي بيانات إلى خوادم خارجية.\nتُخزّن جميع المحادثات على جهازك فقط.";
+"privacy.stored.data.title" = "البيانات المخزّنة";
+"privacy.stored.data.content" = "سجل المحادثات (مخزّن على الجهاز فقط)\nملفات نموذج الذكاء الاصطناعي (مخزّنة على الجهاز فقط)\nإعدادات التطبيق (مخزّنة على الجهاز فقط)\n\nلا تتم مشاركة هذه البيانات خارجياً أبداً.";
+"privacy.data.deletion.title" = "حذف البيانات";
+"privacy.data.deletion.content" = "يمكنك حذف جميع البيانات في أي وقت من الإعدادات > إدارة البيانات.\nسيؤدي إلغاء تثبيت التطبيق إلى حذف جميع البيانات.";
+
+// MARK: - Terms of Service
+"terms.title" = "شروط الخدمة";
+"terms.service.title" = "وصف الخدمة";
+"terms.service.content" = "يوفر هذا التطبيق وظائف مساعد ذكاء اصطناعي باستخدام نموذج ذكاء اصطناعي يعمل محلياً.";
+"terms.disclaimer.title" = "إخلاء المسؤولية";
+"terms.disclaimer.content" = "قد تحتوي ردود الذكاء الاصطناعي على أخطاء.\nيجب دائماً التحقق من القرارات المهمة بواسطة متخصص.\nلسنا مسؤولين عن أي أضرار ناتجة عن استخدام هذا التطبيق.";
+"terms.prohibited.title" = "الأنشطة المحظورة";
+"terms.prohibited.content" = "الأنشطة غير القانونية\nالأنشطة التي تنتهك حقوق الآخرين\nالهندسة العكسية لهذا التطبيق\nالنسخ غير المصرح به لهذا التطبيق";
+"terms.ip.title" = "الملكية الفكرية";
+"terms.ip.content" = "حقوق الملكية الفكرية لهذا التطبيق تعود للمطور.\nيُحظر الاستخدام غير المصرح به.";
+
+// MARK: - Conversations
+"conversations.title" = "المحادثات";
+"conversations.new" = "محادثة جديدة";
+"conversations.empty" = "لا توجد محادثات بعد";
+"conversations.delete" = "حذف المحادثة";
+"conversations.default.title" = "محادثة جديدة";
+"conversations.today" = "اليوم";
+"conversations.yesterday" = "أمس";
+"conversations.past7days" = "آخر 7 أيام";
+"conversations.past30days" = "آخر 30 يوماً";
+"conversations.older" = "أقدم";
+"conversations.created" = "تاريخ الإنشاء: %@";
+"conversations.user" = "المستخدم";
+"conversations.assistant" = "المساعد";
+"conversations.search.placeholder" = "البحث في المحادثات";
+"conversations.search.no_results" = "لم يتم العثور على نتائج";
+
+// MARK: - Message Actions
+"message.copy" = "نسخ";
+"message.speak" = "قراءة بصوت عالٍ";
+"message.stop.speaking" = "إيقاف القراءة";
+"message.share" = "مشاركة";
+"message.share.card" = "مشاركة كبطاقة";
+"message.like" = "إعجاب";
+
+// MARK: - Share Card
+"share.card.title" = "بطاقة المشاركة";
+"share.card.preview" = "معاينة";
+"share.card.button" = "مشاركة الصورة";
+"message.dislike" = "عدم إعجاب";
+"message.thinking.process" = "عملية التفكير";
+"message.tool.running" = "جارٍ تشغيل الأداة";
+"message.tool.error" = "خطأ";
+"message.tool.completed" = "مكتمل";
+
+// MARK: - Attachment
+"attachment.title" = "مرفق";
+"attachment.photo.library" = "اختيار صورة";
+"attachment.camera" = "التقاط صورة";
+"attachment.pdf" = "اختيار ملف PDF";
+"attachment.pdf.chars" = "%d حرف";
+"attachment.pdf.pages" = "%d صفحات";
+"attachment.pdf.vision.enabled" = "تحليل الصور مفعّل";
+"attachment.pdf.text.only" = "وضع النص فقط";
+"attachment.url" = "قراءة صفحة ويب";
+"attachment.url.title" = "أدخل الرابط";
+"attachment.url.placeholder" = "https://example.com";
+"attachment.url.message" = "الصق رابطاً لاستخراج محتواه";
+"attachment.url.fetch" = "جلب";
+"attachment.url.loading" = "جارٍ تحميل الصفحة...";
+
+// MARK: - Errors
+"error.model.not.found" = "لم يتم العثور على ملف النموذج";
+"error.model.not.loaded" = "لم يتم تحميل النموذج";
+"error.context.failed" = "فشل في إنشاء السياق";
+"error.tokenization.failed" = "فشل في التحليل اللغوي";
+"error.generation.failed" = "خطأ في التوليد: %@";
+"error.occurred" = "حدث خطأ: %@";
+"error.invalid.url" = "رابط غير صالح";
+"error.download.failed" = "فشل التنزيل";
+"error.extraction.failed" = "فشل الاستخراج";
+"error.config.not.found" = "لم يتم العثور على ملف الإعدادات";
+
+// MARK: - Ghost Search
+"ghost.search.title" = "البحث الشبحي";
+"ghost.search.description" = "بحث مجهول الهوية عبر DuckDuckGo (بدون تتبع)";
+"ghost.search.connecting" = "جارٍ الاتصال بالشبكة المجهولة...";
+"ghost.search.privacy.note" = "لا يتم تتبع سجل بحثك أبداً";
+
+// MARK: - MCP Servers
+"mcp.filesystem" = "نظام الملفات";
+"mcp.filesystem.desc" = "قراءة وكتابة الملفات في التطبيق";
+"mcp.calendar" = "التقويم";
+"mcp.calendar.desc" = "قراءة وكتابة الأحداث";
+"mcp.reminders" = "التذكيرات";
+"mcp.reminders.desc" = "إدارة التذكيرات";
+"mcp.contacts" = "جهات الاتصال";
+"mcp.contacts.desc" = "البحث وعرض جهات الاتصال";
+"mcp.photos" = "الصور";
+"mcp.photos.desc" = "الوصول إلى مكتبة الصور";
+"mcp.location" = "الموقع";
+"mcp.location.desc" = "الحصول على الموقع الحالي والبحث عن الأماكن";
+"mcp.health" = "الصحة";
+"mcp.health.desc" = "الوصول إلى بيانات الصحة";
+"mcp.shortcuts" = "الاختصارات";
+"mcp.shortcuts.desc" = "تشغيل الاختصارات";
+"mcp.websearch" = "البحث على الويب";
+"mcp.websearch.desc" = "بحث مجهول الهوية على الويب";
+"mcp.custom" = "تكامل مخصص";
+"mcp.custom.add" = "إضافة تكامل";
+"mcp.custom.setup" = "إعداد تكامل مع خدمة خارجية";
+"mcp.custom.title" = "عمليات تكامل مخصصة";
+"mcp.settings.title" = "إعدادات التكامل";
+"mcp.server.name" = "اسم الخادم";
+"mcp.server.name.placeholder" = "مثال: خادمي المخصص";
+"mcp.config.url" = "رابط ملف الإعدادات";
+"mcp.import.file" = "استيراد من ملف";
+"mcp.config.example" = "مثال على ملف الإعدادات";
+"mcp.permission.note" = "سيتم طلب الأذونات عند استخدام كل ميزة لأول مرة";
+
+// MARK: - MCP Tool Messages
+"mcp.tool.available" = "الأدوات المتاحة:";
+"mcp.tool.parameters" = "المعاملات:";
+"mcp.prompt.available" = "الأوامر المتاحة:";
+"mcp.prompt.arguments" = "الوسائط:";
+"mcp.tool.name" = "اسم_الأداة";
+"mcp.tool.arg.name" = "اسم_الوسيط";
+"mcp.tool.arg.value" = "القيمة";
+"mcp.tool.no.result" = "لا توجد نتيجة";
+"mcp.tool.running" = "جارٍ تشغيل الأداة: %@";
+"mcp.tool.error" = "خطأ في تنفيذ الأداة: %@";
+
+// MARK: - MCP Error Messages
+"mcp.error.server.not.found" = "لم يتم العثور على الخادم: %@";
+"mcp.error.tool.not.found" = "لم يتم العثور على الأداة: %@";
+"mcp.error.invalid.args" = "وسائط غير صالحة: %@";
+"mcp.error.execution" = "خطأ في التنفيذ: %@";
+"mcp.error.permission" = "تم رفض الإذن: %@";
+
+// MARK: - Calendar Messages
+"calendar.no.events" = "لا توجد أحداث";
+"calendar.event.created" = "تم إنشاء الحدث: %@";
+"calendar.event.deleted" = "تم حذف الحدث: %@";
+"calendar.allday.created" = "تم إنشاء حدث طوال اليوم: %@";
+"calendar.access.denied" = "تم رفض الوصول إلى التقويم";
+"calendar.today.none" = "لا توجد أحداث اليوم";
+"calendar.untitled" = "بدون عنوان";
+
+// MARK: - Reminders Messages
+"reminders.none" = "لا توجد تذكيرات";
+"reminders.created" = "تم إنشاء التذكير: %@";
+"reminders.completed" = "تم إكمال التذكير: %@";
+"reminders.deleted" = "تم حذف التذكير: %@";
+"reminders.access.denied" = "تم رفض الوصول إلى التذكيرات";
+"reminders.untitled" = "بدون عنوان";
+
+// MARK: - Photos Messages
+"photos.access.denied" = "تم رفض الوصول إلى الصور";
+"photos.not.found" = "لم يتم العثور على الصورة";
+"photos.untitled" = "بدون عنوان";
+"photos.count" = "الصور: %d";
+"photos.videos.count" = "مقاطع الفيديو: %d";
+"photos.albums.count" = "الألبومات: %d";
+"photos.favorites.count" = "المفضلة: %d";
+"photos.date" = "التاريخ: %@";
+"photos.size" = "الحجم: %d x %d";
+"photos.location" = "الموقع: %@، %@";
+"photos.media.type" = "نوع الوسائط: %@";
+"photos.duration" = "المدة: %dm %ds";
+"photos.favorite" = "المفضلة: %@";
+"photos.type.image" = "صورة";
+"photos.type.video" = "فيديو";
+"photos.type.audio" = "صوت";
+
+// MARK: - Contacts Messages
+"contacts.access.denied" = "تم رفض الوصول إلى جهات الاتصال";
+"contacts.not.found" = "لم يتم العثور على جهات اتصال مطابقة";
+"contacts.no.groups" = "لا توجد مجموعات";
+"contacts.no.card" = "لم يتم تعيين بطاقة جهة اتصال";
+"contacts.name" = "الاسم: %@";
+"contacts.company" = "الشركة: %@";
+"contacts.job" = "المسمى الوظيفي: %@";
+
+// MARK: - Location Messages
+"location.access.denied" = "تم رفض الوصول إلى الموقع";
+"location.not.found" = "لم يتم العثور على العنوان";
+"location.latitude" = "خط العرض: %@";
+"location.longitude" = "خط الطول: %@";
+"location.accuracy" = "الدقة: %dm";
+"location.altitude" = "الارتفاع: %dm";
+"location.search" = "البحث: %@";
+"location.address" = "العنوان: %@";
+"location.country" = "البلد: %@";
+"location.postal" = "الرمز البريدي: %@";
+"location.from" = "من: (%@، %@)";
+"location.to" = "إلى: (%@، %@)";
+"location.distance.km" = "المسافة: %.2f كم";
+"location.distance.m" = "المسافة: %d م";
+
+// MARK: - Health Messages
+"health.not.available" = "الصحة غير متاحة على هذا الجهاز";
+"health.date" = "التاريخ: %@";
+"health.steps" = "الخطوات: %@ خطوة";
+"health.goal.progress" = "تقدم الهدف: %d%% (هدف 10,000 خطوة)";
+"health.no.data" = "لا تتوفر بيانات";
+"health.avg.bpm" = "المتوسط: %d نبضة/دقيقة";
+"health.min.bpm" = "الحد الأدنى: %d نبضة/دقيقة";
+"health.max.bpm" = "الحد الأقصى: %d نبضة/دقيقة";
+"health.measurements" = "القياسات: %d";
+"health.no.sleep" = "لا توجد بيانات نوم";
+"health.sleep.total" = "إجمالي النوم: %dh %dm";
+"health.bedtime" = "وقت النوم: %@";
+"health.waketime" = "وقت الاستيقاظ: %@";
+"health.calories" = "السعرات الحرارية: %d سعرة حرارية";
+
+// MARK: - File System Messages
+"filesystem.not.found" = "لم يتم العثور على الملف: %@";
+"filesystem.written" = "تمت كتابة الملف: %@";
+"filesystem.dir.created" = "تم إنشاء المجلد: %@";
+"filesystem.deleted" = "تم الحذف: %@";
+"filesystem.size" = "الحجم: %@";
+"filesystem.created" = "تاريخ الإنشاء: %@";
+"filesystem.modified" = "تاريخ التعديل: %@";
+"filesystem.type" = "النوع: %@";
+
+// MARK: - Shortcuts Messages
+"shortcuts.executed" = "تم تنفيذ الاختصار '%@'";
+"shortcuts.opened" = "تم فتح تطبيق الاختصارات";
+"shortcuts.settings.opened" = "تم فتح الإعدادات (%@)";
+"shortcuts.mail.opened" = "تم فتح نافذة إنشاء البريد";
+"shortcuts.calling" = "جارٍ الاتصال: %@";
+"shortcuts.message.opened" = "تم فتح نافذة إنشاء الرسالة";
+"shortcuts.failed" = "تعذر فتح الاختصار";
+
+// MARK: - Model Tiers
+"model.tier.entry" = "مبتدئ";
+"model.tier.standard" = "قياسي";
+"model.tier.pro" = "احترافي";
+
+// MARK: - Tool Parser
+"tool.arguments" = "الوسائط:";
+
+// MARK: - Model Settings
+"model.action.settings" = "الإعدادات";
+"settings.model.parameters" = "إعدادات النموذج";
+"settings.model.parameters.description" = "تخصيص معاملات التوليد لهذا النموذج";
+"settings.preset.title" = "الإعدادات المسبقة";
+"settings.preset.custom" = "مخصص";
+"settings.preset.balanced" = "متوازن";
+"settings.preset.creative" = "إبداعي";
+"settings.preset.precise" = "دقيق";
+"settings.preset.coding" = "برمجة";
+"settings.preset.japanese" = "ياباني";
+"settings.parameters.title" = "المعاملات";
+"settings.parameter.temperature" = "الحرارة";
+"settings.parameter.temperature.description" = "أعلى = أكثر إبداعاً، أقل = أكثر تركيزاً";
+"settings.parameter.top.p" = "Top P";
+"settings.parameter.top.p.description" = "احتمال أخذ العينات النووية";
+"settings.parameter.top.k" = "Top K";
+"settings.parameter.top.k.description" = "عدد الرموز العليا المراد أخذها بالاعتبار";
+"settings.parameter.max.tokens" = "الحد الأقصى للرموز";
+"settings.parameter.max.tokens.description" = "الحد الأقصى لطول الرد";
+"settings.parameter.repeat.penalty" = "عقوبة التكرار";
+"settings.parameter.repeat.penalty.description" = "أعلى = مخرجات أقل تكراراً";
+"settings.parameter.thinking" = "وضع التفكير";
+"settings.parameter.thinking.description" = "عرض عملية استدلال الذكاء الاصطناعي";
+"settings.system.prompt.title" = "أمر النظام";
+"settings.system.prompt.description" = "تعليمات مخصصة للذكاء الاصطناعي";
+"settings.reset.to.default" = "إعادة التعيين إلى الافتراضي";
+
+// MARK: - Vision Model
+"vision.model.required.title" = "مطلوب نموذج رؤية";
+"vision.model.required.header" = "مطلوب التعرف على الصور";
+"vision.model.required.description" = "لتحليل الصور، تحتاج إلى نموذج ذكاء اصطناعي يدعم الرؤية";
+"vision.model.switch" = "تبديل النموذج";
+"vision.model.switch.message %@" = "هل تريد التبديل إلى %@ لتفعيل تحليل الصور؟";
+"vision.model.download" = "تنزيل";
+"vision.model.download.message %@ %@" = "هل تريد تنزيل %@ (%@) لتحليل الصور؟";
+"vision.model.not.available" = "لا يتوفر نموذج رؤية متوافق مع جهازك";
+"vision.model.switching" = "جارٍ تبديل النموذج...";
+"vision.model.download.title" = "نماذج الرؤية";
+"vision.model.recommended" = "موصى به لجهازك";
+"vision.model.recommended.size %@" = "موصى به: %@";
+"vision.model.use.this" = "استخدام هذا النموذج";
+"vision.model.download.button %@" = "تنزيل (%@)";
+"vision.model.other.options" = "نماذج رؤية أخرى";
+"vision.model.download.complete" = "اكتمل التنزيل";
+"vision.model.download.complete.message" = "جاهز لتحليل الصور";
+
+// MARK: - Whisper Voice Input (Legacy)
+"whisper.download.title" = "مطلوب التعرف على الصوت";
+"whisper.download.action" = "تنزيل";
+"whisper.download.message" = "لاستخدام الإدخال الصوتي، تحتاج إلى تنزيل نموذج التعرف على الكلام (~150 ميغابايت).";
+"whisper.downloading" = "جارٍ تنزيل نموذج التعرف على الكلام...";
+"whisper.download.error" = "خطأ في التنزيل";
+"whisper.load.error" = "خطأ في تحميل النموذج";
+"whisper.permission.denied" = "لم يُسمح بالوصول إلى الميكروفون";
+"whisper.transcribe.error" = "خطأ في النسخ";
+"whisper.error.permission" = "مطلوب إذن الميكروفون";
+"whisper.error.not.recording" = "لا يتم التسجيل حالياً";
+"whisper.error.no.recording" = "لا توجد بيانات تسجيل";
+"whisper.error.model.not.loaded" = "لم يتم تحميل نموذج التعرف على الكلام";
+"whisper.error.transcription" = "فشل النسخ";
+
+// MARK: - Speech Recognition (ReazonSpeech)
+"speech.download.title" = "مطلوب التعرف على الصوت";
+"speech.download.action" = "تنزيل";
+"speech.download.message" = "لاستخدام الإدخال الصوتي، تحتاج إلى تنزيل نموذج التعرف على الكلام اليابانية (~155 ميغابايت).";
+"speech.downloading" = "جارٍ تنزيل نموذج التعرف على الكلام...";
+
+// MARK: - Language Settings
+"settings.language.section" = "اللغة";
+"language.system" = "استخدام لغة النظام";
+"settings.language.restart.hint" = "ستدخل تغييرات اللغة حيز التنفيذ بعد إعادة تشغيل التطبيق";
+"settings.language.changed.title" = "تم تغيير اللغة";
+"settings.language.changed.message" = "يرجى إعادة تشغيل التطبيق لتطبيق التغييرات";
+"common.ok" = "حسناً";
+
+// MARK: - System Prompt Settings
+"settings.prompt.section" = "أمر النظام";
+"settings.prompt.edit" = "تعديل الأمر";
+"settings.prompt.default" = "يُستخدم الافتراضي";
+"settings.prompt.custom" = "تم تعيين أمر مخصص";
+"settings.prompt.hint" = "تخصيص سلوك الذكاء الاصطناعي";
+"settings.prompt.editor.title" = "تعديل الأمر";
+"settings.prompt.editor.instruction" = "أضف تعليمات مخصصة للذكاء الاصطناعي. اتركه فارغاً لاستخدام الأمر الافتراضي.";
+"settings.prompt.default.preview" = "الأمر الافتراضي (مقتطف):";
+"settings.prompt.reset" = "إعادة تعيين";
+"settings.prompt.reset.title" = "إعادة تعيين الأمر";
+"settings.prompt.reset.message" = "هل تريد حذف الأمر المخصص واستعادة الافتراضي؟";
+
+// MARK: - Prompt Templates
+"templates.title" = "قوالب الأوامر";
+"templates.empty" = "لا توجد قوالب بعد";
+"templates.add" = "إضافة قالب";
+"template.add.title" = "إضافة قالب";
+"template.edit.title" = "تعديل القالب";
+"template.name.header" = "الاسم";
+"template.name.placeholder" = "اسم القالب";
+"template.content.header" = "محتوى الأمر";
+"template.icon.header" = "الأيقونة";
+"template.translate.name" = "ترجمة";
+"template.translate.content" = "يرجى ترجمة ما يلي: ";
+"template.summarize.name" = "تلخيص";
+"template.summarize.content" = "يرجى تلخيص ما يلي: ";
+"template.explain.name" = "شرح";
+"template.explain.content" = "يرجى شرح ما يلي: ";
+"template.code.name" = "برمجة";
+"template.code.content" = "يرجى كتابة كود لـ: ";
+
+// MARK: - Export
+"export.title" = "تصدير المحادثة";
+"export.format.markdown" = "Markdown";
+"export.format.pdf" = "PDF";
+"export.format.text" = "نص عادي";
+"export.created" = "تاريخ الإنشاء";
+"export.image.attached" = "صورة مرفقة";
+"export.generated.by" = "تم الإنشاء بواسطة";
+
+// MARK: - Loading Phases
+"loading.phase.initializing" = "جارٍ التهيئة...";
+"loading.phase.loading" = "جارٍ تحميل النموذج...";
+"loading.phase.preparing" = "جارٍ إعداد محرك الاستدلال...";
+"loading.phase.almost" = "أوشك على الانتهاء...";
+
+// MARK: - Welcome Screen
+"welcome.greeting" = "اسألني أي شيء";
+"welcome.subtitle" = "مساعدك الذكي الذي يحمي خصوصيتك";
+"suggestion.idea" = "ساعدني في العصف الذهني";
+"suggestion.write" = "ساعدني في الكتابة";
+"suggestion.question" = "أجب عن أسئلتي";
+
+// MARK: - Kokoro TTS
+"tts.download.title" = "صوت عالي الجودة";
+"tts.download.action" = "تنزيل";
+"tts.download.use_system" = "استخدام صوت النظام";
+"tts.download.message" = "قم بتنزيل نموذج Kokoro TTS (~87 ميغابايت) لتحويل النص إلى كلام ياباني أكثر طبيعية.";
+"tts.downloading" = "جارٍ تنزيل نموذج تحويل النص إلى كلام...";
+
+// MARK: - Feedback
+"feedback.consent.title" = "إرسال ملاحظات";
+"feedback.send" = "إرسال";
+"feedback.positive.title" = "هل كان هذا الرد مفيداً؟";
+"feedback.negative.title" = "هل يمكن تحسين هذا؟";
+"feedback.explanation" = "تساعد ملاحظاتك في تحسين جودة الذكاء الاصطناعي. يرجى مراجعة البيانات التي سيتم إرسالها قبل التقديم.";
+"feedback.data.section" = "البيانات التي سيتم إرسالها";
+"feedback.data.conversation" = "المحادثة";
+"feedback.data.conversation.desc" = "رد الذكاء الاصطناعي ورسالتك السابقة";
+"feedback.data.model" = "معلومات النموذج";
+"feedback.data.model.desc" = "اسم نموذج الذكاء الاصطناعي المستخدم";
+"feedback.data.timestamp" = "الطابع الزمني";
+"feedback.data.timestamp.desc" = "وقت إرسال الملاحظات";
+"feedback.privacy.section" = "الخصوصية";
+"feedback.privacy.anonymous" = "لا يتم إرسال أي معلومات تعريف شخصية";
+"feedback.privacy.improvement" = "تُستخدم فقط لتحسين جودة الذكاء الاصطناعي";
+"feedback.privacy.optional" = "إرسال الملاحظات اختياري تماماً";
+"feedback.comment.section" = "تعليق (اختياري)";
+"feedback.comment.placeholder" = "أخبرنا بما يمكن تحسينه أو ما الذي نجح بشكل جيد...";
+"feedback.remember.title" = "تذكر هذا الاختيار";
+"feedback.remember.description" = "إرسال الملاحظات دون السؤال في المرة القادمة";
+
+// MARK: - Web Search
+"chat.web.search" = "البحث على الويب";
+"search.privacy.title" = "بحث محمي الخصوصية";
+"search.privacy.proceed" = "بحث";
+"search.privacy.message" = "يحمي بحث ElioChat على الويب خصوصيتك:\n\n🔒 البحث عبر DuckDuckGo\n🚫 بدون تتبع أو تحليل\n🔐 لا يتم تخزين سجل البحث\n📱 لا تُخزّن بيانات خارج جهازك\n\nيتم إرسال استعلام البحث فقط إلى DuckDuckGo، وتتم معالجة النتائج على جهازك.";
+"chat.web.analyzing" = "[جارٍ تحليل صفحة الويب]";
+// MARK: - Chat Modes
+"chatmode.local" = "محلي";
+"chatmode.chatweb" = "سحابي";
+"chatmode.private" = "خاص";
+"chatmode.fast" = "سريع";
+"chatmode.genius" = "عبقري";
+"chatmode.public" = "عام";
+"chatmode.local.desc" = "على الجهاز \U2022 مجاني \U2022 خاص";
+"chatmode.chatweb.desc" = "ChatWeb.ai \U2022 ذكاء اصطناعي سحابي سريع";
+"chatmode.private.desc" = "أجهزة موثوقة \U2022 شبكتك";
+"chatmode.fast.desc" = "Groq API \U2022 فائق السرعة";
+"chatmode.genius.desc" = "GPT-4o/Claude \U2022 أفضل جودة";
+"chatmode.public.desc" = "المجتمع \U2022 حوسبة مشتركة";
+// MARK: - Inference Errors
+"error.backend.not.ready" = "الخلفية غير جاهزة";
+"error.api.key.missing" = "مفتاح API غير مُهيأ";
+"error.network" = "خطأ في الشبكة: %@";
+"error.rate.limited" = "تم الوصول إلى حد المعدل. يرجى المحاولة لاحقاً.";
+"error.insufficient.tokens" = "الرموز غير كافية";
+"error.cancelled" = "تم إلغاء التوليد";
+"error.invalid.response" = "استجابة غير صالحة من الخادم";
+"error.server" = "خطأ في الخادم (%lld): %@";

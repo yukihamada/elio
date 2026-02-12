@@ -1,0 +1,612 @@
+/*
+  Localizable.strings (Simplified Chinese)
+  Elio
+*/
+
+// MARK: - App General
+"app.name" = "Elio";
+"app.tagline" = "守护隐私的第二大脑。";
+
+// MARK: - Common Actions
+"common.done" = "完成";
+"common.cancel" = "取消";
+"common.delete" = "删除";
+"common.save" = "保存";
+"common.edit" = "编辑";
+"common.share" = "分享";
+"common.copy" = "复制";
+"common.copied" = "已复制";
+"common.loading" = "加载中...";
+"common.error" = "错误";
+"common.retry" = "重试";
+"common.skip" = "跳过";
+"common.next" = "下一步";
+"common.start" = "开始使用";
+"common.add" = "添加";
+"common.close" = "关闭";
+"common.details" = "详情";
+"common.yes" = "是";
+"common.no" = "否";
+"common.unknown" = "未知";
+
+// MARK: - Chat
+"chat.placeholder" = "随便问我什么";
+"chat.model.not.loaded" = "未加载模型";
+"chat.model.not.loaded.description" = "请在设置中下载模型";
+"chat.go.to.settings" = "前往设置";
+"chat.new.conversation" = "新对话";
+"chat.stop.generation" = "停止";
+"chat.generation.stopped" = "\n\n[生成已停止]";
+"chat.image.sent" = "[已发送图片]";
+"chat.images.sent" = "[已发送 %d 张图片]";
+"chat.pdf.sent" = "[已附加 PDF：%@]";
+"chat.pdf.sent.vision" = "[含图片的 PDF：%@]";
+"chat.pdf.context" = "以下是从 PDF 文档\"%@\"中提取的文本内容：\n\n%@";
+"chat.pdf.context.vision" = "这是 PDF 文档\"%@\"的第 1 页。提取的文本内容如下：\n\n%@\n\n请同时分析视觉内容和文本。";
+"chat.pdf.analyze" = "请分析\"%@\"中的这一页 PDF。";
+"chat.url.sent" = "[网页：%@]";
+"chat.url.context" = "以下是从网页\"%@\"（%@）中提取的内容：\n\n%@";
+"chat.thinking" = "思考中...";
+"chat.generating" = "正在生成回复...";
+"chat.welcome" = "有什么我可以帮您的？";
+"chat.suggestion.schedule" = "显示今天的日程";
+"chat.suggestion.reminder" = "创建提醒事项";
+"chat.suggestion.weather" = "今天天气怎么样？";
+"chat.suggestion.help" = "如何使用这个应用";
+"chat.websearch.on" = "网络搜索已开启";
+"chat.websearch.off" = "网络搜索已关闭";
+"chat.thinking.on" = "思考模式已开启";
+"chat.thinking.off" = "思考模式已关闭";
+"chat.transcribing" = "正在转录...";
+"chat.offline" = "离线";
+
+// Voice Conversation Mode
+"voice.listening" = "正在聆听...";
+"voice.processing" = "正在处理...";
+"voice.thinking" = "思考中...";
+"voice.speaking" = "正在播放...";
+"voice.tap.to.send" = "点击发送";
+"chat.templates" = "模板";
+"chat.websearch.privacy.title" = "关于网络搜索";
+"chat.websearch.privacy.message" = "启用网络搜索后，AI 可以通过 DuckDuckGo 搜索互联网获取最新信息。搜索查询会发送到 DuckDuckGo，但不会被追踪。";
+"chat.websearch.privacy.enable" = "启用";
+"chat.websearch.privacy.disable" = "保持关闭";
+
+// MARK: - Settings
+"settings.title" = "设置";
+"settings.model.section" = "AI 模型";
+"settings.model.recommended" = "推荐：%@";
+"settings.model.local.execution" = "模型在您的设备上本地运行";
+"settings.model.show.more" = "其他模型（%d）";
+"settings.model.show.less" = "收起";
+"settings.appearance.section" = "外观";
+"settings.tools.section" = "智能功能";
+"settings.mcp.servers" = "集成服务";
+"settings.mcp.servers.description" = "日历、文件、提醒事项等";
+"settings.mcp.enabled.count" = "已启用 %d 个";
+"settings.mcp.enabled.count.suffix" = " 已启用";
+"settings.about.section" = "关于";
+"settings.version" = "版本";
+"settings.about.app" = "关于本应用";
+"settings.about.mcp" = "关于集成服务";
+"settings.privacy.badge" = "支持离线使用";
+"settings.privacy.description" = "支持在飞行模式下使用";
+"settings.airplane.mode" = "正在飞行模式下运行";
+"settings.offline.ready" = "离线就绪";
+
+// MARK: - Model States
+"model.status.downloading" = "下载中... %d%%";
+"model.status.loading" = "加载中...";
+"model.status.in.use" = "使用中";
+"model.status.recommended" = "推荐";
+"model.status.heavy" = "较大";
+"model.action.download" = "下载";
+"model.action.load" = "加载";
+"model.action.delete" = "删除";
+"model.action.use" = "使用此模型";
+"model.delete.confirm.title" = "删除模型";
+"model.delete.confirm.message" = "确定删除 %@？再次使用需要重新下载。";
+"model.select.title" = "选择模型";
+"model.select.prompt" = "请选择一个模型";
+"model.downloaded" = "已下载";
+
+// MARK: - Inference Mode
+"inference.mode.title" = "加速方式";
+"inference.mode.auto" = "自动";
+"inference.mode.auto.desc" = "自动获取最佳性能";
+"inference.mode.gpu" = "GPU (Metal)";
+"inference.mode.gpu.desc" = "使用 Metal 实现最高速度";
+"inference.mode.cpu" = "仅 CPU";
+"inference.mode.cpu.desc" = "省电模式";
+"inference.mode.hybrid" = "混合";
+"inference.mode.hybrid.desc" = "速度与电量的平衡";
+
+// MARK: - Theme
+"theme.system" = "跟随系统";
+"theme.light" = "浅色";
+"theme.dark" = "深色";
+
+// MARK: - Onboarding
+"onboarding.welcome.title" = "欢迎使用 Elio";
+"onboarding.welcome.subtitle" = "您的私人 AI 助手";
+"onboarding.features.title" = "真正的隐私 AI";
+"onboarding.feature.offline" = "支持飞行模式使用";
+"onboarding.feature.offline.desc" = "在飞机上或地下均可使用";
+"onboarding.feature.privacy" = "零数据传输";
+"onboarding.feature.privacy.desc" = "您的对话绝不离开手机";
+"onboarding.feature.vault" = "智能集成";
+"onboarding.feature.vault.desc" = "连接日历和文件";
+"onboarding.feature.secure" = "企业级安全 AI";
+"onboarding.feature.secure.desc" = "可在企业环境中放心使用";
+"onboarding.feature.thinking" = "思考过程";
+"onboarding.privacy.title" = "数据由您掌控";
+"onboarding.privacy.item1" = "所有处理均在您的 iPhone 上完成";
+"onboarding.privacy.item2" = "不会向云服务器发送任何数据";
+"onboarding.privacy.item3" = "绝不会用于 AI 训练";
+"onboarding.getstarted.title" = "一键即可开始";
+"onboarding.getstarted.subtitle" = "下载推荐的 AI 模型\n即可开始对话";
+"onboarding.step1" = "下载推荐模型";
+"onboarding.step2" = "等待几分钟";
+"onboarding.step3" = "准备就绪！";
+
+// MARK: - About
+"about.title" = "关于本应用";
+"about.rate.app" = "给应用评分";
+"about.share.app" = "分享给朋友";
+"about.privacy.policy" = "隐私政策";
+"about.terms" = "服务条款";
+"about.tech.info" = "技术信息";
+"about.tech.engine" = "AI 引擎";
+"about.tech.format" = "支持的格式";
+"about.tech.inference" = "推理";
+"about.data.management" = "数据管理";
+"about.delete.all" = "删除所有对话";
+"about.credits" = "致谢";
+"about.credits.description" = "本应用使用了开源软件库";
+"about.privacy.section" = "隐私";
+"about.gguf.format" = "GGUF 格式";
+"about.metal.gpu" = "Metal GPU 加速";
+
+// MARK: - Referral
+"referral.title" = "邀请朋友";
+"referral.code.title" = "您的邀请码";
+"referral.code.copy" = "复制邀请码";
+"referral.code.copied" = "已复制";
+"referral.share.button" = "分享给朋友";
+"referral.share.description" = "与朋友分享 Elio！";
+"referral.count" = "已邀请 %d 人";
+"referral.enter.title" = "输入邀请码";
+"referral.enter.placeholder" = "邀请码";
+"referral.enter.button" = "应用";
+"referral.enter.success" = "邀请码已应用";
+"referral.enter.error" = "无效的邀请码";
+
+// MARK: - Privacy Policy
+"privacy.title" = "隐私政策";
+"privacy.data.collection.title" = "数据收集";
+"privacy.data.collection.content" = "本应用完全离线运行本地 AI。\n不会向外部服务器发送任何数据。\n所有对话仅存储在您的设备上。";
+"privacy.stored.data.title" = "存储的数据";
+"privacy.stored.data.content" = "对话记录（仅存储在设备上）\nAI 模型文件（仅存储在设备上）\n应用设置（仅存储在设备上）\n\n这些数据绝不会对外共享。";
+"privacy.data.deletion.title" = "数据删除";
+"privacy.data.deletion.content" = "您可以随时在设置 > 数据管理中删除所有数据。\n卸载应用将删除所有数据。";
+
+// MARK: - Terms of Service
+"terms.title" = "服务条款";
+"terms.service.title" = "服务说明";
+"terms.service.content" = "本应用使用本地运行的 AI 模型提供 AI 助手功能。";
+"terms.disclaimer.title" = "免责声明";
+"terms.disclaimer.content" = "AI 的回复可能包含错误。\n重要决策请务必由专业人士确认。\n对于因使用本应用造成的任何损失，我们不承担责任。";
+"terms.prohibited.title" = "禁止行为";
+"terms.prohibited.content" = "违法活动\n侵犯他人权利的行为\n对本应用进行逆向工程\n未经授权复制本应用";
+"terms.ip.title" = "知识产权";
+"terms.ip.content" = "本应用的知识产权归开发者所有。\n禁止未经授权的使用。";
+
+// MARK: - Conversations
+"conversations.title" = "对话";
+"conversations.new" = "新建对话";
+"conversations.empty" = "暂无对话";
+"conversations.delete" = "删除对话";
+"conversations.default.title" = "新对话";
+"conversations.today" = "今天";
+"conversations.yesterday" = "昨天";
+"conversations.past7days" = "过去 7 天";
+"conversations.past30days" = "过去 30 天";
+"conversations.older" = "更早";
+"conversations.created" = "创建时间：%@";
+"conversations.user" = "用户";
+"conversations.assistant" = "助手";
+"conversations.search.placeholder" = "搜索对话";
+"conversations.search.no_results" = "未找到结果";
+
+// MARK: - Message Actions
+"message.copy" = "复制";
+"message.speak" = "朗读";
+"message.stop.speaking" = "停止朗读";
+"message.share" = "分享";
+"message.share.card" = "分享为卡片";
+"message.like" = "点赞";
+
+// MARK: - Share Card
+"share.card.title" = "分享卡片";
+"share.card.preview" = "预览";
+"share.card.button" = "分享图片";
+"message.dislike" = "踩";
+"message.thinking.process" = "思考过程";
+"message.tool.running" = "正在运行工具";
+"message.tool.error" = "错误";
+"message.tool.completed" = "已完成";
+
+// MARK: - Attachment
+"attachment.title" = "附件";
+"attachment.photo.library" = "从相册选择";
+"attachment.camera" = "拍照";
+"attachment.pdf" = "选择 PDF";
+"attachment.pdf.chars" = "%d 个字符";
+"attachment.pdf.pages" = "%d 页";
+"attachment.pdf.vision.enabled" = "已启用图像分析";
+"attachment.pdf.text.only" = "仅文本模式";
+"attachment.url" = "读取网页";
+"attachment.url.title" = "输入网址";
+"attachment.url.placeholder" = "https://example.com";
+"attachment.url.message" = "粘贴网址以提取其内容";
+"attachment.url.fetch" = "获取";
+"attachment.url.loading" = "正在加载页面...";
+
+// MARK: - Errors
+"error.model.not.found" = "未找到模型文件";
+"error.model.not.loaded" = "模型未加载";
+"error.context.failed" = "创建上下文失败";
+"error.tokenization.failed" = "分词处理失败";
+"error.generation.failed" = "生成错误：%@";
+"error.occurred" = "发生错误：%@";
+"error.invalid.url" = "无效的网址";
+"error.download.failed" = "下载失败";
+"error.extraction.failed" = "提取失败";
+"error.config.not.found" = "未找到配置文件";
+
+// MARK: - Ghost Search
+"ghost.search.title" = "隐匿搜索";
+"ghost.search.description" = "通过 DuckDuckGo 匿名搜索（无追踪）";
+"ghost.search.connecting" = "正在连接匿名网络...";
+"ghost.search.privacy.note" = "您的搜索记录绝不会被追踪";
+
+// MARK: - MCP Servers
+"mcp.filesystem" = "文件系统";
+"mcp.filesystem.desc" = "在应用内读写文件";
+"mcp.calendar" = "日历";
+"mcp.calendar.desc" = "读写日程事件";
+"mcp.reminders" = "提醒事项";
+"mcp.reminders.desc" = "管理提醒事项";
+"mcp.contacts" = "通讯录";
+"mcp.contacts.desc" = "搜索和查看联系人";
+"mcp.photos" = "照片";
+"mcp.photos.desc" = "访问照片图库";
+"mcp.location" = "位置";
+"mcp.location.desc" = "获取当前位置和搜索地点";
+"mcp.health" = "健康";
+"mcp.health.desc" = "访问健康数据";
+"mcp.shortcuts" = "快捷指令";
+"mcp.shortcuts.desc" = "运行快捷指令";
+"mcp.websearch" = "网络搜索";
+"mcp.websearch.desc" = "匿名网络搜索";
+"mcp.custom" = "自定义集成";
+"mcp.custom.add" = "添加集成";
+"mcp.custom.setup" = "设置外部服务集成";
+"mcp.custom.title" = "自定义集成";
+"mcp.settings.title" = "集成设置";
+"mcp.server.name" = "服务器名称";
+"mcp.server.name.placeholder" = "例如：我的自定义服务器";
+"mcp.config.url" = "配置文件 URL";
+"mcp.import.file" = "从文件导入";
+"mcp.config.example" = "配置文件示例";
+"mcp.permission.note" = "首次使用各功能时将请求相应权限";
+
+// MARK: - MCP Tool Messages
+"mcp.tool.available" = "可用工具：";
+"mcp.tool.parameters" = "参数：";
+"mcp.prompt.available" = "可用提示：";
+"mcp.prompt.arguments" = "参数：";
+"mcp.tool.name" = "tool_name";
+"mcp.tool.arg.name" = "arg_name";
+"mcp.tool.arg.value" = "value";
+"mcp.tool.no.result" = "无结果";
+"mcp.tool.running" = "正在运行工具：%@";
+"mcp.tool.error" = "工具执行错误：%@";
+
+// MARK: - MCP Error Messages
+"mcp.error.server.not.found" = "未找到服务器：%@";
+"mcp.error.tool.not.found" = "未找到工具：%@";
+"mcp.error.invalid.args" = "无效的参数：%@";
+"mcp.error.execution" = "执行错误：%@";
+"mcp.error.permission" = "权限被拒绝：%@";
+
+// MARK: - Calendar Messages
+"calendar.no.events" = "没有事件";
+"calendar.event.created" = "事件已创建：%@";
+"calendar.event.deleted" = "事件已删除：%@";
+"calendar.allday.created" = "全天事件已创建：%@";
+"calendar.access.denied" = "日历访问被拒绝";
+"calendar.today.none" = "今天没有事件";
+"calendar.untitled" = "无标题";
+
+// MARK: - Reminders Messages
+"reminders.none" = "没有提醒事项";
+"reminders.created" = "提醒事项已创建：%@";
+"reminders.completed" = "提醒事项已完成：%@";
+"reminders.deleted" = "提醒事项已删除：%@";
+"reminders.access.denied" = "提醒事项访问被拒绝";
+"reminders.untitled" = "无标题";
+
+// MARK: - Photos Messages
+"photos.access.denied" = "照片访问被拒绝";
+"photos.not.found" = "未找到照片";
+"photos.untitled" = "无标题";
+"photos.count" = "照片：%d";
+"photos.videos.count" = "视频：%d";
+"photos.albums.count" = "相簿：%d";
+"photos.favorites.count" = "收藏：%d";
+"photos.date" = "日期：%@";
+"photos.size" = "尺寸：%d x %d";
+"photos.location" = "位置：%@，%@";
+"photos.media.type" = "媒体类型：%@";
+"photos.duration" = "时长：%dm %ds";
+"photos.favorite" = "收藏：%@";
+"photos.type.image" = "照片";
+"photos.type.video" = "视频";
+"photos.type.audio" = "音频";
+
+// MARK: - Contacts Messages
+"contacts.access.denied" = "通讯录访问被拒绝";
+"contacts.not.found" = "未找到匹配的联系人";
+"contacts.no.groups" = "没有群组";
+"contacts.no.card" = "未设置联系人名片";
+"contacts.name" = "姓名：%@";
+"contacts.company" = "公司：%@";
+"contacts.job" = "职位：%@";
+
+// MARK: - Location Messages
+"location.access.denied" = "位置访问被拒绝";
+"location.not.found" = "未找到地址";
+"location.latitude" = "纬度：%@";
+"location.longitude" = "经度：%@";
+"location.accuracy" = "精度：%dm";
+"location.altitude" = "海拔：%dm";
+"location.search" = "搜索：%@";
+"location.address" = "地址：%@";
+"location.country" = "国家：%@";
+"location.postal" = "邮政编码：%@";
+"location.from" = "起点：(%@, %@)";
+"location.to" = "终点：(%@, %@)";
+"location.distance.km" = "距离：%.2f 公里";
+"location.distance.m" = "距离：%d 米";
+
+// MARK: - Health Messages
+"health.not.available" = "此设备不支持健康功能";
+"health.date" = "日期：%@";
+"health.steps" = "步数：%@ 步";
+"health.goal.progress" = "目标进度：%d%%（目标 10,000 步）";
+"health.no.data" = "暂无数据";
+"health.avg.bpm" = "平均：%d bpm";
+"health.min.bpm" = "最低：%d bpm";
+"health.max.bpm" = "最高：%d bpm";
+"health.measurements" = "测量次数：%d";
+"health.no.sleep" = "暂无睡眠数据";
+"health.sleep.total" = "总睡眠时间：%dh %dm";
+"health.bedtime" = "就寝时间：%@";
+"health.waketime" = "起床时间：%@";
+"health.calories" = "卡路里：%d 千卡";
+
+// MARK: - File System Messages
+"filesystem.not.found" = "未找到文件：%@";
+"filesystem.written" = "文件已写入：%@";
+"filesystem.dir.created" = "目录已创建：%@";
+"filesystem.deleted" = "已删除：%@";
+"filesystem.size" = "大小：%@";
+"filesystem.created" = "创建时间：%@";
+"filesystem.modified" = "修改时间：%@";
+"filesystem.type" = "类型：%@";
+
+// MARK: - Shortcuts Messages
+"shortcuts.executed" = "快捷指令\"%@\"已执行";
+"shortcuts.opened" = "快捷指令应用已打开";
+"shortcuts.settings.opened" = "设置（%@）已打开";
+"shortcuts.mail.opened" = "邮件编辑已打开";
+"shortcuts.calling" = "正在拨打：%@";
+"shortcuts.message.opened" = "短信编辑已打开";
+"shortcuts.failed" = "无法打开快捷指令";
+
+// MARK: - Model Tiers
+"model.tier.entry" = "入门";
+"model.tier.standard" = "标准";
+"model.tier.pro" = "专业";
+
+// MARK: - Tool Parser
+"tool.arguments" = "参数：";
+
+// MARK: - Model Settings
+"model.action.settings" = "设置";
+"settings.model.parameters" = "模型设置";
+"settings.model.parameters.description" = "自定义此模型的生成参数";
+"settings.preset.title" = "预设";
+"settings.preset.custom" = "自定义";
+"settings.preset.balanced" = "均衡";
+"settings.preset.creative" = "创意";
+"settings.preset.precise" = "精确";
+"settings.preset.coding" = "编程";
+"settings.preset.japanese" = "日语";
+"settings.parameters.title" = "参数";
+"settings.parameter.temperature" = "温度";
+"settings.parameter.temperature.description" = "越高越有创意，越低越专注";
+"settings.parameter.top.p" = "Top P";
+"settings.parameter.top.p.description" = "核采样概率";
+"settings.parameter.top.k" = "Top K";
+"settings.parameter.top.k.description" = "考虑的最高概率词元数量";
+"settings.parameter.max.tokens" = "最大词元数";
+"settings.parameter.max.tokens.description" = "回复的最大长度";
+"settings.parameter.repeat.penalty" = "重复惩罚";
+"settings.parameter.repeat.penalty.description" = "越高输出越少重复";
+"settings.parameter.thinking" = "思考模式";
+"settings.parameter.thinking.description" = "显示 AI 的推理过程";
+"settings.system.prompt.title" = "系统提示词";
+"settings.system.prompt.description" = "为 AI 设置自定义指令";
+"settings.reset.to.default" = "恢复默认";
+
+// MARK: - Vision Model
+"vision.model.required.title" = "需要视觉模型";
+"vision.model.required.header" = "需要图像识别功能";
+"vision.model.required.description" = "要分析图像，您需要一个支持视觉的 AI 模型";
+"vision.model.switch" = "切换模型";
+"vision.model.switch.message %@" = "切换到 %@ 以启用图像分析？";
+"vision.model.download" = "下载";
+"vision.model.download.message %@ %@" = "下载 %@（%@）以分析图像？";
+"vision.model.not.available" = "没有兼容您设备的视觉模型";
+"vision.model.switching" = "正在切换模型...";
+"vision.model.download.title" = "视觉模型";
+"vision.model.recommended" = "推荐适合您设备的模型";
+"vision.model.recommended.size %@" = "推荐：%@";
+"vision.model.use.this" = "使用此模型";
+"vision.model.download.button %@" = "下载（%@）";
+"vision.model.other.options" = "其他视觉模型";
+"vision.model.download.complete" = "下载完成";
+"vision.model.download.complete.message" = "已准备好分析图像";
+
+// MARK: - Whisper Voice Input (Legacy)
+"whisper.download.title" = "需要语音识别";
+"whisper.download.action" = "下载";
+"whisper.download.message" = "要使用语音输入，您需要下载语音识别模型（约 150MB）。";
+"whisper.downloading" = "正在下载语音识别模型...";
+"whisper.download.error" = "下载错误";
+"whisper.load.error" = "模型加载错误";
+"whisper.permission.denied" = "麦克风访问未授权";
+"whisper.transcribe.error" = "转录错误";
+"whisper.error.permission" = "需要麦克风权限";
+"whisper.error.not.recording" = "当前未在录音";
+"whisper.error.no.recording" = "没有录音数据";
+"whisper.error.model.not.loaded" = "语音识别模型未加载";
+"whisper.error.transcription" = "转录失败";
+
+// MARK: - Speech Recognition (ReazonSpeech)
+"speech.download.title" = "需要语音识别";
+"speech.download.action" = "下载";
+"speech.download.message" = "要使用语音输入，您需要下载日语语音识别模型（约 155MB）。";
+"speech.downloading" = "正在下载语音识别模型...";
+
+// MARK: - Language Settings
+"settings.language.section" = "语言";
+"language.system" = "跟随系统语言";
+"settings.language.restart.hint" = "语言更改将在重启应用后生效";
+"settings.language.changed.title" = "语言已更改";
+"settings.language.changed.message" = "请重启应用以应用更改";
+"common.ok" = "好";
+
+// MARK: - System Prompt Settings
+"settings.prompt.section" = "系统提示词";
+"settings.prompt.edit" = "编辑提示词";
+"settings.prompt.default" = "使用默认设置";
+"settings.prompt.custom" = "已设置自定义提示词";
+"settings.prompt.hint" = "自定义 AI 行为";
+"settings.prompt.editor.title" = "编辑提示词";
+"settings.prompt.editor.instruction" = "为 AI 添加自定义指令。留空则使用默认提示词。";
+"settings.prompt.default.preview" = "默认提示词（摘要）：";
+"settings.prompt.reset" = "重置";
+"settings.prompt.reset.title" = "重置提示词";
+"settings.prompt.reset.message" = "删除自定义提示词并恢复默认设置？";
+
+// MARK: - Prompt Templates
+"templates.title" = "提示词模板";
+"templates.empty" = "暂无模板";
+"templates.add" = "添加模板";
+"template.add.title" = "添加模板";
+"template.edit.title" = "编辑模板";
+"template.name.header" = "名称";
+"template.name.placeholder" = "模板名称";
+"template.content.header" = "提示词内容";
+"template.icon.header" = "图标";
+"template.translate.name" = "翻译";
+"template.translate.content" = "请翻译以下内容：";
+"template.summarize.name" = "摘要";
+"template.summarize.content" = "请总结以下内容：";
+"template.explain.name" = "解释";
+"template.explain.content" = "请解释以下内容：";
+"template.code.name" = "编程";
+"template.code.content" = "请编写以下代码：";
+
+// MARK: - Export
+"export.title" = "导出对话";
+"export.format.markdown" = "Markdown";
+"export.format.pdf" = "PDF";
+"export.format.text" = "纯文本";
+"export.created" = "创建时间";
+"export.image.attached" = "已附加图片";
+"export.generated.by" = "生成工具";
+
+// MARK: - Loading Phases
+"loading.phase.initializing" = "正在初始化...";
+"loading.phase.loading" = "正在加载模型...";
+"loading.phase.preparing" = "正在准备推理引擎...";
+"loading.phase.almost" = "即将就绪...";
+
+// MARK: - Welcome Screen
+"welcome.greeting" = "随便问我什么";
+"welcome.subtitle" = "隐私优先的 AI 助手";
+"suggestion.idea" = "帮我头脑风暴";
+"suggestion.write" = "帮我写点东西";
+"suggestion.question" = "回答我的问题";
+
+// MARK: - Kokoro TTS
+"tts.download.title" = "高品质语音";
+"tts.download.action" = "下载";
+"tts.download.use_system" = "使用系统语音";
+"tts.download.message" = "下载 Kokoro TTS 模型（约 87MB）以获得更自然的日语语音合成。";
+"tts.downloading" = "正在下载 TTS 模型...";
+
+// MARK: - Feedback
+"feedback.consent.title" = "发送反馈";
+"feedback.send" = "发送";
+"feedback.positive.title" = "这个回复有帮助吗？";
+"feedback.negative.title" = "可以改进吗？";
+"feedback.explanation" = "您的反馈有助于提升 AI 质量。请在提交前确认将要发送的数据。";
+"feedback.data.section" = "将要发送的数据";
+"feedback.data.conversation" = "对话内容";
+"feedback.data.conversation.desc" = "AI 的回复和您之前的消息";
+"feedback.data.model" = "模型信息";
+"feedback.data.model.desc" = "所使用的 AI 模型名称";
+"feedback.data.timestamp" = "时间戳";
+"feedback.data.timestamp.desc" = "反馈提交的时间";
+"feedback.privacy.section" = "隐私";
+"feedback.privacy.anonymous" = "不会发送任何个人身份信息";
+"feedback.privacy.improvement" = "仅用于提升 AI 质量";
+"feedback.privacy.optional" = "发送反馈完全自愿";
+"feedback.comment.section" = "评论（可选）";
+"feedback.comment.placeholder" = "告诉我们哪些可以改进或哪些做得好...";
+"feedback.remember.title" = "记住此选择";
+"feedback.remember.description" = "下次直接提交反馈，不再询问";
+
+// MARK: - Web Search
+"chat.web.search" = "网络搜索";
+"search.privacy.title" = "隐私保护搜索";
+"search.privacy.proceed" = "搜索";
+"search.privacy.message" = "Elio 网络搜索保护您的隐私：\n\n🔒 通过 DuckDuckGo 搜索\n🚫 无追踪或用户画像\n🔐 不存储搜索记录\n📱 设备外不存储任何数据\n\n只有您的搜索查询会发送到 DuckDuckGo，搜索结果在您的设备上处理。";
+"chat.web.analyzing" = "[正在分析网页]";
+// MARK: - Chat Modes
+"chatmode.local" = "本地";
+"chatmode.chatweb" = "云端";
+"chatmode.private" = "私密";
+"chatmode.fast" = "快速";
+"chatmode.genius" = "天才";
+"chatmode.public" = "公共";
+"chatmode.local.desc" = "设备上 \U2022 免费 \U2022 私密";
+"chatmode.chatweb.desc" = "ChatWeb.ai \U2022 快速云端AI";
+"chatmode.private.desc" = "受信任设备 \U2022 你的网络";
+"chatmode.fast.desc" = "Groq API \U2022 超快速";
+"chatmode.genius.desc" = "GPT-4o/Claude \U2022 最高质量";
+"chatmode.public.desc" = "社区 \U2022 共享计算";
+// MARK: - Inference Errors
+"error.backend.not.ready" = "后端未就绪";
+"error.api.key.missing" = "API密钥未配置";
+"error.network" = "网络错误：%@";
+"error.rate.limited" = "已达到速率限制。请稍后重试。";
+"error.insufficient.tokens" = "代币不足";
+"error.cancelled" = "生成已取消";
+"error.invalid.response" = "服务器响应无效";
+"error.server" = "服务器错误（%lld）：%@";

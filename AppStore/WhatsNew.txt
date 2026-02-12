@@ -1,0 +1,15 @@
+【新機能 - 日本語】
+• 5つのチャットモード追加（Local/Private/Fast/Genius/Public）
+• トークンエコノミーシステム導入
+• P2Pサーバー機能（トークン獲得可能）
+• クラウドAPI連携（OpenAI/Anthropic/Google/Groq）
+• サブスクリプションプラン（Basic/Pro）
+• プライバシーポリシー・利用規約追加
+
+【What's New - English】
+• Added 5 chat modes (Local/Private/Fast/Genius/Public)
+• Introduced token economy system
+• P2P server feature (earn tokens)
+• Cloud API integration (OpenAI/Anthropic/Google/Groq)
+• Subscription plans (Basic/Pro)
+• Added Privacy Policy & Terms of Service

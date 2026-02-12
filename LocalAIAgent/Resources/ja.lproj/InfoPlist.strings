@@ -1,0 +1,12 @@
+/* InfoPlist.strings (Japanese) */
+
+"NSCalendarsUsageDescription" = "ElioChatがカレンダーの予定を読み書きするために使用します。";
+"NSContactsUsageDescription" = "ElioChatが連絡先を検索・表示するために使用します。";
+"NSPhotoLibraryUsageDescription" = "ElioChatが写真ライブラリにアクセスするために使用します。";
+"NSLocationWhenInUseUsageDescription" = "ElioChatが現在地を取得するために使用します。";
+"NSRemindersUsageDescription" = "ElioChatがリマインダーを読み書きするために使用します。";
+"NSCameraUsageDescription" = "ElioChatが写真を撮影してAIに送信するために使用します。";
+"NSMicrophoneUsageDescription" = "ElioChatが音声入力を行うために使用します。";
+"NSSpeechRecognitionUsageDescription" = "ElioChatが音声をテキストに変換するために使用します。";
+"NSPhotoLibraryAddUsageDescription" = "ElioChatが生成した画像を保存するために使用します。";
+"NSLocalNetworkUsageDescription" = "ElioChatが近くのデバイスと接続してAI推論を共有するために使用します。";

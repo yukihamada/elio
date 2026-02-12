@@ -209,6 +209,7 @@ enum SpendReason: String {
     case fastMode = "Fast Mode"
     case geniusMode = "Genius Mode"
     case p2pRequest = "P2P Request"
+    case skillPurchase = "Skill Purchase"
 }
 
 enum EarnReason: String {

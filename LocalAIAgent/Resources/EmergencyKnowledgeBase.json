@@ -1,0 +1,796 @@
+{
+  "version": "1.0.0",
+  "updated_at": "2025-01-01",
+  "locales": {
+    "ja": {
+      "first_aid": {
+        "title": "応急処置",
+        "items": {
+          "cpr": {
+            "title": "心肺蘇生法 (CPR)",
+            "steps": [
+              "1. 安全を確認し、意識を確認する（肩を叩いて呼びかける）",
+              "2. 反応がなければ、119番通報とAEDの手配を依頼する",
+              "3. 呼吸を確認する（10秒以内で胸の動きを見る）",
+              "4. 正常な呼吸がなければ、胸骨圧迫を開始する",
+              "5. 胸の真ん中（乳頭の間）に手のひらの付け根を置く",
+              "6. 5〜6cmの深さで、1分間に100〜120回のテンポで強く速く押す",
+              "7. 30回の圧迫ごとに2回の人工呼吸（できる場合）",
+              "8. AEDが届いたらすぐに使用する",
+              "9. 救急隊が到着するまで絶対に中断しない"
+            ]
+          },
+          "bleeding": {
+            "title": "止血",
+            "steps": [
+              "1. 清潔な布やガーゼで傷口を強く押さえる（直接圧迫止血法）",
+              "2. 圧迫したまま10分以上持続する",
+              "3. 出血部位を心臓より高い位置に上げる",
+              "4. 止血帯が必要な場合は、傷口より心臓に近い側で縛る",
+              "5. 止血帯を使用した時刻を記録する",
+              "6. 大量出血の場合は119番通報する",
+              "注意: 異物が刺さっている場合は抜かない"
+            ]
+          },
+          "burns": {
+            "title": "やけど",
+            "steps": [
+              "1. すぐに流水で20分以上冷やす",
+              "2. 衣服の上からやけどした場合、無理に脱がさず上から冷やす",
+              "3. 水ぶくれは潰さない",
+              "4. 清潔なガーゼで軽く覆う",
+              "5. 広範囲のやけどは119番通報する",
+              "注意: 氷を直接当てない、バターや油を塗らない"
+            ]
+          },
+          "fracture": {
+            "title": "骨折",
+            "steps": [
+              "1. 患部を動かさない",
+              "2. 添え木（段ボール、雑誌、傘など）で固定する",
+              "3. 固定は骨折部位の上下の関節を含めて行う",
+              "4. きつく縛りすぎない（血流を確認）",
+              "5. 患部を冷やす（氷嚢をタオルで包んで当てる）",
+              "6. 開放骨折（骨が皮膚を突き破っている）の場合は119番通報",
+              "注意: 自分で骨を元に戻そうとしない"
+            ]
+          },
+          "aed": {
+            "title": "AED使用法",
+            "steps": [
+              "1. AEDの電源を入れる（蓋を開けると自動で起動する機種もある）",
+              "2. 音声ガイダンスに従う",
+              "3. 電極パッドを素肌に貼る（右鎖骨の下と左脇腹）",
+              "4. パッドを貼ったら、心電図解析が始まる",
+              "5. 「ショックが必要です」のアナウンスが出たら、全員が離れる",
+              "6. ショックボタンを押す",
+              "7. ショック後すぐに胸骨圧迫を再開する",
+              "注意: 体が濡れている場合はタオルで拭いてからパッドを貼る"
+            ]
+          },
+          "heatstroke": {
+            "title": "熱中症",
+            "steps": [
+              "1. 涼しい場所（日陰やクーラーの効いた室内）に移動する",
+              "2. 衣服をゆるめ、体を冷やす",
+              "3. 首・脇の下・太ももの付け根を重点的に冷やす",
+              "4. 意識がはっきりしていれば、水分と塩分を補給する",
+              "5. 経口補水液やスポーツドリンクが望ましい",
+              "6. 意識がもうろうとしている場合は119番通報する",
+              "注意: 意識が不明瞭な場合は無理に飲ませない（誤嚥の危険）"
+            ]
+          },
+          "choking": {
+            "title": "窒息（異物除去）",
+            "steps": [
+              "1. 「喉に何か詰まりましたか？」と確認する",
+              "2. 咳ができる場合は、咳を続けさせる",
+              "3. 咳ができない場合は、背部叩打法を行う",
+              "4. 背部叩打法: 背中の肩甲骨の間を手のひらの付け根で5回強く叩く",
+              "5. 効果がなければ腹部突き上げ法（ハイムリック法）を行う",
+              "6. ハイムリック法: 後ろから抱きかかえ、みぞおちの上を上方に突き上げる",
+              "7. 意識がなくなったら119番通報し、CPRを開始する",
+              "注意: 乳児には腹部突き上げ法を行わない（胸部突き上げ法を使う）"
+            ]
+          }
+        }
+      },
+      "disaster": {
+        "title": "災害対応",
+        "items": {
+          "earthquake": {
+            "title": "地震",
+            "steps": [
+              "【発生時】",
+              "1. テーブルの下に隠れ、頭を守る（Drop, Cover, Hold On）",
+              "2. 揺れが収まるまで動かない",
+              "3. 火を使っていたら揺れが収まってから消火する",
+              "4. ドアを開けて避難経路を確保する",
+              "5. エレベーターは使わない",
+              "【揺れが収まった後】",
+              "6. 靴を履いて足を守る（ガラスの破片に注意）",
+              "7. ガスの元栓を閉める",
+              "8. ブレーカーを落とす（通電火災防止）",
+              "9. 建物の損傷を確認し、危険なら外に出る",
+              "10. 海岸近くでは津波警報を確認し、高台に避難する"
+            ]
+          },
+          "tsunami": {
+            "title": "津波",
+            "steps": [
+              "1. 強い揺れまたは長い揺れを感じたら、すぐに高台に避難する",
+              "2. 警報を待たず、自分の判断で避難を開始する",
+              "3. できるだけ高い場所（標高30m以上）を目指す",
+              "4. 近くに高台がなければ、鉄筋コンクリートの3階以上に避難する",
+              "5. 海や川に近づかない",
+              "6. 第一波の後も繰り返し来るため、警報解除まで戻らない",
+              "7. 車での避難は渋滞リスクがあり、原則徒歩で避難する",
+              "注意: 津波は時速数百kmで到達することがある"
+            ]
+          },
+          "typhoon": {
+            "title": "台風・暴風雨",
+            "steps": [
+              "【事前準備】",
+              "1. 気象情報を確認し、進路を把握する",
+              "2. 窓に養生テープを貼る、雨戸を閉める",
+              "3. ベランダの物を室内に入れる",
+              "4. 懐中電灯、水、食料を準備する",
+              "5. 浴槽に水を貯める（断水対策）",
+              "【接近時】",
+              "6. 不要な外出を控える",
+              "7. 2階以上の部屋で過ごす（浸水対策）",
+              "8. 河川や用水路に近づかない",
+              "9. 停電に備えてモバイルバッテリーを充電する"
+            ]
+          },
+          "flood": {
+            "title": "洪水",
+            "steps": [
+              "1. 浸水する前に2階以上に垂直避難する",
+              "2. 膝上まで浸水したら、無理に移動しない",
+              "3. 水の流れが速い場所には入らない（水深30cmで歩行困難）",
+              "4. マンホールや側溝に注意（蓋が外れている場合がある）",
+              "5. 車が浸水したらすぐに脱出する（水圧でドアが開かなくなる）",
+              "6. 感電の危険があるため、冠水した場所で電気設備に触れない",
+              "7. 避難時は長い棒で地面を確認しながら歩く"
+            ]
+          },
+          "fire": {
+            "title": "火災",
+            "steps": [
+              "1. 「火事だ！」と大声で周囲に知らせる",
+              "2. 119番通報する",
+              "3. 初期消火を試みる（消火器使用）",
+              "4. 天井まで火が達したら消火を諦め、避難する",
+              "5. 煙の中では姿勢を低くし、ハンカチで口と鼻を覆う",
+              "6. ドアを閉めて延焼を遅らせる",
+              "7. エレベーターは絶対に使わない、階段を使う",
+              "8. 一度避難したら絶対に戻らない"
+            ]
+          },
+          "landslide": {
+            "title": "土砂災害",
+            "steps": [
+              "1. 前兆に注意: 小石が落ちてくる、地鳴り、崖からの水が止まる/濁る",
+              "2. 前兆を感じたらすぐに避難する",
+              "3. 崖や急斜面から離れる方向に逃げる",
+              "4. 土石流からは横方向に逃げる（流れに対して直角に）",
+              "5. 谷筋や沢筋を避ける",
+              "6. 避難が間に合わない場合は2階の崖から遠い部屋に移動する",
+              "7. 大雨警報・土砂災害警戒情報が出たら早めに避難する"
+            ]
+          },
+          "volcano": {
+            "title": "火山噴火",
+            "steps": [
+              "1. 噴火警戒レベルを確認する",
+              "2. 規制範囲から速やかに離れる",
+              "3. 噴石から身を守る（ヘルメット、防災頭巾）",
+              "4. 火山灰から目・鼻・口を守る（マスク、ゴーグル）",
+              "5. 火砕流が発生したら流れに対して直角方向に逃げる",
+              "6. 火山灰が積もったら屋根の雪下ろしのように除去する",
+              "7. コンタクトレンズは外してメガネを使用する",
+              "8. 車の運転は視界不良になるため控える"
+            ]
+          }
+        }
+      },
+      "infrastructure": {
+        "title": "インフラ停止時の対応",
+        "items": {
+          "power_outage": {
+            "title": "停電対応",
+            "steps": [
+              "1. ブレーカーを確認する（自宅のみか地域全体かを判断）",
+              "2. 冷蔵庫はなるべく開けない（4時間は保冷可能）",
+              "3. 懐中電灯やランタンを使用（ろうそくは火事のリスク）",
+              "4. スマートフォンの省電力モードをオンにする",
+              "5. モバイルバッテリーや車のシガーソケットで充電する",
+              "6. 通電再開時の火災（通電火災）防止のため、電気器具のプラグを抜く",
+              "7. 在宅医療機器を使用中の方は、予備電源を確認する"
+            ]
+          },
+          "water_outage": {
+            "title": "断水対応",
+            "steps": [
+              "1. 飲料水: 1人1日3リットルが目安",
+              "2. 生活用水: 浴槽に水を貯める、トイレ用にバケツを用意",
+              "3. 給水車の情報を自治体のウェブサイト・防災無線で確認",
+              "4. 水の節約: 紙皿やラップを使い食器洗いを減らす",
+              "5. トイレはバケツ1杯の水で流せる（ゆっくり流し入れる）",
+              "6. 復旧時は蛇口から赤い水が出る場合がある（しばらく流す）",
+              "7. 非常用給水拠点の場所を事前に確認しておく"
+            ]
+          },
+          "gas_leak": {
+            "title": "ガス漏れ対処",
+            "steps": [
+              "1. ガスの臭いがしたら、火気厳禁（ライター、マッチ禁止）",
+              "2. 換気扇・電気スイッチに触らない（火花が出る可能性）",
+              "3. 窓やドアを開けて換気する",
+              "4. ガスの元栓を閉める",
+              "5. ガス会社に連絡する（都市ガス: 各都市ガス会社、LPガス: 販売店）",
+              "6. 建物の外に避難する",
+              "7. スマートフォンの操作も屋外で行う"
+            ]
+          },
+          "communication": {
+            "title": "通信手段の確保",
+            "steps": [
+              "1. 災害伝言ダイヤル（171）に録音・再生する",
+              "2. 災害伝言板（web171）を利用する",
+              "3. 各キャリアの災害伝言板サービスを利用する",
+              "4. SNS（X/Twitter, LINE）で安否を発信する",
+              "5. 公衆電話は災害時に無料で使用できる",
+              "6. Wi-Fiスポット「00000JAPAN」が解放される場合がある",
+              "7. ラジオで情報を入手する（AM/FM、NHK第一 594kHz）",
+              "8. 電話は短時間で要件のみ伝える（回線混雑防止）"
+            ]
+          }
+        }
+      },
+      "fact_check": {
+        "title": "ファクトチェック・偽情報対策",
+        "items": {
+          "identify_misinfo": {
+            "title": "偽情報の見分け方",
+            "steps": [
+              "1. 情報源を確認する（公式機関のウェブサイトか？）",
+              "2. 発信日時を確認する（古い情報が再拡散されていないか？）",
+              "3. 複数の信頼できるメディアで確認する",
+              "4. 感情を煽る内容には特に注意する",
+              "5. 「拡散希望」は安易に応じない",
+              "6. 具体的な数字や固有名詞が含まれているか確認する",
+              "7. 写真や動画は別の事件のものが使い回されている場合がある",
+              "8. 「友人の友人が言っていた」は信頼性が低い"
+            ]
+          },
+          "deepfake": {
+            "title": "ディープフェイク判別ポイント",
+            "steps": [
+              "1. 不自然なまばたき、目の動きに注目する",
+              "2. 口の動きと音声がずれていないか確認する",
+              "3. 顔の輪郭や髪の生え際が不自然でないか確認する",
+              "4. 背景やライティングの不整合を探す",
+              "5. 動画の解像度が部分的に異なっていないか確認する",
+              "6. 元の発言をした組織・人物の公式アカウントで確認する",
+              "7. 疑わしい場合はファクトチェック機関に確認する"
+            ]
+          },
+          "reliable_sources": {
+            "title": "信頼できる情報源リスト",
+            "steps": [
+              "【政府機関】",
+              "・内閣府防災: https://bousai.go.jp",
+              "・気象庁: https://jma.go.jp",
+              "・消防庁: https://fdma.go.jp",
+              "・首相官邸（災害）: https://kantei.go.jp/saigai",
+              "【メディア】",
+              "・NHK防災: https://nhk.or.jp/kishou-saigai/",
+              "・各地方自治体の防災ページ",
+              "【ファクトチェック】",
+              "・日本ファクトチェックセンター(JFC): https://factcheckcenter.jp",
+              "・FIJ（ファクトチェック・イニシアティブ）: https://fij.info"
+            ]
+          },
+          "before_sharing": {
+            "title": "SNS拡散前チェックリスト",
+            "steps": [
+              "□ 情報源は公式機関・信頼できるメディアか？",
+              "□ 日時は最新のものか？（過去の災害の情報ではないか）",
+              "□ 他の信頼できるメディアでも同じ情報が報じられているか？",
+              "□ 写真や動画は今回の事象のものか？（画像検索で確認）",
+              "□ 感情的に煽る表現が多すぎないか？",
+              "□ 拡散することで混乱を招かないか？",
+              "□ 個人情報が含まれていないか？",
+              "迷ったら拡散しない。正確さは速さより重要。"
+            ]
+          }
+        }
+      },
+      "evacuation": {
+        "title": "避難",
+        "items": {
+          "find_shelter": {
+            "title": "避難所の探し方",
+            "steps": [
+              "1. 自治体のハザードマップで最寄りの避難所を確認する",
+              "2. 「指定避難所」と「指定緊急避難場所」の違いを理解する",
+              "  - 指定緊急避難場所: 命を守るための一時的な避難先",
+              "  - 指定避難所: 一定期間滞在するための施設",
+              "3. 複数の避難経路を確認しておく",
+              "4. 国土地理院「重ねるハザードマップ」で確認可能",
+              "5. Yahoo!防災速報アプリで近くの避難所を検索できる",
+              "6. 避難所が開設されていない場合もある（自治体情報を確認）"
+            ]
+          },
+          "emergency_bag": {
+            "title": "非常持出品リスト",
+            "steps": [
+              "【最低限（0次）】",
+              "・スマートフォン + モバイルバッテリー",
+              "・身分証明書・保険証のコピー",
+              "・現金（小銭含む）",
+              "・常備薬",
+              "【一次持出品（避難時）】",
+              "・飲料水（500ml x 2本）",
+              "・携帯食（カロリーメイト等）",
+              "・懐中電灯 + 予備電池",
+              "・ホイッスル",
+              "・救急セット",
+              "・ラジオ",
+              "・タオル、ウェットティッシュ",
+              "・雨具（ポンチョ型）",
+              "・マスク",
+              "【二次持出品（在宅避難・長期）】",
+              "・水: 1人1日3リットル x 7日分",
+              "・食料: 7日分（缶詰、レトルト、アルファ米）",
+              "・カセットコンロ + ボンベ",
+              "・簡易トイレ"
+            ]
+          },
+          "evacuation_priority": {
+            "title": "避難行動の優先順位",
+            "steps": [
+              "1. 命を守ることが最優先",
+              "2. 警戒レベル3: 高齢者等避難（高齢者・障害者は避難開始）",
+              "3. 警戒レベル4: 避難指示（全員避難）",
+              "4. 警戒レベル5: 緊急安全確保（命を守る行動を）",
+              "5. 避難は明るいうちに行動する",
+              "6. 2人以上で行動する",
+              "7. 動けない場合は垂直避難（上の階へ移動）",
+              "8. 避難時はブレーカーを落とし、ガスの元栓を閉める"
+            ]
+          },
+          "vulnerable_support": {
+            "title": "要配慮者の支援",
+            "steps": [
+              "1. 近所の高齢者・障害者・外国人の安否を確認する",
+              "2. 避難の声かけと付き添いを行う",
+              "3. 車椅子の方: 段差や瓦礫に注意、複数人で移動支援",
+              "4. 視覚障害の方: 腕を掴んでもらい、状況を言葉で説明する",
+              "5. 聴覚障害の方: 筆談やジェスチャーで情報を伝える",
+              "6. 外国人の方: やさしい日本語やジェスチャーで伝える",
+              "7. 乳幼児連れ: 抱っこひもの使用（両手が空く）、ミルク・おむつの確保",
+              "8. ペット同行避難が可能か事前に確認する"
+            ]
+          }
+        }
+      },
+      "contacts": {
+        "title": "緊急連絡先",
+        "items": {
+          "emergency_numbers": {
+            "title": "緊急通報番号",
+            "entries": [
+              {"number": "110", "description": "警察（事件・事故）"},
+              {"number": "119", "description": "消防・救急（火事・救急車）"},
+              {"number": "118", "description": "海上保安庁（海の事故）"},
+              {"number": "171", "description": "災害伝言ダイヤル"},
+              {"number": "#7119", "description": "救急安心センター（救急相談）"},
+              {"number": "#9110", "description": "警察相談窓口"},
+              {"number": "#8000", "description": "小児救急電話相談"},
+              {"number": "0120-461-999", "description": "いのちの電話（24時間）"}
+            ]
+          }
+        }
+      }
+    },
+    "en": {
+      "first_aid": {
+        "title": "First Aid",
+        "items": {
+          "cpr": {
+            "title": "CPR (Cardiopulmonary Resuscitation)",
+            "steps": [
+              "1. Check the scene for safety, then check for responsiveness (tap shoulder, shout)",
+              "2. If no response, call 911 (or local emergency number) and ask for an AED",
+              "3. Check for breathing (look for chest movement for no more than 10 seconds)",
+              "4. If no normal breathing, begin chest compressions",
+              "5. Place the heel of your hand on the center of the chest (between the nipples)",
+              "6. Push hard and fast: 5-6cm deep, 100-120 compressions per minute",
+              "7. Give 2 rescue breaths after every 30 compressions (if trained)",
+              "8. Use AED as soon as it arrives",
+              "9. Do NOT stop until emergency services arrive"
+            ]
+          },
+          "bleeding": {
+            "title": "Bleeding Control",
+            "steps": [
+              "1. Apply firm direct pressure with a clean cloth or gauze",
+              "2. Maintain pressure for at least 10 minutes without lifting",
+              "3. Elevate the injured area above the heart if possible",
+              "4. If a tourniquet is needed, apply it between the wound and the heart",
+              "5. Note the time the tourniquet was applied",
+              "6. Call emergency services for severe bleeding",
+              "Note: Do NOT remove objects embedded in the wound"
+            ]
+          },
+          "burns": {
+            "title": "Burns",
+            "steps": [
+              "1. Cool the burn under cool running water for at least 20 minutes",
+              "2. If clothing is stuck to the burn, cool over the clothing",
+              "3. Do NOT burst blisters",
+              "4. Cover loosely with a clean, non-stick dressing",
+              "5. Call emergency services for large or deep burns",
+              "Note: Do NOT apply ice directly, butter, or oil"
+            ]
+          },
+          "fracture": {
+            "title": "Fractures",
+            "steps": [
+              "1. Do not move the injured area",
+              "2. Immobilize with a splint (cardboard, magazine, umbrella)",
+              "3. Splint should extend beyond the joints above and below the fracture",
+              "4. Do not tie too tightly (check circulation)",
+              "5. Apply ice wrapped in a towel",
+              "6. Call emergency services for open fractures (bone through skin)",
+              "Note: Do NOT try to realign the bone"
+            ]
+          },
+          "aed": {
+            "title": "AED Usage",
+            "steps": [
+              "1. Turn on the AED (some activate when the lid is opened)",
+              "2. Follow the voice prompts",
+              "3. Attach pads to bare chest (right below collarbone, left side of chest)",
+              "4. Once pads are attached, the AED will analyze the heart rhythm",
+              "5. If 'Shock advised,' make sure everyone is clear of the person",
+              "6. Press the shock button",
+              "7. Immediately resume chest compressions after the shock",
+              "Note: If the person is wet, dry the chest before attaching pads"
+            ]
+          },
+          "heatstroke": {
+            "title": "Heat Stroke",
+            "steps": [
+              "1. Move the person to a cool, shaded area or air-conditioned room",
+              "2. Loosen clothing and cool the body",
+              "3. Apply ice or cold packs to neck, armpits, and groin",
+              "4. If conscious and alert, give water with electrolytes",
+              "5. Sports drinks or oral rehydration solution are preferred",
+              "6. Call emergency services if the person is confused or unconscious",
+              "Note: Do NOT force fluids if the person is not fully conscious"
+            ]
+          },
+          "choking": {
+            "title": "Choking (Foreign Body Removal)",
+            "steps": [
+              "1. Ask 'Are you choking?' — look for the universal choking sign",
+              "2. If the person can cough, encourage them to keep coughing",
+              "3. If they cannot cough, give 5 back blows between the shoulder blades",
+              "4. If back blows fail, perform 5 abdominal thrusts (Heimlich maneuver)",
+              "5. Heimlich: Stand behind, place fist above navel, thrust inward and upward",
+              "6. Alternate between 5 back blows and 5 abdominal thrusts",
+              "7. If the person becomes unconscious, call emergency services and begin CPR",
+              "Note: For infants, use chest thrusts instead of abdominal thrusts"
+            ]
+          }
+        }
+      },
+      "disaster": {
+        "title": "Disaster Response",
+        "items": {
+          "earthquake": {
+            "title": "Earthquake",
+            "steps": [
+              "[During the earthquake]",
+              "1. Drop, Cover, and Hold On — get under a sturdy table",
+              "2. Stay put until the shaking stops",
+              "3. If cooking, turn off the stove after the shaking stops",
+              "4. Open doors to secure exit routes",
+              "5. Do NOT use elevators",
+              "[After the shaking stops]",
+              "6. Put on shoes to protect feet from broken glass",
+              "7. Shut off the gas supply",
+              "8. Turn off the main breaker (to prevent electrical fires)",
+              "9. Check for building damage; if unsafe, evacuate",
+              "10. If near the coast, check for tsunami warnings and move to high ground"
+            ]
+          },
+          "tsunami": {
+            "title": "Tsunami",
+            "steps": [
+              "1. If you feel strong or prolonged shaking, evacuate to high ground immediately",
+              "2. Do NOT wait for an official warning — act on your own judgment",
+              "3. Head to the highest ground possible (30m+ elevation)",
+              "4. If no high ground is available, go to the 3rd floor or higher of a reinforced concrete building",
+              "5. Stay away from the ocean and rivers",
+              "6. Multiple waves will follow — do NOT return until the all-clear is given",
+              "7. Evacuate on foot if possible (driving risks traffic jams)",
+              "Note: Tsunamis can travel at hundreds of km/h"
+            ]
+          },
+          "typhoon": {
+            "title": "Typhoon / Hurricane",
+            "steps": [
+              "[Preparation]",
+              "1. Monitor weather forecasts and track the storm's path",
+              "2. Tape windows and close storm shutters",
+              "3. Bring outdoor items inside (balcony, yard)",
+              "4. Prepare flashlights, water, and food",
+              "5. Fill the bathtub with water (in case of water outage)",
+              "[During the storm]",
+              "6. Avoid going outside unnecessarily",
+              "7. Stay on upper floors (flood protection)",
+              "8. Stay away from rivers and streams",
+              "9. Charge mobile batteries in case of power outage"
+            ]
+          },
+          "flood": {
+            "title": "Flooding",
+            "steps": [
+              "1. Move to upper floors (vertical evacuation) before flooding reaches you",
+              "2. If water is above knee level, do NOT attempt to walk through it",
+              "3. Avoid areas with fast-moving water (30cm depth can knock you down)",
+              "4. Watch out for manholes and ditches (covers may be displaced)",
+              "5. If your car is flooding, exit immediately (water pressure can trap doors)",
+              "6. Avoid touching electrical equipment in flooded areas (electrocution risk)",
+              "7. Use a long stick to probe the ground ahead when wading"
+            ]
+          },
+          "fire": {
+            "title": "Fire",
+            "steps": [
+              "1. Shout 'FIRE!' to alert everyone nearby",
+              "2. Call emergency services (911 / local number)",
+              "3. Attempt to extinguish only if the fire is small (use a fire extinguisher)",
+              "4. If fire reaches the ceiling, stop fighting and evacuate immediately",
+              "5. Stay low in smoke — cover nose and mouth with a damp cloth",
+              "6. Close doors behind you to slow the spread of fire",
+              "7. Never use elevators — use stairs",
+              "8. Once out, NEVER go back inside"
+            ]
+          },
+          "landslide": {
+            "title": "Landslide",
+            "steps": [
+              "1. Watch for warning signs: falling pebbles, rumbling sounds, changes in water flow",
+              "2. If you notice warning signs, evacuate immediately",
+              "3. Move away from slopes and cliffs",
+              "4. Run perpendicular to the flow direction (not away from it)",
+              "5. Avoid valleys and streams",
+              "6. If you can't evacuate, move to the 2nd floor of a room away from the hillside",
+              "7. Evacuate early when heavy rain warnings are issued"
+            ]
+          },
+          "volcano": {
+            "title": "Volcanic Eruption",
+            "steps": [
+              "1. Check the volcanic alert level",
+              "2. Leave the restricted zone immediately",
+              "3. Protect yourself from falling rocks (helmet, protective headgear)",
+              "4. Protect eyes, nose, and mouth from volcanic ash (mask, goggles)",
+              "5. If pyroclastic flow occurs, run perpendicular to its direction",
+              "6. Remove accumulated ash from rooftops to prevent collapse",
+              "7. Remove contact lenses and use glasses instead",
+              "8. Avoid driving — visibility will be severely reduced"
+            ]
+          }
+        }
+      },
+      "infrastructure": {
+        "title": "Infrastructure Failure",
+        "items": {
+          "power_outage": {
+            "title": "Power Outage",
+            "steps": [
+              "1. Check your breaker panel (determine if it's just your home or the whole area)",
+              "2. Keep the refrigerator closed (food stays cold for ~4 hours)",
+              "3. Use flashlights or lanterns (candles pose a fire risk)",
+              "4. Enable power-saving mode on your smartphone",
+              "5. Charge devices using portable batteries or car charger",
+              "6. Unplug electrical appliances to prevent electrical fires when power returns",
+              "7. Those using home medical equipment should check backup power"
+            ]
+          },
+          "water_outage": {
+            "title": "Water Outage",
+            "steps": [
+              "1. Drinking water: aim for 3 liters per person per day",
+              "2. Fill the bathtub for utility water (toilets, cleaning)",
+              "3. Check your local government website for water distribution information",
+              "4. Conserve water: use paper plates and plastic wrap to reduce dish washing",
+              "5. Toilets can be flushed with a bucket of water (pour slowly)",
+              "6. After restoration, water may be discolored — let it run for a while",
+              "7. Know your local emergency water supply locations in advance"
+            ]
+          },
+          "gas_leak": {
+            "title": "Gas Leak",
+            "steps": [
+              "1. If you smell gas, do NOT use any open flame (no lighters or matches)",
+              "2. Do NOT touch ventilation fans or light switches (sparks may ignite gas)",
+              "3. Open windows and doors to ventilate",
+              "4. Turn off the gas supply at the main valve",
+              "5. Contact your gas company",
+              "6. Evacuate the building",
+              "7. Use your phone only outside the building"
+            ]
+          },
+          "communication": {
+            "title": "Maintaining Communication",
+            "steps": [
+              "1. Use disaster message services (varies by country)",
+              "2. Japan: Dial 171 for disaster voice messaging",
+              "3. Japan: Use web171 for web-based disaster messaging",
+              "4. Post safety updates on social media (X/Twitter, LINE, Facebook)",
+              "5. Public phones are free during major disasters (in Japan)",
+              "6. Open Wi-Fi networks (e.g., '00000JAPAN') may be available",
+              "7. Use radio for information (AM/FM)",
+              "8. Keep phone calls brief to reduce network congestion"
+            ]
+          }
+        }
+      },
+      "fact_check": {
+        "title": "Fact-Checking & Misinformation",
+        "items": {
+          "identify_misinfo": {
+            "title": "How to Identify Misinformation",
+            "steps": [
+              "1. Check the source — is it from an official organization?",
+              "2. Check the date — is it current or old information being recirculated?",
+              "3. Verify with multiple reliable news sources",
+              "4. Be extra cautious of emotionally charged content",
+              "5. Don't automatically share content marked 'please share'",
+              "6. Check if specific numbers and names are cited",
+              "7. Photos and videos may be from different events",
+              "8. 'A friend of a friend said...' is unreliable"
+            ]
+          },
+          "deepfake": {
+            "title": "Deepfake Detection",
+            "steps": [
+              "1. Watch for unnatural blinking or eye movements",
+              "2. Check if lip movements sync with audio",
+              "3. Look for unnatural edges around the face or hairline",
+              "4. Check for inconsistencies in background or lighting",
+              "5. Notice if video resolution varies in different parts",
+              "6. Verify through the official account of the person/organization",
+              "7. When in doubt, check with fact-checking organizations"
+            ]
+          },
+          "reliable_sources": {
+            "title": "Reliable Information Sources",
+            "steps": [
+              "[Government & Official Sources]",
+              "- FEMA (US): https://fema.gov",
+              "- CDC (US): https://cdc.gov",
+              "- WHO: https://who.int",
+              "- National Weather Service: https://weather.gov",
+              "[Fact-Checking Organizations]",
+              "- Snopes: https://snopes.com",
+              "- FactCheck.org: https://factcheck.org",
+              "- AP Fact Check: https://apnews.com/APFactCheck",
+              "- Reuters Fact Check: https://reuters.com/fact-check",
+              "[For Japan specifically]",
+              "- Japan Fact Check Center (JFC): https://factcheckcenter.jp",
+              "- Japan Meteorological Agency: https://jma.go.jp"
+            ]
+          },
+          "before_sharing": {
+            "title": "Checklist Before Sharing on Social Media",
+            "steps": [
+              "[ ] Is the source an official or reliable organization?",
+              "[ ] Is the information current (not from a past event)?",
+              "[ ] Can you find the same information from other reliable sources?",
+              "[ ] Are the photos/videos actually from this event? (Try reverse image search)",
+              "[ ] Is the content overly emotional or sensational?",
+              "[ ] Could sharing this cause panic or confusion?",
+              "[ ] Does it contain personal information?",
+              "When in doubt, don't share. Accuracy matters more than speed."
+            ]
+          }
+        }
+      },
+      "evacuation": {
+        "title": "Evacuation",
+        "items": {
+          "find_shelter": {
+            "title": "How to Find Shelters",
+            "steps": [
+              "1. Check local government hazard maps for nearest evacuation shelters",
+              "2. Know the difference between temporary evacuation sites and long-term shelters",
+              "3. Identify multiple evacuation routes in advance",
+              "4. Use official disaster preparedness apps to locate shelters",
+              "5. Red Cross shelters may be available during large-scale disasters",
+              "6. Shelters may not always be open — check local government updates"
+            ]
+          },
+          "emergency_bag": {
+            "title": "Emergency Supply Checklist",
+            "steps": [
+              "[Essentials (Everyday Carry)]",
+              "- Smartphone + portable charger",
+              "- ID and insurance card copies",
+              "- Cash (including coins for vending machines)",
+              "- Prescription medications",
+              "[Go-Bag (Evacuation)]",
+              "- Drinking water (2 x 500ml bottles)",
+              "- Energy bars or compact food",
+              "- Flashlight + spare batteries",
+              "- Whistle",
+              "- First aid kit",
+              "- Portable radio",
+              "- Towel and wet wipes",
+              "- Rain poncho",
+              "- Face mask",
+              "[Home Supply (Shelter-in-Place)]",
+              "- Water: 1 gallon per person per day x 7 days",
+              "- Food: 7-day supply (canned, freeze-dried, MREs)",
+              "- Portable stove + fuel",
+              "- Emergency toilet supplies"
+            ]
+          },
+          "evacuation_priority": {
+            "title": "Evacuation Priority",
+            "steps": [
+              "1. Saving lives is the top priority",
+              "2. Alert Level 3: Elderly and those needing assistance should begin evacuating",
+              "3. Alert Level 4: All residents must evacuate",
+              "4. Alert Level 5: Take immediate action to protect your life",
+              "5. Evacuate while there is still daylight",
+              "6. Travel in groups of two or more",
+              "7. If you cannot evacuate, move to higher floors (vertical evacuation)",
+              "8. Before leaving: turn off breakers and shut off gas"
+            ]
+          },
+          "vulnerable_support": {
+            "title": "Supporting Vulnerable People",
+            "steps": [
+              "1. Check on elderly, disabled, and foreign neighbors",
+              "2. Offer to help with evacuation and accompany them",
+              "3. Wheelchair users: watch for steps and debris, assist with multiple helpers",
+              "4. Visually impaired: let them hold your arm, describe the situation verbally",
+              "5. Hearing impaired: use written notes or gestures to communicate",
+              "6. Non-native speakers: use simple language and gestures",
+              "7. Families with infants: use baby carriers (keeps hands free), secure formula and diapers",
+              "8. Check in advance if pets are allowed at evacuation shelters"
+            ]
+          }
+        }
+      },
+      "contacts": {
+        "title": "Emergency Contacts",
+        "items": {
+          "emergency_numbers": {
+            "title": "Emergency Numbers",
+            "entries": [
+              {"number": "911", "description": "Police, Fire, Ambulance (US/Canada)"},
+              {"number": "999", "description": "Emergency services (UK)"},
+              {"number": "112", "description": "Emergency services (EU / International)"},
+              {"number": "000", "description": "Emergency services (Australia)"},
+              {"number": "110", "description": "Police (Japan)"},
+              {"number": "119", "description": "Fire & Ambulance (Japan)"},
+              {"number": "171", "description": "Disaster Message Dial (Japan)"},
+              {"number": "988", "description": "Suicide & Crisis Lifeline (US)"}
+            ]
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,12 @@
+/* InfoPlist.strings (Traditional Chinese) */
+
+"NSCalendarsUsageDescription" = "ElioChat需要存取您的行事曆以讀取和建立事件。";
+"NSContactsUsageDescription" = "ElioChat需要存取您的聯絡人以搜尋和顯示。";
+"NSPhotoLibraryUsageDescription" = "ElioChat需要存取您的照片圖庫。";
+"NSLocationWhenInUseUsageDescription" = "ElioChat需要使用您的位置來提供基於位置的功能。";
+"NSRemindersUsageDescription" = "ElioChat需要存取您的提醒事項以讀取和建立提醒。";
+"NSCameraUsageDescription" = "ElioChat需要使用相機拍照並傳送給AI。";
+"NSMicrophoneUsageDescription" = "ElioChat需要使用麥克風進行語音輸入。";
+"NSSpeechRecognitionUsageDescription" = "ElioChat需要使用語音辨識將語音轉換為文字。";
+"NSPhotoLibraryAddUsageDescription" = "ElioChat需要將產生的圖片儲存到您的照片圖庫。";
+"NSLocalNetworkUsageDescription" = "ElioChat需要使用本地網路連接附近的裝置以共享AI推論。";

@@ -1,0 +1,2 @@
+- Compatibilidad con 12 idiomas: inglés, japonés, español, francés, alemán, italiano, portugués (Brasil), chino (simplificado), chino (tradicional), coreano, árabe y hindi
+- Correcciones de errores y mejoras de rendimiento

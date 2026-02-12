@@ -1,0 +1,2 @@
+- Supporto per 12 lingue: inglese, giapponese, spagnolo, francese, tedesco, italiano, portoghese (Brasile), cinese (semplificato), cinese (tradizionale), coreano, arabo e hindi
+- Correzioni di bug e miglioramenti delle prestazioni

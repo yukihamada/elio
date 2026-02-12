@@ -83,6 +83,12 @@ struct SettingsView: View {
                         // MCP Server Section
                         mcpSection
 
+                        // Skill Marketplace Section
+                        skillMarketplaceSection
+
+                        // Curator Section
+                        curatorSection
+
                         #if targetEnvironment(macCatalyst)
                         // Mac Server Dashboard
                         macServerSection
@@ -125,42 +131,62 @@ struct SettingsView: View {
         VStack(spacing: 16) {
             ZStack {
                 Circle()
-                    .fill(.linearGradient(
-                        colors: [.purple.opacity(0.2), .blue.opacity(0.2)],
-                        startPoint: .topLeading,
-                        endPoint: .bottomTrailing
-                    ))
-                    .frame(width: 80, height: 80)
+                    .fill(
+                        .linearGradient(
+                            colors: [.purple.opacity(0.15), .blue.opacity(0.15)],
+                            startPoint: .topLeading,
+                            endPoint: .bottomTrailing
+                        )
+                    )
+                    .frame(width: 88, height: 88)
+
+                Circle()
+                    .fill(.ultraThinMaterial)
+                    .frame(width: 88, height: 88)
 
                 Image(systemName: "cpu.fill")
-                    .font(.system(size: 36))
+                    .font(.system(size: 36, weight: .medium))
                     .foregroundStyle(.linearGradient(
                         colors: [.purple, .blue],
                         startPoint: .topLeading,
                         endPoint: .bottomTrailing
                     ))
+                    .symbolEffect(.pulse, isActive: appState.isModelLoaded)
             }
+            .shadow(color: .purple.opacity(0.2), radius: 16, y: 4)
 
-            VStack(spacing: 4) {
+            VStack(spacing: 6) {
                 Text("ElioChat")
-                    .font(.system(size: 22, weight: .bold, design: .rounded))
+                    .font(.system(size: 24, weight: .bold, design: .rounded))
 
                 if appState.isModelLoaded, let modelName = appState.currentModelName {
                     HStack(spacing: 6) {
                         Circle()
                             .fill(.green)
                             .frame(width: 8, height: 8)
+                            .shadow(color: .green.opacity(0.5), radius: 4)
                         Text(modelName)
-                            .font(.system(size: 14, weight: .medium))
+                            .font(.system(size: 14, weight: .medium, design: .rounded))
                             .foregroundStyle(.secondary)
                     }
+                    .padding(.horizontal, 12)
+                    .padding(.vertical, 6)
+                    .background(
+                        Capsule()
+                            .fill(Color.cardBackground)
+                    )
+                    .overlay(
+                        Capsule()
+                            .stroke(Color.subtleSeparator, lineWidth: 0.5)
+                    )
                 } else {
                     Text(String(localized: "chat.model.not.loaded"))
-                        .font(.system(size: 14, weight: .medium))
+                        .font(.system(size: 14, weight: .medium, design: .rounded))
                         .foregroundStyle(.secondary)
                 }
             }
         }
+        .padding(.vertical, 8)
     }
 
     // MARK: - Model Section
@@ -169,7 +195,7 @@ struct SettingsView: View {
         VStack(alignment: .leading, spacing: 16) {
             // Header with device tier and total size
             HStack {
-                SectionHeader(title: String(localized: "settings.model.section"), icon: "brain.head.profile", color: .purple)
+                ModernSectionHeader(title: String(localized: "settings.model.section"), icon: "brain.head.profile", gradient: [.purple, .indigo])
 
                 Spacer()
 
@@ -331,7 +357,7 @@ struct SettingsView: View {
 
     private var inferenceModeSection: some View {
         VStack(alignment: .leading, spacing: 12) {
-            SectionHeader(title: String(localized: "inference.mode.title"), icon: "bolt.fill", color: .yellow)
+            ModernSectionHeader(title: String(localized: "inference.mode.title"), icon: "bolt.fill", gradient: [.yellow, .orange])
 
             VStack(spacing: 0) {
                 ForEach(Array(InferenceMode.allCases.enumerated()), id: \.element) { index, mode in
@@ -377,7 +403,12 @@ struct SettingsView: View {
             }
             .background(
                 RoundedRectangle(cornerRadius: 16)
-                    .fill(Color.chatInputBackgroundDynamic)
+                    .fill(Color.cardBackground)
+                    .shadow(color: .black.opacity(0.04), radius: 8, y: 2)
+            )
+            .overlay(
+                RoundedRectangle(cornerRadius: 16)
+                    .stroke(Color.subtleSeparator, lineWidth: 0.5)
             )
         }
     }
@@ -386,7 +417,7 @@ struct SettingsView: View {
 
     private var chatWebSection: some View {
         VStack(alignment: .leading, spacing: 12) {
-            SectionHeader(title: "ChatWeb", icon: "cloud.fill", color: .indigo)
+            ModernSectionHeader(title: "ChatWeb", icon: "cloud.fill", gradient: [.indigo, .purple])
 
             VStack(spacing: 0) {
                 if syncManager.isLoggedIn {
@@ -558,7 +589,12 @@ struct SettingsView: View {
             }
             .background(
                 RoundedRectangle(cornerRadius: 16)
-                    .fill(Color.chatInputBackgroundDynamic)
+                    .fill(Color.cardBackground)
+                    .shadow(color: .black.opacity(0.04), radius: 8, y: 2)
+            )
+            .overlay(
+                RoundedRectangle(cornerRadius: 16)
+                    .stroke(Color.subtleSeparator, lineWidth: 0.5)
             )
 
             Text(String(localized: "chatweb.description",
@@ -586,7 +622,7 @@ struct SettingsView: View {
 
     private var appearanceSection: some View {
         VStack(alignment: .leading, spacing: 12) {
-            SectionHeader(title: String(localized: "settings.appearance.section"), icon: "paintbrush", color: .indigo)
+            ModernSectionHeader(title: String(localized: "settings.appearance.section"), icon: "paintbrush", gradient: [.indigo, .pink])
 
             VStack(spacing: 0) {
                 ForEach(Array(AppTheme.allCases.enumerated()), id: \.element) { index, theme in
@@ -626,7 +662,12 @@ struct SettingsView: View {
             }
             .background(
                 RoundedRectangle(cornerRadius: 16)
-                    .fill(Color.chatInputBackgroundDynamic)
+                    .fill(Color.cardBackground)
+                    .shadow(color: .black.opacity(0.04), radius: 8, y: 2)
+            )
+            .overlay(
+                RoundedRectangle(cornerRadius: 16)
+                    .stroke(Color.subtleSeparator, lineWidth: 0.5)
             )
         }
     }
@@ -634,12 +675,46 @@ struct SettingsView: View {
     // MARK: - Voice Section
 
     @StateObject private var speechManager = SpeechManager.shared
+    @StateObject private var voiceManager = VoiceSelectionManager.shared
+    @State private var showingVoiceSelection = false
 
     private var voiceSection: some View {
         VStack(alignment: .leading, spacing: 12) {
-            SectionHeader(title: String(localized: "settings.voice.section", defaultValue: "音声"), icon: "speaker.wave.2", color: .teal)
+            ModernSectionHeader(title: String(localized: "settings.voice.section", defaultValue: "音声"), icon: "speaker.wave.2", gradient: [.teal, .cyan])
 
             VStack(spacing: 0) {
+                // Voice Selection — navigate to voice picker
+                Button(action: { showingVoiceSelection = true }) {
+                    HStack(spacing: 12) {
+                        Image(systemName: "person.wave.2")
+                            .font(.system(size: 16))
+                            .foregroundStyle(.teal)
+                            .frame(width: 28)
+
+                        VStack(alignment: .leading, spacing: 2) {
+                            Text(String(localized: "settings.voice.select", defaultValue: "ボイス選択"))
+                                .font(.system(size: 15))
+                                .foregroundStyle(.primary)
+
+                            Text(voiceManager.selectedVoiceId)
+                                .font(.system(size: 12))
+                                .foregroundStyle(.secondary)
+                        }
+
+                        Spacer()
+
+                        Image(systemName: "chevron.right")
+                            .font(.system(size: 12, weight: .semibold))
+                            .foregroundStyle(.tertiary)
+                    }
+                    .padding(.horizontal, 16)
+                    .padding(.vertical, 14)
+                }
+                .buttonStyle(.plain)
+
+                Divider()
+                    .padding(.leading, 56)
+
                 // Kokoro TTS Toggle
                 Toggle(isOn: $speechManager.useKokoroTTS) {
                     HStack(spacing: 12) {
@@ -719,7 +794,12 @@ struct SettingsView: View {
             }
             .background(
                 RoundedRectangle(cornerRadius: 16)
-                    .fill(Color.chatInputBackgroundDynamic)
+                    .fill(Color.cardBackground)
+                    .shadow(color: .black.opacity(0.04), radius: 8, y: 2)
+            )
+            .overlay(
+                RoundedRectangle(cornerRadius: 16)
+                    .stroke(Color.subtleSeparator, lineWidth: 0.5)
             )
 
             Text(String(localized: "settings.voice.description", defaultValue: "オフにするとシステム音声（AVSpeechSynthesizer）を使用します。"))
@@ -744,13 +824,17 @@ struct SettingsView: View {
                 .padding(.horizontal, 4)
             }
         }
+        .sheet(isPresented: $showingVoiceSelection) {
+            VoiceSelectionView()
+                .environmentObject(syncManager)
+        }
     }
 
     // MARK: - Language Section
 
     private var languageSection: some View {
         VStack(alignment: .leading, spacing: 12) {
-            SectionHeader(title: String(localized: "settings.language.section"), icon: "globe", color: .cyan)
+            ModernSectionHeader(title: String(localized: "settings.language.section"), icon: "globe", gradient: [.cyan, .blue])
 
             VStack(spacing: 0) {
                 ForEach(Array(AppLanguage.allCases.enumerated()), id: \.element) { index, language in
@@ -791,7 +875,12 @@ struct SettingsView: View {
             }
             .background(
                 RoundedRectangle(cornerRadius: 16)
-                    .fill(Color.chatInputBackgroundDynamic)
+                    .fill(Color.cardBackground)
+                    .shadow(color: .black.opacity(0.04), radius: 8, y: 2)
+            )
+            .overlay(
+                RoundedRectangle(cornerRadius: 16)
+                    .stroke(Color.subtleSeparator, lineWidth: 0.5)
             )
 
             Text(String(localized: "settings.language.restart.hint"))
@@ -810,42 +899,17 @@ struct SettingsView: View {
 
     private var systemPromptSection: some View {
         VStack(alignment: .leading, spacing: 12) {
-            SectionHeader(title: String(localized: "settings.prompt.section"), icon: "text.bubble", color: .purple)
+            ModernSectionHeader(title: String(localized: "settings.prompt.section"), icon: "text.bubble", gradient: [.purple, .pink])
 
             Button(action: { showingPromptEditor = true }) {
-                HStack(spacing: 14) {
-                    ZStack {
-                        RoundedRectangle(cornerRadius: 10)
-                            .fill(Color.purple.opacity(0.1))
-                            .frame(width: 44, height: 44)
-                        Image(systemName: "pencil.and.outline")
-                            .font(.system(size: 18))
-                            .foregroundStyle(.purple)
-                    }
-
-                    VStack(alignment: .leading, spacing: 2) {
-                        Text(String(localized: "settings.prompt.edit"))
-                            .font(.system(size: 15, weight: .medium))
-                            .foregroundStyle(.primary)
-                        Text(customSystemPrompt.isEmpty ? String(localized: "settings.prompt.default") : String(localized: "settings.prompt.custom"))
-                            .font(.system(size: 13))
-                            .foregroundStyle(.secondary)
-                    }
-
-                    Spacer()
-
+                ModernSettingsRow(icon: "pencil.and.outline", iconColor: .purple, title: String(localized: "settings.prompt.edit"), subtitle: customSystemPrompt.isEmpty ? String(localized: "settings.prompt.default") : String(localized: "settings.prompt.custom")) {
                     Image(systemName: "chevron.right")
-                        .font(.system(size: 14, weight: .semibold))
-                        .foregroundStyle(.secondary)
+                        .font(.system(size: 12, weight: .semibold))
+                        .foregroundStyle(.tertiary)
                 }
-                .padding(.horizontal, 16)
-                .padding(.vertical, 14)
-                .background(
-                    RoundedRectangle(cornerRadius: 16)
-                        .fill(Color.chatInputBackgroundDynamic)
-                )
             }
             .buttonStyle(.plain)
+            .modernCard(cornerRadius: 16)
 
             Text(String(localized: "settings.prompt.hint"))
                 .font(.caption)
@@ -862,43 +926,17 @@ struct SettingsView: View {
     #if targetEnvironment(macCatalyst)
     private var macServerSection: some View {
         VStack(alignment: .leading, spacing: 12) {
-            SectionHeader(title: String(localized: "mac.settings.server.section", defaultValue: "Mac Server"), icon: "server.rack", color: .blue)
+            ModernSectionHeader(title: String(localized: "mac.settings.server.section", defaultValue: "Mac Server"), icon: "server.rack", gradient: [.blue, .cyan])
 
             NavigationLink(destination: ServerDashboardView()) {
-                HStack(spacing: 14) {
-                    ZStack {
-                        RoundedRectangle(cornerRadius: 10)
-                            .fill(Color.blue.opacity(0.1))
-                            .frame(width: 44, height: 44)
-
-                        Image(systemName: "server.rack")
-                            .font(.system(size: 20))
-                            .foregroundStyle(.blue)
-                    }
-
-                    VStack(alignment: .leading, spacing: 2) {
-                        Text(String(localized: "mac.settings.server.dashboard", defaultValue: "Server Dashboard"))
-                            .font(.system(size: 16, weight: .semibold))
-                            .foregroundStyle(.primary)
-
-                        Text(String(localized: "mac.settings.server.description", defaultValue: "P2P server status and token earnings"))
-                            .font(.system(size: 13))
-                            .foregroundStyle(.secondary)
-                    }
-
-                    Spacer()
-
+                ModernSettingsRow(icon: "server.rack", iconColor: .blue, title: String(localized: "mac.settings.server.dashboard", defaultValue: "Server Dashboard"), subtitle: String(localized: "mac.settings.server.description", defaultValue: "P2P server status and token earnings")) {
                     Image(systemName: "chevron.right")
                         .font(.system(size: 12, weight: .semibold))
                         .foregroundStyle(.tertiary)
                 }
-                .padding(14)
-                .background(
-                    RoundedRectangle(cornerRadius: 16)
-                        .fill(Color(.secondarySystemBackground))
-                )
             }
             .buttonStyle(.plain)
+            .modernCard(cornerRadius: 16)
         }
     }
     #endif
@@ -907,49 +945,215 @@ struct SettingsView: View {
 
     private var mcpSection: some View {
         VStack(alignment: .leading, spacing: 12) {
-            SectionHeader(title: String(localized: "settings.tools.section"), icon: "puzzlepiece.extension", color: .orange)
+            ModernSectionHeader(title: String(localized: "settings.tools.section"), icon: "puzzlepiece.extension", gradient: [.orange, .yellow])
 
             NavigationLink(destination: MCPServerListView()) {
-                HStack(spacing: 14) {
-                    ZStack {
-                        RoundedRectangle(cornerRadius: 10)
-                            .fill(Color.orange.opacity(0.1))
-                            .frame(width: 44, height: 44)
-
-                        Image(systemName: "calendar.badge.clock")
-                            .font(.system(size: 20))
-                            .foregroundStyle(.orange)
-                    }
-
-                    VStack(alignment: .leading, spacing: 2) {
-                        Text(String(localized: "settings.mcp.servers"))
-                            .font(.system(size: 16, weight: .semibold))
-                            .foregroundStyle(.primary)
-
-                        Text(String(localized: "settings.mcp.servers.description"))
-                            .font(.system(size: 13))
-                            .foregroundStyle(.secondary)
-                    }
-
-                    Spacer()
-
+                ModernSettingsRow(icon: "puzzlepiece.extension", iconColor: .orange, title: String(localized: "settings.mcp.servers"), subtitle: String(localized: "settings.mcp.servers.description")) {
                     HStack(spacing: 8) {
                         Text("\(appState.enabledMCPServers.count)" + String(localized: "settings.mcp.enabled.count.suffix", defaultValue: " enabled"))
-                            .font(.system(size: 13, weight: .medium))
-                            .foregroundStyle(.secondary)
+                            .font(.system(size: 12, weight: .semibold))
+                            .padding(.horizontal, 8)
+                            .padding(.vertical, 3)
+                            .background(Color.orange.opacity(0.12))
+                            .foregroundStyle(.orange)
+                            .clipShape(Capsule())
 
                         Image(systemName: "chevron.right")
                             .font(.system(size: 12, weight: .semibold))
                             .foregroundStyle(.tertiary)
                     }
                 }
-                .padding(14)
-                .background(
-                    RoundedRectangle(cornerRadius: 16)
-                        .fill(Color(.secondarySystemBackground))
-                )
             }
             .buttonStyle(.plain)
+            .modernCard(cornerRadius: 16)
+        }
+    }
+
+    // MARK: - Skill Marketplace Section
+
+    @State private var showingSkillMarketplace = false
+    @State private var showingCuratorProfile = false
+    @State private var showingOGVerification = false
+    @StateObject private var curatorManagerRef = CuratorManager.shared
+
+    private var skillMarketplaceSection: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            ModernSectionHeader(title: String(localized: "settings.skills.section", defaultValue: "スキルストア"), icon: "storefront", gradient: [.purple, .pink])
+
+            Button(action: { showingSkillMarketplace = true }) {
+                ModernSettingsRow(icon: "storefront", iconColor: .purple, title: String(localized: "settings.skills.marketplace", defaultValue: "スキルストア"), subtitle: String(localized: "settings.skills.marketplace.description", defaultValue: "AIスキルを追加・管理")) {
+                    HStack(spacing: 8) {
+                        let installedCount = SkillMarketplaceManager.shared.installedSkills.count
+                        if installedCount > 0 {
+                            Text("\(installedCount)" + String(localized: "settings.skills.installed.count.suffix", defaultValue: " installed"))
+                                .font(.system(size: 12, weight: .semibold))
+                                .padding(.horizontal, 8)
+                                .padding(.vertical, 3)
+                                .background(Color.purple.opacity(0.12))
+                                .foregroundStyle(.purple)
+                                .clipShape(Capsule())
+                        }
+
+                        Image(systemName: "chevron.right")
+                            .font(.system(size: 12, weight: .semibold))
+                            .foregroundStyle(.tertiary)
+                    }
+                }
+            }
+            .buttonStyle(.plain)
+            .modernCard(cornerRadius: 16)
+
+            Text(String(localized: "settings.skills.description", defaultValue: "コミュニティのスキルをインストールして、AIの機能を拡張できます。"))
+                .font(.caption)
+                .foregroundStyle(.secondary)
+                .padding(.horizontal, 4)
+        }
+        .sheet(isPresented: $showingSkillMarketplace) {
+            SkillMarketplaceView()
+        }
+    }
+
+    // MARK: - Curator Section
+
+    private var curatorSection: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            ModernSectionHeader(
+                title: String(localized: "settings.curator.section", defaultValue: "Curator"),
+                icon: "shield.checkered",
+                gradient: curatorManagerRef.isOGVerified ? [Color.ogGold, Color.ogAmber] : [.purple, .blue]
+            )
+
+            VStack(spacing: 0) {
+                // Curator profile / application
+                Button(action: { showingCuratorProfile = true }) {
+                    HStack(spacing: 14) {
+                        // Badge icon
+                        if curatorManagerRef.isOGVerified {
+                            OGBadgeView(badgeType: .ogFounder, size: .small)
+                                .frame(width: 34, height: 34)
+                        } else if curatorManagerRef.isCurator {
+                            Image(systemName: "shield.checkered")
+                                .font(.system(size: 16, weight: .semibold))
+                                .foregroundStyle(.white)
+                                .frame(width: 34, height: 34)
+                                .background(
+                                    RoundedRectangle(cornerRadius: 9)
+                                        .fill(
+                                            LinearGradient(
+                                                colors: [.purple, .blue],
+                                                startPoint: .topLeading,
+                                                endPoint: .bottomTrailing
+                                            )
+                                        )
+                                )
+                        } else {
+                            Image(systemName: "shield.checkered")
+                                .font(.system(size: 16, weight: .semibold))
+                                .foregroundStyle(.white)
+                                .frame(width: 34, height: 34)
+                                .background(
+                                    RoundedRectangle(cornerRadius: 9)
+                                        .fill(
+                                            LinearGradient(
+                                                colors: [.gray, .gray.opacity(0.8)],
+                                                startPoint: .topLeading,
+                                                endPoint: .bottomTrailing
+                                            )
+                                        )
+                                )
+                        }
+
+                        VStack(alignment: .leading, spacing: 2) {
+                            HStack(spacing: 4) {
+                                Text(curatorManagerRef.isCurator
+                                     ? String(localized: "settings.curator.active", defaultValue: "Curator Active")
+                                     : String(localized: "settings.curator.apply", defaultValue: "キュレーターになる"))
+                                    .font(.system(size: 16, weight: .medium))
+
+                                if curatorManagerRef.isOGVerified {
+                                    Text("OG")
+                                        .font(.system(size: 9, weight: .bold))
+                                        .padding(.horizontal, 5)
+                                        .padding(.vertical, 2)
+                                        .background(Color.ogGold.opacity(0.2))
+                                        .foregroundStyle(Color.ogGold)
+                                        .clipShape(Capsule())
+                                }
+                            }
+
+                            Text(curatorManagerRef.isCurator
+                                 ? String(localized: "settings.curator.active.description", defaultValue: "スキルの品質審査を行う")
+                                 : String(localized: "settings.curator.apply.description", defaultValue: "スキルマーケットプレイスの審査員"))
+                                .font(.system(size: 12))
+                                .foregroundStyle(.secondary)
+                        }
+
+                        Spacer()
+
+                        HStack(spacing: 8) {
+                            if curatorManagerRef.isCurator && curatorManagerRef.pendingSkills.count > 0 {
+                                Text("\(curatorManagerRef.pendingSkills.count)")
+                                    .font(.system(size: 12, weight: .semibold))
+                                    .padding(.horizontal, 8)
+                                    .padding(.vertical, 3)
+                                    .background(Color.orange.opacity(0.12))
+                                    .foregroundStyle(.orange)
+                                    .clipShape(Capsule())
+                            }
+
+                            Image(systemName: "chevron.right")
+                                .font(.system(size: 12, weight: .semibold))
+                                .foregroundStyle(.tertiary)
+                        }
+                    }
+                    .padding(.vertical, 12)
+                    .padding(.horizontal, 16)
+                }
+                .buttonStyle(.plain)
+
+                // OG Verification (subtle Easter egg)
+                if !curatorManagerRef.isOGVerified {
+                    Divider()
+                        .padding(.leading, 56)
+
+                    Button(action: { showingOGVerification = true }) {
+                        HStack(spacing: 12) {
+                            NounsGlassesShape()
+                                .fill(Color.ogGold.opacity(0.6))
+                                .frame(width: 20, height: 8)
+                                .frame(width: 28)
+
+                            Text(String(localized: "settings.og.verify", defaultValue: "HamaDAO OG?"))
+                                .font(.system(size: 14))
+                                .foregroundStyle(Color.ogGold.opacity(0.7))
+
+                            Spacer()
+
+                            Image(systemName: "chevron.right")
+                                .font(.system(size: 10, weight: .semibold))
+                                .foregroundStyle(.tertiary)
+                        }
+                        .padding(.horizontal, 16)
+                        .padding(.vertical, 10)
+                    }
+                    .buttonStyle(.plain)
+                }
+            }
+            .background(
+                RoundedRectangle(cornerRadius: 16)
+                    .fill(Color.cardBackground)
+                    .shadow(color: .black.opacity(0.04), radius: 8, y: 2)
+            )
+            .overlay(
+                RoundedRectangle(cornerRadius: 16)
+                    .stroke(curatorManagerRef.isOGVerified ? Color.ogGold.opacity(0.3) : Color.subtleSeparator, lineWidth: curatorManagerRef.isOGVerified ? 1 : 0.5)
+            )
+        }
+        .sheet(isPresented: $showingCuratorProfile) {
+            CuratorProfileView()
+        }
+        .sheet(isPresented: $showingOGVerification) {
+            OGVerificationView()
         }
     }
 
@@ -963,7 +1167,7 @@ struct SettingsView: View {
 
     private var aboutSection: some View {
         VStack(alignment: .leading, spacing: 12) {
-            SectionHeader(title: String(localized: "settings.about.section"), icon: "info.circle", color: .blue)
+            ModernSectionHeader(title: String(localized: "settings.about.section"), icon: "info.circle", gradient: [.blue, .indigo])
 
             VStack(spacing: 0) {
                 AboutRow(title: String(localized: "settings.version"), value: "1.0.0", icon: "number")
@@ -1000,7 +1204,12 @@ struct SettingsView: View {
             }
             .background(
                 RoundedRectangle(cornerRadius: 16)
-                    .fill(Color(.secondarySystemBackground))
+                    .fill(Color.cardBackground)
+                    .shadow(color: .black.opacity(0.04), radius: 8, y: 2)
+            )
+            .overlay(
+                RoundedRectangle(cornerRadius: 16)
+                    .stroke(Color.subtleSeparator, lineWidth: 0.5)
             )
             .clipShape(RoundedRectangle(cornerRadius: 16))
         }
@@ -1013,7 +1222,7 @@ struct SettingsView: View {
 
     private var feedbackSection: some View {
         VStack(alignment: .leading, spacing: 12) {
-            SectionHeader(title: String(localized: "settings.feedback.section"), icon: "hand.thumbsup", color: .pink)
+            ModernSectionHeader(title: String(localized: "settings.feedback.section"), icon: "hand.thumbsup", gradient: [.pink, .red])
 
             VStack(spacing: 0) {
                 Toggle(isOn: $feedbackOptIn) {
@@ -1039,7 +1248,12 @@ struct SettingsView: View {
             }
             .background(
                 RoundedRectangle(cornerRadius: 16)
-                    .fill(Color.chatInputBackgroundDynamic)
+                    .fill(Color.cardBackground)
+                    .shadow(color: .black.opacity(0.04), radius: 8, y: 2)
+            )
+            .overlay(
+                RoundedRectangle(cornerRadius: 16)
+                    .stroke(Color.subtleSeparator, lineWidth: 0.5)
             )
 
             Text(String(localized: "settings.feedback.description"))
@@ -1053,7 +1267,7 @@ struct SettingsView: View {
 
     private var resetSection: some View {
         VStack(alignment: .leading, spacing: 12) {
-            SectionHeader(title: String(localized: "settings.reset.section", defaultValue: "リセット"), icon: "arrow.counterclockwise", color: .red)
+            ModernSectionHeader(title: String(localized: "settings.reset.section", defaultValue: "リセット"), icon: "arrow.counterclockwise", gradient: [.red, .orange])
 
             VStack(spacing: 0) {
                 // Reset app (keep models)
@@ -1117,7 +1331,12 @@ struct SettingsView: View {
             }
             .background(
                 RoundedRectangle(cornerRadius: 16)
-                    .fill(Color.chatInputBackgroundDynamic)
+                    .fill(Color.cardBackground)
+                    .shadow(color: .black.opacity(0.04), radius: 8, y: 2)
+            )
+            .overlay(
+                RoundedRectangle(cornerRadius: 16)
+                    .stroke(Color.subtleSeparator, lineWidth: 0.5)
             )
 
             Text(String(localized: "settings.reset.hint", defaultValue: "リセット後はアプリを再起動してください。チュートリアルから再開します。"))
@@ -1621,7 +1840,7 @@ struct SystemPromptEditorView: View {
                         .padding(12)
                         .background(
                             RoundedRectangle(cornerRadius: 12)
-                                .fill(Color.chatInputBackgroundDynamic)
+                                .fill(Color.cardBackground)
                         )
                         .overlay(
                             RoundedRectangle(cornerRadius: 12)

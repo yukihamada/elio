@@ -1,0 +1,10 @@
+framework module BitNet {
+    header "llama.h"
+    header "ggml.h"
+    header "ggml-backend.h"
+    header "ggml-alloc.h"
+    header "ggml-metal.h"
+    header "ggml-bitnet.h"
+
+    export *
+}

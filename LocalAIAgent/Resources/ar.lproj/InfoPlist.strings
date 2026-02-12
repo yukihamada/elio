@@ -1,0 +1,12 @@
+/* InfoPlist.strings (Arabic) */
+
+"NSCalendarsUsageDescription" = "يستخدم ElioChat التقويم لقراءة وإنشاء الأحداث.";
+"NSContactsUsageDescription" = "يستخدم ElioChat جهات الاتصال للبحث عنها وعرضها.";
+"NSPhotoLibraryUsageDescription" = "يحتاج ElioChat إلى الوصول إلى مكتبة الصور الخاصة بك.";
+"NSLocationWhenInUseUsageDescription" = "يستخدم ElioChat موقعك لتوفير ميزات تعتمد على الموقع.";
+"NSRemindersUsageDescription" = "يستخدم ElioChat التذكيرات لقراءتها وإنشاء تذكيرات جديدة.";
+"NSCameraUsageDescription" = "يستخدم ElioChat الكاميرا لالتقاط الصور وإرسالها إلى الذكاء الاصطناعي.";
+"NSMicrophoneUsageDescription" = "يستخدم ElioChat الميكروفون للإدخال الصوتي.";
+"NSSpeechRecognitionUsageDescription" = "يستخدم ElioChat التعرف على الكلام لتحويل الصوت إلى نص.";
+"NSPhotoLibraryAddUsageDescription" = "يحفظ ElioChat الصور المُنشأة في مكتبة الصور الخاصة بك.";
+"NSLocalNetworkUsageDescription" = "يستخدم ElioChat الشبكة المحلية للاتصال بالأجهزة القريبة ومشاركة استدلال الذكاء الاصطناعي.";

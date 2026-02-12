@@ -1,0 +1,5 @@
+【キーワード - 日本語】(100文字以内)
+AI,チャット,オフライン,GPT,Claude,Gemini,アシスタント,LLM,プライベート,音声入力
+
+【Keywords - English】(100 characters max)
+AI,chat,offline,GPT,Claude,Gemini,assistant,LLM,private,voice,local

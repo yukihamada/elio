@@ -11,6 +11,9 @@ struct ModelSelectionView: View {
     @State private var currentProgressInfo: DownloadProgressInfo?
     @State private var downloadingModelId: String?
     @State private var showDownloadConfirmation = false  // App Store 4.2.3 compliance
+    @State private var showInsufficientStorageAlert = false
+    @State private var insufficientStorageAvailable: Int64 = 0
+    @State private var insufficientStorageRequired: Int64 = 0
 
     var body: some View {
         NavigationStack {
@@ -54,6 +57,25 @@ struct ModelSelectionView: View {
                 Button("OK") {}
             } message: {
                 Text(downloadError ?? "")
+            }
+            .alert(
+                "ストレージが不足しています",
+                isPresented: $showInsufficientStorageAlert
+            ) {
+                Button("不要なデータを削除する") {
+                    // Open iPhone Storage settings
+                    if let url = URL(string: UIApplication.openSettingsURLString) {
+                        UIApplication.shared.open(url)
+                    }
+                }
+                Button("ChatWeb.aiクラウドを使う（無料で始められます）") {
+                    switchToChatWebFallback()
+                }
+                Button("キャンセル", role: .cancel) {}
+            } message: {
+                let availableStr = StorageChecker.formatGB(insufficientStorageAvailable)
+                let requiredStr = StorageChecker.formatGB(insufficientStorageRequired)
+                Text("ストレージが不足しています（残り: \(availableStr)、必要: \(requiredStr)）\n\nモデルをダウンロードしなくても、ChatWeb.aiのクラウドAIをすぐ使えます。一定量まで無料です。")
             }
         }
     }
@@ -171,6 +193,19 @@ struct ModelSelectionView: View {
             return
         }
 
+        // Pre-check storage before starting download
+        switch StorageChecker.checkStorage(for: model.sizeBytes) {
+        case .success:
+            break
+        case .failure(.insufficientStorage(let available, let required)):
+            insufficientStorageAvailable = available
+            insufficientStorageRequired = required
+            showInsufficientStorageAlert = true
+            return
+        case .failure:
+            break // Other errors will be caught during download
+        }
+
         isDownloading = true
         downloadingModelId = modelId
         currentProgressInfo = nil
@@ -202,13 +237,27 @@ struct ModelSelectionView: View {
             do {
                 try await modelLoader.downloadModel(model)
             } catch {
-                downloadError = error.localizedDescription
+                // Handle insufficient storage error from within download flow
+                if case ModelLoaderError.insufficientStorage(let available, let required) = error {
+                    insufficientStorageAvailable = available
+                    insufficientStorageRequired = required
+                    showInsufficientStorageAlert = true
+                } else {
+                    downloadError = error.localizedDescription
+                }
             }
             progressTask.cancel()
             isDownloading = false
             downloadingModelId = nil
             currentProgressInfo = nil
         }
+    }
+
+    /// Switch to ChatWeb.ai cloud backend as fallback when storage is insufficient
+    private func switchToChatWebFallback() {
+        let chatModeManager = ChatModeManager.shared
+        chatModeManager.setMode(.chatweb)
+        dismiss()
     }
 
     private func loadSelectedModel() {

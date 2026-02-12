@@ -1,0 +1,39 @@
+【App Store Description - English】
+
+ElioChat - Your Personal AI Assistant
+
+◆ Fully Offline Capable
+Chat with AI without internet. Complete privacy protection while using AI assistant anytime, anywhere.
+
+◆ 5 Chat Modes
+• Local - On-device processing (Free & Private)
+• Private - Connect to trusted devices (Free)
+• Fast - Ultra-fast cloud inference (Groq)
+• Genius - Premium AI (GPT-4o/Claude/Gemini)
+• Public - Community P2P network
+
+◆ Rich Features
+• Voice input (Whisper)
+• Calendar & Reminders integration
+• Contact search
+• Web search
+• Photo recognition
+
+◆ Token Economy
+• 100 free tokens for new users
+• Earn tokens by running P2P server
+• Monthly token refill with subscription
+
+◆ Privacy First
+• Local mode is completely offline
+• API keys encrypted on device
+• Conversations never sent to our servers
+
+【Subscriptions】
+• Basic: $4.99/month (1,000 tokens)
+• Pro: $14.99/month (5,000 tokens)
+
+Subscription is charged to your Apple ID account upon purchase confirmation. It automatically renews unless cancelled at least 24 hours before the end of the current period. Manage and cancel subscriptions in Settings > Apple ID after purchase.
+
+Privacy Policy: https://elio.love/privacy
+Terms of Service: https://elio.love/terms

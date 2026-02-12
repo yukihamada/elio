@@ -1,0 +1,39 @@
+【App Store Connect - サブスクリプション設定】
+
+=== サブスクリプショングループ ===
+グループ名: ElioChat Premium
+グループID: (自動生成)
+
+=== Basic プラン ===
+Product ID: love.elio.subscription.basic
+参照名: Basic Monthly
+期間: 1ヶ月
+価格: ¥500 (Tier 5)
+
+表示名 (日本語): Basic
+説明 (日本語): 1,000トークン/月
+
+Display Name (English): Basic
+Description (English): 1,000 tokens/month
+
+=== Pro プラン ===
+Product ID: love.elio.subscription.pro
+参照名: Pro Monthly
+期間: 1ヶ月
+価格: ¥1,500 (Tier 14)
+
+表示名 (日本語): Pro
+説明 (日本語): 5,000トークン/月
+
+Display Name (English): Pro
+Description (English): 5,000 tokens/month
+
+=== App Store Connect 設定手順 ===
+
+1. App Store Connect > アプリ > サブスクリプション
+2. 「サブスクリプショングループを作成」
+3. グループ名: ElioChat Premium
+4. 「サブスクリプションを作成」で各プラン追加
+5. 価格と説明を設定
+6. ローカライズを追加（日本語・英語）
+7. 審査に提出
