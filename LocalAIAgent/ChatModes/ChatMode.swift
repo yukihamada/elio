@@ -9,6 +9,7 @@ enum ChatMode: String, CaseIterable, Codable, Identifiable {
     case fast = "fast"             // Groq API
     case genius = "genius"         // Cloud APIs (OpenAI/Anthropic/Google)
     case publicP2P = "public"      // Anyone's P2P server
+    case wisbee = "wisbee"         // Privacy-first: local only, no cloud fallback
 
     var id: String { rawValue }
 
@@ -27,6 +28,8 @@ enum ChatMode: String, CaseIterable, Codable, Identifiable {
             return String(localized: "chatmode.genius", defaultValue: "Genius")
         case .publicP2P:
             return String(localized: "chatmode.public", defaultValue: "Public")
+        case .wisbee:
+            return String(localized: "chatmode.wisbee", defaultValue: "Wisbee")
         }
     }
 
@@ -45,6 +48,8 @@ enum ChatMode: String, CaseIterable, Codable, Identifiable {
             return String(localized: "chatmode.genius.desc", defaultValue: "GPT-5/Claude • Best quality")
         case .publicP2P:
             return String(localized: "chatmode.public.desc", defaultValue: "Community • Shared computing")
+        case .wisbee:
+            return String(localized: "chatmode.wisbee.desc", defaultValue: "プライバシー重視 - データは端末から出ません")
         }
     }
 
@@ -57,6 +62,7 @@ enum ChatMode: String, CaseIterable, Codable, Identifiable {
         case .fast: return 1
         case .genius: return 5
         case .publicP2P: return 2
+        case .wisbee: return 0
         }
     }
 
@@ -69,6 +75,7 @@ enum ChatMode: String, CaseIterable, Codable, Identifiable {
         case .fast: return "bolt.fill"
         case .genius: return "sparkles"
         case .publicP2P: return "globe"
+        case .wisbee: return "shield.checkmark.fill"
         }
     }
 
@@ -81,13 +88,14 @@ enum ChatMode: String, CaseIterable, Codable, Identifiable {
         case .fast: return .orange
         case .genius: return .purple
         case .publicP2P: return .blue
+        case .wisbee: return .green
         }
     }
 
     /// Whether this mode requires network
     var requiresNetwork: Bool {
         switch self {
-        case .local: return false
+        case .local, .wisbee: return false
         case .chatweb, .privateP2P, .fast, .genius, .publicP2P: return true
         }
     }
@@ -95,7 +103,7 @@ enum ChatMode: String, CaseIterable, Codable, Identifiable {
     /// Whether this mode requires an API key
     var requiresAPIKey: Bool {
         switch self {
-        case .local, .chatweb, .privateP2P, .publicP2P: return false
+        case .local, .chatweb, .privateP2P, .publicP2P, .wisbee: return false
         case .fast, .genius: return true
         }
     }
@@ -104,7 +112,7 @@ enum ChatMode: String, CaseIterable, Codable, Identifiable {
     var isP2P: Bool {
         switch self {
         case .privateP2P, .publicP2P: return true
-        case .local, .chatweb, .fast, .genius: return false
+        case .local, .chatweb, .fast, .genius, .wisbee: return false
         }
     }
 }

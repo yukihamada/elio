@@ -26,6 +26,13 @@ final class ChatModeManager: ObservableObject {
     private var groqBackend: GroqBackend?
     private var cloudBackend: CloudBackend?
     private var p2pBackend: P2PBackend?
+    private var wisbeeBackend: WisbeeBackend?
+
+    /// Whether Wisbee (privacy) mode is currently active
+    var isWisbeeMode: Bool { currentMode == .wisbee }
+
+    /// Whether conversation sync should be disabled (true when in Wisbee mode)
+    var isSyncDisabled: Bool { currentMode == .wisbee }
 
     // Persistence
     @AppStorage("selectedChatMode") private var savedMode: String = ChatMode.local.rawValue
@@ -41,6 +48,7 @@ final class ChatModeManager: ObservableObject {
         groqBackend = GroqBackend()
         cloudBackend = CloudBackend()
         p2pBackend = P2PBackend()
+        wisbeeBackend = WisbeeBackend()
     }
 
     // MARK: - Configuration
@@ -48,6 +56,8 @@ final class ChatModeManager: ObservableObject {
     /// Set up the local backend with CoreMLInference
     func configureLocalBackend(_ inference: CoreMLInference) {
         localBackend = LocalBackend(inference: inference)
+        // Also configure Wisbee backend's local inference
+        wisbeeBackend?.configureLocalBackend(localBackend)
     }
 
     /// Set the current chat mode
@@ -97,6 +107,8 @@ final class ChatModeManager: ObservableObject {
         case .publicP2P:
             p2pBackend?.mode = .publicNetwork
             return p2pBackend
+        case .wisbee:
+            return wisbeeBackend
         }
     }
 
@@ -117,6 +129,8 @@ final class ChatModeManager: ObservableObject {
             return p2p.isReady && p2p.selectedServer.map { p2p.isDeviceTrusted($0) } ?? false
         case .publicP2P:
             return p2pBackend?.isReady ?? false
+        case .wisbee:
+            return wisbeeBackend?.isReady ?? false
         }
     }
 
@@ -137,6 +151,8 @@ final class ChatModeManager: ObservableObject {
         case .publicP2P:
             // Available if there are any servers nearby
             return !(p2pBackend?.availableServers.isEmpty ?? true)
+        case .wisbee:
+            return true  // Always available (local is always an option)
         }
     }
 
@@ -179,7 +195,7 @@ final class ChatModeManager: ObservableObject {
                 case .fast: reason = .fastMode
                 case .genius: reason = .geniusMode
                 case .publicP2P: reason = .p2pRequest
-                case .local, .chatweb, .privateP2P: reason = .fastMode // Should not happen (all are free)
+                case .local, .chatweb, .privateP2P, .wisbee: reason = .fastMode // Should not happen (all are free)
                 }
                 try? tokenManager.spend(cost, reason: reason)
             }
@@ -202,6 +218,7 @@ final class ChatModeManager: ObservableObject {
     /// Set auth token for ChatWeb backend (called by SyncManager)
     func setChatWebAuthToken(_ token: String?) {
         chatwebBackend?.authToken = token
+        wisbeeBackend?.setAuthToken(token)
     }
 
     /// Set model for ChatWeb backend (called from Settings)
@@ -213,7 +230,7 @@ final class ChatModeManager: ObservableObject {
 
     private func hasRequiredAPIKey(for mode: ChatMode) -> Bool {
         switch mode {
-        case .local, .chatweb, .privateP2P, .publicP2P:
+        case .local, .chatweb, .privateP2P, .publicP2P, .wisbee:
             return true
         case .fast:
             return keychain.hasAPIKey(for: .groq)

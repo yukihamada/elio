@@ -70,6 +70,9 @@ struct ChatView: View {
     // ChatWeb.ai & Peer connection
     @State private var showingChatWebConnect = false
     @State private var showingPeerConnect = false
+    // Wisbee onboarding
+    @State private var showWisbeeOnboarding = !UserDefaults.standard.bool(forKey: "hasShownWisbeeOnboarding")
+    @AppStorage("wisbeeModeEnabled") private var wisbeeModeAppStorage: Bool = false
 
     // Calculate number of lines in input text
     private var inputLineCount: Int {
@@ -122,6 +125,28 @@ struct ChatView: View {
                     onClose: { exitVoiceConversationMode() }
                 )
                 .transition(.opacity)
+            }
+
+            // Wisbee onboarding card
+            if showWisbeeOnboarding {
+                WisbeeOnboardingCard(
+                    onEnable: {
+                        withAnimation(.spring(response: 0.4)) {
+                            showWisbeeOnboarding = false
+                            UserDefaults.standard.set(true, forKey: "hasShownWisbeeOnboarding")
+                            wisbeeModeAppStorage = true
+                            ChatModeManager.shared.setMode(.wisbee)
+                        }
+                    },
+                    onDismiss: {
+                        withAnimation(.spring(response: 0.4)) {
+                            showWisbeeOnboarding = false
+                            UserDefaults.standard.set(true, forKey: "hasShownWisbeeOnboarding")
+                        }
+                    }
+                )
+                .transition(.move(edge: .bottom).combined(with: .opacity))
+                .zIndex(100)
             }
         }
         .sheet(isPresented: $showingConversationList) {
@@ -836,6 +861,30 @@ struct ChatView: View {
                     .shadow(color: .orange.opacity(0.4), radius: 4, y: 2)
             }
 
+            // Wisbee privacy mode badge
+            if ChatModeManager.shared.isWisbeeMode {
+                HStack(spacing: 4) {
+                    Image(systemName: "lock.fill")
+                        .font(.system(size: 10, weight: .bold))
+                    Text("Wisbee")
+                        .font(.system(size: 11, weight: .bold))
+                }
+                .foregroundStyle(.white)
+                .padding(.horizontal, 8)
+                .padding(.vertical, 4)
+                .background(
+                    Capsule()
+                        .fill(
+                            LinearGradient(
+                                colors: [.green, .mint],
+                                startPoint: .leading,
+                                endPoint: .trailing
+                            )
+                        )
+                )
+                .shadow(color: .green.opacity(0.4), radius: 4, y: 2)
+            }
+
             Spacer()
 
             // Action buttons
@@ -958,7 +1007,11 @@ struct ChatView: View {
                             StreamingMessageRow(text: displayedResponse)
                                 .id("streaming")
                         } else {
-                            TypingIndicatorRow()
+                            TypingIndicatorRow(
+                                statusText: ChatModeManager.shared.isWisbeeMode
+                                    ? String(localized: "wisbee.processing", defaultValue: "ローカル処理中...")
+                                    : nil
+                            )
                                 .id("typing")
                         }
                     }
@@ -2275,13 +2328,14 @@ struct StreamingMessageRow: View {
 // MARK: - Typing Indicator Row
 
 struct TypingIndicatorRow: View {
+    var statusText: String? = nil
     @State private var isBreathing = false
 
     var body: some View {
-        HStack {
+        HStack(spacing: 8) {
             // Single breathing dot (ChatGPT style)
             Circle()
-                .fill(Color(.systemGray4))
+                .fill(statusText != nil ? Color.green.opacity(0.6) : Color(.systemGray4))
                 .frame(width: 20, height: 20)
                 .scaleEffect(isBreathing ? 1.15 : 0.85)
                 .opacity(isBreathing ? 1.0 : 0.6)
@@ -2290,6 +2344,13 @@ struct TypingIndicatorRow: View {
                     .repeatForever(autoreverses: true),
                     value: isBreathing
                 )
+
+            // Optional status text (e.g. "ローカル処理中..." in Wisbee mode)
+            if let text = statusText {
+                Text(text)
+                    .font(.system(size: 13, weight: .medium))
+                    .foregroundStyle(.green)
+            }
 
             Spacer()
         }
@@ -3371,6 +3432,143 @@ struct ExpandedInputView: View {
         }
         .onAppear {
             isFocused = true
+        }
+    }
+}
+
+// MARK: - Wisbee Onboarding Card
+
+struct WisbeeOnboardingCard: View {
+    var onEnable: () -> Void
+    var onDismiss: () -> Void
+
+    @State private var isAnimating = false
+
+    var body: some View {
+        VStack {
+            Spacer()
+
+            VStack(spacing: 20) {
+                // Icon and title
+                HStack(spacing: 12) {
+                    ZStack {
+                        Circle()
+                            .fill(
+                                LinearGradient(
+                                    colors: [.green.opacity(0.2), .mint.opacity(0.2)],
+                                    startPoint: .topLeading,
+                                    endPoint: .bottomTrailing
+                                )
+                            )
+                            .frame(width: 52, height: 52)
+
+                        Image(systemName: "shield.checkmark.fill")
+                            .font(.system(size: 24))
+                            .foregroundStyle(
+                                .linearGradient(
+                                    colors: [.green, .mint],
+                                    startPoint: .topLeading,
+                                    endPoint: .bottomTrailing
+                                )
+                            )
+                            .symbolEffect(.pulse, isActive: isAnimating)
+                    }
+
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text("Wisbee Mode")
+                            .font(.system(size: 18, weight: .bold, design: .rounded))
+
+                        Text(String(localized: "wisbee.onboarding.subtitle",
+                                    defaultValue: "プライバシーを重視するなら Wisbee モードをオンに"))
+                            .font(.system(size: 13))
+                            .foregroundStyle(.secondary)
+                            .lineLimit(2)
+                    }
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
+
+                // Feature list
+                VStack(alignment: .leading, spacing: 8) {
+                    wisbeeFeatureRow(
+                        icon: "lock.fill",
+                        text: String(localized: "wisbee.onboarding.feature1", defaultValue: "AI処理は端末内で完結")
+                    )
+                    wisbeeFeatureRow(
+                        icon: "icloud.slash.fill",
+                        text: String(localized: "wisbee.onboarding.feature2", defaultValue: "データがサーバーに送信されません")
+                    )
+                    wisbeeFeatureRow(
+                        icon: "externaldrive.fill",
+                        text: String(localized: "wisbee.onboarding.feature3", defaultValue: "会話履歴はローカル保存のみ")
+                    )
+                }
+
+                // Action buttons
+                HStack(spacing: 12) {
+                    Button(action: onDismiss) {
+                        Text(String(localized: "wisbee.onboarding.dismiss", defaultValue: "あとで"))
+                            .font(.system(size: 15, weight: .medium))
+                            .frame(maxWidth: .infinity)
+                            .padding(.vertical, 12)
+                            .background(Color(.tertiarySystemBackground))
+                            .foregroundStyle(.secondary)
+                            .clipShape(RoundedRectangle(cornerRadius: 12))
+                    }
+
+                    Button(action: onEnable) {
+                        HStack(spacing: 6) {
+                            Image(systemName: "shield.checkmark.fill")
+                                .font(.system(size: 14))
+                            Text(String(localized: "wisbee.onboarding.enable", defaultValue: "有効にする"))
+                                .font(.system(size: 15, weight: .semibold))
+                        }
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical, 12)
+                        .background(
+                            LinearGradient(
+                                colors: [.green, .mint],
+                                startPoint: .leading,
+                                endPoint: .trailing
+                            )
+                        )
+                        .foregroundStyle(.white)
+                        .clipShape(RoundedRectangle(cornerRadius: 12))
+                    }
+                }
+            }
+            .padding(20)
+            .background(
+                RoundedRectangle(cornerRadius: 20)
+                    .fill(.ultraThinMaterial)
+                    .shadow(color: .black.opacity(0.15), radius: 20, y: 10)
+            )
+            .overlay(
+                RoundedRectangle(cornerRadius: 20)
+                    .stroke(Color.green.opacity(0.2), lineWidth: 1)
+            )
+            .padding(.horizontal, 16)
+            .padding(.bottom, 100) // Above the input bar
+        }
+        .background(
+            Color.black.opacity(0.3)
+                .ignoresSafeArea()
+                .onTapGesture { onDismiss() }
+        )
+        .onAppear {
+            isAnimating = true
+        }
+    }
+
+    private func wisbeeFeatureRow(icon: String, text: String) -> some View {
+        HStack(spacing: 10) {
+            Image(systemName: icon)
+                .font(.system(size: 14, weight: .medium))
+                .foregroundStyle(.green)
+                .frame(width: 20)
+
+            Text(text)
+                .font(.system(size: 14))
+                .foregroundStyle(.primary)
         }
     }
 }

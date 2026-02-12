@@ -268,7 +268,12 @@ class SyncManager: ObservableObject {
     // MARK: - Sync Operations
 
     /// Pull conversation list from server
+    /// Respects Wisbee privacy mode - sync is disabled when active.
     func pullConversations(since: String? = nil) async throws -> [ServerConversation] {
+        // Do not sync when Wisbee mode is active (privacy first)
+        if ChatModeManager.shared.isSyncDisabled {
+            return []
+        }
         guard let token = authToken else { throw SyncError.notAuthenticated }
 
         var urlString = "\(baseURL)/api/v1/sync/conversations"
@@ -322,7 +327,12 @@ class SyncManager: ObservableObject {
     }
 
     /// Push local conversations to server
+    /// Respects Wisbee privacy mode - sync is disabled when active.
     func pushConversations(_ conversations: [Conversation]) async throws -> [SyncPushSyncedItem] {
+        // Do not sync when Wisbee mode is active (privacy first)
+        if ChatModeManager.shared.isSyncDisabled {
+            return []
+        }
         guard let token = authToken else { throw SyncError.notAuthenticated }
 
         let url = URL(string: "\(baseURL)/api/v1/sync/push")!

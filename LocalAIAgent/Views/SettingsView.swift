@@ -13,6 +13,7 @@ struct SettingsView: View {
     @State private var showingPromptEditor = false
     @State private var showingChatWebLogin = false
     @AppStorage("custom_system_prompt") private var customSystemPrompt: String = ""
+    @AppStorage("wisbeeModeEnabled") private var wisbeeModeEnabled: Bool = false
 
     // Models grouped by category (ElioChat always first)
     private func modelsForCategory(_ category: ModelCategory) -> [ModelLoader.ModelInfo] {
@@ -58,6 +59,9 @@ struct SettingsView: View {
                         // Header
                         headerView
                             .padding(.top, 8)
+
+                        // Wisbee Privacy Mode Section
+                        wisbeeSection
 
                         // Model Section
                         modelSection
@@ -351,6 +355,122 @@ struct SettingsView: View {
                 try? modelLoader.deleteModel(model.id)
             }
         )
+    }
+
+    // MARK: - Wisbee Privacy Mode Section
+
+    private var wisbeeSection: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            ModernSectionHeader(title: "Wisbee", icon: "shield.checkmark.fill", gradient: [.green, .mint])
+
+            VStack(spacing: 0) {
+                // Main toggle
+                Toggle(isOn: $wisbeeModeEnabled) {
+                    HStack(spacing: 12) {
+                        Image(systemName: "lock.shield.fill")
+                            .font(.system(size: 18))
+                            .foregroundStyle(.green)
+                            .frame(width: 28)
+
+                        VStack(alignment: .leading, spacing: 2) {
+                            Text(String(localized: "wisbee.toggle.title", defaultValue: "Wisbee Mode"))
+                                .font(.system(size: 15, weight: .medium))
+                                .foregroundStyle(.primary)
+
+                            Text(String(localized: "wisbee.toggle.subtitle", defaultValue: "プライバシーモード: データは端末内で完結します"))
+                                .font(.system(size: 12))
+                                .foregroundStyle(.secondary)
+                        }
+                    }
+                }
+                .toggleStyle(.switch)
+                .tint(.green)
+                .padding(.horizontal, 16)
+                .padding(.vertical, 14)
+                .onChange(of: wisbeeModeEnabled) { _, newValue in
+                    if newValue {
+                        ChatModeManager.shared.setMode(.wisbee)
+                    } else {
+                        // Revert to local mode when disabling Wisbee
+                        ChatModeManager.shared.setMode(.local)
+                    }
+                }
+
+                if wisbeeModeEnabled {
+                    Divider()
+                        .padding(.leading, 56)
+
+                    // Privacy status indicator
+                    HStack(spacing: 12) {
+                        Image(systemName: "checkmark.shield.fill")
+                            .font(.system(size: 16))
+                            .foregroundStyle(.green)
+                            .frame(width: 28)
+
+                        VStack(alignment: .leading, spacing: 4) {
+                            HStack(spacing: 6) {
+                                Circle()
+                                    .fill(.green)
+                                    .frame(width: 8, height: 8)
+                                    .shadow(color: .green.opacity(0.5), radius: 4)
+                                Text(String(localized: "wisbee.status.active", defaultValue: "プライバシー保護中"))
+                                    .font(.system(size: 14, weight: .medium))
+                                    .foregroundStyle(.green)
+                            }
+
+                            VStack(alignment: .leading, spacing: 2) {
+                                privacyDetailRow(
+                                    icon: "iphone",
+                                    text: String(localized: "wisbee.detail.local_inference", defaultValue: "推論: 端末上で実行")
+                                )
+                                privacyDetailRow(
+                                    icon: "externaldrive.fill",
+                                    text: String(localized: "wisbee.detail.local_storage", defaultValue: "履歴: ローカル保存のみ")
+                                )
+                                privacyDetailRow(
+                                    icon: "icloud.slash.fill",
+                                    text: String(localized: "wisbee.detail.no_sync", defaultValue: "同期: 無効（データ送信なし）")
+                                )
+                                privacyDetailRow(
+                                    icon: "network.slash",
+                                    text: String(localized: "wisbee.detail.no_cloud", defaultValue: "クラウド: 使用しません")
+                                )
+                            }
+                        }
+
+                        Spacer()
+                    }
+                    .padding(.horizontal, 16)
+                    .padding(.vertical, 12)
+                }
+            }
+            .background(
+                RoundedRectangle(cornerRadius: 16)
+                    .fill(Color.cardBackground)
+                    .shadow(color: .black.opacity(0.04), radius: 8, y: 2)
+            )
+            .overlay(
+                RoundedRectangle(cornerRadius: 16)
+                    .stroke(wisbeeModeEnabled ? Color.green.opacity(0.3) : Color.subtleSeparator, lineWidth: wisbeeModeEnabled ? 1.5 : 0.5)
+            )
+
+            Text(String(localized: "wisbee.description", defaultValue: "Wisbee Mode ではすべてのAI処理が端末内で完結します。会話データがサーバーに送信されることはありません。"))
+                .font(.caption)
+                .foregroundStyle(.secondary)
+                .padding(.horizontal, 4)
+        }
+    }
+
+    private func privacyDetailRow(icon: String, text: String) -> some View {
+        HStack(spacing: 6) {
+            Image(systemName: icon)
+                .font(.system(size: 10))
+                .foregroundStyle(.secondary)
+                .frame(width: 14)
+            Text(text)
+                .font(.system(size: 11))
+                .foregroundStyle(.secondary)
+        }
     }
 
     // MARK: - Inference Mode Section
@@ -1390,6 +1510,10 @@ struct SettingsView: View {
 
         // Reset inference mode
         appState.setInferenceMode(.auto)
+
+        // Reset Wisbee mode
+        wisbeeModeEnabled = false
+        ChatModeManager.shared.setMode(.local)
 
         // Clear notes
         UserDefaults.standard.removeObject(forKey: "elio_notes")
