@@ -89,7 +89,9 @@ struct MCPServerListView: View {
             }
         }
         .navigationTitle(String(localized: "settings.mcp.servers"))
+        #if !targetEnvironment(macCatalyst)
         .navigationBarTitleDisplayMode(.inline)
+        #endif
     }
 
     // MARK: - Header Info
@@ -307,7 +309,9 @@ struct CustomMCPServerView: View {
             }
         }
         .navigationTitle("カスタム連携")
+        #if !targetEnvironment(macCatalyst)
         .navigationBarTitleDisplayMode(.inline)
+        #endif
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 Button("追加") {

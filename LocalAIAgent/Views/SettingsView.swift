@@ -3,6 +3,7 @@ import SwiftUI
 struct SettingsView: View {
     @EnvironmentObject var appState: AppState
     @EnvironmentObject var themeManager: ThemeManager
+    @EnvironmentObject var syncManager: SyncManager
     @ObservedObject private var modelLoader = ModelLoader.shared
     @StateObject private var languageManager = LanguageManager.shared
     @Environment(\.dismiss) private var dismiss
@@ -10,6 +11,7 @@ struct SettingsView: View {
     @State private var showMoreModels = false
     @State private var showLanguageChangeAlert = false
     @State private var showingPromptEditor = false
+    @State private var showingChatWebLogin = false
     @AppStorage("custom_system_prompt") private var customSystemPrompt: String = ""
 
     // Models grouped by category (ElioChat always first)
@@ -63,6 +65,9 @@ struct SettingsView: View {
                         // Inference Mode Section
                         inferenceModeSection
 
+                        // ChatWeb Section
+                        chatWebSection
+
                         // Appearance Section
                         appearanceSection
 
@@ -77,6 +82,11 @@ struct SettingsView: View {
 
                         // MCP Server Section
                         mcpSection
+
+                        #if targetEnvironment(macCatalyst)
+                        // Mac Server Dashboard
+                        macServerSection
+                        #endif
 
                         // About Section
                         aboutSection
@@ -97,7 +107,9 @@ struct SettingsView: View {
                 .scrollBounceBehavior(.basedOnSize)
             }
             .navigationTitle(String(localized: "settings.title"))
+            #if !targetEnvironment(macCatalyst)
             .navigationBarTitleDisplayMode(.inline)
+            #endif
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button(String(localized: "common.done")) { dismiss() }
@@ -367,6 +379,206 @@ struct SettingsView: View {
                 RoundedRectangle(cornerRadius: 16)
                     .fill(Color.chatInputBackgroundDynamic)
             )
+        }
+    }
+
+    // MARK: - ChatWeb Section
+
+    private var chatWebSection: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            SectionHeader(title: "ChatWeb", icon: "cloud.fill", color: .indigo)
+
+            VStack(spacing: 0) {
+                if syncManager.isLoggedIn {
+                    // Logged-in status
+                    HStack(spacing: 12) {
+                        Image(systemName: "person.crop.circle.fill")
+                            .font(.system(size: 18))
+                            .foregroundStyle(.indigo)
+                            .frame(width: 28)
+
+                        VStack(alignment: .leading, spacing: 2) {
+                            Text(syncManager.email)
+                                .font(.system(size: 15, weight: .medium))
+                                .foregroundStyle(.primary)
+
+                            HStack(spacing: 6) {
+                                Text(syncManager.planDisplayName)
+                                    .font(.system(size: 11, weight: .semibold))
+                                    .padding(.horizontal, 6)
+                                    .padding(.vertical, 2)
+                                    .background(planColor.opacity(0.15))
+                                    .foregroundStyle(planColor)
+                                    .clipShape(Capsule())
+
+                                Text(String(localized: "chatweb.credits.remaining",
+                                            defaultValue: "\(syncManager.creditsRemaining) credits"))
+                                    .font(.system(size: 12))
+                                    .foregroundStyle(.secondary)
+                            }
+                        }
+
+                        Spacer()
+
+                        Button(action: {
+                            syncManager.logout()
+                            ChatModeManager.shared.setChatWebAuthToken(nil)
+                        }) {
+                            Text(String(localized: "chatweb.logout", defaultValue: "Logout"))
+                                .font(.system(size: 13, weight: .medium))
+                                .foregroundStyle(.red)
+                        }
+                    }
+                    .padding(.horizontal, 16)
+                    .padding(.vertical, 14)
+
+                    Divider()
+                        .padding(.leading, 56)
+
+                    // Model selection picker
+                    HStack(spacing: 12) {
+                        Image(systemName: "cpu")
+                            .font(.system(size: 16))
+                            .foregroundStyle(.secondary)
+                            .frame(width: 28)
+
+                        Text(String(localized: "chatweb.model", defaultValue: "Model"))
+                            .font(.system(size: 15))
+                            .foregroundStyle(.primary)
+
+                        Spacer()
+
+                        Picker("", selection: Binding(
+                            get: { syncManager.selectedChatWebModel ?? "auto" },
+                            set: { newValue in
+                                syncManager.selectedChatWebModel = newValue == "auto" ? nil : newValue
+                                ChatModeManager.shared.setChatWebModel(newValue)
+                            }
+                        )) {
+                            ForEach(ChatWebBackend.availableModels, id: \.id) { model in
+                                Text(model.name).tag(model.id)
+                            }
+                        }
+                        .pickerStyle(.menu)
+                        .tint(.indigo)
+                    }
+                    .padding(.horizontal, 16)
+                    .padding(.vertical, 10)
+
+                    // Show last model used
+                    if let lastModel = syncManager.lastModelUsed {
+                        Divider()
+                            .padding(.leading, 56)
+
+                        HStack(spacing: 12) {
+                            Image(systemName: "info.circle")
+                                .font(.system(size: 16))
+                                .foregroundStyle(.secondary)
+                                .frame(width: 28)
+
+                            Text(String(localized: "chatweb.last_model", defaultValue: "Last used"))
+                                .font(.system(size: 14))
+                                .foregroundStyle(.secondary)
+
+                            Spacer()
+
+                            Text(lastModel)
+                                .font(.system(size: 13, weight: .medium))
+                                .foregroundStyle(.secondary)
+                        }
+                        .padding(.horizontal, 16)
+                        .padding(.vertical, 10)
+                    }
+
+                    Divider()
+                        .padding(.leading, 56)
+
+                    // Refresh account info
+                    Button(action: {
+                        Task {
+                            try? await syncManager.fetchMe()
+                        }
+                    }) {
+                        HStack(spacing: 12) {
+                            Image(systemName: "arrow.clockwise")
+                                .font(.system(size: 16))
+                                .foregroundStyle(.indigo)
+                                .frame(width: 28)
+
+                            Text(String(localized: "chatweb.refresh", defaultValue: "Refresh Account Info"))
+                                .font(.system(size: 15))
+                                .foregroundStyle(.indigo)
+
+                            Spacer()
+                        }
+                    }
+                    .padding(.horizontal, 16)
+                    .padding(.vertical, 14)
+
+                } else {
+                    // Not logged in
+                    Button(action: { showingChatWebLogin = true }) {
+                        HStack(spacing: 12) {
+                            Image(systemName: "person.badge.plus")
+                                .font(.system(size: 18))
+                                .foregroundStyle(.indigo)
+                                .frame(width: 28)
+
+                            VStack(alignment: .leading, spacing: 2) {
+                                Text(String(localized: "chatweb.signin", defaultValue: "Sign in to chatweb.ai"))
+                                    .font(.system(size: 15, weight: .medium))
+                                    .foregroundStyle(.primary)
+                                Text(String(localized: "chatweb.signin.subtitle",
+                                            defaultValue: "Sync conversations and use cloud AI credits"))
+                                    .font(.system(size: 12))
+                                    .foregroundStyle(.secondary)
+                            }
+
+                            Spacer()
+
+                            Image(systemName: "chevron.right")
+                                .font(.system(size: 12, weight: .semibold))
+                                .foregroundStyle(.tertiary)
+                        }
+                    }
+                    .buttonStyle(.plain)
+                    .padding(.horizontal, 16)
+                    .padding(.vertical, 14)
+                }
+
+                Divider()
+                    .padding(.leading, 56)
+
+                // Link to chatweb.ai
+                AboutLinkRow(
+                    title: String(localized: "chatweb.manage", defaultValue: "Manage account on chatweb.ai"),
+                    icon: "safari",
+                    url: "https://chatweb.ai"
+                )
+            }
+            .background(
+                RoundedRectangle(cornerRadius: 16)
+                    .fill(Color.chatInputBackgroundDynamic)
+            )
+
+            Text(String(localized: "chatweb.description",
+                         defaultValue: "ChatWeb provides cloud AI with free credits. No API key required."))
+                .font(.caption)
+                .foregroundStyle(.secondary)
+                .padding(.horizontal, 4)
+        }
+        .sheet(isPresented: $showingChatWebLogin) {
+            ChatWebLoginView()
+                .environmentObject(syncManager)
+        }
+    }
+
+    /// Color for the current plan badge
+    private var planColor: Color {
+        switch syncManager.plan.lowercased() {
+        case "pro": return .purple
+        case "starter": return .blue
+        default: return .gray
         }
     }
 
@@ -644,6 +856,52 @@ struct SettingsView: View {
             SystemPromptEditorView(customPrompt: $customSystemPrompt)
         }
     }
+
+    // MARK: - Mac Server Section
+
+    #if targetEnvironment(macCatalyst)
+    private var macServerSection: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            SectionHeader(title: String(localized: "mac.settings.server.section", defaultValue: "Mac Server"), icon: "server.rack", color: .blue)
+
+            NavigationLink(destination: ServerDashboardView()) {
+                HStack(spacing: 14) {
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 10)
+                            .fill(Color.blue.opacity(0.1))
+                            .frame(width: 44, height: 44)
+
+                        Image(systemName: "server.rack")
+                            .font(.system(size: 20))
+                            .foregroundStyle(.blue)
+                    }
+
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text(String(localized: "mac.settings.server.dashboard", defaultValue: "Server Dashboard"))
+                            .font(.system(size: 16, weight: .semibold))
+                            .foregroundStyle(.primary)
+
+                        Text(String(localized: "mac.settings.server.description", defaultValue: "P2P server status and token earnings"))
+                            .font(.system(size: 13))
+                            .foregroundStyle(.secondary)
+                    }
+
+                    Spacer()
+
+                    Image(systemName: "chevron.right")
+                        .font(.system(size: 12, weight: .semibold))
+                        .foregroundStyle(.tertiary)
+                }
+                .padding(14)
+                .background(
+                    RoundedRectangle(cornerRadius: 16)
+                        .fill(Color(.secondarySystemBackground))
+                )
+            }
+            .buttonStyle(.plain)
+        }
+    }
+    #endif
 
     // MARK: - MCP Section (Smart Features)
 
@@ -1390,7 +1648,9 @@ struct SystemPromptEditorView: View {
                 .padding(.top, 16)
             }
             .navigationTitle(String(localized: "settings.prompt.editor.title"))
+            #if !targetEnvironment(macCatalyst)
             .navigationBarTitleDisplayMode(.inline)
+            #endif
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button(String(localized: "common.cancel")) {
@@ -1429,4 +1689,5 @@ struct SystemPromptEditorView: View {
     SettingsView()
         .environmentObject(AppState())
         .environmentObject(ThemeManager())
+        .environmentObject(SyncManager())
 }

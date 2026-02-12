@@ -1,3 +1,4 @@
+#if !targetEnvironment(macCatalyst)
 import Foundation
 import AVFoundation
 
@@ -372,3 +373,4 @@ enum ReazonSpeechError: Error, LocalizedError {
         }
     }
 }
+#endif  // !targetEnvironment(macCatalyst)

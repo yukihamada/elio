@@ -37,7 +37,9 @@ struct ModelSelectionView: View {
                 actionButton
             }
             .navigationTitle("モデルを選択")
+            #if !targetEnvironment(macCatalyst)
             .navigationBarTitleDisplayMode(.inline)
+            #endif
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     Button("キャンセル") {

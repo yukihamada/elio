@@ -12,3 +12,12 @@ for_platform :ios do
     app_identifier "love.elio.app"
   end
 end
+
+for_platform :mac do
+  for_lane :beta do
+    app_identifier "maccatalyst.love.elio.app"
+  end
+  for_lane :release do
+    app_identifier "maccatalyst.love.elio.app"
+  end
+end

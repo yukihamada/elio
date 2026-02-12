@@ -181,7 +181,9 @@ struct ShareCardSheet: View {
             }
             .background(Color(UIColor.systemGroupedBackground))
             .navigationTitle(String(localized: "share.card.title"))
+            #if !targetEnvironment(macCatalyst)
             .navigationBarTitleDisplayMode(.inline)
+            #endif
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button(String(localized: "common.close")) {

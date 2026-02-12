@@ -65,6 +65,11 @@ struct ChatView: View {
     @State private var showingExpandedInput = false
     // TTS download alert (local state to prevent view refresh dismissing alert)
     @State private var showingTTSDownloadAlert = false
+    // Emergency mode
+    @State private var isEmergencyLongPressing = false
+    // ChatWeb.ai & Peer connection
+    @State private var showingChatWebConnect = false
+    @State private var showingPeerConnect = false
 
     // Calculate number of lines in input text
     private var inputLineCount: Int {
@@ -83,6 +88,17 @@ struct ChatView: View {
             VStack(spacing: 0) {
                 // Header
                 headerView
+
+                // Emergency mode banner and quick actions
+                if appState.isEmergencyMode {
+                    EmergencyModeBanner()
+
+                    EmergencyQuickActionsView { message in
+                        inputText = message
+                        // Auto-send the emergency message
+                        sendMessage()
+                    }
+                }
 
                 // Always show chat content for faster perceived startup
                 // Model loading happens in background
@@ -114,13 +130,29 @@ struct ChatView: View {
         .sheet(isPresented: $showingSettings) {
             SettingsView()
         }
+        #if targetEnvironment(macCatalyst)
+        .keyboardShortcut(.return, modifiers: .command) // Cmd+Enter: send
+        .onAppear {
+            // Cmd+N: new chat, Cmd+,: settings
+        }
+        .background {
+            Button("") { appState.newConversation() }
+                .keyboardShortcut("n", modifiers: .command)
+                .hidden()
+            Button("") { showingSettings = true }
+                .keyboardShortcut(",", modifiers: .command)
+                .hidden()
+        }
+        #endif
         .confirmationDialog(String(localized: "attachment.title"), isPresented: $showingAttachmentOptions) {
             Button(String(localized: "attachment.photo.library")) {
                 handleImageAttachment()
             }
+            #if !targetEnvironment(macCatalyst)
             Button(String(localized: "attachment.camera")) {
                 handleCameraAttachment()
             }
+            #endif
             Button(String(localized: "attachment.pdf")) {
                 showingDocumentPicker = true
             }
@@ -149,12 +181,14 @@ struct ChatView: View {
                 attachedImages.append(contentsOf: thumbnails)
             })
         }
+        #if !targetEnvironment(macCatalyst)
         .fullScreenCover(isPresented: $showingCamera) {
             CameraPicker(onImageCaptured: { image in
                 // Create thumbnail to reduce memory usage
                 attachedImages.append(createThumbnail(image))
             })
         }
+        #endif
         .sheet(isPresented: $showingDocumentPicker) {
             DocumentPicker(onDocumentSelected: { content in
                 attachedPDFName = content.url.lastPathComponent
@@ -314,6 +348,17 @@ struct ChatView: View {
                 inputText = template.content
                 isInputFocused = true
             })
+        }
+        // ChatWeb.ai quick connect
+        .sheet(isPresented: $showingChatWebConnect) {
+            ChatWebConnectView(
+                chatModeManager: ChatModeManager.shared,
+                syncManager: nil
+            )
+        }
+        // Peer device connection
+        .sheet(isPresented: $showingPeerConnect) {
+            PeerConnectionView(chatModeManager: ChatModeManager.shared)
         }
         // Expanded text input (fullscreen editor)
         .sheet(isPresented: $showingExpandedInput) {
@@ -749,6 +794,31 @@ struct ChatView: View {
                 }
             }
 
+            // SOS Emergency Mode button (long press to toggle)
+            Button(action: {}) {
+                Image(systemName: appState.isEmergencyMode ? "sos.circle.fill" : "sos.circle")
+                    .font(.system(size: 20, weight: .medium))
+                    .foregroundStyle(appState.isEmergencyMode ? .white : .red)
+                    .frame(width: 32, height: 32)
+                    .background(appState.isEmergencyMode ? Color.red : Color.clear)
+                    .clipShape(Circle())
+                    .scaleEffect(isEmergencyLongPressing ? 1.2 : 1.0)
+                    .animation(.easeInOut(duration: 0.3), value: isEmergencyLongPressing)
+            }
+            .simultaneousGesture(
+                LongPressGesture(minimumDuration: 1.0)
+                    .onChanged { _ in
+                        isEmergencyLongPressing = true
+                    }
+                    .onEnded { _ in
+                        isEmergencyLongPressing = false
+                        appState.toggleEmergencyMode()
+                        let generator = UINotificationFeedbackGenerator()
+                        generator.notificationOccurred(appState.isEmergencyMode ? .warning : .success)
+                    }
+            )
+            .accessibilityLabel(String(localized: "emergency.sos.button"))
+
             // Offline badge - shows when not connected
             if !networkMonitor.isConnected {
                 Image(systemName: "wifi.slash")
@@ -770,6 +840,20 @@ struct ChatView: View {
 
             // Action buttons
             HStack(spacing: 16) {
+                // ChatWeb.ai quick connect
+                Button(action: { showingChatWebConnect = true }) {
+                    Image(systemName: "cloud.fill")
+                        .font(.system(size: 16, weight: .medium))
+                        .foregroundStyle(.indigo)
+                }
+
+                // Peer device connect
+                Button(action: { showingPeerConnect = true }) {
+                    Image(systemName: "antenna.radiowaves.left.and.right")
+                        .font(.system(size: 16, weight: .medium))
+                        .foregroundStyle(.secondary)
+                }
+
                 Button(action: { appState.newConversation() }) {
                     Image(systemName: "square.and.pencil")
                         .font(.system(size: 20, weight: .medium))
@@ -2485,7 +2569,9 @@ struct ConversationListView: View {
                 }
             }
             .navigationTitle(String(localized: "conversations.title"))
+            #if !targetEnvironment(macCatalyst)
             .navigationBarTitleDisplayMode(.inline)
+            #endif
             .searchable(text: $searchText, prompt: String(localized: "conversations.search.placeholder"))
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
@@ -2678,6 +2764,7 @@ struct ImagePicker: UIViewControllerRepresentable {
 
 // MARK: - Camera Picker
 
+#if !targetEnvironment(macCatalyst)
 struct CameraPicker: UIViewControllerRepresentable {
     let onImageCaptured: (UIImage) -> Void
     @Environment(\.dismiss) private var dismiss
@@ -2715,6 +2802,7 @@ struct CameraPicker: UIViewControllerRepresentable {
         }
     }
 }
+#endif
 
 // MARK: - Speech Manager (Singleton with Kokoro TTS support)
 
@@ -3258,7 +3346,9 @@ struct ExpandedInputView: View {
                 }
             }
             .navigationTitle(String(localized: "chat.expanded.title", defaultValue: "メッセージを編集"))
+            #if !targetEnvironment(macCatalyst)
             .navigationBarTitleDisplayMode(.inline)
+            #endif
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button(action: { dismiss() }) {

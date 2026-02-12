@@ -92,7 +92,9 @@ struct OnboardingMCPView: View {
                 .disabled(selectedServers.isEmpty)
                 .padding()
             }
+            #if !targetEnvironment(macCatalyst)
             .navigationBarTitleDisplayMode(.inline)
+            #endif
             .onAppear {
                 // Start with default selection
                 selectedServers = appState.enabledMCPServers

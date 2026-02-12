@@ -1,3 +1,4 @@
+#if !targetEnvironment(macCatalyst)
 import Foundation
 import AVFoundation
 
@@ -1057,3 +1058,4 @@ enum KokoroTTSError: LocalizedError {
         }
     }
 }
+#endif  // !targetEnvironment(macCatalyst)

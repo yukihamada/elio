@@ -1,3 +1,4 @@
+#if !targetEnvironment(macCatalyst)
 /// swift-api-examples/SherpaOnnx.swift
 /// Copyright (c)  2023  Xiaomi Corporation
 
@@ -1745,3 +1746,4 @@ func getSherpaOnnxGitSha1() -> String {
 func getSherpaOnnxGitDate() -> String {
   return String(cString: SherpaOnnxGetGitDate())
 }
+#endif  // !targetEnvironment(macCatalyst)

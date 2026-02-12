@@ -84,7 +84,9 @@ struct AboutView: View {
                 }
             }
             .navigationTitle("このアプリについて")
+            #if !targetEnvironment(macCatalyst)
             .navigationBarTitleDisplayMode(.inline)
+            #endif
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button("完了") { dismiss() }
@@ -160,7 +162,9 @@ struct PrivacyPolicyView: View {
             .padding(20)
         }
         .navigationTitle("プライバシーポリシー")
+        #if !targetEnvironment(macCatalyst)
         .navigationBarTitleDisplayMode(.inline)
+        #endif
     }
 }
 
@@ -198,7 +202,9 @@ struct TermsOfServiceView: View {
             .padding(20)
         }
         .navigationTitle("利用規約")
+        #if !targetEnvironment(macCatalyst)
         .navigationBarTitleDisplayMode(.inline)
+        #endif
     }
 }
 

@@ -58,7 +58,15 @@ final class ShortcutsServer: MCPServer {
                         "body": MCPPropertySchema(type: "string", description: "本文")
                     ]
                 )
-            ),
+            )
+        ] + phoneTools
+    }
+
+    private var phoneTools: [MCPTool] {
+        #if targetEnvironment(macCatalyst)
+        return []
+        #else
+        return [
             MCPTool(
                 name: "make_phone_call",
                 description: "電話をかけます",
@@ -80,6 +88,7 @@ final class ShortcutsServer: MCPServer {
                 )
             )
         ]
+        #endif
     }
 
     func callTool(name: String, arguments: [String: JSONValue]) async throws -> MCPResult {
@@ -94,10 +103,12 @@ final class ShortcutsServer: MCPServer {
             return try await openSettings(arguments: arguments)
         case "send_email":
             return try await sendEmail(arguments: arguments)
+        #if !targetEnvironment(macCatalyst)
         case "make_phone_call":
             return try await makePhoneCall(arguments: arguments)
         case "send_message":
             return try await sendMessage(arguments: arguments)
+        #endif
         default:
             throw MCPClientError.toolNotFound(name)
         }

@@ -1,5 +1,112 @@
 default_platform(:ios)
 
+# ============================================
+# macOS (Mac Catalyst)
+# ============================================
+
+platform :mac do
+  desc "Build macOS app (Mac Catalyst)"
+  lane :build do
+    build_app(
+      project: "ElioChat.xcodeproj",
+      scheme: "ElioChat",
+      catalyst_platform: "macos",
+      destination: "generic/platform=macOS,variant=Mac Catalyst",
+      skip_codesigning: true,
+      skip_archive: true
+    )
+  end
+
+  desc "Deploy macOS to TestFlight"
+  lane :beta do
+    api_key = app_store_connect_api_key(
+      key_id: "5KT46G9Y29",
+      issuer_id: "e0d22675-afb3-45f0-a821-06b477f44da0",
+      key_filepath: File.expand_path("~/.appstoreconnect/private_keys/AuthKey_5KT46G9Y29.p8"),
+      in_house: false
+    )
+
+    increment_build_number(
+      build_number: latest_testflight_build_number(
+        api_key: api_key,
+        platform: "osx"
+      ) + 1
+    )
+
+    build_app(
+      project: "ElioChat.xcodeproj",
+      scheme: "ElioChat",
+      catalyst_platform: "macos",
+      configuration: "Release",
+      export_method: "app-store",
+      destination: "generic/platform=macOS,variant=Mac Catalyst",
+      export_options: {
+        signingStyle: "automatic",
+        teamID: "5BV85JW8US"
+      }
+    )
+
+    upload_to_testflight(
+      api_key: api_key,
+      app_platform: "osx",
+      skip_waiting_for_build_processing: true
+    )
+
+    clean_build_artifacts
+  end
+
+  desc "Deploy macOS to Mac App Store"
+  lane :release do
+    api_key = app_store_connect_api_key(
+      key_id: "5KT46G9Y29",
+      issuer_id: "e0d22675-afb3-45f0-a821-06b477f44da0",
+      key_filepath: File.expand_path("~/.appstoreconnect/private_keys/AuthKey_5KT46G9Y29.p8"),
+      in_house: false
+    )
+
+    increment_build_number(
+      build_number: latest_testflight_build_number(
+        api_key: api_key,
+        platform: "osx"
+      ) + 1
+    )
+
+    build_app(
+      project: "ElioChat.xcodeproj",
+      scheme: "ElioChat",
+      catalyst_platform: "macos",
+      configuration: "Release",
+      export_method: "app-store",
+      destination: "generic/platform=macOS,variant=Mac Catalyst",
+      export_options: {
+        signingStyle: "automatic",
+        teamID: "5BV85JW8US"
+      }
+    )
+
+    upload_to_app_store(
+      api_key: api_key,
+      platform: "osx",
+      submit_for_review: true,
+      automatic_release: false,
+      skip_screenshots: true,
+      skip_metadata: false,
+      precheck_include_in_app_purchases: false,
+      force: true
+    )
+
+    clean_build_artifacts
+  end
+
+  error do |lane, exception|
+    UI.error("Mac lane #{lane} failed: #{exception}")
+  end
+end
+
+# ============================================
+# iOS
+# ============================================
+
 platform :ios do
   before_all do
     # Xcode version is set via xcode-select in CI workflow

@@ -1,3 +1,4 @@
+#if !targetEnvironment(macCatalyst)
 import Foundation
 import Photos
 import UIKit
@@ -296,3 +297,4 @@ final class PhotosServer: MCPServer {
         }
     }
 }
+#endif  // !targetEnvironment(macCatalyst)

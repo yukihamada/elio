@@ -33,7 +33,8 @@ final class AppState: ObservableObject {
     @Published var currentModelId: String?
     @Published var conversations: [Conversation] = []
     @Published var currentConversation: Conversation?
-    @Published var enabledMCPServers: Set<String> = ["filesystem", "calendar", "reminders", "websearch", "weather", "notes"]
+    @Published var enabledMCPServers: Set<String> = ["filesystem", "calendar", "reminders", "websearch", "weather", "notes", "emergency_kb"]
+    @Published var isEmergencyMode = false
     @Published var errorMessage: String?
     @Published var isGenerating = false  // Track if currently generating response
     @Published var inferenceMode: InferenceMode = .auto
@@ -43,6 +44,23 @@ final class AppState: ObservableObject {
     // Widget support
     @Published var pendingQuickQuestion: String?  // Question from widget deep link
     @Published var showConversationList = false   // Trigger to show conversation list
+
+    // MARK: - Mac Catalyst
+    #if targetEnvironment(macCatalyst)
+    @AppStorage("macAutoStartP2PServer") var macAutoStartServer = true
+
+    func macStartupSetup() async {
+        guard macAutoStartServer else { return }
+        // Auto-start P2P server on Mac after model is loaded
+        if isModelLoaded {
+            do {
+                try await PrivateServerManager.shared.start()
+            } catch {
+                errorMessage = "P2P server auto-start failed: \(error.localizedDescription)"
+            }
+        }
+    }
+    #endif
 
     // Screenshot mode for App Store screenshots
     static var isScreenshotMode: Bool {
@@ -592,7 +610,7 @@ final class AppState: ObservableObject {
             }
             let context = contextParts.joined(separator: "\n\n")
 
-            return """
+            var prompt = """
             # ElioChat について
             あなたは「ElioChat」（エリオチャット）です。プライバシーを最優先するローカルAIアシスタントとして、ユーザーのデバイス上で完全に動作します。
             - すべての処理はデバイス内で完結し、データは外部に送信されません
@@ -611,6 +629,20 @@ final class AppState: ObservableObject {
             【現在の情報】
             \(context)
             """
+
+            if isEmergencyMode {
+                prompt += """
+
+                【緊急モード】ユーザーは緊急事態にあります。以下を厳守してください:
+                - 正確で実用的な情報のみを提供してください
+                - 不確かな情報は必ず「不確か」と明示してください
+                - 手順は番号付きで簡潔に示してください
+                - 緊急ナレッジベース(emergency_kb)のツールを積極的に活用してください
+                - 命に関わる場合は必ず119番通報を促してください
+                """
+            }
+
+            return prompt
         } else {
             contextParts.append("Current: \(currentDateTime)")
             if !recentConversations.isEmpty {
@@ -619,7 +651,7 @@ final class AppState: ObservableObject {
             }
             let context = contextParts.joined(separator: "\n\n")
 
-            return """
+            var prompt = """
             # About ElioChat
             You are ElioChat, a privacy-first local AI assistant that runs entirely on the user's device.
             - All processing happens locally; no data is sent externally
@@ -637,6 +669,20 @@ final class AppState: ObservableObject {
             [Current Information]
             \(context)
             """
+
+            if isEmergencyMode {
+                prompt += """
+
+                [EMERGENCY MODE] The user is in an emergency situation. Strictly follow these rules:
+                - Only provide accurate, actionable information
+                - Clearly mark any uncertain information as "uncertain"
+                - Present steps in numbered lists, concisely
+                - Actively use the emergency knowledge base (emergency_kb) tools
+                - For life-threatening situations, always advise calling emergency services (911/119)
+                """
+            }
+
+            return prompt
         }
     }
 
@@ -864,6 +910,10 @@ final class AppState: ObservableObject {
         } else {
             enabledMCPServers.insert(serverId)
         }
+    }
+
+    func toggleEmergencyMode() {
+        isEmergencyMode.toggle()
     }
 
     func unloadModel() {

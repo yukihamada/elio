@@ -43,7 +43,9 @@ struct FeedbackConsentView: View {
             }
             .background(Color(.systemGroupedBackground))
             .navigationTitle(String(localized: "feedback.consent.title", defaultValue: "フィードバックを送信"))
+            #if !targetEnvironment(macCatalyst)
             .navigationBarTitleDisplayMode(.inline)
+            #endif
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button(String(localized: "common.cancel")) {

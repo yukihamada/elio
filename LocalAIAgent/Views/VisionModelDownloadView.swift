@@ -59,7 +59,9 @@ struct VisionModelDownloadView: View {
                 }
             }
             .navigationTitle(String(localized: "vision.model.download.title"))
+            #if !targetEnvironment(macCatalyst)
             .navigationBarTitleDisplayMode(.inline)
+            #endif
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button(String(localized: "common.close")) {

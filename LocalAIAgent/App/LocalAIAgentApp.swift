@@ -1,5 +1,7 @@
 import SwiftUI
+#if !targetEnvironment(macCatalyst)
 import WidgetKit
+#endif
 
 @main
 struct LocalAIAgentApp: App {
@@ -18,11 +20,17 @@ struct LocalAIAgentApp: App {
                 }
                 .onChange(of: appState.isModelLoaded) { _, _ in
                     updateWidgetData()
+                    #if targetEnvironment(macCatalyst)
+                    Task { await appState.macStartupSetup() }
+                    #endif
                 }
                 .onChange(of: appState.currentConversation) { _, _ in
                     updateWidgetData()
                 }
         }
+        #if targetEnvironment(macCatalyst)
+        .defaultSize(width: 900, height: 700)
+        #endif
     }
 
     /// Handle deep links from widget
@@ -71,7 +79,9 @@ struct LocalAIAgentApp: App {
         )
 
         // Request widget refresh
+        #if !targetEnvironment(macCatalyst)
         WidgetCenter.shared.reloadAllTimelines()
+        #endif
     }
 }
 

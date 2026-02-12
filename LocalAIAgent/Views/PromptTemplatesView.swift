@@ -19,7 +19,9 @@ struct PromptTemplatesView: View {
                 }
             }
             .navigationTitle(String(localized: "templates.title"))
+            #if !targetEnvironment(macCatalyst)
             .navigationBarTitleDisplayMode(.inline)
+            #endif
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     Button(String(localized: "common.done")) { dismiss() }
@@ -177,7 +179,9 @@ struct TemplateEditView: View {
                 }
             }
             .navigationTitle(template == nil ? String(localized: "template.add.title") : String(localized: "template.edit.title"))
+            #if !targetEnvironment(macCatalyst)
             .navigationBarTitleDisplayMode(.inline)
+            #endif
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     Button(String(localized: "common.cancel")) { dismiss() }

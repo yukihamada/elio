@@ -59,7 +59,9 @@ struct ModelSettingsView: View {
                 }
             }
             .navigationTitle(String(localized: "settings.model.parameters"))
+            #if !targetEnvironment(macCatalyst)
             .navigationBarTitleDisplayMode(.inline)
+            #endif
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     Button(String(localized: "common.cancel")) {
