@@ -13,6 +13,7 @@ final class ChatModeManager: ObservableObject {
     @Published var selectedCloudProvider: CloudProvider = .openai
     @Published private(set) var isGenerating = false
     @Published var error: Error?
+    @Published var pendingOnboarding: ChatMode?  // Non-nil when onboarding needs to be shown
 
     // MARK: - Dependencies
 
@@ -22,17 +23,18 @@ final class ChatModeManager: ObservableObject {
     // MARK: - Backends
 
     private var localBackend: LocalBackend?
-    private var chatwebBackend: ChatWebBackend?
+    var chatwebBackend: ChatWebBackend?
     private var groqBackend: GroqBackend?
     private var cloudBackend: CloudBackend?
     private var p2pBackend: P2PBackend?
-    private var wisbeeBackend: WisbeeBackend?
+    private var meshBackend: MeshP2PManager?
+    private var speculativeBackend: SpeculativeBackend?
 
-    /// Whether Wisbee (privacy) mode is currently active
-    var isWisbeeMode: Bool { currentMode == .wisbee }
+    /// Whether chatweb.ai mode is currently active
+    var isChatWebMode: Bool { currentMode == .chatweb }
 
-    /// Whether conversation sync should be disabled (true when in Wisbee mode)
-    var isSyncDisabled: Bool { currentMode == .wisbee }
+    /// Whether conversation sync should be disabled
+    var isSyncDisabled: Bool { false }
 
     // Persistence
     @AppStorage("selectedChatMode") private var savedMode: String = ChatMode.local.rawValue
@@ -48,7 +50,8 @@ final class ChatModeManager: ObservableObject {
         groqBackend = GroqBackend()
         cloudBackend = CloudBackend()
         p2pBackend = P2PBackend()
-        wisbeeBackend = WisbeeBackend()
+        meshBackend = MeshP2PManager.shared
+        speculativeBackend = SpeculativeBackend(meshManager: MeshP2PManager.shared)
     }
 
     // MARK: - Configuration
@@ -56,8 +59,21 @@ final class ChatModeManager: ObservableObject {
     /// Set up the local backend with CoreMLInference
     func configureLocalBackend(_ inference: CoreMLInference) {
         localBackend = LocalBackend(inference: inference)
-        // Also configure Wisbee backend's local inference
-        wisbeeBackend?.configureLocalBackend(localBackend)
+        // Configure P2P server so it can handle inference requests from peers
+        PrivateServerManager.shared.configure(backend: localBackend!)
+        // Configure mesh backend with local backend
+        meshBackend?.setLocalBackend(localBackend)
+        // TODO: Configure speculative backend with draft model
+        // speculativeBackend?.configureDraftModel(draftModel)
+    }
+
+    /// Tear down the local backend and stop P2P server
+    func clearLocalBackend() {
+        localBackend = nil
+        if PrivateServerManager.shared.isRunning {
+            PrivateServerManager.shared.stop()
+        }
+        meshBackend?.setLocalBackend(nil)
     }
 
     /// Set the current chat mode
@@ -69,6 +85,13 @@ final class ChatModeManager: ObservableObject {
         }
 
         if mode.requiresAPIKey && !hasRequiredAPIKey(for: mode) {
+            // Check if user has seen onboarding for this mode
+            if !hasSeenOnboarding(for: mode) {
+                // Show onboarding instead of error
+                pendingOnboarding = mode
+                return
+            }
+            // User has seen onboarding, show error
             error = InferenceError.apiKeyMissing
             return
         }
@@ -76,6 +99,11 @@ final class ChatModeManager: ObservableObject {
         currentMode = mode
         savedMode = mode.rawValue
         error = nil
+    }
+
+    /// Check if user has seen onboarding for a specific mode
+    private func hasSeenOnboarding(for mode: ChatMode) -> Bool {
+        UserDefaults.standard.bool(forKey: "onboarding_\(mode.rawValue)")
     }
 
     /// Set the cloud provider for Genius mode
@@ -107,8 +135,10 @@ final class ChatModeManager: ObservableObject {
         case .publicP2P:
             p2pBackend?.mode = .publicNetwork
             return p2pBackend
-        case .wisbee:
-            return wisbeeBackend
+        case .p2pMesh:
+            return meshBackend
+        case .speculative:
+            return speculativeBackend
         }
     }
 
@@ -129,8 +159,10 @@ final class ChatModeManager: ObservableObject {
             return p2p.isReady && p2p.selectedServer.map { p2p.isDeviceTrusted($0) } ?? false
         case .publicP2P:
             return p2pBackend?.isReady ?? false
-        case .wisbee:
-            return wisbeeBackend?.isReady ?? false
+        case .p2pMesh:
+            return meshBackend?.isReady ?? false
+        case .speculative:
+            return speculativeBackend?.isReady ?? false
         }
     }
 
@@ -151,8 +183,12 @@ final class ChatModeManager: ObservableObject {
         case .publicP2P:
             // Available if there are any servers nearby
             return !(p2pBackend?.availableServers.isEmpty ?? true)
-        case .wisbee:
-            return true  // Always available (local is always an option)
+        case .p2pMesh:
+            // Available if we have local LLM OR connected peers
+            return (localBackend?.isReady ?? false) || !(meshBackend?.connectedPeers.isEmpty ?? true)
+        case .speculative:
+            // Available if we have draft model AND connected peers with large models
+            return speculativeBackend?.isReady ?? false
         }
     }
 
@@ -195,7 +231,8 @@ final class ChatModeManager: ObservableObject {
                 case .fast: reason = .fastMode
                 case .genius: reason = .geniusMode
                 case .publicP2P: reason = .p2pRequest
-                case .local, .chatweb, .privateP2P, .wisbee: reason = .fastMode // Should not happen (all are free)
+                case .local, .chatweb, .privateP2P, .p2pMesh: reason = .fastMode // Should not happen (all are free)
+                case .speculative: reason = .p2pRequest
                 }
                 try? tokenManager.spend(cost, reason: reason)
             }
@@ -218,7 +255,11 @@ final class ChatModeManager: ObservableObject {
     /// Set auth token for ChatWeb backend (called by SyncManager)
     func setChatWebAuthToken(_ token: String?) {
         chatwebBackend?.authToken = token
-        wisbeeBackend?.setAuthToken(token)
+    }
+
+    /// Set device API key for ChatWeb backend
+    func setChatWebBackend(deviceAPIKey: String?) {
+        chatwebBackend?.setDeviceAPIKey(deviceAPIKey)
     }
 
     /// Set model for ChatWeb backend (called from Settings)
@@ -226,11 +267,18 @@ final class ChatModeManager: ObservableObject {
         chatwebBackend?.setModel(modelId)
     }
 
+    // MARK: - Speculative Decoding Support
+
+    /// Handle speculative verification response from P2P peer
+    func handleSpeculativeVerificationResponse(_ response: SpeculativeVerifyResponseWithId) {
+        speculativeBackend?.handleVerificationResponse(response)
+    }
+
     // MARK: - Private Helpers
 
     private func hasRequiredAPIKey(for mode: ChatMode) -> Bool {
         switch mode {
-        case .local, .chatweb, .privateP2P, .publicP2P, .wisbee:
+        case .local, .chatweb, .privateP2P, .publicP2P, .p2pMesh, .speculative:
             return true
         case .fast:
             return keychain.hasAPIKey(for: .groq)

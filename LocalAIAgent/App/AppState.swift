@@ -33,7 +33,7 @@ final class AppState: ObservableObject {
     @Published var currentModelId: String?
     @Published var conversations: [Conversation] = []
     @Published var currentConversation: Conversation?
-    @Published var enabledMCPServers: Set<String> = ["filesystem", "calendar", "reminders", "websearch", "weather", "notes", "emergency_kb"]
+    @Published var enabledMCPServers: Set<String> = ["filesystem", "calendar", "reminders", "websearch", "weather", "notes", "emergency_kb", "news"]
     @Published var isEmergencyMode = false
     @Published var errorMessage: String?
     @Published var isGenerating = false  // Track if currently generating response
@@ -368,14 +368,49 @@ final class AppState: ObservableObject {
         // Setup MCP client synchronously (fast operation)
         setupMCPClient()
 
+        // Setup memory warning handler to prevent crashes
+        setupMemoryWarningHandler()
+
         // Immediately make UI interactive
         Task { @MainActor in
             // Load conversations and model in parallel for faster startup
             async let conversationsTask: () = loadConversationsAsync()
             async let modelTask: () = loadLastUsedModelIfAvailableAsync()
+            async let apiKeyTask: () = initializeChatWebAPIKey()
 
-            // Wait for both to complete
-            _ = await (conversationsTask, modelTask)
+            // Wait for all to complete
+            _ = await (conversationsTask, modelTask, apiKeyTask)
+        }
+    }
+
+    // MARK: - Memory Management
+
+    /// Setup memory warning handler to prevent out-of-memory crashes
+    private func setupMemoryWarningHandler() {
+        #if !targetEnvironment(macCatalyst)
+        NotificationCenter.default.addObserver(
+            forName: UIApplication.didReceiveMemoryWarningNotification,
+            object: nil,
+            queue: .main
+        ) { [weak self] _ in
+            self?.handleMemoryWarning()
+        }
+        #endif
+    }
+
+    /// Handle memory warning by unloading model and freeing resources
+    private func handleMemoryWarning() {
+        logWarning("AppState", "⚠️ Memory warning received - unloading model to prevent crash")
+
+        // Unload model to free memory
+        unloadModel()
+
+        // Show user-friendly message
+        errorMessage = "メモリ不足のため、モデルをアンロードしました。再度モデルを読み込んでください。"
+
+        // Force garbage collection (iOS will do this automatically, but we can help)
+        autoreleasepool {
+            // Release any temporary objects
         }
     }
 
@@ -391,6 +426,20 @@ final class AppState: ObservableObject {
         SharedDataManager.migrateIfNeeded()
         // Load from shared container asynchronously
         conversations = await SharedDataManager.loadConversationsAsync()
+    }
+
+    private func initializeChatWebAPIKey() async {
+        do {
+            try await ChatWebAPIKeyManager.shared.initialize()
+
+            // Set device API key in ChatWebBackend
+            if let apiKey = ChatWebAPIKeyManager.shared.apiKey {
+                ChatModeManager.shared.setChatWebBackend(deviceAPIKey: apiKey)
+            }
+        } catch {
+            print("[AppState] Failed to initialize ChatWeb API key: \(error)")
+            // エラーでもアプリ起動はブロックしない（session-based authにフォールバック）
+        }
     }
 
     /// Save conversations with debouncing (non-blocking)
@@ -485,6 +534,11 @@ final class AppState: ObservableObject {
             llmEngine = try await modelLoader.loadModel(named: modelName)
             currentModelName = modelLoader.getModelInfo(modelName)?.name ?? modelName
             currentModelId = modelName
+
+            // Configure P2P backend before setting isModelLoaded (onChange triggers macStartupSetup)
+            if let llm = llmEngine {
+                ChatModeManager.shared.configureLocalBackend(llm)
+            }
             isModelLoaded = true
             loadingProgress = 1.0
 
@@ -501,8 +555,15 @@ final class AppState: ObservableObject {
     }
 
     func sendMessage(_ content: String) async -> String {
-        guard isModelLoaded else {
-            return String(localized: "chat.model.not.loaded.description")
+        // Check if current mode is available
+        let currentMode = ChatModeManager.shared.currentMode
+        let isCloudMode = [.chatweb, .fast, .genius, .publicP2P, .p2pMesh].contains(currentMode)
+
+        // For cloud modes, skip local model check
+        if !isCloudMode {
+            guard isModelLoaded else {
+                return String(localized: "chat.model.not.loaded.description")
+            }
         }
 
         if currentConversation == nil {
@@ -525,17 +586,30 @@ final class AppState: ObservableObject {
             // Trim history to prevent context overflow
             let trimmedHistory = trimHistoryToFitContext(currentConversation?.messages ?? [])
 
-            if let orchestrator = orchestrator {
+            // Use ChatModeManager's backend system for all modes
+            if let backend = ChatModeManager.shared.currentBackend {
+                let settings = currentModelId.map { settingsManager.settings(for: $0) } ?? ModelSettings.default
+                let systemPrompt = buildSystemPrompt()
+
+                var generatedText = ""
+                _ = try await backend.generate(
+                    messages: trimmedHistory.isEmpty ? [userMessage] : trimmedHistory,
+                    systemPrompt: systemPrompt,
+                    settings: settings
+                ) { token in
+                    generatedText += token
+                }
+                response = generatedText
+            } else if let orchestrator = orchestrator {
+                // Fallback to orchestrator for MCP modes
                 response = try await orchestrator.process(
                     message: content,
                     history: trimmedHistory,
                     enabledServers: enabledMCPServers
                 )
             } else if let llm = llmEngine, let modelId = currentModelId {
-                // Get per-model settings
+                // Legacy fallback for direct LLM access
                 let settings = settingsManager.settings(for: modelId)
-
-                // Direct LLM call with proper chat formatting including date/time context
                 let systemPrompt = buildSystemPrompt()
                 var generatedText = ""
                 _ = try await llm.generateWithMessages(
@@ -593,97 +667,24 @@ final class AppState: ObservableObject {
     }()
 
     private func buildSystemPrompt() -> String {
+        // Get current language code
+        let languageCode = Locale.current.language.languageCode?.identifier ?? "en"
+
         // Current date/time info - use cached formatters
         let currentDateTime = isJapanese
             ? Self.japaneseDateFormatter.string(from: Date())
             : Self.englishDateFormatter.string(from: Date())
 
-        // Build context with date and past conversation titles
-        var contextParts: [String] = []
-        let recentConversations = conversations.prefix(5)
+        // Build recent conversation titles
+        let recentConversations = conversations.prefix(5).map { $0.title }
 
-        if isJapanese {
-            contextParts.append("現在: \(currentDateTime)")
-            if !recentConversations.isEmpty {
-                let titles = recentConversations.map { "・\($0.title)" }.joined(separator: "\n")
-                contextParts.append("最近の会話:\n\(titles)")
-            }
-            let context = contextParts.joined(separator: "\n\n")
-
-            var prompt = """
-            # ElioChat について
-            あなたは「ElioChat」（エリオチャット）です。プライバシーを最優先するローカルAIアシスタントとして、ユーザーのデバイス上で完全に動作します。
-            - すべての処理はデバイス内で完結し、データは外部に送信されません
-            - ユーザーのプライバシーと信頼を守ることが最も重要な使命です
-
-            # 回答スタイル
-            - 日本語で回答してください
-            - 質問に直接答えてください。「素晴らしい質問ですね」などの前置きは不要です
-            - 短い質問には簡潔に、詳しい質問には詳しく答えてください
-
-            # 正確性
-            - 確実に知っている情報のみを回答してください
-            - 不確かな場合は「確かではありませんが」と前置きしてください
-            - 分からないことは正直に「分かりません」と伝えてください
-
-            【現在の情報】
-            \(context)
-            """
-
-            if isEmergencyMode {
-                prompt += """
-
-                【緊急モード】ユーザーは緊急事態にあります。以下を厳守してください:
-                - 正確で実用的な情報のみを提供してください
-                - 不確かな情報は必ず「不確か」と明示してください
-                - 手順は番号付きで簡潔に示してください
-                - 緊急ナレッジベース(emergency_kb)のツールを積極的に活用してください
-                - 命に関わる場合は必ず119番通報を促してください
-                """
-            }
-
-            return prompt
-        } else {
-            contextParts.append("Current: \(currentDateTime)")
-            if !recentConversations.isEmpty {
-                let titles = recentConversations.map { "• \($0.title)" }.joined(separator: "\n")
-                contextParts.append("Recent conversations:\n\(titles)")
-            }
-            let context = contextParts.joined(separator: "\n\n")
-
-            var prompt = """
-            # About ElioChat
-            You are ElioChat, a privacy-first local AI assistant that runs entirely on the user's device.
-            - All processing happens locally; no data is sent externally
-            - Protecting user privacy and trust is your most important mission
-
-            # Response Style
-            - Answer directly without preambles like "Great question!"
-            - Match the user's style: concise for short questions, detailed for complex ones
-
-            # Accuracy
-            - Only provide information you are certain about
-            - If uncertain, preface with "I'm not entirely sure, but..."
-            - Honestly say "I don't know" when you don't have reliable information
-
-            [Current Information]
-            \(context)
-            """
-
-            if isEmergencyMode {
-                prompt += """
-
-                [EMERGENCY MODE] The user is in an emergency situation. Strictly follow these rules:
-                - Only provide accurate, actionable information
-                - Clearly mark any uncertain information as "uncertain"
-                - Present steps in numbered lists, concisely
-                - Actively use the emergency knowledge base (emergency_kb) tools
-                - For life-threatening situations, always advise calling emergency services (911/119)
-                """
-            }
-
-            return prompt
-        }
+        // Use localized system prompt
+        return SystemPromptLocalizations.getPrompt(
+            for: languageCode,
+            currentDateTime: currentDateTime,
+            recentConversations: Array(recentConversations),
+            isEmergencyMode: isEmergencyMode
+        )
     }
 
     func sendMessageWithStreaming(_ content: String, imageData: Data? = nil, onToken: @escaping (String) -> Void) async -> String {
@@ -789,6 +790,14 @@ final class AppState: ObservableObject {
 
     /// Streaming version that doesn't add user message (for immediate UI feedback)
     func sendMessageWithStreamingNoUserMessage(_ content: String, imageData: Data? = nil, onToken: @escaping (String) -> Void) async -> String {
+        let chatMode = ChatModeManager.shared.currentMode
+        let useCloudBackend = chatMode != .local && chatMode != .p2pMesh && chatMode != .speculative
+
+        // For cloud modes, use ChatModeManager directly (no local model required)
+        if useCloudBackend {
+            return await sendViaCloudBackend(content: content, onToken: onToken)
+        }
+
         guard isModelLoaded else {
             let msg = String(localized: "chat.model.not.loaded.description")
             onToken(msg)
@@ -878,6 +887,69 @@ final class AppState: ObservableObject {
         }
     }
 
+    /// Route generation through ChatModeManager for cloud backends (chatweb, fast, genius, P2P)
+    private func sendViaCloudBackend(content: String, onToken: @escaping (String) -> Void) async -> String {
+        isGenerating = true
+        defer { isGenerating = false }
+
+        currentConversation?.updatedAt = Date()
+        if currentConversation?.messages.count == 1 {
+            currentConversation?.title = String(content.prefix(30)) + (content.count > 30 ? "..." : "")
+        }
+
+        do {
+            let trimmedHistory = trimHistoryToFitContext(currentConversation?.messages ?? [])
+            let systemPrompt = buildSystemPrompt()
+            let settings: ModelSettings
+            if let modelId = currentModelId {
+                settings = settingsManager.settings(for: modelId)
+            } else {
+                settings = .default
+            }
+
+            let fullResponse = try await ChatModeManager.shared.generate(
+                messages: trimmedHistory,
+                systemPrompt: systemPrompt,
+                settings: settings,
+                onToken: onToken
+            )
+
+            let parsed = Message.parseThinkingContent(fullResponse)
+            let assistantMessage = Message(
+                role: .assistant,
+                content: parsed.content.isEmpty ? fullResponse : parsed.content,
+                thinkingContent: parsed.thinking
+            )
+            currentConversation?.messages.append(assistantMessage)
+            currentConversation?.updatedAt = Date()
+
+            if let current = currentConversation,
+               let index = conversations.firstIndex(where: { $0.id == current.id }) {
+                conversations[index] = current
+            }
+            saveConversations()
+
+            return fullResponse
+        } catch {
+            if error is CancellationError || shouldStopGeneration {
+                return ""
+            }
+            let errorResponse = "エラーが発生しました: \(error.localizedDescription)"
+            logError("Cloud", "Generation error: \(error.localizedDescription)")
+            onToken(errorResponse)
+            let assistantMessage = Message(role: .assistant, content: errorResponse)
+            currentConversation?.messages.append(assistantMessage)
+
+            if let current = currentConversation,
+               let index = conversations.firstIndex(where: { $0.id == current.id }) {
+                conversations[index] = current
+            }
+            saveConversations()
+
+            return errorResponse
+        }
+    }
+
     func newConversation() {
         // Save current conversation before starting new one
         if let current = currentConversation,
@@ -924,6 +996,7 @@ final class AppState: ObservableObject {
         llamaInference?.unload()
         llamaInference = nil
         orchestrator = nil
+        ChatModeManager.shared.clearLocalBackend()
         isModelLoaded = false
         currentModelName = nil
         currentModelId = nil

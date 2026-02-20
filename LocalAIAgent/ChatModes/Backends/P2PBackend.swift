@@ -296,6 +296,28 @@ final class P2PBackend: InferenceBackend, ObservableObject {
     /// Update the filtered list of trusted servers
     private func updateTrustedServers() {
         trustedServers = availableServers.filter { trustedDeviceIds.contains($0.id) }
+        autoConnectToTrustedServer()
+    }
+
+    /// Automatically connect to a trusted server when discovered
+    private func autoConnectToTrustedServer() {
+        // Skip if already connected
+        guard selectedServer == nil || connection?.state != .ready else { return }
+        guard mode == .privateNetwork else { return }
+        guard let server = trustedServers.first else { return }
+
+        Task {
+            do {
+                try await connect(to: server)
+                print("[P2P Client] Auto-connected to trusted server: \(server.name)")
+                // Only auto-switch if currently in local mode (don't interrupt cloud usage)
+                if ChatModeManager.shared.currentMode == .local {
+                    ChatModeManager.shared.setMode(.privateP2P)
+                }
+            } catch {
+                print("[P2P Client] Auto-connect failed: \(error)")
+            }
+        }
     }
 
     // MARK: - Internet Relay
