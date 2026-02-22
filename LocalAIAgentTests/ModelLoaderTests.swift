@@ -1,6 +1,7 @@
 import XCTest
 @testable import LocalAIAgent
 
+@MainActor
 final class ModelLoaderTests: XCTestCase {
 
     var modelLoader: ModelLoader!
@@ -94,7 +95,7 @@ final class ModelLoaderTests: XCTestCase {
     }
 
     func testAllDeviceTiersHaveDisplayNames() throws {
-        let tiers: [DeviceTier] = [.basic, .standard, .performance, .pro]
+        let tiers: [DeviceTier] = [.low, .medium, .high, .ultra]
         for tier in tiers {
             XCTAssertFalse(tier.displayName.isEmpty, "Tier \(tier) should have display name")
         }
@@ -117,19 +118,19 @@ final class ModelLoaderTests: XCTestCase {
 
     // MARK: - Model Too Heavy Tests
 
-    func testModelTooHeavyForBasicTier() throws {
+    func testModelTooHeavyForLowTier() throws {
         for model in modelLoader.availableModels {
-            let isTooHeavy = model.isTooHeavy(for: .basic)
+            let isTooHeavy = model.isTooHeavy(for: .low)
             if model.sizeBytes > 3_000_000_000 {
-                XCTAssertTrue(isTooHeavy, "Large model \(model.id) should be too heavy for basic tier")
+                XCTAssertTrue(isTooHeavy, "Large model \(model.id) should be too heavy for low tier")
             }
         }
     }
 
-    func testNoModelTooHeavyForProTier() throws {
+    func testNoModelTooHeavyForUltraTier() throws {
         for model in modelLoader.availableModels {
-            let isTooHeavy = model.isTooHeavy(for: .pro)
-            XCTAssertFalse(isTooHeavy, "No model should be too heavy for pro tier")
+            let isTooHeavy = model.isTooHeavy(for: .ultra)
+            XCTAssertFalse(isTooHeavy, "No model should be too heavy for ultra tier")
         }
     }
 

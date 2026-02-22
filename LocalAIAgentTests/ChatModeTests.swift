@@ -72,13 +72,15 @@ final class ChatModeTests: XCTestCase {
     }
 
     func testChatModeCaseIterable() {
-        XCTAssertEqual(ChatMode.allCases.count, 6)
+        XCTAssertEqual(ChatMode.allCases.count, 8)
         XCTAssertTrue(ChatMode.allCases.contains(.local))
         XCTAssertTrue(ChatMode.allCases.contains(.chatweb))
         XCTAssertTrue(ChatMode.allCases.contains(.privateP2P))
         XCTAssertTrue(ChatMode.allCases.contains(.fast))
         XCTAssertTrue(ChatMode.allCases.contains(.genius))
         XCTAssertTrue(ChatMode.allCases.contains(.publicP2P))
+        XCTAssertTrue(ChatMode.allCases.contains(.p2pMesh))
+        XCTAssertTrue(ChatMode.allCases.contains(.speculative))
     }
 
     func testChatModeIdentifiable() {

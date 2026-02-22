@@ -123,6 +123,19 @@
 		SUBMGR001 /* SubscriptionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = SUBMGR002 /* SubscriptionManager.swift */; };
 		SYNC001 /* SyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = SYNC002 /* SyncManager.swift */; };
 		TEST004 /* LocalAIAgentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = TEST001 /* LocalAIAgentTests.swift */; };
+		BKTST001 /* BackendTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BKTST002 /* BackendTests.swift */; };
+		CHTST001 /* ChatModeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CHTST002 /* ChatModeTests.swift */; };
+		CMTST001 /* ChatModeManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CMTST002 /* ChatModeManagerTests.swift */; };
+		DITST001 /* DeviceIdentityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DITST002 /* DeviceIdentityTests.swift */; };
+		FMTST001 /* FriendsManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FMTST002 /* FriendsManagerTests.swift */; };
+		ISTST001 /* InferenceServerConfigTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ISTST002 /* InferenceServerConfigTests.swift */; };
+		MMTST001 /* MessagingManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = MMTST002 /* MessagingManagerTests.swift */; };
+		MLTST001 /* ModelLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = MLTST002 /* ModelLoaderTests.swift */; };
+		P2TST001 /* P2PBackendTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = P2TST002 /* P2PBackendTests.swift */; };
+		PSTST001 /* PrivateServerManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = PSTST002 /* PrivateServerManagerTests.swift */; };
+		SYTST001 /* SyncManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = SYTST002 /* SyncManagerTests.swift */; };
+		TKTST001 /* TokenManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = TKTST002 /* TokenManagerTests.swift */; };
+		TPTST001 /* ToolParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = TPTST002 /* ToolParserTests.swift */; };
 		TOKMGR001 /* TokenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = TOKMGR002 /* TokenManager.swift */; };
 		TRANS001 /* TranslationServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = TRANS002 /* TranslationServer.swift */; };
 		UITEST004 /* LocalAIAgentUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = UITEST001 /* LocalAIAgentUITests.swift */; };
@@ -345,6 +358,19 @@
 		SUBMGR002 /* SubscriptionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionManager.swift; sourceTree = "<group>"; };
 		SYNC002 /* SyncManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncManager.swift; sourceTree = "<group>"; };
 		TEST001 /* LocalAIAgentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalAIAgentTests.swift; sourceTree = "<group>"; };
+		BKTST002 /* BackendTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackendTests.swift; sourceTree = "<group>"; };
+		CHTST002 /* ChatModeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatModeTests.swift; sourceTree = "<group>"; };
+		CMTST002 /* ChatModeManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatModeManagerTests.swift; sourceTree = "<group>"; };
+		DITST002 /* DeviceIdentityTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceIdentityTests.swift; sourceTree = "<group>"; };
+		FMTST002 /* FriendsManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsManagerTests.swift; sourceTree = "<group>"; };
+		ISTST002 /* InferenceServerConfigTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InferenceServerConfigTests.swift; sourceTree = "<group>"; };
+		MMTST002 /* MessagingManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagingManagerTests.swift; sourceTree = "<group>"; };
+		MLTST002 /* ModelLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelLoaderTests.swift; sourceTree = "<group>"; };
+		P2TST002 /* P2PBackendTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = P2PBackendTests.swift; sourceTree = "<group>"; };
+		PSTST002 /* PrivateServerManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateServerManagerTests.swift; sourceTree = "<group>"; };
+		SYTST002 /* SyncManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncManagerTests.swift; sourceTree = "<group>"; };
+		TKTST002 /* TokenManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenManagerTests.swift; sourceTree = "<group>"; };
+		TPTST002 /* ToolParserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolParserTests.swift; sourceTree = "<group>"; };
 		TEST002 /* LocalAIAgentTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LocalAIAgentTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		TOKMGR002 /* TokenManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenManager.swift; sourceTree = "<group>"; };
 		TRANS002 /* TranslationServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationServer.swift; sourceTree = "<group>"; };
@@ -810,6 +836,19 @@
 			isa = PBXGroup;
 			children = (
 				TEST001 /* LocalAIAgentTests.swift */,
+				BKTST002 /* BackendTests.swift */,
+				CHTST002 /* ChatModeTests.swift */,
+				CMTST002 /* ChatModeManagerTests.swift */,
+				DITST002 /* DeviceIdentityTests.swift */,
+				FMTST002 /* FriendsManagerTests.swift */,
+				ISTST002 /* InferenceServerConfigTests.swift */,
+				MMTST002 /* MessagingManagerTests.swift */,
+				MLTST002 /* ModelLoaderTests.swift */,
+				P2TST002 /* P2PBackendTests.swift */,
+				PSTST002 /* PrivateServerManagerTests.swift */,
+				SYTST002 /* SyncManagerTests.swift */,
+				TKTST002 /* TokenManagerTests.swift */,
+				TPTST002 /* ToolParserTests.swift */,
 			);
 			path = LocalAIAgentTests;
 			sourceTree = "<group>";
@@ -1159,6 +1198,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				TEST004 /* LocalAIAgentTests.swift in Sources */,
+				BKTST001 /* BackendTests.swift in Sources */,
+				CHTST001 /* ChatModeTests.swift in Sources */,
+				CMTST001 /* ChatModeManagerTests.swift in Sources */,
+				DITST001 /* DeviceIdentityTests.swift in Sources */,
+				FMTST001 /* FriendsManagerTests.swift in Sources */,
+				ISTST001 /* InferenceServerConfigTests.swift in Sources */,
+				MMTST001 /* MessagingManagerTests.swift in Sources */,
+				MLTST001 /* ModelLoaderTests.swift in Sources */,
+				P2TST001 /* P2PBackendTests.swift in Sources */,
+				PSTST001 /* PrivateServerManagerTests.swift in Sources */,
+				SYTST001 /* SyncManagerTests.swift in Sources */,
+				TKTST001 /* TokenManagerTests.swift in Sources */,
+				TPTST001 /* ToolParserTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
