@@ -9,6 +9,7 @@ final class EmergencyKnowledgeBaseServer: MCPServer {
     let icon = "cross.case"
 
     private var knowledgeBase: [String: Any] = [:]
+    private var ediblePlantsDB: [String: Any] = [:]
     private let currentLocale: String
 
     init() {
@@ -16,6 +17,7 @@ final class EmergencyKnowledgeBaseServer: MCPServer {
         let langCode = Locale.current.language.languageCode?.identifier ?? "ja"
         self.currentLocale = ["ja", "en"].contains(langCode) ? langCode : "en"
         loadKnowledgeBase()
+        loadEdiblePlantsDB()
     }
 
     private func loadKnowledgeBase() {
@@ -26,6 +28,15 @@ final class EmergencyKnowledgeBaseServer: MCPServer {
             return
         }
         self.knowledgeBase = locales
+    }
+
+    private func loadEdiblePlantsDB() {
+        guard let url = Bundle.main.url(forResource: "EdiblePlantsDB", withExtension: "json"),
+              let data = try? Data(contentsOf: url),
+              let json = try? JSONSerialization.jsonObject(with: data) as? [String: Any] else {
+            return
+        }
+        self.ediblePlantsDB = json
     }
 
     private func localizedData() -> [String: Any] {
@@ -100,6 +111,31 @@ final class EmergencyKnowledgeBaseServer: MCPServer {
                     properties: nil,
                     required: nil
                 )
+            ),
+            MCPTool(
+                name: "search_edible_plants",
+                description: "食用可能な野草・毒草を検索します（日本の野草図鑑）/ Search for edible or poisonous plants",
+                inputSchema: MCPInputSchema(
+                    properties: [
+                        "query": MCPPropertySchema(type: "string", description: "植物名または特徴 / Plant name or characteristics"),
+                        "category": MCPPropertySchema(
+                            type: "string",
+                            description: "カテゴリ (edible_plants, poisonous_plants, mushrooms)",
+                            enumValues: ["edible_plants", "poisonous_plants", "mushrooms", "all"]
+                        )
+                    ],
+                    required: ["query"]
+                )
+            ),
+            MCPTool(
+                name: "get_plant_safety",
+                description: "特定の植物の安全性情報を取得します / Get plant safety information",
+                inputSchema: MCPInputSchema(
+                    properties: [
+                        "plant_name": MCPPropertySchema(type: "string", description: "植物名（日本語または英語）/ Plant name in Japanese or English")
+                    ],
+                    required: ["plant_name"]
+                )
             )
         ]
     }
@@ -116,6 +152,10 @@ final class EmergencyKnowledgeBaseServer: MCPServer {
             return getFactCheckGuide(arguments: arguments)
         case "get_emergency_contacts":
             return getEmergencyContacts()
+        case "search_edible_plants":
+            return searchEdiblePlants(arguments: arguments)
+        case "get_plant_safety":
+            return getPlantSafety(arguments: arguments)
         default:
             throw MCPClientError.toolNotFound(name)
         }
@@ -368,5 +408,205 @@ final class EmergencyKnowledgeBaseServer: MCPServer {
         }
 
         return MCPResult(content: [.text(result)])
+    }
+
+    // MARK: - Edible Plants DB
+
+    private func searchEdiblePlants(arguments: [String: JSONValue]) -> MCPResult {
+        guard let query = arguments["query"]?.stringValue?.lowercased() else {
+            return MCPResult(content: [.text("検索キーワードを指定してください / Please provide a search query")])
+        }
+
+        let categoryFilter = arguments["category"]?.stringValue ?? "all"
+        guard let categories = ediblePlantsDB["categories"] as? [String: Any] else {
+            return MCPResult(content: [.text("植物データベースを読み込めませんでした / Could not load plant database")])
+        }
+
+        var results: [String] = []
+
+        for (categoryKey, categoryValue) in categories {
+            // Filter by category if specified
+            if categoryFilter != "all" && categoryKey != categoryFilter { continue }
+
+            guard let category = categoryValue as? [String: Any],
+                  let categoryTitle = category["title"] as? String,
+                  let items = category["items"] as? [String: Any] else { continue }
+
+            for (plantKey, plantValue) in items {
+                guard let plant = plantValue as? [String: Any],
+                      let nameJa = plant["name_ja"] as? String else { continue }
+
+                let nameEn = plant["name_en"] as? String ?? ""
+                let nameSci = plant["name_scientific"] as? String ?? ""
+
+                // Search in names
+                let matchesName = nameJa.lowercased().contains(query) ||
+                                 nameEn.lowercased().contains(query) ||
+                                 nameSci.lowercased().contains(query) ||
+                                 plantKey.contains(query)
+
+                // Search in identification features
+                var matchesFeatures = false
+                if let identification = plant["identification"] as? [String] {
+                    matchesFeatures = identification.joined(separator: " ").lowercased().contains(query)
+                }
+
+                if matchesName || matchesFeatures {
+                    results.append(formatPlantInfo(plant: plant, category: categoryTitle))
+                }
+            }
+        }
+
+        if results.isEmpty {
+            return MCPResult(content: [.text(
+                "「\(query)」に関する植物情報は見つかりませんでした。\n⚠️ 不確かな植物は絶対に食べないでください。"
+            )])
+        }
+
+        let warningText = ediblePlantsDB["disclaimer"] as? String ?? ""
+        return MCPResult(content: [.text("\(warningText)\n\n" + results.joined(separator: "\n\n---\n\n"))])
+    }
+
+    private func getPlantSafety(arguments: [String: JSONValue]) -> MCPResult {
+        guard let plantName = arguments["plant_name"]?.stringValue?.lowercased() else {
+            return MCPResult(content: [.text("植物名を指定してください / Please specify a plant name")])
+        }
+
+        guard let categories = ediblePlantsDB["categories"] as? [String: Any] else {
+            return MCPResult(content: [.text("植物データベースを読み込めませんでした / Could not load plant database")])
+        }
+
+        // Search all categories
+        for (categoryKey, categoryValue) in categories {
+            guard let category = categoryValue as? [String: Any],
+                  let items = category["items"] as? [String: Any] else { continue }
+
+            for (plantKey, plantValue) in items {
+                guard let plant = plantValue as? [String: Any],
+                      let nameJa = plant["name_ja"] as? String else { continue }
+
+                let nameEn = plant["name_en"] as? String ?? ""
+
+                if nameJa.lowercased().contains(plantName) ||
+                   nameEn.lowercased().contains(plantName) ||
+                   plantKey.contains(plantName) {
+
+                    let toxicityLevel = plant["toxicity_level"] as? String ?? "不明"
+                    let caution = plant["caution"] as? String ?? ""
+                    let dangerLevel = plant["danger_level"] as? String ?? ""
+                    let symptoms = plant["symptoms"] as? String ?? ""
+                    let firstAid = plant["first_aid"] as? String ?? ""
+
+                    var safetyInfo = "# \(nameJa) の安全性情報\n\n"
+                    safetyInfo += "**毒性レベル**: \(toxicityLevel)\n\n"
+
+                    if !dangerLevel.isEmpty {
+                        safetyInfo += "⚠️ **危険度**: \(dangerLevel)\n\n"
+                    }
+
+                    if !caution.isEmpty {
+                        safetyInfo += "**注意事項**: \(caution)\n\n"
+                    }
+
+                    if !symptoms.isEmpty {
+                        safetyInfo += "**中毒症状**: \(symptoms)\n\n"
+                    }
+
+                    if !firstAid.isEmpty {
+                        safetyInfo += "**応急処置**: \(firstAid)\n\n"
+                    }
+
+                    // Add identification to help distinguish
+                    if let identification = plant["identification"] as? [String] {
+                        safetyInfo += "**識別ポイント**:\n"
+                        safetyInfo += identification.map { "• \($0)" }.joined(separator: "\n")
+                        safetyInfo += "\n\n"
+                    }
+
+                    if categoryKey == "poisonous_plants" {
+                        safetyInfo += "\n🚨 **この植物は有毒です。絶対に食べないでください。**"
+                    }
+
+                    return MCPResult(content: [.text(safetyInfo)])
+                }
+            }
+        }
+
+        return MCPResult(content: [.text("「\(plantName)」の情報は見つかりませんでした。")])
+    }
+
+    private func formatPlantInfo(plant: [String: Any], category: String) -> String {
+        let nameJa = plant["name_ja"] as? String ?? "不明"
+        let nameEn = plant["name_en"] as? String ?? ""
+        let nameSci = plant["name_scientific"] as? String ?? ""
+        let season = plant["season"] as? String
+        let habitat = plant["habitat"] as? String
+        let edibleParts = plant["edible_parts"] as? [String]
+        let toxicityLevel = plant["toxicity_level"] as? String
+        let dangerLevel = plant["danger_level"] as? String
+        let confidenceScore = plant["confidence_score"] as? Int
+
+        var result = "# \(nameJa)"
+        if !nameEn.isEmpty {
+            result += " / \(nameEn)"
+        }
+        result += "\n"
+
+        if !nameSci.isEmpty {
+            result += "*\(nameSci)*\n"
+        }
+
+        result += "\n**カテゴリ**: \(category)\n"
+
+        if let season = season {
+            result += "**季節**: \(season)\n"
+        }
+
+        if let habitat = habitat {
+            result += "**生育地**: \(habitat)\n"
+        }
+
+        if let edibleParts = edibleParts {
+            result += "**食用部位**: \(edibleParts.joined(separator: "、"))\n"
+        }
+
+        if let toxicityLevel = toxicityLevel {
+            result += "**毒性**: \(toxicityLevel)\n"
+        }
+
+        if let dangerLevel = dangerLevel {
+            result += "⚠️ **危険度**: \(dangerLevel)\n"
+        }
+
+        if let confidenceScore = confidenceScore {
+            result += "**同定信頼度**: \(confidenceScore)/100\n"
+        }
+
+        if let identification = plant["identification"] as? [String] {
+            result += "\n**識別ポイント**:\n"
+            result += identification.map { "• \($0)" }.joined(separator: "\n")
+            result += "\n"
+        }
+
+        if let preparation = plant["preparation"] as? [String: String] {
+            result += "\n**調理法**:\n"
+            for (key, value) in preparation {
+                result += "• \(key): \(value)\n"
+            }
+        }
+
+        if let caution = plant["caution"] as? String {
+            result += "\n⚠️ **注意**: \(caution)\n"
+        }
+
+        if let symptoms = plant["symptoms"] as? String {
+            result += "\n🚨 **中毒症状**: \(symptoms)\n"
+        }
+
+        if dangerLevel != nil {
+            result += "\n\n**⚠️ この植物は有毒です。絶対に食べないでください。**"
+        }
+
+        return result
     }
 }

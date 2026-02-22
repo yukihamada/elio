@@ -1,5 +1,6 @@
 import Foundation
 import SwiftUI
+import Security  // For KeychainManager types
 
 /// Available chat modes for the hybrid AI platform
 enum ChatMode: String, CaseIterable, Codable, Identifiable {
@@ -9,7 +10,8 @@ enum ChatMode: String, CaseIterable, Codable, Identifiable {
     case fast = "fast"             // Groq API
     case genius = "genius"         // Cloud APIs (OpenAI/Anthropic/Google)
     case publicP2P = "public"      // Anyone's P2P server
-    case wisbee = "wisbee"         // Privacy-first: local only, no cloud fallback
+    case p2pMesh = "mesh"          // Offline Intelligence Grid - mesh network
+    case speculative = "speculative" // Speculative Decoding - Draft + P2P Verification
 
     var id: String { rawValue }
 
@@ -19,7 +21,7 @@ enum ChatMode: String, CaseIterable, Codable, Identifiable {
         case .local:
             return String(localized: "chatmode.local", defaultValue: "Local")
         case .chatweb:
-            return String(localized: "chatmode.chatweb", defaultValue: "Cloud")
+            return String(localized: "chatmode.chatweb", defaultValue: "chatweb.ai")
         case .privateP2P:
             return String(localized: "chatmode.private", defaultValue: "Private")
         case .fast:
@@ -28,8 +30,10 @@ enum ChatMode: String, CaseIterable, Codable, Identifiable {
             return String(localized: "chatmode.genius", defaultValue: "Genius")
         case .publicP2P:
             return String(localized: "chatmode.public", defaultValue: "Public")
-        case .wisbee:
-            return String(localized: "chatmode.wisbee", defaultValue: "Wisbee")
+        case .p2pMesh:
+            return String(localized: "chatmode.mesh", defaultValue: "Mesh")
+        case .speculative:
+            return String(localized: "chatmode.speculative", defaultValue: "Speculative")
         }
     }
 
@@ -39,7 +43,7 @@ enum ChatMode: String, CaseIterable, Codable, Identifiable {
         case .local:
             return String(localized: "chatmode.local.desc", defaultValue: "On-device • Free • Private")
         case .chatweb:
-            return String(localized: "chatmode.chatweb.desc", defaultValue: "ChatWeb.ai • Fast cloud AI")
+            return String(localized: "chatmode.chatweb.desc", defaultValue: "クラウドを使って色々なLLMを最速で比較できます")
         case .privateP2P:
             return String(localized: "chatmode.private.desc", defaultValue: "Trusted devices • Your network")
         case .fast:
@@ -48,8 +52,10 @@ enum ChatMode: String, CaseIterable, Codable, Identifiable {
             return String(localized: "chatmode.genius.desc", defaultValue: "GPT-5/Claude • Best quality")
         case .publicP2P:
             return String(localized: "chatmode.public.desc", defaultValue: "Community • Shared computing")
-        case .wisbee:
-            return String(localized: "chatmode.wisbee.desc", defaultValue: "プライバシー重視 - データは端末から出ません")
+        case .p2pMesh:
+            return String(localized: "chatmode.mesh.desc", defaultValue: "Offline Grid • Community mesh network")
+        case .speculative:
+            return String(localized: "chatmode.speculative.desc", defaultValue: "Ultra-fast • Draft + P2P Verification")
         }
     }
 
@@ -62,7 +68,8 @@ enum ChatMode: String, CaseIterable, Codable, Identifiable {
         case .fast: return 1
         case .genius: return 5
         case .publicP2P: return 2
-        case .wisbee: return 0
+        case .p2pMesh: return 0     // Free - community-powered
+        case .speculative: return 2 // Draft (free) + P2P (2 tokens)
         }
     }
 
@@ -75,7 +82,8 @@ enum ChatMode: String, CaseIterable, Codable, Identifiable {
         case .fast: return "bolt.fill"
         case .genius: return "sparkles"
         case .publicP2P: return "globe"
-        case .wisbee: return "shield.checkmark.fill"
+        case .p2pMesh: return "network"
+        case .speculative: return "bolt.trianglebadge.exclamationmark"
         }
     }
 
@@ -88,22 +96,24 @@ enum ChatMode: String, CaseIterable, Codable, Identifiable {
         case .fast: return .orange
         case .genius: return .purple
         case .publicP2P: return .blue
-        case .wisbee: return .green
+        case .p2pMesh: return .mint
+        case .speculative: return .yellow
         }
     }
 
     /// Whether this mode requires network
     var requiresNetwork: Bool {
         switch self {
-        case .local, .wisbee: return false
+        case .local, .p2pMesh: return false  // Mesh can work offline
         case .chatweb, .privateP2P, .fast, .genius, .publicP2P: return true
+        case .speculative: return false  // Uses local draft + P2P (can fallback to local)
         }
     }
 
     /// Whether this mode requires an API key
     var requiresAPIKey: Bool {
         switch self {
-        case .local, .chatweb, .privateP2P, .publicP2P, .wisbee: return false
+        case .local, .chatweb, .privateP2P, .publicP2P, .p2pMesh, .speculative: return false
         case .fast, .genius: return true
         }
     }
@@ -111,8 +121,8 @@ enum ChatMode: String, CaseIterable, Codable, Identifiable {
     /// Whether this mode uses P2P connection
     var isP2P: Bool {
         switch self {
-        case .privateP2P, .publicP2P: return true
-        case .local, .chatweb, .fast, .genius, .wisbee: return false
+        case .privateP2P, .publicP2P, .p2pMesh, .speculative: return true
+        case .local, .chatweb, .fast, .genius: return false
         }
     }
 }
@@ -156,6 +166,15 @@ enum CloudProvider: String, CaseIterable, Codable, Identifiable {
         case .openai: return "https://api.openai.com/v1"
         case .anthropic: return "https://api.anthropic.com/v1"
         case .google: return "https://generativelanguage.googleapis.com/v1beta"
+        }
+    }
+
+    /// Corresponding API key provider
+    var apiKeyProvider: APIKeyProvider {
+        switch self {
+        case .openai: return .openai
+        case .anthropic: return .anthropic
+        case .google: return .google
         }
     }
 }

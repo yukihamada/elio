@@ -861,7 +861,9 @@ final class KokoroTTSManager: NSObject, ObservableObject {
 
             if !found {
                 // Handle double consonants (っ)
-                let first = input.first!
+                guard let first = input.first else {
+                    break  // Safety: exit if input is empty
+                }
                 if "kstcnhfmyrwgzjdbp".contains(first) && input.count > 1 {
                     let second = input[input.index(input.startIndex, offsetBy: 1)]
                     if first == second {

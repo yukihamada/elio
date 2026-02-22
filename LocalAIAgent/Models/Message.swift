@@ -11,6 +11,8 @@ struct Message: Identifiable, Codable, Equatable {
     var thinkingContent: String?
     var imageData: Data?  // Store image as JPEG data
     var feedbackRating: FeedbackRating?  // Good/Bad feedback state
+    var networkMetadata: NetworkMetadata?  // P2P mesh network metadata
+    var providerInfo: ProviderInfo?  // API provider & model metadata
 
     enum Role: String, Codable {
         case user
@@ -33,7 +35,9 @@ struct Message: Identifiable, Codable, Equatable {
         toolResults: [ToolResult]? = nil,
         thinkingContent: String? = nil,
         imageData: Data? = nil,
-        feedbackRating: FeedbackRating? = nil
+        feedbackRating: FeedbackRating? = nil,
+        networkMetadata: NetworkMetadata? = nil,
+        providerInfo: ProviderInfo? = nil
     ) {
         self.id = id
         self.role = role
@@ -44,6 +48,8 @@ struct Message: Identifiable, Codable, Equatable {
         self.thinkingContent = thinkingContent
         self.imageData = imageData
         self.feedbackRating = feedbackRating
+        self.networkMetadata = networkMetadata
+        self.providerInfo = providerInfo
     }
 
     /// Get UIImage from stored data
@@ -252,5 +258,67 @@ enum JSONValue: Codable, Equatable {
     var boolValue: Bool? {
         if case .bool(let value) = self { return value }
         return nil
+    }
+}
+
+// MARK: - P2P Mesh Network Metadata
+
+/// Network metadata for P2P mesh messages
+struct NetworkMetadata: Codable, Equatable {
+    let sourceDeviceId: String         // Origin device ID
+    let networkType: NetworkType       // Type of network used
+    let hopCount: Int                  // Number of relay hops
+    let processingDeviceName: String?  // Device that performed inference
+    let routePath: [String]            // Path of device IDs
+    let latencyMs: Int?                // Round-trip latency in milliseconds
+
+    init(
+        sourceDeviceId: String,
+        networkType: NetworkType,
+        hopCount: Int = 0,
+        processingDeviceName: String? = nil,
+        routePath: [String] = [],
+        latencyMs: Int? = nil
+    ) {
+        self.sourceDeviceId = sourceDeviceId
+        self.networkType = networkType
+        self.hopCount = hopCount
+        self.processingDeviceName = processingDeviceName
+        self.routePath = routePath
+        self.latencyMs = latencyMs
+    }
+}
+
+/// Type of network connection used for inference
+enum NetworkType: String, Codable {
+    case local       // Local LLM on device
+    case chatweb     // ChatWeb API (cloud)
+    case p2pDirect   // Direct P2P connection
+    case p2pMesh     // P2P mesh relay
+    case publicP2P   // Public P2P network
+}
+
+// MARK: - API Provider Metadata
+
+/// Metadata about the AI provider used for a message
+struct ProviderInfo: Codable, Equatable {
+    let provider: String        // "openai", "anthropic", "google", "groq", etc.
+    let model: String           // "gpt-4o", "claude-sonnet-4-5", etc.
+    let usedOwnKey: Bool        // User's API key vs Elio tokens
+    let tokenCost: Int          // Elio token cost
+    let estimatedAPICost: Double?  // Estimated USD cost (input + output)
+
+    init(
+        provider: String,
+        model: String,
+        usedOwnKey: Bool,
+        tokenCost: Int,
+        estimatedAPICost: Double? = nil
+    ) {
+        self.provider = provider
+        self.model = model
+        self.usedOwnKey = usedOwnKey
+        self.tokenCost = tokenCost
+        self.estimatedAPICost = estimatedAPICost
     }
 }

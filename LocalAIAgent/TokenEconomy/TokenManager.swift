@@ -218,6 +218,8 @@ enum EarnReason: String {
     case p2pServing = "P2P Server Reward"
     case relayServing = "Relay Server Reward"
     case referral = "Referral Bonus"
+    case chatWebBonus = "ChatWeb.ai Connection Bonus"
+    case developerThanks = "Developer Thanks ❤️"
 }
 
 enum SubscriptionTier: String, Codable, CaseIterable, Identifiable {

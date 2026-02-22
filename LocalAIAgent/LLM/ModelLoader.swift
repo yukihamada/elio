@@ -349,6 +349,42 @@ final class ModelLoader: ObservableObject {
         availableModels = [
             // ==================== RECOMMENDED ====================
             ModelInfo(
+                id: "nemotron-nano-9b-q4km",
+                name: "NVIDIA Nemotron-Nano 9B",
+                description: "NVIDIA製。Mamba-2ハイブリッド。日本語対応の推論モデル。Pro Max推奨。",
+                descriptionEn: "By NVIDIA. Mamba-2 hybrid. Japanese-capable reasoning model. Pro Max recommended.",
+                size: "約6.5GB",
+                sizeBytes: 6_530_000_000,
+                downloadURL: "https://huggingface.co/bartowski/nvidia_NVIDIA-Nemotron-Nano-9B-v2-GGUF/resolve/main/nvidia_NVIDIA-Nemotron-Nano-9B-v2-Q4_K_M.gguf",
+                config: ModelInfo.ModelConfigData(
+                    maxContextLength: 8192,
+                    vocabularySize: 131072,
+                    eosTokenId: 2,
+                    bosTokenId: 1
+                ),
+                tier: .xlarge,
+                category: .recommended,
+                defaultSystemPrompt: "あなたは日本語にも対応した高性能AIアシスタントです。推論と分析に優れ、自然で丁寧に回答してください。"
+            ),
+            ModelInfo(
+                id: "nemotron-nano-9b-q3km",
+                name: "NVIDIA Nemotron-Nano 9B (軽量版)",
+                description: "NVIDIA製。省メモリ版。日本語対応。Pro Max推奨。",
+                descriptionEn: "By NVIDIA. Memory-efficient. Japanese-capable. Pro Max recommended.",
+                size: "約5.4GB",
+                sizeBytes: 5_380_000_000,
+                downloadURL: "https://huggingface.co/bartowski/nvidia_NVIDIA-Nemotron-Nano-9B-v2-GGUF/resolve/main/nvidia_NVIDIA-Nemotron-Nano-9B-v2-Q3_K_M.gguf",
+                config: ModelInfo.ModelConfigData(
+                    maxContextLength: 8192,
+                    vocabularySize: 131072,
+                    eosTokenId: 2,
+                    bosTokenId: 1
+                ),
+                tier: .xlarge,
+                category: .recommended,
+                defaultSystemPrompt: "あなたは日本語にも対応した高性能AIアシスタントです。推論と分析に優れ、自然で丁寧に回答してください。"
+            ),
+            ModelInfo(
                 id: "qwen3-0.6b",
                 name: "Qwen3 0.6B",
                 description: "超軽量・高速。全デバイス対応。",

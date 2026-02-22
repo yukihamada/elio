@@ -40,6 +40,9 @@ final class ChatWebBackend: InferenceBackend, ObservableObject {
     /// Optional auth token for authenticated requests (set by SyncManager)
     var authToken: String?
 
+    /// Device-specific API key for authenticated requests
+    var deviceAPIKey: String?
+
     /// Selected model for cloud inference (nil = server default)
     var selectedModel: String?
 
@@ -51,6 +54,21 @@ final class ChatWebBackend: InferenceBackend, ObservableObject {
 
     // ChatWeb.ai API settings
     private let streamURL = "https://api.chatweb.ai/api/v1/chat/stream"
+
+    /// 超高速接続用のURLSession（HTTP/2、接続プール、Keep-Alive有効）
+    private lazy var fastSession: URLSession = {
+        let config = URLSessionConfiguration.default
+        config.httpMaximumConnectionsPerHost = 10
+        config.timeoutIntervalForRequest = 30
+        config.timeoutIntervalForResource = 60
+        config.requestCachePolicy = .reloadIgnoringLocalCacheData
+        config.urlCache = nil // ストリーミングなのでキャッシュ不要
+        config.httpShouldSetCookies = false
+        config.httpCookieAcceptPolicy = .never
+        // HTTP/2を優先
+        config.multipathServiceType = .handover
+        return URLSession(configuration: config)
+    }()
 
     /// Available models that can be selected (populated externally)
     static let availableModels: [(id: String, name: String)] = [
@@ -137,10 +155,17 @@ final class ChatWebBackend: InferenceBackend, ObservableObject {
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue("Elio Chat iOS", forHTTPHeaderField: "User-Agent")
 
-        // Add Bearer token if logged in
-        if let token = authToken {
+        // Priority: Device API key > Bearer token > No auth
+        if let apiKey = deviceAPIKey {
+            request.setValue("Bearer \(apiKey)", forHTTPHeaderField: "Authorization")
+        } else if let token = authToken {
             request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         }
+
+        // Add device fingerprint headers for validation
+        let fingerprint = DeviceIdentityManager.shared.deviceFingerprint
+        request.setValue(fingerprint.model, forHTTPHeaderField: "X-Device-Model")
+        request.setValue(fingerprint.osVersion, forHTTPHeaderField: "X-Device-OS")
 
         var body: [String: Any] = [
             "message": message,
@@ -167,7 +192,7 @@ final class ChatWebBackend: InferenceBackend, ObservableObject {
         request: URLRequest,
         onToken: @escaping (String) -> Void
     ) async throws -> String {
-        let (asyncBytes, response) = try await URLSession.shared.bytes(for: request)
+        let (asyncBytes, response) = try await fastSession.bytes(for: request)
 
         guard let httpResponse = response as? HTTPURLResponse else {
             throw InferenceError.invalidResponse
@@ -299,5 +324,10 @@ final class ChatWebBackend: InferenceBackend, ObservableObject {
         }
 
         return fullResponse
+    }
+
+    /// Set device API key for authenticated requests
+    func setDeviceAPIKey(_ key: String?) {
+        self.deviceAPIKey = key
     }
 }

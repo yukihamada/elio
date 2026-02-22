@@ -89,8 +89,26 @@ final class ResponseParser {
         var remaining = response
 
         while !remaining.isEmpty {
-            // Try to find <tool_call> tags first (preferred format)
-            if let toolCallRange = remaining.range(of: "<tool_call>"),
+            // Try to find <|python_tag|> tokens first (Llama 3 tool call format)
+            if let ptStart = remaining.range(of: "<|python_tag|>"),
+               let ptEnd = remaining.range(of: "<|eom_id|>"),
+               ptEnd.lowerBound >= ptStart.upperBound {
+                let beforePT = String(remaining[..<ptStart.lowerBound])
+                if !beforePT.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+                    results.append(.text(beforePT))
+                }
+
+                let ptContent = String(remaining[ptStart.upperBound..<ptEnd.lowerBound])
+                    .trimmingCharacters(in: .whitespacesAndNewlines)
+
+                if let toolCall = parseToolCall(ptContent) {
+                    results.append(toolCall)
+                }
+
+                remaining = String(remaining[ptEnd.upperBound...])
+            }
+            // Try to find <tool_call> tags (Hermes / Qwen3 format)
+            else if let toolCallRange = remaining.range(of: "<tool_call>"),
                let toolCallEndRange = remaining.range(of: "</tool_call>") {
                 let beforeToolCall = String(remaining[..<toolCallRange.lowerBound])
                 if !beforeToolCall.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {

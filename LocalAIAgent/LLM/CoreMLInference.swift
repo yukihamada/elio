@@ -101,6 +101,9 @@ final class CoreMLInference: ObservableObject {
             llamaConfig = .deepseekR1Qwen
         } else if nameLower.contains("deepseek") && nameLower.contains("llama") {
             llamaConfig = .deepseekR1Llama
+        } else if nameLower.contains("nemotron") {
+            // NVIDIA Nemotron-Nano (Mamba-2 + Transformer hybrid, Tekken tokenizer)
+            llamaConfig = .nemotron
         } else if nameLower.contains("qwen") || nameLower.contains("eliochat") {
             // ElioChat is based on Qwen3, so use the same config
             llamaConfig = .qwen3
@@ -231,7 +234,11 @@ final class CoreMLInference: ObservableObject {
     }
 
     private func sampleFromLogits(_ logits: MLMultiArray, temperature: Float, topP: Float) -> Int {
-        let vocabSize = logits.shape.last!.intValue
+        guard let vocabSizeNumber = logits.shape.last else {
+            logError("CoreMLInference", "Invalid logits shape - no last dimension")
+            return 0  // Return EOS token on error
+        }
+        let vocabSize = vocabSizeNumber.intValue
         let lastPosition = logits.shape[1].intValue - 1
 
         var logitsArray = [Float](repeating: 0, count: vocabSize)

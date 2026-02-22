@@ -147,6 +147,15 @@ final class LlamaInference: ObservableObject {
                 bosTokenId: 128000
             )
         }
+
+        static var nemotron: Config {
+            Config(
+                name: "Nemotron",
+                contextSize: deviceContextSize,
+                eosTokenId: 2,
+                bosTokenId: 1
+            )
+        }
     }
 
     private var config: Config
@@ -585,12 +594,13 @@ final class LlamaInference: ObservableObject {
         let isDeepSeekQwen = modelMetadataName.contains("deepseek") && modelMetadataName.contains("qwen")
         let isDeepSeekLlama = modelMetadataName.contains("deepseek") && modelMetadataName.contains("llama")
         let isPhoton = modelMetadataName.contains("photon") && !isElioChat  // Don't treat as Photon if it's ElioChat
+        let isNemotron = modelMetadataName.contains("nemotron") || modelFileName.contains("nemotron")
         let isLlama = modelMetadataName.contains("llama") || modelFileName.contains("llama")
 
         // Debug: Log model identification
         print("[LlamaInference] formatChatPrompt - modelFileName: \(modelFileName)")
         print("[LlamaInference] formatChatPrompt - modelMetadataName: \(modelMetadataName)")
-        print("[LlamaInference] formatChatPrompt - isElioChat: \(isElioChat), isQwen: \(isQwen), isPhoton: \(isPhoton)")
+        print("[LlamaInference] formatChatPrompt - isElioChat: \(isElioChat), isQwen: \(isQwen), isPhoton: \(isPhoton), isNemotron: \(isNemotron)")
         print("[LlamaInference] formatChatPrompt - enableThinking: \(enableThinking)")
 
         if isDeepSeekQwen {
@@ -609,6 +619,18 @@ final class LlamaInference: ObservableObject {
                 prompt += "<|start_header_id|>\(role)<|end_header_id|>\n\n\(message.content)<|eot_id|>"
             }
             prompt += "<|start_header_id|>assistant<|end_header_id|>\n\n<think>\n"
+        } else if isNemotron {
+            // NVIDIA Nemotron-Nano (Mamba-2 + Transformer hybrid) - ChatML with thinking mode
+            prompt = "<|im_start|>system\n\(systemPrompt)<|im_end|>\n"
+            for message in messages {
+                let role = message.role == .user ? "user" : "assistant"
+                prompt += "<|im_start|>\(role)\n\(message.content)<|im_end|>\n"
+            }
+            if enableThinking {
+                prompt += "<|im_start|>assistant\n<think>\n"
+            } else {
+                prompt += "<|im_start|>assistant\n"
+            }
         } else if isElioChat || isQwen {
             // ElioChat / Qwen3 (Qwen-based) with thinking mode support
             prompt = "<|im_start|>system\n\(systemPrompt)<|im_end|>\n"

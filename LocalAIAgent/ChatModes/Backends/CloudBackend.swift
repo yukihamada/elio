@@ -55,6 +55,12 @@ final class CloudBackend: InferenceBackend, ObservableObject {
         isGenerating = false
     }
 
+    /// Get selected model for current provider
+    private var selectedModel: String {
+        let key = "selected_model_\(provider.rawValue)"
+        return UserDefaults.standard.string(forKey: key) ?? provider.defaultModel
+    }
+
     // MARK: - OpenAI
 
     private func generateOpenAI(
@@ -81,7 +87,7 @@ final class CloudBackend: InferenceBackend, ObservableObject {
         }
 
         let body: [String: Any] = [
-            "model": provider.defaultModel,
+            "model": selectedModel,
             "messages": apiMessages,
             "temperature": Double(settings.temperature),
             "max_tokens": settings.maxTokens,
@@ -157,7 +163,7 @@ final class CloudBackend: InferenceBackend, ObservableObject {
         }
 
         let body: [String: Any] = [
-            "model": provider.defaultModel,
+            "model": selectedModel,
             "system": systemPrompt,
             "messages": apiMessages,
             "max_tokens": settings.maxTokens,
@@ -225,7 +231,7 @@ final class CloudBackend: InferenceBackend, ObservableObject {
             throw InferenceError.apiKeyMissing
         }
 
-        let urlString = "https://generativelanguage.googleapis.com/v1beta/models/\(provider.defaultModel):streamGenerateContent?key=\(apiKey)"
+        let urlString = "https://generativelanguage.googleapis.com/v1beta/models/\(selectedModel):streamGenerateContent?key=\(apiKey)"
         var request = URLRequest(url: URL(string: urlString)!)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")

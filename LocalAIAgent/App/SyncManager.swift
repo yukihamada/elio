@@ -267,9 +267,9 @@ class SyncManager: ObservableObject {
     // MARK: - Sync Operations
 
     /// Pull conversation list from server
-    /// Respects Wisbee privacy mode - sync is disabled when active.
+    /// Respects sync disabled setting when active.
     func pullConversations(since: String? = nil) async throws -> [ServerConversation] {
-        // Do not sync when Wisbee mode is active (privacy first)
+        // Do not sync when sync is disabled
         if ChatModeManager.shared.isSyncDisabled {
             return []
         }
@@ -326,9 +326,9 @@ class SyncManager: ObservableObject {
     }
 
     /// Push local conversations to server
-    /// Respects Wisbee privacy mode - sync is disabled when active.
+    /// Respects sync disabled setting when active.
     func pushConversations(_ conversations: [Conversation]) async throws -> [SyncPushSyncedItem] {
-        // Do not sync when Wisbee mode is active (privacy first)
+        // Do not sync when sync is disabled
         if ChatModeManager.shared.isSyncDisabled {
             return []
         }

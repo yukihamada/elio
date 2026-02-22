@@ -169,7 +169,10 @@ final class OnDemandResourceManager: ObservableObject {
     /// Copy ODR resource to Documents/Models directory for persistent access
     func copyResourceToModels(from sourceURL: URL, modelId: String) async throws -> URL {
         let fileManager = FileManager.default
-        let documentsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
+        guard let documentsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first else {
+            throw NSError(domain: "OnDemandResourceManager", code: -1,
+                         userInfo: [NSLocalizedDescriptionKey: "Documents directory not found"])
+        }
         let modelsDirectory = documentsURL.appendingPathComponent("Models", isDirectory: true)
 
         // Create Models directory if needed
