@@ -189,13 +189,17 @@ struct ChatModeOptionRow: View {
                         .foregroundStyle(mode.color)
                 } else if !isAvailable {
                     if mode.requiresAPIKey {
-                        Text(String(localized: "chatmode.needs.key", defaultValue: "Needs Key"))
-                            .font(.system(size: 11, weight: .medium))
-                            .foregroundStyle(.secondary)
-                            .padding(.horizontal, 6)
-                            .padding(.vertical, 3)
-                            .background(Color(.tertiarySystemBackground))
-                            .clipShape(Capsule())
+                        HStack(spacing: 4) {
+                            Image(systemName: "key")
+                                .font(.system(size: 10))
+                            Text(String(localized: "chatmode.needs.key", defaultValue: "Needs Key"))
+                                .font(.system(size: 11, weight: .medium))
+                        }
+                        .foregroundStyle(.orange)
+                        .padding(.horizontal, 6)
+                        .padding(.vertical, 3)
+                        .background(Color.orange.opacity(0.15))
+                        .clipShape(Capsule())
                     } else if mode.isP2P {
                         Text(String(localized: "chatmode.no.servers", defaultValue: "No Servers"))
                             .font(.system(size: 11, weight: .medium))

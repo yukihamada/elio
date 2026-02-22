@@ -26,7 +26,6 @@ struct ChatView: View {
     @State private var showingVisionModelAlert = false
     @State private var showingDownloadVisionModel = false
     @State private var isSwitchingToVisionModel = false
-    @State private var showingModelSettings = false
     @StateObject private var speechManager = ReazonSpeechManager.shared
     @State private var showingSpeechDownload = false
     @State private var isVoiceRecording = false
@@ -66,13 +65,29 @@ struct ChatView: View {
     // TTS download alert (local state to prevent view refresh dismissing alert)
     @State private var showingTTSDownloadAlert = false
     // Emergency mode
-    @State private var isEmergencyLongPressing = false
+    // @State private var isEmergencyLongPressing = false  // Moved to overflow menu
     // ChatWeb.ai & Peer connection
     @State private var showingChatWebConnect = false
     @State private var showingPeerConnect = false
-    // Wisbee onboarding
-    @State private var showWisbeeOnboarding = !UserDefaults.standard.bool(forKey: "hasShownWisbeeOnboarding")
-    @AppStorage("wisbeeModeEnabled") private var wisbeeModeAppStorage: Bool = false
+    @StateObject private var chatWebAPIKeyManager = ChatWebAPIKeyManager.shared
+    // P2P Messaging
+    @State private var showingMessages = false
+    @StateObject private var messagingManager = MessagingManager.shared
+    // Survival Dashboard & Mesh Topology (temporarily disabled)
+    // @State private var showingSurvivalDashboard = false
+    // @State private var showingMeshTopology = false
+    // chatweb.ai onboarding
+    @State private var showChatWebOnboarding = !UserDefaults.standard.bool(forKey: "hasShownChatWebOnboarding")
+    @AppStorage("chatwebModeEnabled") private var chatwebModeAppStorage: Bool = false
+    // Easter egg: Developer thanks
+    @State private var showingDeveloperThanks = false
+    @State private var tapCount = 0
+    @State private var tapResetTask: Task<Void, Never>?
+    @State private var konamiSequence: [String] = []  // Track swipe directions for Konami code
+    // News feed
+    @State private var showingNewsFeed = false
+    // API Key onboarding
+    @State private var showingAPIKeyOnboarding: ChatMode?
 
     // Calculate number of lines in input text
     private var inputLineCount: Int {
@@ -127,21 +142,35 @@ struct ChatView: View {
                 .transition(.opacity)
             }
 
-            // Wisbee onboarding card
-            if showWisbeeOnboarding {
-                WisbeeOnboardingCard(
+            // Easter egg: Tap detection layer (invisible)
+            Color.clear
+                .contentShape(Rectangle())
+                .onTapGesture {
+                    handleSecretTap()
+                }
+                .gesture(
+                    DragGesture(minimumDistance: 50)
+                        .onEnded { gesture in
+                            handleSwipeForKonami(gesture: gesture)
+                        }
+                )
+                .allowsHitTesting(!isInputFocused && !showingConversationList && !showingSettings)
+
+            // chatweb.ai onboarding card
+            if showChatWebOnboarding {
+                ChatWebOnboardingCard(
                     onEnable: {
                         withAnimation(.spring(response: 0.4)) {
-                            showWisbeeOnboarding = false
-                            UserDefaults.standard.set(true, forKey: "hasShownWisbeeOnboarding")
-                            wisbeeModeAppStorage = true
-                            ChatModeManager.shared.setMode(.wisbee)
+                            showChatWebOnboarding = false
+                            UserDefaults.standard.set(true, forKey: "hasShownChatWebOnboarding")
+                            chatwebModeAppStorage = true
+                            ChatModeManager.shared.setMode(.chatweb)
                         }
                     },
                     onDismiss: {
                         withAnimation(.spring(response: 0.4)) {
-                            showWisbeeOnboarding = false
-                            UserDefaults.standard.set(true, forKey: "hasShownWisbeeOnboarding")
+                            showChatWebOnboarding = false
+                            UserDefaults.standard.set(true, forKey: "hasShownChatWebOnboarding")
                         }
                     }
                 )
@@ -154,6 +183,9 @@ struct ChatView: View {
         }
         .sheet(isPresented: $showingSettings) {
             SettingsView()
+        }
+        .sheet(isPresented: $showingMessages) {
+            MessagesView()
         }
         #if targetEnvironment(macCatalyst)
         .keyboardShortcut(.return, modifiers: .command) // Cmd+Enter: send
@@ -251,11 +283,6 @@ struct ChatView: View {
         }
         .sheet(isPresented: $showingDownloadVisionModel) {
             VisionModelDownloadView()
-        }
-        .sheet(isPresented: $showingModelSettings) {
-            if let modelId = appState.currentModelId, let modelName = appState.currentModelName {
-                ModelSettingsView(modelId: modelId, modelName: modelName)
-            }
         }
         .alert(String(localized: "speech.download.title"), isPresented: $showingSpeechDownload) {
             Button(String(localized: "speech.download.action")) {
@@ -385,6 +412,22 @@ struct ChatView: View {
         .sheet(isPresented: $showingPeerConnect) {
             PeerConnectionView(chatModeManager: ChatModeManager.shared)
         }
+        // Easter egg: Developer thanks
+        .sheet(isPresented: $showingDeveloperThanks) {
+            DeveloperThanksView()
+        }
+        // News feed
+        .sheet(isPresented: $showingNewsFeed) {
+            NewsFeedView()
+        }
+        // Survival Dashboard
+        // .sheet(isPresented: $showingSurvivalDashboard) {
+        //     SurvivalDashboardView()
+        // }
+        // Mesh Network Topology (temporarily disabled)
+        // .sheet(isPresented: $showingMeshTopology) {
+        //     MeshTopologyView()
+        // }
         // Expanded text input (fullscreen editor)
         .sheet(isPresented: $showingExpandedInput) {
             ExpandedInputView(text: $inputText, onSend: {
@@ -678,6 +721,64 @@ struct ChatView: View {
         }
     }
 
+    // MARK: - Easter Egg: Developer Thanks
+
+    private func handleSecretTap() {
+        tapCount += 1
+
+        // Cancel previous reset task
+        tapResetTask?.cancel()
+
+        // Reset tap count after 2 seconds
+        tapResetTask = Task {
+            try? await Task.sleep(nanoseconds: 2_000_000_000)
+            tapCount = 0
+        }
+
+        // Trigger easter egg after 10 taps
+        if tapCount >= 10 {
+            triggerDeveloperThanks()
+        }
+    }
+
+    private func handleSwipeForKonami(gesture: DragGesture.Value) {
+        let horizontalAmount = gesture.translation.width
+        let verticalAmount = gesture.translation.height
+
+        var direction = ""
+        if abs(horizontalAmount) > abs(verticalAmount) {
+            direction = horizontalAmount < 0 ? "←" : "→"
+        } else {
+            direction = verticalAmount < 0 ? "↑" : "↓"
+        }
+
+        konamiSequence.append(direction)
+
+        // Keep only last 10 swipes
+        if konamiSequence.count > 10 {
+            konamiSequence.removeFirst()
+        }
+
+        // Check for Konami code: ↑↑↓↓←→←→
+        let konamiCode = ["↑", "↑", "↓", "↓", "←", "→", "←", "→"]
+        if konamiSequence.suffix(8) == konamiCode {
+            triggerDeveloperThanks()
+        }
+    }
+
+    private func triggerDeveloperThanks() {
+        tapCount = 0
+        konamiSequence = []
+        tapResetTask?.cancel()
+
+        // Haptic feedback
+        let generator = UINotificationFeedbackGenerator()
+        generator.notificationOccurred(.success)
+
+        // Show easter egg
+        showingDeveloperThanks = true
+    }
+
     private func startVoiceConversationListening() {
         guard isVoiceConversationMode else { return }
 
@@ -787,8 +888,8 @@ struct ChatView: View {
     // MARK: - Header
 
     private var headerView: some View {
-        HStack(spacing: 16) {
-            // Menu button
+        HStack(spacing: 12) {
+            // Menu
             Button(action: { showingConversationList = true }) {
                 Image(systemName: "line.3.horizontal")
                     .font(.system(size: 20, weight: .medium))
@@ -796,128 +897,132 @@ struct ChatView: View {
             }
             .accessibilityIdentifier("menuButton")
 
-            // Model name (truncated if too long)
-            Button(action: { showingSettings = true }) {
-                HStack(spacing: 4) {
-                    Text(truncatedModelName)
-                        .font(.system(size: 17, weight: .semibold))
-                        .lineLimit(1)
-                    Image(systemName: "chevron.down")
-                        .font(.system(size: 12, weight: .medium))
-                        .foregroundStyle(.secondary)
-                }
-            }
-            .accessibilityIdentifier("settingsButton")
-            .foregroundStyle(.primary)
-
-            // Quick settings button (for model parameters)
-            if appState.isModelLoaded || AppState.isScreenshotMode {
-                Button(action: { showingModelSettings = true }) {
-                    Image(systemName: "slider.horizontal.3")
-                        .font(.system(size: 16, weight: .medium))
-                        .foregroundStyle(.secondary)
-                }
-            }
-
-            // SOS Emergency Mode button (long press to toggle)
-            Button(action: {}) {
-                Image(systemName: appState.isEmergencyMode ? "sos.circle.fill" : "sos.circle")
-                    .font(.system(size: 20, weight: .medium))
-                    .foregroundStyle(appState.isEmergencyMode ? .white : .red)
-                    .frame(width: 32, height: 32)
-                    .background(appState.isEmergencyMode ? Color.red : Color.clear)
-                    .clipShape(Circle())
-                    .scaleEffect(isEmergencyLongPressing ? 1.2 : 1.0)
-                    .animation(.easeInOut(duration: 0.3), value: isEmergencyLongPressing)
-            }
-            .simultaneousGesture(
-                LongPressGesture(minimumDuration: 1.0)
-                    .onChanged { _ in
-                        isEmergencyLongPressing = true
-                    }
-                    .onEnded { _ in
-                        isEmergencyLongPressing = false
-                        appState.toggleEmergencyMode()
-                        let generator = UINotificationFeedbackGenerator()
-                        generator.notificationOccurred(appState.isEmergencyMode ? .warning : .success)
-                    }
-            )
-            .accessibilityLabel(String(localized: "emergency.sos.button"))
-
-            // Offline badge - shows when not connected
-            if !networkMonitor.isConnected {
-                Image(systemName: "wifi.slash")
-                    .font(.system(size: 14, weight: .bold))
-                    .foregroundStyle(.white)
-                    .frame(width: 28, height: 28)
-                    .background(
-                        LinearGradient(
-                            colors: [.orange, .red],
-                            startPoint: .leading,
-                            endPoint: .trailing
-                        )
-                    )
-                    .clipShape(Circle())
-                    .shadow(color: .orange.opacity(0.4), radius: 4, y: 2)
-            }
-
-            // Wisbee privacy mode badge
-            if ChatModeManager.shared.isWisbeeMode {
-                HStack(spacing: 4) {
-                    Image(systemName: "lock.fill")
-                        .font(.system(size: 10, weight: .bold))
-                    Text("Wisbee")
-                        .font(.system(size: 11, weight: .bold))
-                }
-                .foregroundStyle(.white)
-                .padding(.horizontal, 8)
-                .padding(.vertical, 4)
-                .background(
-                    Capsule()
-                        .fill(
-                            LinearGradient(
-                                colors: [.green, .mint],
-                                startPoint: .leading,
-                                endPoint: .trailing
-                            )
-                        )
-                )
-                .shadow(color: .green.opacity(0.4), radius: 4, y: 2)
-            }
+            // Contextual status indicators (only shown when relevant)
+            headerStatusIndicators
 
             Spacer()
 
-            // Action buttons
-            HStack(spacing: 16) {
-                // ChatWeb.ai quick connect
-                Button(action: { showingChatWebConnect = true }) {
-                    Image(systemName: "cloud.fill")
-                        .font(.system(size: 16, weight: .medium))
-                        .foregroundStyle(.indigo)
-                }
+            // Unread messages badge (visible only when there are unreads)
+            if messagingManager.unreadCount > 0 {
+                Button(action: { showingMessages = true }) {
+                    ZStack(alignment: .topTrailing) {
+                        Image(systemName: "bubble.left.and.bubble.right.fill")
+                            .font(.system(size: 16, weight: .medium))
+                            .foregroundStyle(.blue)
 
-                // Peer device connect
-                Button(action: { showingPeerConnect = true }) {
-                    Image(systemName: "antenna.radiowaves.left.and.right")
-                        .font(.system(size: 16, weight: .medium))
-                        .foregroundStyle(.secondary)
+                        Text("\(messagingManager.unreadCount)")
+                            .font(.system(size: 9, weight: .bold))
+                            .foregroundStyle(.white)
+                            .frame(minWidth: 14, minHeight: 14)
+                            .background(Circle().fill(Color.red))
+                            .offset(x: 6, y: -6)
+                    }
                 }
-
-                Button(action: { appState.newConversation() }) {
-                    Image(systemName: "square.and.pencil")
-                        .font(.system(size: 20, weight: .medium))
-                        .foregroundStyle(.primary)
-                }
-
-                Button(action: { showingSettings = true }) {
-                    Image(systemName: "ellipsis")
-                        .font(.system(size: 20, weight: .medium))
-                        .foregroundStyle(.primary)
-                }
+                .accessibilityLabel("Messages")
             }
+
+            // New conversation
+            Button(action: { appState.newConversation() }) {
+                Image(systemName: "square.and.pencil")
+                    .font(.system(size: 20, weight: .medium))
+                    .foregroundStyle(.primary)
+            }
+
+            // Overflow menu
+            headerOverflowMenu
         }
         .padding(.horizontal, 16)
         .padding(.vertical, 12)
+    }
+
+    @ViewBuilder
+    private var headerStatusIndicators: some View {
+        HStack(spacing: 6) {
+            if !networkMonitor.isConnected {
+                Image(systemName: "wifi.slash")
+                    .font(.system(size: 14, weight: .bold))
+                    .foregroundStyle(.orange)
+            }
+
+            if ChatModeManager.shared.isChatWebMode {
+                HStack(spacing: 2) {
+                    Image(systemName: "cloud.fill")
+                        .font(.system(size: 10, weight: .bold))
+                    Text("chatweb.ai")
+                        .font(.system(size: 10, weight: .bold))
+                }
+                .foregroundStyle(.indigo)
+            }
+
+            if appState.isEmergencyMode {
+                Image(systemName: "sos.circle.fill")
+                    .font(.system(size: 16))
+                    .foregroundStyle(.red)
+            }
+
+            if ChatModeManager.shared.currentMode.requiresAPIKey && !hasRequiredAPIKey() {
+                Image(systemName: "exclamationmark.triangle.fill")
+                    .font(.system(size: 14))
+                    .foregroundStyle(.orange)
+            }
+        }
+    }
+
+    private var headerOverflowMenu: some View {
+        Menu {
+            // Messages
+            Button(action: { showingMessages = true }) {
+                Label(
+                    messagingManager.unreadCount > 0
+                        ? String(localized: "Messages") + " (\(messagingManager.unreadCount))"
+                        : String(localized: "Messages"),
+                    systemImage: "bubble.left.and.bubble.right"
+                )
+            }
+
+            // ChatWeb connect
+            Button(action: { showingChatWebConnect = true }) {
+                Label("ChatWeb", systemImage: chatWebAPIKeyManager.keyStatus == .valid ? "cloud.fill" : "cloud")
+            }
+
+            // Peer connect
+            Button(action: { showingPeerConnect = true }) {
+                Label(String(localized: "Peer Connect"), systemImage: "antenna.radiowaves.left.and.right")
+            }
+
+            // News feed
+            Button(action: { showingNewsFeed = true }) {
+                Label(String(localized: "ニュース"), systemImage: "newspaper")
+            }
+
+            Divider()
+
+            // Emergency mode toggle
+            Button(action: {
+                appState.toggleEmergencyMode()
+                let generator = UINotificationFeedbackGenerator()
+                generator.notificationOccurred(appState.isEmergencyMode ? .warning : .success)
+            }) {
+                Label(
+                    appState.isEmergencyMode
+                        ? String(localized: "Emergency OFF")
+                        : String(localized: "Emergency Mode"),
+                    systemImage: appState.isEmergencyMode ? "sos.circle.fill" : "sos.circle"
+                )
+            }
+
+            Divider()
+
+            // Settings
+            Button(action: { showingSettings = true }) {
+                Label(String(localized: "Settings"), systemImage: "gear")
+            }
+        } label: {
+            Image(systemName: "ellipsis")
+                .font(.system(size: 20, weight: .medium))
+                .foregroundStyle(.primary)
+                .frame(width: 28, height: 28)
+        }
     }
 
     // MARK: - Skeleton Loading View
@@ -996,7 +1101,10 @@ struct ChatView: View {
                                 message: message,
                                 previousUserMessage: getPreviousUserMessage(messages: messages, currentIndex: index),
                                 conversationId: appState.currentConversation?.id.uuidString,
-                                modelId: appState.currentModelId
+                                modelId: appState.currentModelId,
+                                conversation: appState.currentConversation,
+                                messageIndex: index,
+                                modelName: appState.currentModelName
                             )
                             .id(message.id)
                         }
@@ -1008,8 +1116,8 @@ struct ChatView: View {
                                 .id("streaming")
                         } else {
                             TypingIndicatorRow(
-                                statusText: ChatModeManager.shared.isWisbeeMode
-                                    ? String(localized: "wisbee.processing", defaultValue: "ローカル処理中...")
+                                statusText: ChatModeManager.shared.isChatWebMode
+                                    ? String(localized: "chatweb.processing", defaultValue: "chatweb.ai で処理中...")
                                     : nil
                             )
                                 .id("typing")
@@ -1533,12 +1641,27 @@ struct ChatView: View {
         } message: {
             Text(String(localized: "chat.websearch.privacy.message"))
         }
+        // .sheet(item: $showingAPIKeyOnboarding) { mode in
+        //     APIKeyOnboardingView(mode: mode)
+        // }
+        .onChange(of: ChatModeManager.shared.pendingOnboarding) { _, newValue in
+            if let mode = newValue {
+                showingAPIKeyOnboarding = mode
+                // Clear the pending onboarding flag
+                ChatModeManager.shared.pendingOnboarding = nil
+            }
+        }
     }
 
     private var canSend: Bool {
         (!inputText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty || !attachedImages.isEmpty || attachedPDFText != nil || attachedWebContent != nil) &&
         !isGenerating &&
         (appState.isModelLoaded || AppState.isScreenshotMode)
+    }
+
+    private func hasRequiredAPIKey() -> Bool {
+        return true // Temporarily disabled
+        // ChatModeManager.shared.hasRequiredAPIKey(for: ChatModeManager.shared.currentMode)
     }
 
     private func sendMessage() {
@@ -1875,14 +1998,19 @@ struct ChatMessageRow: View {
     var previousUserMessage: String? = nil
     var conversationId: String? = nil
     var modelId: String? = nil
+    var conversation: Conversation? = nil
+    var messageIndex: Int? = nil
+    var modelName: String? = nil
 
     @State private var isThinkingExpanded = true  // Default expanded so thinking doesn't "disappear"
     @State private var showCopiedFeedback = false
     @State private var feedbackGiven: FeedbackType? = nil
     @State private var showingFeedbackConsent = false
     @State private var pendingFeedbackType: FeedbackType? = nil
+    @State private var isShareLinkLoading = false
     @StateObject private var speechManager = SpeechManager.shared
     @StateObject private var feedbackService = FeedbackService.shared
+    @StateObject private var shareService = MessageShareService.shared
 
     private var isUser: Bool {
         message.role == .user
@@ -1910,6 +2038,9 @@ struct ChatMessageRow: View {
                             }) {
                                 Label("コピー", systemImage: "doc.on.doc")
                             }
+                            Button(action: shareAsLink) {
+                                Label("リンクで共有", systemImage: "link")
+                            }
                         }
                 }
                 .padding(.horizontal, 16)
@@ -1935,6 +2066,9 @@ struct ChatMessageRow: View {
                                 shareContent()
                             }) {
                                 Label("共有", systemImage: "square.and.arrow.up")
+                            }
+                            Button(action: shareAsLink) {
+                                Label("リンクで共有", systemImage: "link")
                             }
                         }
 
@@ -2145,6 +2279,26 @@ struct ChatMessageRow: View {
         }
     }
 
+    private func shareAsLink() {
+        guard let conversation = conversation, let index = messageIndex else {
+            shareContent() // Fallback to plain text share
+            return
+        }
+
+        Task {
+            isShareLinkLoading = true
+            defer { isShareLinkLoading = false }
+
+            if let url = await shareService.shareMessage(
+                conversation: conversation,
+                upToMessageIndex: index,
+                modelName: modelName
+            ) {
+                shareService.presentShareSheet(url: url)
+            }
+        }
+    }
+
     private func parseMarkdown(_ text: String) -> AttributedString {
         do {
             // Use full markdown interpretation for headers, lists, code blocks, etc.
@@ -2345,7 +2499,7 @@ struct TypingIndicatorRow: View {
                     value: isBreathing
                 )
 
-            // Optional status text (e.g. "ローカル処理中..." in Wisbee mode)
+            // Optional status text (e.g. "chatweb.ai で処理中..." in chatweb mode)
             if let text = statusText {
                 Text(text)
                     .font(.system(size: 13, weight: .medium))
@@ -3436,9 +3590,9 @@ struct ExpandedInputView: View {
     }
 }
 
-// MARK: - Wisbee Onboarding Card
+// MARK: - chatweb.ai Onboarding Card
 
-struct WisbeeOnboardingCard: View {
+struct ChatWebOnboardingCard: View {
     var onEnable: () -> Void
     var onDismiss: () -> Void
 
@@ -3455,18 +3609,18 @@ struct WisbeeOnboardingCard: View {
                         Circle()
                             .fill(
                                 LinearGradient(
-                                    colors: [.green.opacity(0.2), .mint.opacity(0.2)],
+                                    colors: [.indigo.opacity(0.2), .blue.opacity(0.2)],
                                     startPoint: .topLeading,
                                     endPoint: .bottomTrailing
                                 )
                             )
                             .frame(width: 52, height: 52)
 
-                        Image(systemName: "shield.checkmark.fill")
+                        Image(systemName: "cloud.fill")
                             .font(.system(size: 24))
                             .foregroundStyle(
                                 .linearGradient(
-                                    colors: [.green, .mint],
+                                    colors: [.indigo, .blue],
                                     startPoint: .topLeading,
                                     endPoint: .bottomTrailing
                                 )
@@ -3475,11 +3629,11 @@ struct WisbeeOnboardingCard: View {
                     }
 
                     VStack(alignment: .leading, spacing: 4) {
-                        Text("Wisbee Mode")
+                        Text("chatweb.ai Mode")
                             .font(.system(size: 18, weight: .bold, design: .rounded))
 
-                        Text(String(localized: "wisbee.onboarding.subtitle",
-                                    defaultValue: "プライバシーを重視するなら Wisbee モードをオンに"))
+                        Text(String(localized: "chatweb.onboarding.subtitle",
+                                    defaultValue: "高速・セキュアなクラウドAIモードを有効にしますか？"))
                             .font(.system(size: 13))
                             .foregroundStyle(.secondary)
                             .lineLimit(2)
@@ -3489,24 +3643,24 @@ struct WisbeeOnboardingCard: View {
 
                 // Feature list
                 VStack(alignment: .leading, spacing: 8) {
-                    wisbeeFeatureRow(
-                        icon: "lock.fill",
-                        text: String(localized: "wisbee.onboarding.feature1", defaultValue: "AI処理は端末内で完結")
+                    chatWebFeatureRow(
+                        icon: "bolt.fill",
+                        text: String(localized: "chatweb.onboarding.feature1", defaultValue: "高速レスポンス・マルチモデル対応")
                     )
-                    wisbeeFeatureRow(
-                        icon: "icloud.slash.fill",
-                        text: String(localized: "wisbee.onboarding.feature2", defaultValue: "データがサーバーに送信されません")
+                    chatWebFeatureRow(
+                        icon: "lock.shield.fill",
+                        text: String(localized: "chatweb.onboarding.feature2", defaultValue: "セキュアな暗号化通信")
                     )
-                    wisbeeFeatureRow(
-                        icon: "externaldrive.fill",
-                        text: String(localized: "wisbee.onboarding.feature3", defaultValue: "会話履歴はローカル保存のみ")
+                    chatWebFeatureRow(
+                        icon: "sparkles",
+                        text: String(localized: "chatweb.onboarding.feature3", defaultValue: "GPT-4o・Claude・Gemini を即座に利用")
                     )
                 }
 
                 // Action buttons
                 HStack(spacing: 12) {
                     Button(action: onDismiss) {
-                        Text(String(localized: "wisbee.onboarding.dismiss", defaultValue: "あとで"))
+                        Text(String(localized: "chatweb.onboarding.dismiss", defaultValue: "あとで"))
                             .font(.system(size: 15, weight: .medium))
                             .frame(maxWidth: .infinity)
                             .padding(.vertical, 12)
@@ -3517,16 +3671,16 @@ struct WisbeeOnboardingCard: View {
 
                     Button(action: onEnable) {
                         HStack(spacing: 6) {
-                            Image(systemName: "shield.checkmark.fill")
+                            Image(systemName: "cloud.fill")
                                 .font(.system(size: 14))
-                            Text(String(localized: "wisbee.onboarding.enable", defaultValue: "有効にする"))
+                            Text(String(localized: "chatweb.onboarding.enable", defaultValue: "有効にする"))
                                 .font(.system(size: 15, weight: .semibold))
                         }
                         .frame(maxWidth: .infinity)
                         .padding(.vertical, 12)
                         .background(
                             LinearGradient(
-                                colors: [.green, .mint],
+                                colors: [.indigo, .blue],
                                 startPoint: .leading,
                                 endPoint: .trailing
                             )
@@ -3544,7 +3698,7 @@ struct WisbeeOnboardingCard: View {
             )
             .overlay(
                 RoundedRectangle(cornerRadius: 20)
-                    .stroke(Color.green.opacity(0.2), lineWidth: 1)
+                    .stroke(Color.indigo.opacity(0.2), lineWidth: 1)
             )
             .padding(.horizontal, 16)
             .padding(.bottom, 100) // Above the input bar
@@ -3559,11 +3713,11 @@ struct WisbeeOnboardingCard: View {
         }
     }
 
-    private func wisbeeFeatureRow(icon: String, text: String) -> some View {
+    private func chatWebFeatureRow(icon: String, text: String) -> some View {
         HStack(spacing: 10) {
             Image(systemName: icon)
                 .font(.system(size: 14, weight: .medium))
-                .foregroundStyle(.green)
+                .foregroundStyle(.indigo)
                 .frame(width: 20)
 
             Text(text)

@@ -51,6 +51,16 @@ struct MessageBubble: View {
                         feedbackButtons
                     }
                 }
+
+                // Network metadata (P2P mesh info)
+                if let metadata = message.networkMetadata, metadata.networkType == .p2pMesh {
+                    networkMetadataView(metadata)
+                }
+
+                // Provider info (API usage metadata)
+                if let providerInfo = message.providerInfo {
+                    providerInfoView(providerInfo)
+                }
             }
 
             if isUser {
@@ -269,6 +279,25 @@ struct MessageBubble: View {
         return formatter.string(from: date)
     }
 
+    private func networkMetadataView(_ metadata: NetworkMetadata) -> some View {
+        HStack(spacing: 4) {
+            Image(systemName: "network")
+                .font(.system(size: 10))
+                .foregroundStyle(.mint)
+
+            Text("via \(metadata.processingDeviceName ?? "mesh") • \(metadata.hopCount) hops")
+                .font(.system(size: 10))
+                .foregroundStyle(.tertiary)
+
+            if let latency = metadata.latencyMs {
+                Text("• \(latency)ms")
+                    .font(.system(size: 10))
+                    .foregroundStyle(.tertiary)
+            }
+        }
+        .padding(.horizontal, 4)
+    }
+
     private var markdownContentView: some View {
         Text(message.content)
             .textSelection(.enabled)
@@ -474,6 +503,54 @@ struct CodeBlockView: View {
             withAnimation {
                 copied = false
             }
+        }
+    }
+}
+
+// MARK: - Provider Info View Extension
+
+extension MessageBubble {
+    private func providerInfoView(_ info: ProviderInfo) -> some View {
+        HStack(spacing: 6) {
+            // Provider icon
+            Image(systemName: providerIcon(info.provider))
+                .font(.system(size: 10))
+                .foregroundStyle(.tertiary)
+
+            // Model name
+            Text(info.model)
+                .font(.system(size: 10))
+                .foregroundStyle(.tertiary)
+
+            // Own key indicator
+            if info.usedOwnKey {
+                Image(systemName: "key.fill")
+                    .font(.system(size: 9))
+                    .foregroundStyle(.green)
+            }
+
+            // Cost display
+            if let apiCost = info.estimatedAPICost, apiCost > 0 {
+                Text("≈$\(String(format: "%.4f", apiCost))")
+                    .font(.system(size: 9))
+                    .foregroundStyle(.tertiary)
+            } else if !info.usedOwnKey && info.tokenCost > 0 {
+                Text("\(info.tokenCost) tokens")
+                    .font(.system(size: 9))
+                    .foregroundStyle(.tertiary)
+            }
+        }
+        .padding(.top, 4)
+    }
+
+    private func providerIcon(_ provider: String) -> String {
+        switch provider.lowercased() {
+        case "openai": return "brain"
+        case "anthropic": return "sparkles"
+        case "google": return "globe"
+        case "groq": return "bolt.fill"
+        case "chatweb": return "cloud.fill"
+        default: return "server.rack"
         }
     }
 }

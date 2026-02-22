@@ -13,13 +13,15 @@ struct SettingsView: View {
     @State private var showingPromptEditor = false
     @State private var showingChatWebLogin = false
     @AppStorage("custom_system_prompt") private var customSystemPrompt: String = ""
-    @AppStorage("wisbeeModeEnabled") private var wisbeeModeEnabled: Bool = false
+    @AppStorage("chatwebModeEnabled") private var chatwebModeEnabled: Bool = false
+    @State private var showDeveloperDashboard = UserDefaults.standard.bool(forKey: "showDeveloperDashboard")
+    @State private var showingTokenEconomyDashboard = false
 
     // Models grouped by category (ElioChat always first)
     private func modelsForCategory(_ category: ModelCategory) -> [ModelLoader.ModelInfo] {
         modelLoader.availableModels
             .filter { model in
-                model.category == category && !model.isTooHeavy(for: modelLoader.deviceTier)
+                model.category == category && (category == .recommended || !model.isTooHeavy(for: modelLoader.deviceTier))
             }
             .sorted { model1, model2 in
                 // ElioChat models come first
@@ -60,8 +62,8 @@ struct SettingsView: View {
                         headerView
                             .padding(.top, 8)
 
-                        // Wisbee Privacy Mode Section
-                        wisbeeSection
+                        // chatweb.ai Mode Section
+                        chatwebSection
 
                         // Model Section
                         modelSection
@@ -71,6 +73,9 @@ struct SettingsView: View {
 
                         // ChatWeb Section
                         chatWebSection
+
+                        // API Keys Section
+                        apiKeysSection
 
                         // Appearance Section
                         appearanceSection
@@ -93,10 +98,18 @@ struct SettingsView: View {
                         // Curator Section
                         curatorSection
 
+                        // Inference Server Section (iPhone & Mac)
+                        inferenceServerSection
+
                         #if targetEnvironment(macCatalyst)
                         // Mac Server Dashboard
                         macServerSection
                         #endif
+
+                        // Developer Dashboard (hidden, accessible via 10 taps)
+                        if showDeveloperDashboard {
+                            developerDashboardSection
+                        }
 
                         // About Section
                         aboutSection
@@ -219,6 +232,33 @@ struct SettingsView: View {
                 }
             }
 
+            // When chatweb mode is active, show notice instead of local model list
+            if chatwebModeEnabled {
+                HStack(spacing: 12) {
+                    Image(systemName: "cloud.fill")
+                        .font(.system(size: 20))
+                        .foregroundStyle(.indigo)
+
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text(String(localized: "settings.model.chatweb_active", defaultValue: "chatweb.ai モードが有効です"))
+                            .font(.system(size: 15, weight: .medium))
+                        Text(String(localized: "settings.model.chatweb_active.desc", defaultValue: "クラウドモデルを使用中のため、ローカルモデルの選択は無効です。上のChatWebセクションからモデルを変更できます。"))
+                            .font(.system(size: 12))
+                            .foregroundStyle(.secondary)
+                    }
+                }
+                .padding(16)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .background(
+                    RoundedRectangle(cornerRadius: 16)
+                        .fill(Color.indigo.opacity(0.08))
+                )
+                .overlay(
+                    RoundedRectangle(cornerRadius: 16)
+                        .stroke(Color.indigo.opacity(0.2), lineWidth: 1)
+                )
+            } else {
+
             // Device tier indicator
             HStack(spacing: 6) {
                 Image(systemName: "cpu")
@@ -278,6 +318,8 @@ struct SettingsView: View {
                 .font(.caption)
                 .foregroundStyle(.secondary)
                 .padding(.horizontal, 4)
+
+            } // end else (not chatwebModeEnabled)
         }
     }
 
@@ -357,83 +399,78 @@ struct SettingsView: View {
         )
     }
 
-    // MARK: - Wisbee Privacy Mode Section
+    // MARK: - chatweb.ai Mode Section
 
-    private var wisbeeSection: some View {
+    private var chatwebSection: some View {
         VStack(alignment: .leading, spacing: 12) {
-            ModernSectionHeader(title: "Wisbee", icon: "shield.checkmark.fill", gradient: [.green, .mint])
+            ModernSectionHeader(title: "chatweb.ai", icon: "cloud.fill", gradient: [.indigo, .blue])
 
             VStack(spacing: 0) {
                 // Main toggle
-                Toggle(isOn: $wisbeeModeEnabled) {
+                Toggle(isOn: $chatwebModeEnabled) {
                     HStack(spacing: 12) {
-                        Image(systemName: "lock.shield.fill")
+                        Image(systemName: "cloud.fill")
                             .font(.system(size: 18))
-                            .foregroundStyle(.green)
+                            .foregroundStyle(.indigo)
                             .frame(width: 28)
 
                         VStack(alignment: .leading, spacing: 2) {
-                            Text(String(localized: "wisbee.toggle.title", defaultValue: "Wisbee Mode"))
+                            Text(String(localized: "chatweb.toggle.title", defaultValue: "chatweb.ai モード"))
                                 .font(.system(size: 15, weight: .medium))
                                 .foregroundStyle(.primary)
 
-                            Text(String(localized: "wisbee.toggle.subtitle", defaultValue: "プライバシーモード: データは端末内で完結します"))
+                            Text(String(localized: "chatweb.toggle.subtitle", defaultValue: "高速・セキュアなクラウドAI"))
                                 .font(.system(size: 12))
                                 .foregroundStyle(.secondary)
                         }
                     }
                 }
                 .toggleStyle(.switch)
-                .tint(.green)
+                .tint(.indigo)
                 .padding(.horizontal, 16)
                 .padding(.vertical, 14)
-                .onChange(of: wisbeeModeEnabled) { _, newValue in
+                .onChange(of: chatwebModeEnabled) { _, newValue in
                     if newValue {
-                        ChatModeManager.shared.setMode(.wisbee)
+                        ChatModeManager.shared.setMode(.chatweb)
                     } else {
-                        // Revert to local mode when disabling Wisbee
                         ChatModeManager.shared.setMode(.local)
                     }
                 }
 
-                if wisbeeModeEnabled {
+                if chatwebModeEnabled {
                     Divider()
                         .padding(.leading, 56)
 
-                    // Privacy status indicator
+                    // Connection status indicator
                     HStack(spacing: 12) {
-                        Image(systemName: "checkmark.shield.fill")
+                        Image(systemName: "checkmark.icloud.fill")
                             .font(.system(size: 16))
-                            .foregroundStyle(.green)
+                            .foregroundStyle(.indigo)
                             .frame(width: 28)
 
                         VStack(alignment: .leading, spacing: 4) {
                             HStack(spacing: 6) {
                                 Circle()
-                                    .fill(.green)
+                                    .fill(.indigo)
                                     .frame(width: 8, height: 8)
-                                    .shadow(color: .green.opacity(0.5), radius: 4)
-                                Text(String(localized: "wisbee.status.active", defaultValue: "プライバシー保護中"))
+                                    .shadow(color: .indigo.opacity(0.5), radius: 4)
+                                Text(String(localized: "chatweb.status.connected", defaultValue: "chatweb.ai に接続中"))
                                     .font(.system(size: 14, weight: .medium))
-                                    .foregroundStyle(.green)
+                                    .foregroundStyle(.indigo)
                             }
 
                             VStack(alignment: .leading, spacing: 2) {
-                                privacyDetailRow(
-                                    icon: "iphone",
-                                    text: String(localized: "wisbee.detail.local_inference", defaultValue: "推論: 端末上で実行")
+                                chatwebDetailRow(
+                                    icon: "bolt.fill",
+                                    text: String(localized: "chatweb.detail.fast", defaultValue: "高速レスポンス")
                                 )
-                                privacyDetailRow(
-                                    icon: "externaldrive.fill",
-                                    text: String(localized: "wisbee.detail.local_storage", defaultValue: "履歴: ローカル保存のみ")
+                                chatwebDetailRow(
+                                    icon: "lock.shield.fill",
+                                    text: String(localized: "chatweb.detail.secure", defaultValue: "暗号化通信・セキュア")
                                 )
-                                privacyDetailRow(
-                                    icon: "icloud.slash.fill",
-                                    text: String(localized: "wisbee.detail.no_sync", defaultValue: "同期: 無効（データ送信なし）")
-                                )
-                                privacyDetailRow(
-                                    icon: "network.slash",
-                                    text: String(localized: "wisbee.detail.no_cloud", defaultValue: "クラウド: 使用しません")
+                                chatwebDetailRow(
+                                    icon: "sparkles",
+                                    text: String(localized: "chatweb.detail.multi_model", defaultValue: "マルチモデル対応")
                                 )
                             }
                         }
@@ -451,17 +488,17 @@ struct SettingsView: View {
             )
             .overlay(
                 RoundedRectangle(cornerRadius: 16)
-                    .stroke(wisbeeModeEnabled ? Color.green.opacity(0.3) : Color.subtleSeparator, lineWidth: wisbeeModeEnabled ? 1.5 : 0.5)
+                    .stroke(chatwebModeEnabled ? Color.indigo.opacity(0.3) : Color.subtleSeparator, lineWidth: chatwebModeEnabled ? 1.5 : 0.5)
             )
 
-            Text(String(localized: "wisbee.description", defaultValue: "Wisbee Mode ではすべてのAI処理が端末内で完結します。会話データがサーバーに送信されることはありません。"))
+            Text(String(localized: "chatweb.description", defaultValue: "chatweb.ai モードでは高速かつセキュアなクラウドAIを利用できます。複数のLLMモデルを即座に切り替えて使えます。"))
                 .font(.caption)
                 .foregroundStyle(.secondary)
                 .padding(.horizontal, 4)
         }
     }
 
-    private func privacyDetailRow(icon: String, text: String) -> some View {
+    private func chatwebDetailRow(icon: String, text: String) -> some View {
         HStack(spacing: 6) {
             Image(systemName: icon)
                 .font(.system(size: 10))
@@ -616,6 +653,34 @@ struct SettingsView: View {
                     .padding(.horizontal, 16)
                     .padding(.vertical, 10)
 
+                    // Credits remaining
+                    Divider()
+                        .padding(.leading, 56)
+
+                    HStack(spacing: 12) {
+                        Image(systemName: "bolt.fill")
+                            .font(.system(size: 16))
+                            .foregroundStyle(.indigo)
+                            .frame(width: 28)
+
+                        Text(String(localized: "chatweb.credits", defaultValue: "Credits"))
+                            .font(.system(size: 15))
+                            .foregroundStyle(.primary)
+
+                        Spacer()
+
+                        HStack(spacing: 4) {
+                            Text("\(syncManager.creditsRemaining)")
+                                .font(.system(size: 16, weight: .bold, design: .rounded))
+                                .foregroundStyle(.indigo)
+                            Text(String(localized: "chatweb.credits.unit", defaultValue: "remaining"))
+                                .font(.system(size: 12))
+                                .foregroundStyle(.secondary)
+                        }
+                    }
+                    .padding(.horizontal, 16)
+                    .padding(.vertical, 10)
+
                     // Show last model used
                     if let lastModel = syncManager.lastModelUsed {
                         Divider()
@@ -735,6 +800,275 @@ struct SettingsView: View {
         case "pro": return .purple
         case "starter": return .blue
         default: return .gray
+        }
+    }
+
+    // MARK: - API Keys Section
+
+    @State private var showingAPIKeyInput: APIKeyProvider?
+    @State private var apiKeyInput = ""
+    @State private var showingModelSelector: CloudProvider?
+
+    private var apiKeysSection: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            ModernSectionHeader(title: "API Keys", icon: "key.fill", gradient: [.blue, .cyan])
+
+            // Section description
+            VStack(alignment: .leading, spacing: 8) {
+                Text("自分のAPIキーで高性能AIを利用")
+                    .font(.subheadline.bold())
+                Text("Fast/Geniusモードで、プロバイダーの料金のみで利用可能。Elioトークン消費を抑えられます。")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+            }
+            .padding(.horizontal, 4)
+
+            VStack(spacing: 0) {
+                ForEach(APIKeyProvider.allCases) { provider in
+                    VStack(spacing: 0) {
+                        apiKeyRow(for: provider)
+
+                        // Model selector button (only for providers with models)
+                        if let cloudProvider = provider.toCloudProvider(),
+                           KeychainManager.shared.hasAPIKey(for: provider) {
+                            Divider()
+                                .padding(.leading, 56)
+
+                            Button(action: { showingModelSelector = cloudProvider }) {
+                                HStack(spacing: 12) {
+                                    Image(systemName: "cpu")
+                                        .font(.system(size: 18))
+                                        .foregroundStyle(.secondary)
+                                        .frame(width: 28)
+
+                                    VStack(alignment: .leading, spacing: 4) {
+                                        Text("モデル選択")
+                                            .font(.system(size: 15))
+                                            .foregroundStyle(.primary)
+
+                                        Text(currentModelName(for: cloudProvider))
+                                            .font(.system(size: 12))
+                                            .foregroundStyle(.secondary)
+                                    }
+
+                                    Spacer()
+
+                                    Image(systemName: "chevron.right")
+                                        .font(.system(size: 14, weight: .semibold))
+                                        .foregroundStyle(.secondary)
+                                }
+                                .padding()
+                                .contentShape(Rectangle())
+                            }
+                            .buttonStyle(.plain)
+                        }
+                    }
+
+                    if provider != APIKeyProvider.allCases.last {
+                        Divider()
+                            .padding(.leading, 56)
+                    }
+                }
+            }
+            .background(
+                RoundedRectangle(cornerRadius: 16)
+                    .fill(Color(.secondarySystemBackground))
+            )
+            .overlay(
+                RoundedRectangle(cornerRadius: 16)
+                    .stroke(Color.subtleSeparator, lineWidth: 0.5)
+            )
+
+            // Help link
+            if let helpURL = URL(string: "https://docs.elio.love/api-keys") {
+                Link(destination: helpURL) {
+                    HStack {
+                        Image(systemName: "questionmark.circle")
+                        Text("APIキーの取得方法")
+                        Spacer()
+                        Image(systemName: "arrow.up.right.square")
+                    }
+                    .font(.caption)
+                    .foregroundStyle(.blue)
+                    .padding(.horizontal, 4)
+                }
+            }
+        }
+        .sheet(item: $showingAPIKeyInput) { provider in
+            apiKeyInputSheet(for: provider)
+        }
+        .sheet(item: $showingModelSelector) { cloudProvider in
+            ModelSelectorView(
+                provider: cloudProvider,
+                selectedModel: Binding(
+                    get: { currentModelId(for: cloudProvider) },
+                    set: { newModelId in saveModel(newModelId, for: cloudProvider) }
+                )
+            )
+        }
+    }
+
+    private func currentModelId(for provider: CloudProvider) -> String {
+        let key = "selected_model_\(provider.rawValue)"
+        return UserDefaults.standard.string(forKey: key) ?? provider.defaultModel
+    }
+
+    private func currentModelName(for provider: CloudProvider) -> String {
+        let modelId = currentModelId(for: provider)
+        // Simple name extraction (just use the ID for now)
+        return modelId
+    }
+
+    private func saveModel(_ modelId: String, for provider: CloudProvider) {
+        let key = "selected_model_\(provider.rawValue)"
+        UserDefaults.standard.set(modelId, forKey: key)
+    }
+
+    private func apiKeyRow(for provider: APIKeyProvider) -> some View {
+        Button(action: { showingAPIKeyInput = provider }) {
+            HStack(spacing: 12) {
+                // Icon
+                Image(systemName: "key.fill")
+                    .font(.system(size: 18))
+                    .foregroundStyle(KeychainManager.shared.hasAPIKey(for: provider) ? .green : .secondary)
+                    .frame(width: 28)
+
+                VStack(alignment: .leading, spacing: 4) {
+                    Text(provider.displayName)
+                        .font(.system(size: 15))
+                        .foregroundStyle(.primary)
+
+                    Text(provider.description)
+                        .font(.system(size: 12))
+                        .foregroundStyle(.secondary)
+                        .lineLimit(1)
+                }
+
+                Spacer()
+
+                if KeychainManager.shared.hasAPIKey(for: provider) {
+                    HStack(spacing: 4) {
+                        Image(systemName: "checkmark.circle.fill")
+                            .foregroundStyle(.green)
+                        Text("設定済み")
+                            .font(.caption)
+                            .foregroundStyle(.green)
+                    }
+                } else {
+                    Image(systemName: "chevron.right")
+                        .font(.system(size: 14, weight: .semibold))
+                        .foregroundStyle(.secondary)
+                }
+            }
+            .padding()
+            .contentShape(Rectangle())
+        }
+        .buttonStyle(.plain)
+    }
+
+    private func apiKeyInputSheet(for provider: APIKeyProvider) -> some View {
+        NavigationView {
+            VStack(spacing: 24) {
+                // Header
+                VStack(spacing: 12) {
+                    Image(systemName: "key.fill")
+                        .font(.system(size: 48))
+                        .foregroundStyle(.blue)
+
+                    Text(provider.displayName)
+                        .font(.title2.bold())
+
+                    Text(provider.description)
+                        .font(.subheadline)
+                        .foregroundStyle(.secondary)
+                        .multilineTextAlignment(.center)
+                }
+                .padding(.top, 24)
+
+                // Input
+                VStack(alignment: .leading, spacing: 8) {
+                    Text("API Key")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+
+                    if KeychainManager.shared.hasAPIKey(for: provider) {
+                        HStack {
+                            Text("••••••••••••••••••••")
+                                .foregroundStyle(.secondary)
+                            Spacer()
+                            Button("削除") {
+                                try? KeychainManager.shared.deleteAPIKey(for: provider)
+                                showingAPIKeyInput = nil
+                            }
+                            .foregroundStyle(.red)
+                        }
+                        .padding()
+                        .background(
+                            RoundedRectangle(cornerRadius: 12)
+                                .fill(Color(.tertiarySystemBackground))
+                        )
+                    } else {
+                        TextField(provider.placeholder, text: $apiKeyInput)
+                            .textFieldStyle(.plain)
+                            .font(.system(.body, design: .monospaced))
+                            .padding()
+                            .background(
+                                RoundedRectangle(cornerRadius: 12)
+                                    .fill(Color(.tertiarySystemBackground))
+                            )
+                            .autocapitalization(.none)
+                            .autocorrectionDisabled()
+                    }
+                }
+
+                // Get API Key link
+                if let url = provider.helpURL {
+                    Link(destination: url) {
+                        HStack(spacing: 8) {
+                            Image(systemName: "link")
+                            Text("API Keyを取得")
+                            Image(systemName: "arrow.up.right.square")
+                        }
+                        .font(.subheadline)
+                        .foregroundStyle(.blue)
+                    }
+                }
+
+                Spacer()
+
+                // Save button
+                if !KeychainManager.shared.hasAPIKey(for: provider) {
+                    Button(action: {
+                        try? KeychainManager.shared.setAPIKey(apiKeyInput, for: provider)
+                        apiKeyInput = ""
+                        showingAPIKeyInput = nil
+                    }) {
+                        Text("保存")
+                            .font(.headline)
+                            .foregroundStyle(.white)
+                            .frame(maxWidth: .infinity)
+                            .padding(.vertical, 16)
+                            .background(
+                                RoundedRectangle(cornerRadius: 14)
+                                    .fill(apiKeyInput.isEmpty ? Color.gray : Color.blue)
+                            )
+                    }
+                    .disabled(apiKeyInput.isEmpty)
+                }
+            }
+            .padding()
+            .navigationTitle("API Key")
+            #if !targetEnvironment(macCatalyst)
+            .navigationBarTitleDisplayMode(.inline)
+            #endif
+            .toolbar {
+                ToolbarItem(placement: .cancellationAction) {
+                    Button("閉じる") {
+                        apiKeyInput = ""
+                        showingAPIKeyInput = nil
+                    }
+                }
+            }
         }
     }
 
@@ -1277,6 +1611,91 @@ struct SettingsView: View {
         }
     }
 
+    // MARK: - Inference Server Section
+
+    private var inferenceServerSection: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            ModernSectionHeader(
+                title: String(localized: "settings.inference.server", defaultValue: "推論サーバー"),
+                icon: "server.rack",
+                gradient: [.blue, .purple]
+            )
+
+            NavigationLink(destination: InferenceServerSettingsView()) {
+                ModernSettingsRow(
+                    icon: "server.rack",
+                    iconColor: .blue,
+                    title: String(localized: "settings.inference.server.title", defaultValue: "GPUを共有してトークンを獲得"),
+                    subtitle: String(localized: "settings.inference.server.subtitle", defaultValue: "他のユーザーのAIリクエストを処理")
+                ) {
+                    Image(systemName: "chevron.right")
+                        .font(.system(size: 12, weight: .semibold))
+                        .foregroundStyle(.tertiary)
+                }
+            }
+            .buttonStyle(.plain)
+            .modernCard(cornerRadius: 16)
+        }
+    }
+
+    // MARK: - Developer Dashboard Section
+
+    private var developerDashboardSection: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            HStack {
+                Image(systemName: "chart.xyaxis.line")
+                    .foregroundStyle(.purple)
+                Text("開発者ダッシュボード")
+                    .font(.headline)
+            }
+
+            Button(action: { showingTokenEconomyDashboard = true }) {
+                HStack(spacing: 12) {
+                    Image(systemName: "chart.bar.fill")
+                        .font(.system(size: 18))
+                        .foregroundStyle(.white)
+                        .frame(width: 36, height: 36)
+                        .background(
+                            LinearGradient(
+                                colors: [.purple, .pink],
+                                startPoint: .topLeading,
+                                endPoint: .bottomTrailing
+                            )
+                        )
+                        .clipShape(RoundedRectangle(cornerRadius: 10))
+
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text("Token Economy Dashboard")
+                            .font(.system(size: 15, weight: .semibold))
+                        Text("収益性・利用統計・最適化提案")
+                            .font(.system(size: 12))
+                            .foregroundStyle(.secondary)
+                    }
+
+                    Spacer()
+
+                    Image(systemName: "chevron.right")
+                        .font(.system(size: 14, weight: .semibold))
+                        .foregroundStyle(.secondary)
+                }
+                .padding()
+                .background(
+                    RoundedRectangle(cornerRadius: 14)
+                        .fill(Color(.tertiarySystemBackground))
+                )
+            }
+            .buttonStyle(.plain)
+
+            Text("💡 このセクションは開発者向けです")
+                .font(.caption)
+                .foregroundStyle(.secondary)
+                .padding(.horizontal, 4)
+        }
+        // .sheet(isPresented: $showingTokenEconomyDashboard) {
+        //     TokenEconomyDashboardView()
+        // }
+    }
+
     // MARK: - About Section
 
     @State private var showingAbout = false
@@ -1284,13 +1703,19 @@ struct SettingsView: View {
     @State private var showingResetAlert = false
     @State private var showingResetWithModelsAlert = false
     @State private var deleteModelsOnReset = false
+    @State private var versionTapCount = 0
+    @State private var versionTapTask: Task<Void, Never>?
 
     private var aboutSection: some View {
         VStack(alignment: .leading, spacing: 12) {
             ModernSectionHeader(title: String(localized: "settings.about.section"), icon: "info.circle", gradient: [.blue, .indigo])
 
             VStack(spacing: 0) {
-                AboutRow(title: String(localized: "settings.version"), value: "1.0.0", icon: "number")
+                // Version row with tap detection for developer dashboard
+                Button(action: handleVersionTap) {
+                    AboutRow(title: String(localized: "settings.version"), value: "1.0.0", icon: "number")
+                }
+                .buttonStyle(.plain)
 
                 Divider()
                     .padding(.leading, 52)
@@ -1335,6 +1760,31 @@ struct SettingsView: View {
         }
         .sheet(isPresented: $showingAbout) {
             AboutView()
+        }
+    }
+
+    private func handleVersionTap() {
+        versionTapCount += 1
+
+        // Cancel previous reset task
+        versionTapTask?.cancel()
+
+        // Reset tap count after 2 seconds
+        versionTapTask = Task {
+            try? await Task.sleep(nanoseconds: 2_000_000_000)
+            versionTapCount = 0
+        }
+
+        // Enable developer dashboard after 10 taps
+        if versionTapCount >= 10 {
+            showDeveloperDashboard = true
+            UserDefaults.standard.set(true, forKey: "showDeveloperDashboard")
+            versionTapCount = 0
+            versionTapTask?.cancel()
+
+            // Haptic feedback
+            let generator = UINotificationFeedbackGenerator()
+            generator.notificationOccurred(.success)
         }
     }
 
@@ -1511,8 +1961,8 @@ struct SettingsView: View {
         // Reset inference mode
         appState.setInferenceMode(.auto)
 
-        // Reset Wisbee mode
-        wisbeeModeEnabled = false
+        // Reset chatweb.ai mode
+        chatwebModeEnabled = false
         ChatModeManager.shared.setMode(.local)
 
         // Clear notes

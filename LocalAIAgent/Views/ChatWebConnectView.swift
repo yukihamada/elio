@@ -7,6 +7,10 @@ struct ChatWebConnectView: View {
     var syncManager: SyncManager?
     @Environment(\.dismiss) private var dismiss
     @State private var showingLoginSheet = false
+    @State private var showingBonusAlert = false
+    @State private var showingKeyActions = false
+    @ObservedObject private var tokenManager = TokenManager.shared
+    @ObservedObject private var chatWebAPIKeyManager = ChatWebAPIKeyManager.shared
 
     private var chatWebURL: String {
         "https://chatweb.ai"
@@ -15,6 +19,21 @@ struct ChatWebConnectView: View {
     private var deepLinkURL: String {
         // Deep link for ChatWeb.ai to connect back to ElioChat
         "https://chatweb.ai/?ref=elio&channel=elio"
+    }
+
+    private var hasReceivedBonus: Bool {
+        UserDefaults.standard.bool(forKey: "chatweb_connection_bonus_received")
+    }
+
+    private func grantConnectionBonus() {
+        guard !hasReceivedBonus else { return }
+        tokenManager.earn(10000, reason: .chatWebBonus)
+        UserDefaults.standard.set(true, forKey: "chatweb_connection_bonus_received")
+        showingBonusAlert = true
+
+        // Haptic feedback
+        let generator = UINotificationFeedbackGenerator()
+        generator.notificationOccurred(.success)
     }
 
     var body: some View {
@@ -44,6 +63,45 @@ struct ChatWebConnectView: View {
                             .multilineTextAlignment(.center)
                     }
                     .padding(.top, 16)
+
+                    // Device API Key Status
+                    if let apiKey = chatWebAPIKeyManager.apiKey {
+                        HStack(spacing: 12) {
+                            Image(systemName: "checkmark.shield.fill")
+                                .font(.system(size: 20))
+                                .foregroundStyle(.green)
+
+                            VStack(alignment: .leading, spacing: 4) {
+                                Text("デバイス接続済み")
+                                    .font(.system(size: 15, weight: .semibold))
+                                Text("API Key: \(apiKey.prefix(12))...")
+                                    .font(.system(size: 12))
+                                    .foregroundStyle(.secondary)
+                            }
+
+                            Spacer()
+
+                            Button(action: { showingKeyActions = true }) {
+                                Image(systemName: "ellipsis.circle")
+                                    .font(.system(size: 18))
+                            }
+                        }
+                        .padding(12)
+                        .background(Color.green.opacity(0.1))
+                        .clipShape(RoundedRectangle(cornerRadius: 12))
+                        .padding(.horizontal, 16)
+                    } else if chatWebAPIKeyManager.keyStatus == .generating {
+                        HStack(spacing: 12) {
+                            ProgressView()
+                            Text("デバイスキーを生成中...")
+                                .font(.system(size: 14))
+                                .foregroundStyle(.secondary)
+                        }
+                        .padding(12)
+                        .background(Color.orange.opacity(0.1))
+                        .clipShape(RoundedRectangle(cornerRadius: 12))
+                        .padding(.horizontal, 16)
+                    }
 
                     // QR Code to open ChatWeb.ai
                     VStack(spacing: 12) {
@@ -75,11 +133,37 @@ struct ChatWebConnectView: View {
                     )
                     .padding(.horizontal, 16)
 
+                    // First-time connection bonus badge
+                    if !hasReceivedBonus {
+                        HStack(spacing: 8) {
+                            Image(systemName: "gift.fill")
+                                .foregroundStyle(.yellow)
+                            Text("初回接続で10,000トークンプレゼント！")
+                                .font(.system(size: 14, weight: .semibold))
+                        }
+                        .padding(12)
+                        .frame(maxWidth: .infinity)
+                        .background(
+                            LinearGradient(
+                                colors: [.yellow.opacity(0.2), .orange.opacity(0.2)],
+                                startPoint: .leading,
+                                endPoint: .trailing
+                            )
+                        )
+                        .clipShape(RoundedRectangle(cornerRadius: 12))
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 12)
+                                .stroke(Color.yellow.opacity(0.5), lineWidth: 1)
+                        )
+                        .padding(.horizontal, 16)
+                    }
+
                     // Quick actions
                     VStack(spacing: 12) {
                         // One-click cloud mode
                         Button(action: {
                             chatModeManager.setMode(.chatweb)
+                            grantConnectionBonus()
                             dismiss()
                         }) {
                             HStack(spacing: 12) {
@@ -220,6 +304,28 @@ struct ChatWebConnectView: View {
                     ChatWebLoginView()
                         .environmentObject(sm)
                 }
+            }
+            .confirmationDialog("デバイスAPIキー", isPresented: $showingKeyActions) {
+                Button("APIキーをコピー") {
+                    UIPasteboard.general.string = chatWebAPIKeyManager.apiKey
+                }
+
+                Button("キーを再生成") {
+                    Task {
+                        try? await chatWebAPIKeyManager.regenerateKey()
+                    }
+                }
+
+                Button("キーを削除", role: .destructive) {
+                    try? chatWebAPIKeyManager.deleteKey()
+                }
+
+                Button("キャンセル", role: .cancel) {}
+            }
+            .alert("🎉 ボーナス獲得！", isPresented: $showingBonusAlert) {
+                Button("OK") {}
+            } message: {
+                Text("ChatWeb.ai接続ボーナスとして10,000トークンを獲得しました！\n\nクラウドAIでより高度な会話をお楽しみください。")
             }
         }
     }
