@@ -39,6 +39,11 @@ final class PrivateServerManager: ObservableObject {
     private let statsKey = "p2p_server_stats"
     private var lastStatsDate: Date?
 
+    // Mesh network support
+    var serverPeerConnections: [String: NWConnection] = [:]  // deviceId -> connection (internal for MeshP2PManager)
+    private var connectedPeers: [P2PPeerDiscovery] = []
+    private let deviceIdKey = "p2p_device_id"
+
     private init() {
         loadTodayStats()
         loadOrGeneratePairingCode()
@@ -211,6 +216,44 @@ final class PrivateServerManager: ObservableObject {
                 recordSuccessfulRequest(isRelay: true)
             case .relayResponse:
                 break // Server doesn't process relay responses
+            case .meshForwardRequest:
+                guard let request = try? JSONDecoder().decode(P2PMeshForwardRequest.self, from: envelope.payload) else {
+                    sendError(to: connection, message: "Invalid mesh forward request")
+                    return
+                }
+                await handleMeshForwardRequest(request, from: connection)
+            case .meshForwardResponse:
+                break // Server doesn't process mesh forward responses directly
+            case .peerDiscovery:
+                guard let discovery = try? JSONDecoder().decode(P2PPeerDiscovery.self, from: envelope.payload) else {
+                    return
+                }
+                await handlePeerDiscovery(discovery, from: connection)
+            case .topologyUpdate:
+                break // Reserved for future topology updates
+            case .speculativeVerifyRequest:
+                guard let request = try? JSONDecoder().decode(SpeculativeVerifyRequestWithId.self, from: envelope.payload) else {
+                    sendError(to: connection, message: "Invalid speculative verify request")
+                    return
+                }
+                await handleSpeculativeVerify(request, from: connection)
+            case .speculativeVerifyResponse:
+                guard let response = try? JSONDecoder().decode(SpeculativeVerifyResponseWithId.self, from: envelope.payload) else {
+                    return
+                }
+                // Forward to SpeculativeBackend (via ChatModeManager)
+                await ChatModeManager.shared.handleSpeculativeVerificationResponse(response)
+            case .directMessage:
+                guard let message = try? JSONDecoder().decode(DirectMessage.self, from: envelope.payload) else {
+                    return
+                }
+                await MessagingManager.shared.receiveMessage(message)
+            case .friendRequest:
+                // TODO: Handle friend request
+                break
+            case .friendAcceptance:
+                // TODO: Handle friend acceptance
+                break
             }
             return
         }
@@ -231,6 +274,12 @@ final class PrivateServerManager: ObservableObject {
             return
         }
 
+        // Check payment
+        guard checkPayment(request) else {
+            sendError(to: connection, message: "Insufficient tokens")
+            return
+        }
+
         // Process the inference request
         guard let backend = localBackend, backend.isReady else {
             sendError(to: connection, message: "Server not ready")
@@ -240,7 +289,7 @@ final class PrivateServerManager: ObservableObject {
         do {
             // Generate response with streaming
             var fullResponse = ""
-            let response = try await backend.generate(
+            _ = try await backend.generate(
                 messages: request.messages,
                 systemPrompt: request.systemPrompt,
                 settings: request.settings
@@ -287,9 +336,36 @@ final class PrivateServerManager: ObservableObject {
     }
 
     private func verifyRequest(_ request: P2PInferenceRequest) -> Bool {
-        // TODO: Implement proper signature verification
-        // For now, just check that the request has required fields
-        return !request.messages.isEmpty
+        let config = InferenceServerConfig.shared
+
+        // Check server mode
+        switch config.serverMode {
+        case .private:
+            // Only allow trusted devices
+            // TODO: Implement trust list
+            return !request.messages.isEmpty
+        case .friendsOnly:
+            // Allow friends + trusted
+            // TODO: Implement friends list
+            return !request.messages.isEmpty
+        case .public:
+            // Allow anyone
+            return !request.messages.isEmpty
+        }
+    }
+
+    /// Check if requester can afford the request
+    private func checkPayment(_ request: P2PInferenceRequest) -> Bool {
+        let config = InferenceServerConfig.shared
+
+        // If server is free, no payment check needed
+        if config.pricePerRequest == 0 {
+            return true
+        }
+
+        // TODO: Implement payment verification with TokenManager
+        // For now, accept all requests
+        return true
     }
 
     // MARK: - Statistics
@@ -298,7 +374,20 @@ final class PrivateServerManager: ObservableObject {
         resetStatsIfNewDay()
 
         todayRequestsServed += 1
-        let earnRate = isRelay ? TokenManager.relayEarnRate : TokenManager.p2pEarnRate
+
+        // Earn tokens based on server configuration
+        let config = InferenceServerConfig.shared
+        let earnRate: Int
+        if isRelay {
+            earnRate = TokenManager.relayEarnRate
+        } else if config.pricePerRequest > 0 {
+            // Use configured price
+            earnRate = config.pricePerRequest
+        } else {
+            // Use default P2P rate
+            earnRate = TokenManager.p2pEarnRate
+        }
+
         todayTokensEarned += earnRate
 
         // Earn token
@@ -410,6 +499,435 @@ final class PrivateServerManager: ObservableObject {
 
         serverAddress = address.map { "\($0):\(defaultPort)" }
     }
+
+    // MARK: - Mesh Network Support
+
+    /// Get or create unique device ID
+    private func getDeviceId() -> String {
+        if let existingId = UserDefaults.standard.string(forKey: deviceIdKey) {
+            return existingId
+        }
+        let newId = UUID().uuidString
+        UserDefaults.standard.set(newId, forKey: deviceIdKey)
+        return newId
+    }
+
+    /// Get available memory in GB
+    private func getAvailableMemory() -> Float {
+        var info = mach_task_basic_info()
+        var count = mach_msg_type_number_t(MemoryLayout<mach_task_basic_info>.size) / 4
+        let kerr: kern_return_t = withUnsafeMutablePointer(to: &info) {
+            $0.withMemoryRebound(to: integer_t.self, capacity: 1) {
+                task_info(mach_task_self_, task_flavor_t(MACH_TASK_BASIC_INFO), $0, &count)
+            }
+        }
+
+        if kerr == KERN_SUCCESS {
+            let usedMemoryBytes = Float(info.resident_size)
+            let usedMemoryGB = usedMemoryBytes / (1024 * 1024 * 1024)
+
+            // Get total physical memory
+            let totalMemoryBytes = Float(ProcessInfo.processInfo.physicalMemory)
+            let totalMemoryGB = totalMemoryBytes / (1024 * 1024 * 1024)
+
+            return max(0, totalMemoryGB - usedMemoryGB)
+        }
+
+        return 1.0 // Default fallback
+    }
+
+    /// Get current battery level and charging status
+    private func getBatteryInfo() -> (level: Float?, isCharging: Bool) {
+        #if os(iOS)
+        UIDevice.current.isBatteryMonitoringEnabled = true
+        let level = UIDevice.current.batteryLevel
+        let isCharging = UIDevice.current.batteryState == .charging || UIDevice.current.batteryState == .full
+        return (level >= 0 ? level : nil, isCharging)
+        #else
+        return (nil, false)
+        #endif
+    }
+
+    /// Get current compute capability
+    func getComputeCapability() -> ComputeCapability {
+        let batteryInfo = getBatteryInfo()
+        return ComputeCapability(
+            hasLocalLLM: localBackend?.isReady ?? false,
+            modelName: nil,  // TODO: Get from AppState when available
+            freeMemoryGB: getAvailableMemory(),
+            batteryLevel: batteryInfo.level,
+            isCharging: batteryInfo.isCharging,
+            cpuCores: ProcessInfo.processInfo.processorCount
+        )
+    }
+
+    /// Connect to another P2P server (for mesh networking)
+    func connectToServerPeer(_ server: P2PServer) async throws {
+        let deviceId = server.id
+
+        // Don't connect if already connected
+        if serverPeerConnections[deviceId] != nil {
+            return
+        }
+
+        let parameters = NWParameters.tcp
+        let connection = NWConnection(to: server.endpoint, using: parameters)
+
+        try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<Void, Error>) in
+            connection.stateUpdateHandler = { [weak self] state in
+                Task { @MainActor in
+                    switch state {
+                    case .ready:
+                        self?.serverPeerConnections[deviceId] = connection
+                        // Send peer discovery
+                        Task {
+                            try? await self?.sendPeerDiscovery(to: connection)
+                        }
+                        continuation.resume()
+                    case .failed(_):
+                        continuation.resume(throwing: P2PServerError.connectionFailed)
+                    case .cancelled:
+                        continuation.resume(throwing: P2PServerError.connectionFailed)
+                    default:
+                        break
+                    }
+                }
+            }
+            connection.start(queue: .main)
+        }
+
+        // Start receiving messages from peer
+        receivePeerMessage(from: connection, deviceId: deviceId)
+    }
+
+    /// Send peer discovery announcement
+    private func sendPeerDiscovery(to connection: NWConnection) async throws {
+        let discovery = P2PPeerDiscovery(
+            deviceId: getDeviceId(),
+            deviceName: getDeviceName(),
+            computeCapability: getComputeCapability(),
+            connectedPeers: Array(serverPeerConnections.keys)
+        )
+
+        let envelope = P2PEnvelope(
+            type: .peerDiscovery,
+            payload: try JSONEncoder().encode(discovery)
+        )
+
+        let data = try JSONEncoder().encode(envelope)
+        var framedData = data
+        framedData.append(contentsOf: [0x0A])
+
+        try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<Void, Error>) in
+            connection.send(content: framedData, completion: .contentProcessed { error in
+                if let error = error {
+                    continuation.resume(throwing: error)
+                } else {
+                    continuation.resume()
+                }
+            })
+        }
+    }
+
+    /// Receive messages from peer server
+    private func receivePeerMessage(from connection: NWConnection, deviceId: String) {
+        connection.receive(minimumIncompleteLength: 1, maximumLength: 65536) { [weak self] data, _, isComplete, error in
+            Task { @MainActor in
+                guard let self = self else { return }
+
+                if let data = data, !data.isEmpty {
+                    await self.processPeerMessage(data, from: connection, deviceId: deviceId)
+                }
+
+                if let error = error {
+                    print("[P2P Server] Peer receive error: \(error)")
+                    self.serverPeerConnections.removeValue(forKey: deviceId)
+                    return
+                }
+
+                if isComplete {
+                    self.serverPeerConnections.removeValue(forKey: deviceId)
+                } else {
+                    // Continue receiving
+                    self.receivePeerMessage(from: connection, deviceId: deviceId)
+                }
+            }
+        }
+    }
+
+    /// Process message from peer server
+    private func processPeerMessage(_ data: Data, from connection: NWConnection, deviceId: String) async {
+        guard let envelope = try? JSONDecoder().decode(P2PEnvelope.self, from: data) else {
+            return
+        }
+
+        switch envelope.type {
+        case .peerDiscovery:
+            guard let discovery = try? JSONDecoder().decode(P2PPeerDiscovery.self, from: envelope.payload) else {
+                return
+            }
+            // Update peer information
+            if let index = connectedPeers.firstIndex(where: { $0.deviceId == discovery.deviceId }) {
+                connectedPeers[index] = discovery
+            } else {
+                connectedPeers.append(discovery)
+            }
+
+        case .meshForwardRequest:
+            guard let request = try? JSONDecoder().decode(P2PMeshForwardRequest.self, from: envelope.payload) else {
+                return
+            }
+            await handleMeshForwardRequest(request, from: connection)
+
+        default:
+            break
+        }
+    }
+
+    /// Handle mesh forward request
+    private func handleMeshForwardRequest(_ request: P2PMeshForwardRequest, from connection: NWConnection) async {
+        let myDeviceId = getDeviceId()
+
+        // Check for loops
+        if request.visitedNodes.contains(myDeviceId) {
+            let errorResponse = P2PMeshForwardResponse(
+                requestId: request.requestId,
+                response: "",
+                processingDeviceName: getDeviceName(),
+                routePath: request.visitedNodes + [myDeviceId],
+                hopCount: request.visitedNodes.count,
+                error: "Loop detected"
+            )
+            await sendMeshResponse(errorResponse, to: connection)
+            return
+        }
+
+        // Check hop limit
+        if request.visitedNodes.count >= request.maxHops {
+            let errorResponse = P2PMeshForwardResponse(
+                requestId: request.requestId,
+                response: "",
+                processingDeviceName: getDeviceName(),
+                routePath: request.visitedNodes + [myDeviceId],
+                hopCount: request.visitedNodes.count,
+                error: "Max hops exceeded"
+            )
+            await sendMeshResponse(errorResponse, to: connection)
+            return
+        }
+
+        // Try to process locally if we have local LLM
+        if let backend = localBackend, backend.isReady {
+            do {
+                var fullResponse = ""
+                _ = try await backend.generate(
+                    messages: request.originalRequest.messages,
+                    systemPrompt: request.originalRequest.systemPrompt,
+                    settings: request.originalRequest.settings
+                ) { token in
+                    fullResponse += token
+                }
+
+                let successResponse = P2PMeshForwardResponse(
+                    requestId: request.requestId,
+                    response: fullResponse,
+                    processingDeviceName: getDeviceName(),
+                    routePath: request.visitedNodes + [myDeviceId],
+                    hopCount: request.visitedNodes.count,
+                    error: nil
+                )
+
+                await sendMeshResponse(successResponse, to: connection)
+
+                // Record stats and earn token
+                recordSuccessfulRequest()
+
+            } catch {
+                // If local processing fails, try forwarding to peers
+                await forwardToNextPeer(request, from: connection)
+            }
+        } else {
+            // No local LLM, forward to peers
+            await forwardToNextPeer(request, from: connection)
+        }
+    }
+
+    /// Forward request to next available peer
+    private func forwardToNextPeer(_ request: P2PMeshForwardRequest, from originalConnection: NWConnection) async {
+        let myDeviceId = getDeviceId()
+        let updatedVisited = request.visitedNodes + [myDeviceId]
+
+        // Find best peer to forward to (not in visited list)
+        let availablePeers = connectedPeers.filter { !updatedVisited.contains($0.deviceId) }
+        guard let bestPeer = availablePeers.max(by: { $0.computeCapability.score < $1.computeCapability.score }) else {
+            // No available peers
+            let errorResponse = P2PMeshForwardResponse(
+                requestId: request.requestId,
+                response: "",
+                processingDeviceName: getDeviceName(),
+                routePath: updatedVisited,
+                hopCount: updatedVisited.count - 1,
+                error: "No available peers"
+            )
+            await sendMeshResponse(errorResponse, to: originalConnection)
+            return
+        }
+
+        guard let peerConnection = serverPeerConnections[bestPeer.deviceId] else {
+            let errorResponse = P2PMeshForwardResponse(
+                requestId: request.requestId,
+                response: "",
+                processingDeviceName: getDeviceName(),
+                routePath: updatedVisited,
+                hopCount: updatedVisited.count - 1,
+                error: "Peer connection lost"
+            )
+            await sendMeshResponse(errorResponse, to: originalConnection)
+            return
+        }
+
+        // Forward the request
+        let forwardedRequest = P2PMeshForwardRequest(
+            requestId: request.requestId,
+            originalRequest: request.originalRequest,
+            visitedNodes: updatedVisited,
+            maxHops: request.maxHops
+        )
+
+        do {
+            let envelope = P2PEnvelope(
+                type: .meshForwardRequest,
+                payload: try JSONEncoder().encode(forwardedRequest)
+            )
+            let data = try JSONEncoder().encode(envelope)
+            var framedData = data
+            framedData.append(contentsOf: [0x0A])
+
+            try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<Void, Error>) in
+                peerConnection.send(content: framedData, completion: .contentProcessed { error in
+                    if let error = error {
+                        continuation.resume(throwing: error)
+                    } else {
+                        continuation.resume()
+                    }
+                })
+            }
+        } catch {
+            let errorResponse = P2PMeshForwardResponse(
+                requestId: request.requestId,
+                response: "",
+                processingDeviceName: getDeviceName(),
+                routePath: updatedVisited,
+                hopCount: updatedVisited.count - 1,
+                error: "Forward failed: \(error.localizedDescription)"
+            )
+            await sendMeshResponse(errorResponse, to: originalConnection)
+        }
+    }
+
+    /// Send mesh response back
+    private func sendMeshResponse(_ response: P2PMeshForwardResponse, to connection: NWConnection) async {
+        do {
+            let envelope = P2PEnvelope(
+                type: .meshForwardResponse,
+                payload: try JSONEncoder().encode(response)
+            )
+            let data = try JSONEncoder().encode(envelope)
+            var framedData = data
+            framedData.append(contentsOf: [0x0A])
+
+            connection.send(content: framedData, completion: .contentProcessed { error in
+                if let error = error {
+                    print("[P2P Server] Failed to send mesh response: \(error)")
+                }
+            })
+        } catch {
+            print("[P2P Server] Failed to encode mesh response: \(error)")
+        }
+    }
+
+    /// Handle peer discovery announcement
+    private func handlePeerDiscovery(_ discovery: P2PPeerDiscovery, from connection: NWConnection) async {
+        // Store or update peer information
+        if let index = connectedPeers.firstIndex(where: { $0.deviceId == discovery.deviceId }) {
+            // Update existing peer
+            connectedPeers[index] = discovery
+        } else {
+            // Add new peer
+            connectedPeers.append(discovery)
+        }
+
+        print("[P2P Server] Peer discovered: \(discovery.deviceName) (LLM: \(discovery.computeCapability.hasLocalLLM))")
+
+        // Store connection for later use
+        serverPeerConnections[discovery.deviceId] = connection
+
+        // Send our own discovery back
+        do {
+            try await sendPeerDiscovery(to: connection)
+        } catch {
+            print("[P2P Server] Failed to send peer discovery: \(error)")
+        }
+    }
+
+    // MARK: - Speculative Decoding Support
+
+    /// Handle speculative verification request
+    private func handleSpeculativeVerify(
+        _ request: SpeculativeVerifyRequestWithId,
+        from connection: NWConnection
+    ) async {
+        guard let backend = localBackend, backend.isReady else {
+            sendError(to: connection, message: "Local model not ready")
+            return
+        }
+
+        // NOTE: This is a simplified implementation that uses LocalBackend's generate method
+        // In the future, we should expose LlamaInference directly for token-level verification
+
+        do {
+            // For now, use a simplified verification approach:
+            // Generate one token with target model and compare with first draft token
+            var targetToken = ""
+            _ = try await backend.generate(
+                messages: [],
+                systemPrompt: "",
+                settings: request.settings,
+                onToken: { token in
+                    targetToken = token
+                }
+            )
+
+            // Simple verification: compare first token
+            let acceptedTokens: [String]
+            if !request.draftTokens.isEmpty && request.draftTokens[0] == targetToken {
+                acceptedTokens = [targetToken]
+            } else {
+                acceptedTokens = []
+            }
+
+            let result = SpeculativeVerificationResult(
+                acceptedTokens: acceptedTokens,
+                rejectedIndex: acceptedTokens.isEmpty ? 0 : nil,
+                fallbackToken: acceptedTokens.isEmpty ? targetToken : nil
+            )
+
+            // Send result back
+            let response = SpeculativeVerifyResponseWithId(id: request.id, result: result)
+            let envelope = P2PEnvelope(
+                type: .speculativeVerifyResponse,
+                payload: try JSONEncoder().encode(response)
+            )
+            let data = try JSONEncoder().encode(envelope)
+            sendData(data, to: connection)
+
+            // Record stats and earn token
+            recordSuccessfulRequest()
+
+        } catch {
+            sendError(to: connection, message: "Verification failed: \(error.localizedDescription)")
+        }
+    }
 }
 
 // MARK: - P2P Protocol Types
@@ -418,6 +936,15 @@ enum P2PMessageType: String, Codable {
     case inferenceRequest
     case relayRequest
     case relayResponse
+    case meshForwardRequest  // Mesh forwarding request
+    case meshForwardResponse // Mesh forwarding response
+    case peerDiscovery       // Peer discovery announcement
+    case topologyUpdate      // Network topology update
+    case speculativeVerifyRequest  // Speculative decoding verification request
+    case speculativeVerifyResponse // Speculative decoding verification response
+    case directMessage       // Direct message to friend
+    case friendRequest       // Friend request
+    case friendAcceptance    // Friend request acceptance
 }
 
 struct P2PEnvelope: Codable {
@@ -464,6 +991,114 @@ struct P2PServerStats: Codable {
     let date: Date
     let requestsServed: Int
     let tokensEarned: Int
+}
+
+// MARK: - P2P Mesh Protocol Types
+
+/// Mesh forward request - relays inference request through mesh network
+struct P2PMeshForwardRequest: Codable {
+    let requestId: UUID
+    let originalRequest: P2PInferenceRequest
+    let visitedNodes: [String]    // Loop detection
+    let maxHops: Int
+    let timestamp: Date
+
+    init(
+        requestId: UUID = UUID(),
+        originalRequest: P2PInferenceRequest,
+        visitedNodes: [String] = [],
+        maxHops: Int = 5,
+        timestamp: Date = Date()
+    ) {
+        self.requestId = requestId
+        self.originalRequest = originalRequest
+        self.visitedNodes = visitedNodes
+        self.maxHops = maxHops
+        self.timestamp = timestamp
+    }
+}
+
+/// Mesh forward response - returns inference result through mesh
+struct P2PMeshForwardResponse: Codable {
+    let requestId: UUID
+    let response: String
+    let processingDeviceName: String
+    let routePath: [String]
+    let hopCount: Int
+    let error: String?
+}
+
+/// Peer discovery announcement - broadcast device capabilities
+struct P2PPeerDiscovery: Codable {
+    let deviceId: String
+    let deviceName: String
+    let computeCapability: ComputeCapability
+    let connectedPeers: [String]
+    let timestamp: Date
+
+    init(
+        deviceId: String,
+        deviceName: String,
+        computeCapability: ComputeCapability,
+        connectedPeers: [String] = [],
+        timestamp: Date = Date()
+    ) {
+        self.deviceId = deviceId
+        self.deviceName = deviceName
+        self.computeCapability = computeCapability
+        self.connectedPeers = connectedPeers
+        self.timestamp = timestamp
+    }
+}
+
+/// Device compute capability information
+struct ComputeCapability: Codable {
+    let hasLocalLLM: Bool
+    let modelName: String?
+    let freeMemoryGB: Float
+    let batteryLevel: Float?
+    let isCharging: Bool
+    let cpuCores: Int?
+
+    init(
+        hasLocalLLM: Bool,
+        modelName: String? = nil,
+        freeMemoryGB: Float,
+        batteryLevel: Float? = nil,
+        isCharging: Bool = false,
+        cpuCores: Int? = nil
+    ) {
+        self.hasLocalLLM = hasLocalLLM
+        self.modelName = modelName
+        self.freeMemoryGB = freeMemoryGB
+        self.batteryLevel = batteryLevel
+        self.isCharging = isCharging
+        self.cpuCores = cpuCores
+    }
+
+    /// Calculate a score for peer selection (higher is better)
+    var score: Float {
+        var s: Float = 0
+
+        // Local LLM is primary factor
+        if hasLocalLLM {
+            s += 100
+        }
+
+        // Memory availability
+        s += freeMemoryGB * 10
+
+        // Battery level (if available)
+        if let battery = batteryLevel {
+            if isCharging {
+                s += 50  // Charging device is preferred
+            } else {
+                s += battery * 0.5  // Consider battery level
+            }
+        }
+
+        return s
+    }
 }
 
 // MARK: - P2P Server Errors
