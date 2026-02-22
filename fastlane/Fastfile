@@ -157,10 +157,10 @@ platform :ios do
       in_house: false
     )
 
-    # Increment build number
-    increment_build_number(
-      build_number: latest_testflight_build_number(api_key: api_key) + 1
-    )
+    # Increment build number (disabled - manually set with agvtool)
+    # increment_build_number(
+    #   build_number: 37
+    # )
 
     # Get latest provisioning profile from App Store Connect (no match password needed)
     get_provisioning_profile(
@@ -203,10 +203,10 @@ platform :ios do
       in_house: false
     )
 
-    # Increment build number
-    increment_build_number(
-      build_number: latest_testflight_build_number(api_key: api_key) + 1
-    )
+    # Increment build number (disabled - manually set with agvtool)
+    # increment_build_number(
+    #   build_number: 37
+    # )
 
     # Get latest provisioning profile from App Store Connect
     get_provisioning_profile(
@@ -256,10 +256,10 @@ platform :ios do
   desc "Upload metadata to App Store Connect"
   lane :upload_metadata do
     api_key = app_store_connect_api_key(
-      key_id: ENV["APP_STORE_CONNECT_API_KEY_ID"],
-      issuer_id: ENV["APP_STORE_CONNECT_ISSUER_ID"],
-      key_content: ENV["APP_STORE_CONNECT_API_KEY"],
-      is_key_content_base64: false
+      key_id: "5KT46G9Y29",
+      issuer_id: "e0d22675-afb3-45f0-a821-06b477f44da0",
+      key_filepath: File.expand_path("~/.appstoreconnect/private_keys/AuthKey_5KT46G9Y29.p8"),
+      in_house: false
     )
 
     deliver(
@@ -277,10 +277,10 @@ platform :ios do
   desc "Upload screenshots to App Store Connect"
   lane :upload_screenshots do
     api_key = app_store_connect_api_key(
-      key_id: ENV["APP_STORE_CONNECT_API_KEY_ID"],
-      issuer_id: ENV["APP_STORE_CONNECT_ISSUER_ID"],
-      key_content: ENV["APP_STORE_CONNECT_API_KEY"],
-      is_key_content_base64: false
+      key_id: "5KT46G9Y29",
+      issuer_id: "e0d22675-afb3-45f0-a821-06b477f44da0",
+      key_filepath: File.expand_path("~/.appstoreconnect/private_keys/AuthKey_5KT46G9Y29.p8"),
+      in_house: false
     )
 
     deliver(
@@ -382,6 +382,98 @@ platform :ios do
   desc "List available iOS devices on Firebase Test Lab"
   lane :firebase_devices do
     sh("gcloud firebase test ios models list --project=elio-chat-app")
+  end
+
+  desc "Show app statistics and download info"
+  lane :stats do
+    require 'net/http'
+    require 'json'
+    require 'jwt'
+    require 'openssl'
+
+    UI.header "📊 Fetching Elio App Statistics"
+
+    # API credentials
+    key_id = "5KT46G9Y29"
+    issuer_id = "e0d22675-afb3-45f0-a821-06b477f44da0"
+    key_file = File.expand_path("~/.appstoreconnect/private_keys/AuthKey_#{key_id}.p8")
+
+    # Generate JWT token
+    private_key = OpenSSL::PKey::EC.new(File.read(key_file))
+    payload = {
+      iss: issuer_id,
+      iat: Time.now.to_i,
+      exp: Time.now.to_i + 1200, # 20 minutes
+      aud: "appstoreconnect-v1"
+    }
+    token = JWT.encode(payload, private_key, 'ES256', header_fields = { kid: key_id })
+
+    # Fetch app info
+    uri = URI("https://api.appstoreconnect.apple.com/v1/apps?filter[bundleId]=love.elio.app")
+    http = Net::HTTP.new(uri.host, uri.port)
+    http.use_ssl = true
+    request = Net::HTTP::Get.new(uri)
+    request['Authorization'] = "Bearer #{token}"
+
+    response = http.request(request)
+    data = JSON.parse(response.body)
+
+    if data['data'] && data['data'].length > 0
+      app = data['data'][0]
+      app_id = app['id']
+
+      UI.header "📱 App Information"
+      UI.message "App Name: #{app['attributes']['name']}"
+      UI.message "Bundle ID: #{app['attributes']['bundleId']}"
+      UI.message "App ID: #{app_id}"
+      UI.message "SKU: #{app['attributes']['sku']}"
+      UI.message ""
+
+      # Get versions
+      uri = URI("https://api.appstoreconnect.apple.com/v1/apps/#{app_id}/appStoreVersions")
+      request = Net::HTTP::Get.new(uri)
+      request['Authorization'] = "Bearer #{token}"
+      response = http.request(request)
+      versions_data = JSON.parse(response.body)
+
+      if versions_data['data']
+        UI.header "🏪 App Store Versions"
+        versions_data['data'].each do |version|
+          state = version['attributes']['appStoreState']
+          version_string = version['attributes']['versionString']
+          UI.message "Version #{version_string}: #{state}"
+        end
+        UI.message ""
+      end
+
+      # Get builds
+      uri = URI("https://api.appstoreconnect.apple.com/v1/apps/#{app_id}/builds?limit=10&sort=-uploadedDate")
+      request = Net::HTTP::Get.new(uri)
+      request['Authorization'] = "Bearer #{token}"
+      response = http.request(request)
+      builds_data = JSON.parse(response.body)
+
+      if builds_data['data']
+        UI.header "🔨 Recent Builds (Last 10)"
+        builds_data['data'].each do |build|
+          version = build['attributes']['version']
+          uploaded = build['attributes']['uploadedDate']
+          processing = build['attributes']['processingState']
+          UI.message "Build #{version} - #{processing} - #{uploaded}"
+        end
+        UI.message ""
+      end
+
+      UI.important "📊 Download Analytics"
+      UI.important "For download counts and detailed analytics, visit:"
+      UI.important "https://appstoreconnect.apple.com/analytics/app/#{app_id}"
+      UI.message ""
+      UI.success "✅ Stats retrieved successfully!"
+      UI.message ""
+      UI.message "💡 Tip: To see downloads, open the analytics URL above"
+    else
+      UI.error "App not found"
+    end
   end
 
   # Error handling

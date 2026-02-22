@@ -13,6 +13,35 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 
 # Available Actions
 
+## Mac
+
+### mac build
+
+```sh
+[bundle exec] fastlane mac build
+```
+
+Build macOS app (Mac Catalyst)
+
+### mac beta
+
+```sh
+[bundle exec] fastlane mac beta
+```
+
+Deploy macOS to TestFlight
+
+### mac release
+
+```sh
+[bundle exec] fastlane mac release
+```
+
+Deploy macOS to Mac App Store
+
+----
+
+
 ## iOS
 
 ### ios test
@@ -134,6 +163,14 @@ Run tests on Firebase Test Lab with specific device
 ```
 
 List available iOS devices on Firebase Test Lab
+
+### ios stats
+
+```sh
+[bundle exec] fastlane ios stats
+```
+
+Show app statistics and download info
 
 ----
 

@@ -37,34 +37,70 @@
 		029 /* LlamaInference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130 /* LlamaInference.swift */; };
 		030 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 131 /* ThemeManager.swift */; };
 		031 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 132 /* Assets.xcassets */; };
-		PRIV001 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = PRIV002 /* PrivacyInfo.xcprivacy */; };
 		033 /* WebSearchServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134 /* WebSearchServer.swift */; };
 		034 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135 /* OnboardingView.swift */; };
 		035 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136 /* AboutView.swift */; };
 		036 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 140 /* Localizable.strings */; };
 		037 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 137 /* NetworkMonitor.swift */; };
+		32F957E1072AE040998CB503 /* SpeculativeBackend.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3425F549F53E154683E4DB9 /* SpeculativeBackend.swift */; };
+		3F2AD87B83A871ECF3AEE72B /* MessagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B105EDF08C8690D3B8739D45 /* MessagesView.swift */; };
 		60B47A4DC9139314BB0DC2C9 /* ModelSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F274E62F73576596B9AD3FA /* ModelSettings.swift */; };
 		705 /* ScreenshotMockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 704 /* ScreenshotMockData.swift */; };
 		7D3A20EA65A3530286F7DD7E /* ModelSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D655A6B9516B5885047F78E7 /* ModelSettingsView.swift */; };
+		81532C268A329161B26DBE93 /* SystemPromptLocalizations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BDE308F3DED07B71816FFD /* SystemPromptLocalizations.swift */; };
+		94C05C178CA153A1939D6A74 /* FriendsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D41BE8854F717C4639B435 /* FriendsManager.swift */; };
+		AD18E45C310E417CD140100C /* MessagingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A512831715040998464FBFC7 /* MessagingManager.swift */; };
 		APPINTENT001 /* AppIntents.swift in Sources */ = {isa = PBXBuildFile; fileRef = APPINTENT002 /* AppIntents.swift */; };
 		B63B0EBF2F1214F5006BCDD0 /* LlamaSwift in Frameworks */ = {isa = PBXBuildFile; productRef = B63B0EBF2F121377006BCDD0 /* LlamaSwift */; };
-		MDVIEW003 /* MarkdownView in Frameworks */ = {isa = PBXBuildFile; productRef = MDVIEW002 /* MarkdownView */; };
 		BAD4260BFA539FDE98FFBC58 /* LLMConversationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D9833BA13FDD02724E72DD /* LLMConversationTests.swift */; };
+		BB934CEC6E4217B2FEF4109D /* MeshP2PManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4595A2F46F423B517FDBF8E0 /* MeshP2PManager.swift */; };
+		BF338E7FC2A3E11D16ECCEC8 /* DirectChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CFBAD2E97F48CFE480561BF /* DirectChatView.swift */; };
+		C071F3E0693DCB31C15C6052 /* InferenceServerSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF9F48FF6CEC6C9BA8BE74B /* InferenceServerSettingsView.swift */; };
 		C60A36CCF98A62B5906FE569 /* VisionModelDownloadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED5CCB34FA4BFAD3E5BEBD2 /* VisionModelDownloadView.swift */; };
+		CC9E1A43AC5028EF1CD3CC12 /* SpeculativeVerifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37364513C5FBFB4564633833 /* SpeculativeVerifier.swift */; };
+		CHATMODE001 /* ChatMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CHATMODE002 /* ChatMode.swift */; };
+		CHATMODEMGR001 /* ChatModeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CHATMODEMGR002 /* ChatModeManager.swift */; };
+		CLBACK001 /* CloudBackend.swift in Sources */ = {isa = PBXBuildFile; fileRef = CLBACK002 /* CloudBackend.swift */; };
+		CMSELV001 /* ChatModeSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CMSELV002 /* ChatModeSelectorView.swift */; };
 		CONVEXP001 /* ConversationExporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CONVEXP002 /* ConversationExporter.swift */; };
+		CURMGR001 /* CuratorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CURMGR002 /* CuratorManager.swift */; };
+		MSGSHR001 /* MessageShareService.swift in Sources */ = {isa = PBXBuildFile; fileRef = MSGSHR002 /* MessageShareService.swift */; };
+		CURPROFILE001 /* CuratorProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CURPROFILE002 /* CuratorProfileView.swift */; };
+		CWAPI001 /* ChatWebAPIKeyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CWAPI002 /* ChatWebAPIKeyManager.swift */; };
+		CWBACK001 /* ChatWebBackend.swift in Sources */ = {isa = PBXBuildFile; fileRef = CWBACK002 /* ChatWebBackend.swift */; };
+		CWCONV001 /* ChatWebConnectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CWCONV002 /* ChatWebConnectView.swift */; };
+		CWLOGV001 /* ChatWebLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CWLOGV002 /* ChatWebLoginView.swift */; };
+		DEVID001 /* DeviceIdentityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEVID002 /* DeviceIdentityManager.swift */; };
+		DF3D9B5843EBF999962CB910 /* ChatWebQuickToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A3EC8083CC21D29D2DA7BA /* ChatWebQuickToggle.swift */; };
 		DOCPICKER001 /* DocumentPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = DOCPICKER002 /* DocumentPicker.swift */; };
+		E8FEAD3110B72464A21351F5 /* DeveloperThanksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9FD5E3BB7666D07F90B6FE /* DeveloperThanksView.swift */; };
+		EMERKB001 /* EmergencyKnowledgeBaseServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EMERKB002 /* EmergencyKnowledgeBaseServer.swift */; };
+		EMERQV001 /* EmergencyQuickActionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EMERQV002 /* EmergencyQuickActionsView.swift */; };
+		F9B5BA92A297C87B4C263A10 /* ModelSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08FCD261ECDF172B6D58D847 /* ModelSelectorView.swift */; };
+		FC0C7203D357908E50F1A581 /* InferenceServerConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898DD0FF4816A2F2288E27CD /* InferenceServerConfig.swift */; };
 		FEEDCON01 /* FeedbackConsentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEEDCON02 /* FeedbackConsentView.swift */; };
-		MDTHEME001 /* MarkdownTheme+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = MDTHEME002 /* MarkdownTheme+Custom.swift */; };
 		FEEDMGR001 /* FeedbackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEEDMGR002 /* FeedbackManager.swift */; };
 		FEEDSVC01 /* FeedbackService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEEDSVC02 /* FeedbackService.swift */; };
+		GRBACK001 /* GroqBackend.swift in Sources */ = {isa = PBXBuildFile; fileRef = GRBACK002 /* GroqBackend.swift */; };
+		INFBACK001 /* InferenceBackend.swift in Sources */ = {isa = PBXBuildFile; fileRef = INFBACK002 /* InferenceBackend.swift */; };
+		INTRELAY001 /* InternetRelayHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = INTRELAY002 /* InternetRelayHandler.swift */; };
+		KEYCHN001 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = KEYCHN002 /* KeychainManager.swift */; };
 		KOKORO001 /* KokoroTTSManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = KOKORO002 /* KokoroTTSManager.swift */; };
 		LANG001 /* LanguageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = LANG002 /* LanguageManager.swift */; };
+		LBACK001 /* LocalBackend.swift in Sources */ = {isa = PBXBuildFile; fileRef = LBACK002 /* LocalBackend.swift */; };
+		MDTHEME001 /* MarkdownTheme+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = MDTHEME002 /* MarkdownTheme+Custom.swift */; };
+		MDVIEW003 /* MarkdownView in Frameworks */ = {isa = PBXBuildFile; productRef = MDVIEW002 /* MarkdownView */; };
 		NOTES001 /* NotesServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = NOTES002 /* NotesServer.swift */; };
 		ODR001 /* OnDemandResourceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ODR002 /* OnDemandResourceManager.swift */; };
+		OGBADGE001 /* OGBadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = OGBADGE002 /* OGBadgeView.swift */; };
+		OGVERIFY001 /* OGVerificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = OGVERIFY002 /* OGVerificationView.swift */; };
 		ONBCHAT001 /* OnboardingChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ONBCHAT002 /* OnboardingChatView.swift */; };
 		ONBMCP001 /* OnboardingMCPView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ONBMCP002 /* OnboardingMCPView.swift */; };
 		ONNXFW001 /* onnxruntime.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = ONNXFW002 /* onnxruntime.xcframework */; };
-		ONNXFW003 /* onnxruntime.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = ONNXFW002 /* onnxruntime.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		P2PBACK001 /* P2PBackend.swift in Sources */ = {isa = PBXBuildFile; fileRef = P2PBACK002 /* P2PBackend.swift */; };
+		PEERV001 /* PeerConnectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = PEERV002 /* PeerConnectionView.swift */; };
+		PRIV001 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = PRIV002 /* PrivacyInfo.xcprivacy */; };
+		PRIVSVR001 /* PrivateServerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = PRIVSVR002 /* PrivateServerManager.swift */; };
 		PROMPTMGR001 /* PromptTemplateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = PROMPTMGR002 /* PromptTemplateManager.swift */; };
 		PROMPTTMPL001 /* PromptTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = PROMPTTMPL002 /* PromptTemplate.swift */; };
 		PROMPTVIEW001 /* PromptTemplatesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = PROMPTVIEW002 /* PromptTemplatesView.swift */; };
@@ -76,50 +112,30 @@
 		SHAREDDATAMGR001 /* SharedDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = SHAREDDATAMGR002 /* SharedDataManager.swift */; };
 		SHERPA001 /* SherpaOnnx.swift in Sources */ = {isa = PBXBuildFile; fileRef = SHERPA002 /* SherpaOnnx.swift */; };
 		SHERPAFW001 /* sherpa-onnx.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = SHERPAFW002 /* sherpa-onnx.xcframework */; };
-		SHERPAFW003 /* sherpa-onnx.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = SHERPAFW002 /* sherpa-onnx.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		SKILL001 /* Skill.swift in Sources */ = {isa = PBXBuildFile; fileRef = SKILL002 /* Skill.swift */; };
+		SKILLDTL001 /* SkillDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = SKILLDTL002 /* SkillDetailView.swift */; };
+		SKILLMGR001 /* SkillMarketplaceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = SKILLMGR002 /* SkillMarketplaceManager.swift */; };
+		SKILLMKT001 /* SkillMarketplaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = SKILLMKT002 /* SkillMarketplaceView.swift */; };
+		SKILLPUB001 /* SkillPublishView.swift in Sources */ = {isa = PBXBuildFile; fileRef = SKILLPUB002 /* SkillPublishView.swift */; };
+		SKILLREV001 /* SkillReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = SKILLREV002 /* SkillReviewView.swift */; };
 		SNAPSHOT001 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = SNAPSHOT002 /* SnapshotHelper.swift */; };
+		SRVDASH001 /* ServerDashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = SRVDASH002 /* ServerDashboardView.swift */; };
+		SUBMGR001 /* SubscriptionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = SUBMGR002 /* SubscriptionManager.swift */; };
+		SYNC001 /* SyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = SYNC002 /* SyncManager.swift */; };
 		TEST004 /* LocalAIAgentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = TEST001 /* LocalAIAgentTests.swift */; };
+		TOKMGR001 /* TokenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = TOKMGR002 /* TokenManager.swift */; };
 		TRANS001 /* TranslationServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = TRANS002 /* TranslationServer.swift */; };
 		UITEST004 /* LocalAIAgentUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = UITEST001 /* LocalAIAgentUITests.swift */; };
+		VMKT001 /* VoiceMarketplaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = VMKT002 /* VoiceMarketplaceView.swift */; };
+		VOICESEL01 /* VoiceSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = VOICESEL02 /* VoiceSelectionView.swift */; };
+		NEWSMOD001 /* NewsModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = NEWSMOD002 /* NewsModels.swift */; };
+		NEWSAPI001 /* NewsAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = NEWSAPI002 /* NewsAPIClient.swift */; };
+		NEWSSRV001 /* NewsServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = NEWSSRV002 /* NewsServer.swift */; };
+		NEWSFEED001 /* NewsFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = NEWSFEED002 /* NewsFeedView.swift */; };
+		WEATHER001 /* WeatherServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = WEATHER002 /* WeatherServer.swift */; };
 		WEBEXT001 /* WebContentExtractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = WEBEXT002 /* WebContentExtractor.swift */; };
 		WHISPER001 /* WhisperKit in Frameworks */ = {isa = PBXBuildFile; productRef = WHISPER002 /* WhisperKit */; };
 		WHISPER003 /* WhisperManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = WHISPER004 /* WhisperManager.swift */; };
-		SYNC001 /* SyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = SYNC002 /* SyncManager.swift */; };
-		CWBACK001 /* ChatWebBackend.swift in Sources */ = {isa = PBXBuildFile; fileRef = CWBACK002 /* ChatWebBackend.swift */; };
-		CLBACK001 /* CloudBackend.swift in Sources */ = {isa = PBXBuildFile; fileRef = CLBACK002 /* CloudBackend.swift */; };
-		GRBACK001 /* GroqBackend.swift in Sources */ = {isa = PBXBuildFile; fileRef = GRBACK002 /* GroqBackend.swift */; };
-		LBACK001 /* LocalBackend.swift in Sources */ = {isa = PBXBuildFile; fileRef = LBACK002 /* LocalBackend.swift */; };
-		P2PBACK001 /* P2PBackend.swift in Sources */ = {isa = PBXBuildFile; fileRef = P2PBACK002 /* P2PBackend.swift */; };
-		WBBACK001 /* WisbeeBackend.swift in Sources */ = {isa = PBXBuildFile; fileRef = WBBACK002 /* WisbeeBackend.swift */; };
-		CHATMODE001 /* ChatMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CHATMODE002 /* ChatMode.swift */; };
-		CHATMODEMGR001 /* ChatModeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CHATMODEMGR002 /* ChatModeManager.swift */; };
-		INFBACK001 /* InferenceBackend.swift in Sources */ = {isa = PBXBuildFile; fileRef = INFBACK002 /* InferenceBackend.swift */; };
-		INTRELAY001 /* InternetRelayHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = INTRELAY002 /* InternetRelayHandler.swift */; };
-		PRIVSVR001 /* PrivateServerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = PRIVSVR002 /* PrivateServerManager.swift */; };
-		BITNET001 /* BitNetInference.swift in Sources */ = {isa = PBXBuildFile; fileRef = BITNET002 /* BitNetInference.swift */; };
-		EMERKB001 /* EmergencyKnowledgeBaseServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EMERKB002 /* EmergencyKnowledgeBaseServer.swift */; };
-		WEATHER001 /* WeatherServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = WEATHER002 /* WeatherServer.swift */; };
-		KEYCHN001 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = KEYCHN002 /* KeychainManager.swift */; };
-		SUBMGR001 /* SubscriptionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = SUBMGR002 /* SubscriptionManager.swift */; };
-		TOKMGR001 /* TokenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = TOKMGR002 /* TokenManager.swift */; };
-		CMSELV001 /* ChatModeSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CMSELV002 /* ChatModeSelectorView.swift */; };
-		CWCONV001 /* ChatWebConnectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CWCONV002 /* ChatWebConnectView.swift */; };
-		CWLOGV001 /* ChatWebLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CWLOGV002 /* ChatWebLoginView.swift */; };
-		EMERQV001 /* EmergencyQuickActionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EMERQV002 /* EmergencyQuickActionsView.swift */; };
-		PEERV001 /* PeerConnectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = PEERV002 /* PeerConnectionView.swift */; };
-		SRVDASH001 /* ServerDashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = SRVDASH002 /* ServerDashboardView.swift */; };
-		VOICESEL01 /* VoiceSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = VOICESEL02 /* VoiceSelectionView.swift */; };
-		VMKT001 /* VoiceMarketplaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = VMKT002 /* VoiceMarketplaceView.swift */; };
-		SKILL001 /* Skill.swift in Sources */ = {isa = PBXBuildFile; fileRef = SKILL002 /* Skill.swift */; };
-		SKILLMGR001 /* SkillMarketplaceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = SKILLMGR002 /* SkillMarketplaceManager.swift */; };
-		SKILLMKT001 /* SkillMarketplaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = SKILLMKT002 /* SkillMarketplaceView.swift */; };
-		SKILLDTL001 /* SkillDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = SKILLDTL002 /* SkillDetailView.swift */; };
-		SKILLPUB001 /* SkillPublishView.swift in Sources */ = {isa = PBXBuildFile; fileRef = SKILLPUB002 /* SkillPublishView.swift */; };
-		CURMGR001 /* CuratorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CURMGR002 /* CuratorManager.swift */; };
-		OGBADGE001 /* OGBadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = OGBADGE002 /* OGBadgeView.swift */; };
-		OGVERIFY001 /* OGVerificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = OGVERIFY002 /* OGVerificationView.swift */; };
-		CURPROFILE001 /* CuratorProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CURPROFILE002 /* CuratorProfileView.swift */; };
-		SKILLREV001 /* SkillReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = SKILLREV002 /* SkillReviewView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -153,6 +169,14 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0029EE8B5241B7E21DF91D5A /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = ml.lproj/Localizable.strings; sourceTree = "<group>"; };
+		015BAF31CA17B08E03B86370 /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = ms.lproj/Localizable.strings; sourceTree = "<group>"; };
+		02C88DD1647B3FE7CD3BF6D5 /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = lv.lproj/Localizable.strings; sourceTree = "<group>"; };
+		03381B1A3E027ECC9D1FEE76 /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = my.lproj/Localizable.strings; sourceTree = "<group>"; };
+		08FCD261ECDF172B6D58D847 /* ModelSelectorView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ModelSelectorView.swift; path = ModelSelectorView.swift; sourceTree = "<group>"; };
+		0C9FD5E3BB7666D07F90B6FE /* DeveloperThanksView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DeveloperThanksView.swift; sourceTree = "<group>"; };
+		0E46A3EE6581F4478C52E995 /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = et.lproj/Localizable.strings; sourceTree = "<group>"; };
+		0E95A5FF764597D92E800362 /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = ro.lproj/Localizable.strings; sourceTree = "<group>"; };
 		100 /* LocalAIAgent.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LocalAIAgent.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		101 /* LocalAIAgentApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalAIAgentApp.swift; sourceTree = "<group>"; };
 		102 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
@@ -169,6 +193,7 @@
 		113 /* Tokenizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tokenizer.swift; sourceTree = "<group>"; };
 		114 /* StreamingDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamingDecoder.swift; sourceTree = "<group>"; };
 		115 /* MCPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MCPClient.swift; sourceTree = "<group>"; };
+		1152BA28C34804F55EBF0F15 /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = gu.lproj/Localizable.strings; sourceTree = "<group>"; };
 		116 /* MCPProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MCPProtocol.swift; sourceTree = "<group>"; };
 		117 /* MCPServerRegistry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MCPServerRegistry.swift; sourceTree = "<group>"; };
 		118 /* FileSystemServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSystemServer.swift; sourceTree = "<group>"; };
@@ -182,7 +207,6 @@
 		127 /* Conversation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conversation.swift; sourceTree = "<group>"; };
 		128 /* MCPTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MCPTool.swift; sourceTree = "<group>"; };
 		129 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		PRIV002 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		130 /* LlamaInference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LlamaInference.swift; sourceTree = "<group>"; };
 		131 /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
 		132 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -192,27 +216,113 @@
 		137 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 		141 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		142 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
+		15DE1364A66E372968BE4AF1 /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = uk.lproj/Localizable.strings; sourceTree = "<group>"; };
+		18D41BE8854F717C4639B435 /* FriendsManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FriendsManager.swift; path = Social/FriendsManager.swift; sourceTree = "<group>"; };
+		1CA3493F8ED1E8131EB8787A /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = ha.lproj/Localizable.strings; sourceTree = "<group>"; };
+		1CB25DB289CD9ACDBBD133BF /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = lo.lproj/Localizable.strings; sourceTree = "<group>"; };
+		1CFBAD2E97F48CFE480561BF /* DirectChatView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DirectChatView.swift; path = DirectChatView.swift; sourceTree = "<group>"; };
+		1D59F588E9B6877DA4E247B2 /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = nl.lproj/Localizable.strings; sourceTree = "<group>"; };
+		1FADB9B2F9F41B3ADA3D8A2E /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = sw.lproj/Localizable.strings; sourceTree = "<group>"; };
+		211B5DBF35E441607B9C229A /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = vi.lproj/Localizable.strings; sourceTree = "<group>"; };
+		2344B74877AEDD7F51A60638 /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = ne.lproj/Localizable.strings; sourceTree = "<group>"; };
+		2B62E9A3FDFB8019643C6460 /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = ta.lproj/Localizable.strings; sourceTree = "<group>"; };
+		3247A906BED05B9DEABC6E2C /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = am.lproj/Localizable.strings; sourceTree = "<group>"; };
+		3365EB32D1D544654F55F68E /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = km.lproj/Localizable.strings; sourceTree = "<group>"; };
+		37364513C5FBFB4564633833 /* SpeculativeVerifier.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SpeculativeVerifier.swift; path = SpeculativeVerifier.swift; sourceTree = "<group>"; };
+		403A3D540128946E0A532C15 /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = ca.lproj/Localizable.strings; sourceTree = "<group>"; };
+		42B8A65A83869ACAF8C3BC5E /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = id.lproj/Localizable.strings; sourceTree = "<group>"; };
+		432F93226283198E28932302 /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = pa.lproj/Localizable.strings; sourceTree = "<group>"; };
+		43548E0F735CECA133933CD1 /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = th.lproj/Localizable.strings; sourceTree = "<group>"; };
+		4595A2F46F423B517FDBF8E0 /* MeshP2PManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MeshP2PManager.swift; sourceTree = "<group>"; };
+		4AEB6572005768A34D05E7FA /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = mr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		4C1810A84FA4FEB1DF86B9C4 /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = fi.lproj/Localizable.strings; sourceTree = "<group>"; };
+		5253B2DE3BC147765D91BC4C /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = fil.lproj/Localizable.strings; sourceTree = "<group>"; };
+		52548021BDF99BEB1B75F5F2 /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = nb.lproj/Localizable.strings; sourceTree = "<group>"; };
+		5255A2A7704C69E3996970FA /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		591CAE68142A0971FDA6F2A8 /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = sk.lproj/Localizable.strings; sourceTree = "<group>"; };
+		5E8903B05CB12922F4296C10 /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = ig.lproj/Localizable.strings; sourceTree = "<group>"; };
+		6C890A3AFC51E29A85B2CC61 /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = is.lproj/Localizable.strings; sourceTree = "<group>"; };
+		6E70A5B9D33DDC949FA1736B /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = bg.lproj/Localizable.strings; sourceTree = "<group>"; };
 		704 /* ScreenshotMockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotMockData.swift; sourceTree = "<group>"; };
+		72478AD68FC4B35064DFB2EB /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = da.lproj/Localizable.strings; sourceTree = "<group>"; };
+		740E9F58437D50A4CCD952F8 /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = hu.lproj/Localizable.strings; sourceTree = "<group>"; };
+		7679EE190D8971AA9FB64894 /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = lt.lproj/Localizable.strings; sourceTree = "<group>"; };
+		76BDE308F3DED07B71816FFD /* SystemPromptLocalizations.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SystemPromptLocalizations.swift; sourceTree = "<group>"; };
+		7B94204565AC4FF4F458668F /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = fa.lproj/Localizable.strings; sourceTree = "<group>"; };
+		7F5FFA1C3F24638CF82FC4F1 /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = hr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		84B2596D81B38151D72EC147 /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = sq.lproj/Localizable.strings; sourceTree = "<group>"; };
+		84B3BBE1E1991BFA462BE14B /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = af.lproj/Localizable.strings; sourceTree = "<group>"; };
+		898DD0FF4816A2F2288E27CD /* InferenceServerConfig.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = InferenceServerConfig.swift; path = InferenceServerConfig.swift; sourceTree = "<group>"; };
 		8F274E62F73576596B9AD3FA /* ModelSettings.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ModelSettings.swift; sourceTree = "<group>"; };
 		91D9833BA13FDD02724E72DD /* LLMConversationTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LLMConversationTests.swift; sourceTree = "<group>"; };
+		9458ACDF5C7161AC775AA024 /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = sv.lproj/Localizable.strings; sourceTree = "<group>"; };
+		99B99C969F9B9C6FBE528773 /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = "pt-PT.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		9A81CC1B9D74555189349E3F /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = el.lproj/Localizable.strings; sourceTree = "<group>"; };
+		A0166C58451C9D5CC66396BD /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = sl.lproj/Localizable.strings; sourceTree = "<group>"; };
+		A033E850E0A7075A3D2E40F8 /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = eu.lproj/Localizable.strings; sourceTree = "<group>"; };
+		A506FF68BD35B600440F7BF1 /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = so.lproj/Localizable.strings; sourceTree = "<group>"; };
+		A512831715040998464FBFC7 /* MessagingManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MessagingManager.swift; path = Social/MessagingManager.swift; sourceTree = "<group>"; };
+		A9A3EC8083CC21D29D2DA7BA /* ChatWebQuickToggle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ChatWebQuickToggle.swift; sourceTree = "<group>"; };
 		APPINTENT002 /* AppIntents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIntents.swift; sourceTree = "<group>"; };
+		B105EDF08C8690D3B8739D45 /* MessagesView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MessagesView.swift; path = MessagesView.swift; sourceTree = "<group>"; };
+		B3425F549F53E154683E4DB9 /* SpeculativeBackend.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SpeculativeBackend.swift; path = SpeculativeBackend.swift; sourceTree = "<group>"; };
 		B6BA22092F132EEA00C7353F /* LocalAIAgent.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LocalAIAgent.entitlements; sourceTree = "<group>"; };
+		BA5C00BA92BADDD9DFA8698B /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = tr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		BE086B2F9F33EE29A9BCAB08 /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = sr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		BRIDGING001 /* LocalAIAgent-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LocalAIAgent-Bridging-Header.h"; sourceTree = "<group>"; };
+		C02F9A3D3BF1EDCECCEED684 /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = bn.lproj/Localizable.strings; sourceTree = "<group>"; };
+		C080387BC6FB92C9A515D20C /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = kn.lproj/Localizable.strings; sourceTree = "<group>"; };
+		C1C8AF4FE191B8AFBC9BE8DE /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = si.lproj/Localizable.strings; sourceTree = "<group>"; };
+		C335D866785F22C0FE4E2DBB /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = bs.lproj/Localizable.strings; sourceTree = "<group>"; };
+		C89D86BBB260686B614BC7B7 /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = mk.lproj/Localizable.strings; sourceTree = "<group>"; };
+		C9B8657ADFE05597384208E6 /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = he.lproj/Localizable.strings; sourceTree = "<group>"; };
+		CHATMODE002 /* ChatMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMode.swift; sourceTree = "<group>"; };
+		CHATMODEMGR002 /* ChatModeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatModeManager.swift; sourceTree = "<group>"; };
+		CLBACK002 /* CloudBackend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudBackend.swift; sourceTree = "<group>"; };
+		CMSELV002 /* ChatModeSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatModeSelectorView.swift; sourceTree = "<group>"; };
 		CONVEXP002 /* ConversationExporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationExporter.swift; sourceTree = "<group>"; };
+		CURMGR002 /* CuratorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CuratorManager.swift; sourceTree = "<group>"; };
+		MSGSHR002 /* MessageShareService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageShareService.swift; sourceTree = "<group>"; };
+		CURPROFILE002 /* CuratorProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CuratorProfileView.swift; sourceTree = "<group>"; };
+		CWAPI002 /* ChatWebAPIKeyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatWebAPIKeyManager.swift; sourceTree = "<group>"; };
+		CWBACK002 /* ChatWebBackend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatWebBackend.swift; sourceTree = "<group>"; };
+		CWCONV002 /* ChatWebConnectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatWebConnectView.swift; sourceTree = "<group>"; };
+		CWLOGV002 /* ChatWebLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatWebLoginView.swift; sourceTree = "<group>"; };
+		D1BDD3EC9F8220E0B71087A3 /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = pl.lproj/Localizable.strings; sourceTree = "<group>"; };
+		D5364FA639C7CEC7FBCE629F /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = yo.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D655A6B9516B5885047F78E7 /* ModelSettingsView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ModelSettingsView.swift; sourceTree = "<group>"; };
+		DAC01C2F9F2DF0F1148AFF44 /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = te.lproj/Localizable.strings; sourceTree = "<group>"; };
+		DEVID002 /* DeviceIdentityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceIdentityManager.swift; sourceTree = "<group>"; };
 		DOCPICKER002 /* DocumentPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentPicker.swift; sourceTree = "<group>"; };
+		E2A98D262BC8C21D6F1D8F48 /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = cs.lproj/Localizable.strings; sourceTree = "<group>"; };
+		E6EE49F28609C51FC5142020 /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = zu.lproj/Localizable.strings; sourceTree = "<group>"; };
+		EAF9F48FF6CEC6C9BA8BE74B /* InferenceServerSettingsView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = InferenceServerSettingsView.swift; path = InferenceServerSettingsView.swift; sourceTree = "<group>"; };
 		EED5CCB34FA4BFAD3E5BEBD2 /* VisionModelDownloadView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = VisionModelDownloadView.swift; sourceTree = "<group>"; };
+		EMERKB002 /* EmergencyKnowledgeBaseServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmergencyKnowledgeBaseServer.swift; sourceTree = "<group>"; };
+		EMERQV002 /* EmergencyQuickActionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmergencyQuickActionsView.swift; sourceTree = "<group>"; };
+		F134925799D70830635A1CDD /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = ur.lproj/Localizable.strings; sourceTree = "<group>"; };
 		FEEDCON02 /* FeedbackConsentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackConsentView.swift; sourceTree = "<group>"; };
-		MDTHEME002 /* MarkdownTheme+Custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MarkdownTheme+Custom.swift"; sourceTree = "<group>"; };
 		FEEDMGR002 /* FeedbackManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackManager.swift; sourceTree = "<group>"; };
 		FEEDSVC02 /* FeedbackService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackService.swift; sourceTree = "<group>"; };
+		GRBACK002 /* GroqBackend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroqBackend.swift; sourceTree = "<group>"; };
+		INFBACK002 /* InferenceBackend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InferenceBackend.swift; sourceTree = "<group>"; };
+		INTRELAY002 /* InternetRelayHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternetRelayHandler.swift; sourceTree = "<group>"; };
+		KEYCHN002 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
 		KOKORO002 /* KokoroTTSManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KokoroTTSManager.swift; sourceTree = "<group>"; };
 		LANG002 /* LanguageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageManager.swift; sourceTree = "<group>"; };
+		LBACK002 /* LocalBackend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalBackend.swift; sourceTree = "<group>"; };
+		MDTHEME002 /* MarkdownTheme+Custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MarkdownTheme+Custom.swift"; sourceTree = "<group>"; };
 		NOTES002 /* NotesServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesServer.swift; sourceTree = "<group>"; };
 		ODR002 /* OnDemandResourceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnDemandResourceManager.swift; sourceTree = "<group>"; };
+		OGBADGE002 /* OGBadgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OGBadgeView.swift; sourceTree = "<group>"; };
+		OGVERIFY002 /* OGVerificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OGVerificationView.swift; sourceTree = "<group>"; };
 		ONBCHAT002 /* OnboardingChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingChatView.swift; sourceTree = "<group>"; };
 		ONBMCP002 /* OnboardingMCPView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingMCPView.swift; sourceTree = "<group>"; };
 		ONNXFW002 /* onnxruntime.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = onnxruntime.xcframework; sourceTree = "<group>"; };
+		P2PBACK002 /* P2PBackend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = P2PBackend.swift; sourceTree = "<group>"; };
+		PEERV002 /* PeerConnectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeerConnectionView.swift; sourceTree = "<group>"; };
+		PRIV002 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		PRIVSVR002 /* PrivateServerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateServerManager.swift; sourceTree = "<group>"; };
 		PROMPTMGR002 /* PromptTemplateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromptTemplateManager.swift; sourceTree = "<group>"; };
 		PROMPTTMPL002 /* PromptTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromptTemplate.swift; sourceTree = "<group>"; };
 		PROMPTVIEW002 /* PromptTemplatesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromptTemplatesView.swift; sourceTree = "<group>"; };
@@ -224,50 +334,31 @@
 		SHAREDDATAMGR002 /* SharedDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedDataManager.swift; sourceTree = "<group>"; };
 		SHERPA002 /* SherpaOnnx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SherpaOnnx.swift; sourceTree = "<group>"; };
 		SHERPAFW002 /* sherpa-onnx.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = "sherpa-onnx.xcframework"; sourceTree = "<group>"; };
+		SKILL002 /* Skill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Skill.swift; sourceTree = "<group>"; };
+		SKILLDTL002 /* SkillDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkillDetailView.swift; sourceTree = "<group>"; };
+		SKILLMGR002 /* SkillMarketplaceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkillMarketplaceManager.swift; sourceTree = "<group>"; };
+		SKILLMKT002 /* SkillMarketplaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkillMarketplaceView.swift; sourceTree = "<group>"; };
+		SKILLPUB002 /* SkillPublishView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkillPublishView.swift; sourceTree = "<group>"; };
+		SKILLREV002 /* SkillReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkillReviewView.swift; sourceTree = "<group>"; };
 		SNAPSHOT002 /* SnapshotHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = "<group>"; };
+		SRVDASH002 /* ServerDashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerDashboardView.swift; sourceTree = "<group>"; };
+		SUBMGR002 /* SubscriptionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionManager.swift; sourceTree = "<group>"; };
+		SYNC002 /* SyncManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncManager.swift; sourceTree = "<group>"; };
 		TEST001 /* LocalAIAgentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalAIAgentTests.swift; sourceTree = "<group>"; };
 		TEST002 /* LocalAIAgentTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LocalAIAgentTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		TOKMGR002 /* TokenManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenManager.swift; sourceTree = "<group>"; };
 		TRANS002 /* TranslationServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationServer.swift; sourceTree = "<group>"; };
 		UITEST001 /* LocalAIAgentUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalAIAgentUITests.swift; sourceTree = "<group>"; };
 		UITEST002 /* LocalAIAgentUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LocalAIAgentUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		VMKT002 /* VoiceMarketplaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceMarketplaceView.swift; sourceTree = "<group>"; };
+		VOICESEL02 /* VoiceSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceSelectionView.swift; sourceTree = "<group>"; };
+		NEWSMOD002 /* NewsModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsModels.swift; sourceTree = "<group>"; };
+		NEWSAPI002 /* NewsAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsAPIClient.swift; sourceTree = "<group>"; };
+		NEWSSRV002 /* NewsServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsServer.swift; sourceTree = "<group>"; };
+		NEWSFEED002 /* NewsFeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedView.swift; sourceTree = "<group>"; };
+		WEATHER002 /* WeatherServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherServer.swift; sourceTree = "<group>"; };
 		WEBEXT002 /* WebContentExtractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebContentExtractor.swift; sourceTree = "<group>"; };
 		WHISPER004 /* WhisperManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhisperManager.swift; sourceTree = "<group>"; };
-		SYNC002 /* SyncManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncManager.swift; sourceTree = "<group>"; };
-		CWBACK002 /* ChatWebBackend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatWebBackend.swift; sourceTree = "<group>"; };
-		CLBACK002 /* CloudBackend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudBackend.swift; sourceTree = "<group>"; };
-		GRBACK002 /* GroqBackend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroqBackend.swift; sourceTree = "<group>"; };
-		LBACK002 /* LocalBackend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalBackend.swift; sourceTree = "<group>"; };
-		P2PBACK002 /* P2PBackend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = P2PBackend.swift; sourceTree = "<group>"; };
-		WBBACK002 /* WisbeeBackend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WisbeeBackend.swift; sourceTree = "<group>"; };
-		CHATMODE002 /* ChatMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMode.swift; sourceTree = "<group>"; };
-		CHATMODEMGR002 /* ChatModeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatModeManager.swift; sourceTree = "<group>"; };
-		INFBACK002 /* InferenceBackend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InferenceBackend.swift; sourceTree = "<group>"; };
-		INTRELAY002 /* InternetRelayHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternetRelayHandler.swift; sourceTree = "<group>"; };
-		PRIVSVR002 /* PrivateServerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateServerManager.swift; sourceTree = "<group>"; };
-		BITNET002 /* BitNetInference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BitNetInference.swift; sourceTree = "<group>"; };
-		EMERKB002 /* EmergencyKnowledgeBaseServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmergencyKnowledgeBaseServer.swift; sourceTree = "<group>"; };
-		WEATHER002 /* WeatherServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherServer.swift; sourceTree = "<group>"; };
-		KEYCHN002 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
-		SUBMGR002 /* SubscriptionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionManager.swift; sourceTree = "<group>"; };
-		TOKMGR002 /* TokenManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenManager.swift; sourceTree = "<group>"; };
-		CMSELV002 /* ChatModeSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatModeSelectorView.swift; sourceTree = "<group>"; };
-		CWCONV002 /* ChatWebConnectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatWebConnectView.swift; sourceTree = "<group>"; };
-		CWLOGV002 /* ChatWebLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatWebLoginView.swift; sourceTree = "<group>"; };
-		EMERQV002 /* EmergencyQuickActionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmergencyQuickActionsView.swift; sourceTree = "<group>"; };
-		PEERV002 /* PeerConnectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeerConnectionView.swift; sourceTree = "<group>"; };
-		SRVDASH002 /* ServerDashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerDashboardView.swift; sourceTree = "<group>"; };
-		VOICESEL02 /* VoiceSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceSelectionView.swift; sourceTree = "<group>"; };
-		VMKT002 /* VoiceMarketplaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceMarketplaceView.swift; sourceTree = "<group>"; };
-		SKILL002 /* Skill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Skill.swift; sourceTree = "<group>"; };
-		SKILLMGR002 /* SkillMarketplaceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkillMarketplaceManager.swift; sourceTree = "<group>"; };
-		SKILLMKT002 /* SkillMarketplaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkillMarketplaceView.swift; sourceTree = "<group>"; };
-		SKILLDTL002 /* SkillDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkillDetailView.swift; sourceTree = "<group>"; };
-		SKILLPUB002 /* SkillPublishView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkillPublishView.swift; sourceTree = "<group>"; };
-		CURMGR002 /* CuratorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CuratorManager.swift; sourceTree = "<group>"; };
-		OGBADGE002 /* OGBadgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OGBadgeView.swift; sourceTree = "<group>"; };
-		OGVERIFY002 /* OGVerificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OGVerificationView.swift; sourceTree = "<group>"; };
-		CURPROFILE002 /* CuratorProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CuratorProfileView.swift; sourceTree = "<group>"; };
-		SKILLREV002 /* SkillReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkillReviewView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -300,6 +391,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1A2B61B1C7AF76CB5F027DEB /* Vault */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Vault;
+			path = LocalAIAgent/Vault;
+			sourceTree = "<group>";
+		};
+		245259A867038CCDF960DD21 /* Social */ = {
+			isa = PBXGroup;
+			children = (
+				18D41BE8854F717C4639B435 /* FriendsManager.swift */,
+				A512831715040998464FBFC7 /* MessagingManager.swift */,
+			);
+			name = Social;
+			sourceTree = "<group>";
+		};
+		2666305672F9DB222C979528 /* Localization */ = {
+			isa = PBXGroup;
+			children = (
+				76BDE308F3DED07B71816FFD /* SystemPromptLocalizations.swift */,
+			);
+			name = Localization;
+			path = Localization;
+			sourceTree = "<group>";
+		};
 		300 = {
 			isa = PBXGroup;
 			children = (
@@ -328,6 +445,15 @@
 				CHATMODES_GRP /* ChatModes */,
 				TOKENECO_GRP /* TokenEconomy */,
 				SECURITY_GRP /* Security */,
+				CFCF5DE988424C50DEC4E4BB /* Games */,
+				932107A7646C11A6C42957E8 /* Maps */,
+				1A2B61B1C7AF76CB5F027DEB /* Vault */,
+				F350C4762422CBCCCB82FF66 /* Barter */,
+				71C6017CE1576ACEFE9D44A8 /* Prompts */,
+				B71C3BC657B01719DBAE08A7 /* Discovery */,
+				2666305672F9DB222C979528 /* Localization */,
+				D950D22C47D063DCA9587DCB /* Interpreter */,
+				245259A867038CCDF960DD21 /* Social */,
 			);
 			path = LocalAIAgent;
 			sourceTree = "<group>";
@@ -396,6 +522,13 @@
 				CURPROFILE002 /* CuratorProfileView.swift */,
 				SKILLREV002 /* SkillReviewView.swift */,
 				MACVIEWS001 /* Mac */,
+				0C9FD5E3BB7666D07F90B6FE /* DeveloperThanksView.swift */,
+				A9A3EC8083CC21D29D2DA7BA /* ChatWebQuickToggle.swift */,
+				08FCD261ECDF172B6D58D847 /* ModelSelectorView.swift */,
+				B105EDF08C8690D3B8739D45 /* MessagesView.swift */,
+				1CFBAD2E97F48CFE480561BF /* DirectChatView.swift */,
+				EAF9F48FF6CEC6C9BA8BE74B /* InferenceServerSettingsView.swift */,
+				NEWSFEED002 /* NewsFeedView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -423,7 +556,6 @@
 				SHERPA002 /* SherpaOnnx.swift */,
 				REAZON002 /* ReazonSpeechManager.swift */,
 				KOKORO002 /* KokoroTTSManager.swift */,
-				/* BITNET002 BitNetInference.swift — excluded, requires bitnet C library */
 			);
 			path = LLM;
 			sourceTree = "<group>";
@@ -448,6 +580,7 @@
 				8F274E62F73576596B9AD3FA /* ModelSettings.swift */,
 				PROMPTTMPL002 /* PromptTemplate.swift */,
 				SKILL002 /* Skill.swift */,
+				NEWSMOD002 /* NewsModels.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -459,6 +592,63 @@
 				PRIV002 /* PrivacyInfo.xcprivacy */,
 				132 /* Assets.xcassets */,
 				140 /* Localizable.strings */,
+				97F9BE3179946012816312D9 /* Localizable.strings */,
+				67D7D09FC52FE1EFEFBEE6C1 /* Localizable.strings */,
+				3AFBE6A37A58F8297C184F9F /* Localizable.strings */,
+				3F29C687AECF368342723EC4 /* Localizable.strings */,
+				67518E51A2DC5990CCD645A1 /* Localizable.strings */,
+				A537E7EA7031220360D24427 /* Localizable.strings */,
+				1A8F5486FC77F4F5AB09AF65 /* Localizable.strings */,
+				D3CE0B01DBB122A641C58A4E /* Localizable.strings */,
+				05CE82FCE9AA52AB9CD85EC8 /* Localizable.strings */,
+				207A7130D4F2FD46C54FA5AF /* Localizable.strings */,
+				8A6CE0E3443C1F85B8F95C64 /* Localizable.strings */,
+				AB144D4FE87B7D16CD9FAD7D /* Localizable.strings */,
+				182335B844EAC038525CAC6A /* Localizable.strings */,
+				C33B99381CB038DB424F22DD /* Localizable.strings */,
+				AAFC53028B2A446AF34FF0AC /* Localizable.strings */,
+				F4294BF8C9D7AEB2DC327128 /* Localizable.strings */,
+				EC54B2C50FE3EB6AF781514C /* Localizable.strings */,
+				11693DB10C8D86069133401B /* Localizable.strings */,
+				582870A53C5E770495F8FA65 /* Localizable.strings */,
+				7E94502D311C8DF9C9D3A878 /* Localizable.strings */,
+				D00F31EB0A307A3D5358B6AC /* Localizable.strings */,
+				0D69388A2FD55A1C9F8170E2 /* Localizable.strings */,
+				ECB1AD71542426D89C473E84 /* Localizable.strings */,
+				26E46D4B9B25597EE3EB2AEC /* Localizable.strings */,
+				676FA76A0556C32A852EDBCC /* Localizable.strings */,
+				F406EE786F6E8AAE4400240A /* Localizable.strings */,
+				B1F044054C71658395C41500 /* Localizable.strings */,
+				AFFC35BCEB6077EE3F027042 /* Localizable.strings */,
+				B0683FCEF9506076ECE76B63 /* Localizable.strings */,
+				4B53AA9B3CBE36D988FC3407 /* Localizable.strings */,
+				E62D129976EB818542DFD618 /* Localizable.strings */,
+				8B09D57F827CC25D13A50825 /* Localizable.strings */,
+				D5E91BDD73CDF0CD5A154FB5 /* Localizable.strings */,
+				7CB569988E2D87D3C3E58135 /* Localizable.strings */,
+				49E168011B95616E961D1913 /* Localizable.strings */,
+				C2DA2E259A9E765D1F7CD5BB /* Localizable.strings */,
+				215110170974C8AED379F834 /* Localizable.strings */,
+				C24FC1751F0AF10A56B09858 /* Localizable.strings */,
+				0C8CD370362831A2DBE9EDF5 /* Localizable.strings */,
+				187A798ECFD6D6B7B9FAA207 /* Localizable.strings */,
+				8192C4E4FD957CDF4C8F47C4 /* Localizable.strings */,
+				210D3C7EC623CF2E8CD406FB /* Localizable.strings */,
+				5065EAF6A1FC8D0DFD8172B3 /* Localizable.strings */,
+				4A7200837F4858DF669E87A7 /* Localizable.strings */,
+				54EBA5418824A725548AF332 /* Localizable.strings */,
+				D69408EFFF9A5B6BA9E0E4A1 /* Localizable.strings */,
+				3D90B41DAEF9CFDF9E83C0D1 /* Localizable.strings */,
+				27D48E6C930A066EAAFDF005 /* Localizable.strings */,
+				072315BB535348FEAFD79F79 /* Localizable.strings */,
+				0B7084C2419E63EB932B5029 /* Localizable.strings */,
+				5C9F5AEE2A59305358BB05D1 /* Localizable.strings */,
+				DB94DB212396255069AFEF47 /* Localizable.strings */,
+				E01B83E692750C1259E33F7B /* Localizable.strings */,
+				ABB077B2E6AD8B1F5657AC4B /* Localizable.strings */,
+				0CF37520018F08F947EDD61F /* Localizable.strings */,
+				AF5D77879516B37F4C3CB22E /* Localizable.strings */,
+				5E6775F2017DCF7C866A2158 /* Localizable.strings */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -478,6 +668,8 @@
 				REVMGR002 /* ReviewManager.swift */,
 				REFMGR002 /* ReferralManager.swift */,
 				CURMGR002 /* CuratorManager.swift */,
+				MSGSHR002 /* MessageShareService.swift */,
+				NEWSAPI002 /* NewsAPIClient.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -497,8 +689,84 @@
 				NOTES002 /* NotesServer.swift */,
 				EMERKB002 /* EmergencyKnowledgeBaseServer.swift */,
 				WEATHER002 /* WeatherServer.swift */,
+				NEWSSRV002 /* NewsServer.swift */,
 			);
 			path = Servers;
+			sourceTree = "<group>";
+		};
+		71C6017CE1576ACEFE9D44A8 /* Prompts */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Prompts;
+			path = LocalAIAgent/Prompts;
+			sourceTree = "<group>";
+		};
+		932107A7646C11A6C42957E8 /* Maps */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Maps;
+			path = LocalAIAgent/Maps;
+			sourceTree = "<group>";
+		};
+		B71C3BC657B01719DBAE08A7 /* Discovery */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Discovery;
+			path = Discovery;
+			sourceTree = "<group>";
+		};
+		BACKENDS_GRP /* Backends */ = {
+			isa = PBXGroup;
+			children = (
+				CWBACK002 /* ChatWebBackend.swift */,
+				CLBACK002 /* CloudBackend.swift */,
+				GRBACK002 /* GroqBackend.swift */,
+				LBACK002 /* LocalBackend.swift */,
+				P2PBACK002 /* P2PBackend.swift */,
+				B3425F549F53E154683E4DB9 /* SpeculativeBackend.swift */,
+				37364513C5FBFB4564633833 /* SpeculativeVerifier.swift */,
+			);
+			path = Backends;
+			sourceTree = "<group>";
+		};
+		CFCF5DE988424C50DEC4E4BB /* Games */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Games;
+			path = LocalAIAgent/Games;
+			sourceTree = "<group>";
+		};
+		CHATMODES_GRP /* ChatModes */ = {
+			isa = PBXGroup;
+			children = (
+				CHATMODE002 /* ChatMode.swift */,
+				CHATMODEMGR002 /* ChatModeManager.swift */,
+				CWAPI002 /* ChatWebAPIKeyManager.swift */,
+				INFBACK002 /* InferenceBackend.swift */,
+				BACKENDS_GRP /* Backends */,
+				P2PSVR_GRP /* P2PServer */,
+			);
+			path = ChatModes;
+			sourceTree = "<group>";
+		};
+		D950D22C47D063DCA9587DCB /* Interpreter */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Interpreter;
+			path = Interpreter;
+			sourceTree = "<group>";
+		};
+		F350C4762422CBCCCB82FF66 /* Barter */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Barter;
+			path = LocalAIAgent/Barter;
 			sourceTree = "<group>";
 		};
 		FWGROUP001 /* Frameworks */ = {
@@ -510,47 +778,12 @@
 			path = Frameworks;
 			sourceTree = "<group>";
 		};
-		TEST003 /* LocalAIAgentTests */ = {
+		MACVIEWS001 /* Mac */ = {
 			isa = PBXGroup;
 			children = (
-				TEST001 /* LocalAIAgentTests.swift */,
+				SRVDASH002 /* ServerDashboardView.swift */,
 			);
-			path = LocalAIAgentTests;
-			sourceTree = "<group>";
-		};
-		UITEST003 /* LocalAIAgentUITests */ = {
-			isa = PBXGroup;
-			children = (
-				UITEST001 /* LocalAIAgentUITests.swift */,
-				SNAPSHOT002 /* SnapshotHelper.swift */,
-				91D9833BA13FDD02724E72DD /* LLMConversationTests.swift */,
-			);
-			path = LocalAIAgentUITests;
-			sourceTree = "<group>";
-		};
-		CHATMODES_GRP /* ChatModes */ = {
-			isa = PBXGroup;
-			children = (
-				CHATMODE002 /* ChatMode.swift */,
-				CHATMODEMGR002 /* ChatModeManager.swift */,
-				INFBACK002 /* InferenceBackend.swift */,
-				BACKENDS_GRP /* Backends */,
-				P2PSVR_GRP /* P2PServer */,
-			);
-			path = ChatModes;
-			sourceTree = "<group>";
-		};
-		BACKENDS_GRP /* Backends */ = {
-			isa = PBXGroup;
-			children = (
-				CWBACK002 /* ChatWebBackend.swift */,
-				CLBACK002 /* CloudBackend.swift */,
-				GRBACK002 /* GroqBackend.swift */,
-				LBACK002 /* LocalBackend.swift */,
-				P2PBACK002 /* P2PBackend.swift */,
-				WBBACK002 /* WisbeeBackend.swift */,
-			);
-			path = Backends;
+			path = Mac;
 			sourceTree = "<group>";
 		};
 		P2PSVR_GRP /* P2PServer */ = {
@@ -558,8 +791,27 @@
 			children = (
 				INTRELAY002 /* InternetRelayHandler.swift */,
 				PRIVSVR002 /* PrivateServerManager.swift */,
+				4595A2F46F423B517FDBF8E0 /* MeshP2PManager.swift */,
+				898DD0FF4816A2F2288E27CD /* InferenceServerConfig.swift */,
 			);
 			path = P2PServer;
+			sourceTree = "<group>";
+		};
+		SECURITY_GRP /* Security */ = {
+			isa = PBXGroup;
+			children = (
+				KEYCHN002 /* KeychainManager.swift */,
+				DEVID002 /* DeviceIdentityManager.swift */,
+			);
+			path = Security;
+			sourceTree = "<group>";
+		};
+		TEST003 /* LocalAIAgentTests */ = {
+			isa = PBXGroup;
+			children = (
+				TEST001 /* LocalAIAgentTests.swift */,
+			);
+			path = LocalAIAgentTests;
 			sourceTree = "<group>";
 		};
 		TOKENECO_GRP /* TokenEconomy */ = {
@@ -572,20 +824,14 @@
 			path = TokenEconomy;
 			sourceTree = "<group>";
 		};
-		SECURITY_GRP /* Security */ = {
+		UITEST003 /* LocalAIAgentUITests */ = {
 			isa = PBXGroup;
 			children = (
-				KEYCHN002 /* KeychainManager.swift */,
+				UITEST001 /* LocalAIAgentUITests.swift */,
+				SNAPSHOT002 /* SnapshotHelper.swift */,
+				91D9833BA13FDD02724E72DD /* LLMConversationTests.swift */,
 			);
-			path = Security;
-			sourceTree = "<group>";
-		};
-		MACVIEWS001 /* Mac */ = {
-			isa = PBXGroup;
-			children = (
-				SRVDASH002 /* ServerDashboardView.swift */,
-			);
-			path = Mac;
+			path = LocalAIAgentUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -681,6 +927,63 @@
 				en,
 				ja,
 				Base,
+				"pt-PT",
+				ru,
+				tr,
+				pl,
+				nl,
+				sv,
+				da,
+				nb,
+				fi,
+				el,
+				cs,
+				hu,
+				ro,
+				uk,
+				vi,
+				th,
+				id,
+				ms,
+				fil,
+				he,
+				fa,
+				ur,
+				bn,
+				ta,
+				te,
+				mr,
+				gu,
+				kn,
+				ml,
+				pa,
+				si,
+				my,
+				km,
+				lo,
+				ne,
+				am,
+				sw,
+				zu,
+				af,
+				ha,
+				yo,
+				ig,
+				so,
+				sr,
+				hr,
+				bs,
+				sk,
+				sl,
+				bg,
+				mk,
+				sq,
+				lt,
+				lv,
+				et,
+				is,
+				ca,
+				eu,
 			);
 			mainGroup = 300;
 			packageReferences = (
@@ -800,16 +1103,20 @@
 				GRBACK001 /* GroqBackend.swift in Sources */,
 				LBACK001 /* LocalBackend.swift in Sources */,
 				P2PBACK001 /* P2PBackend.swift in Sources */,
-				WBBACK001 /* WisbeeBackend.swift in Sources */,
+				NEWSMOD001 /* NewsModels.swift in Sources */,
+				NEWSAPI001 /* NewsAPIClient.swift in Sources */,
+				NEWSSRV001 /* NewsServer.swift in Sources */,
+				NEWSFEED001 /* NewsFeedView.swift in Sources */,
 				CHATMODE001 /* ChatMode.swift in Sources */,
 				CHATMODEMGR001 /* ChatModeManager.swift in Sources */,
 				INFBACK001 /* InferenceBackend.swift in Sources */,
 				INTRELAY001 /* InternetRelayHandler.swift in Sources */,
 				PRIVSVR001 /* PrivateServerManager.swift in Sources */,
-				/* BITNET001 BitNetInference.swift omitted — requires bitnet C library */
 				EMERKB001 /* EmergencyKnowledgeBaseServer.swift in Sources */,
 				WEATHER001 /* WeatherServer.swift in Sources */,
 				KEYCHN001 /* KeychainManager.swift in Sources */,
+				DEVID001 /* DeviceIdentityManager.swift in Sources */,
+				CWAPI001 /* ChatWebAPIKeyManager.swift in Sources */,
 				SUBMGR001 /* SubscriptionManager.swift in Sources */,
 				TOKMGR001 /* TokenManager.swift in Sources */,
 				CMSELV001 /* ChatModeSelectorView.swift in Sources */,
@@ -826,10 +1133,24 @@
 				SKILLDTL001 /* SkillDetailView.swift in Sources */,
 				SKILLPUB001 /* SkillPublishView.swift in Sources */,
 				CURMGR001 /* CuratorManager.swift in Sources */,
+				MSGSHR001 /* MessageShareService.swift in Sources */,
 				OGBADGE001 /* OGBadgeView.swift in Sources */,
 				OGVERIFY001 /* OGVerificationView.swift in Sources */,
 				CURPROFILE001 /* CuratorProfileView.swift in Sources */,
 				SKILLREV001 /* SkillReviewView.swift in Sources */,
+				E8FEAD3110B72464A21351F5 /* DeveloperThanksView.swift in Sources */,
+				BB934CEC6E4217B2FEF4109D /* MeshP2PManager.swift in Sources */,
+				DF3D9B5843EBF999962CB910 /* ChatWebQuickToggle.swift in Sources */,
+				81532C268A329161B26DBE93 /* SystemPromptLocalizations.swift in Sources */,
+				F9B5BA92A297C87B4C263A10 /* ModelSelectorView.swift in Sources */,
+				94C05C178CA153A1939D6A74 /* FriendsManager.swift in Sources */,
+				AD18E45C310E417CD140100C /* MessagingManager.swift in Sources */,
+				3F2AD87B83A871ECF3AEE72B /* MessagesView.swift in Sources */,
+				BF338E7FC2A3E11D16ECCEC8 /* DirectChatView.swift in Sources */,
+				C071F3E0693DCB31C15C6052 /* InferenceServerSettingsView.swift in Sources */,
+				32F957E1072AE040998CB503 /* SpeculativeBackend.swift in Sources */,
+				CC9E1A43AC5028EF1CD3CC12 /* SpeculativeVerifier.swift in Sources */,
+				FC0C7203D357908E50F1A581 /* InferenceServerConfig.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -867,11 +1188,467 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		05CE82FCE9AA52AB9CD85EC8 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4C1810A84FA4FEB1DF86B9C4 /* Localizable.strings */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		072315BB535348FEAFD79F79 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6E70A5B9D33DDC949FA1736B /* Localizable.strings */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		0B7084C2419E63EB932B5029 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C89D86BBB260686B614BC7B7 /* Localizable.strings */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		0C8CD370362831A2DBE9EDF5 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				84B3BBE1E1991BFA462BE14B /* Localizable.strings */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		0CF37520018F08F947EDD61F /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6C890A3AFC51E29A85B2CC61 /* Localizable.strings */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		0D69388A2FD55A1C9F8170E2 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F134925799D70830635A1CDD /* Localizable.strings */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		11693DB10C8D86069133401B /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				015BAF31CA17B08E03B86370 /* Localizable.strings */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		140 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
 				141 /* en */,
 				142 /* ja */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		182335B844EAC038525CAC6A /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0E95A5FF764597D92E800362 /* Localizable.strings */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		187A798ECFD6D6B7B9FAA207 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1CA3493F8ED1E8131EB8787A /* Localizable.strings */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		1A8F5486FC77F4F5AB09AF65 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				72478AD68FC4B35064DFB2EB /* Localizable.strings */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		207A7130D4F2FD46C54FA5AF /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9A81CC1B9D74555189349E3F /* Localizable.strings */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		210D3C7EC623CF2E8CD406FB /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5E8903B05CB12922F4296C10 /* Localizable.strings */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		215110170974C8AED379F834 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1FADB9B2F9F41B3ADA3D8A2E /* Localizable.strings */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		26E46D4B9B25597EE3EB2AEC /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2B62E9A3FDFB8019643C6460 /* Localizable.strings */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		27D48E6C930A066EAAFDF005 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A0166C58451C9D5CC66396BD /* Localizable.strings */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		3AFBE6A37A58F8297C184F9F /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BA5C00BA92BADDD9DFA8698B /* Localizable.strings */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		3D90B41DAEF9CFDF9E83C0D1 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				591CAE68142A0971FDA6F2A8 /* Localizable.strings */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		3F29C687AECF368342723EC4 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D1BDD3EC9F8220E0B71087A3 /* Localizable.strings */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		49E168011B95616E961D1913 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2344B74877AEDD7F51A60638 /* Localizable.strings */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		4A7200837F4858DF669E87A7 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BE086B2F9F33EE29A9BCAB08 /* Localizable.strings */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		4B53AA9B3CBE36D988FC3407 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				432F93226283198E28932302 /* Localizable.strings */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		5065EAF6A1FC8D0DFD8172B3 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A506FF68BD35B600440F7BF1 /* Localizable.strings */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		54EBA5418824A725548AF332 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7F5FFA1C3F24638CF82FC4F1 /* Localizable.strings */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		582870A53C5E770495F8FA65 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5253B2DE3BC147765D91BC4C /* Localizable.strings */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		5C9F5AEE2A59305358BB05D1 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				84B2596D81B38151D72EC147 /* Localizable.strings */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		5E6775F2017DCF7C866A2158 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A033E850E0A7075A3D2E40F8 /* Localizable.strings */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		67518E51A2DC5990CCD645A1 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1D59F588E9B6877DA4E247B2 /* Localizable.strings */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		676FA76A0556C32A852EDBCC /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DAC01C2F9F2DF0F1148AFF44 /* Localizable.strings */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		67D7D09FC52FE1EFEFBEE6C1 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5255A2A7704C69E3996970FA /* Localizable.strings */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		7CB569988E2D87D3C3E58135 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1CB25DB289CD9ACDBBD133BF /* Localizable.strings */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		7E94502D311C8DF9C9D3A878 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C9B8657ADFE05597384208E6 /* Localizable.strings */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		8192C4E4FD957CDF4C8F47C4 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D5364FA639C7CEC7FBCE629F /* Localizable.strings */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		8A6CE0E3443C1F85B8F95C64 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E2A98D262BC8C21D6F1D8F48 /* Localizable.strings */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		8B09D57F827CC25D13A50825 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				03381B1A3E027ECC9D1FEE76 /* Localizable.strings */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		97F9BE3179946012816312D9 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				99B99C969F9B9C6FBE528773 /* Localizable.strings */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		A537E7EA7031220360D24427 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9458ACDF5C7161AC775AA024 /* Localizable.strings */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		AAFC53028B2A446AF34FF0AC /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				211B5DBF35E441607B9C229A /* Localizable.strings */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		AB144D4FE87B7D16CD9FAD7D /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				740E9F58437D50A4CCD952F8 /* Localizable.strings */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		ABB077B2E6AD8B1F5657AC4B /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0E46A3EE6581F4478C52E995 /* Localizable.strings */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		AF5D77879516B37F4C3CB22E /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				403A3D540128946E0A532C15 /* Localizable.strings */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		AFFC35BCEB6077EE3F027042 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C080387BC6FB92C9A515D20C /* Localizable.strings */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		B0683FCEF9506076ECE76B63 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0029EE8B5241B7E21DF91D5A /* Localizable.strings */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		B1F044054C71658395C41500 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1152BA28C34804F55EBF0F15 /* Localizable.strings */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		C24FC1751F0AF10A56B09858 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E6EE49F28609C51FC5142020 /* Localizable.strings */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		C2DA2E259A9E765D1F7CD5BB /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3247A906BED05B9DEABC6E2C /* Localizable.strings */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		C33B99381CB038DB424F22DD /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				15DE1364A66E372968BE4AF1 /* Localizable.strings */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		D00F31EB0A307A3D5358B6AC /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7B94204565AC4FF4F458668F /* Localizable.strings */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		D3CE0B01DBB122A641C58A4E /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				52548021BDF99BEB1B75F5F2 /* Localizable.strings */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		D5E91BDD73CDF0CD5A154FB5 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3365EB32D1D544654F55F68E /* Localizable.strings */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		D69408EFFF9A5B6BA9E0E4A1 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C335D866785F22C0FE4E2DBB /* Localizable.strings */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		DB94DB212396255069AFEF47 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7679EE190D8971AA9FB64894 /* Localizable.strings */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		E01B83E692750C1259E33F7B /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				02C88DD1647B3FE7CD3BF6D5 /* Localizable.strings */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		E62D129976EB818542DFD618 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C1C8AF4FE191B8AFBC9BE8DE /* Localizable.strings */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		EC54B2C50FE3EB6AF781514C /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				42B8A65A83869ACAF8C3BC5E /* Localizable.strings */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		ECB1AD71542426D89C473E84 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C02F9A3D3BF1EDCECCEED684 /* Localizable.strings */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		F406EE786F6E8AAE4400240A /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4AEB6572005768A34D05E7FA /* Localizable.strings */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		F4294BF8C9D7AEB2DC327128 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				43548E0F735CECA133933CD1 /* Localizable.strings */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -1008,7 +1785,7 @@
 				CODE_SIGN_ENTITLEMENTS = LocalAIAgent/LocalAIAgent.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 32;
+				CURRENT_PROJECT_VERSION = 42;
 				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_TEAM = 5BV85JW8US;
 				ENABLE_PREVIEWS = YES;
@@ -1029,7 +1806,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.33;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.2.37;
 				PRODUCT_BUNDLE_IDENTIFIER = love.elio.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1039,7 +1817,6 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "LocalAIAgent/LocalAIAgent-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,6";
-				MACOSX_DEPLOYMENT_TARGET = 14.0;
 			};
 			name = Debug;
 		};
@@ -1051,7 +1828,7 @@
 				CODE_SIGN_ENTITLEMENTS = LocalAIAgent/LocalAIAgent.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 32;
+				CURRENT_PROJECT_VERSION = 42;
 				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_TEAM = 5BV85JW8US;
 				ENABLE_PREVIEWS = YES;
@@ -1072,7 +1849,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.33;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.2.37;
 				PRODUCT_BUNDLE_IDENTIFIER = love.elio.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1082,7 +1860,6 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "LocalAIAgent/LocalAIAgent-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,6";
-				MACOSX_DEPLOYMENT_TARGET = 14.0;
 			};
 			name = Release;
 		};
@@ -1091,11 +1868,11 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 32;
+				CURRENT_PROJECT_VERSION = 42;
 				DEVELOPMENT_TEAM = 5BV85JW8US;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				MARKETING_VERSION = 1.2.33;
+				MARKETING_VERSION = 1.2.37;
 				PRODUCT_BUNDLE_IDENTIFIER = love.elio.app.tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
@@ -1110,11 +1887,11 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 32;
+				CURRENT_PROJECT_VERSION = 42;
 				DEVELOPMENT_TEAM = 5BV85JW8US;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				MARKETING_VERSION = 1.2.33;
+				MARKETING_VERSION = 1.2.37;
 				PRODUCT_BUNDLE_IDENTIFIER = love.elio.app.tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
@@ -1128,11 +1905,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 32;
+				CURRENT_PROJECT_VERSION = 42;
 				DEVELOPMENT_TEAM = 5BV85JW8US;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				MARKETING_VERSION = 1.2.33;
+				MARKETING_VERSION = 1.2.37;
 				PRODUCT_BUNDLE_IDENTIFIER = love.elio.app.uitests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
@@ -1146,11 +1923,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 32;
+				CURRENT_PROJECT_VERSION = 42;
 				DEVELOPMENT_TEAM = 5BV85JW8US;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				MARKETING_VERSION = 1.2.33;
+				MARKETING_VERSION = 1.2.37;
 				PRODUCT_BUNDLE_IDENTIFIER = love.elio.app.uitests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
