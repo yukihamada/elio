@@ -1,0 +1,29 @@
+{
+  "configurations" : [
+    {
+      "id" : "9A3B7C4D-E5F6-7890-ABCD-EF1234567890",
+      "name" : "Unit Tests",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "codeCoverage" : true,
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:ElioChat.xcodeproj",
+      "identifier" : "400",
+      "name" : "LocalAIAgent"
+    }
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:ElioChat.xcodeproj",
+        "identifier" : "TEST008",
+        "name" : "LocalAIAgentTests"
+      }
+    }
+  ],
+  "version" : 1
+}
