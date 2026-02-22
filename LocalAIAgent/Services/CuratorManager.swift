@@ -228,13 +228,14 @@ final class CuratorManager: ObservableObject {
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         request.setValue("Elio Chat iOS", forHTTPHeaderField: "User-Agent")
-        // FIXME: elio-api /api/v1/og/verify expects EIP-191 signature verification
-        // (walletAddress, signature, message) but this client only sends the address.
-        // Either implement wallet signing (WalletConnect / MetaMask deep link) on iOS,
-        // or add a simpler balance-check-only endpoint on the API side.
+        // elio-api /api/v1/og/verify supports both modes:
+        // 1. Full EIP-191 (walletAddress + signature + message) for web
+        // 2. Balance-check only (walletAddress + contract_address) for mobile
+        // We use mode 2 since iOS doesn't have a wallet signer.
         request.httpBody = try? JSONSerialization.data(withJSONObject: [
             "walletAddress": trimmedAddress,
             "contract_address": Self.hamadaoContract,
+            "mode": "balance_check",
         ])
         request.timeoutInterval = 30
 
@@ -288,9 +289,9 @@ final class CuratorManager: ObservableObject {
 
         let baseURL = SyncManager.shared.baseURL
         // API route: GET /api/v1/curators/:userId/status
-        // TODO: Persist userId from LoginResponse in SyncManager and use it here.
-        // For now, fall back to "me" which the server should resolve from the auth token.
-        guard let url = URL(string: "\(baseURL)/api/v1/curators/me/status") else { return }
+        // "me" is resolved server-side from the Bearer token
+        let userId = SyncManager.shared.userId ?? "me"
+        guard let url = URL(string: "\(baseURL)/api/v1/curators/\(userId)/status") else { return }
 
         var request = URLRequest(url: url)
         request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
@@ -372,8 +373,8 @@ final class CuratorManager: ObservableObject {
         guard let token = SyncManager.shared.authToken else { return }
 
         let baseURL = SyncManager.shared.baseURL
-        // TODO: This endpoint does not exist in elio-api yet. Needs to be added.
-        guard let url = URL(string: "\(baseURL)/api/v1/curators/me/stats") else { return }
+        let userId = SyncManager.shared.userId ?? "me"
+        guard let url = URL(string: "\(baseURL)/api/v1/curators/\(userId)/stats") else { return }
 
         var request = URLRequest(url: url)
         request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")

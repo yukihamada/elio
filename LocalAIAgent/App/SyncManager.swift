@@ -115,6 +115,9 @@ class SyncManager: ObservableObject {
     /// Auth token — stored in Keychain, exposed for ChatWebBackend
     private(set) var authToken: String?
 
+    /// User ID from login response — used for API calls that need explicit user identification
+    private(set) var userId: String?
+
     /// Singleton for access from non-environment contexts (e.g. SubscriptionManager)
     static let shared = SyncManager()
 
@@ -210,8 +213,9 @@ class SyncManager: ObservableObject {
             throw SyncError.invalidCredentials
         }
 
-        // Save token
+        // Save token and userId
         authToken = token
+        userId = loginResponse.userId
         saveTokenToKeychain(token)
 
         self.email = loginResponse.email ?? email
@@ -224,6 +228,7 @@ class SyncManager: ObservableObject {
     /// Logout and clear all state
     func logout() {
         authToken = nil
+        userId = nil
         deleteTokenFromKeychain()
         isLoggedIn = false
         email = ""

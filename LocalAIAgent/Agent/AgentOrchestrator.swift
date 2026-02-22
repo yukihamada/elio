@@ -125,31 +125,28 @@ final class AgentOrchestrator: ObservableObject {
                         enabledServers: enabledServers
                     )
 
-                    // HOTFIX: Return tool result immediately to prevent freeze
-                    // TODO: Re-enable multi-turn conversation after fixing the freeze issue
-                    currentStep = nil
-                    return toolResult.content.trimmingCharacters(in: .whitespacesAndNewlines)
+                    let toolCall = ToolCall(name: name, arguments: arguments)
+                    let assistantMessage = Message(
+                        role: .assistant,
+                        content: response,
+                        toolCalls: [toolCall]
+                    )
+                    workingHistory.append(assistantMessage)
 
-                    // Original code (disabled):
-                    // let assistantMessage = Message(
-                    //     role: .assistant,
-                    //     content: response,
-                    //     toolCalls: [ToolCall(name: name, arguments: arguments)]
-                    // )
-                    // workingHistory.append(assistantMessage)
-                    //
-                    // let toolMessage = Message(
-                    //     role: .tool,
-                    //     content: toolResult.content,
-                    //     toolResults: [ToolResult(
-                    //         toolCallId: assistantMessage.toolCalls!.first!.id,
-                    //         content: toolResult.content,
-                    //         isError: toolResult.isError
-                    //     )]
-                    // )
-                    // workingHistory.append(toolMessage)
-                    //
-                    // continue
+                    let toolMessage = Message(
+                        role: .tool,
+                        content: toolResult.content,
+                        toolResults: [ToolResult(
+                            toolCallId: toolCall.id,
+                            content: toolResult.content,
+                            isError: toolResult.isError
+                        )]
+                    )
+                    workingHistory.append(toolMessage)
+
+                    // Yield to prevent main actor deadlock, then break to re-invoke LLM
+                    await Task.yield()
+                    break
 
                 case .thinking:
                     continue
