@@ -1,0 +1,635 @@
+/*
+  Localizable.strings (Zulu)
+  Elio
+*/
+
+// MARK: - App General
+"app.name" = "Elio";
+"app.tagline" = "Ubuchopho bakho besibili obugcina izimfihlo.";
+
+// MARK: - Common Actions
+"common.done" = "Kwenziwe";
+"common.cancel" = "Khansela";
+"common.delete" = "Susa";
+"common.save" = "Londoloza";
+"common.edit" = "Hlela";
+"common.share" = "Yabelana";
+"common.copy" = "Kopisha";
+"common.copied" = "Kukopishiwe";
+"common.loading" = "Iyalayisha...";
+"common.error" = "Iphutha";
+"common.retry" = "Zama futhi";
+"common.skip" = "Yeqa";
+"common.next" = "Okulandelayo";
+"common.start" = "Qala";
+"common.add" = "Engeza";
+"common.close" = "Vala";
+"common.details" = "Imininingwane";
+"common.yes" = "Yebo";
+"common.no" = "Cha";
+"common.unknown" = "Akwaziwa";
+
+// MARK: - Chat
+"chat.placeholder" = "Ngibuze noma yini";
+"chat.model.not.loaded" = "Imodeli ayilayishiwe";
+"chat.model.not.loaded.description" = "Sicela udownloade imodeli kusuka kuzilungiselelo";
+"chat.go.to.settings" = "Hamba kuzilungiselelo";
+"chat.new.conversation" = "Ingxoxo Entsha";
+"chat.stop.generation" = "Misa";
+"chat.generation.stopped" = "\n\n[Ukwakhiwa kumisiwe]";
+"chat.image.sent" = "[Isithombe sithunyelwe]";
+"chat.images.sent" = "[Izithombe %d zithunyelwe]";
+"chat.pdf.sent" = "[I-PDF inamathiselwe: %@]";
+"chat.pdf.sent.vision" = "[I-PDF enesithombe: %@]";
+"chat.pdf.context" = "Okulandelayo kungokuqukethwe kombhalo okukhishwe kudokhumenti ye-PDF \"%@\":\n\n%@";
+"chat.pdf.context.vision" = "Leli ikhasi 1 ledokhumenti ye-PDF \"%@\". Okuqukethwe kombhalo okukhishwe yilokhu:\n\n%@\n\nSicela uhlaziye kokubili okuqukethwe kokubukwayo nombhalo.";
+"chat.pdf.analyze" = "Sicela uhlaziye leli khasi le-PDF kusuka ku \"%@\".";
+"chat.url.sent" = "[Ikhasi lewebhu: %@]";
+"chat.url.context" = "Okulandelayo kungokuqukethwe okukhishwe ekhasi lewebhu \"%@\" (%@):\n\n%@";
+"chat.thinking" = "Ngiyacabanga...";
+"chat.generating" = "Ngihlanganisa impendulo...";
+"chat.welcome" = "Ngingakusiza kanjani?";
+"chat.suggestion.schedule" = "Khombisa ishedyuli yanamuhla";
+"chat.suggestion.reminder" = "Dala isikhumbuzo";
+"chat.suggestion.weather" = "Isimo sezulu sinjani namuhla?";
+"chat.suggestion.help" = "Indlela yokusebenzisa lolu hlelo";
+"chat.websearch.on" = "Ukusesha Kwewebhu Kuvuliwe";
+"chat.websearch.off" = "Ukusesha Kwewebhu Kuvalwe";
+"chat.thinking.on" = "Ukucabanga Kuvuliwe";
+"chat.thinking.off" = "Ukucabanga Kuvalwe";
+"chat.transcribing" = "Iyabhala...";
+"chat.offline" = "Ngaphandle kwe-inthanethi";
+
+// Voice Conversation Mode
+"voice.listening" = "Iyalalela...";
+"voice.processing" = "Iyacubungula...";
+"voice.thinking" = "Ngiyacabanga...";
+"voice.speaking" = "Ngiyakhuluma...";
+"voice.tap.to.send" = "Thepha ukuze uthumele";
+"chat.templates" = "Amathempleyithi";
+"chat.websearch.privacy.title" = "Mayelana Nokushesha Kwewebhu";
+"chat.websearch.privacy.message" = "Ukunika amandla ukusesha kwewebhu kuvumela i-AI ukuthi iseshe ku-inthanethi nge-DuckDuckGo ukuthola ulwazi lwamanje. Izicelo zokusesha zithunyelwa ku-DuckDuckGo kodwa azilandelwa.";
+"chat.websearch.privacy.enable" = "Nika amandla";
+"chat.websearch.privacy.disable" = "Shiya Kuvalwe";
+
+// MARK: - Settings
+"settings.title" = "Izilungiselelo";
+"settings.model.section" = "Amamodeli e-AI";
+"settings.model.recommended" = "Kunconywa: %@";
+"settings.model.local.execution" = "Amamodeli asebenza ngendlela yendawo kudivayisi yakho";
+"settings.model.show.more" = "Amanye Amamodeli (%d)";
+"settings.model.show.less" = "Khombisa Okuncane";
+"settings.appearance.section" = "Ukubukeka";
+"settings.tools.section" = "Izici Ezihlakaniphile";
+"settings.mcp.servers" = "Ukuhlanganisa";
+"settings.mcp.servers.description" = "Ikhalenda, Amafayela, Izikhumbuzo nokunye";
+"settings.mcp.enabled.count" = "%d kunikezwe amandla";
+"settings.mcp.enabled.count.suffix" = " kunikezwe amandla";
+"settings.about.section" = "Mayelana";
+"settings.version" = "Inguqulo";
+"settings.about.app" = "Mayelana nale App";
+"settings.about.mcp" = "Mayelana Nokuhlanganisa";
+"settings.privacy.badge" = "Isebenza Ngaphandle Kwe-inthanethi";
+"settings.privacy.description" = "Isebenza kumodi yendiza";
+"settings.airplane.mode" = "Isebenza kumodi yendiza";
+"settings.offline.ready" = "Sekulungele Ukusebenza Ngaphandle Kwe-inthanethi";
+
+// MARK: - Model States
+"model.status.downloading" = "Iyadownloada... %d%%";
+"model.status.loading" = "Iyalayisha...";
+"model.status.in.use" = "Iyasetshenziswa";
+"model.status.recommended" = "Kunconywa";
+"model.status.heavy" = "Isindayo";
+"model.action.download" = "Downloada";
+"model.action.load" = "Layisha";
+"model.action.delete" = "Susa";
+"model.action.use" = "Sebenzisa Le modeli";
+"model.delete.confirm.title" = "Susa Imodeli";
+"model.delete.confirm.message" = "Susa u-%@? Uzodinga ukuyidownloada kabusha ukuze uyisebenzise futhi.";
+"model.select.title" = "Khetha Imodeli";
+"model.select.prompt" = "Sicela ukhethe imodeli";
+"model.downloaded" = "Idownloadiwe";
+
+// MARK: - Inference Mode
+"inference.mode.title" = "Ukusheshisa";
+"inference.mode.auto" = "Ngokuzenzakalelayo";
+"inference.mode.auto.desc" = "Ukusebenza okuhle kakhulu ngokuzenzakalelayo";
+"inference.mode.gpu" = "I-GPU (Metal)";
+"inference.mode.gpu.desc" = "Isivinini esiphezulu kakhulu nge-Metal";
+"inference.mode.cpu" = "I-CPU Kuphela";
+"inference.mode.cpu.desc" = "Imodi yokonga ibhethri";
+"inference.mode.hybrid" = "Ixubumaniswe";
+"inference.mode.hybrid.desc" = "Ukulinganisa isivinini nebhethri";
+
+// MARK: - Theme
+"theme.system" = "Uhlelo";
+"theme.light" = "Ukukhanya";
+"theme.dark" = "Ubumnyama";
+
+// MARK: - Onboarding
+"onboarding.welcome.title" = "Siyakwamukela ku-ElioChat";
+"onboarding.welcome.subtitle" = "Umsizi wakho oyimfihlo we-AI";
+"onboarding.features.title" = "I-AI Yobumfihlo Yangempela";
+"onboarding.feature.offline" = "Isebenza kumodi yendiza";
+"onboarding.feature.offline.desc" = "Yisebenzise ezindizeni noma ngaphansi komhlaba";
+"onboarding.feature.privacy" = "Awukho Ukudluliswa Kwedatha";
+"onboarding.feature.privacy.desc" = "Izingxoxo zakho aziyishiyi ifoni yakho";
+"onboarding.feature.vault" = "Ukuhlanganisa Okuhlakaniphile";
+"onboarding.feature.vault.desc" = "Xhuma neKhalenda Namafayela";
+"onboarding.feature.secure" = "I-AI Ephephile Emsebenzini";
+"onboarding.feature.secure.desc" = "Iphephile ekusetshenzisweni kwezinkampani";
+"onboarding.feature.thinking" = "Inqubo Yokucabanga";
+"onboarding.privacy.title" = "Idatha Yakho Ihlala Iyakho";
+"onboarding.privacy.item1" = "Ukucubungula konke kwenzeka ku-iPhone yakho";
+"onboarding.privacy.item2" = "Ayikho idatha ethunyelwa kumaseva ecloud";
+"onboarding.privacy.item3" = "Ayisetshenziswa ukuqeqeshwa kwe-AI";
+"onboarding.getstarted.title" = "Sekulungele Ngokuthinta Okukodwa";
+"onboarding.getstarted.subtitle" = "Downloada imodeli ye-AI enconyiwe\nese uqale ukuxoxa ngokushesha";
+"onboarding.step1" = "Downloada imodeli enconyiwe";
+"onboarding.step2" = "Linda imizuzu embalwa";
+"onboarding.step3" = "Usulungele!";
+
+// MARK: - About
+"about.title" = "Mayelana Nale App";
+"about.rate.app" = "Linganisa i-App";
+"about.share.app" = "Yabelana Nabangane";
+"about.privacy.policy" = "Inqubomgomo Yobumfihlo";
+"about.terms" = "Imigomo Yesevisi";
+"about.tech.info" = "Ulwazi Lobuchwepheshe";
+"about.tech.engine" = "Injini ye-AI";
+"about.tech.format" = "Ifomethi Esekelwayo";
+"about.tech.inference" = "Ukuqagela";
+"about.data.management" = "Ukuphatha Idatha";
+"about.delete.all" = "Susa Zonke Izingxoxo";
+"about.credits" = "Amalungelo";
+"about.credits.description" = "Le app isebenzisa imitapo yomthombo ovulelekile";
+"about.privacy.section" = "Ubumfihlo";
+"about.gguf.format" = "Ifomethi ye-GGUF";
+"about.metal.gpu" = "Ukusheshisa kwe-Metal GPU";
+
+// MARK: - Referral
+"referral.title" = "Dlulisela Abangane";
+"referral.code.title" = "Ikhodi Yakho Yokudlulisela";
+"referral.code.copy" = "Kopisha Ikhodi";
+"referral.code.copied" = "Kukopishiwe";
+"referral.share.button" = "Yabelana Nabangane";
+"referral.share.description" = "Yabelana nge-Elio nabangane bakho!";
+"referral.count" = "Badluliselwe abantu %d";
+"referral.enter.title" = "Faka Ikhodi Yokudlulisela";
+"referral.enter.placeholder" = "Ikhodi Yokudlulisela";
+"referral.enter.button" = "Sebenzisa";
+"referral.enter.success" = "Ikhodi yokudlulisela isetshenziwe";
+"referral.enter.error" = "Ikhodi yokudlulisela engalungile";
+
+// MARK: - Privacy Policy
+"privacy.title" = "Inqubomgomo Yobumfihlo";
+"privacy.data.collection.title" = "Ukuqoqwa Kwedatha";
+"privacy.data.collection.content" = "Le app isebenzisa i-AI yasendaweni ngokuphelele ngaphandle kwe-inthanethi.\nAyikho idatha ethunyelwa kumaseva angaphandle.\nZonke izingxoxo zigcinwe kuphela kudivayisi yakho.";
+"privacy.stored.data.title" = "Idatha Egciniwe";
+"privacy.stored.data.content" = "Umlando wezingxoxo (ugcinwe kuphela kudivayisi)\nAmafayela emodeli ye-AI (agcinwe kuphela kudivayisi)\nIzilungiselelo ze-app (zigcinwe kuphela kudivayisi)\n\nLe datha ayikaze yabiwe ngaphandle.";
+"privacy.data.deletion.title" = "Ukususa Idatha";
+"privacy.data.deletion.content" = "Ungasusa yonke idatha noma yinini kusuka kuzilungiselelo > Ukuphatha Idatha.\nUkususwa kwe-app kuzosusa yonke idatha.";
+
+// MARK: - Terms of Service
+"terms.title" = "Imigomo Yesevisi";
+"terms.service.title" = "Incazelo Yesevisi";
+"terms.service.content" = "Le app inikeza ukusebenza komsizi we-AI isebenzisa imodeli ye-AI esebenza ngendlela yendawo.";
+"terms.disclaimer.title" = "Ukwenqaba";
+"terms.disclaimer.content" = "Izimpendulo ze-AI zingaba namaphutha.\nIzinqumo ezibalulekile kufanele ziqinisekiswe uchwepheshe njalo.\nAsithwali mlandu nganoma yiluphi umonakalo ovela ekusetshenzisweni kwalolu hlelo.";
+"terms.prohibited.title" = "Imisebenzi Enqatshelwe";
+"terms.prohibited.content" = "Imisebenzi engekho emthethweni\nImisebenzi ephula amalungelo abanye\nUbunjiniyela obuphikisayo balolu hlelo\nUkukopisha okungagunyaziwe kwalolu hlelo";
+"terms.ip.title" = "Impahla Yengqondo";
+"terms.ip.content" = "Amalungelo empahla yengqondo yalolu hlelo angawomthuthukisi.\nUkusetshenziswa okungagunyaziwe kunqatshelwe.";
+
+// MARK: - Conversations
+"conversations.title" = "Izingxoxo";
+"conversations.new" = "Ingxoxo Entsha";
+"conversations.empty" = "Azikho izingxoxo okwamanje";
+"conversations.delete" = "Susa Ingxoxo";
+"conversations.default.title" = "Ingxoxo Entsha";
+"conversations.today" = "Namuhla";
+"conversations.yesterday" = "Izolo";
+"conversations.past7days" = "Izinsuku Ezingu-7 Ezedlule";
+"conversations.past30days" = "Izinsuku Ezingu-30 Ezedlule";
+"conversations.older" = "Okudala Kakhudlwana";
+"conversations.created" = "Kwadalwa: %@";
+"conversations.user" = "Umsebenzisi";
+"conversations.assistant" = "Umsizi";
+"conversations.search.placeholder" = "Sesha izingxoxo";
+"conversations.search.no_results" = "Azikho iziphumela ezitholiwe";
+
+// MARK: - Message Actions
+"message.copy" = "Kopisha";
+"message.speak" = "Khuluma";
+"message.stop.speaking" = "Yeka Ukukhuluma";
+"message.share" = "Yabelana";
+"message.share.card" = "Yabelana Njengekhadi";
+"message.like" = "Iyathanda";
+
+// MARK: - Share Card
+"share.card.title" = "Yabelana Ngekhadi";
+"share.card.preview" = "Ukubuka Kuqala";
+"share.card.button" = "Yabelana Ngesithombe";
+"message.dislike" = "Ayithandi";
+"message.thinking.process" = "Inqubo Yokucabanga";
+"message.tool.running" = "Isebenzisa Ithuluzi";
+"message.tool.error" = "Iphutha";
+"message.tool.completed" = "Kuqediwe";
+
+// MARK: - Attachment
+"attachment.title" = "Okunamathiselwe";
+"attachment.photo.library" = "Khetha Isithombe";
+"attachment.camera" = "Thatha Isithombe";
+"attachment.pdf" = "Khetha i-PDF";
+"attachment.pdf.chars" = "izinhlamvu %d";
+"attachment.pdf.pages" = "amakhasi %d";
+"attachment.pdf.vision.enabled" = "Ukuhlaziya kwesithombe kunikeziwe amandla";
+"attachment.pdf.text.only" = "Imodi yombhalo kuphela";
+"attachment.url" = "Funda Ikhasi Lewebhu";
+"attachment.url.title" = "Faka i-URL";
+"attachment.url.placeholder" = "https://example.com";
+"attachment.url.message" = "Namathisela i-URL ukuze ukhiphe okuqukethwe kwayo";
+"attachment.url.fetch" = "Landa";
+"attachment.url.loading" = "Ilayisha ikhasi...";
+
+// MARK: - Errors
+"error.model.not.found" = "Ifayela lemodeli alitholakali";
+"error.model.not.loaded" = "Imodeli ayilayishiwe";
+"error.context.failed" = "Ukudala umongo akuphumelelanga";
+"error.tokenization.failed" = "I-tokenization ayiphumelelanga";
+"error.generation.failed" = "Iphutha lokukhiqiza: %@";
+"error.occurred" = "Iphutha lenzekile: %@";
+"error.invalid.url" = "I-URL engalungile";
+"error.download.failed" = "Ukudownloada akuphumelelanga";
+"error.extraction.failed" = "Ukukhipha akuphumelelanga";
+"error.config.not.found" = "Ifayela lokulungiselelwa alitholakali";
+
+// MARK: - Ghost Search
+"ghost.search.title" = "Ukushesha Kwesipoki";
+"ghost.search.description" = "Ukusesha okungakhombisi igama nge-DuckDuckGo (akukho ukulandela)";
+"ghost.search.connecting" = "Ixhuma kunethiwekhi engakhombisi igama...";
+"ghost.search.privacy.note" = "Umlando wakho wokusesha awulandelwa";
+
+// MARK: - MCP Servers
+"mcp.filesystem" = "Uhlelo Lwamafayela";
+"mcp.filesystem.desc" = "Funda ubhale amafayela ku-app";
+"mcp.calendar" = "Ikhalenda";
+"mcp.calendar.desc" = "Funda ubhale izehlakalo";
+"mcp.reminders" = "Izikhumbuzo";
+"mcp.reminders.desc" = "Phatha izikhumbuzo";
+"mcp.contacts" = "Oxhumana nabo";
+"mcp.contacts.desc" = "Sesha ubuke oxhumana nabo";
+"mcp.photos" = "Izithombe";
+"mcp.photos.desc" = "Finyelela kumtapo wezithombe";
+"mcp.location" = "Indawo";
+"mcp.location.desc" = "Thola indawo yamanje usesha izindawo";
+"mcp.health" = "Impilo";
+"mcp.health.desc" = "Finyelela kudatha yempilo";
+"mcp.shortcuts" = "Izinqamuleli";
+"mcp.shortcuts.desc" = "Sebenzisa izinqamuleli";
+"mcp.websearch" = "Ukusesha Kwewebhu";
+"mcp.websearch.desc" = "Ukusesha kwewebhu okungakhombisi igama";
+"mcp.custom" = "Ukuhlanganisa Okuqondene";
+"mcp.custom.add" = "Engeza Ukuhlanganisa";
+"mcp.custom.setup" = "Lungisa ukuhlanganisa kwesevisi yangaphandle";
+"mcp.custom.title" = "Ukuhlanganisa Okuqondene";
+"mcp.settings.title" = "Izilungiselelo Zokuhlanganisa";
+"mcp.server.name" = "Igama Leseva";
+"mcp.server.name.placeholder" = "isb., Iseva Yami Eqondene";
+"mcp.config.url" = "I-URL Yefayela Lokulungiselelwa";
+"mcp.import.file" = "Ngenisa Kusuka Kufayela";
+"mcp.config.example" = "Isibonelo Sefayela Lokulungiselelwa";
+"mcp.permission.note" = "Izimvume zizocelelwa uma kusetshenziswa ngokokuqala isici ngasinye";
+
+// MARK: - MCP Tool Messages
+"mcp.tool.available" = "Amathuluzi Atholakalayo:";
+"mcp.tool.parameters" = "Amapharamitha:";
+"mcp.prompt.available" = "Izikhuthazo Ezitholakalayo:";
+"mcp.prompt.arguments" = "Izimpikiswano:";
+"mcp.tool.name" = "igama_lethuluzi";
+"mcp.tool.arg.name" = "igama_lempikiswano";
+"mcp.tool.arg.value" = "inani";
+"mcp.tool.no.result" = "Ayikho imiphumela";
+"mcp.tool.running" = "Isebenzisa ithuluzi: %@";
+"mcp.tool.error" = "Iphutha lokusebenzisa ithuluzi: %@";
+
+// MARK: - MCP Error Messages
+"mcp.error.server.not.found" = "Iseva ayitholakali: %@";
+"mcp.error.tool.not.found" = "Ithuluzi alitholakali: %@";
+"mcp.error.invalid.args" = "Izimpikiswano ezingalungile: %@";
+"mcp.error.execution" = "Iphutha lokusebenzisa: %@";
+"mcp.error.permission" = "Imvume yenqatshelwe: %@";
+
+// MARK: - Calendar Messages
+"calendar.no.events" = "Azikho izehlakalo";
+"calendar.event.created" = "Isehlakalo sidalwe: %@";
+"calendar.event.deleted" = "Isehlakalo sisusiwe: %@";
+"calendar.allday.created" = "Isehlakalo sosuku lonke sidalwe: %@";
+"calendar.access.denied" = "Ukufinyelela kwekhalenda kwenqatshelwe";
+"calendar.today.none" = "Azikho izehlakalo namuhla";
+"calendar.untitled" = "Akunashloko";
+
+// MARK: - Reminders Messages
+"reminders.none" = "Azikho izikhumbuzo";
+"reminders.created" = "Isikhumbuzo sidalwe: %@";
+"reminders.completed" = "Isikhumbuzo siqediwe: %@";
+"reminders.deleted" = "Isikhumbuzo sisusiwe: %@";
+"reminders.access.denied" = "Ukufinyelela kwezikhumbuzo kwenqatshelwe";
+"reminders.untitled" = "Akunashloko";
+
+// MARK: - Photos Messages
+"photos.access.denied" = "Ukufinyelela kwezithombe kwenqatshelwe";
+"photos.not.found" = "Isithombe asitholakali";
+"photos.untitled" = "Akunashloko";
+"photos.count" = "Izithombe: %d";
+"photos.videos.count" = "Amavidiyo: %d";
+"photos.albums.count" = "Ama-albhamu: %d";
+"photos.favorites.count" = "Okuthandwayo: %d";
+"photos.date" = "Usuku: %@";
+"photos.size" = "Usayizi: %d x %d";
+"photos.location" = "Indawo: %@, %@";
+"photos.media.type" = "Uhlobo Lwezindaba: %@";
+"photos.duration" = "Isikhathi: %dm %ds";
+"photos.favorite" = "Okuthandwayo: %@";
+"photos.type.image" = "Isithombe";
+"photos.type.video" = "Ividiyo";
+"photos.type.audio" = "Umsindo";
+
+// MARK: - Contacts Messages
+"contacts.access.denied" = "Ukufinyelela koxhumana nabo kwenqatshelwe";
+"contacts.not.found" = "Abekho oxhumana nabo abatholakele";
+"contacts.no.groups" = "Amaqembu awekho";
+"contacts.no.card" = "Alibekwanga ikhadi lokuxhumana";
+"contacts.name" = "Igama: %@";
+"contacts.company" = "Inkampani: %@";
+"contacts.job" = "Isihloko Somsebenzi: %@";
+
+// MARK: - Location Messages
+"location.access.denied" = "Ukufinyelela kwendawo kwenqatshelwe";
+"location.not.found" = "Ikheli alitholakali";
+"location.latitude" = "I-latitude: %@";
+"location.longitude" = "I-longitude: %@";
+"location.accuracy" = "Ukunemba: %dm";
+"location.altitude" = "Ukuphakama: %dm";
+"location.search" = "Sesha: %@";
+"location.address" = "Ikheli: %@";
+"location.country" = "Izwe: %@";
+"location.postal" = "Ikhodi Yeposi: %@";
+"location.from" = "Kusuka ku: (%@, %@)";
+"location.to" = "Kuya ku: (%@, %@)";
+"location.distance.km" = "Ibanga: %.2f km";
+"location.distance.m" = "Ibanga: %d m";
+
+// MARK: - Health Messages
+"health.not.available" = "Impilo ayitholakali kule divayisi";
+"health.date" = "Usuku: %@";
+"health.steps" = "Izinyathelo: %@ izinyathelo";
+"health.goal.progress" = "Inqubekela phambili yomgomo: %d%% (umgomo wezinyathelo ezingu-10,000)";
+"health.no.data" = "Ayikho idatha etholakalayo";
+"health.avg.bpm" = "Isilinganiso: %d bpm";
+"health.min.bpm" = "Okuncane: %d bpm";
+"health.max.bpm" = "Okuningi: %d bpm";
+"health.measurements" = "Izilinganiso: %d";
+"health.no.sleep" = "Ayikho idatha yokulala";
+"health.sleep.total" = "Ukulala okuhlanganisiwe: %dh %dm";
+"health.bedtime" = "Isikhathi sokulala: %@";
+"health.waketime" = "Isikhathi sokuvuka: %@";
+"health.calories" = "Amakhalori: %d kcal";
+
+// MARK: - File System Messages
+"filesystem.not.found" = "Ifayela alitholakali: %@";
+"filesystem.written" = "Ifayela libhaliwe: %@";
+"filesystem.dir.created" = "Uhlu lufayela ludalwe: %@";
+"filesystem.deleted" = "Kususiwe: %@";
+"filesystem.size" = "Usayizi: %@";
+"filesystem.created" = "Kudalwe: %@";
+"filesystem.modified" = "Kushintshiwe: %@";
+"filesystem.type" = "Uhlobo: %@";
+
+// MARK: - Shortcuts Messages
+"shortcuts.executed" = "Isinqamuleli '%@' senziwe";
+"shortcuts.opened" = "I-app yezinqamuleli ivuliwe";
+"shortcuts.settings.opened" = "Izilungiselelo (%@) zivuliwe";
+"shortcuts.mail.opened" = "Ukuqamba imeyili kuvuliwe";
+"shortcuts.calling" = "Iyashaya: %@";
+"shortcuts.message.opened" = "Ukuqamba umlayezo kuvuliwe";
+"shortcuts.failed" = "Ayikwazanga ukuvula isinqamuleli";
+
+// MARK: - Model Tiers
+"model.tier.entry" = "Ukungena";
+"model.tier.standard" = "Okujwayelekile";
+"model.tier.pro" = "Uchwepheshe";
+
+// MARK: - Tool Parser
+"tool.arguments" = "Izimpikiswano:";
+
+// MARK: - Model Settings
+"model.action.settings" = "Izilungiselelo";
+"settings.model.parameters" = "Izilungiselelo Zemodeli";
+"settings.model.parameters.description" = "Lungisa amapharamitha okukhiqiza kule modeli";
+"settings.preset.title" = "Okumisiwe Kuqala";
+"settings.preset.custom" = "Okuqondene";
+"settings.preset.balanced" = "Okulungelelene";
+"settings.preset.creative" = "Okudala";
+"settings.preset.precise" = "Okunembile";
+"settings.preset.coding" = "Ukuhlela";
+"settings.preset.japanese" = "IsiJapane";
+"settings.parameters.title" = "Amapharamitha";
+"settings.parameter.temperature" = "Izinga Lokushisa";
+"settings.parameter.temperature.description" = "Okuphezulu = okudala kakhudlwana, okuphansi = okugxilile kakhudlwana";
+"settings.parameter.top.p" = "Top P";
+"settings.parameter.top.p.description" = "Amathuba okuthatha isampuli yengaphakathi";
+"settings.parameter.top.k" = "Top K";
+"settings.parameter.top.k.description" = "Inombolo yamatokeni aphezulu okuwacabanga";
+"settings.parameter.max.tokens" = "Amatokeni Aningi";
+"settings.parameter.max.tokens.description" = "Ubude obuncomekayo bempendulo";
+"settings.parameter.repeat.penalty" = "Isijeziso Sokuphinda";
+"settings.parameter.repeat.penalty.description" = "Okuphezulu = okukhiphayo okungaphindi";
+"settings.parameter.thinking" = "Imodi Yokucabanga";
+"settings.parameter.thinking.description" = "Khombisa inqubo yokuqagela kwe-AI";
+"settings.system.prompt.title" = "Isikhuthazo Sohlelo";
+"settings.system.prompt.description" = "Imiyalo eqondene ye-AI";
+"settings.reset.to.default" = "Buyisela Kokumisiwe";
+
+// MARK: - Vision Model
+"vision.model.required.title" = "Imodeli Yokubuka Iyadingeka";
+"vision.model.required.header" = "Ukubona Isithombe Kuyadingeka";
+"vision.model.required.description" = "Ukuze uhlaziye izithombe, udinga imodeli ye-AI enelokho ukubuka";
+"vision.model.switch" = "Shintsha Imodeli";
+"vision.model.switch.message %@" = "Shintshela ku-%@ ukuze unike amandla ukuhlaziya isithombe?";
+"vision.model.download" = "Downloada";
+"vision.model.download.message %@ %@" = "Downloada u-%@ (%@) ukuze uhlaziye izithombe?";
+"vision.model.not.available" = "Ayikho imodeli yokubuka ehambisanayo etholakalayo kudivayisi yakho";
+"vision.model.switching" = "Ishintsha imodeli...";
+"vision.model.download.title" = "Amamodeli Okubuka";
+"vision.model.recommended" = "Kunconywa kudivayisi yakho";
+"vision.model.recommended.size %@" = "Kunconywa: %@";
+"vision.model.use.this" = "Sebenzisa Le modeli";
+"vision.model.download.button %@" = "Downloada (%@)";
+"vision.model.other.options" = "Amanye Amamodeli Okubuka";
+"vision.model.download.complete" = "Ukudownloada Kuqediwe";
+"vision.model.download.complete.message" = "Kulungele ukuhlaziya izithombe";
+
+// MARK: - Whisper Voice Input (Legacy)
+"whisper.download.title" = "Ukubona Izwi Kuyadingeka";
+"whisper.download.action" = "Downloada";
+"whisper.download.message" = "Ukuze usebenzise ukufaka izwi, kudingeka udownloade imodeli yokubona inkulumo (~150MB).";
+"whisper.downloading" = "Iyadownloada imodeli yokubona inkulumo...";
+"whisper.download.error" = "Iphutha Lokudownloada";
+"whisper.load.error" = "Iphutha Lokulayisha Imodeli";
+"whisper.permission.denied" = "Ukufinyelela kumakrofoni akuvumelwe";
+"whisper.transcribe.error" = "Iphutha Lokubhala";
+"whisper.error.permission" = "Imvume yemakrofoni iyadingeka";
+"whisper.error.not.recording" = "Ayirekhoda okwamanje";
+"whisper.error.no.recording" = "Ayikho idatha yokurekhodwa";
+"whisper.error.model.not.loaded" = "Imodeli yokubona inkulumo ayilayishiwe";
+"whisper.error.transcription" = "Ukubhala akuphumelelanga";
+
+// MARK: - Speech Recognition (ReazonSpeech)
+"speech.download.title" = "Ukubona Izwi Kuyadingeka";
+"speech.download.action" = "Downloada";
+"speech.download.message" = "Ukuze usebenzise ukufaka izwi, kudingeka udownloade imodeli yokubona inkulumo yesiJapane (~155MB).";
+"speech.downloading" = "Iyadownloada imodeli yokubona inkulumo...";
+
+// MARK: - Language Settings
+"settings.language.section" = "Ulimi";
+"language.system" = "Sebenzisa Ulimi Lohlelo";
+"settings.language.restart.hint" = "Izinguquko zolimi zizosebenza ngemva kokuqala kabusha i-app";
+"settings.language.changed.title" = "Ulimi Lushintshiwe";
+"settings.language.changed.message" = "Sicela uqale kabusha i-app ukuze usebenzise izinguquko";
+"common.ok" = "Kulungile";
+
+// MARK: - System Prompt Settings
+"settings.prompt.section" = "Isikhuthazo Sohlelo";
+"settings.prompt.edit" = "Hlela Isikhuthazo";
+"settings.prompt.default" = "Usebenzisa okumisiwe";
+"settings.prompt.custom" = "Isikhuthazo esequndene sibekiwe";
+"settings.prompt.hint" = "Lungisa ukuziphatha kwe-AI";
+"settings.prompt.editor.title" = "Hlela Isikhuthazo";
+"settings.prompt.editor.instruction" = "Engeza imiyalo eqondene ye-AI. Shiya kungenaokuthile ukuze usebenzise isikhuthazo esimisiwe.";
+"settings.prompt.default.preview" = "Isikhuthazo esimisiwe (isiqeshana):";
+"settings.prompt.reset" = "Buyisela";
+"settings.prompt.reset.title" = "Buyisela Isikhuthazo";
+"settings.prompt.reset.message" = "Susa isikhuthazo esequndene ubuyisele kokumisiwe?";
+
+// MARK: - Prompt Templates
+"templates.title" = "Amathempleyithi Ezikhuthazo";
+"templates.empty" = "Awekho amathempleyithi okwamanje";
+"templates.add" = "Engeza Ithempleyithi";
+"template.add.title" = "Engeza Ithempleyithi";
+"template.edit.title" = "Hlela Ithempleyithi";
+"template.name.header" = "Igama";
+"template.name.placeholder" = "Igama lethempleyithi";
+"template.content.header" = "Okuqukethwe Kwesikhuthazo";
+"template.icon.header" = "I-Icon";
+"template.translate.name" = "Humusha";
+"template.translate.content" = "Sicela uhumushe okulandelayo: ";
+"template.summarize.name" = "Fingqa";
+"template.summarize.content" = "Sicela ufingqe okulandelayo: ";
+"template.explain.name" = "Chaza";
+"template.explain.content" = "Sicela uchaze okulandelayo: ";
+"template.code.name" = "Ikhodi";
+"template.code.content" = "Sicela ubhale ikhodi ye: ";
+
+// MARK: - Export
+"export.title" = "Thumela Ingxoxo";
+"export.format.markdown" = "Markdown";
+"export.format.pdf" = "PDF";
+"export.format.text" = "Umbhalo Ocacile";
+"export.created" = "Kudalwe";
+"export.image.attached" = "Isithombe sinamathiselwe";
+"export.generated.by" = "Kukhiqizwe ngu";
+
+// MARK: - Loading Phases
+"loading.phase.initializing" = "Iyaqalisa...";
+"loading.phase.loading" = "Ilayisha imodeli...";
+"loading.phase.preparing" = "Ilungisa injini yokuqagela...";
+"loading.phase.almost" = "Cishe kulungele...";
+
+// MARK: - Welcome Screen
+"welcome.greeting" = "Ngibuze noma yini";
+"welcome.subtitle" = "Umsizi wakho we-AI oqala ngobumfihlo";
+"suggestion.idea" = "Ngisize ngokuqagela imibono";
+"suggestion.write" = "Ngisize ngokubhala okuthile";
+"suggestion.question" = "Phendula imibuzo yami";
+
+// MARK: - Kokoro TTS
+"tts.download.title" = "Izwi Lekhwalithi Ephezulu";
+"tts.download.action" = "Downloada";
+"tts.download.use_system" = "Sebenzisa Izwi Lohlelo";
+"tts.download.message" = "Downloada imodeli ye-Kokoro TTS (~87MB) ukuze uthole umbhalo-kuya-enkulumweni yesiJapane esingcono.";
+"tts.downloading" = "Iyadownloada imodeli ye-TTS...";
+
+// MARK: - Feedback
+"feedback.consent.title" = "Thumela Impendulo";
+"feedback.send" = "Thumela";
+"feedback.positive.title" = "Ngabe le mpendulo isize?";
+"feedback.negative.title" = "Ngabe lokhu kungathuthukiswa?";
+"feedback.explanation" = "Impendulo yakho isiza ukuthuthukisa ikhwalithi ye-AI. Sicela ubheke idatha ezothunyelwa ngaphambi kokuhambisa.";
+"feedback.data.section" = "Idatha ezothunyelwa";
+"feedback.data.conversation" = "Ingxoxo";
+"feedback.data.conversation.desc" = "Impendulo ye-AI nomlayezo wakho wangaphambili";
+"feedback.data.model" = "Ulwazi lwemodeli";
+"feedback.data.model.desc" = "Igama lemodeli ye-AI esetshenzisiwe";
+"feedback.data.timestamp" = "Uphawu lwesikhathi";
+"feedback.data.timestamp.desc" = "Lapho impendulo yahanjiswa khona";
+"feedback.privacy.section" = "Ubumfihlo";
+"feedback.privacy.anonymous" = "Ayikho imininingwane yomuntu siqu ethunyelwayo";
+"feedback.privacy.improvement" = "Isetshenziswa kuphela ukuthuthukisa ikhwalithi ye-AI";
+"feedback.privacy.optional" = "Ukuthumela impendulo kukhethwa ngokuphelele";
+"feedback.comment.section" = "Umbono (ongakukhethayo)";
+"feedback.comment.placeholder" = "Sitshele ukuthi yini engathuthukiswa noma yini esebenze kahle...";
+"feedback.remember.title" = "Khumbula lesi sinqumo";
+"feedback.remember.description" = "Hambisa impendulo ngaphandle kokubuza ngesikhathi esilandelayo";
+
+// MARK: - Emergency Mode
+"emergency.sos.button" = "Imodi Yezimo Eziphuthumayo (cindezela isikhathi eside ukuze ushintsh)";
+"emergency.mode.active" = "Imodi Yezimo Eziphuthumayo Isebenzayo";
+"emergency.action.firstaid" = "Usizo Lokuqala";
+"emergency.action.firstaid.message" = "Sicela unikeze imiyalelo yosizo lokuqala. Ngizochaza ukulimala noma izimpawu: ";
+"emergency.action.disaster" = "Inhlekelele";
+"emergency.action.disaster.message" = "Inhlekelele yenzekile. Sicela unikeze izinqubo zempendulo: ";
+"emergency.action.factcheck" = "Ukuhlola Iqiniso";
+"emergency.action.factcheck.message" = "Sicela uqinisekise ukwethembeka kwalolu lwazi: ";
+"emergency.action.contacts" = "Isimo Esiphuthumayo";
+"emergency.action.contacts.message" = "Sicela ungikhombise uhlu lwezinombolo zezimo eziphuthumayo";
+"emergency.action.evacuation" = "Ukufuduka";
+"emergency.action.evacuation.message" = "Sicela udale uhlu lokuhlola lokufuduka lwesimo samanje: ";
+"mcp.emergency_kb" = "Ulwazi Lwezimo Eziphuthumayo";
+"mcp.emergency_kb.desc" = "Ulwazi lwezimo eziphuthumayo nezinhlekelele";
+
+// MARK: - Emergency Templates
+"template.firstaid.name" = "Umhlahlandlela Wosizo Lokuqala";
+"template.firstaid.content" = "Sicela unikeze imiyalelo yosizo lokuqala ye: ";
+"template.disaster.name" = "Impendulo Yenhlekelele";
+"template.disaster.content" = "Inhlekelele elandelayo yenzekile. Sicela unikeze izinqubo zempendulo: ";
+"template.factcheck.name" = "Ukuhlola Iqiniso";
+"template.factcheck.content" = "Sicela uqinisekise ukwethembeka kwalolu lwazi futhi unikeze amathiphu okuhlola iqiniso: ";
+"template.evacuation.name" = "Uhlu Lokuhlola Lokufuduka";
+"template.evacuation.content" = "Sicela udale uhlu lokuhlola lokufuduka lwesimo samanje: ";
+
+// MARK: - ChatWeb.ai Integration
+"chatweb.title" = "ChatWeb.ai";
+"chatweb.desc" = "Ingxoxo ye-AI Yecloud";
+"chatweb.connect" = "Xhuma ku-ChatWeb.ai";
+"chatweb.qr.title" = "Xhuma Ngekhodi ye-QR";
+"chatweb.qr.scan" = "Skena Ikhodi ye-QR";
+"chatweb.open" = "Vula i-ChatWeb.ai";
+
+// MARK: - Peer Connection
+"peer.title" = "Amadivayisi Aseduze";
+"peer.desc" = "Xhuma namadivayisi e-Elio aseduze";
+"peer.connect" = "Xhuma Nedivayisi";
+"peer.code.title" = "Ikhodi Yoxhumaniso";
+"peer.code.enter" = "Faka ikhodi yezinombolo ezingu-4";
+"peer.code.your" = "Ikhodi Yakho";
+"peer.connected" = "Kuxhunyiwe";
+"peer.disconnected" = "Kunqanyuliwe";
+"peer.inference.offload" = "Ukwabelana ngokuqagela";
+
+// MARK: - Web Search
+"chat.web.search" = "Ukusesha Kwewebhu";
+"search.privacy.title" = "Ukusesha Okuvikelwe Yibumfihlo";
+"search.privacy.proceed" = "Sesha";
+"search.privacy.message" = "Ukusesha Kwewebhu kwe-ElioChat kuvikela ubumfihlo bakho:\n\n🔒 Ukusesha nge-DuckDuckGo\n🚫 Akukho ukulandela noma ukwenza iphrofayili\n🔐 Umlando wokusesha awugcinwa\n📱 Ayikho idatha egcinwe ngaphandle kwedivayisi yakho\n\nYisicelo sakho sokusesha kuphela esithunyelwa ku-DuckDuckGo, futhi imiphumela icutshungulwa kudivayisi yakho.";
+"chat.web.analyzing" = "[Ihlaziya ikhasi lewebhu]";

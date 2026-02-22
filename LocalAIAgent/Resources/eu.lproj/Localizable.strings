@@ -1,0 +1,635 @@
+/*
+  Localizable.strings (Basque)
+  Elio
+*/
+
+// MARK: - App General
+"app.name" = "Elio";
+"app.tagline" = "Zure sekretuak gordetzen dituen bigarren burua.";
+
+// MARK: - Common Actions
+"common.done" = "Eginda";
+"common.cancel" = "Utzi";
+"common.delete" = "Ezabatu";
+"common.save" = "Gorde";
+"common.edit" = "Editatu";
+"common.share" = "Partekatu";
+"common.copy" = "Kopiatu";
+"common.copied" = "Kopiatuta";
+"common.loading" = "Kargatzen...";
+"common.error" = "Errorea";
+"common.retry" = "Saiatu berriro";
+"common.skip" = "Saltatu";
+"common.next" = "Hurrengoa";
+"common.start" = "Hasi";
+"common.add" = "Gehitu";
+"common.close" = "Itxi";
+"common.details" = "Xehetasunak";
+"common.yes" = "Bai";
+"common.no" = "Ez";
+"common.unknown" = "Ezezaguna";
+
+// MARK: - Chat
+"chat.placeholder" = "Galdetu nahi duzuna";
+"chat.model.not.loaded" = "Ez da modelorik kargatu";
+"chat.model.not.loaded.description" = "Mesedez, deskargatu eredu bat ezarpenetatik";
+"chat.go.to.settings" = "Joan ezarpenetara";
+"chat.new.conversation" = "Txat berria";
+"chat.stop.generation" = "Gelditu";
+"chat.generation.stopped" = "\n\n[Sorkuntza gelditu da]";
+"chat.image.sent" = "[Irudia bidali da]";
+"chat.images.sent" = "[%d irudi bidali dira]";
+"chat.pdf.sent" = "[PDF erantsita: %@]";
+"chat.pdf.sent.vision" = "[PDF irudiekin: %@]";
+"chat.pdf.context" = "Hurrengoa \"%@\" PDF dokumentutik ateratako testu-edukia da:\n\n%@";
+"chat.pdf.context.vision" = "Hau \"%@\" PDF dokumentuaren 1. orria da. Ateratako testu-edukia da:\n\n%@\n\nMesedez, aztertu ikus-edukia eta testua biak.";
+"chat.pdf.analyze" = "Mesedez, aztertu \"%@\" PDFren orri hau.";
+"chat.url.sent" = "[Web orria: %@]";
+"chat.url.context" = "Hurrengoa \"%@\" (%@) web orritik ateratako edukia da:\n\n%@";
+"chat.thinking" = "Pentsatzen...";
+"chat.generating" = "Erantzuna sortzen...";
+"chat.welcome" = "Nola lagun zaitzaket?";
+"chat.suggestion.schedule" = "Erakutsi gaurko agenda";
+"chat.suggestion.reminder" = "Sortu oroigarria";
+"chat.suggestion.weather" = "Zer eguraldi dago gaur?";
+"chat.suggestion.help" = "Aplikazio hau nola erabili";
+"chat.websearch.on" = "Web bilaketa aktibatuta";
+"chat.websearch.off" = "Web bilaketa desaktibatuta";
+"chat.thinking.on" = "Pentsaketa aktibatuta";
+"chat.thinking.off" = "Pentsaketa desaktibatuta";
+"chat.transcribing" = "Transkribatzen...";
+"chat.offline" = "Lineaz kanpo";
+
+// Voice Conversation Mode
+"voice.listening" = "Entzuten...";
+"voice.processing" = "Prozesatzen...";
+"voice.thinking" = "Pentsatzen...";
+"voice.speaking" = "Hitz egiten...";
+"voice.tap.to.send" = "Sakatu bidaltzeko";
+"chat.templates" = "Txantiloiak";
+"chat.websearch.privacy.title" = "Web bilaketari buruz";
+"chat.websearch.privacy.message" = "Web bilaketa gaituz gero, IAk DuckDuckGo bidez Interneten bilatu ahal izango du informazio eguneratuaren bila. Bilaketa-kontsultak DuckDuckGo-ra bidaltzen dira baina ez dira jarraitzen.";
+"chat.websearch.privacy.enable" = "Gaitu";
+"chat.websearch.privacy.disable" = "Mantendu desaktibatuta";
+
+// MARK: - Settings
+"settings.title" = "Ezarpenak";
+"settings.model.section" = "IA ereduak";
+"settings.model.recommended" = "Gomendatua: %@";
+"settings.model.local.execution" = "Ereduak tokian exekutatzen dira zure gailuan";
+"settings.model.show.more" = "Beste ereduak (%d)";
+"settings.model.show.less" = "Erakutsi gutxiago";
+"settings.appearance.section" = "Itxura";
+"settings.tools.section" = "Eginbide adimentsuak";
+"settings.mcp.servers" = "Integrazioak";
+"settings.mcp.servers.description" = "Egutegia, fitxategiak, oroigarriak eta gehiago";
+"settings.mcp.enabled.count" = "%d aktibatuta";
+"settings.mcp.enabled.count.suffix" = " aktibatuta";
+"settings.about.section" = "Honi buruz";
+"settings.version" = "Bertsioa";
+"settings.about.app" = "Aplikazio honi buruz";
+"settings.about.mcp" = "Integrazioei buruz";
+"settings.privacy.badge" = "Lineaz kanpo funtzionatzen du";
+"settings.privacy.description" = "Hegaldi moduan funtzionatzen du";
+"settings.airplane.mode" = "Hegaldi moduan exekutatzen";
+"settings.offline.ready" = "Lineaz kanpo prest";
+
+// MARK: - Model States
+"model.status.downloading" = "Deskargatzen... %d%%";
+"model.status.loading" = "Kargatzen...";
+"model.status.in.use" = "Erabiltzen";
+"model.status.recommended" = "Gomendatua";
+"model.status.heavy" = "Pisua";
+"model.action.download" = "Deskargatu";
+"model.action.load" = "Kargatu";
+"model.action.delete" = "Ezabatu";
+"model.action.use" = "Erabili eredu hau";
+"model.delete.confirm.title" = "Eredua ezabatu";
+"model.delete.confirm.message" = "%@ ezabatu? Berriro deskargatu beharko duzu berriz erabiltzeko.";
+"model.select.title" = "Hautatu eredua";
+"model.select.prompt" = "Mesedez, hautatu eredu bat";
+"model.downloaded" = "Deskargatuta";
+
+// MARK: - Inference Mode
+"inference.mode.title" = "Azelerazioa";
+"inference.mode.auto" = "Automatikoa";
+"inference.mode.auto.desc" = "Errendimendu optimoa automatikoki";
+"inference.mode.gpu" = "GPU (Metal)";
+"inference.mode.gpu.desc" = "Gehienezko abiadura Metalekin";
+"inference.mode.cpu" = "CPUa soilik";
+"inference.mode.cpu.desc" = "Bateria aurrezte modua";
+"inference.mode.hybrid" = "Hibridoa";
+"inference.mode.hybrid.desc" = "Abiaduraren eta bateriaren arteko oreka";
+
+// MARK: - Theme
+"theme.system" = "Sistema";
+"theme.light" = "Argia";
+"theme.dark" = "Iluna";
+
+// MARK: - Onboarding
+"onboarding.welcome.title" = "Ongi etorri ElioChat-era";
+"onboarding.welcome.subtitle" = "Zure IA laguntzaile pribatua";
+"onboarding.features.title" = "Benetan pribatua den IA";
+"onboarding.feature.offline" = "Hegaldi moduan funtzionatzen du";
+"onboarding.feature.offline.desc" = "Erabili hegaldietan edo lurpean";
+"onboarding.feature.privacy" = "Zero datu-transmisioa";
+"onboarding.feature.privacy.desc" = "Zure txatek ez dute inoiz telefonoa uzten";
+"onboarding.feature.vault" = "Integrazio adimentsuak";
+"onboarding.feature.vault.desc" = "Konektatu egutegi eta fitxategiekin";
+"onboarding.feature.secure" = "Lanerako segurua den IA";
+"onboarding.feature.secure.desc" = "Enpresaren erabilera seguruagoa";
+"onboarding.feature.thinking" = "Pentsaketa prozesua";
+"onboarding.privacy.title" = "Zure datuak zeureak dira";
+"onboarding.privacy.item1" = "Prozesatze guztia zure iPhonean gertatzen da";
+"onboarding.privacy.item2" = "Ez da daturik hodeiko zerbitzarietara bidaltzen";
+"onboarding.privacy.item3" = "Inoiz ez da IAren entrenamenturako erabiltzen";
+"onboarding.getstarted.title" = "Prest ukitu batekin";
+"onboarding.getstarted.subtitle" = "Deskargatu gomendatutako IA eredua\neta hasi txateatzean berehala";
+"onboarding.step1" = "Deskargatu gomendatutako eredua";
+"onboarding.step2" = "Itxaron minutu batzuk";
+"onboarding.step3" = "Dena prest!";
+
+// MARK: - About
+"about.title" = "Aplikazio honi buruz";
+"about.rate.app" = "Baloratu aplikazioa";
+"about.share.app" = "Partekatu lagunekin";
+"about.privacy.policy" = "Pribatutasun politika";
+"about.terms" = "Zerbitzu baldintzak";
+"about.tech.info" = "Informazio teknikoa";
+"about.tech.engine" = "IA motorea";
+"about.tech.format" = "Onartutako formatua";
+"about.tech.inference" = "Inferentzia";
+"about.data.management" = "Datuen kudeaketa";
+"about.delete.all" = "Ezabatu elkarrizketa guztiak";
+"about.credits" = "Kredituak";
+"about.credits.description" = "Aplikazio honek kode irekiko liburutegiak erabiltzen ditu";
+"about.privacy.section" = "Pribatutasuna";
+"about.gguf.format" = "GGUF formatua";
+"about.metal.gpu" = "Metal GPU azelerazioa";
+
+// MARK: - Referral
+"referral.title" = "Gonbidatu lagunak";
+"referral.code.title" = "Zure erreferentzia kodea";
+"referral.code.copy" = "Kopiatu kodea";
+"referral.code.copied" = "Kopiatuta";
+"referral.share.button" = "Partekatu lagunekin";
+"referral.share.description" = "Partekatu Elio zure lagunekin!";
+"referral.count" = "%d pertsona gonbidatu dituzu";
+"referral.enter.title" = "Sartu erreferentzia kodea";
+"referral.enter.placeholder" = "Erreferentzia kodea";
+"referral.enter.button" = "Aplikatu";
+"referral.enter.success" = "Erreferentzia kodea aplikatuta";
+"referral.enter.error" = "Erreferentzia kode baliogabea";
+
+// MARK: - Privacy Policy
+"privacy.title" = "Pribatutasun politika";
+"privacy.data.collection.title" = "Datuen bilketa";
+"privacy.data.collection.content" = "Aplikazio honek IA lokal bat exekutatzen du erabat lineaz kanpo.\nEz da daturik kanpoko zerbitzarietara bidaltzen.\nElkarrizketa guztiak gailuan soilik gordetzen dira.";
+"privacy.stored.data.title" = "Gordetako datuak";
+"privacy.stored.data.content" = "Elkarrizketa historia (gailuan soilik gordeta)\nIA eredu fitxategiak (gailuan soilik gordeta)\nAplikazioaren ezarpenak (gailuan soilik gordeta)\n\nDatu hauek ez dira inoiz kanpora partekatzen.";
+"privacy.data.deletion.title" = "Datuen ezabaketa";
+"privacy.data.deletion.content" = "Datu guztiak ezaba ditzakezu edonoiz Ezarpenak > Datuen kudeaketa atalean.\nAplikazioa desinstalatzeak datu guztiak ezabatuko ditu.";
+
+// MARK: - Terms of Service
+"terms.title" = "Zerbitzu baldintzak";
+"terms.service.title" = "Zerbitzu deskribapena";
+"terms.service.content" = "Aplikazio honek IA laguntzaile funtzionalitatea eskaintzen du tokian exekutatzen den IA eredu bat erabiliz.";
+"terms.disclaimer.title" = "Erantzukizunaren mugaketa";
+"terms.disclaimer.content" = "IAren erantzunek akatsak izan ditzakete.\nErabaki garrantzitsuak beti profesional batek egiaztatu behar ditu.\nEz gara aplikazio honen erabileratik eratorritako kalte-ordainentzat erantzule.";
+"terms.prohibited.title" = "Debekatutako jarduerak";
+"terms.prohibited.content" = "Jarduera ilegalak\nBesteen eskubideak urratzen dituzten jarduerak\nAplicazio honen alderantzizko ingeniaritza\nAplicazio honen baimenik gabeko kopia";
+"terms.ip.title" = "Jabetza intelektuala";
+"terms.ip.content" = "Aplikazio honen jabetza intelektualaren eskubideak garatzaileari dagozkio.\nBaimenik gabeko erabilera debekatuta dago.";
+
+// MARK: - Conversations
+"conversations.title" = "Elkarrizketak";
+"conversations.new" = "Elkarrizketa berria";
+"conversations.empty" = "Oraindik ez dago elkarrizketarik";
+"conversations.delete" = "Ezabatu elkarrizketa";
+"conversations.default.title" = "Elkarrizketa berria";
+"conversations.today" = "Gaur";
+"conversations.yesterday" = "Atzo";
+"conversations.past7days" = "Azken 7 egunak";
+"conversations.past30days" = "Azken 30 egunak";
+"conversations.older" = "Zaharragoak";
+"conversations.created" = "Sortua: %@";
+"conversations.user" = "Erabiltzailea";
+"conversations.assistant" = "Laguntzailea";
+"conversations.search.placeholder" = "Bilatu elkarrizketetan";
+"conversations.search.no_results" = "Ez da emaitzarik aurkitu";
+
+// MARK: - Message Actions
+"message.copy" = "Kopiatu";
+"message.speak" = "Hitz egin";
+"message.stop.speaking" = "Gelditu hitz egitea";
+"message.share" = "Partekatu";
+"message.share.card" = "Partekatu txartel gisa";
+"message.like" = "Atsegin dut";
+
+// MARK: - Share Card
+"share.card.title" = "Partekatu txartela";
+"share.card.preview" = "Aurreikuspena";
+"share.card.button" = "Partekatu irudia";
+"message.dislike" = "Ez dut atsegin";
+"message.thinking.process" = "Pentsaketa prozesua";
+"message.tool.running" = "Tresna exekutatzen";
+"message.tool.error" = "Errorea";
+"message.tool.completed" = "Amaituta";
+
+// MARK: - Attachment
+"attachment.title" = "Eranskina";
+"attachment.photo.library" = "Aukeratu argazkia";
+"attachment.camera" = "Atera argazkia";
+"attachment.pdf" = "Hautatu PDFa";
+"attachment.pdf.chars" = "%d karaktere";
+"attachment.pdf.pages" = "%d orri";
+"attachment.pdf.vision.enabled" = "Irudi azterketa gaituta";
+"attachment.pdf.text.only" = "Testu bakarrik modua";
+"attachment.url" = "Irakurri web orria";
+"attachment.url.title" = "Sartu URLa";
+"attachment.url.placeholder" = "https://example.com";
+"attachment.url.message" = "Itsatsi URL bat bere edukia ateratzeko";
+"attachment.url.fetch" = "Lortu";
+"attachment.url.loading" = "Orria kargatzen...";
+
+// MARK: - Errors
+"error.model.not.found" = "Eredu fitxategia ez da aurkitu";
+"error.model.not.loaded" = "Eredua ez dago kargatuta";
+"error.context.failed" = "Testuingurua sortzeak huts egin du";
+"error.tokenization.failed" = "Tokenizazioak huts egin du";
+"error.generation.failed" = "Sortze errorea: %@";
+"error.occurred" = "Errore bat gertatu da: %@";
+"error.invalid.url" = "URL baliogabea";
+"error.download.failed" = "Deskargak huts egin du";
+"error.extraction.failed" = "Ateratze lanak huts egin du";
+"error.config.not.found" = "Konfigurazio fitxategia ez da aurkitu";
+
+// MARK: - Ghost Search
+"ghost.search.title" = "Mamu bilaketa";
+"ghost.search.description" = "Bilaketa anonimoa DuckDuckGo bidez (jarraipenik gabe)";
+"ghost.search.connecting" = "Sare anonimora konektatzen...";
+"ghost.search.privacy.note" = "Zure bilaketa-historia inoiz ez da jarraitzen";
+
+// MARK: - MCP Servers
+"mcp.filesystem" = "Fitxategi sistema";
+"mcp.filesystem.desc" = "Irakurri eta idatzi fitxategiak aplikazioan";
+"mcp.calendar" = "Egutegia";
+"mcp.calendar.desc" = "Irakurri eta idatzi gertaerak";
+"mcp.reminders" = "Oroigarriak";
+"mcp.reminders.desc" = "Kudeatu oroigarriak";
+"mcp.contacts" = "Kontaktuak";
+"mcp.contacts.desc" = "Bilatu eta ikusi kontaktuak";
+"mcp.photos" = "Argazkiak";
+"mcp.photos.desc" = "Sartu argazki liburutegira";
+"mcp.location" = "Kokapena";
+"mcp.location.desc" = "Lortu uneko kokapena eta bilatu tokiak";
+"mcp.health" = "Osasuna";
+"mcp.health.desc" = "Sartu osasun datuetara";
+"mcp.shortcuts" = "Lasterbideak";
+"mcp.shortcuts.desc" = "Exekutatu lasterbideak";
+"mcp.websearch" = "Web bilaketa";
+"mcp.websearch.desc" = "Web bilaketa anonimoa";
+"mcp.custom" = "Integrazio pertsonalizatua";
+"mcp.custom.add" = "Gehitu integrazioa";
+"mcp.custom.setup" = "Konfiguratu kanpoko zerbitzuen integrazioa";
+"mcp.custom.title" = "Integrazio pertsonalizatuak";
+"mcp.settings.title" = "Integrazio ezarpenak";
+"mcp.server.name" = "Zerbitzariaren izena";
+"mcp.server.name.placeholder" = "adib., Nire zerbitzari pertsonalizatua";
+"mcp.config.url" = "Konfigurazio fitxategiaren URLa";
+"mcp.import.file" = "Inportatu fitxategitik";
+"mcp.config.example" = "Konfigurazio fitxategi adibidea";
+"mcp.permission.note" = "Baimenak eskatuko dira eginbide bakoitza lehen aldiz erabiltzen denean";
+
+// MARK: - MCP Tool Messages
+"mcp.tool.available" = "Eskuragarri dauden tresnak:";
+"mcp.tool.parameters" = "Parametroak:";
+"mcp.prompt.available" = "Eskuragarri dauden gonbidapenak:";
+"mcp.prompt.arguments" = "Argumentuak:";
+"mcp.tool.name" = "tool_name";
+"mcp.tool.arg.name" = "arg_name";
+"mcp.tool.arg.value" = "value";
+"mcp.tool.no.result" = "Ez dago emaitzarik";
+"mcp.tool.running" = "Tresna exekutatzen: %@";
+"mcp.tool.error" = "Tresna exekuzio errorea: %@";
+
+// MARK: - MCP Error Messages
+"mcp.error.server.not.found" = "Zerbitzaria ez da aurkitu: %@";
+"mcp.error.tool.not.found" = "Tresna ez da aurkitu: %@";
+"mcp.error.invalid.args" = "Argumentu baliogabeak: %@";
+"mcp.error.execution" = "Exekuzio errorea: %@";
+"mcp.error.permission" = "Baimena ukatua: %@";
+
+// MARK: - Calendar Messages
+"calendar.no.events" = "Ez dago gertaerarik";
+"calendar.event.created" = "Gertaera sortua: %@";
+"calendar.event.deleted" = "Gertaera ezabatua: %@";
+"calendar.allday.created" = "Egun osoko gertaera sortua: %@";
+"calendar.access.denied" = "Egutegiaren sarbidea ukatua";
+"calendar.today.none" = "Gaur ez dago gertaerarik";
+"calendar.untitled" = "Titulurik gabe";
+
+// MARK: - Reminders Messages
+"reminders.none" = "Ez dago oroigarririk";
+"reminders.created" = "Oroigarria sortua: %@";
+"reminders.completed" = "Oroigarria amaituta: %@";
+"reminders.deleted" = "Oroigarria ezabatua: %@";
+"reminders.access.denied" = "Oroigarrien sarbidea ukatua";
+"reminders.untitled" = "Titulurik gabe";
+
+// MARK: - Photos Messages
+"photos.access.denied" = "Argazkien sarbidea ukatua";
+"photos.not.found" = "Argazkia ez da aurkitu";
+"photos.untitled" = "Titulurik gabe";
+"photos.count" = "Argazkiak: %d";
+"photos.videos.count" = "Bideoak: %d";
+"photos.albums.count" = "Albumak: %d";
+"photos.favorites.count" = "Gogokoak: %d";
+"photos.date" = "Data: %@";
+"photos.size" = "Tamaina: %d x %d";
+"photos.location" = "Kokapena: %@, %@";
+"photos.media.type" = "Multimedia mota: %@";
+"photos.duration" = "Iraupena: %dm %ds";
+"photos.favorite" = "Gogokoa: %@";
+"photos.type.image" = "Argazkia";
+"photos.type.video" = "Bideoa";
+"photos.type.audio" = "Audioa";
+
+// MARK: - Contacts Messages
+"contacts.access.denied" = "Kontaktuen sarbidea ukatua";
+"contacts.not.found" = "Ez da bat datorren kontakturik aurkitu";
+"contacts.no.groups" = "Ez dago talderik";
+"contacts.no.card" = "Ez dago kontaktu-txartelik ezarrita";
+"contacts.name" = "Izena: %@";
+"contacts.company" = "Enpresa: %@";
+"contacts.job" = "Lanpostua: %@";
+
+// MARK: - Location Messages
+"location.access.denied" = "Kokapenaren sarbidea ukatua";
+"location.not.found" = "Helbidea ez da aurkitu";
+"location.latitude" = "Latitudea: %@";
+"location.longitude" = "Longitudea: %@";
+"location.accuracy" = "Zehaztasuna: %dm";
+"location.altitude" = "Altitudea: %dm";
+"location.search" = "Bilaketa: %@";
+"location.address" = "Helbidea: %@";
+"location.country" = "Herrialdea: %@";
+"location.postal" = "Posta kodea: %@";
+"location.from" = "Noiztik: (%@, %@)";
+"location.to" = "Nora: (%@, %@)";
+"location.distance.km" = "Distantzia: %.2f km";
+"location.distance.m" = "Distantzia: %d m";
+
+// MARK: - Health Messages
+"health.not.available" = "Osasuna ez dago eskuragarri gailu honetan";
+"health.date" = "Data: %@";
+"health.steps" = "Urratsak: %@ urrats";
+"health.goal.progress" = "Helburuaren aurrerapena: %d%% (10.000 urratsen helburua)";
+"health.no.data" = "Ez dago daturik eskuragarri";
+"health.avg.bpm" = "Batez bestekoa: %d bpm";
+"health.min.bpm" = "Gutxienekoa: %d bpm";
+"health.max.bpm" = "Gehienezkoa: %d bpm";
+"health.measurements" = "Neurketak: %d";
+"health.no.sleep" = "Ez dago lo daturik";
+"health.sleep.total" = "Lo guztira: %dh %dm";
+"health.bedtime" = "Oheratzeko ordua: %@";
+"health.waketime" = "Esnatzeko ordua: %@";
+"health.calories" = "Kaloriak: %d kcal";
+
+// MARK: - File System Messages
+"filesystem.not.found" = "Fitxategia ez da aurkitu: %@";
+"filesystem.written" = "Fitxategia idatzita: %@";
+"filesystem.dir.created" = "Direktorioa sortua: %@";
+"filesystem.deleted" = "Ezabatuta: %@";
+"filesystem.size" = "Tamaina: %@";
+"filesystem.created" = "Sortua: %@";
+"filesystem.modified" = "Aldatua: %@";
+"filesystem.type" = "Mota: %@";
+
+// MARK: - Shortcuts Messages
+"shortcuts.executed" = "'%@' lasterbidea exekutatuta";
+"shortcuts.opened" = "Lasterbideen aplikazioa irekita";
+"shortcuts.settings.opened" = "Ezarpenak (%@) irekita";
+"shortcuts.mail.opened" = "Posta konposizioa irekita";
+"shortcuts.calling" = "Deitzen: %@";
+"shortcuts.message.opened" = "Mezu konposizioa irekita";
+"shortcuts.failed" = "Ezin izan da lasterbidea ireki";
+
+// MARK: - Model Tiers
+"model.tier.entry" = "Sarrera";
+"model.tier.standard" = "Estandarra";
+"model.tier.pro" = "Profesionala";
+
+// MARK: - Tool Parser
+"tool.arguments" = "Argumentuak:";
+
+// MARK: - Model Settings
+"model.action.settings" = "Ezarpenak";
+"settings.model.parameters" = "Eredu ezarpenak";
+"settings.model.parameters.description" = "Pertsonalizatu sortze parametroak eredu honetarako";
+"settings.preset.title" = "Aurrekonfigurazioak";
+"settings.preset.custom" = "Pertsonalizatua";
+"settings.preset.balanced" = "Orekaduna";
+"settings.preset.creative" = "Sortzailea";
+"settings.preset.precise" = "Zehatza";
+"settings.preset.coding" = "Programazioa";
+"settings.preset.japanese" = "Japoniarra";
+"settings.parameters.title" = "Parametroak";
+"settings.parameter.temperature" = "Tenperatura";
+"settings.parameter.temperature.description" = "Altuagoa = sortzaileagoa, baxuagoa = kontzentratua";
+"settings.parameter.top.p" = "Top P";
+"settings.parameter.top.p.description" = "Nukleo laginketa probabilitatea";
+"settings.parameter.top.k" = "Top K";
+"settings.parameter.top.k.description" = "Kontuan hartu beharreko goiko token kopurua";
+"settings.parameter.max.tokens" = "Gehienezko tokenak";
+"settings.parameter.max.tokens.description" = "Gehienezko erantzun luzera";
+"settings.parameter.repeat.penalty" = "Errepikapen zigorra";
+"settings.parameter.repeat.penalty.description" = "Altuagoa = irteera gutxiago errepikatua";
+"settings.parameter.thinking" = "Pentsaketa modua";
+"settings.parameter.thinking.description" = "Erakutsi IAren arrazoibide prozesua";
+"settings.system.prompt.title" = "Sistema gonbita";
+"settings.system.prompt.description" = "IArako jarraibide pertsonalizatuak";
+"settings.reset.to.default" = "Berrezarri lehenetsi gisa";
+
+// MARK: - Vision Model
+"vision.model.required.title" = "Ikusmen eredua behar da";
+"vision.model.required.header" = "Irudi ezagutza behar da";
+"vision.model.required.description" = "Irudiak aztertzeko, ikusmen gaitasuna duen IA eredu bat behar duzu";
+"vision.model.switch" = "Aldatu eredua";
+"vision.model.switch.message %@" = "Aldatu %@ra irudi azterketa gaitzeko?";
+"vision.model.download" = "Deskargatu";
+"vision.model.download.message %@ %@" = "Deskargatu %@ (%@) irudiak aztertzeko?";
+"vision.model.not.available" = "Ez dago bateragarria den ikusmen eredurik zure gailurako";
+"vision.model.switching" = "Eredua aldatzen...";
+"vision.model.download.title" = "Ikusmen ereduak";
+"vision.model.recommended" = "Gomendatua zure gailurako";
+"vision.model.recommended.size %@" = "Gomendatua: %@";
+"vision.model.use.this" = "Erabili eredu hau";
+"vision.model.download.button %@" = "Deskargatu (%@)";
+"vision.model.other.options" = "Beste ikusmen ereduak";
+"vision.model.download.complete" = "Deskarga amaituta";
+"vision.model.download.complete.message" = "Irudiak aztertzeko prest";
+
+// MARK: - Whisper Voice Input (Legacy)
+"whisper.download.title" = "Ahots ezagutza behar da";
+"whisper.download.action" = "Deskargatu";
+"whisper.download.message" = "Ahots sarrera erabiltzeko, hizketa ezagutze eredua deskargatu behar duzu (~150MB).";
+"whisper.downloading" = "Hizketa ezagutze eredua deskargatzen...";
+"whisper.download.error" = "Deskarga errorea";
+"whisper.load.error" = "Eredu karga errorea";
+"whisper.permission.denied" = "Mikrofonoaren sarbidea ez dago baimenduta";
+"whisper.transcribe.error" = "Transkripzio errorea";
+"whisper.error.permission" = "Mikrofonoaren baimena behar da";
+"whisper.error.not.recording" = "Orain ez da grabatzen ari";
+"whisper.error.no.recording" = "Ez dago grabazio daturik";
+"whisper.error.model.not.loaded" = "Hizketa ezagutze eredua ez dago kargatuta";
+"whisper.error.transcription" = "Transkripzioak huts egin du";
+
+// MARK: - Speech Recognition (ReazonSpeech)
+"speech.download.title" = "Ahots ezagutza behar da";
+"speech.download.action" = "Deskargatu";
+"speech.download.message" = "Ahots sarrera erabiltzeko, japoniar hizketa ezagutze eredua deskargatu behar duzu (~155MB).";
+"speech.downloading" = "Hizketa ezagutze eredua deskargatzen...";
+
+// MARK: - Language Settings
+"settings.language.section" = "Hizkuntza";
+"language.system" = "Erabili sistemaren hizkuntza";
+"settings.language.restart.hint" = "Hizkuntzaren aldaketak aplikazioa berrabiarazi ondoren aplikatuko dira";
+"settings.language.changed.title" = "Hizkuntza aldatuta";
+"settings.language.changed.message" = "Mesedez, berrabiarazi aplikazioa aldaketak aplikatzeko";
+"common.ok" = "Ados";
+
+// MARK: - System Prompt Settings
+"settings.prompt.section" = "Sistema gonbita";
+"settings.prompt.edit" = "Editatu gonbita";
+"settings.prompt.default" = "Lehenetsia erabiltzen";
+"settings.prompt.custom" = "Gonbit pertsonalizatua ezarrita";
+"settings.prompt.hint" = "Pertsonalizatu IAren portaera";
+"settings.prompt.editor.title" = "Editatu gonbita";
+"settings.prompt.editor.instruction" = "Gehitu jarraibide pertsonalizatuak IArako. Utzi hutsik lehenetsitako gonbita erabiltzeko.";
+"settings.prompt.default.preview" = "Lehenetsitako gonbita (zatia):";
+"settings.prompt.reset" = "Berrezarri";
+"settings.prompt.reset.title" = "Berrezarri gonbita";
+"settings.prompt.reset.message" = "Ezabatu gonbit pertsonalizatua eta leheneratu lehenetsira?";
+
+// MARK: - Prompt Templates
+"templates.title" = "Gonbit txantiloiak";
+"templates.empty" = "Oraindik ez dago txantiloirik";
+"templates.add" = "Gehitu txantiloia";
+"template.add.title" = "Gehitu txantiloia";
+"template.edit.title" = "Editatu txantiloia";
+"template.name.header" = "Izena";
+"template.name.placeholder" = "Txantiloiaren izena";
+"template.content.header" = "Gonbit edukia";
+"template.icon.header" = "Ikonoa";
+"template.translate.name" = "Itzuli";
+"template.translate.content" = "Mesedez, itzuli hau: ";
+"template.summarize.name" = "Laburtu";
+"template.summarize.content" = "Mesedez, laburtu hau: ";
+"template.explain.name" = "Azaldu";
+"template.explain.content" = "Mesedez, azaldu hau: ";
+"template.code.name" = "Kodea";
+"template.code.content" = "Mesedez, idatzi kodea honetarako: ";
+
+// MARK: - Export
+"export.title" = "Esportatu elkarrizketa";
+"export.format.markdown" = "Markdown";
+"export.format.pdf" = "PDF";
+"export.format.text" = "Testu laua";
+"export.created" = "Sortua";
+"export.image.attached" = "Irudia erantsita";
+"export.generated.by" = "Honek sortua";
+
+// MARK: - Loading Phases
+"loading.phase.initializing" = "Hasieratzen...";
+"loading.phase.loading" = "Eredua kargatzen...";
+"loading.phase.preparing" = "Inferentzia motorea prestatzen...";
+"loading.phase.almost" = "Ia prest...";
+
+// MARK: - Welcome Screen
+"welcome.greeting" = "Galdetu nahi duzuna";
+"welcome.subtitle" = "Zure pribatutasuna lehenetsi duen IA laguntzailea";
+"suggestion.idea" = "Lagundu ideiak sortzen";
+"suggestion.write" = "Lagundu zerbait idazten";
+"suggestion.question" = "Erantzun nire galderak";
+
+// MARK: - Kokoro TTS
+"tts.download.title" = "Kalitate handiko ahotsa";
+"tts.download.action" = "Deskargatu";
+"tts.download.use_system" = "Erabili sistemaren ahotsa";
+"tts.download.message" = "Deskargatu Kokoro TTS eredua (~87MB) japoniar testu-hizketarako naturalagoa izateko.";
+"tts.downloading" = "TTS eredua deskargatzen...";
+
+// MARK: - Feedback
+"feedback.consent.title" = "Bidali iritzia";
+"feedback.send" = "Bidali";
+"feedback.positive.title" = "Erantzun hau lagungarria izan al da?";
+"feedback.negative.title" = "Hau hobetu al liteke?";
+"feedback.explanation" = "Zure iritziak IAren kalitatea hobetzen laguntzen du. Mesedez, berrikusi bidali aurretik zein datu bidaliko diren.";
+"feedback.data.section" = "Bidaliko diren datuak";
+"feedback.data.conversation" = "Elkarrizketa";
+"feedback.data.conversation.desc" = "IAren erantzuna eta zure aurreko mezua";
+"feedback.data.model" = "Eredu informazioa";
+"feedback.data.model.desc" = "Erabilitako IA ereduaren izena";
+"feedback.data.timestamp" = "Denbora-zigilua";
+"feedback.data.timestamp.desc" = "Iritzia noiz bidali den";
+"feedback.privacy.section" = "Pribatutasuna";
+"feedback.privacy.anonymous" = "Ez da identifikagarri den informaziorik bidaltzen";
+"feedback.privacy.improvement" = "IAren kalitatea hobetzeko soilik erabiltzen da";
+"feedback.privacy.optional" = "Iritzia bidaltzea erabat aukerakoa da";
+"feedback.comment.section" = "Iruzkina (aukerakoa)";
+"feedback.comment.placeholder" = "Esan iezaguzu zer hobetu liteke edo zer funtzionatu duen ondo...";
+"feedback.remember.title" = "Gogoratu aukera hau";
+"feedback.remember.description" = "Bidali iritzia galdetu gabe hurrengo aldian";
+
+// MARK: - Emergency Mode
+"emergency.sos.button" = "Larrialdi modua (eduki sakatuta aldatzeko)";
+"emergency.mode.active" = "Larrialdi modua aktibo";
+"emergency.action.firstaid" = "Lehen laguntzak";
+"emergency.action.firstaid.message" = "Mesedez, eman lehen laguntza jarraibideak. Lesio edo sintomak deskribatuko ditut: ";
+"emergency.action.disaster" = "Hondamena";
+"emergency.action.disaster.message" = "Hondamen bat gertatu da. Mesedez, eman erantzun prozedurak: ";
+"emergency.action.factcheck" = "Egiaztatu egitatea";
+"emergency.action.factcheck.message" = "Mesedez, egiaztatu informazio honen fidagarritasuna: ";
+"emergency.action.contacts" = "Larrialdiak";
+"emergency.action.contacts.message" = "Mesedez, erakutsi larrialdi kontaktu zenbakien zerrenda";
+"emergency.action.evacuation" = "Ebakuatu";
+"emergency.action.evacuation.message" = "Mesedez, sortu ebakuazio egiaztapen zerrenda egungo egoerarekin: ";
+"mcp.emergency_kb" = "Larrialdi KB";
+"mcp.emergency_kb.desc" = "Larrialdi eta hondamen informazioa";
+
+// MARK: - Emergency Templates
+"template.firstaid.name" = "Lehen laguntza gida";
+"template.firstaid.content" = "Mesedez, eman lehen laguntza jarraibideak honetarako: ";
+"template.disaster.name" = "Hondamen erantzuna";
+"template.disaster.content" = "Ondorengo hondamena gertatu da. Mesedez, eman erantzun prozedurak: ";
+"template.factcheck.name" = "Egiaztatu egitatea";
+"template.factcheck.content" = "Mesedez, egiaztatu informazio honen fidagarritasuna eta eman egitatea egiaztatzeko aholkuak: ";
+"template.evacuation.name" = "Ebakuazio egiaztapen zerrenda";
+"template.evacuation.content" = "Mesedez, sortu ebakuazio egiaztapen zerrenda egungo egoerarekin: ";
+
+// MARK: - ChatWeb.ai Integration
+"chatweb.title" = "ChatWeb.ai";
+"chatweb.desc" = "Hodei IA txata";
+"chatweb.connect" = "Konektatu ChatWeb.ai-ra";
+"chatweb.qr.title" = "Konektatu QR kodearen bidez";
+"chatweb.qr.scan" = "Eskaneatu QR kodea";
+"chatweb.open" = "Ireki ChatWeb.ai";
+
+// MARK: - Peer Connection
+"peer.title" = "Hurbileko gailuak";
+"peer.desc" = "Konektatu hurbileko Elio gailuekin";
+"peer.connect" = "Konektatu gailura";
+"peer.code.title" = "Konexio kodea";
+"peer.code.enter" = "Sartu 4 digituko kodea";
+"peer.code.your" = "Zure kodea";
+"peer.connected" = "Konektatuta";
+"peer.disconnected" = "Deskonektatuta";
+"peer.inference.offload" = "Inferentzia partekatzen";
+
+// MARK: - Web Search
+"chat.web.search" = "Web bilaketa";
+"search.privacy.title" = "Pribatutasunez babestutako bilaketa";
+"search.privacy.proceed" = "Bilatu";
+"search.privacy.message" = "ElioChat web bilaketak zure pribatutasuna babesten du:\n\n🔒 Bilaketak DuckDuckGo bidez\n🚫 Jarraipenik edo perfilik ez\n🔐 Bilaketa historia ez da gordetzen\n📱 Ez dira datuak gordetzen gailutik kanpo\n\nZure bilaketa kontsulta soilik bidaltzen da DuckDuckGo-ra eta emaitzak zure gailuan prozesatzen dira.";
+"chat.web.analyzing" = "[Web orria aztertzen]";

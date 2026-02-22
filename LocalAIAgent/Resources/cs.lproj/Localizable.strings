@@ -1,0 +1,635 @@
+/*
+  Localizable.strings (Czech)
+  Elio
+*/
+
+// MARK: - App General
+"app.name" = "Elio";
+"app.tagline" = "Váš druhý mozek, který uchovává tajemství.";
+
+// MARK: - Common Actions
+"common.done" = "Hotovo";
+"common.cancel" = "Zrušit";
+"common.delete" = "Smazat";
+"common.save" = "Uložit";
+"common.edit" = "Upravit";
+"common.share" = "Sdílet";
+"common.copy" = "Kopírovat";
+"common.copied" = "Zkopírováno";
+"common.loading" = "Načítání...";
+"common.error" = "Chyba";
+"common.retry" = "Zkusit znovu";
+"common.skip" = "Přeskočit";
+"common.next" = "Další";
+"common.start" = "Začít";
+"common.add" = "Přidat";
+"common.close" = "Zavřít";
+"common.details" = "Podrobnosti";
+"common.yes" = "Ano";
+"common.no" = "Ne";
+"common.unknown" = "Neznámé";
+
+// MARK: - Chat
+"chat.placeholder" = "Zeptejte se na cokoliv";
+"chat.model.not.loaded" = "Žádný model není načten";
+"chat.model.not.loaded.description" = "Stáhněte model v Nastavení";
+"chat.go.to.settings" = "Přejít do nastavení";
+"chat.new.conversation" = "Nový chat";
+"chat.stop.generation" = "Zastavit";
+"chat.generation.stopped" = "\n\n[Generování zastaveno]";
+"chat.image.sent" = "[Obrázek odeslán]";
+"chat.images.sent" = "[%d obrázků odesláno]";
+"chat.pdf.sent" = "[Připojen PDF: %@]";
+"chat.pdf.sent.vision" = "[PDF s obrázkem: %@]";
+"chat.pdf.context" = "Následující je textový obsah extrahovaný z PDF dokumentu \"%@\":\n\n%@";
+"chat.pdf.context.vision" = "Toto je strana 1 PDF dokumentu \"%@\". Extrahovaný textový obsah je:\n\n%@\n\nProsím analyzujte vizuální obsah i text.";
+"chat.pdf.analyze" = "Prosím analyzujte tuto stránku PDF z \"%@\".";
+"chat.url.sent" = "[Webová stránka: %@]";
+"chat.url.context" = "Následující je obsah extrahovaný z webové stránky \"%@\" (%@):\n\n%@";
+"chat.thinking" = "Přemýšlím...";
+"chat.generating" = "Generuji odpověď...";
+"chat.welcome" = "Jak vám mohu pomoci?";
+"chat.suggestion.schedule" = "Zobrazit dnešní rozvrh";
+"chat.suggestion.reminder" = "Vytvořit připomínku";
+"chat.suggestion.weather" = "Jaké je dnes počasí?";
+"chat.suggestion.help" = "Jak používat tuto aplikaci";
+"chat.websearch.on" = "Webové vyhledávání zapnuto";
+"chat.websearch.off" = "Webové vyhledávání vypnuto";
+"chat.thinking.on" = "Myšlení zapnuto";
+"chat.thinking.off" = "Myšlení vypnuto";
+"chat.transcribing" = "Přepisuji...";
+"chat.offline" = "Offline";
+
+// Voice Conversation Mode
+"voice.listening" = "Poslouchám...";
+"voice.processing" = "Zpracovávám...";
+"voice.thinking" = "Přemýšlím...";
+"voice.speaking" = "Mluvím...";
+"voice.tap.to.send" = "Klepněte pro odeslání";
+"chat.templates" = "Šablony";
+"chat.websearch.privacy.title" = "O webovém vyhledávání";
+"chat.websearch.privacy.message" = "Povolení webového vyhledávání umožňuje AI vyhledávat na internetu přes DuckDuckGo pro aktuální informace. Vyhledávací dotazy jsou odesílány do DuckDuckGo, ale nejsou sledovány.";
+"chat.websearch.privacy.enable" = "Povolit";
+"chat.websearch.privacy.disable" = "Ponechat vypnuto";
+
+// MARK: - Settings
+"settings.title" = "Nastavení";
+"settings.model.section" = "AI modely";
+"settings.model.recommended" = "Doporučeno: %@";
+"settings.model.local.execution" = "Modely běží lokálně na vašem zařízení";
+"settings.model.show.more" = "Další modely (%d)";
+"settings.model.show.less" = "Zobrazit méně";
+"settings.appearance.section" = "Vzhled";
+"settings.tools.section" = "Chytré funkce";
+"settings.mcp.servers" = "Integrace";
+"settings.mcp.servers.description" = "Kalendář, soubory, připomínky a další";
+"settings.mcp.enabled.count" = "%d povoleno";
+"settings.mcp.enabled.count.suffix" = " povoleno";
+"settings.about.section" = "O aplikaci";
+"settings.version" = "Verze";
+"settings.about.app" = "O této aplikaci";
+"settings.about.mcp" = "O integracích";
+"settings.privacy.badge" = "Funguje offline";
+"settings.privacy.description" = "Funguje v režimu letadlo";
+"settings.airplane.mode" = "Běží v režimu letadlo";
+"settings.offline.ready" = "Připraveno offline";
+
+// MARK: - Model States
+"model.status.downloading" = "Stahuji... %d%%";
+"model.status.loading" = "Načítám...";
+"model.status.in.use" = "Používá se";
+"model.status.recommended" = "Doporučeno";
+"model.status.heavy" = "Těžké";
+"model.action.download" = "Stáhnout";
+"model.action.load" = "Načíst";
+"model.action.delete" = "Smazat";
+"model.action.use" = "Použít tento model";
+"model.delete.confirm.title" = "Smazat model";
+"model.delete.confirm.message" = "Smazat %@? Pro opětovné použití ho budete muset znovu stáhnout.";
+"model.select.title" = "Vybrat model";
+"model.select.prompt" = "Prosím vyberte model";
+"model.downloaded" = "Staženo";
+
+// MARK: - Inference Mode
+"inference.mode.title" = "Akcelerace";
+"inference.mode.auto" = "Auto";
+"inference.mode.auto.desc" = "Optimální výkon automaticky";
+"inference.mode.gpu" = "GPU (Metal)";
+"inference.mode.gpu.desc" = "Maximální rychlost s Metal";
+"inference.mode.cpu" = "Pouze CPU";
+"inference.mode.cpu.desc" = "Režim šetření baterie";
+"inference.mode.hybrid" = "Hybridní";
+"inference.mode.hybrid.desc" = "Vyvážení rychlosti a baterie";
+
+// MARK: - Theme
+"theme.system" = "Systém";
+"theme.light" = "Světlý";
+"theme.dark" = "Tmavý";
+
+// MARK: - Onboarding
+"onboarding.welcome.title" = "Vítejte v ElioChat";
+"onboarding.welcome.subtitle" = "Váš soukromý AI asistent";
+"onboarding.features.title" = "Skutečně soukromá AI";
+"onboarding.feature.offline" = "Funguje v režimu letadlo";
+"onboarding.feature.offline.desc" = "Používejte v letadle nebo v podzemí";
+"onboarding.feature.privacy" = "Žádný přenos dat";
+"onboarding.feature.privacy.desc" = "Vaše chaty nikdy neopustí váš telefon";
+"onboarding.feature.vault" = "Chytré integrace";
+"onboarding.feature.vault.desc" = "Propojení s kalendářem a soubory";
+"onboarding.feature.secure" = "Bezpečná AI pro práci";
+"onboarding.feature.secure.desc" = "Bezpečná pro firemní použití";
+"onboarding.feature.thinking" = "Proces myšlení";
+"onboarding.privacy.title" = "Vaše data zůstávají vaše";
+"onboarding.privacy.item1" = "Vše se zpracovává na vašem iPhone";
+"onboarding.privacy.item2" = "Žádná data se neposílají na cloudové servery";
+"onboarding.privacy.item3" = "Nikdy se nepoužijí pro trénink AI";
+"onboarding.getstarted.title" = "Připraveno na jedno klepnutí";
+"onboarding.getstarted.subtitle" = "Stáhněte doporučený AI model\na začněte chatovat hned";
+"onboarding.step1" = "Stáhněte doporučený model";
+"onboarding.step2" = "Počkejte pár minut";
+"onboarding.step3" = "Vše je připraveno!";
+
+// MARK: - About
+"about.title" = "O této aplikaci";
+"about.rate.app" = "Ohodnotit aplikaci";
+"about.share.app" = "Sdílet s přáteli";
+"about.privacy.policy" = "Zásady ochrany osobních údajů";
+"about.terms" = "Podmínky služby";
+"about.tech.info" = "Technické informace";
+"about.tech.engine" = "AI engine";
+"about.tech.format" = "Podporovaný formát";
+"about.tech.inference" = "Inference";
+"about.data.management" = "Správa dat";
+"about.delete.all" = "Smazat všechny konverzace";
+"about.credits" = "Poděkování";
+"about.credits.description" = "Tato aplikace používá open source knihovny";
+"about.privacy.section" = "Soukromí";
+"about.gguf.format" = "Formát GGUF";
+"about.metal.gpu" = "Akcelerace Metal GPU";
+
+// MARK: - Referral
+"referral.title" = "Doporučit přátele";
+"referral.code.title" = "Váš doporučovací kód";
+"referral.code.copy" = "Kopírovat kód";
+"referral.code.copied" = "Zkopírováno";
+"referral.share.button" = "Sdílet s přáteli";
+"referral.share.description" = "Sdílejte Elio se svými přáteli!";
+"referral.count" = "Doporučeno %d lidí";
+"referral.enter.title" = "Zadat doporučovací kód";
+"referral.enter.placeholder" = "Doporučovací kód";
+"referral.enter.button" = "Použít";
+"referral.enter.success" = "Doporučovací kód použit";
+"referral.enter.error" = "Neplatný doporučovací kód";
+
+// MARK: - Privacy Policy
+"privacy.title" = "Zásady ochrany osobních údajů";
+"privacy.data.collection.title" = "Sběr dat";
+"privacy.data.collection.content" = "Tato aplikace běží s lokální AI kompletně offline.\nŽádná data nejsou odesílána na externí servery.\nVšechny konverzace jsou uloženy pouze na vašem zařízení.";
+"privacy.stored.data.title" = "Uložená data";
+"privacy.stored.data.content" = "Historie konverzací (uloženo pouze na zařízení)\nSoubory AI modelů (uloženo pouze na zařízení)\nNastavení aplikace (uloženo pouze na zařízení)\n\nTato data nejsou nikdy sdílena externě.";
+"privacy.data.deletion.title" = "Mazání dat";
+"privacy.data.deletion.content" = "Všechna data můžete kdykoli smazat z Nastavení > Správa dat.\nOdinstalace aplikace smaže všechna data.";
+
+// MARK: - Terms of Service
+"terms.title" = "Podmínky služby";
+"terms.service.title" = "Popis služby";
+"terms.service.content" = "Tato aplikace poskytuje funkce AI asistenta pomocí lokálně běžícího AI modelu.";
+"terms.disclaimer.title" = "Odmítnutí odpovědnosti";
+"terms.disclaimer.content" = "Odpovědi AI mohou obsahovat chyby.\nDůležitá rozhodnutí by měla být vždy ověřena odborníkem.\nNenese odpovědnost za žádné škody vzniklé používáním této aplikace.";
+"terms.prohibited.title" = "Zakázané činnosti";
+"terms.prohibited.content" = "Nezákonné činnosti\nČinnosti porušující práva ostatních\nReverzní inženýrství této aplikace\nNeoprávněné kopírování této aplikace";
+"terms.ip.title" = "Duševní vlastnictví";
+"terms.ip.content" = "Práva duševního vlastnictví této aplikace patří vývojáři.\nNeoprávněné použití je zakázáno.";
+
+// MARK: - Conversations
+"conversations.title" = "Konverzace";
+"conversations.new" = "Nová konverzace";
+"conversations.empty" = "Zatím žádné konverzace";
+"conversations.delete" = "Smazat konverzaci";
+"conversations.default.title" = "Nová konverzace";
+"conversations.today" = "Dnes";
+"conversations.yesterday" = "Včera";
+"conversations.past7days" = "Posledních 7 dní";
+"conversations.past30days" = "Posledních 30 dní";
+"conversations.older" = "Starší";
+"conversations.created" = "Vytvořeno: %@";
+"conversations.user" = "Uživatel";
+"conversations.assistant" = "Asistent";
+"conversations.search.placeholder" = "Hledat konverzace";
+"conversations.search.no_results" = "Žádné výsledky";
+
+// MARK: - Message Actions
+"message.copy" = "Kopírovat";
+"message.speak" = "Mluvit";
+"message.stop.speaking" = "Zastavit mluvení";
+"message.share" = "Sdílet";
+"message.share.card" = "Sdílet jako kartu";
+"message.like" = "Líbí se";
+
+// MARK: - Share Card
+"share.card.title" = "Sdílet kartu";
+"share.card.preview" = "Náhled";
+"share.card.button" = "Sdílet obrázek";
+"message.dislike" = "Nelíbí se";
+"message.thinking.process" = "Proces myšlení";
+"message.tool.running" = "Spouštím nástroj";
+"message.tool.error" = "Chyba";
+"message.tool.completed" = "Dokončeno";
+
+// MARK: - Attachment
+"attachment.title" = "Příloha";
+"attachment.photo.library" = "Vybrat fotku";
+"attachment.camera" = "Vyfotit";
+"attachment.pdf" = "Vybrat PDF";
+"attachment.pdf.chars" = "%d znaků";
+"attachment.pdf.pages" = "%d stran";
+"attachment.pdf.vision.enabled" = "Analýza obrázků povolena";
+"attachment.pdf.text.only" = "Pouze textový režim";
+"attachment.url" = "Přečíst webovou stránku";
+"attachment.url.title" = "Zadat URL";
+"attachment.url.placeholder" = "https://priklad.cz";
+"attachment.url.message" = "Vložte URL pro extrakci obsahu";
+"attachment.url.fetch" = "Načíst";
+"attachment.url.loading" = "Načítám stránku...";
+
+// MARK: - Errors
+"error.model.not.found" = "Soubor modelu nenalezen";
+"error.model.not.loaded" = "Model není načten";
+"error.context.failed" = "Nepodařilo se vytvořit kontext";
+"error.tokenization.failed" = "Tokenizace selhala";
+"error.generation.failed" = "Chyba generování: %@";
+"error.occurred" = "Nastala chyba: %@";
+"error.invalid.url" = "Neplatné URL";
+"error.download.failed" = "Stažení selhalo";
+"error.extraction.failed" = "Extrakce selhala";
+"error.config.not.found" = "Konfigurační soubor nenalezen";
+
+// MARK: - Ghost Search
+"ghost.search.title" = "Anonymní vyhledávání";
+"ghost.search.description" = "Anonymní vyhledávání přes DuckDuckGo (bez sledování)";
+"ghost.search.connecting" = "Připojuji se k anonymní síti...";
+"ghost.search.privacy.note" = "Vaše historie vyhledávání není nikdy sledována";
+
+// MARK: - MCP Servers
+"mcp.filesystem" = "Souborový systém";
+"mcp.filesystem.desc" = "Číst a zapisovat soubory v aplikaci";
+"mcp.calendar" = "Kalendář";
+"mcp.calendar.desc" = "Číst a zapisovat události";
+"mcp.reminders" = "Připomínky";
+"mcp.reminders.desc" = "Spravovat připomínky";
+"mcp.contacts" = "Kontakty";
+"mcp.contacts.desc" = "Hledat a zobrazit kontakty";
+"mcp.photos" = "Fotky";
+"mcp.photos.desc" = "Přístup do fotobanky";
+"mcp.location" = "Poloha";
+"mcp.location.desc" = "Získat aktuální polohu a hledat místa";
+"mcp.health" = "Zdraví";
+"mcp.health.desc" = "Přístup ke zdravotním datům";
+"mcp.shortcuts" = "Zkratky";
+"mcp.shortcuts.desc" = "Spouštět zkratky";
+"mcp.websearch" = "Webové vyhledávání";
+"mcp.websearch.desc" = "Anonymní webové vyhledávání";
+"mcp.custom" = "Vlastní integrace";
+"mcp.custom.add" = "Přidat integraci";
+"mcp.custom.setup" = "Nastavit integraci externí služby";
+"mcp.custom.title" = "Vlastní integrace";
+"mcp.settings.title" = "Nastavení integrace";
+"mcp.server.name" = "Název serveru";
+"mcp.server.name.placeholder" = "např. Můj vlastní server";
+"mcp.config.url" = "URL konfiguračního souboru";
+"mcp.import.file" = "Importovat ze souboru";
+"mcp.config.example" = "Příklad konfiguračního souboru";
+"mcp.permission.note" = "Oprávnění budou vyžádána při prvním použití každé funkce";
+
+// MARK: - MCP Tool Messages
+"mcp.tool.available" = "Dostupné nástroje:";
+"mcp.tool.parameters" = "Parametry:";
+"mcp.prompt.available" = "Dostupné výzvy:";
+"mcp.prompt.arguments" = "Argumenty:";
+"mcp.tool.name" = "název_nástroje";
+"mcp.tool.arg.name" = "název_argumentu";
+"mcp.tool.arg.value" = "hodnota";
+"mcp.tool.no.result" = "Žádný výsledek";
+"mcp.tool.running" = "Spouštím nástroj: %@";
+"mcp.tool.error" = "Chyba při spouštění nástroje: %@";
+
+// MARK: - MCP Error Messages
+"mcp.error.server.not.found" = "Server nenalezen: %@";
+"mcp.error.tool.not.found" = "Nástroj nenalezen: %@";
+"mcp.error.invalid.args" = "Neplatné argumenty: %@";
+"mcp.error.execution" = "Chyba při spouštění: %@";
+"mcp.error.permission" = "Oprávnění odepřeno: %@";
+
+// MARK: - Calendar Messages
+"calendar.no.events" = "Žádné události";
+"calendar.event.created" = "Událost vytvořena: %@";
+"calendar.event.deleted" = "Událost smazána: %@";
+"calendar.allday.created" = "Celodenní událost vytvořena: %@";
+"calendar.access.denied" = "Přístup ke kalendáři odepřen";
+"calendar.today.none" = "Žádné události dnes";
+"calendar.untitled" = "Bez názvu";
+
+// MARK: - Reminders Messages
+"reminders.none" = "Žádné připomínky";
+"reminders.created" = "Připomínka vytvořena: %@";
+"reminders.completed" = "Připomínka dokončena: %@";
+"reminders.deleted" = "Připomínka smazána: %@";
+"reminders.access.denied" = "Přístup k připomínkám odepřen";
+"reminders.untitled" = "Bez názvu";
+
+// MARK: - Photos Messages
+"photos.access.denied" = "Přístup k fotkám odepřen";
+"photos.not.found" = "Fotka nenalezena";
+"photos.untitled" = "Bez názvu";
+"photos.count" = "Fotky: %d";
+"photos.videos.count" = "Videa: %d";
+"photos.albums.count" = "Alba: %d";
+"photos.favorites.count" = "Oblíbené: %d";
+"photos.date" = "Datum: %@";
+"photos.size" = "Velikost: %d x %d";
+"photos.location" = "Poloha: %@, %@";
+"photos.media.type" = "Typ média: %@";
+"photos.duration" = "Délka: %dm %ds";
+"photos.favorite" = "Oblíbená: %@";
+"photos.type.image" = "Fotka";
+"photos.type.video" = "Video";
+"photos.type.audio" = "Audio";
+
+// MARK: - Contacts Messages
+"contacts.access.denied" = "Přístup ke kontaktům odepřen";
+"contacts.not.found" = "Žádné odpovídající kontakty";
+"contacts.no.groups" = "Žádné skupiny";
+"contacts.no.card" = "Žádná vizitka nastavena";
+"contacts.name" = "Jméno: %@";
+"contacts.company" = "Společnost: %@";
+"contacts.job" = "Pracovní pozice: %@";
+
+// MARK: - Location Messages
+"location.access.denied" = "Přístup k poloze odepřen";
+"location.not.found" = "Adresa nenalezena";
+"location.latitude" = "Zeměpisná šířka: %@";
+"location.longitude" = "Zeměpisná délka: %@";
+"location.accuracy" = "Přesnost: %dm";
+"location.altitude" = "Nadmořská výška: %dm";
+"location.search" = "Vyhledávání: %@";
+"location.address" = "Adresa: %@";
+"location.country" = "Země: %@";
+"location.postal" = "PSČ: %@";
+"location.from" = "Z: (%@, %@)";
+"location.to" = "Do: (%@, %@)";
+"location.distance.km" = "Vzdálenost: %.2f km";
+"location.distance.m" = "Vzdálenost: %d m";
+
+// MARK: - Health Messages
+"health.not.available" = "Zdraví není na tomto zařízení dostupné";
+"health.date" = "Datum: %@";
+"health.steps" = "Kroky: %@ kroků";
+"health.goal.progress" = "Pokrok cíle: %d%% (cíl 10 000 kroků)";
+"health.no.data" = "Žádná dostupná data";
+"health.avg.bpm" = "Průměr: %d bpm";
+"health.min.bpm" = "Minimum: %d bpm";
+"health.max.bpm" = "Maximum: %d bpm";
+"health.measurements" = "Měření: %d";
+"health.no.sleep" = "Žádná data o spánku";
+"health.sleep.total" = "Celkový spánek: %dh %dm";
+"health.bedtime" = "Čas spánku: %@";
+"health.waketime" = "Čas probuzení: %@";
+"health.calories" = "Kalorie: %d kcal";
+
+// MARK: - File System Messages
+"filesystem.not.found" = "Soubor nenalezen: %@";
+"filesystem.written" = "Soubor zapsán: %@";
+"filesystem.dir.created" = "Adresář vytvořen: %@";
+"filesystem.deleted" = "Smazáno: %@";
+"filesystem.size" = "Velikost: %@";
+"filesystem.created" = "Vytvořeno: %@";
+"filesystem.modified" = "Upraveno: %@";
+"filesystem.type" = "Typ: %@";
+
+// MARK: - Shortcuts Messages
+"shortcuts.executed" = "Zkratka '%@' spuštěna";
+"shortcuts.opened" = "Aplikace Zkratky otevřena";
+"shortcuts.settings.opened" = "Nastavení (%@) otevřeno";
+"shortcuts.mail.opened" = "Psaní emailu otevřeno";
+"shortcuts.calling" = "Volám: %@";
+"shortcuts.message.opened" = "Psaní zprávy otevřeno";
+"shortcuts.failed" = "Zkratku nelze otevřít";
+
+// MARK: - Model Tiers
+"model.tier.entry" = "Základní";
+"model.tier.standard" = "Standardní";
+"model.tier.pro" = "Pro";
+
+// MARK: - Tool Parser
+"tool.arguments" = "Argumenty:";
+
+// MARK: - Model Settings
+"model.action.settings" = "Nastavení";
+"settings.model.parameters" = "Nastavení modelu";
+"settings.model.parameters.description" = "Přizpůsobit parametry generování pro tento model";
+"settings.preset.title" = "Přednastavení";
+"settings.preset.custom" = "Vlastní";
+"settings.preset.balanced" = "Vyvážené";
+"settings.preset.creative" = "Kreativní";
+"settings.preset.precise" = "Přesné";
+"settings.preset.coding" = "Programování";
+"settings.preset.japanese" = "Japonština";
+"settings.parameters.title" = "Parametry";
+"settings.parameter.temperature" = "Teplota";
+"settings.parameter.temperature.description" = "Vyšší = kreativnější, nižší = zaměřenější";
+"settings.parameter.top.p" = "Top P";
+"settings.parameter.top.p.description" = "Pravděpodobnost nucleus samplingu";
+"settings.parameter.top.k" = "Top K";
+"settings.parameter.top.k.description" = "Počet nejlepších tokenů k uvážení";
+"settings.parameter.max.tokens" = "Max. tokenů";
+"settings.parameter.max.tokens.description" = "Maximální délka odpovědi";
+"settings.parameter.repeat.penalty" = "Penále opakování";
+"settings.parameter.repeat.penalty.description" = "Vyšší = méně opakujícího se výstupu";
+"settings.parameter.thinking" = "Režim myšlení";
+"settings.parameter.thinking.description" = "Zobrazit proces uvažování AI";
+"settings.system.prompt.title" = "Systémová výzva";
+"settings.system.prompt.description" = "Vlastní instrukce pro AI";
+"settings.reset.to.default" = "Obnovit výchozí";
+
+// MARK: - Vision Model
+"vision.model.required.title" = "Vyžadován model s vizí";
+"vision.model.required.header" = "Vyžadováno rozpoznávání obrázků";
+"vision.model.required.description" = "Pro analýzu obrázků potřebujete AI model s podporou vize";
+"vision.model.switch" = "Přepnout model";
+"vision.model.switch.message %@" = "Přepnout na %@ pro aktivaci analýzy obrázků?";
+"vision.model.download" = "Stáhnout";
+"vision.model.download.message %@ %@" = "Stáhnout %@ (%@) pro analýzu obrázků?";
+"vision.model.not.available" = "Pro vaše zařízení není dostupný žádný kompatibilní model s vizí";
+"vision.model.switching" = "Přepínám model...";
+"vision.model.download.title" = "Modely s vizí";
+"vision.model.recommended" = "Doporučeno pro vaše zařízení";
+"vision.model.recommended.size %@" = "Doporučeno: %@";
+"vision.model.use.this" = "Použít tento model";
+"vision.model.download.button %@" = "Stáhnout (%@)";
+"vision.model.other.options" = "Další modely s vizí";
+"vision.model.download.complete" = "Stahování dokončeno";
+"vision.model.download.complete.message" = "Připraveno analyzovat obrázky";
+
+// MARK: - Whisper Voice Input (Legacy)
+"whisper.download.title" = "Vyžadováno rozpoznávání hlasu";
+"whisper.download.action" = "Stáhnout";
+"whisper.download.message" = "Pro použití hlasového vstupu musíte stáhnout model rozpoznávání řeči (~150MB).";
+"whisper.downloading" = "Stahuji model rozpoznávání řeči...";
+"whisper.download.error" = "Chyba stahování";
+"whisper.load.error" = "Chyba načítání modelu";
+"whisper.permission.denied" = "Přístup k mikrofonu není povolen";
+"whisper.transcribe.error" = "Chyba přepisu";
+"whisper.error.permission" = "Vyžadováno oprávnění k mikrofonu";
+"whisper.error.not.recording" = "Právě neprobíhá nahrávání";
+"whisper.error.no.recording" = "Žádná data nahrávání";
+"whisper.error.model.not.loaded" = "Model rozpoznávání řeči není načten";
+"whisper.error.transcription" = "Přepis selhal";
+
+// MARK: - Speech Recognition (ReazonSpeech)
+"speech.download.title" = "Vyžadováno rozpoznávání hlasu";
+"speech.download.action" = "Stáhnout";
+"speech.download.message" = "Pro použití hlasového vstupu musíte stáhnout japonský model rozpoznávání řeči (~155MB).";
+"speech.downloading" = "Stahuji model rozpoznávání řeči...";
+
+// MARK: - Language Settings
+"settings.language.section" = "Jazyk";
+"language.system" = "Použít systémový jazyk";
+"settings.language.restart.hint" = "Změny jazyka se projeví po restartu aplikace";
+"settings.language.changed.title" = "Jazyk změněn";
+"settings.language.changed.message" = "Prosím restartujte aplikaci pro aplikování změn";
+"common.ok" = "OK";
+
+// MARK: - System Prompt Settings
+"settings.prompt.section" = "Systémová výzva";
+"settings.prompt.edit" = "Upravit výzvu";
+"settings.prompt.default" = "Používá se výchozí";
+"settings.prompt.custom" = "Nastavena vlastní výzva";
+"settings.prompt.hint" = "Přizpůsobit chování AI";
+"settings.prompt.editor.title" = "Upravit výzvu";
+"settings.prompt.editor.instruction" = "Přidejte vlastní instrukce pro AI. Ponechte prázdné pro použití výchozí výzvy.";
+"settings.prompt.default.preview" = "Výchozí výzva (ukázka):";
+"settings.prompt.reset" = "Obnovit";
+"settings.prompt.reset.title" = "Obnovit výzvu";
+"settings.prompt.reset.message" = "Smazat vlastní výzvu a obnovit výchozí?";
+
+// MARK: - Prompt Templates
+"templates.title" = "Šablony výzev";
+"templates.empty" = "Zatím žádné šablony";
+"templates.add" = "Přidat šablonu";
+"template.add.title" = "Přidat šablonu";
+"template.edit.title" = "Upravit šablonu";
+"template.name.header" = "Název";
+"template.name.placeholder" = "Název šablony";
+"template.content.header" = "Obsah výzvy";
+"template.icon.header" = "Ikona";
+"template.translate.name" = "Přeložit";
+"template.translate.content" = "Prosím přeložte následující: ";
+"template.summarize.name" = "Shrnout";
+"template.summarize.content" = "Prosím shrňte následující: ";
+"template.explain.name" = "Vysvětlit";
+"template.explain.content" = "Prosím vysvětlete následující: ";
+"template.code.name" = "Kód";
+"template.code.content" = "Prosím napište kód pro: ";
+
+// MARK: - Export
+"export.title" = "Exportovat konverzaci";
+"export.format.markdown" = "Markdown";
+"export.format.pdf" = "PDF";
+"export.format.text" = "Čistý text";
+"export.created" = "Vytvořeno";
+"export.image.attached" = "Obrázek připojen";
+"export.generated.by" = "Vygenerováno pomocí";
+
+// MARK: - Loading Phases
+"loading.phase.initializing" = "Inicializuji...";
+"loading.phase.loading" = "Načítám model...";
+"loading.phase.preparing" = "Připravuji inference engine...";
+"loading.phase.almost" = "Téměř hotovo...";
+
+// MARK: - Welcome Screen
+"welcome.greeting" = "Zeptejte se na cokoliv";
+"welcome.subtitle" = "Váš AI asistent s prioritou soukromí";
+"suggestion.idea" = "Pomozte mi vymyslet nápady";
+"suggestion.write" = "Pomozte mi něco napsat";
+"suggestion.question" = "Odpovězte na mé otázky";
+
+// MARK: - Kokoro TTS
+"tts.download.title" = "Vysoce kvalitní hlas";
+"tts.download.action" = "Stáhnout";
+"tts.download.use_system" = "Použít systémový hlas";
+"tts.download.message" = "Stáhněte model Kokoro TTS (~87MB) pro přirozenější japonský převod textu na řeč.";
+"tts.downloading" = "Stahuji model TTS...";
+
+// MARK: - Feedback
+"feedback.consent.title" = "Odeslat zpětnou vazbu";
+"feedback.send" = "Odeslat";
+"feedback.positive.title" = "Byla tato odpověď užitečná?";
+"feedback.negative.title" = "Lze to vylepšit?";
+"feedback.explanation" = "Vaše zpětná vazba pomáhá zlepšovat kvalitu AI. Prosím zkontrolujte, jaká data budou odeslána před odesláním.";
+"feedback.data.section" = "Data k odeslání";
+"feedback.data.conversation" = "Konverzace";
+"feedback.data.conversation.desc" = "Odpověď AI a vaše předchozí zpráva";
+"feedback.data.model" = "Info o modelu";
+"feedback.data.model.desc" = "Název použitého AI modelu";
+"feedback.data.timestamp" = "Časové razítko";
+"feedback.data.timestamp.desc" = "Kdy byla zpětná vazba odeslána";
+"feedback.privacy.section" = "Soukromí";
+"feedback.privacy.anonymous" = "Nejsou odesílány žádné osobně identifikovatelné informace";
+"feedback.privacy.improvement" = "Použito pouze pro zlepšení kvality AI";
+"feedback.privacy.optional" = "Odesílání zpětné vazby je zcela volitelné";
+"feedback.comment.section" = "Komentář (volitelný)";
+"feedback.comment.placeholder" = "Řekněte nám, co by se dalo zlepšit nebo co fungovalo dobře...";
+"feedback.remember.title" = "Zapamatovat si tuto volbu";
+"feedback.remember.description" = "Příště odeslat zpětnou vazbu bez dotazu";
+
+// MARK: - Emergency Mode
+"emergency.sos.button" = "Nouzový režim (dlouhé stisknutí pro přepnutí)";
+"emergency.mode.active" = "Nouzový režim aktivní";
+"emergency.action.firstaid" = "První pomoc";
+"emergency.action.firstaid.message" = "Prosím poskytněte instrukce první pomoci. Popíši zranění nebo příznaky: ";
+"emergency.action.disaster" = "Katastrofa";
+"emergency.action.disaster.message" = "Došlo ke katastrofě. Prosím poskytněte postupy reakce: ";
+"emergency.action.factcheck" = "Ověření faktu";
+"emergency.action.factcheck.message" = "Prosím ověřte spolehlivost těchto informací: ";
+"emergency.action.contacts" = "Nouzové kontakty";
+"emergency.action.contacts.message" = "Prosím ukažte mi seznam nouzových telefonních čísel";
+"emergency.action.evacuation" = "Evakuace";
+"emergency.action.evacuation.message" = "Prosím vytvořte evakuační kontrolní seznam pro aktuální situaci: ";
+"mcp.emergency_kb" = "Nouzová databáze";
+"mcp.emergency_kb.desc" = "Informace o nouzových situacích a katastrofách";
+
+// MARK: - Emergency Templates
+"template.firstaid.name" = "Průvodce první pomoci";
+"template.firstaid.content" = "Prosím poskytněte instrukce první pomoci pro: ";
+"template.disaster.name" = "Reakce na katastrofu";
+"template.disaster.content" = "Došlo k následující katastrofě. Prosím poskytněte postupy reakce: ";
+"template.factcheck.name" = "Ověření faktu";
+"template.factcheck.content" = "Prosím ověřte spolehlivost těchto informací a poskytněte tipy na ověřování faktů: ";
+"template.evacuation.name" = "Evakuační kontrolní seznam";
+"template.evacuation.content" = "Prosím vytvořte evakuační kontrolní seznam pro aktuální situaci: ";
+
+// MARK: - ChatWeb.ai Integration
+"chatweb.title" = "ChatWeb.ai";
+"chatweb.desc" = "Cloudový AI chat";
+"chatweb.connect" = "Připojit k ChatWeb.ai";
+"chatweb.qr.title" = "Připojit přes QR kód";
+"chatweb.qr.scan" = "Skenovat QR kód";
+"chatweb.open" = "Otevřít ChatWeb.ai";
+
+// MARK: - Peer Connection
+"peer.title" = "Blízká zařízení";
+"peer.desc" = "Připojit se k blízkým zařízením Elio";
+"peer.connect" = "Připojit k zařízení";
+"peer.code.title" = "Kód připojení";
+"peer.code.enter" = "Zadat 4místný kód";
+"peer.code.your" = "Váš kód";
+"peer.connected" = "Připojeno";
+"peer.disconnected" = "Odpojeno";
+"peer.inference.offload" = "Sdílení inference";
+
+// MARK: - Web Search
+"chat.web.search" = "Webové vyhledávání";
+"search.privacy.title" = "Vyhledávání chráněné soukromím";
+"search.privacy.proceed" = "Vyhledat";
+"search.privacy.message" = "ElioChat Webové vyhledávání chrání vaše soukromí:\n\n🔒 Vyhledávání přes DuckDuckGo\n🚫 Bez sledování nebo profilování\n🔐 Historie vyhledávání není uložena\n📱 Žádná data uložena mimo vaše zařízení\n\nPouze váš vyhledávací dotaz je odeslán do DuckDuckGo a výsledky jsou zpracovány na vašem zařízení.";
+"chat.web.analyzing" = "[Analyzuji webovou stránku]";

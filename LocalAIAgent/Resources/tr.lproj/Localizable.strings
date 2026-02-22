@@ -1,0 +1,635 @@
+/*
+  Localizable.strings (Turkish)
+  Elio
+*/
+
+// MARK: - App General
+"app.name" = "Elio";
+"app.tagline" = "Sırlarınızı saklayan ikinci beyniniz.";
+
+// MARK: - Common Actions
+"common.done" = "Tamam";
+"common.cancel" = "İptal";
+"common.delete" = "Sil";
+"common.save" = "Kaydet";
+"common.edit" = "Düzenle";
+"common.share" = "Paylaş";
+"common.copy" = "Kopyala";
+"common.copied" = "Kopyalandı";
+"common.loading" = "Yükleniyor...";
+"common.error" = "Hata";
+"common.retry" = "Yeniden Dene";
+"common.skip" = "Geç";
+"common.next" = "Sonraki";
+"common.start" = "Başla";
+"common.add" = "Ekle";
+"common.close" = "Kapat";
+"common.details" = "Detaylar";
+"common.yes" = "Evet";
+"common.no" = "Hayır";
+"common.unknown" = "Bilinmiyor";
+
+// MARK: - Chat
+"chat.placeholder" = "Bana herhangi bir şey sor";
+"chat.model.not.loaded" = "Model Yüklenmedi";
+"chat.model.not.loaded.description" = "Lütfen Ayarlar'dan bir model indirin";
+"chat.go.to.settings" = "Ayarlar'a Git";
+"chat.new.conversation" = "Yeni Sohbet";
+"chat.stop.generation" = "Durdur";
+"chat.generation.stopped" = "\n\n[Oluşturma durduruldu]";
+"chat.image.sent" = "[Görsel gönderildi]";
+"chat.images.sent" = "[%d görsel gönderildi]";
+"chat.pdf.sent" = "[PDF eklendi: %@]";
+"chat.pdf.sent.vision" = "[Görsel içeren PDF: %@]";
+"chat.pdf.context" = "\"%@\" PDF belgesinden çıkarılan metin içeriği:\n\n%@";
+"chat.pdf.context.vision" = "Bu, \"%@\" PDF belgesinin 1. sayfasıdır. Çıkarılan metin içeriği:\n\n%@\n\nLütfen hem görsel içeriği hem de metni analiz edin.";
+"chat.pdf.analyze" = "Lütfen \"%@\" belgesinden bu PDF sayfasını analiz edin.";
+"chat.url.sent" = "[Web sayfası: %@]";
+"chat.url.context" = "\"%@\" web sayfasından çıkarılan içerik (%@):\n\n%@";
+"chat.thinking" = "Düşünüyor...";
+"chat.generating" = "Yanıt oluşturuluyor...";
+"chat.welcome" = "Nasıl yardımcı olabilirim?";
+"chat.suggestion.schedule" = "Bugünkü programı göster";
+"chat.suggestion.reminder" = "Hatırlatıcı oluştur";
+"chat.suggestion.weather" = "Bugün hava nasıl?";
+"chat.suggestion.help" = "Bu uygulamayı nasıl kullanırım";
+"chat.websearch.on" = "Web Araması Açık";
+"chat.websearch.off" = "Web Araması Kapalı";
+"chat.thinking.on" = "Düşünme Açık";
+"chat.thinking.off" = "Düşünme Kapalı";
+"chat.transcribing" = "Yazıya dönüştürülüyor...";
+"chat.offline" = "Çevrimdışı";
+
+// Voice Conversation Mode
+"voice.listening" = "Dinliyor...";
+"voice.processing" = "İşleniyor...";
+"voice.thinking" = "Düşünüyor...";
+"voice.speaking" = "Konuşuyor...";
+"voice.tap.to.send" = "Göndermek için dokunun";
+"chat.templates" = "Şablonlar";
+"chat.websearch.privacy.title" = "Web Araması Hakkında";
+"chat.websearch.privacy.message" = "Web aramasını etkinleştirmek, yapay zekanın güncel bilgiler için DuckDuckGo üzerinden internet araması yapmasına olanak tanır. Arama sorguları DuckDuckGo'ya gönderilir ancak izlenmez.";
+"chat.websearch.privacy.enable" = "Etkinleştir";
+"chat.websearch.privacy.disable" = "Kapalı Tut";
+
+// MARK: - Settings
+"settings.title" = "Ayarlar";
+"settings.model.section" = "Yapay Zeka Modelleri";
+"settings.model.recommended" = "Önerilen: %@";
+"settings.model.local.execution" = "Modeller cihazınızda yerel olarak çalışır";
+"settings.model.show.more" = "Diğer Modeller (%d)";
+"settings.model.show.less" = "Daha Az Göster";
+"settings.appearance.section" = "Görünüm";
+"settings.tools.section" = "Akıllı Özellikler";
+"settings.mcp.servers" = "Entegrasyonlar";
+"settings.mcp.servers.description" = "Takvim, Dosyalar, Hatırlatıcılar ve daha fazlası";
+"settings.mcp.enabled.count" = "%d etkin";
+"settings.mcp.enabled.count.suffix" = " etkin";
+"settings.about.section" = "Hakkında";
+"settings.version" = "Sürüm";
+"settings.about.app" = "Bu Uygulama Hakkında";
+"settings.about.mcp" = "Entegrasyonlar Hakkında";
+"settings.privacy.badge" = "Çevrimdışı Çalışır";
+"settings.privacy.description" = "Uçak Modunda Çalışır";
+"settings.airplane.mode" = "Uçak Modunda Çalışıyor";
+"settings.offline.ready" = "Çevrimdışı Hazır";
+
+// MARK: - Model States
+"model.status.downloading" = "İndiriliyor... %d%%";
+"model.status.loading" = "Yükleniyor...";
+"model.status.in.use" = "Kullanımda";
+"model.status.recommended" = "Önerilen";
+"model.status.heavy" = "Ağır";
+"model.action.download" = "İndir";
+"model.action.load" = "Yükle";
+"model.action.delete" = "Sil";
+"model.action.use" = "Bu Modeli Kullan";
+"model.delete.confirm.title" = "Modeli Sil";
+"model.delete.confirm.message" = "%@ silinsin mi? Tekrar kullanmak için yeniden indirmeniz gerekecek.";
+"model.select.title" = "Model Seç";
+"model.select.prompt" = "Lütfen bir model seçin";
+"model.downloaded" = "İndirildi";
+
+// MARK: - Inference Mode
+"inference.mode.title" = "Hızlandırma";
+"inference.mode.auto" = "Otomatik";
+"inference.mode.auto.desc" = "Otomatik olarak optimal performans";
+"inference.mode.gpu" = "GPU (Metal)";
+"inference.mode.gpu.desc" = "Metal ile maksimum hız";
+"inference.mode.cpu" = "Yalnızca CPU";
+"inference.mode.cpu.desc" = "Pil tasarrufu modu";
+"inference.mode.hybrid" = "Hibrit";
+"inference.mode.hybrid.desc" = "Hız ve pil dengesi";
+
+// MARK: - Theme
+"theme.system" = "Sistem";
+"theme.light" = "Açık";
+"theme.dark" = "Koyu";
+
+// MARK: - Onboarding
+"onboarding.welcome.title" = "ElioChat'e Hoş Geldiniz";
+"onboarding.welcome.subtitle" = "Özel yapay zeka asistanınız";
+"onboarding.features.title" = "Gerçekten Özel Yapay Zeka";
+"onboarding.feature.offline" = "Uçak Modunda Çalışır";
+"onboarding.feature.offline.desc" = "Uçuşlarda veya metroda kullanın";
+"onboarding.feature.privacy" = "Sıfır Veri Aktarımı";
+"onboarding.feature.privacy.desc" = "Sohbetleriniz telefonunuzdan asla çıkmaz";
+"onboarding.feature.vault" = "Akıllı Entegrasyonlar";
+"onboarding.feature.vault.desc" = "Takvim ve Dosyalarla bağlan";
+"onboarding.feature.secure" = "İş İçin Güvenli Yapay Zeka";
+"onboarding.feature.secure.desc" = "Kurumsal kullanım için güvenli";
+"onboarding.feature.thinking" = "Düşünme Süreci";
+"onboarding.privacy.title" = "Verileriniz Size Ait";
+"onboarding.privacy.item1" = "Tüm işlemler iPhone'unuzda gerçekleşir";
+"onboarding.privacy.item2" = "Bulut sunucularına veri gönderilmez";
+"onboarding.privacy.item3" = "Yapay zeka eğitimi için asla kullanılmaz";
+"onboarding.getstarted.title" = "Tek Dokunuşta Hazır";
+"onboarding.getstarted.subtitle" = "Önerilen yapay zeka modelini indirin\nve hemen sohbete başlayın";
+"onboarding.step1" = "Önerilen modeli indir";
+"onboarding.step2" = "Birkaç dakika bekle";
+"onboarding.step3" = "Hazırsınız!";
+
+// MARK: - About
+"about.title" = "Bu Uygulama Hakkında";
+"about.rate.app" = "Uygulamayı Değerlendir";
+"about.share.app" = "Arkadaşlarınla Paylaş";
+"about.privacy.policy" = "Gizlilik Politikası";
+"about.terms" = "Hizmet Koşulları";
+"about.tech.info" = "Teknik Bilgi";
+"about.tech.engine" = "Yapay Zeka Motoru";
+"about.tech.format" = "Desteklenen Format";
+"about.tech.inference" = "Çıkarım";
+"about.data.management" = "Veri Yönetimi";
+"about.delete.all" = "Tüm Sohbetleri Sil";
+"about.credits" = "Teşekkürler";
+"about.credits.description" = "Bu uygulama açık kaynak kütüphaneler kullanır";
+"about.privacy.section" = "Gizlilik";
+"about.gguf.format" = "GGUF Formatı";
+"about.metal.gpu" = "Metal GPU Hızlandırma";
+
+// MARK: - Referral
+"referral.title" = "Arkadaş Davet Et";
+"referral.code.title" = "Davet Kodunuz";
+"referral.code.copy" = "Kodu Kopyala";
+"referral.code.copied" = "Kopyalandı";
+"referral.share.button" = "Arkadaşlarınla Paylaş";
+"referral.share.description" = "Elio'yu arkadaşlarınla paylaş!";
+"referral.count" = "%d kişi davet ettiniz";
+"referral.enter.title" = "Davet Kodu Gir";
+"referral.enter.placeholder" = "Davet Kodu";
+"referral.enter.button" = "Uygula";
+"referral.enter.success" = "Davet kodu uygulandı";
+"referral.enter.error" = "Geçersiz davet kodu";
+
+// MARK: - Privacy Policy
+"privacy.title" = "Gizlilik Politikası";
+"privacy.data.collection.title" = "Veri Toplama";
+"privacy.data.collection.content" = "Bu uygulama tamamen çevrimdışı yerel bir yapay zeka çalıştırır.\nHarici sunuculara veri gönderilmez.\nTüm sohbetler yalnızca cihazınızda saklanır.";
+"privacy.stored.data.title" = "Saklanan Veriler";
+"privacy.stored.data.content" = "Sohbet geçmişi (yalnızca cihazda saklanır)\nYapay zeka model dosyaları (yalnızca cihazda saklanır)\nUygulama ayarları (yalnızca cihazda saklanır)\n\nBu veriler asla harici olarak paylaşılmaz.";
+"privacy.data.deletion.title" = "Veri Silme";
+"privacy.data.deletion.content" = "Ayarlar > Veri Yönetimi'nden tüm verileri istediğiniz zaman silebilirsiniz.\nUygulamayı kaldırmak tüm verileri silecektir.";
+
+// MARK: - Terms of Service
+"terms.title" = "Hizmet Koşulları";
+"terms.service.title" = "Hizmet Açıklaması";
+"terms.service.content" = "Bu uygulama yerel olarak çalışan bir yapay zeka modeli kullanarak yapay zeka asistan işlevselliği sağlar.";
+"terms.disclaimer.title" = "Sorumluluk Reddi";
+"terms.disclaimer.content" = "Yapay zeka yanıtları hata içerebilir.\nÖnemli kararlar her zaman bir profesyonel tarafından doğrulanmalıdır.\nBu uygulamanın kullanımından kaynaklanan hasarlardan sorumlu değiliz.";
+"terms.prohibited.title" = "Yasaklanan Faaliyetler";
+"terms.prohibited.content" = "Yasadışı faaliyetler\nBaşkalarının haklarını ihlal eden faaliyetler\nBu uygulamanın tersine mühendisliği\nBu uygulamanın yetkisiz kopyalanması";
+"terms.ip.title" = "Fikri Mülkiyet";
+"terms.ip.content" = "Bu uygulamanın fikri mülkiyet hakları geliştiriciye aittir.\nYetkisiz kullanım yasaktır.";
+
+// MARK: - Conversations
+"conversations.title" = "Sohbetler";
+"conversations.new" = "Yeni Sohbet";
+"conversations.empty" = "Henüz sohbet yok";
+"conversations.delete" = "Sohbeti Sil";
+"conversations.default.title" = "Yeni Sohbet";
+"conversations.today" = "Bugün";
+"conversations.yesterday" = "Dün";
+"conversations.past7days" = "Son 7 Gün";
+"conversations.past30days" = "Son 30 Gün";
+"conversations.older" = "Daha Eski";
+"conversations.created" = "Oluşturuldu: %@";
+"conversations.user" = "Kullanıcı";
+"conversations.assistant" = "Asistan";
+"conversations.search.placeholder" = "Sohbetlerde ara";
+"conversations.search.no_results" = "Sonuç bulunamadı";
+
+// MARK: - Message Actions
+"message.copy" = "Kopyala";
+"message.speak" = "Seslendir";
+"message.stop.speaking" = "Seslendirmeyi Durdur";
+"message.share" = "Paylaş";
+"message.share.card" = "Kart Olarak Paylaş";
+"message.like" = "Beğen";
+
+// MARK: - Share Card
+"share.card.title" = "Kartı Paylaş";
+"share.card.preview" = "Önizleme";
+"share.card.button" = "Görseli Paylaş";
+"message.dislike" = "Beğenme";
+"message.thinking.process" = "Düşünme Süreci";
+"message.tool.running" = "Araç Çalıştırılıyor";
+"message.tool.error" = "Hata";
+"message.tool.completed" = "Tamamlandı";
+
+// MARK: - Attachment
+"attachment.title" = "Ek";
+"attachment.photo.library" = "Fotoğraf Seç";
+"attachment.camera" = "Fotoğraf Çek";
+"attachment.pdf" = "PDF Seç";
+"attachment.pdf.chars" = "%d karakter";
+"attachment.pdf.pages" = "%d sayfa";
+"attachment.pdf.vision.enabled" = "Görsel analizi etkin";
+"attachment.pdf.text.only" = "Yalnızca metin modu";
+"attachment.url" = "Web Sayfası Oku";
+"attachment.url.title" = "URL Girin";
+"attachment.url.placeholder" = "https://ornek.com";
+"attachment.url.message" = "İçeriğini çıkarmak için bir URL yapıştırın";
+"attachment.url.fetch" = "Getir";
+"attachment.url.loading" = "Sayfa yükleniyor...";
+
+// MARK: - Errors
+"error.model.not.found" = "Model dosyası bulunamadı";
+"error.model.not.loaded" = "Model yüklenmedi";
+"error.context.failed" = "Bağlam oluşturulamadı";
+"error.tokenization.failed" = "Tokenizasyon başarısız";
+"error.generation.failed" = "Oluşturma hatası: %@";
+"error.occurred" = "Bir hata oluştu: %@";
+"error.invalid.url" = "Geçersiz URL";
+"error.download.failed" = "İndirme başarısız";
+"error.extraction.failed" = "Çıkarma başarısız";
+"error.config.not.found" = "Yapılandırma dosyası bulunamadı";
+
+// MARK: - Ghost Search
+"ghost.search.title" = "Hayalet Arama";
+"ghost.search.description" = "DuckDuckGo üzerinden anonim arama (izleme yok)";
+"ghost.search.connecting" = "Anonim ağa bağlanılıyor...";
+"ghost.search.privacy.note" = "Arama geçmişiniz asla izlenmez";
+
+// MARK: - MCP Servers
+"mcp.filesystem" = "Dosya Sistemi";
+"mcp.filesystem.desc" = "Uygulamada dosya okuma ve yazma";
+"mcp.calendar" = "Takvim";
+"mcp.calendar.desc" = "Etkinlikleri okuma ve yazma";
+"mcp.reminders" = "Hatırlatıcılar";
+"mcp.reminders.desc" = "Hatırlatıcıları yönet";
+"mcp.contacts" = "Kişiler";
+"mcp.contacts.desc" = "Kişileri ara ve görüntüle";
+"mcp.photos" = "Fotoğraflar";
+"mcp.photos.desc" = "Fotoğraf kitaplığına erişim";
+"mcp.location" = "Konum";
+"mcp.location.desc" = "Mevcut konumu al ve yer ara";
+"mcp.health" = "Sağlık";
+"mcp.health.desc" = "Sağlık verilerine erişim";
+"mcp.shortcuts" = "Kısayollar";
+"mcp.shortcuts.desc" = "Kısayolları çalıştır";
+"mcp.websearch" = "Web Araması";
+"mcp.websearch.desc" = "Anonim web araması";
+"mcp.custom" = "Özel Entegrasyon";
+"mcp.custom.add" = "Entegrasyon Ekle";
+"mcp.custom.setup" = "Harici hizmet entegrasyonu ayarla";
+"mcp.custom.title" = "Özel Entegrasyonlar";
+"mcp.settings.title" = "Entegrasyon Ayarları";
+"mcp.server.name" = "Sunucu Adı";
+"mcp.server.name.placeholder" = "örn., Özel Sunucum";
+"mcp.config.url" = "Yapılandırma Dosyası URL'si";
+"mcp.import.file" = "Dosyadan İçe Aktar";
+"mcp.config.example" = "Yapılandırma Dosyası Örneği";
+"mcp.permission.note" = "Her özelliği ilk kullandığınızda izinler istenecektir";
+
+// MARK: - MCP Tool Messages
+"mcp.tool.available" = "Mevcut Araçlar:";
+"mcp.tool.parameters" = "Parametreler:";
+"mcp.prompt.available" = "Mevcut İstemler:";
+"mcp.prompt.arguments" = "Argümanlar:";
+"mcp.tool.name" = "araç_adı";
+"mcp.tool.arg.name" = "argüman_adı";
+"mcp.tool.arg.value" = "değer";
+"mcp.tool.no.result" = "Sonuç yok";
+"mcp.tool.running" = "Araç çalıştırılıyor: %@";
+"mcp.tool.error" = "Araç yürütme hatası: %@";
+
+// MARK: - MCP Error Messages
+"mcp.error.server.not.found" = "Sunucu bulunamadı: %@";
+"mcp.error.tool.not.found" = "Araç bulunamadı: %@";
+"mcp.error.invalid.args" = "Geçersiz argümanlar: %@";
+"mcp.error.execution" = "Yürütme hatası: %@";
+"mcp.error.permission" = "İzin reddedildi: %@";
+
+// MARK: - Calendar Messages
+"calendar.no.events" = "Etkinlik yok";
+"calendar.event.created" = "Etkinlik oluşturuldu: %@";
+"calendar.event.deleted" = "Etkinlik silindi: %@";
+"calendar.allday.created" = "Tüm gün etkinliği oluşturuldu: %@";
+"calendar.access.denied" = "Takvim erişimi reddedildi";
+"calendar.today.none" = "Bugün etkinlik yok";
+"calendar.untitled" = "Başlıksız";
+
+// MARK: - Reminders Messages
+"reminders.none" = "Hatırlatıcı yok";
+"reminders.created" = "Hatırlatıcı oluşturuldu: %@";
+"reminders.completed" = "Hatırlatıcı tamamlandı: %@";
+"reminders.deleted" = "Hatırlatıcı silindi: %@";
+"reminders.access.denied" = "Hatırlatıcı erişimi reddedildi";
+"reminders.untitled" = "Başlıksız";
+
+// MARK: - Photos Messages
+"photos.access.denied" = "Fotoğraf erişimi reddedildi";
+"photos.not.found" = "Fotoğraf bulunamadı";
+"photos.untitled" = "Başlıksız";
+"photos.count" = "Fotoğraflar: %d";
+"photos.videos.count" = "Videolar: %d";
+"photos.albums.count" = "Albümler: %d";
+"photos.favorites.count" = "Favoriler: %d";
+"photos.date" = "Tarih: %@";
+"photos.size" = "Boyut: %d x %d";
+"photos.location" = "Konum: %@, %@";
+"photos.media.type" = "Medya Türü: %@";
+"photos.duration" = "Süre: %dd %ds";
+"photos.favorite" = "Favori: %@";
+"photos.type.image" = "Fotoğraf";
+"photos.type.video" = "Video";
+"photos.type.audio" = "Ses";
+
+// MARK: - Contacts Messages
+"contacts.access.denied" = "Kişi erişimi reddedildi";
+"contacts.not.found" = "Eşleşen kişi bulunamadı";
+"contacts.no.groups" = "Grup yok";
+"contacts.no.card" = "Kişi kartı ayarlanmamış";
+"contacts.name" = "Ad: %@";
+"contacts.company" = "Şirket: %@";
+"contacts.job" = "İş Ünvanı: %@";
+
+// MARK: - Location Messages
+"location.access.denied" = "Konum erişimi reddedildi";
+"location.not.found" = "Adres bulunamadı";
+"location.latitude" = "Enlem: %@";
+"location.longitude" = "Boylam: %@";
+"location.accuracy" = "Doğruluk: %dm";
+"location.altitude" = "Rakım: %dm";
+"location.search" = "Ara: %@";
+"location.address" = "Adres: %@";
+"location.country" = "Ülke: %@";
+"location.postal" = "Posta Kodu: %@";
+"location.from" = "Başlangıç: (%@, %@)";
+"location.to" = "Bitiş: (%@, %@)";
+"location.distance.km" = "Mesafe: %.2f km";
+"location.distance.m" = "Mesafe: %d m";
+
+// MARK: - Health Messages
+"health.not.available" = "Sağlık bu cihazda mevcut değil";
+"health.date" = "Tarih: %@";
+"health.steps" = "Adımlar: %@ adım";
+"health.goal.progress" = "Hedef ilerleme: %d%% (10.000 adım hedefi)";
+"health.no.data" = "Veri mevcut değil";
+"health.avg.bpm" = "Ortalama: %d bpm";
+"health.min.bpm" = "Minimum: %d bpm";
+"health.max.bpm" = "Maksimum: %d bpm";
+"health.measurements" = "Ölçümler: %d";
+"health.no.sleep" = "Uyku verisi yok";
+"health.sleep.total" = "Toplam uyku: %ds %dd";
+"health.bedtime" = "Yatış saati: %@";
+"health.waketime" = "Uyanış saati: %@";
+"health.calories" = "Kalori: %d kkal";
+
+// MARK: - File System Messages
+"filesystem.not.found" = "Dosya bulunamadı: %@";
+"filesystem.written" = "Dosya yazıldı: %@";
+"filesystem.dir.created" = "Dizin oluşturuldu: %@";
+"filesystem.deleted" = "Silindi: %@";
+"filesystem.size" = "Boyut: %@";
+"filesystem.created" = "Oluşturuldu: %@";
+"filesystem.modified" = "Değiştirildi: %@";
+"filesystem.type" = "Tür: %@";
+
+// MARK: - Shortcuts Messages
+"shortcuts.executed" = "'%@' kısayolu çalıştırıldı";
+"shortcuts.opened" = "Kısayollar uygulaması açıldı";
+"shortcuts.settings.opened" = "Ayarlar (%@) açıldı";
+"shortcuts.mail.opened" = "E-posta oluşturma açıldı";
+"shortcuts.calling" = "Arıyor: %@";
+"shortcuts.message.opened" = "Mesaj oluşturma açıldı";
+"shortcuts.failed" = "Kısayol açılamadı";
+
+// MARK: - Model Tiers
+"model.tier.entry" = "Giriş";
+"model.tier.standard" = "Standart";
+"model.tier.pro" = "Pro";
+
+// MARK: - Tool Parser
+"tool.arguments" = "Argümanlar:";
+
+// MARK: - Model Settings
+"model.action.settings" = "Ayarlar";
+"settings.model.parameters" = "Model Ayarları";
+"settings.model.parameters.description" = "Bu model için oluşturma parametrelerini özelleştir";
+"settings.preset.title" = "Ön Ayarlar";
+"settings.preset.custom" = "Özel";
+"settings.preset.balanced" = "Dengeli";
+"settings.preset.creative" = "Yaratıcı";
+"settings.preset.precise" = "Kesin";
+"settings.preset.coding" = "Kodlama";
+"settings.preset.japanese" = "Japonca";
+"settings.parameters.title" = "Parametreler";
+"settings.parameter.temperature" = "Sıcaklık";
+"settings.parameter.temperature.description" = "Yüksek = daha yaratıcı, düşük = daha odaklı";
+"settings.parameter.top.p" = "Top P";
+"settings.parameter.top.p.description" = "Nucleus örnekleme olasılığı";
+"settings.parameter.top.k" = "Top K";
+"settings.parameter.top.k.description" = "Dikkate alınacak en iyi token sayısı";
+"settings.parameter.max.tokens" = "Maks. Token";
+"settings.parameter.max.tokens.description" = "Maksimum yanıt uzunluğu";
+"settings.parameter.repeat.penalty" = "Tekrar Cezası";
+"settings.parameter.repeat.penalty.description" = "Yüksek = daha az tekrarlı çıktı";
+"settings.parameter.thinking" = "Düşünme Modu";
+"settings.parameter.thinking.description" = "Yapay zekanın akıl yürütme sürecini göster";
+"settings.system.prompt.title" = "Sistem İstemi";
+"settings.system.prompt.description" = "Yapay zeka için özel talimatlar";
+"settings.reset.to.default" = "Varsayılana Sıfırla";
+
+// MARK: - Vision Model
+"vision.model.required.title" = "Görsel Model Gerekli";
+"vision.model.required.header" = "Görsel Tanıma Gerekli";
+"vision.model.required.description" = "Görselleri analiz etmek için görsel yetenekli bir yapay zeka modeli gereklidir";
+"vision.model.switch" = "Model Değiştir";
+"vision.model.switch.message %@" = "Görsel analizini etkinleştirmek için %@ modeline geçilsin mi?";
+"vision.model.download" = "İndir";
+"vision.model.download.message %@ %@" = "Görselleri analiz etmek için %@ (%@) indirilsin mi?";
+"vision.model.not.available" = "Cihazınız için uyumlu görsel modeli mevcut değil";
+"vision.model.switching" = "Model değiştiriliyor...";
+"vision.model.download.title" = "Görsel Modeller";
+"vision.model.recommended" = "Cihazınız için önerilen";
+"vision.model.recommended.size %@" = "Önerilen: %@";
+"vision.model.use.this" = "Bu Modeli Kullan";
+"vision.model.download.button %@" = "İndir (%@)";
+"vision.model.other.options" = "Diğer Görsel Modeller";
+"vision.model.download.complete" = "İndirme Tamamlandı";
+"vision.model.download.complete.message" = "Görselleri analiz etmeye hazır";
+
+// MARK: - Whisper Voice Input (Legacy)
+"whisper.download.title" = "Ses Tanıma Gerekli";
+"whisper.download.action" = "İndir";
+"whisper.download.message" = "Ses girişi kullanmak için konuşma tanıma modelini indirmeniz gerekiyor (~150MB).";
+"whisper.downloading" = "Konuşma tanıma modeli indiriliyor...";
+"whisper.download.error" = "İndirme Hatası";
+"whisper.load.error" = "Model Yükleme Hatası";
+"whisper.permission.denied" = "Mikrofon erişimine izin verilmedi";
+"whisper.transcribe.error" = "Çeviri Hatası";
+"whisper.error.permission" = "Mikrofon izni gerekli";
+"whisper.error.not.recording" = "Şu anda kayıt yapılmıyor";
+"whisper.error.no.recording" = "Kayıt verisi yok";
+"whisper.error.model.not.loaded" = "Konuşma tanıma modeli yüklenmedi";
+"whisper.error.transcription" = "Çeviri başarısız";
+
+// MARK: - Speech Recognition (ReazonSpeech)
+"speech.download.title" = "Ses Tanıma Gerekli";
+"speech.download.action" = "İndir";
+"speech.download.message" = "Ses girişi kullanmak için Japonca konuşma tanıma modelini indirmeniz gerekiyor (~155MB).";
+"speech.downloading" = "Konuşma tanıma modeli indiriliyor...";
+
+// MARK: - Language Settings
+"settings.language.section" = "Dil";
+"language.system" = "Sistem Dilini Kullan";
+"settings.language.restart.hint" = "Dil değişiklikleri uygulamayı yeniden başlattıktan sonra geçerli olacaktır";
+"settings.language.changed.title" = "Dil Değiştirildi";
+"settings.language.changed.message" = "Lütfen değişiklikleri uygulamak için uygulamayı yeniden başlatın";
+"common.ok" = "Tamam";
+
+// MARK: - System Prompt Settings
+"settings.prompt.section" = "Sistem İstemi";
+"settings.prompt.edit" = "İstemi Düzenle";
+"settings.prompt.default" = "Varsayılan kullanılıyor";
+"settings.prompt.custom" = "Özel istem ayarlandı";
+"settings.prompt.hint" = "Yapay zeka davranışını özelleştir";
+"settings.prompt.editor.title" = "İstemi Düzenle";
+"settings.prompt.editor.instruction" = "Yapay zeka için özel talimatlar ekleyin. Varsayılan istemi kullanmak için boş bırakın.";
+"settings.prompt.default.preview" = "Varsayılan istem (alıntı):";
+"settings.prompt.reset" = "Sıfırla";
+"settings.prompt.reset.title" = "İstemi Sıfırla";
+"settings.prompt.reset.message" = "Özel istem silinsin ve varsayılana geri dönülsün mü?";
+
+// MARK: - Prompt Templates
+"templates.title" = "İstem Şablonları";
+"templates.empty" = "Henüz şablon yok";
+"templates.add" = "Şablon Ekle";
+"template.add.title" = "Şablon Ekle";
+"template.edit.title" = "Şablonu Düzenle";
+"template.name.header" = "Ad";
+"template.name.placeholder" = "Şablon adı";
+"template.content.header" = "İstem İçeriği";
+"template.icon.header" = "İkon";
+"template.translate.name" = "Çevir";
+"template.translate.content" = "Lütfen şunu çevir: ";
+"template.summarize.name" = "Özetle";
+"template.summarize.content" = "Lütfen şunu özetle: ";
+"template.explain.name" = "Açıkla";
+"template.explain.content" = "Lütfen şunu açıkla: ";
+"template.code.name" = "Kod";
+"template.code.content" = "Lütfen şunun için kod yaz: ";
+
+// MARK: - Export
+"export.title" = "Sohbeti Dışa Aktar";
+"export.format.markdown" = "Markdown";
+"export.format.pdf" = "PDF";
+"export.format.text" = "Düz Metin";
+"export.created" = "Oluşturuldu";
+"export.image.attached" = "Görsel eklendi";
+"export.generated.by" = "Oluşturan";
+
+// MARK: - Loading Phases
+"loading.phase.initializing" = "Başlatılıyor...";
+"loading.phase.loading" = "Model yükleniyor...";
+"loading.phase.preparing" = "Çıkarım motoru hazırlanıyor...";
+"loading.phase.almost" = "Neredeyse hazır...";
+
+// MARK: - Welcome Screen
+"welcome.greeting" = "Bana herhangi bir şey sor";
+"welcome.subtitle" = "Gizliliğe öncelik veren yapay zeka asistanınız";
+"suggestion.idea" = "Fikir üretmeme yardım et";
+"suggestion.write" = "Bir şeyler yazmama yardım et";
+"suggestion.question" = "Sorularımı yanıtla";
+
+// MARK: - Kokoro TTS
+"tts.download.title" = "Yüksek Kaliteli Ses";
+"tts.download.action" = "İndir";
+"tts.download.use_system" = "Sistem Sesini Kullan";
+"tts.download.message" = "Daha doğal Japonca metinden sese dönüştürme için Kokoro TTS modelini indirin (~87MB).";
+"tts.downloading" = "TTS modeli indiriliyor...";
+
+// MARK: - Feedback
+"feedback.consent.title" = "Geri Bildirim Gönder";
+"feedback.send" = "Gönder";
+"feedback.positive.title" = "Bu yanıt yardımcı oldu mu?";
+"feedback.negative.title" = "Bu geliştirilebilir mi?";
+"feedback.explanation" = "Geri bildiriminiz yapay zeka kalitesini artırmaya yardımcı olur. Lütfen göndermeden önce hangi verilerin gönderileceğini inceleyin.";
+"feedback.data.section" = "Gönderilecek veriler";
+"feedback.data.conversation" = "Sohbet";
+"feedback.data.conversation.desc" = "Yapay zeka yanıtı ve önceki mesajınız";
+"feedback.data.model" = "Model bilgisi";
+"feedback.data.model.desc" = "Kullanılan yapay zeka modelinin adı";
+"feedback.data.timestamp" = "Zaman damgası";
+"feedback.data.timestamp.desc" = "Geri bildirimin gönderildiği zaman";
+"feedback.privacy.section" = "Gizlilik";
+"feedback.privacy.anonymous" = "Kişisel olarak tanımlanabilir bilgi gönderilmez";
+"feedback.privacy.improvement" = "Yalnızca yapay zeka kalitesini artırmak için kullanılır";
+"feedback.privacy.optional" = "Geri bildirim göndermek tamamen isteğe bağlıdır";
+"feedback.comment.section" = "Yorum (isteğe bağlı)";
+"feedback.comment.placeholder" = "Neyin geliştirilebileceğini veya neyin iyi çalıştığını bize bildirin...";
+"feedback.remember.title" = "Bu seçimi hatırla";
+"feedback.remember.description" = "Bir dahaki sefere sormadan geri bildirim gönder";
+
+// MARK: - Emergency Mode
+"emergency.sos.button" = "Acil Durum Modu (değiştirmek için uzun basın)";
+"emergency.mode.active" = "Acil Durum Modu Etkin";
+"emergency.action.firstaid" = "İlk Yardım";
+"emergency.action.firstaid.message" = "Lütfen ilk yardım talimatları verin. Yaralanmayı veya belirtileri anlatacağım: ";
+"emergency.action.disaster" = "Afet";
+"emergency.action.disaster.message" = "Bir afet meydana geldi. Lütfen müdahale prosedürlerini verin: ";
+"emergency.action.factcheck" = "Doğruluk Kontrolü";
+"emergency.action.factcheck.message" = "Lütfen bu bilginin güvenilirliğini doğrulayın: ";
+"emergency.action.contacts" = "Acil Durum";
+"emergency.action.contacts.message" = "Lütfen bana acil durum iletişim numaralarının bir listesini gösterin";
+"emergency.action.evacuation" = "Tahliye";
+"emergency.action.evacuation.message" = "Lütfen mevcut durum için bir tahliye kontrol listesi oluşturun: ";
+"mcp.emergency_kb" = "Acil Durum KB";
+"mcp.emergency_kb.desc" = "Acil durum ve afet bilgileri";
+
+// MARK: - Emergency Templates
+"template.firstaid.name" = "İlk Yardım Rehberi";
+"template.firstaid.content" = "Lütfen şunun için ilk yardım talimatları verin: ";
+"template.disaster.name" = "Afet Müdahalesi";
+"template.disaster.content" = "Aşağıdaki afet meydana geldi. Lütfen müdahale prosedürlerini verin: ";
+"template.factcheck.name" = "Doğruluk Kontrolü";
+"template.factcheck.content" = "Lütfen bu bilginin güvenilirliğini doğrulayın ve doğruluk kontrolü ipuçları verin: ";
+"template.evacuation.name" = "Tahliye Kontrol Listesi";
+"template.evacuation.content" = "Lütfen mevcut durum için bir tahliye kontrol listesi oluşturun: ";
+
+// MARK: - ChatWeb.ai Integration
+"chatweb.title" = "ChatWeb.ai";
+"chatweb.desc" = "Bulut Yapay Zeka Sohbeti";
+"chatweb.connect" = "ChatWeb.ai'ye Bağlan";
+"chatweb.qr.title" = "QR Kodu ile Bağlan";
+"chatweb.qr.scan" = "QR Kodunu Tara";
+"chatweb.open" = "ChatWeb.ai'yi Aç";
+
+// MARK: - Peer Connection
+"peer.title" = "Yakındaki Cihazlar";
+"peer.desc" = "Yakındaki Elio cihazlarına bağlan";
+"peer.connect" = "Cihaza Bağlan";
+"peer.code.title" = "Bağlantı Kodu";
+"peer.code.enter" = "4 haneli kodu girin";
+"peer.code.your" = "Kodunuz";
+"peer.connected" = "Bağlandı";
+"peer.disconnected" = "Bağlantı Kesildi";
+"peer.inference.offload" = "Çıkarım paylaşılıyor";
+
+// MARK: - Web Search
+"chat.web.search" = "Web Araması";
+"search.privacy.title" = "Gizlilik Korumalı Arama";
+"search.privacy.proceed" = "Ara";
+"search.privacy.message" = "ElioChat Web Araması gizliliğinizi korur:\n\n🔒 DuckDuckGo üzerinden aramalar\n🚫 İzleme veya profil oluşturma yok\n🔐 Arama geçmişi saklanmaz\n📱 Cihazınız dışında veri depolanmaz\n\nYalnızca arama sorgunuz DuckDuckGo'ya gönderilir ve sonuçlar cihazınızda işlenir.";
+"chat.web.analyzing" = "[Web sayfası analiz ediliyor]";

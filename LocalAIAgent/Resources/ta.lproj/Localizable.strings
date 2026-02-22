@@ -1,0 +1,635 @@
+/*
+  Localizable.strings (Tamil)
+  Elio
+*/
+
+// MARK: - App General
+"app.name" = "Elio";
+"app.tagline" = "உங்கள் ரகசியத்தைக் காக்கும் இரண்டாவது மூளை.";
+
+// MARK: - Common Actions
+"common.done" = "முடிந்தது";
+"common.cancel" = "ரத்து";
+"common.delete" = "நீக்கு";
+"common.save" = "சேமி";
+"common.edit" = "திருத்து";
+"common.share" = "பகிர்";
+"common.copy" = "நகலெடு";
+"common.copied" = "நகலெடுக்கப்பட்டது";
+"common.loading" = "ஏற்றுகிறது...";
+"common.error" = "பிழை";
+"common.retry" = "மீண்டும் முயற்சி";
+"common.skip" = "தவிர்";
+"common.next" = "அடுத்து";
+"common.start" = "தொடங்கு";
+"common.add" = "சேர்";
+"common.close" = "மூடு";
+"common.details" = "விவரங்கள்";
+"common.yes" = "ஆம்";
+"common.no" = "இல்லை";
+"common.unknown" = "தெரியாத";
+
+// MARK: - Chat
+"chat.placeholder" = "எதையும் என்னிடம் கேளுங்கள்";
+"chat.model.not.loaded" = "மாதிரி ஏற்றப்படவில்லை";
+"chat.model.not.loaded.description" = "அமைப்புகளிலிருந்து மாதிரியைப் பதிவிறக்கவும்";
+"chat.go.to.settings" = "அமைப்புகளுக்குச் செல்";
+"chat.new.conversation" = "புதிய அரட்டை";
+"chat.stop.generation" = "நிறுத்து";
+"chat.generation.stopped" = "\n\n[உருவாக்கம் நிறுத்தப்பட்டது]";
+"chat.image.sent" = "[படம் அனுப்பப்பட்டது]";
+"chat.images.sent" = "[%d படங்கள் அனுப்பப்பட்டன]";
+"chat.pdf.sent" = "[PDF இணைக்கப்பட்டது: %@]";
+"chat.pdf.sent.vision" = "[படத்துடன் PDF: %@]";
+"chat.pdf.context" = "பின்வருபவை PDF ஆவணம் \"%@\" இலிருந்து பிரித்தெடுக்கப்பட்ட உரை உள்ளடக்கம்:\n\n%@";
+"chat.pdf.context.vision" = "இது PDF ஆவணம் \"%@\" இன் பக்கம் 1. பிரித்தெடுக்கப்பட்ட உரை உள்ளடக்கம்:\n\n%@\n\nதயவுசெய்து காட்சி உள்ளடக்கம் மற்றும் உரை இரண்டையும் பகுப்பாய்வு செய்யவும்.";
+"chat.pdf.analyze" = "தயவுசெய்து \"%@\" இலிருந்து இந்த PDF பக்கத்தை பகுப்பாய்வு செய்யவும்.";
+"chat.url.sent" = "[இணையப் பக்கம்: %@]";
+"chat.url.context" = "பின்வருபவை இணையப் பக்கம் \"%@\" (%@) இலிருந்து பிரித்தெடுக்கப்பட்ட உள்ளடக்கம்:\n\n%@";
+"chat.thinking" = "சிந்திக்கிறது...";
+"chat.generating" = "பதிலை உருவாக்குகிறது...";
+"chat.welcome" = "நான் உங்களுக்கு எவ்வாறு உதவ முடியும்?";
+"chat.suggestion.schedule" = "இன்றைய அட்டவணையைக் காட்டு";
+"chat.suggestion.reminder" = "நினைவூட்டல் உருவாக்கு";
+"chat.suggestion.weather" = "இன்று வானிலை என்ன?";
+"chat.suggestion.help" = "இந்த பயன்பாட்டை எவ்வாறு பயன்படுத்துவது";
+"chat.websearch.on" = "இணைய தேடல் இயக்கத்தில்";
+"chat.websearch.off" = "இணைய தேடல் முடக்கப்பட்டது";
+"chat.thinking.on" = "சிந்தனை இயக்கத்தில்";
+"chat.thinking.off" = "சிந்தனை முடக்கப்பட்டது";
+"chat.transcribing" = "எழுத்துப்பதிவு செய்கிறது...";
+"chat.offline" = "இணையமில்லாத";
+
+// Voice Conversation Mode
+"voice.listening" = "கேட்கிறது...";
+"voice.processing" = "செயலாக்குகிறது...";
+"voice.thinking" = "சிந்திக்கிறது...";
+"voice.speaking" = "பேசுகிறது...";
+"voice.tap.to.send" = "அனுப்ப தட்டவும்";
+"chat.templates" = "வார்ப்புருக்கள்";
+"chat.websearch.privacy.title" = "இணைய தேடல் பற்றி";
+"chat.websearch.privacy.message" = "இணைய தேடலை இயக்குவது AI DuckDuckGo மூலம் புதுப்பிக்கப்பட்ட தகவலுக்கு இணையத்தில் தேட அனுமதிக்கிறது. தேடல் வினவல்கள் DuckDuckGo க்கு அனுப்பப்படுகின்றன ஆனால் கண்காணிக்கப்படவில்லை.";
+"chat.websearch.privacy.enable" = "இயக்கு";
+"chat.websearch.privacy.disable" = "முடக்கப்பட்டதாக வைத்திரு";
+
+// MARK: - Settings
+"settings.title" = "அமைப்புகள்";
+"settings.model.section" = "AI மாதிரிகள்";
+"settings.model.recommended" = "பரிந்துரைக்கப்பட்டது: %@";
+"settings.model.local.execution" = "மாதிரிகள் உங்கள் சாதனத்தில் உள்ளூரில் இயங்குகின்றன";
+"settings.model.show.more" = "மற்ற மாதிரிகள் (%d)";
+"settings.model.show.less" = "குறைவாகக் காட்டு";
+"settings.appearance.section" = "தோற்றம்";
+"settings.tools.section" = "ஸ்மார்ட் அம்சங்கள்";
+"settings.mcp.servers" = "ஒருங்கிணைப்புகள்";
+"settings.mcp.servers.description" = "காலண்டர், கோப்புகள், நினைவூட்டல்கள் மற்றும் மேலும்";
+"settings.mcp.enabled.count" = "%d இயக்கப்பட்டது";
+"settings.mcp.enabled.count.suffix" = " இயக்கப்பட்டது";
+"settings.about.section" = "பற்றி";
+"settings.version" = "பதிப்பு";
+"settings.about.app" = "இந்த பயன்பாடு பற்றி";
+"settings.about.mcp" = "ஒருங்கிணைப்புகள் பற்றி";
+"settings.privacy.badge" = "இணையமில்லாமல் வேலை செய்கிறது";
+"settings.privacy.description" = "விமான பயன்முறையில் வேலை செய்கிறது";
+"settings.airplane.mode" = "விமான பயன்முறையில் இயங்குகிறது";
+"settings.offline.ready" = "இணையமில்லாமல் தயார்";
+
+// MARK: - Model States
+"model.status.downloading" = "பதிவிறக்குகிறது... %d%%";
+"model.status.loading" = "ஏற்றுகிறது...";
+"model.status.in.use" = "பயன்பாட்டில்";
+"model.status.recommended" = "பரிந்துரைக்கப்பட்டது";
+"model.status.heavy" = "கனமான";
+"model.action.download" = "பதிவிறக்கு";
+"model.action.load" = "ஏற்று";
+"model.action.delete" = "நீக்கு";
+"model.action.use" = "இந்த மாதிரியைப் பயன்படுத்து";
+"model.delete.confirm.title" = "மாதிரியை நீக்கு";
+"model.delete.confirm.message" = "%@ ஐ நீக்கவா? மீண்டும் பயன்படுத்த மீண்டும் பதிவிறக்க வேண்டும்.";
+"model.select.title" = "மாதிரியைத் தேர்ந்தெடு";
+"model.select.prompt" = "தயவுசெய்து ஒரு மாதிரியைத் தேர்ந்தெடுக்கவும்";
+"model.downloaded" = "பதிவிறக்கப்பட்டது";
+
+// MARK: - Inference Mode
+"inference.mode.title" = "முடுக்கம்";
+"inference.mode.auto" = "தானியங்கி";
+"inference.mode.auto.desc" = "தானாகவே சிறந்த செயல்திறன்";
+"inference.mode.gpu" = "GPU (Metal)";
+"inference.mode.gpu.desc" = "Metal உடன் அதிகபட்ச வேகம்";
+"inference.mode.cpu" = "CPU மட்டும்";
+"inference.mode.cpu.desc" = "பேட்டரி சேமிப்பு பயன்முறை";
+"inference.mode.hybrid" = "கலப்பின";
+"inference.mode.hybrid.desc" = "வேகம் மற்றும் பேட்டரி சமநிலை";
+
+// MARK: - Theme
+"theme.system" = "அமைப்பு";
+"theme.light" = "வெளிச்சம்";
+"theme.dark" = "இருள்";
+
+// MARK: - Onboarding
+"onboarding.welcome.title" = "ElioChat க்கு வரவேற்கிறோம்";
+"onboarding.welcome.subtitle" = "உங்கள் தனிப்பட்ட AI உதவியாளர்";
+"onboarding.features.title" = "உண்மையான தனிப்பட்ட AI";
+"onboarding.feature.offline" = "விமான பயன்முறையில் வேலை செய்கிறது";
+"onboarding.feature.offline.desc" = "விமானங்கள் அல்லது நிலத்தடியில் பயன்படுத்தவும்";
+"onboarding.feature.privacy" = "பூஜ்ய தரவு பரிமாற்றம்";
+"onboarding.feature.privacy.desc" = "உங்கள் அரட்டைகள் உங்கள் தொலைபேசியை விட்டு வெளியேறுவதில்லை";
+"onboarding.feature.vault" = "ஸ்மார்ட் ஒருங்கிணைப்புகள்";
+"onboarding.feature.vault.desc" = "காலண்டர் மற்றும் கோப்புகளுடன் இணைக்கவும்";
+"onboarding.feature.secure" = "பணிக்கான பாதுகாப்பான AI";
+"onboarding.feature.secure.desc" = "பெருநிறுவன பயன்பாட்டிற்கு பாதுகாப்பானது";
+"onboarding.feature.thinking" = "சிந்தனை செயல்முறை";
+"onboarding.privacy.title" = "உங்கள் தரவு உங்களுடையது";
+"onboarding.privacy.item1" = "அனைத்து செயலாக்கமும் உங்கள் iPhone இல் நடக்கிறது";
+"onboarding.privacy.item2" = "மேக சர்வர்களுக்கு தரவு அனுப்பப்படவில்லை";
+"onboarding.privacy.item3" = "AI பயிற்சிக்கு ஒருபோதும் பயன்படுத்தப்படவில்லை";
+"onboarding.getstarted.title" = "ஒரு தட்டில் தயார்";
+"onboarding.getstarted.subtitle" = "பரிந்துரைக்கப்பட்ட AI மாதிரியைப் பதிவிறக்கவும்\nமற்றும் உடனே அரட்டையைத் தொடங்கவும்";
+"onboarding.step1" = "பரிந்துரைக்கப்பட்ட மாதிரியைப் பதிவிறக்கவும்";
+"onboarding.step2" = "சில நிமிடங்கள் காத்திருங்கள்";
+"onboarding.step3" = "நீங்கள் அனைத்தும் அமைக்கப்பட்டுள்ளீர்கள்!";
+
+// MARK: - About
+"about.title" = "இந்த பயன்பாடு பற்றி";
+"about.rate.app" = "பயன்பாட்டை மதிப்பிடு";
+"about.share.app" = "நண்பர்களுடன் பகிர்";
+"about.privacy.policy" = "தனியுரிமைக் கொள்கை";
+"about.terms" = "சேவை விதிமுறைகள்";
+"about.tech.info" = "தொழில்நுட்ப தகவல்";
+"about.tech.engine" = "AI இயந்திரம்";
+"about.tech.format" = "ஆதரிக்கப்படும் வடிவம்";
+"about.tech.inference" = "அனுமானம்";
+"about.data.management" = "தரவு மேலாண்மை";
+"about.delete.all" = "அனைத்து உரையாடல்களையும் நீக்கு";
+"about.credits" = "நன்றி";
+"about.credits.description" = "இந்த பயன்பாடு திறந்த மூல நூலகங்களைப் பயன்படுத்துகிறது";
+"about.privacy.section" = "தனியுரிமை";
+"about.gguf.format" = "GGUF வடிவம்";
+"about.metal.gpu" = "Metal GPU முடுக்கம்";
+
+// MARK: - Referral
+"referral.title" = "நண்பர்களைப் பரிந்துரைக்கவும்";
+"referral.code.title" = "உங்கள் பரிந்துரை குறியீடு";
+"referral.code.copy" = "குறியீட்டை நகலெடு";
+"referral.code.copied" = "நகலெடுக்கப்பட்டது";
+"referral.share.button" = "நண்பர்களுடன் பகிர்";
+"referral.share.description" = "உங்கள் நண்பர்களுடன் Elio ஐப் பகிருங்கள்!";
+"referral.count" = "%d பேரைப் பரிந்துரைத்துள்ளீர்கள்";
+"referral.enter.title" = "பரிந்துரை குறியீட்டை உள்ளிடவும்";
+"referral.enter.placeholder" = "பரிந்துரை குறியீடு";
+"referral.enter.button" = "பயன்படுத்து";
+"referral.enter.success" = "பரிந்துரை குறியீடு பயன்படுத்தப்பட்டது";
+"referral.enter.error" = "தவறான பரிந்துரை குறியீடு";
+
+// MARK: - Privacy Policy
+"privacy.title" = "தனியுரிமைக் கொள்கை";
+"privacy.data.collection.title" = "தரவு சேகரிப்பு";
+"privacy.data.collection.content" = "இந்த பயன்பாடு ஒரு உள்ளூர் AI ஐ முழுமையாக இணையமில்லாமல் இயக்குகிறது.\nவெளிப்புற சர்வர்களுக்கு தரவு அனுப்பப்படவில்லை.\nஅனைத்து உரையாடல்களும் உங்கள் சாதனத்தில் மட்டுமே சேமிக்கப்படுகின்றன.";
+"privacy.stored.data.title" = "சேமிக்கப்பட்ட தரவு";
+"privacy.stored.data.content" = "உரையாடல் வரலாறு (சாதனத்தில் மட்டுமே சேமிக்கப்பட்டது)\nAI மாதிரி கோப்புகள் (சாதனத்தில் மட்டுமே சேமிக்கப்பட்டது)\nபயன்பாட்டு அமைப்புகள் (சாதனத்தில் மட்டுமே சேமிக்கப்பட்டது)\n\nஇந்த தரவு வெளிப்புறமாக பகிரப்படுவதில்லை.";
+"privacy.data.deletion.title" = "தரவு நீக்கம்";
+"privacy.data.deletion.content" = "அமைப்புகள் > தரவு மேலாண்மையிலிருந்து எப்போது வேண்டுமானாலும் அனைத்து தரவையும் நீக்கலாம்.\nபயன்பாட்டை நிறுவல் நீக்குவது அனைத்து தரவையும் நீக்கும்.";
+
+// MARK: - Terms of Service
+"terms.title" = "சேவை விதிமுறைகள்";
+"terms.service.title" = "சேவை விளக்கம்";
+"terms.service.content" = "இந்த பயன்பாடு உள்ளூரில் இயங்கும் AI மாதிரியைப் பயன்படுத்தி AI உதவியாளர் செயல்பாட்டை வழங்குகிறது.";
+"terms.disclaimer.title" = "பொறுப்புத் துறப்பு";
+"terms.disclaimer.content" = "AI பதில்களில் பிழைகள் இருக்கலாம்.\nமுக்கியமான முடிவுகள் எப்போதும் ஒரு நிபுணரால் சரிபார்க்கப்பட வேண்டும்.\nஇந்த பயன்பாட்டின் பயன்பாட்டால் ஏற்படும் எந்த சேதத்திற்கும் நாங்கள் பொறுப்பல்ல.";
+"terms.prohibited.title" = "தடைசெய்யப்பட்ட செயல்பாடுகள்";
+"terms.prohibited.content" = "சட்டவிரோத செயல்பாடுகள்\nமற்றவர்களின் உரிமைகளை மீறும் செயல்பாடுகள்\nஇந்த பயன்பாட்டின் தலைகீழ் பொறியியல்\nஇந்த பயன்பாட்டின் அங்கீகரிக்கப்படாத நகல்";
+"terms.ip.title" = "அறிவுசார் சொத்து";
+"terms.ip.content" = "இந்த பயன்பாட்டின் அறிவுசார் சொத்து உரிமைகள் உருவாக்குநருக்கு சொந்தமானது.\nஅங்கீகரிக்கப்படாத பயன்பாடு தடைசெய்யப்பட்டுள்ளது.";
+
+// MARK: - Conversations
+"conversations.title" = "உரையாடல்கள்";
+"conversations.new" = "புதிய உரையாடல்";
+"conversations.empty" = "இதுவரை உரையாடல்கள் இல்லை";
+"conversations.delete" = "உரையாடலை நீக்கு";
+"conversations.default.title" = "புதிய உரையாடல்";
+"conversations.today" = "இன்று";
+"conversations.yesterday" = "நேற்று";
+"conversations.past7days" = "கடந்த 7 நாட்கள்";
+"conversations.past30days" = "கடந்த 30 நாட்கள்";
+"conversations.older" = "பழையது";
+"conversations.created" = "உருவாக்கப்பட்டது: %@";
+"conversations.user" = "பயனர்";
+"conversations.assistant" = "உதவியாளர்";
+"conversations.search.placeholder" = "உரையாடல்களைத் தேடு";
+"conversations.search.no_results" = "முடிவுகள் இல்லை";
+
+// MARK: - Message Actions
+"message.copy" = "நகலெடு";
+"message.speak" = "பேசு";
+"message.stop.speaking" = "பேசுவதை நிறுத்து";
+"message.share" = "பகிர்";
+"message.share.card" = "அட்டையாகப் பகிர்";
+"message.like" = "விருப்பம்";
+
+// MARK: - Share Card
+"share.card.title" = "அட்டையைப் பகிர்";
+"share.card.preview" = "முன்னோட்டம்";
+"share.card.button" = "படத்தைப் பகிர்";
+"message.dislike" = "விருப்பமில்லை";
+"message.thinking.process" = "சிந்தனை செயல்முறை";
+"message.tool.running" = "கருவி இயங்குகிறது";
+"message.tool.error" = "பிழை";
+"message.tool.completed" = "முடிந்தது";
+
+// MARK: - Attachment
+"attachment.title" = "இணைப்பு";
+"attachment.photo.library" = "புகைப்படத்தைத் தேர்ந்தெடு";
+"attachment.camera" = "புகைப்படம் எடு";
+"attachment.pdf" = "PDF ஐத் தேர்ந்தெடு";
+"attachment.pdf.chars" = "%d எழுத்துக்கள்";
+"attachment.pdf.pages" = "%d பக்கங்கள்";
+"attachment.pdf.vision.enabled" = "படம் பகுப்பாய்வு இயக்கப்பட்டது";
+"attachment.pdf.text.only" = "உரை மட்டும் பயன்முறை";
+"attachment.url" = "இணையப் பக்கத்தைப் படி";
+"attachment.url.title" = "URL ஐ உள்ளிடவும்";
+"attachment.url.placeholder" = "https://example.com";
+"attachment.url.message" = "அதன் உள்ளடக்கத்தைப் பிரித்தெடுக்க URL ஐ ஒட்டவும்";
+"attachment.url.fetch" = "பெறு";
+"attachment.url.loading" = "பக்கம் ஏற்றுகிறது...";
+
+// MARK: - Errors
+"error.model.not.found" = "மாதிரி கோப்பு கிடைக்கவில்லை";
+"error.model.not.loaded" = "மாதிரி ஏற்றப்படவில்லை";
+"error.context.failed" = "சூழல் உருவாக்க முடியவில்லை";
+"error.tokenization.failed" = "டோக்கனைசேஷன் தோல்வியடைந்தது";
+"error.generation.failed" = "உருவாக்க பிழை: %@";
+"error.occurred" = "பிழை ஏற்பட்டது: %@";
+"error.invalid.url" = "தவறான URL";
+"error.download.failed" = "பதிவிறக்கம் தோல்வியடைந்தது";
+"error.extraction.failed" = "பிரித்தெடுத்தல் தோல்வியடைந்தது";
+"error.config.not.found" = "உள்ளமைவு கோப்பு கிடைக்கவில்லை";
+
+// MARK: - Ghost Search
+"ghost.search.title" = "Ghost தேடல்";
+"ghost.search.description" = "DuckDuckGo வழியாக அநாமதேய தேடல் (கண்காணிப்பு இல்லை)";
+"ghost.search.connecting" = "அநாமதேய நெட்வொர்க்குடன் இணைக்கிறது...";
+"ghost.search.privacy.note" = "உங்கள் தேடல் வரலாறு ஒருபோதும் கண்காணிக்கப்படவில்லை";
+
+// MARK: - MCP Servers
+"mcp.filesystem" = "கோப்பு அமைப்பு";
+"mcp.filesystem.desc" = "பயன்பாட்டில் கோப்புகளை படிக்கவும் எழுதவும்";
+"mcp.calendar" = "காலண்டர்";
+"mcp.calendar.desc" = "நிகழ்வுகளைப் படிக்கவும் எழுதவும்";
+"mcp.reminders" = "நினைவூட்டல்கள்";
+"mcp.reminders.desc" = "நினைவூட்டல்களை நிர்வகிக்கவும்";
+"mcp.contacts" = "தொடர்புகள்";
+"mcp.contacts.desc" = "தொடர்புகளைத் தேடவும் பார்க்கவும்";
+"mcp.photos" = "புகைப்படங்கள்";
+"mcp.photos.desc" = "புகைப்பட நூலகத்தை அணுகவும்";
+"mcp.location" = "இடம்";
+"mcp.location.desc" = "தற்போதைய இடத்தைப் பெறவும் இடங்களைத் தேடவும்";
+"mcp.health" = "ஆரோக்கியம்";
+"mcp.health.desc" = "ஆரோக்கிய தரவை அணுகவும்";
+"mcp.shortcuts" = "குறுக்குவழிகள்";
+"mcp.shortcuts.desc" = "குறுக்குவழிகளை இயக்கவும்";
+"mcp.websearch" = "இணைய தேடல்";
+"mcp.websearch.desc" = "அநாமதேய இணைய தேடல்";
+"mcp.custom" = "தனிப்பயன் ஒருங்கிணைப்பு";
+"mcp.custom.add" = "ஒருங்கிணைப்பைச் சேர்";
+"mcp.custom.setup" = "வெளிப்புற சேவை ஒருங்கிணைப்பை அமை";
+"mcp.custom.title" = "தனிப்பயன் ஒருங்கிணைப்புகள்";
+"mcp.settings.title" = "ஒருங்கிணைப்பு அமைப்புகள்";
+"mcp.server.name" = "சர்வர் பெயர்";
+"mcp.server.name.placeholder" = "எ.கா., எனது தனிப்பயன் சர்வர்";
+"mcp.config.url" = "உள்ளமைவு கோப்பு URL";
+"mcp.import.file" = "கோப்பிலிருந்து இறக்குமதி செய்";
+"mcp.config.example" = "உள்ளமைவு கோப்பு எடுத்துக்காட்டு";
+"mcp.permission.note" = "ஒவ்வொரு அம்சத்தையும் முதல் முறையாகப் பயன்படுத்தும் போது அனுமதிகள் கோரப்படும்";
+
+// MARK: - MCP Tool Messages
+"mcp.tool.available" = "கிடைக்கக்கூடிய கருவிகள்:";
+"mcp.tool.parameters" = "அளவுருக்கள்:";
+"mcp.prompt.available" = "கிடைக்கக்கூடிய உடனடிகள்:";
+"mcp.prompt.arguments" = "வாதங்கள்:";
+"mcp.tool.name" = "tool_name";
+"mcp.tool.arg.name" = "arg_name";
+"mcp.tool.arg.value" = "value";
+"mcp.tool.no.result" = "முடிவு இல்லை";
+"mcp.tool.running" = "கருவி இயங்குகிறது: %@";
+"mcp.tool.error" = "கருவி செயல்படுத்தும் பிழை: %@";
+
+// MARK: - MCP Error Messages
+"mcp.error.server.not.found" = "சர்வர் கிடைக்கவில்லை: %@";
+"mcp.error.tool.not.found" = "கருவி கிடைக்கவில்லை: %@";
+"mcp.error.invalid.args" = "தவறான வாதங்கள்: %@";
+"mcp.error.execution" = "செயல்படுத்தும் பிழை: %@";
+"mcp.error.permission" = "அனுமதி மறுக்கப்பட்டது: %@";
+
+// MARK: - Calendar Messages
+"calendar.no.events" = "நிகழ்வுகள் இல்லை";
+"calendar.event.created" = "நிகழ்வு உருவாக்கப்பட்டது: %@";
+"calendar.event.deleted" = "நிகழ்வு நீக்கப்பட்டது: %@";
+"calendar.allday.created" = "முழு நாள் நிகழ்வு உருவாக்கப்பட்டது: %@";
+"calendar.access.denied" = "காலண்டர் அணுகல் மறுக்கப்பட்டது";
+"calendar.today.none" = "இன்று நிகழ்வுகள் இல்லை";
+"calendar.untitled" = "தலைப்பில்லாத";
+
+// MARK: - Reminders Messages
+"reminders.none" = "நினைவூட்டல்கள் இல்லை";
+"reminders.created" = "நினைவூட்டல் உருவாக்கப்பட்டது: %@";
+"reminders.completed" = "நினைவூட்டல் முடிந்தது: %@";
+"reminders.deleted" = "நினைவூட்டல் நீக்கப்பட்டது: %@";
+"reminders.access.denied" = "நினைவூட்டல்கள் அணுகல் மறுக்கப்பட்டது";
+"reminders.untitled" = "தலைப்பில்லாத";
+
+// MARK: - Photos Messages
+"photos.access.denied" = "புகைப்படங்கள் அணுகல் மறுக்கப்பட்டது";
+"photos.not.found" = "புகைப்படம் கிடைக்கவில்லை";
+"photos.untitled" = "தலைப்பில்லாத";
+"photos.count" = "புகைப்படங்கள்: %d";
+"photos.videos.count" = "வீடியோக்கள்: %d";
+"photos.albums.count" = "ஆல்பங்கள்: %d";
+"photos.favorites.count" = "பிடித்தவை: %d";
+"photos.date" = "தேதி: %@";
+"photos.size" = "அளவு: %d x %d";
+"photos.location" = "இடம்: %@, %@";
+"photos.media.type" = "மீடியா வகை: %@";
+"photos.duration" = "காலம்: %dநி %dவி";
+"photos.favorite" = "பிடித்தது: %@";
+"photos.type.image" = "புகைப்படம்";
+"photos.type.video" = "வீடியோ";
+"photos.type.audio" = "ஆடியோ";
+
+// MARK: - Contacts Messages
+"contacts.access.denied" = "தொடர்புகள் அணுகல் மறுக்கப்பட்டது";
+"contacts.not.found" = "பொருந்தும் தொடர்புகள் கிடைக்கவில்லை";
+"contacts.no.groups" = "குழுக்கள் இல்லை";
+"contacts.no.card" = "தொடர்பு அட்டை அமைக்கப்படவில்லை";
+"contacts.name" = "பெயர்: %@";
+"contacts.company" = "நிறுவனம்: %@";
+"contacts.job" = "பதவி: %@";
+
+// MARK: - Location Messages
+"location.access.denied" = "இடம் அணுகல் மறுக்கப்பட்டது";
+"location.not.found" = "முகவரி கிடைக்கவில்லை";
+"location.latitude" = "அட்சரேகை: %@";
+"location.longitude" = "தீர்க்க்ரேகை: %@";
+"location.accuracy" = "துல்லியம்: %dமீ";
+"location.altitude" = "உயரம்: %dமீ";
+"location.search" = "தேடல்: %@";
+"location.address" = "முகவரி: %@";
+"location.country" = "நாடு: %@";
+"location.postal" = "அஞ்சல் குறியீடு: %@";
+"location.from" = "இருந்து: (%@, %@)";
+"location.to" = "வரை: (%@, %@)";
+"location.distance.km" = "தூரம்: %.2f கிமீ";
+"location.distance.m" = "தூரம்: %d மீ";
+
+// MARK: - Health Messages
+"health.not.available" = "இந்த சாதனத்தில் ஆரோக்கியம் கிடைக்கவில்லை";
+"health.date" = "தேதி: %@";
+"health.steps" = "படிகள்: %@ படிகள்";
+"health.goal.progress" = "இலக்கு முன்னேற்றம்: %d%% (10,000 படிகள் இலக்கு)";
+"health.no.data" = "தரவு கிடைக்கவில்லை";
+"health.avg.bpm" = "சராசரி: %d bpm";
+"health.min.bpm" = "குறைந்தபட்சம்: %d bpm";
+"health.max.bpm" = "அதிகபட்சம்: %d bpm";
+"health.measurements" = "அளவீடுகள்: %d";
+"health.no.sleep" = "தூக்கத் தரவு இல்லை";
+"health.sleep.total" = "மொத்த தூக்கம்: %dம %dநி";
+"health.bedtime" = "படுக்கை நேரம்: %@";
+"health.waketime" = "எழும் நேரம்: %@";
+"health.calories" = "கலோரிகள்: %d kcal";
+
+// MARK: - File System Messages
+"filesystem.not.found" = "கோப்பு கிடைக்கவில்லை: %@";
+"filesystem.written" = "கோப்பு எழுதப்பட்டது: %@";
+"filesystem.dir.created" = "அடைவு உருவாக்கப்பட்டது: %@";
+"filesystem.deleted" = "நீக்கப்பட்டது: %@";
+"filesystem.size" = "அளவு: %@";
+"filesystem.created" = "உருவாக்கப்பட்டது: %@";
+"filesystem.modified" = "மாற்றப்பட்டது: %@";
+"filesystem.type" = "வகை: %@";
+
+// MARK: - Shortcuts Messages
+"shortcuts.executed" = "குறுக்குவழி '%@' செயல்படுத்தப்பட்டது";
+"shortcuts.opened" = "குறுக்குவழிகள் பயன்பாடு திறக்கப்பட்டது";
+"shortcuts.settings.opened" = "அமைப்புகள் (%@) திறக்கப்பட்டது";
+"shortcuts.mail.opened" = "அஞ்சல் எழுதுதல் திறக்கப்பட்டது";
+"shortcuts.calling" = "அழைக்கிறது: %@";
+"shortcuts.message.opened" = "செய்தி எழுதுதல் திறக்கப்பட்டது";
+"shortcuts.failed" = "குறுக்குவழியைத் திறக்க முடியவில்லை";
+
+// MARK: - Model Tiers
+"model.tier.entry" = "நுழைவு";
+"model.tier.standard" = "நிலையான";
+"model.tier.pro" = "நிபுணர்";
+
+// MARK: - Tool Parser
+"tool.arguments" = "வாதங்கள்:";
+
+// MARK: - Model Settings
+"model.action.settings" = "அமைப்புகள்";
+"settings.model.parameters" = "மாதிரி அமைப்புகள்";
+"settings.model.parameters.description" = "இந்த மாதிரிக்கான உருவாக்க அளவுருக்களைத் தனிப்பயனாக்கவும்";
+"settings.preset.title" = "முன்னமைவுகள்";
+"settings.preset.custom" = "தனிப்பயன்";
+"settings.preset.balanced" = "சமநிலையான";
+"settings.preset.creative" = "படைப்பாற்றல்";
+"settings.preset.precise" = "துல்லியமான";
+"settings.preset.coding" = "குறியீட்டு";
+"settings.preset.japanese" = "ஜப்பானிய";
+"settings.parameters.title" = "அளவுருக்கள்";
+"settings.parameter.temperature" = "வெப்பநிலை";
+"settings.parameter.temperature.description" = "அதிகம் = அதிக படைப்பாற்றல், குறைவு = அதிக கவனம்";
+"settings.parameter.top.p" = "Top P";
+"settings.parameter.top.p.description" = "நியூக்ளியஸ் மாதிரி நிகழ்தகவு";
+"settings.parameter.top.k" = "Top K";
+"settings.parameter.top.k.description" = "கருத்தில் கொள்ள முதன்மை டோக்கன்களின் எண்ணிக்கை";
+"settings.parameter.max.tokens" = "அதிகபட்ச டோக்கன்கள்";
+"settings.parameter.max.tokens.description" = "அதிகபட்ச பதில் நீளம்";
+"settings.parameter.repeat.penalty" = "மீண்டும் மீண்டும் தண்டனை";
+"settings.parameter.repeat.penalty.description" = "அதிகம் = குறைவான மீண்டும் மீண்டும் வெளியீடு";
+"settings.parameter.thinking" = "சிந்தனை பயன்முறை";
+"settings.parameter.thinking.description" = "AI இன் பகுத்தறிவு செயல்முறையைக் காட்டு";
+"settings.system.prompt.title" = "அமைப்பு உடனடி";
+"settings.system.prompt.description" = "AI க்கான தனிப்பயன் வழிமுறைகள்";
+"settings.reset.to.default" = "இயல்புநிலைக்கு மீட்டமை";
+
+// MARK: - Vision Model
+"vision.model.required.title" = "பார்வை மாதிரி தேவை";
+"vision.model.required.header" = "படம் அங்கீகாரம் தேவை";
+"vision.model.required.description" = "படங்களைப் பகுப்பாய்வு செய்ய, உங்களுக்கு பார்வை-திறன் கொண்ட AI மாதிரி தேவை";
+"vision.model.switch" = "மாதிரியை மாற்று";
+"vision.model.switch.message %@" = "படம் பகுப்பாய்வை இயக்க %@ க்கு மாறவா?";
+"vision.model.download" = "பதிவிறக்கு";
+"vision.model.download.message %@ %@" = "படங்களைப் பகுப்பாய்வு செய்ய %@ (%@) பதிவிறக்கவா?";
+"vision.model.not.available" = "உங்கள் சாதனத்திற்கு இணக்கமான பார்வை மாதிரி கிடைக்கவில்லை";
+"vision.model.switching" = "மாதிரியை மாற்றுகிறது...";
+"vision.model.download.title" = "பார்வை மாதிரிகள்";
+"vision.model.recommended" = "உங்கள் சாதனத்திற்கு பரிந்துரைக்கப்பட்டது";
+"vision.model.recommended.size %@" = "பரிந்துரைக்கப்பட்டது: %@";
+"vision.model.use.this" = "இந்த மாதிரியைப் பயன்படுத்து";
+"vision.model.download.button %@" = "பதிவிறக்கு (%@)";
+"vision.model.other.options" = "மற்ற பார்வை மாதிரிகள்";
+"vision.model.download.complete" = "பதிவிறக்கம் முடிந்தது";
+"vision.model.download.complete.message" = "படங்களைப் பகுப்பாய்வு செய்ய தயார்";
+
+// MARK: - Whisper Voice Input (Legacy)
+"whisper.download.title" = "குரல் அங்கீகாரம் தேவை";
+"whisper.download.action" = "பதிவிறக்கு";
+"whisper.download.message" = "குரல் உள்ளீட்டைப் பயன்படுத்த, நீங்கள் பேச்சு அங்கீகார மாதிரியைப் பதிவிறக்க வேண்டும் (~150MB).";
+"whisper.downloading" = "பேச்சு அங்கீகார மாதிரி பதிவிறக்குகிறது...";
+"whisper.download.error" = "பதிவிறக்க பிழை";
+"whisper.load.error" = "மாதிரி ஏற்றும் பிழை";
+"whisper.permission.denied" = "மைக்ரோஃபோன் அணுகல் அனுமதிக்கப்படவில்லை";
+"whisper.transcribe.error" = "எழுத்துப்பதிவு பிழை";
+"whisper.error.permission" = "மைக்ரோஃபோன் அனுமதி தேவை";
+"whisper.error.not.recording" = "தற்போது பதிவு செய்யவில்லை";
+"whisper.error.no.recording" = "பதிவு தரவு இல்லை";
+"whisper.error.model.not.loaded" = "பேச்சு அங்கீகார மாதிரி ஏற்றப்படவில்லை";
+"whisper.error.transcription" = "எழுத்துப்பதிவு தோல்வியடைந்தது";
+
+// MARK: - Speech Recognition (ReazonSpeech)
+"speech.download.title" = "குரல் அங்கீகாரம் தேவை";
+"speech.download.action" = "பதிவிறக்கு";
+"speech.download.message" = "குரல் உள்ளீட்டைப் பயன்படுத்த, நீங்கள் ஜப்பானிய பேச்சு அங்கீகார மாதிரியைப் பதிவிறக்க வேண்டும் (~155MB).";
+"speech.downloading" = "பேச்சு அங்கீகார மாதிரி பதிவிறக்குகிறது...";
+
+// MARK: - Language Settings
+"settings.language.section" = "மொழி";
+"language.system" = "அமைப்பு மொழியைப் பயன்படுத்தவும்";
+"settings.language.restart.hint" = "மொழி மாற்றங்கள் பயன்பாட்டை மீண்டும் தொடங்கிய பிறகு நடைமுறைக்கு வரும்";
+"settings.language.changed.title" = "மொழி மாற்றப்பட்டது";
+"settings.language.changed.message" = "மாற்றங்களைப் பயன்படுத்த பயன்பாட்டை மீண்டும் தொடங்கவும்";
+"common.ok" = "சரி";
+
+// MARK: - System Prompt Settings
+"settings.prompt.section" = "அமைப்பு உடனடி";
+"settings.prompt.edit" = "உடனடியைத் திருத்து";
+"settings.prompt.default" = "இயல்புநிலையைப் பயன்படுத்துகிறது";
+"settings.prompt.custom" = "தனிப்பயன் உடனடி அமைக்கப்பட்டது";
+"settings.prompt.hint" = "AI நடத்தையைத் தனிப்பயனாக்கவும்";
+"settings.prompt.editor.title" = "உடனடியைத் திருத்து";
+"settings.prompt.editor.instruction" = "AI க்கு தனிப்பயன் வழிமுறைகளைச் சேர்க்கவும். இயல்புநிலை உடனடியைப் பயன்படுத்த காலியாக விடவும்.";
+"settings.prompt.default.preview" = "இயல்புநிலை உடனடி (சுருக்கம்):";
+"settings.prompt.reset" = "மீட்டமை";
+"settings.prompt.reset.title" = "உடனடியை மீட்டமை";
+"settings.prompt.reset.message" = "தனிப்பயன் உடனடியை நீக்கி இயல்புநிலைக்கு மீட்டமைக்கவா?";
+
+// MARK: - Prompt Templates
+"templates.title" = "உடனடி வார்ப்புருக்கள்";
+"templates.empty" = "இன்னும் வார்ப்புருக்கள் இல்லை";
+"templates.add" = "வார்ப்புருவைச் சேர்";
+"template.add.title" = "வார்ப்புருவைச் சேர்";
+"template.edit.title" = "வார்ப்புருவைத் திருத்து";
+"template.name.header" = "பெயர்";
+"template.name.placeholder" = "வார்ப்புரு பெயர்";
+"template.content.header" = "உடனடி உள்ளடக்கம்";
+"template.icon.header" = "ஐகான்";
+"template.translate.name" = "மொழிபெயர்";
+"template.translate.content" = "தயவுசெய்து பின்வருவனவற்றை மொழிபெயர்க்கவும்: ";
+"template.summarize.name" = "சுருக்கமாக்கு";
+"template.summarize.content" = "தயவுசெய்து பின்வருவனவற்றைச் சுருக்கவும்: ";
+"template.explain.name" = "விளக்கு";
+"template.explain.content" = "தயவுசெய்து பின்வருவனவற்றை விளக்கவும்: ";
+"template.code.name" = "குறியீடு";
+"template.code.content" = "தயவுசெய்து இதற்கான குறியீட்டை எழுதவும்: ";
+
+// MARK: - Export
+"export.title" = "உரையாடலை ஏற்றுமதி செய்";
+"export.format.markdown" = "Markdown";
+"export.format.pdf" = "PDF";
+"export.format.text" = "எளிய உரை";
+"export.created" = "உருவாக்கப்பட்டது";
+"export.image.attached" = "படம் இணைக்கப்பட்டது";
+"export.generated.by" = "உருவாக்கியவர்";
+
+// MARK: - Loading Phases
+"loading.phase.initializing" = "துவக்குகிறது...";
+"loading.phase.loading" = "மாதிரி ஏற்றுகிறது...";
+"loading.phase.preparing" = "அனுமான இயந்திரத்தைத் தயாரிக்கிறது...";
+"loading.phase.almost" = "கிட்டத்தட்ட தயார்...";
+
+// MARK: - Welcome Screen
+"welcome.greeting" = "எதையும் என்னிடம் கேளுங்கள்";
+"welcome.subtitle" = "உங்கள் தனியுரிமை-முதல் AI உதவியாளர்";
+"suggestion.idea" = "எனக்கு யோசனைகளைச் சிந்திக்க உதவுங்கள்";
+"suggestion.write" = "எனக்கு ஏதாவது எழுத உதவுங்கள்";
+"suggestion.question" = "என் கேள்விகளுக்கு பதிலளிக்கவும்";
+
+// MARK: - Kokoro TTS
+"tts.download.title" = "உயர்தர குரல்";
+"tts.download.action" = "பதிவிறக்கு";
+"tts.download.use_system" = "அமைப்பு குரலைப் பயன்படுத்து";
+"tts.download.message" = "மேலும் இயல்பான ஜப்பானிய உரை-க்கு-பேச்சுக்காக Kokoro TTS மாதிரியைப் பதிவிறக்கவும் (~87MB).";
+"tts.downloading" = "TTS மாதிரி பதிவிறக்குகிறது...";
+
+// MARK: - Feedback
+"feedback.consent.title" = "கருத்தை அனுப்பு";
+"feedback.send" = "அனுப்பு";
+"feedback.positive.title" = "இந்த பதில் உதவியாக இருந்ததா?";
+"feedback.negative.title" = "இதை மேம்படுத்த முடியுமா?";
+"feedback.explanation" = "உங்கள் கருத்து AI தரத்தை மேம்படுத்த உதவுகிறது. சமர்ப்பிக்கும் முன் என்ன தரவு அனுப்பப்படும் என்பதை மதிப்பாய்வு செய்யவும்.";
+"feedback.data.section" = "அனுப்பப்படும் தரவு";
+"feedback.data.conversation" = "உரையாடல்";
+"feedback.data.conversation.desc" = "AI பதில் மற்றும் உங்கள் முந்தைய செய்தி";
+"feedback.data.model" = "மாதிரி தகவல்";
+"feedback.data.model.desc" = "பயன்படுத்தப்பட்ட AI மாதிரியின் பெயர்";
+"feedback.data.timestamp" = "நேர முத்திரை";
+"feedback.data.timestamp.desc" = "கருத்து எப்போது சமர்ப்பிக்கப்பட்டது";
+"feedback.privacy.section" = "தனியுரிமை";
+"feedback.privacy.anonymous" = "தனிப்பட்ட அடையாளம் காணக்கூடிய தகவல் எதுவும் அனுப்பப்படவில்லை";
+"feedback.privacy.improvement" = "AI தரத்தை மேம்படுத்த மட்டுமே பயன்படுத்தப்படுகிறது";
+"feedback.privacy.optional" = "கருத்தை அனுப்புவது முற்றிலும் விருப்பமானது";
+"feedback.comment.section" = "கருத்து (விருப்பமானது)";
+"feedback.comment.placeholder" = "என்ன மேம்படுத்தப்பட வேண்டும் அல்லது என்ன நன்றாக வேலை செய்தது என்பதை எங்களிடம் கூறுங்கள்...";
+"feedback.remember.title" = "இந்த தேர்வை நினைவில் வைக்கவும்";
+"feedback.remember.description" = "அடுத்த முறை கேட்காமல் கருத்தை சமர்ப்பிக்கவும்";
+
+// MARK: - Emergency Mode
+"emergency.sos.button" = "அவசர பயன்முறை (நீண்ட அழுத்தவும் மாற்ற)";
+"emergency.mode.active" = "அவசர பயன்முறை செயல்பாட்டில்";
+"emergency.action.firstaid" = "முதலுதவி";
+"emergency.action.firstaid.message" = "தயவுசெய்து முதலுதவி வழிமுறைகளை வழங்கவும். நான் காயம் அல்லது அறிகுறிகளை விவரிப்பேன்: ";
+"emergency.action.disaster" = "பேரழிவு";
+"emergency.action.disaster.message" = "ஒரு பேரழிவு ஏற்பட்டுள்ளது. தயவுசெய்து பதில் நடைமுறைகளை வழங்கவும்: ";
+"emergency.action.factcheck" = "உண்மை சரிபார்ப்பு";
+"emergency.action.factcheck.message" = "தயவுசெய்து இந்த தகவலின் நம்பகத்தன்மையை சரிபார்க்கவும்: ";
+"emergency.action.contacts" = "அவசரம்";
+"emergency.action.contacts.message" = "தயவுசெய்து அவசர தொடர்பு எண்களின் பட்டியலைக் காட்டுங்கள்";
+"emergency.action.evacuation" = "வெளியேற்று";
+"emergency.action.evacuation.message" = "தயவுசெய்து தற்போதைய சூழ்நிலைக்கு ஒரு வெளியேற்றம் பட்டியலை உருவாக்கவும்: ";
+"mcp.emergency_kb" = "அவசர KB";
+"mcp.emergency_kb.desc" = "அவசர மற்றும் பேரழிவு தகவல்";
+
+// MARK: - Emergency Templates
+"template.firstaid.name" = "முதலுதவி வழிகாட்டி";
+"template.firstaid.content" = "தயவுசெய்து இதற்கான முதலுதவி வழிமுறைகளை வழங்கவும்: ";
+"template.disaster.name" = "பேரழிவு பதில்";
+"template.disaster.content" = "பின்வரும் பேரழிவு ஏற்பட்டுள்ளது. தயவுசெய்து பதில் நடைமுறைகளை வழங்கவும்: ";
+"template.factcheck.name" = "உண்மை சரிபார்ப்பு";
+"template.factcheck.content" = "தயவுசெய்து இந்த தகவலின் நம்பகத்தன்மையை சரிபார்க்கவும் மற்றும் உண்மை சரிபார்ப்பு குறிப்புகளை வழங்கவும்: ";
+"template.evacuation.name" = "வெளியேற்றம் பட்டியல்";
+"template.evacuation.content" = "தயவுசெய்து தற்போதைய சூழ்நிலைக்கு ஒரு வெளியேற்றம் பட்டியலை உருவாக்கவும்: ";
+
+// MARK: - ChatWeb.ai Integration
+"chatweb.title" = "ChatWeb.ai";
+"chatweb.desc" = "மேக AI அரட்டை";
+"chatweb.connect" = "ChatWeb.ai உடன் இணைக்கவும்";
+"chatweb.qr.title" = "QR குறியீடு மூலம் இணைக்கவும்";
+"chatweb.qr.scan" = "QR குறியீட்டை ஸ்கேன் செய்";
+"chatweb.open" = "ChatWeb.ai ஐத் திற";
+
+// MARK: - Peer Connection
+"peer.title" = "அருகிலுள்ள சாதனங்கள்";
+"peer.desc" = "அருகிலுள்ள Elio சாதனங்களுடன் இணைக்கவும்";
+"peer.connect" = "சாதனத்துடன் இணைக்கவும்";
+"peer.code.title" = "இணைப்பு குறியீடு";
+"peer.code.enter" = "4-இலக்க குறியீட்டை உள்ளிடவும்";
+"peer.code.your" = "உங்கள் குறியீடு";
+"peer.connected" = "இணைக்கப்பட்டது";
+"peer.disconnected" = "துண்டிக்கப்பட்டது";
+"peer.inference.offload" = "அனுமானத்தைப் பகிர்கிறது";
+
+// MARK: - Web Search
+"chat.web.search" = "இணைய தேடல்";
+"search.privacy.title" = "தனியுரிமை-பாதுகாக்கப்பட்ட தேடல்";
+"search.privacy.proceed" = "தேடு";
+"search.privacy.message" = "ElioChat இணைய தேடல் உங்கள் தனியுரிமையைப் பாதுகாக்கிறது:\n\n🔒 DuckDuckGo வழியாக தேடல்கள்\n🚫 கண்காணிப்பு அல்லது விவரக்குறிப்பு இல்லை\n🔐 தேடல் வரலாறு சேமிக்கப்படவில்லை\n📱 உங்கள் சாதனத்திற்கு வெளியே தரவு சேமிக்கப்படவில்லை\n\nஉங்கள் தேடல் வினவல் மட்டுமே DuckDuckGo க்கு அனுப்பப்படுகிறது, மற்றும் முடிவுகள் உங்கள் சாதனத்தில் செயலாக்கப்படுகின்றன.";
+"chat.web.analyzing" = "[இணையப் பக்கத்தை பகுப்பாய்வு செய்கிறது]";

@@ -1,0 +1,635 @@
+/*
+  Localizable.strings (Norwegian Bokmål)
+  Elio
+*/
+
+// MARK: - App General
+"app.name" = "Elio";
+"app.tagline" = "Din hemmelighetsbevarte andre hjerne.";
+
+// MARK: - Common Actions
+"common.done" = "Ferdig";
+"common.cancel" = "Avbryt";
+"common.delete" = "Slett";
+"common.save" = "Lagre";
+"common.edit" = "Rediger";
+"common.share" = "Del";
+"common.copy" = "Kopier";
+"common.copied" = "Kopiert";
+"common.loading" = "Laster...";
+"common.error" = "Feil";
+"common.retry" = "Prøv igjen";
+"common.skip" = "Hopp over";
+"common.next" = "Neste";
+"common.start" = "Kom i gang";
+"common.add" = "Legg til";
+"common.close" = "Lukk";
+"common.details" = "Detaljer";
+"common.yes" = "Ja";
+"common.no" = "Nei";
+"common.unknown" = "Ukjent";
+
+// MARK: - Chat
+"chat.placeholder" = "Spør meg om hva som helst";
+"chat.model.not.loaded" = "Ingen modell lastet";
+"chat.model.not.loaded.description" = "Vennligst last ned en modell fra Innstillinger";
+"chat.go.to.settings" = "Gå til Innstillinger";
+"chat.new.conversation" = "Ny chat";
+"chat.stop.generation" = "Stopp";
+"chat.generation.stopped" = "\n\n[Generering stoppet]";
+"chat.image.sent" = "[Bilde sendt]";
+"chat.images.sent" = "[%d bilder sendt]";
+"chat.pdf.sent" = "[PDF vedlagt: %@]";
+"chat.pdf.sent.vision" = "[PDF med bilde: %@]";
+"chat.pdf.context" = "Følgende er tekstinnhold hentet fra PDF-dokumentet \"%@\":\n\n%@";
+"chat.pdf.context.vision" = "Dette er side 1 av PDF-dokumentet \"%@\". Det ekstraherte tekstinnholdet er:\n\n%@\n\nVennligst analyser både det visuelle innholdet og teksten.";
+"chat.pdf.analyze" = "Vennligst analyser denne PDF-siden fra \"%@\".";
+"chat.url.sent" = "[Nettside: %@]";
+"chat.url.context" = "Følgende er innhold hentet fra nettsiden \"%@\" (%@):\n\n%@";
+"chat.thinking" = "Tenker...";
+"chat.generating" = "Genererer svar...";
+"chat.welcome" = "Hvordan kan jeg hjelpe deg?";
+"chat.suggestion.schedule" = "Vis dagens timeplan";
+"chat.suggestion.reminder" = "Opprett en påminnelse";
+"chat.suggestion.weather" = "Hva er været i dag?";
+"chat.suggestion.help" = "Hvordan bruke denne appen";
+"chat.websearch.on" = "Nettsøk på";
+"chat.websearch.off" = "Nettsøk av";
+"chat.thinking.on" = "Tenkning på";
+"chat.thinking.off" = "Tenkning av";
+"chat.transcribing" = "Transkriberer...";
+"chat.offline" = "Frakoblet";
+
+// Voice Conversation Mode
+"voice.listening" = "Lytter...";
+"voice.processing" = "Behandler...";
+"voice.thinking" = "Tenker...";
+"voice.speaking" = "Snakker...";
+"voice.tap.to.send" = "Trykk for å sende";
+"chat.templates" = "Maler";
+"chat.websearch.privacy.title" = "Om nettsøk";
+"chat.websearch.privacy.message" = "Aktivering av nettsøk lar AI-en søke på internett via DuckDuckGo for oppdatert informasjon. Søkeforespørsler sendes til DuckDuckGo, men blir ikke sporet.";
+"chat.websearch.privacy.enable" = "Aktiver";
+"chat.websearch.privacy.disable" = "Hold deaktivert";
+
+// MARK: - Settings
+"settings.title" = "Innstillinger";
+"settings.model.section" = "AI-modeller";
+"settings.model.recommended" = "Anbefalt: %@";
+"settings.model.local.execution" = "Modeller kjører lokalt på enheten din";
+"settings.model.show.more" = "Andre modeller (%d)";
+"settings.model.show.less" = "Vis mindre";
+"settings.appearance.section" = "Utseende";
+"settings.tools.section" = "Smarte funksjoner";
+"settings.mcp.servers" = "Integrasjoner";
+"settings.mcp.servers.description" = "Kalender, filer, påminnelser og mer";
+"settings.mcp.enabled.count" = "%d aktivert";
+"settings.mcp.enabled.count.suffix" = " aktivert";
+"settings.about.section" = "Om";
+"settings.version" = "Versjon";
+"settings.about.app" = "Om denne appen";
+"settings.about.mcp" = "Om integrasjoner";
+"settings.privacy.badge" = "Fungerer frakoblet";
+"settings.privacy.description" = "Fungerer i flymodus";
+"settings.airplane.mode" = "Kjører i flymodus";
+"settings.offline.ready" = "Klar for frakoblet bruk";
+
+// MARK: - Model States
+"model.status.downloading" = "Laster ned... %d%%";
+"model.status.loading" = "Laster...";
+"model.status.in.use" = "I bruk";
+"model.status.recommended" = "Anbefalt";
+"model.status.heavy" = "Tung";
+"model.action.download" = "Last ned";
+"model.action.load" = "Last";
+"model.action.delete" = "Slett";
+"model.action.use" = "Bruk denne modellen";
+"model.delete.confirm.title" = "Slett modell";
+"model.delete.confirm.message" = "Slette %@? Du må laste den ned igjen for å bruke den.";
+"model.select.title" = "Velg modell";
+"model.select.prompt" = "Vennligst velg en modell";
+"model.downloaded" = "Lastet ned";
+
+// MARK: - Inference Mode
+"inference.mode.title" = "Akselerasjon";
+"inference.mode.auto" = "Auto";
+"inference.mode.auto.desc" = "Optimal ytelse automatisk";
+"inference.mode.gpu" = "GPU (Metal)";
+"inference.mode.gpu.desc" = "Maksimal hastighet med Metal";
+"inference.mode.cpu" = "Kun CPU";
+"inference.mode.cpu.desc" = "Batterisparingsmodus";
+"inference.mode.hybrid" = "Hybrid";
+"inference.mode.hybrid.desc" = "Balanse mellom hastighet og batteri";
+
+// MARK: - Theme
+"theme.system" = "System";
+"theme.light" = "Lys";
+"theme.dark" = "Mørk";
+
+// MARK: - Onboarding
+"onboarding.welcome.title" = "Velkommen til ElioChat";
+"onboarding.welcome.subtitle" = "Din private AI-assistent";
+"onboarding.features.title" = "Virkelig privat AI";
+"onboarding.feature.offline" = "Fungerer i flymodus";
+"onboarding.feature.offline.desc" = "Bruk den på fly eller under bakken";
+"onboarding.feature.privacy" = "Null dataoverføring";
+"onboarding.feature.privacy.desc" = "Samtalene dine forlater aldri telefonen din";
+"onboarding.feature.vault" = "Smarte integrasjoner";
+"onboarding.feature.vault.desc" = "Koble til kalender og filer";
+"onboarding.feature.secure" = "Arbeidssikker AI";
+"onboarding.feature.secure.desc" = "Trygg for bedriftsbruk";
+"onboarding.feature.thinking" = "Tankeprosess";
+"onboarding.privacy.title" = "Dataene dine forblir dine";
+"onboarding.privacy.item1" = "All behandling skjer på din iPhone";
+"onboarding.privacy.item2" = "Ingen data sendt til skyservere";
+"onboarding.privacy.item3" = "Brukes aldri til AI-trening";
+"onboarding.getstarted.title" = "Klar på ett trykk";
+"onboarding.getstarted.subtitle" = "Last ned den anbefalte AI-modellen\nog begynn å chatte med en gang";
+"onboarding.step1" = "Last ned anbefalt modell";
+"onboarding.step2" = "Vent noen minutter";
+"onboarding.step3" = "Du er klar!";
+
+// MARK: - About
+"about.title" = "Om denne appen";
+"about.rate.app" = "Vurder appen";
+"about.share.app" = "Del med venner";
+"about.privacy.policy" = "Personvernerklæring";
+"about.terms" = "Vilkår for bruk";
+"about.tech.info" = "Teknisk informasjon";
+"about.tech.engine" = "AI-motor";
+"about.tech.format" = "Støttet format";
+"about.tech.inference" = "Inferens";
+"about.data.management" = "Dataadministrasjon";
+"about.delete.all" = "Slett alle samtaler";
+"about.credits" = "Krediteringer";
+"about.credits.description" = "Denne appen bruker åpen kildekode-biblioteker";
+"about.privacy.section" = "Personvern";
+"about.gguf.format" = "GGUF-format";
+"about.metal.gpu" = "Metal GPU-akselerasjon";
+
+// MARK: - Referral
+"referral.title" = "Henvis venner";
+"referral.code.title" = "Din henvisningskode";
+"referral.code.copy" = "Kopier kode";
+"referral.code.copied" = "Kopiert";
+"referral.share.button" = "Del med venner";
+"referral.share.description" = "Del Elio med vennene dine!";
+"referral.count" = "Henvist %d personer";
+"referral.enter.title" = "Skriv inn henvisningskode";
+"referral.enter.placeholder" = "Henvisningskode";
+"referral.enter.button" = "Bruk";
+"referral.enter.success" = "Henvisningskode brukt";
+"referral.enter.error" = "Ugyldig henvisningskode";
+
+// MARK: - Privacy Policy
+"privacy.title" = "Personvernerklæring";
+"privacy.data.collection.title" = "Datainnsamling";
+"privacy.data.collection.content" = "Denne appen kjører en lokal AI helt frakoblet.\nIngen data sendes til eksterne servere.\nAlle samtaler lagres kun på enheten din.";
+"privacy.stored.data.title" = "Lagrede data";
+"privacy.stored.data.content" = "Samtalehistorikk (lagret kun på enheten)\nAI-modellfiler (lagret kun på enheten)\nAppinnstillinger (lagret kun på enheten)\n\nDisse dataene deles aldri eksternt.";
+"privacy.data.deletion.title" = "Datasletting";
+"privacy.data.deletion.content" = "Du kan slette alle data når som helst fra Innstillinger > Dataadministrasjon.\nAvinstallering av appen vil slette alle data.";
+
+// MARK: - Terms of Service
+"terms.title" = "Vilkår for bruk";
+"terms.service.title" = "Tjenestebeskrivelse";
+"terms.service.content" = "Denne appen tilbyr AI-assistentfunksjonalitet ved hjelp av en lokalt kjørende AI-modell.";
+"terms.disclaimer.title" = "Ansvarsfraskrivelse";
+"terms.disclaimer.content" = "AI-svar kan inneholde feil.\nViktige beslutninger bør alltid verifiseres av en profesjonell.\nVi er ikke ansvarlige for skader som oppstår fra bruken av denne appen.";
+"terms.prohibited.title" = "Forbudte aktiviteter";
+"terms.prohibited.content" = "Ulovlige aktiviteter\nAktiviteter som krenker andres rettigheter\nReverse engineering av denne appen\nUautorisert kopiering av denne appen";
+"terms.ip.title" = "Immaterielle rettigheter";
+"terms.ip.content" = "De immaterielle rettighetene til denne appen tilhører utvikleren.\nUautorisert bruk er forbudt.";
+
+// MARK: - Conversations
+"conversations.title" = "Samtaler";
+"conversations.new" = "Ny samtale";
+"conversations.empty" = "Ingen samtaler ennå";
+"conversations.delete" = "Slett samtale";
+"conversations.default.title" = "Ny samtale";
+"conversations.today" = "I dag";
+"conversations.yesterday" = "I går";
+"conversations.past7days" = "Siste 7 dager";
+"conversations.past30days" = "Siste 30 dager";
+"conversations.older" = "Eldre";
+"conversations.created" = "Opprettet: %@";
+"conversations.user" = "Bruker";
+"conversations.assistant" = "Assistent";
+"conversations.search.placeholder" = "Søk i samtaler";
+"conversations.search.no_results" = "Ingen resultater funnet";
+
+// MARK: - Message Actions
+"message.copy" = "Kopier";
+"message.speak" = "Snakk";
+"message.stop.speaking" = "Stopp snakking";
+"message.share" = "Del";
+"message.share.card" = "Del som kort";
+"message.like" = "Lik";
+
+// MARK: - Share Card
+"share.card.title" = "Del kort";
+"share.card.preview" = "Forhåndsvisning";
+"share.card.button" = "Del bilde";
+"message.dislike" = "Mislik";
+"message.thinking.process" = "Tankeprosess";
+"message.tool.running" = "Kjører verktøy";
+"message.tool.error" = "Feil";
+"message.tool.completed" = "Fullført";
+
+// MARK: - Attachment
+"attachment.title" = "Vedlegg";
+"attachment.photo.library" = "Velg bilde";
+"attachment.camera" = "Ta bilde";
+"attachment.pdf" = "Velg PDF";
+"attachment.pdf.chars" = "%d tegn";
+"attachment.pdf.pages" = "%d sider";
+"attachment.pdf.vision.enabled" = "Bildeanalyse aktivert";
+"attachment.pdf.text.only" = "Kun tekst-modus";
+"attachment.url" = "Les nettside";
+"attachment.url.title" = "Skriv inn URL";
+"attachment.url.placeholder" = "https://eksempel.com";
+"attachment.url.message" = "Lim inn en URL for å hente innholdet";
+"attachment.url.fetch" = "Hent";
+"attachment.url.loading" = "Laster side...";
+
+// MARK: - Errors
+"error.model.not.found" = "Modellfil ikke funnet";
+"error.model.not.loaded" = "Modell ikke lastet";
+"error.context.failed" = "Kunne ikke opprette kontekst";
+"error.tokenization.failed" = "Tokenisering mislyktes";
+"error.generation.failed" = "Genereringsfeil: %@";
+"error.occurred" = "En feil oppstod: %@";
+"error.invalid.url" = "Ugyldig URL";
+"error.download.failed" = "Nedlasting mislyktes";
+"error.extraction.failed" = "Utpakking mislyktes";
+"error.config.not.found" = "Konfigurasjonsfil ikke funnet";
+
+// MARK: - Ghost Search
+"ghost.search.title" = "Spøkelsessøk";
+"ghost.search.description" = "Anonymt søk via DuckDuckGo (ingen sporing)";
+"ghost.search.connecting" = "Kobler til anonymt nettverk...";
+"ghost.search.privacy.note" = "Søkehistorikken din spores aldri";
+
+// MARK: - MCP Servers
+"mcp.filesystem" = "Filsystem";
+"mcp.filesystem.desc" = "Les og skriv filer i appen";
+"mcp.calendar" = "Kalender";
+"mcp.calendar.desc" = "Les og skriv hendelser";
+"mcp.reminders" = "Påminnelser";
+"mcp.reminders.desc" = "Administrer påminnelser";
+"mcp.contacts" = "Kontakter";
+"mcp.contacts.desc" = "Søk og vis kontakter";
+"mcp.photos" = "Bilder";
+"mcp.photos.desc" = "Tilgang til bildebibliotek";
+"mcp.location" = "Posisjon";
+"mcp.location.desc" = "Få gjeldende posisjon og søk steder";
+"mcp.health" = "Helse";
+"mcp.health.desc" = "Tilgang til helsedata";
+"mcp.shortcuts" = "Snarveier";
+"mcp.shortcuts.desc" = "Kjør snarveier";
+"mcp.websearch" = "Nettsøk";
+"mcp.websearch.desc" = "Anonymt nettsøk";
+"mcp.custom" = "Tilpasset integrasjon";
+"mcp.custom.add" = "Legg til integrasjon";
+"mcp.custom.setup" = "Sett opp ekstern tjenesteintegrasjon";
+"mcp.custom.title" = "Tilpassede integrasjoner";
+"mcp.settings.title" = "Integrasjonsinnstillinger";
+"mcp.server.name" = "Servernavn";
+"mcp.server.name.placeholder" = "f.eks., Min tilpassede server";
+"mcp.config.url" = "Konfigurasjonsfil-URL";
+"mcp.import.file" = "Importer fra fil";
+"mcp.config.example" = "Eksempel på konfigurasjonsfil";
+"mcp.permission.note" = "Tillatelser vil bli forespurt ved første bruk av hver funksjon";
+
+// MARK: - MCP Tool Messages
+"mcp.tool.available" = "Tilgjengelige verktøy:";
+"mcp.tool.parameters" = "Parametere:";
+"mcp.prompt.available" = "Tilgjengelige ledetekster:";
+"mcp.prompt.arguments" = "Argumenter:";
+"mcp.tool.name" = "verktøynavn";
+"mcp.tool.arg.name" = "argumentnavn";
+"mcp.tool.arg.value" = "verdi";
+"mcp.tool.no.result" = "Ingen resultat";
+"mcp.tool.running" = "Kjører verktøy: %@";
+"mcp.tool.error" = "Verktøykjøringsfeil: %@";
+
+// MARK: - MCP Error Messages
+"mcp.error.server.not.found" = "Server ikke funnet: %@";
+"mcp.error.tool.not.found" = "Verktøy ikke funnet: %@";
+"mcp.error.invalid.args" = "Ugyldige argumenter: %@";
+"mcp.error.execution" = "Kjøringsfeil: %@";
+"mcp.error.permission" = "Tillatelse nektet: %@";
+
+// MARK: - Calendar Messages
+"calendar.no.events" = "Ingen hendelser";
+"calendar.event.created" = "Hendelse opprettet: %@";
+"calendar.event.deleted" = "Hendelse slettet: %@";
+"calendar.allday.created" = "Heldagshendelse opprettet: %@";
+"calendar.access.denied" = "Kalendertilgang nektet";
+"calendar.today.none" = "Ingen hendelser i dag";
+"calendar.untitled" = "Uten tittel";
+
+// MARK: - Reminders Messages
+"reminders.none" = "Ingen påminnelser";
+"reminders.created" = "Påminnelse opprettet: %@";
+"reminders.completed" = "Påminnelse fullført: %@";
+"reminders.deleted" = "Påminnelse slettet: %@";
+"reminders.access.denied" = "Påminnelsestilgang nektet";
+"reminders.untitled" = "Uten tittel";
+
+// MARK: - Photos Messages
+"photos.access.denied" = "Bildetilgang nektet";
+"photos.not.found" = "Bilde ikke funnet";
+"photos.untitled" = "Uten tittel";
+"photos.count" = "Bilder: %d";
+"photos.videos.count" = "Videoer: %d";
+"photos.albums.count" = "Album: %d";
+"photos.favorites.count" = "Favoritter: %d";
+"photos.date" = "Dato: %@";
+"photos.size" = "Størrelse: %d x %d";
+"photos.location" = "Posisjon: %@, %@";
+"photos.media.type" = "Medietype: %@";
+"photos.duration" = "Varighet: %dm %ds";
+"photos.favorite" = "Favoritt: %@";
+"photos.type.image" = "Bilde";
+"photos.type.video" = "Video";
+"photos.type.audio" = "Lyd";
+
+// MARK: - Contacts Messages
+"contacts.access.denied" = "Kontakttilgang nektet";
+"contacts.not.found" = "Ingen matchende kontakter funnet";
+"contacts.no.groups" = "Ingen grupper";
+"contacts.no.card" = "Ingen kontaktkort satt";
+"contacts.name" = "Navn: %@";
+"contacts.company" = "Selskap: %@";
+"contacts.job" = "Jobbtittel: %@";
+
+// MARK: - Location Messages
+"location.access.denied" = "Posisjonstilgang nektet";
+"location.not.found" = "Adresse ikke funnet";
+"location.latitude" = "Breddegrad: %@";
+"location.longitude" = "Lengdegrad: %@";
+"location.accuracy" = "Nøyaktighet: %dm";
+"location.altitude" = "Høyde: %dm";
+"location.search" = "Søk: %@";
+"location.address" = "Adresse: %@";
+"location.country" = "Land: %@";
+"location.postal" = "Postnummer: %@";
+"location.from" = "Fra: (%@, %@)";
+"location.to" = "Til: (%@, %@)";
+"location.distance.km" = "Avstand: %.2f km";
+"location.distance.m" = "Avstand: %d m";
+
+// MARK: - Health Messages
+"health.not.available" = "Helse er ikke tilgjengelig på denne enheten";
+"health.date" = "Dato: %@";
+"health.steps" = "Skritt: %@ skritt";
+"health.goal.progress" = "Målprogresjon: %d%% (10 000 skritt mål)";
+"health.no.data" = "Ingen data tilgjengelig";
+"health.avg.bpm" = "Gjennomsnitt: %d bpm";
+"health.min.bpm" = "Minimum: %d bpm";
+"health.max.bpm" = "Maksimum: %d bpm";
+"health.measurements" = "Målinger: %d";
+"health.no.sleep" = "Ingen søvndata";
+"health.sleep.total" = "Total søvn: %dt %dm";
+"health.bedtime" = "Sengetid: %@";
+"health.waketime" = "Oppvåkningstid: %@";
+"health.calories" = "Kalorier: %d kcal";
+
+// MARK: - File System Messages
+"filesystem.not.found" = "Fil ikke funnet: %@";
+"filesystem.written" = "Fil skrevet: %@";
+"filesystem.dir.created" = "Katalog opprettet: %@";
+"filesystem.deleted" = "Slettet: %@";
+"filesystem.size" = "Størrelse: %@";
+"filesystem.created" = "Opprettet: %@";
+"filesystem.modified" = "Endret: %@";
+"filesystem.type" = "Type: %@";
+
+// MARK: - Shortcuts Messages
+"shortcuts.executed" = "Snarvei '%@' kjørt";
+"shortcuts.opened" = "Snarveier-appen åpnet";
+"shortcuts.settings.opened" = "Innstillinger (%@) åpnet";
+"shortcuts.mail.opened" = "E-postskriving åpnet";
+"shortcuts.calling" = "Ringer: %@";
+"shortcuts.message.opened" = "Meldingsskriving åpnet";
+"shortcuts.failed" = "Kunne ikke åpne snarvei";
+
+// MARK: - Model Tiers
+"model.tier.entry" = "Inngang";
+"model.tier.standard" = "Standard";
+"model.tier.pro" = "Pro";
+
+// MARK: - Tool Parser
+"tool.arguments" = "Argumenter:";
+
+// MARK: - Model Settings
+"model.action.settings" = "Innstillinger";
+"settings.model.parameters" = "Modellinnstillinger";
+"settings.model.parameters.description" = "Tilpass genereringsparametere for denne modellen";
+"settings.preset.title" = "Forhåndsinnstillinger";
+"settings.preset.custom" = "Tilpasset";
+"settings.preset.balanced" = "Balansert";
+"settings.preset.creative" = "Kreativ";
+"settings.preset.precise" = "Presis";
+"settings.preset.coding" = "Koding";
+"settings.preset.japanese" = "Japansk";
+"settings.parameters.title" = "Parametere";
+"settings.parameter.temperature" = "Temperatur";
+"settings.parameter.temperature.description" = "Høyere = mer kreativ, lavere = mer fokusert";
+"settings.parameter.top.p" = "Top P";
+"settings.parameter.top.p.description" = "Nucleus sampling-sannsynlighet";
+"settings.parameter.top.k" = "Top K";
+"settings.parameter.top.k.description" = "Antall topptoken å vurdere";
+"settings.parameter.max.tokens" = "Maks token";
+"settings.parameter.max.tokens.description" = "Maksimal svarlengde";
+"settings.parameter.repeat.penalty" = "Gjentagelsesstraff";
+"settings.parameter.repeat.penalty.description" = "Høyere = mindre repetitivt utdata";
+"settings.parameter.thinking" = "Tenkemodus";
+"settings.parameter.thinking.description" = "Vis AI-ens resonneringsprosess";
+"settings.system.prompt.title" = "Systemledetekst";
+"settings.system.prompt.description" = "Tilpassede instruksjoner for AI-en";
+"settings.reset.to.default" = "Tilbakestill til standard";
+
+// MARK: - Vision Model
+"vision.model.required.title" = "Synsmodell kreves";
+"vision.model.required.header" = "Bildegjenkjenning kreves";
+"vision.model.required.description" = "For å analysere bilder trenger du en synskapabel AI-modell";
+"vision.model.switch" = "Bytt modell";
+"vision.model.switch.message %@" = "Bytte til %@ for å aktivere bildeanalyse?";
+"vision.model.download" = "Last ned";
+"vision.model.download.message %@ %@" = "Laste ned %@ (%@) for å analysere bilder?";
+"vision.model.not.available" = "Ingen kompatibel synsmodell tilgjengelig for enheten din";
+"vision.model.switching" = "Bytter modell...";
+"vision.model.download.title" = "Synsmodeller";
+"vision.model.recommended" = "Anbefalt for enheten din";
+"vision.model.recommended.size %@" = "Anbefalt: %@";
+"vision.model.use.this" = "Bruk denne modellen";
+"vision.model.download.button %@" = "Last ned (%@)";
+"vision.model.other.options" = "Andre synsmodeller";
+"vision.model.download.complete" = "Nedlasting fullført";
+"vision.model.download.complete.message" = "Klar til å analysere bilder";
+
+// MARK: - Whisper Voice Input (Legacy)
+"whisper.download.title" = "Talegjenkjenning kreves";
+"whisper.download.action" = "Last ned";
+"whisper.download.message" = "For å bruke taleinput må du laste ned talegjenkjenningsmodellen (~150 MB).";
+"whisper.downloading" = "Laster ned talegjenkjenningsmodell...";
+"whisper.download.error" = "Nedlastingsfeil";
+"whisper.load.error" = "Modellastingsfeil";
+"whisper.permission.denied" = "Mikrofontilgang ikke tillatt";
+"whisper.transcribe.error" = "Transkriberingsfeil";
+"whisper.error.permission" = "Mikrofontillatelse kreves";
+"whisper.error.not.recording" = "Tar ikke opp for øyeblikket";
+"whisper.error.no.recording" = "Ingen opptaksdata";
+"whisper.error.model.not.loaded" = "Talegjenkjenningsmodell ikke lastet";
+"whisper.error.transcription" = "Transkripsjon mislyktes";
+
+// MARK: - Speech Recognition (ReazonSpeech)
+"speech.download.title" = "Talegjenkjenning kreves";
+"speech.download.action" = "Last ned";
+"speech.download.message" = "For å bruke taleinput må du laste ned den japanske talegjenkjenningsmodellen (~155 MB).";
+"speech.downloading" = "Laster ned talegjenkjenningsmodell...";
+
+// MARK: - Language Settings
+"settings.language.section" = "Språk";
+"language.system" = "Bruk systemspråk";
+"settings.language.restart.hint" = "Språkendringer trer i kraft etter omstart av appen";
+"settings.language.changed.title" = "Språk endret";
+"settings.language.changed.message" = "Vennligst start appen på nytt for å bruke endringene";
+"common.ok" = "OK";
+
+// MARK: - System Prompt Settings
+"settings.prompt.section" = "Systemledetekst";
+"settings.prompt.edit" = "Rediger ledetekst";
+"settings.prompt.default" = "Bruker standard";
+"settings.prompt.custom" = "Tilpasset ledetekst satt";
+"settings.prompt.hint" = "Tilpass AI-atferd";
+"settings.prompt.editor.title" = "Rediger ledetekst";
+"settings.prompt.editor.instruction" = "Legg til tilpassede instruksjoner for AI-en. La stå tomt for å bruke standard ledetekst.";
+"settings.prompt.default.preview" = "Standard ledetekst (utdrag):";
+"settings.prompt.reset" = "Tilbakestill";
+"settings.prompt.reset.title" = "Tilbakestill ledetekst";
+"settings.prompt.reset.message" = "Slette tilpasset ledetekst og gjenopprette til standard?";
+
+// MARK: - Prompt Templates
+"templates.title" = "Ledetekstmaler";
+"templates.empty" = "Ingen maler ennå";
+"templates.add" = "Legg til mal";
+"template.add.title" = "Legg til mal";
+"template.edit.title" = "Rediger mal";
+"template.name.header" = "Navn";
+"template.name.placeholder" = "Malnavn";
+"template.content.header" = "Ledetekstinnhold";
+"template.icon.header" = "Ikon";
+"template.translate.name" = "Oversett";
+"template.translate.content" = "Vennligst oversett følgende: ";
+"template.summarize.name" = "Oppsummer";
+"template.summarize.content" = "Vennligst oppsummer følgende: ";
+"template.explain.name" = "Forklar";
+"template.explain.content" = "Vennligst forklar følgende: ";
+"template.code.name" = "Kode";
+"template.code.content" = "Vennligst skriv kode for: ";
+
+// MARK: - Export
+"export.title" = "Eksporter samtale";
+"export.format.markdown" = "Markdown";
+"export.format.pdf" = "PDF";
+"export.format.text" = "Ren tekst";
+"export.created" = "Opprettet";
+"export.image.attached" = "Bilde vedlagt";
+"export.generated.by" = "Generert av";
+
+// MARK: - Loading Phases
+"loading.phase.initializing" = "Initialiserer...";
+"loading.phase.loading" = "Laster modell...";
+"loading.phase.preparing" = "Forbereder inferensmotor...";
+"loading.phase.almost" = "Nesten klar...";
+
+// MARK: - Welcome Screen
+"welcome.greeting" = "Spør meg om hva som helst";
+"welcome.subtitle" = "Din personvernfokuserte AI-assistent";
+"suggestion.idea" = "Hjelp meg med å brainstorme ideer";
+"suggestion.write" = "Hjelp meg med å skrive noe";
+"suggestion.question" = "Svar på spørsmålene mine";
+
+// MARK: - Kokoro TTS
+"tts.download.title" = "Høykvalitetsstemme";
+"tts.download.action" = "Last ned";
+"tts.download.use_system" = "Bruk systemstemme";
+"tts.download.message" = "Last ned Kokoro TTS-modellen (~87 MB) for mer naturlig japansk tekst-til-tale.";
+"tts.downloading" = "Laster ned TTS-modell...";
+
+// MARK: - Feedback
+"feedback.consent.title" = "Send tilbakemelding";
+"feedback.send" = "Send";
+"feedback.positive.title" = "Var dette svaret nyttig?";
+"feedback.negative.title" = "Kan dette forbedres?";
+"feedback.explanation" = "Tilbakemeldingen din bidrar til å forbedre AI-kvaliteten. Vennligst se gjennom hvilke data som vil bli sendt før innsending.";
+"feedback.data.section" = "Data som skal sendes";
+"feedback.data.conversation" = "Samtale";
+"feedback.data.conversation.desc" = "AI-svaret og din forrige melding";
+"feedback.data.model" = "Modellinfo";
+"feedback.data.model.desc" = "Navnet på AI-modellen som ble brukt";
+"feedback.data.timestamp" = "Tidsstempel";
+"feedback.data.timestamp.desc" = "Når tilbakemeldingen ble sendt";
+"feedback.privacy.section" = "Personvern";
+"feedback.privacy.anonymous" = "Ingen personlig identifiserbar informasjon sendes";
+"feedback.privacy.improvement" = "Brukes kun til å forbedre AI-kvaliteten";
+"feedback.privacy.optional" = "Sending av tilbakemelding er helt valgfritt";
+"feedback.comment.section" = "Kommentar (valgfritt)";
+"feedback.comment.placeholder" = "Fortell oss hva som kan forbedres eller hva som fungerte bra...";
+"feedback.remember.title" = "Husk dette valget";
+"feedback.remember.description" = "Send tilbakemelding uten å spørre neste gang";
+
+// MARK: - Emergency Mode
+"emergency.sos.button" = "Nødmodus (langt trykk for å veksle)";
+"emergency.mode.active" = "Nødmodus aktiv";
+"emergency.action.firstaid" = "Førstehjelp";
+"emergency.action.firstaid.message" = "Vennligst gi førstehjelp-instruksjoner. Jeg vil beskrive skaden eller symptomene: ";
+"emergency.action.disaster" = "Katastrofe";
+"emergency.action.disaster.message" = "En katastrofe har inntruffet. Vennligst gi responsprosedyrer: ";
+"emergency.action.factcheck" = "Faktasjekk";
+"emergency.action.factcheck.message" = "Vennligst verifiser påliteligheten til denne informasjonen: ";
+"emergency.action.contacts" = "Nødnummer";
+"emergency.action.contacts.message" = "Vennligst vis meg en liste over nødkontaktnumre";
+"emergency.action.evacuation" = "Evakuer";
+"emergency.action.evacuation.message" = "Vennligst lag en evakueringssjekkliste for den nåværende situasjonen: ";
+"mcp.emergency_kb" = "Nød-KB";
+"mcp.emergency_kb.desc" = "Nød- og katastrofeinformasjon";
+
+// MARK: - Emergency Templates
+"template.firstaid.name" = "Førstehjelpsguide";
+"template.firstaid.content" = "Vennligst gi førstehjelp-instruksjoner for: ";
+"template.disaster.name" = "Katastroferespons";
+"template.disaster.content" = "Følgende katastrofe har inntruffet. Vennligst gi responsprosedyrer: ";
+"template.factcheck.name" = "Faktasjekk";
+"template.factcheck.content" = "Vennligst verifiser påliteligheten til denne informasjonen og gi faktasjekkingstips: ";
+"template.evacuation.name" = "Evakueringssjekkliste";
+"template.evacuation.content" = "Vennligst lag en evakueringssjekkliste for den nåværende situasjonen: ";
+
+// MARK: - ChatWeb.ai Integration
+"chatweb.title" = "ChatWeb.ai";
+"chatweb.desc" = "Sky-AI-chat";
+"chatweb.connect" = "Koble til ChatWeb.ai";
+"chatweb.qr.title" = "Koble til via QR-kode";
+"chatweb.qr.scan" = "Skann QR-kode";
+"chatweb.open" = "Åpne ChatWeb.ai";
+
+// MARK: - Peer Connection
+"peer.title" = "Enheter i nærheten";
+"peer.desc" = "Koble til med Elio-enheter i nærheten";
+"peer.connect" = "Koble til enhet";
+"peer.code.title" = "Tilkoblingskode";
+"peer.code.enter" = "Skriv inn 4-sifret kode";
+"peer.code.your" = "Din kode";
+"peer.connected" = "Tilkoblet";
+"peer.disconnected" = "Frakoblet";
+"peer.inference.offload" = "Deler inferens";
+
+// MARK: - Web Search
+"chat.web.search" = "Nettsøk";
+"search.privacy.title" = "Personvernbeskyttet søk";
+"search.privacy.proceed" = "Søk";
+"search.privacy.message" = "ElioChat nettsøk beskytter personvernet ditt:\n\n🔒 Søker via DuckDuckGo\n🚫 Ingen sporing eller profilering\n🔐 Søkehistorikk lagres ikke\n📱 Ingen data lagret utenfor enheten din\n\nKun søket ditt sendes til DuckDuckGo, og resultatene behandles på enheten din.";
+"chat.web.analyzing" = "[Analyserer nettside]";

@@ -1,0 +1,635 @@
+/*
+  Localizable.strings (Hebrew)
+  Elio
+*/
+
+// MARK: - App General
+"app.name" = "Elio";
+"app.tagline" = "המוח השני שלך ששומר על הסודות.";
+
+// MARK: - Common Actions
+"common.done" = "סיום";
+"common.cancel" = "ביטול";
+"common.delete" = "מחיקה";
+"common.save" = "שמירה";
+"common.edit" = "עריכה";
+"common.share" = "שיתוף";
+"common.copy" = "העתקה";
+"common.copied" = "הועתק";
+"common.loading" = "טוען...";
+"common.error" = "שגיאה";
+"common.retry" = "נסה שוב";
+"common.skip" = "דלג";
+"common.next" = "הבא";
+"common.start" = "התחל";
+"common.add" = "הוסף";
+"common.close" = "סגור";
+"common.details" = "פרטים";
+"common.yes" = "כן";
+"common.no" = "לא";
+"common.unknown" = "לא ידוע";
+
+// MARK: - Chat
+"chat.placeholder" = "שאל כל שאלה";
+"chat.model.not.loaded" = "אין מודל טעון";
+"chat.model.not.loaded.description" = "אנא הורד מודל מהגדרות";
+"chat.go.to.settings" = "עבור להגדרות";
+"chat.new.conversation" = "צ'אט חדש";
+"chat.stop.generation" = "עצור";
+"chat.generation.stopped" = "\n\n[היצירה הופסקה]";
+"chat.image.sent" = "[נשלחה תמונה]";
+"chat.images.sent" = "[נשלחו %d תמונות]";
+"chat.pdf.sent" = "[PDF מצורף: %@]";
+"chat.pdf.sent.vision" = "[PDF עם תמונה: %@]";
+"chat.pdf.context" = "להלן תוכן הטקסט שחולץ ממסמך PDF \"%@\":\n\n%@";
+"chat.pdf.context.vision" = "זהו עמוד 1 של מסמך PDF \"%@\". תוכן הטקסט שחולץ הוא:\n\n%@\n\nאנא נתח את התוכן הויזואלי והטקסט.";
+"chat.pdf.analyze" = "אנא נתח עמוד PDF זה מ-\"%@\".";
+"chat.url.sent" = "[עמוד אינטרנט: %@]";
+"chat.url.context" = "להלן תוכן שחולץ מעמוד האינטרנט \"%@\" (%@):\n\n%@";
+"chat.thinking" = "חושב...";
+"chat.generating" = "יוצר תגובה...";
+"chat.welcome" = "איך אוכל לעזור לך?";
+"chat.suggestion.schedule" = "הצג לוח זמנים להיום";
+"chat.suggestion.reminder" = "צור תזכורת";
+"chat.suggestion.weather" = "מה מזג האוויר היום?";
+"chat.suggestion.help" = "איך להשתמש באפליקציה זו";
+"chat.websearch.on" = "חיפוש ברשת פעיל";
+"chat.websearch.off" = "חיפוש ברשת כבוי";
+"chat.thinking.on" = "חשיבה פעילה";
+"chat.thinking.off" = "חשיבה כבויה";
+"chat.transcribing" = "מתמלל...";
+"chat.offline" = "לא מקוון";
+
+// Voice Conversation Mode
+"voice.listening" = "מאזין...";
+"voice.processing" = "מעבד...";
+"voice.thinking" = "חושב...";
+"voice.speaking" = "מדבר...";
+"voice.tap.to.send" = "הקש לשליחה";
+"chat.templates" = "תבניות";
+"chat.websearch.privacy.title" = "אודות חיפוש ברשת";
+"chat.websearch.privacy.message" = "הפעלת חיפוש ברשת מאפשרת ל-AI לחפש באינטרנט דרך DuckDuckGo למידע עדכני. שאילתות חיפוש נשלחות ל-DuckDuckGo אך אינן מעוקבות.";
+"chat.websearch.privacy.enable" = "הפעל";
+"chat.websearch.privacy.disable" = "השאר מושבת";
+
+// MARK: - Settings
+"settings.title" = "הגדרות";
+"settings.model.section" = "מודלי AI";
+"settings.model.recommended" = "מומלץ: %@";
+"settings.model.local.execution" = "המודלים רצים מקומית על המכשיר שלך";
+"settings.model.show.more" = "מודלים אחרים (%d)";
+"settings.model.show.less" = "הצג פחות";
+"settings.appearance.section" = "מראה";
+"settings.tools.section" = "תכונות חכמות";
+"settings.mcp.servers" = "אינטגרציות";
+"settings.mcp.servers.description" = "יומן, קבצים, תזכורות ועוד";
+"settings.mcp.enabled.count" = "%d מופעלים";
+"settings.mcp.enabled.count.suffix" = " מופעלים";
+"settings.about.section" = "אודות";
+"settings.version" = "גרסה";
+"settings.about.app" = "אודות אפליקציה זו";
+"settings.about.mcp" = "אודות אינטגרציות";
+"settings.privacy.badge" = "עובד לא מקוון";
+"settings.privacy.description" = "עובד במצב טיסה";
+"settings.airplane.mode" = "רץ במצב טיסה";
+"settings.offline.ready" = "מוכן לא מקוון";
+
+// MARK: - Model States
+"model.status.downloading" = "מוריד... %d%%";
+"model.status.loading" = "טוען...";
+"model.status.in.use" = "בשימוש";
+"model.status.recommended" = "מומלץ";
+"model.status.heavy" = "כבד";
+"model.action.download" = "הורד";
+"model.action.load" = "טען";
+"model.action.delete" = "מחק";
+"model.action.use" = "השתמש במודל זה";
+"model.delete.confirm.title" = "מחק מודל";
+"model.delete.confirm.message" = "למחוק את %@? תצטרך להוריד אותו שוב כדי להשתמש בו.";
+"model.select.title" = "בחר מודל";
+"model.select.prompt" = "אנא בחר מודל";
+"model.downloaded" = "הורד";
+
+// MARK: - Inference Mode
+"inference.mode.title" = "האצה";
+"inference.mode.auto" = "אוטומטי";
+"inference.mode.auto.desc" = "ביצועים אופטימליים אוטומטית";
+"inference.mode.gpu" = "GPU (Metal)";
+"inference.mode.gpu.desc" = "מהירות מקסימלית עם Metal";
+"inference.mode.cpu" = "CPU בלבד";
+"inference.mode.cpu.desc" = "מצב חיסכון בסוללה";
+"inference.mode.hybrid" = "היברידי";
+"inference.mode.hybrid.desc" = "איזון בין מהירות וסוללה";
+
+// MARK: - Theme
+"theme.system" = "מערכת";
+"theme.light" = "בהיר";
+"theme.dark" = "כהה";
+
+// MARK: - Onboarding
+"onboarding.welcome.title" = "ברוך הבא ל-ElioChat";
+"onboarding.welcome.subtitle" = "עוזר ה-AI הפרטי שלך";
+"onboarding.features.title" = "AI פרטי באמת";
+"onboarding.feature.offline" = "עובד במצב טיסה";
+"onboarding.feature.offline.desc" = "השתמש בטיסות או מתחת לאדמה";
+"onboarding.feature.privacy" = "אפס העברת נתונים";
+"onboarding.feature.privacy.desc" = "הצ'אטים שלך לא עוזבים את הטלפון";
+"onboarding.feature.vault" = "אינטגרציות חכמות";
+"onboarding.feature.vault.desc" = "התחבר ליומן וקבצים";
+"onboarding.feature.secure" = "AI בטוח לעבודה";
+"onboarding.feature.secure.desc" = "בטוח לשימוש ארגוני";
+"onboarding.feature.thinking" = "תהליך חשיבה";
+"onboarding.privacy.title" = "הנתונים שלך שייכים לך";
+"onboarding.privacy.item1" = "כל העיבוד מתרחש ב-iPhone שלך";
+"onboarding.privacy.item2" = "אין נתונים הנשלחים לשרתי ענן";
+"onboarding.privacy.item3" = "לעולם לא משמש לאימון AI";
+"onboarding.getstarted.title" = "מוכן בהקשה אחת";
+"onboarding.getstarted.subtitle" = "הורד את מודל ה-AI המומלץ\nוהתחל לצ'אט מיד";
+"onboarding.step1" = "הורד מודל מומלץ";
+"onboarding.step2" = "המתן מספר דקות";
+"onboarding.step3" = "אתה מוכן!";
+
+// MARK: - About
+"about.title" = "אודות אפליקציה זו";
+"about.rate.app" = "דרג אפליקציה";
+"about.share.app" = "שתף עם חברים";
+"about.privacy.policy" = "מדיניות פרטיות";
+"about.terms" = "תנאי שירות";
+"about.tech.info" = "מידע טכני";
+"about.tech.engine" = "מנוע AI";
+"about.tech.format" = "פורמט נתמך";
+"about.tech.inference" = "היסק";
+"about.data.management" = "ניהול נתונים";
+"about.delete.all" = "מחק את כל השיחות";
+"about.credits" = "קרדיטים";
+"about.credits.description" = "אפליקציה זו משתמשת בספריות קוד פתוח";
+"about.privacy.section" = "פרטיות";
+"about.gguf.format" = "פורמט GGUF";
+"about.metal.gpu" = "האצת Metal GPU";
+
+// MARK: - Referral
+"referral.title" = "הפנה חברים";
+"referral.code.title" = "קוד ההפניה שלך";
+"referral.code.copy" = "העתק קוד";
+"referral.code.copied" = "הועתק";
+"referral.share.button" = "שתף עם חברים";
+"referral.share.description" = "שתף את Elio עם חבריך!";
+"referral.count" = "הפנית %d אנשים";
+"referral.enter.title" = "הזן קוד הפניה";
+"referral.enter.placeholder" = "קוד הפניה";
+"referral.enter.button" = "החל";
+"referral.enter.success" = "קוד הפניה הוחל";
+"referral.enter.error" = "קוד הפניה לא תקין";
+
+// MARK: - Privacy Policy
+"privacy.title" = "מדיניות פרטיות";
+"privacy.data.collection.title" = "איסוף נתונים";
+"privacy.data.collection.content" = "אפליקציה זו מריצה AI מקומי במצב לא מקוון לחלוטין.\nאין נתונים הנשלחים לשרתים חיצוניים.\nכל השיחות מאוחסנות רק במכשיר שלך.";
+"privacy.stored.data.title" = "נתונים מאוחסנים";
+"privacy.stored.data.content" = "היסטוריית שיחות (מאוחסן במכשיר בלבד)\nקבצי מודל AI (מאוחסן במכשיר בלבד)\nהגדרות אפליקציה (מאוחסן במכשיר בלבד)\n\nנתונים אלה לעולם לא משותפים כלפי חוץ.";
+"privacy.data.deletion.title" = "מחיקת נתונים";
+"privacy.data.deletion.content" = "אתה יכול למחוק את כל הנתונים בכל עת מהגדרות > ניהול נתונים.\nהסרת האפליקציה תמחק את כל הנתונים.";
+
+// MARK: - Terms of Service
+"terms.title" = "תנאי שירות";
+"terms.service.title" = "תיאור השירות";
+"terms.service.content" = "אפליקציה זו מספקת פונקציונליות עוזר AI המשתמשת במודל AI הרץ מקומית.";
+"terms.disclaimer.title" = "כתב ויתור";
+"terms.disclaimer.content" = "תגובות AI עשויות להכיל שגיאות.\nהחלטות חשובות יש תמיד לאמת על ידי מקצוען.\nאיננו אחראים לכל נזק הנובע משימוש באפליקציה זו.";
+"terms.prohibited.title" = "פעילויות אסורות";
+"terms.prohibited.content" = "פעילויות בלתי חוקיות\nפעילויות הפוגעות בזכויות אחרים\nהנדסה לאחור של אפליקציה זו\nהעתקה לא מורשית של אפליקציה זו";
+"terms.ip.title" = "קניין רוחני";
+"terms.ip.content" = "זכויות הקניין הרוחני של אפליקציה זו שייכות למפתח.\nשימוש לא מורשה אסור.";
+
+// MARK: - Conversations
+"conversations.title" = "שיחות";
+"conversations.new" = "שיחה חדשה";
+"conversations.empty" = "אין שיחות עדיין";
+"conversations.delete" = "מחק שיחה";
+"conversations.default.title" = "שיחה חדשה";
+"conversations.today" = "היום";
+"conversations.yesterday" = "אתמול";
+"conversations.past7days" = "7 ימים אחרונים";
+"conversations.past30days" = "30 ימים אחרונים";
+"conversations.older" = "ישן יותר";
+"conversations.created" = "נוצר: %@";
+"conversations.user" = "משתמש";
+"conversations.assistant" = "עוזר";
+"conversations.search.placeholder" = "חפש שיחות";
+"conversations.search.no_results" = "לא נמצאו תוצאות";
+
+// MARK: - Message Actions
+"message.copy" = "העתק";
+"message.speak" = "דבר";
+"message.stop.speaking" = "הפסק לדבר";
+"message.share" = "שתף";
+"message.share.card" = "שתף ככרטיס";
+"message.like" = "לייק";
+
+// MARK: - Share Card
+"share.card.title" = "שתף כרטיס";
+"share.card.preview" = "תצוגה מקדימה";
+"share.card.button" = "שתף תמונה";
+"message.dislike" = "דיסלייק";
+"message.thinking.process" = "תהליך חשיבה";
+"message.tool.running" = "מריץ כלי";
+"message.tool.error" = "שגיאה";
+"message.tool.completed" = "הושלם";
+
+// MARK: - Attachment
+"attachment.title" = "קובץ מצורף";
+"attachment.photo.library" = "בחר תמונה";
+"attachment.camera" = "צלם תמונה";
+"attachment.pdf" = "בחר PDF";
+"attachment.pdf.chars" = "%d תווים";
+"attachment.pdf.pages" = "%d עמודים";
+"attachment.pdf.vision.enabled" = "ניתוח תמונה מופעל";
+"attachment.pdf.text.only" = "מצב טקסט בלבד";
+"attachment.url" = "קרא עמוד אינטרנט";
+"attachment.url.title" = "הזן URL";
+"attachment.url.placeholder" = "https://example.com";
+"attachment.url.message" = "הדבק URL כדי לחלץ את תוכנו";
+"attachment.url.fetch" = "אחזר";
+"attachment.url.loading" = "טוען עמוד...";
+
+// MARK: - Errors
+"error.model.not.found" = "קובץ מודל לא נמצא";
+"error.model.not.loaded" = "מודל לא נטען";
+"error.context.failed" = "יצירת הקשר נכשלה";
+"error.tokenization.failed" = "טוקניזציה נכשלה";
+"error.generation.failed" = "שגיאת יצירה: %@";
+"error.occurred" = "אירעה שגיאה: %@";
+"error.invalid.url" = "URL לא תקין";
+"error.download.failed" = "הורדה נכשלה";
+"error.extraction.failed" = "חילוץ נכשל";
+"error.config.not.found" = "קובץ תצורה לא נמצא";
+
+// MARK: - Ghost Search
+"ghost.search.title" = "חיפוש רפאים";
+"ghost.search.description" = "חיפוש אנונימי דרך DuckDuckGo (ללא מעקב)";
+"ghost.search.connecting" = "מתחבר לרשת אנונימית...";
+"ghost.search.privacy.note" = "היסטוריית החיפוש שלך לעולם לא מעוקבת";
+
+// MARK: - MCP Servers
+"mcp.filesystem" = "מערכת קבצים";
+"mcp.filesystem.desc" = "קרא וכתוב קבצים באפליקציה";
+"mcp.calendar" = "יומן";
+"mcp.calendar.desc" = "קרא וכתוב אירועים";
+"mcp.reminders" = "תזכורות";
+"mcp.reminders.desc" = "נהל תזכורות";
+"mcp.contacts" = "אנשי קשר";
+"mcp.contacts.desc" = "חפש והצג אנשי קשר";
+"mcp.photos" = "תמונות";
+"mcp.photos.desc" = "גישה לספריית התמונות";
+"mcp.location" = "מיקום";
+"mcp.location.desc" = "קבל מיקום נוכחי וחפש מקומות";
+"mcp.health" = "בריאות";
+"mcp.health.desc" = "גישה לנתוני בריאות";
+"mcp.shortcuts" = "קיצורי דרך";
+"mcp.shortcuts.desc" = "הרץ קיצורי דרך";
+"mcp.websearch" = "חיפוש ברשת";
+"mcp.websearch.desc" = "חיפוש אנונימי ברשת";
+"mcp.custom" = "אינטגרציה מותאמת";
+"mcp.custom.add" = "הוסף אינטגרציה";
+"mcp.custom.setup" = "הגדר אינטגרציית שירות חיצוני";
+"mcp.custom.title" = "אינטגרציות מותאמות";
+"mcp.settings.title" = "הגדרות אינטגרציה";
+"mcp.server.name" = "שם שרת";
+"mcp.server.name.placeholder" = "למשל, השרת המותאם שלי";
+"mcp.config.url" = "URL קובץ תצורה";
+"mcp.import.file" = "ייבא מקובץ";
+"mcp.config.example" = "דוגמת קובץ תצורה";
+"mcp.permission.note" = "הרשאות יתבקשו בשימוש ראשון בכל תכונה";
+
+// MARK: - MCP Tool Messages
+"mcp.tool.available" = "כלים זמינים:";
+"mcp.tool.parameters" = "פרמטרים:";
+"mcp.prompt.available" = "פרומפטים זמינים:";
+"mcp.prompt.arguments" = "ארגומנטים:";
+"mcp.tool.name" = "tool_name";
+"mcp.tool.arg.name" = "arg_name";
+"mcp.tool.arg.value" = "value";
+"mcp.tool.no.result" = "אין תוצאה";
+"mcp.tool.running" = "מריץ כלי: %@";
+"mcp.tool.error" = "שגיאת הרצת כלי: %@";
+
+// MARK: - MCP Error Messages
+"mcp.error.server.not.found" = "שרת לא נמצא: %@";
+"mcp.error.tool.not.found" = "כלי לא נמצא: %@";
+"mcp.error.invalid.args" = "ארגומנטים לא תקינים: %@";
+"mcp.error.execution" = "שגיאת הרצה: %@";
+"mcp.error.permission" = "הרשאה נדחתה: %@";
+
+// MARK: - Calendar Messages
+"calendar.no.events" = "אין אירועים";
+"calendar.event.created" = "אירוע נוצר: %@";
+"calendar.event.deleted" = "אירוע נמחק: %@";
+"calendar.allday.created" = "אירוע יום שלם נוצר: %@";
+"calendar.access.denied" = "גישה ליומן נדחתה";
+"calendar.today.none" = "אין אירועים היום";
+"calendar.untitled" = "ללא כותרת";
+
+// MARK: - Reminders Messages
+"reminders.none" = "אין תזכורות";
+"reminders.created" = "תזכורת נוצרה: %@";
+"reminders.completed" = "תזכורת הושלמה: %@";
+"reminders.deleted" = "תזכורת נמחקה: %@";
+"reminders.access.denied" = "גישה לתזכורות נדחתה";
+"reminders.untitled" = "ללא כותרת";
+
+// MARK: - Photos Messages
+"photos.access.denied" = "גישה לתמונות נדחתה";
+"photos.not.found" = "תמונה לא נמצאה";
+"photos.untitled" = "ללא כותרת";
+"photos.count" = "תמונות: %d";
+"photos.videos.count" = "סרטונים: %d";
+"photos.albums.count" = "אלבומים: %d";
+"photos.favorites.count" = "מועדפים: %d";
+"photos.date" = "תאריך: %@";
+"photos.size" = "גודל: %d x %d";
+"photos.location" = "מיקום: %@, %@";
+"photos.media.type" = "סוג מדיה: %@";
+"photos.duration" = "משך: %dד %dש";
+"photos.favorite" = "מועדף: %@";
+"photos.type.image" = "תמונה";
+"photos.type.video" = "סרטון";
+"photos.type.audio" = "אודיו";
+
+// MARK: - Contacts Messages
+"contacts.access.denied" = "גישה לאנשי קשר נדחתה";
+"contacts.not.found" = "לא נמצאו אנשי קשר תואמים";
+"contacts.no.groups" = "אין קבוצות";
+"contacts.no.card" = "לא הוגדר כרטיס איש קשר";
+"contacts.name" = "שם: %@";
+"contacts.company" = "חברה: %@";
+"contacts.job" = "תפקיד: %@";
+
+// MARK: - Location Messages
+"location.access.denied" = "גישה למיקום נדחתה";
+"location.not.found" = "כתובת לא נמצאה";
+"location.latitude" = "קו רוחב: %@";
+"location.longitude" = "קו אורך: %@";
+"location.accuracy" = "דיוק: %dמ'";
+"location.altitude" = "גובה: %dמ'";
+"location.search" = "חיפוש: %@";
+"location.address" = "כתובת: %@";
+"location.country" = "מדינה: %@";
+"location.postal" = "מיקוד: %@";
+"location.from" = "מ: (%@, %@)";
+"location.to" = "ל: (%@, %@)";
+"location.distance.km" = "מרחק: %.2f ק\"מ";
+"location.distance.m" = "מרחק: %d מ'";
+
+// MARK: - Health Messages
+"health.not.available" = "בריאות אינה זמינה במכשיר זה";
+"health.date" = "תאריך: %@";
+"health.steps" = "צעדים: %@ צעדים";
+"health.goal.progress" = "התקדמות ליעד: %d%% (יעד 10,000 צעדים)";
+"health.no.data" = "אין נתונים זמינים";
+"health.avg.bpm" = "ממוצע: %d פעימות לדקה";
+"health.min.bpm" = "מינימום: %d פעימות לדקה";
+"health.max.bpm" = "מקסימום: %d פעימות לדקה";
+"health.measurements" = "מדידות: %d";
+"health.no.sleep" = "אין נתוני שינה";
+"health.sleep.total" = "סה\"כ שינה: %dש %dד";
+"health.bedtime" = "שעת שינה: %@";
+"health.waketime" = "שעת התעוררות: %@";
+"health.calories" = "קלוריות: %d קק\"ל";
+
+// MARK: - File System Messages
+"filesystem.not.found" = "קובץ לא נמצא: %@";
+"filesystem.written" = "קובץ נכתב: %@";
+"filesystem.dir.created" = "ספרייה נוצרה: %@";
+"filesystem.deleted" = "נמחק: %@";
+"filesystem.size" = "גודל: %@";
+"filesystem.created" = "נוצר: %@";
+"filesystem.modified" = "שונה: %@";
+"filesystem.type" = "סוג: %@";
+
+// MARK: - Shortcuts Messages
+"shortcuts.executed" = "קיצור דרך '%@' הורץ";
+"shortcuts.opened" = "אפליקציית קיצורי דרך נפתחה";
+"shortcuts.settings.opened" = "הגדרות (%@) נפתחו";
+"shortcuts.mail.opened" = "חיבור דואר נפתח";
+"shortcuts.calling" = "מתקשר: %@";
+"shortcuts.message.opened" = "חיבור הודעה נפתח";
+"shortcuts.failed" = "לא ניתן לפתוח קיצור דרך";
+
+// MARK: - Model Tiers
+"model.tier.entry" = "כניסה";
+"model.tier.standard" = "סטנדרטי";
+"model.tier.pro" = "מקצועי";
+
+// MARK: - Tool Parser
+"tool.arguments" = "ארגומנטים:";
+
+// MARK: - Model Settings
+"model.action.settings" = "הגדרות";
+"settings.model.parameters" = "הגדרות מודל";
+"settings.model.parameters.description" = "התאם פרמטרי יצירה למודל זה";
+"settings.preset.title" = "תבניות מוכנות";
+"settings.preset.custom" = "מותאם";
+"settings.preset.balanced" = "מאוזן";
+"settings.preset.creative" = "יצירתי";
+"settings.preset.precise" = "מדויק";
+"settings.preset.coding" = "קידוד";
+"settings.preset.japanese" = "יפנית";
+"settings.parameters.title" = "פרמטרים";
+"settings.parameter.temperature" = "טמפרטורה";
+"settings.parameter.temperature.description" = "גבוה יותר = יותר יצירתי, נמוך יותר = יותר ממוקד";
+"settings.parameter.top.p" = "Top P";
+"settings.parameter.top.p.description" = "הסתברות דגימת ליבה";
+"settings.parameter.top.k" = "Top K";
+"settings.parameter.top.k.description" = "מספר טוקנים עליונים לשקול";
+"settings.parameter.max.tokens" = "טוקנים מקסימליים";
+"settings.parameter.max.tokens.description" = "אורך תגובה מקסימלי";
+"settings.parameter.repeat.penalty" = "עונש חזרה";
+"settings.parameter.repeat.penalty.description" = "גבוה יותר = פחות חזרתי";
+"settings.parameter.thinking" = "מצב חשיבה";
+"settings.parameter.thinking.description" = "הצג תהליך חשיבה של AI";
+"settings.system.prompt" = "פרומפט מערכת";
+"settings.system.prompt.description" = "הוראות מותאמות ל-AI";
+"settings.reset.to.default" = "אפס לברירת מחדל";
+
+// MARK: - Vision Model
+"vision.model.required.title" = "נדרש מודל ראייה";
+"vision.model.required.header" = "נדרשת זיהוי תמונה";
+"vision.model.required.description" = "כדי לנתח תמונות, אתה צריך מודל AI עם יכולת ראייה";
+"vision.model.switch" = "החלף מודל";
+"vision.model.switch.message %@" = "להחליף ל-%@ כדי להפעיל ניתוח תמונה?";
+"vision.model.download" = "הורד";
+"vision.model.download.message %@ %@" = "להוריד %@ (%@) כדי לנתח תמונות?";
+"vision.model.not.available" = "אין מודל ראייה תואם זמין למכשיר שלך";
+"vision.model.switching" = "מחליף מודל...";
+"vision.model.download.title" = "מודלי ראייה";
+"vision.model.recommended" = "מומלץ למכשיר שלך";
+"vision.model.recommended.size %@" = "מומלץ: %@";
+"vision.model.use.this" = "השתמש במודל זה";
+"vision.model.download.button %@" = "הורד (%@)";
+"vision.model.other.options" = "מודלי ראייה אחרים";
+"vision.model.download.complete" = "ההורדה הושלמה";
+"vision.model.download.complete.message" = "מוכן לנתח תמונות";
+
+// MARK: - Whisper Voice Input (Legacy)
+"whisper.download.title" = "נדרש זיהוי קולי";
+"whisper.download.action" = "הורד";
+"whisper.download.message" = "כדי להשתמש בקלט קולי, עליך להוריד את מודל זיהוי הדיבור (~150MB).";
+"whisper.downloading" = "מוריד מודל זיהוי דיבור...";
+"whisper.download.error" = "שגיאת הורדה";
+"whisper.load.error" = "שגיאת טעינת מודל";
+"whisper.permission.denied" = "גישה למיקרופון לא הותרה";
+"whisper.transcribe.error" = "שגיאת תמלול";
+"whisper.error.permission" = "נדרשת הרשאת מיקרופון";
+"whisper.error.not.recording" = "לא מקליט כרגע";
+"whisper.error.no.recording" = "אין נתוני הקלטה";
+"whisper.error.model.not.loaded" = "מודל זיהוי דיבור לא נטען";
+"whisper.error.transcription" = "תמלול נכשל";
+
+// MARK: - Speech Recognition (ReazonSpeech)
+"speech.download.title" = "נדרש זיהוי קולי";
+"speech.download.action" = "הורד";
+"speech.download.message" = "כדי להשתמש בקלט קולי, עליך להוריד את מודל זיהוי הדיבור היפני (~155MB).";
+"speech.downloading" = "מוריד מודל זיהוי דיבור...";
+
+// MARK: - Language Settings
+"settings.language.section" = "שפה";
+"language.system" = "השתמש בשפת המערכת";
+"settings.language.restart.hint" = "שינויי שפה ייכנסו לתוקף לאחר הפעלה מחדש של האפליקציה";
+"settings.language.changed.title" = "השפה שונתה";
+"settings.language.changed.message" = "אנא הפעל מחדש את האפליקציה כדי להחיל את השינויים";
+"common.ok" = "אישור";
+
+// MARK: - System Prompt Settings
+"settings.prompt.section" = "פרומפט מערכת";
+"settings.prompt.edit" = "ערוך פרומפט";
+"settings.prompt.default" = "משתמש בברירת מחדל";
+"settings.prompt.custom" = "פרומפט מותאם הוגדר";
+"settings.prompt.hint" = "התאם התנהגות AI";
+"settings.prompt.editor.title" = "ערוך פרומפט";
+"settings.prompt.editor.instruction" = "הוסף הוראות מותאמות ל-AI. השאר ריק כדי להשתמש בפרומפט ברירת המחדל.";
+"settings.prompt.default.preview" = "פרומפט ברירת מחדל (קטע):";
+"settings.prompt.reset" = "אפס";
+"settings.prompt.reset.title" = "אפס פרומפט";
+"settings.prompt.reset.message" = "למחוק פרומפט מותאם ולשחזר לברירת מחדל?";
+
+// MARK: - Prompt Templates
+"templates.title" = "תבניות פרומפט";
+"templates.empty" = "אין תבניות עדיין";
+"templates.add" = "הוסף תבנית";
+"template.add.title" = "הוסף תבנית";
+"template.edit.title" = "ערוך תבנית";
+"template.name.header" = "שם";
+"template.name.placeholder" = "שם תבנית";
+"template.content.header" = "תוכן פרומפט";
+"template.icon.header" = "סמל";
+"template.translate.name" = "תרגם";
+"template.translate.content" = "אנא תרגם את הדברים הבאים: ";
+"template.summarize.name" = "סכם";
+"template.summarize.content" = "אנא סכם את הדברים הבאים: ";
+"template.explain.name" = "הסבר";
+"template.explain.content" = "אנא הסבר את הדברים הבאים: ";
+"template.code.name" = "קוד";
+"template.code.content" = "אנא כתוב קוד עבור: ";
+
+// MARK: - Export
+"export.title" = "ייצא שיחה";
+"export.format.markdown" = "Markdown";
+"export.format.pdf" = "PDF";
+"export.format.text" = "טקסט רגיל";
+"export.created" = "נוצר";
+"export.image.attached" = "תמונה מצורפת";
+"export.generated.by" = "נוצר על ידי";
+
+// MARK: - Loading Phases
+"loading.phase.initializing" = "מאתחל...";
+"loading.phase.loading" = "טוען מודל...";
+"loading.phase.preparing" = "מכין מנוע היסק...";
+"loading.phase.almost" = "כמעט מוכן...";
+
+// MARK: - Welcome Screen
+"welcome.greeting" = "שאל כל שאלה";
+"welcome.subtitle" = "עוזר ה-AI שמעדיף פרטיות";
+"suggestion.idea" = "עזור לי לסבור רעיונות";
+"suggestion.write" = "עזור לי לכתוב משהו";
+"suggestion.question" = "ענה על השאלות שלי";
+
+// MARK: - Kokoro TTS
+"tts.download.title" = "קול באיכות גבוהה";
+"tts.download.action" = "הורד";
+"tts.download.use_system" = "השתמש בקול מערכת";
+"tts.download.message" = "הורד את מודל Kokoro TTS (~87MB) להמרת טקסט לדיבור יפנית טבעית יותר.";
+"tts.downloading" = "מוריד מודל TTS...";
+
+// MARK: - Feedback
+"feedback.consent.title" = "שלח משוב";
+"feedback.send" = "שלח";
+"feedback.positive.title" = "האם התגובה הזו הייתה מועילה?";
+"feedback.negative.title" = "האם ניתן לשפר זאת?";
+"feedback.explanation" = "המשוב שלך עוזר לשפר את איכות ה-AI. אנא בדוק אילו נתונים יישלחו לפני ההגשה.";
+"feedback.data.section" = "נתונים שיישלחו";
+"feedback.data.conversation" = "שיחה";
+"feedback.data.conversation.desc" = "תגובת ה-AI וההודעה הקודמת שלך";
+"feedback.data.model" = "מידע על מודל";
+"feedback.data.model.desc" = "שם מודל ה-AI שבו נעשה שימוש";
+"feedback.data.timestamp" = "חותמת זמן";
+"feedback.data.timestamp.desc" = "מתי נשלח המשוב";
+"feedback.privacy.section" = "פרטיות";
+"feedback.privacy.anonymous" = "לא נשלח מידע מזהה אישי";
+"feedback.privacy.improvement" = "משמש רק לשיפור איכות AI";
+"feedback.privacy.optional" = "שליחת משוב היא אופציונלית לחלוטין";
+"feedback.comment.section" = "הערה (אופציונלית)";
+"feedback.comment.placeholder" = "ספר לנו מה ניתן לשפר או מה עבד טוב...";
+"feedback.remember.title" = "זכור בחירה זו";
+"feedback.remember.description" = "שלח משוב מבלי לשאול בפעם הבאה";
+
+// MARK: - Emergency Mode
+"emergency.sos.button" = "מצב חירום (לחץ ארוך להחלפה)";
+"emergency.mode.active" = "מצב חירום פעיל";
+"emergency.action.firstaid" = "עזרה ראשונה";
+"emergency.action.firstaid.message" = "אנא ספק הוראות עזרה ראשונה. אתאר את הפציעה או התסמינים: ";
+"emergency.action.disaster" = "אסון";
+"emergency.action.disaster.message" = "אירע אסון. אנא ספק נהלי תגובה: ";
+"emergency.action.factcheck" = "בדיקת עובדות";
+"emergency.action.factcheck.message" = "אנא אמת את מהימנות המידע הזה: ";
+"emergency.action.contacts" = "חירום";
+"emergency.action.contacts.message" = "אנא הצג לי רשימת מספרי חירום";
+"emergency.action.evacuation" = "פינוי";
+"emergency.action.evacuation.message" = "אנא צור רשימת בדיקה לפינוי למצב הנוכחי: ";
+"mcp.emergency_kb" = "בסיס ידע חירום";
+"mcp.emergency_kb.desc" = "מידע חירום ואסון";
+
+// MARK: - Emergency Templates
+"template.firstaid.name" = "מדריך עזרה ראשונה";
+"template.firstaid.content" = "אנא ספק הוראות עזרה ראשונה עבור: ";
+"template.disaster.name" = "תגובת אסון";
+"template.disaster.content" = "האסון הבא אירע. אנא ספק נהלי תגובה: ";
+"template.factcheck.name" = "בדיקת עובדות";
+"template.factcheck.content" = "אנא אמת את מהימנות המידע הזה וספק טיפים לבדיקת עובדות: ";
+"template.evacuation.name" = "רשימת בדיקה לפינוי";
+"template.evacuation.content" = "אנא צור רשימת בדיקה לפינוי למצב הנוכחי: ";
+
+// MARK: - ChatWeb.ai Integration
+"chatweb.title" = "ChatWeb.ai";
+"chatweb.desc" = "צ'אט AI בענן";
+"chatweb.connect" = "התחבר ל-ChatWeb.ai";
+"chatweb.qr.title" = "התחבר באמצעות QR Code";
+"chatweb.qr.scan" = "סרוק QR Code";
+"chatweb.open" = "פתח ChatWeb.ai";
+
+// MARK: - Peer Connection
+"peer.title" = "מכשירים בקרבת מקום";
+"peer.desc" = "התחבר למכשירי Elio בקרבת מקום";
+"peer.connect" = "התחבר למכשיר";
+"peer.code.title" = "קוד חיבור";
+"peer.code.enter" = "הזן קוד בן 4 ספרות";
+"peer.code.your" = "הקוד שלך";
+"peer.connected" = "מחובר";
+"peer.disconnected" = "מנותק";
+"peer.inference.offload" = "משתף היסק";
+
+// MARK: - Web Search
+"chat.web.search" = "חיפוש ברשת";
+"search.privacy.title" = "חיפוש מוגן פרטיות";
+"search.privacy.proceed" = "חפש";
+"search.privacy.message" = "חיפוש ברשת של ElioChat מגן על הפרטיות שלך:\n\n🔒 חיפוש דרך DuckDuckGo\n🚫 ללא מעקב או פרופילינג\n🔐 היסטוריית חיפוש לא נשמרת\n📱 אין נתונים מאוחסנים מחוץ למכשיר שלך\n\nרק שאילתת החיפוש שלך נשלחת ל-DuckDuckGo, והתוצאות מעובדות במכשיר שלך.";
+"chat.web.analyzing" = "[מנתח עמוד אינטרנט]";

@@ -1,0 +1,637 @@
+/*
+  Localizable.strings (Swedish)
+  Elio
+*/
+
+// MARK: - App General
+"app.name" = "Elio";
+"app.tagline" = "Din hemlighetsbev
+
+arande andra hjärna.";
+
+// MARK: - Common Actions
+"common.done" = "Klar";
+"common.cancel" = "Avbryt";
+"common.delete" = "Radera";
+"common.save" = "Spara";
+"common.edit" = "Redigera";
+"common.share" = "Dela";
+"common.copy" = "Kopiera";
+"common.copied" = "Kopierad";
+"common.loading" = "Laddar...";
+"common.error" = "Fel";
+"common.retry" = "Försök igen";
+"common.skip" = "Hoppa över";
+"common.next" = "Nästa";
+"common.start" = "Kom igång";
+"common.add" = "Lägg till";
+"common.close" = "Stäng";
+"common.details" = "Detaljer";
+"common.yes" = "Ja";
+"common.no" = "Nej";
+"common.unknown" = "Okänd";
+
+// MARK: - Chat
+"chat.placeholder" = "Fråga mig något";
+"chat.model.not.loaded" = "Ingen modell laddad";
+"chat.model.not.loaded.description" = "Ladda ner en modell från Inställningar";
+"chat.go.to.settings" = "Gå till Inställningar";
+"chat.new.conversation" = "Ny chatt";
+"chat.stop.generation" = "Stoppa";
+"chat.generation.stopped" = "\n\n[Generering stoppad]";
+"chat.image.sent" = "[Bild skickad]";
+"chat.images.sent" = "[%d bilder skickade]";
+"chat.pdf.sent" = "[PDF bifogad: %@]";
+"chat.pdf.sent.vision" = "[PDF med bild: %@]";
+"chat.pdf.context" = "Följande är textinnehåll extraherat från PDF-dokumentet \"%@\":\n\n%@";
+"chat.pdf.context.vision" = "Detta är sida 1 av PDF-dokumentet \"%@\". Det extraherade textinnehållet:\n\n%@\n\nAnalysera både det visuella innehållet och texten.";
+"chat.pdf.analyze" = "Analysera denna PDF-sida från \"%@\".";
+"chat.url.sent" = "[Webbsida: %@]";
+"chat.url.context" = "Följande är innehåll extraherat från webbsidan \"%@\" (%@):\n\n%@";
+"chat.thinking" = "Tänker...";
+"chat.generating" = "Genererar svar...";
+"chat.welcome" = "Hur kan jag hjälpa dig?";
+"chat.suggestion.schedule" = "Visa dagens schema";
+"chat.suggestion.reminder" = "Skapa en påminnelse";
+"chat.suggestion.weather" = "Vad är vädret idag?";
+"chat.suggestion.help" = "Hur använder man denna app";
+"chat.websearch.on" = "Webbsökning på";
+"chat.websearch.off" = "Webbsökning av";
+"chat.thinking.on" = "Tänkande på";
+"chat.thinking.off" = "Tänkande av";
+"chat.transcribing" = "Transkriberar...";
+"chat.offline" = "Offline";
+
+// Voice Conversation Mode
+"voice.listening" = "Lyssnar...";
+"voice.processing" = "Bearbetar...";
+"voice.thinking" = "Tänker...";
+"voice.speaking" = "Talar...";
+"voice.tap.to.send" = "Tryck för att skicka";
+"chat.templates" = "Mallar";
+"chat.websearch.privacy.title" = "Om webbsökning";
+"chat.websearch.privacy.message" = "Att aktivera webbsökning gör det möjligt för AI att söka på internet via DuckDuckGo efter aktuell information. Sökfrågor skickas till DuckDuckGo men spåras inte.";
+"chat.websearch.privacy.enable" = "Aktivera";
+"chat.websearch.privacy.disable" = "Behåll inaktiverad";
+
+// MARK: - Settings
+"settings.title" = "Inställningar";
+"settings.model.section" = "AI-modeller";
+"settings.model.recommended" = "Rekommenderad: %@";
+"settings.model.local.execution" = "Modeller körs lokalt på din enhet";
+"settings.model.show.more" = "Andra modeller (%d)";
+"settings.model.show.less" = "Visa färre";
+"settings.appearance.section" = "Utseende";
+"settings.tools.section" = "Smarta funktioner";
+"settings.mcp.servers" = "Integrationer";
+"settings.mcp.servers.description" = "Kalender, Filer, Påminnelser & mer";
+"settings.mcp.enabled.count" = "%d aktiverad";
+"settings.mcp.enabled.count.suffix" = " aktiverad";
+"settings.about.section" = "Om";
+"settings.version" = "Version";
+"settings.about.app" = "Om denna app";
+"settings.about.mcp" = "Om integrationer";
+"settings.privacy.badge" = "Fungerar offline";
+"settings.privacy.description" = "Fungerar i flygplansläge";
+"settings.airplane.mode" = "Körs i flygplansläge";
+"settings.offline.ready" = "Offline redo";
+
+// MARK: - Model States
+"model.status.downloading" = "Laddar ner... %d%%";
+"model.status.loading" = "Laddar...";
+"model.status.in.use" = "I bruk";
+"model.status.recommended" = "Rekommenderad";
+"model.status.heavy" = "Tung";
+"model.action.download" = "Ladda ner";
+"model.action.load" = "Ladda";
+"model.action.delete" = "Radera";
+"model.action.use" = "Använd denna modell";
+"model.delete.confirm.title" = "Radera modell";
+"model.delete.confirm.message" = "Radera %@? Du måste ladda ner den igen för att använda den.";
+"model.select.title" = "Välj modell";
+"model.select.prompt" = "Välj en modell";
+"model.downloaded" = "Nedladdad";
+
+// MARK: - Inference Mode
+"inference.mode.title" = "Acceleration";
+"inference.mode.auto" = "Auto";
+"inference.mode.auto.desc" = "Optimal prestanda automatiskt";
+"inference.mode.gpu" = "GPU (Metal)";
+"inference.mode.gpu.desc" = "Maximal hastighet med Metal";
+"inference.mode.cpu" = "Endast CPU";
+"inference.mode.cpu.desc" = "Batterisparläge";
+"inference.mode.hybrid" = "Hybrid";
+"inference.mode.hybrid.desc" = "Balans mellan hastighet och batteri";
+
+// MARK: - Theme
+"theme.system" = "System";
+"theme.light" = "Ljust";
+"theme.dark" = "Mörkt";
+
+// MARK: - Onboarding
+"onboarding.welcome.title" = "Välkommen till ElioChat";
+"onboarding.welcome.subtitle" = "Din privata AI-assistent";
+"onboarding.features.title" = "Verkligt privat AI";
+"onboarding.feature.offline" = "Fungerar i flygplansläge";
+"onboarding.feature.offline.desc" = "Använd på flyget eller i tunnelbanan";
+"onboarding.feature.privacy" = "Noll dataöverföring";
+"onboarding.feature.privacy.desc" = "Dina chattar lämnar aldrig din telefon";
+"onboarding.feature.vault" = "Smarta integrationer";
+"onboarding.feature.vault.desc" = "Anslut med Kalender & Filer";
+"onboarding.feature.secure" = "Arbetssäker AI";
+"onboarding.feature.secure.desc" = "Säker för företagsbruk";
+"onboarding.feature.thinking" = "Tankeprocess";
+"onboarding.privacy.title" = "Din data förblir din";
+"onboarding.privacy.item1" = "All bearbetning sker på din iPhone";
+"onboarding.privacy.item2" = "Ingen data skickas till molnservrar";
+"onboarding.privacy.item3" = "Används aldrig för AI-träning";
+"onboarding.getstarted.title" = "Redo med ett tryck";
+"onboarding.getstarted.subtitle" = "Ladda ner den rekommenderade AI-modellen\noch börja chatta direkt";
+"onboarding.step1" = "Ladda ner rekommenderad modell";
+"onboarding.step2" = "Vänta några minuter";
+"onboarding.step3" = "Du är klar!";
+
+// MARK: - About
+"about.title" = "Om denna app";
+"about.rate.app" = "Betygsätt app";
+"about.share.app" = "Dela med vänner";
+"about.privacy.policy" = "Integritetspolicy";
+"about.terms" = "Användarvillkor";
+"about.tech.info" = "Teknisk info";
+"about.tech.engine" = "AI-motor";
+"about.tech.format" = "Format som stöds";
+"about.tech.inference" = "Inferens";
+"about.data.management" = "Datahantering";
+"about.delete.all" = "Radera alla konversationer";
+"about.credits" = "Tack till";
+"about.credits.description" = "Denna app använder open source-bibliotek";
+"about.privacy.section" = "Integritet";
+"about.gguf.format" = "GGUF-format";
+"about.metal.gpu" = "Metal GPU-acceleration";
+
+// MARK: - Referral
+"referral.title" = "Hänvisa vänner";
+"referral.code.title" = "Din hänvisningskod";
+"referral.code.copy" = "Kopiera kod";
+"referral.code.copied" = "Kopierad";
+"referral.share.button" = "Dela med vänner";
+"referral.share.description" = "Dela Elio med dina vänner!";
+"referral.count" = "Hänvisade %d personer";
+"referral.enter.title" = "Ange hänvisningskod";
+"referral.enter.placeholder" = "Hänvisningskod";
+"referral.enter.button" = "Tillämpa";
+"referral.enter.success" = "Hänvisningskod tillämpad";
+"referral.enter.error" = "Ogiltig hänvisningskod";
+
+// MARK: - Privacy Policy
+"privacy.title" = "Integritetspolicy";
+"privacy.data.collection.title" = "Datainsamling";
+"privacy.data.collection.content" = "Denna app kör en lokal AI helt offline.\nIngen data skickas till externa servrar.\nAlla konversationer lagras endast på din enhet.";
+"privacy.stored.data.title" = "Lagrad data";
+"privacy.stored.data.content" = "Konversationshistorik (lagras endast på enheten)\nAI-modellfiler (lagras endast på enheten)\nAppinställningar (lagras endast på enheten)\n\nDenna data delas aldrig externt.";
+"privacy.data.deletion.title" = "Dataradering";
+"privacy.data.deletion.content" = "Du kan radera all data när som helst från Inställningar > Datahantering.\nAtt avinstallera appen raderar all data.";
+
+// MARK: - Terms of Service
+"terms.title" = "Användarvillkor";
+"terms.service.title" = "Tjänstebeskrivning";
+"terms.service.content" = "Denna app tillhandahåller AI-assistentfunktionalitet med en lokalt körande AI-modell.";
+"terms.disclaimer.title" = "Ansvarsfriskrivning";
+"terms.disclaimer.content" = "AI-svar kan innehålla fel.\nViktiga beslut bör alltid verifieras av en professionell.\nVi ansvarar inte för skador som uppstår från användningen av denna app.";
+"terms.prohibited.title" = "Förbjudna aktiviteter";
+"terms.prohibited.content" = "Illegala aktiviteter\nAktiviteter som kränker andras rättigheter\nReverse engineering av denna app\nObehörig kopiering av denna app";
+"terms.ip.title" = "Immaterialrätt";
+"terms.ip.content" = "Immaterialrätterna för denna app tillhör utvecklaren.\nObehörig användning är förbjuden.";
+
+// MARK: - Conversations
+"conversations.title" = "Konversationer";
+"conversations.new" = "Ny konversation";
+"conversations.empty" = "Inga konversationer än";
+"conversations.delete" = "Radera konversation";
+"conversations.default.title" = "Ny konversation";
+"conversations.today" = "Idag";
+"conversations.yesterday" = "Igår";
+"conversations.past7days" = "Senaste 7 dagarna";
+"conversations.past30days" = "Senaste 30 dagarna";
+"conversations.older" = "Äldre";
+"conversations.created" = "Skapad: %@";
+"conversations.user" = "Användare";
+"conversations.assistant" = "Assistent";
+"conversations.search.placeholder" = "Sök konversationer";
+"conversations.search.no_results" = "Inga resultat hittades";
+
+// MARK: - Message Actions
+"message.copy" = "Kopiera";
+"message.speak" = "Tala";
+"message.stop.speaking" = "Sluta tala";
+"message.share" = "Dela";
+"message.share.card" = "Dela som kort";
+"message.like" = "Gilla";
+
+// MARK: - Share Card
+"share.card.title" = "Dela kort";
+"share.card.preview" = "Förhandsgranskning";
+"share.card.button" = "Dela bild";
+"message.dislike" = "Ogilla";
+"message.thinking.process" = "Tankeprocess";
+"message.tool.running" = "Kör verktyg";
+"message.tool.error" = "Fel";
+"message.tool.completed" = "Slutförd";
+
+// MARK: - Attachment
+"attachment.title" = "Bilaga";
+"attachment.photo.library" = "Välj foto";
+"attachment.camera" = "Ta foto";
+"attachment.pdf" = "Välj PDF";
+"attachment.pdf.chars" = "%d tecken";
+"attachment.pdf.pages" = "%d sidor";
+"attachment.pdf.vision.enabled" = "Bildanalys aktiverad";
+"attachment.pdf.text.only" = "Endast text";
+"attachment.url" = "Läs webbsida";
+"attachment.url.title" = "Ange URL";
+"attachment.url.placeholder" = "https://exempel.se";
+"attachment.url.message" = "Klistra in en URL för att extrahera dess innehåll";
+"attachment.url.fetch" = "Hämta";
+"attachment.url.loading" = "Laddar sida...";
+
+// MARK: - Errors
+"error.model.not.found" = "Modellfil hittades inte";
+"error.model.not.loaded" = "Modell ej laddad";
+"error.context.failed" = "Misslyckades skapa kontext";
+"error.tokenization.failed" = "Tokenisering misslyckades";
+"error.generation.failed" = "Genereringsfel: %@";
+"error.occurred" = "Ett fel uppstod: %@";
+"error.invalid.url" = "Ogiltig URL";
+"error.download.failed" = "Nedladdning misslyckades";
+"error.extraction.failed" = "Extrahering misslyckades";
+"error.config.not.found" = "Konfigurationsfil hittades inte";
+
+// MARK: - Ghost Search
+"ghost.search.title" = "Spöksökning";
+"ghost.search.description" = "Anonym sökning via DuckDuckGo (ingen spårning)";
+"ghost.search.connecting" = "Ansluter till anonymt nätverk...";
+"ghost.search.privacy.note" = "Din sökhistorik spåras aldrig";
+
+// MARK: - MCP Servers
+"mcp.filesystem" = "Filsystem";
+"mcp.filesystem.desc" = "Läs och skriv filer i appen";
+"mcp.calendar" = "Kalender";
+"mcp.calendar.desc" = "Läs och skriv händelser";
+"mcp.reminders" = "Påminnelser";
+"mcp.reminders.desc" = "Hantera påminnelser";
+"mcp.contacts" = "Kontakter";
+"mcp.contacts.desc" = "Sök och visa kontakter";
+"mcp.photos" = "Foton";
+"mcp.photos.desc" = "Åtkomst till fotobibliotek";
+"mcp.location" = "Plats";
+"mcp.location.desc" = "Få aktuell plats och sök platser";
+"mcp.health" = "Hälsa";
+"mcp.health.desc" = "Åtkomst till hälsodata";
+"mcp.shortcuts" = "Genvägar";
+"mcp.shortcuts.desc" = "Kör genvägar";
+"mcp.websearch" = "Webbsökning";
+"mcp.websearch.desc" = "Anonym webbsökning";
+"mcp.custom" = "Anpassad integration";
+"mcp.custom.add" = "Lägg till integration";
+"mcp.custom.setup" = "Konfigurera extern tjänstintegration";
+"mcp.custom.title" = "Anpassade integrationer";
+"mcp.settings.title" = "Integrationsinställningar";
+"mcp.server.name" = "Servernamn";
+"mcp.server.name.placeholder" = "t.ex. Min anpassade server";
+"mcp.config.url" = "URL för konfigurationsfil";
+"mcp.import.file" = "Importera från fil";
+"mcp.config.example" = "Exempel på konfigurationsfil";
+"mcp.permission.note" = "Behörigheter begärs vid första användningen av varje funktion";
+
+// MARK: - MCP Tool Messages
+"mcp.tool.available" = "Tillgängliga verktyg:";
+"mcp.tool.parameters" = "Parametrar:";
+"mcp.prompt.available" = "Tillgängliga uppmaningar:";
+"mcp.prompt.arguments" = "Argument:";
+"mcp.tool.name" = "verktygsnamn";
+"mcp.tool.arg.name" = "arg_namn";
+"mcp.tool.arg.value" = "värde";
+"mcp.tool.no.result" = "Inget resultat";
+"mcp.tool.running" = "Kör verktyg: %@";
+"mcp.tool.error" = "Verktygskörningsfel: %@";
+
+// MARK: - MCP Error Messages
+"mcp.error.server.not.found" = "Server hittades inte: %@";
+"mcp.error.tool.not.found" = "Verktyg hittades inte: %@";
+"mcp.error.invalid.args" = "Ogiltiga argument: %@";
+"mcp.error.execution" = "Körningsfel: %@";
+"mcp.error.permission" = "Behörighet nekad: %@";
+
+// MARK: - Calendar Messages
+"calendar.no.events" = "Inga händelser";
+"calendar.event.created" = "Händelse skapad: %@";
+"calendar.event.deleted" = "Händelse raderad: %@";
+"calendar.allday.created" = "Heldagshändelse skapad: %@";
+"calendar.access.denied" = "Kalenderåtkomst nekad";
+"calendar.today.none" = "Inga händelser idag";
+"calendar.untitled" = "Utan titel";
+
+// MARK: - Reminders Messages
+"reminders.none" = "Inga påminnelser";
+"reminders.created" = "Påminnelse skapad: %@";
+"reminders.completed" = "Påminnelse slutförd: %@";
+"reminders.deleted" = "Påminnelse raderad: %@";
+"reminders.access.denied" = "Påminnelseåtkomst nekad";
+"reminders.untitled" = "Utan titel";
+
+// MARK: - Photos Messages
+"photos.access.denied" = "Fotoåtkomst nekad";
+"photos.not.found" = "Foto hittades inte";
+"photos.untitled" = "Utan titel";
+"photos.count" = "Foton: %d";
+"photos.videos.count" = "Videor: %d";
+"photos.albums.count" = "Album: %d";
+"photos.favorites.count" = "Favoriter: %d";
+"photos.date" = "Datum: %@";
+"photos.size" = "Storlek: %d x %d";
+"photos.location" = "Plats: %@, %@";
+"photos.media.type" = "Mediatyp: %@";
+"photos.duration" = "Varaktighet: %dm %ds";
+"photos.favorite" = "Favorit: %@";
+"photos.type.image" = "Foto";
+"photos.type.video" = "Video";
+"photos.type.audio" = "Ljud";
+
+// MARK: - Contacts Messages
+"contacts.access.denied" = "Kontaktåtkomst nekad";
+"contacts.not.found" = "Inga matchande kontakter hittades";
+"contacts.no.groups" = "Inga grupper";
+"contacts.no.card" = "Inget kontaktkort inställt";
+"contacts.name" = "Namn: %@";
+"contacts.company" = "Företag: %@";
+"contacts.job" = "Jobbtitel: %@";
+
+// MARK: - Location Messages
+"location.access.denied" = "Platsåtkomst nekad";
+"location.not.found" = "Adress hittades inte";
+"location.latitude" = "Latitud: %@";
+"location.longitude" = "Longitud: %@";
+"location.accuracy" = "Noggrannhet: %dm";
+"location.altitude" = "Höjd: %dm";
+"location.search" = "Sök: %@";
+"location.address" = "Adress: %@";
+"location.country" = "Land: %@";
+"location.postal" = "Postnummer: %@";
+"location.from" = "Från: (%@, %@)";
+"location.to" = "Till: (%@, %@)";
+"location.distance.km" = "Avstånd: %.2f km";
+"location.distance.m" = "Avstånd: %d m";
+
+// MARK: - Health Messages
+"health.not.available" = "Hälsa är inte tillgänglig på denna enhet";
+"health.date" = "Datum: %@";
+"health.steps" = "Steg: %@ steg";
+"health.goal.progress" = "Målframsteg: %d%% (10 000 stegs mål)";
+"health.no.data" = "Ingen data tillgänglig";
+"health.avg.bpm" = "Genomsnitt: %d bpm";
+"health.min.bpm" = "Minimum: %d bpm";
+"health.max.bpm" = "Maximum: %d bpm";
+"health.measurements" = "Mätningar: %d";
+"health.no.sleep" = "Ingen sömndata";
+"health.sleep.total" = "Total sömn: %dt %dm";
+"health.bedtime" = "Sänggåendstid: %@";
+"health.waketime" = "Uppvagningstid: %@";
+"health.calories" = "Kalorier: %d kcal";
+
+// MARK: - File System Messages
+"filesystem.not.found" = "Fil hittades inte: %@";
+"filesystem.written" = "Fil skriven: %@";
+"filesystem.dir.created" = "Katalog skapad: %@";
+"filesystem.deleted" = "Raderad: %@";
+"filesystem.size" = "Storlek: %@";
+"filesystem.created" = "Skapad: %@";
+"filesystem.modified" = "Modifierad: %@";
+"filesystem.type" = "Typ: %@";
+
+// MARK: - Shortcuts Messages
+"shortcuts.executed" = "Genväg '%@' kördes";
+"shortcuts.opened" = "Genvägar-app öppnad";
+"shortcuts.settings.opened" = "Inställningar (%@) öppnade";
+"shortcuts.mail.opened" = "Mail komponera öppnad";
+"shortcuts.calling" = "Ringer: %@";
+"shortcuts.message.opened" = "Meddelande komponera öppnad";
+"shortcuts.failed" = "Kunde inte öppna genväg";
+
+// MARK: - Model Tiers
+"model.tier.entry" = "Grundläggande";
+"model.tier.standard" = "Standard";
+"model.tier.pro" = "Pro";
+
+// MARK: - Tool Parser
+"tool.arguments" = "Argument:";
+
+// MARK: - Model Settings
+"model.action.settings" = "Inställningar";
+"settings.model.parameters" = "Modellinställningar";
+"settings.model.parameters.description" = "Anpassa genereringsparametrar för denna modell";
+"settings.preset.title" = "Förinställningar";
+"settings.preset.custom" = "Anpassad";
+"settings.preset.balanced" = "Balanserad";
+"settings.preset.creative" = "Kreativ";
+"settings.preset.precise" = "Precis";
+"settings.preset.coding" = "Kodning";
+"settings.preset.japanese" = "Japanska";
+"settings.parameters.title" = "Parametrar";
+"settings.parameter.temperature" = "Temperatur";
+"settings.parameter.temperature.description" = "Högre = mer kreativ, lägre = mer fokuserad";
+"settings.parameter.top.p" = "Top P";
+"settings.parameter.top.p.description" = "Kärnsampling sannolikhet";
+"settings.parameter.top.k" = "Top K";
+"settings.parameter.top.k.description" = "Antal top-tokens att överväga";
+"settings.parameter.max.tokens" = "Max tokens";
+"settings.parameter.max.tokens.description" = "Maximal svarslängd";
+"settings.parameter.repeat.penalty" = "Upprepningsstraff";
+"settings.parameter.repeat.penalty.description" = "Högre = mindre repetitiv utdata";
+"settings.parameter.thinking" = "Tänkläge";
+"settings.parameter.thinking.description" = "Visa AI:s resonemangsprocess";
+"settings.system.prompt.title" = "Systemuppmaning";
+"settings.system.prompt.description" = "Anpassade instruktioner för AI:n";
+"settings.reset.to.default" = "Återställ till standard";
+
+// MARK: - Vision Model
+"vision.model.required.title" = "Vision-modell krävs";
+"vision.model.required.header" = "Bildigenkänning krävs";
+"vision.model.required.description" = "För att analysera bilder behöver du en vision-kapabel AI-modell";
+"vision.model.switch" = "Byt modell";
+"vision.model.switch.message %@" = "Byt till %@ för att aktivera bildanalys?";
+"vision.model.download" = "Ladda ner";
+"vision.model.download.message %@ %@" = "Ladda ner %@ (%@) för att analysera bilder?";
+"vision.model.not.available" = "Ingen kompatibel vision-modell tillgänglig för din enhet";
+"vision.model.switching" = "Byter modell...";
+"vision.model.download.title" = "Vision-modeller";
+"vision.model.recommended" = "Rekommenderad för din enhet";
+"vision.model.recommended.size %@" = "Rekommenderad: %@";
+"vision.model.use.this" = "Använd denna modell";
+"vision.model.download.button %@" = "Ladda ner (%@)";
+"vision.model.other.options" = "Andra vision-modeller";
+"vision.model.download.complete" = "Nedladdning slutförd";
+"vision.model.download.complete.message" = "Redo att analysera bilder";
+
+// MARK: - Whisper Voice Input (Legacy)
+"whisper.download.title" = "Röstigenkänning krävs";
+"whisper.download.action" = "Ladda ner";
+"whisper.download.message" = "För att använda röstinmatning måste du ladda ner taligenkänningsmodellen (~150MB).";
+"whisper.downloading" = "Laddar ner taligenkänningsmodell...";
+"whisper.download.error" = "Nedladdningsfel";
+"whisper.load.error" = "Modelladdningsfel";
+"whisper.permission.denied" = "Mikrofonåtkomst inte tillåten";
+"whisper.transcribe.error" = "Transkriptionsfel";
+"whisper.error.permission" = "Mikrofonbehörighet krävs";
+"whisper.error.not.recording" = "Spelar för närvarande inte in";
+"whisper.error.no.recording" = "Ingen inspelningsdata";
+"whisper.error.model.not.loaded" = "Taligenkänningsmodell ej laddad";
+"whisper.error.transcription" = "Transkription misslyckades";
+
+// MARK: - Speech Recognition (ReazonSpeech)
+"speech.download.title" = "Röstigenkänning krävs";
+"speech.download.action" = "Ladda ner";
+"speech.download.message" = "För att använda röstinmatning måste du ladda ner den japanska taligenkänningsmodellen (~155MB).";
+"speech.downloading" = "Laddar ner taligenkänningsmodell...";
+
+// MARK: - Language Settings
+"settings.language.section" = "Språk";
+"language.system" = "Använd systemspråk";
+"settings.language.restart.hint" = "Språkändringar träder i kraft efter omstart av appen";
+"settings.language.changed.title" = "Språk ändrat";
+"settings.language.changed.message" = "Starta om appen för att tillämpa ändringarna";
+"common.ok" = "OK";
+
+// MARK: - System Prompt Settings
+"settings.prompt.section" = "Systemuppmaning";
+"settings.prompt.edit" = "Redigera uppmaning";
+"settings.prompt.default" = "Använder standard";
+"settings.prompt.custom" = "Anpassad uppmaning inställd";
+"settings.prompt.hint" = "Anpassa AI-beteende";
+"settings.prompt.editor.title" = "Redigera uppmaning";
+"settings.prompt.editor.instruction" = "Lägg till anpassade instruktioner för AI:n. Lämna tomt för att använda standarduppmaningen.";
+"settings.prompt.default.preview" = "Standarduppmaning (utdrag):";
+"settings.prompt.reset" = "Återställ";
+"settings.prompt.reset.title" = "Återställ uppmaning";
+"settings.prompt.reset.message" = "Radera anpassad uppmaning och återställ till standard?";
+
+// MARK: - Prompt Templates
+"templates.title" = "Uppmanningsmallar";
+"templates.empty" = "Inga mallar än";
+"templates.add" = "Lägg till mall";
+"template.add.title" = "Lägg till mall";
+"template.edit.title" = "Redigera mall";
+"template.name.header" = "Namn";
+"template.name.placeholder" = "Mallnamn";
+"template.content.header" = "Uppmaningsinnehåll";
+"template.icon.header" = "Ikon";
+"template.translate.name" = "Översätt";
+"template.translate.content" = "Översätt följande: ";
+"template.summarize.name" = "Sammanfatta";
+"template.summarize.content" = "Sammanfatta följande: ";
+"template.explain.name" = "Förklara";
+"template.explain.content" = "Förklara följande: ";
+"template.code.name" = "Kod";
+"template.code.content" = "Skriv kod för: ";
+
+// MARK: - Export
+"export.title" = "Exportera konversation";
+"export.format.markdown" = "Markdown";
+"export.format.pdf" = "PDF";
+"export.format.text" = "Ren text";
+"export.created" = "Skapad";
+"export.image.attached" = "Bild bifogad";
+"export.generated.by" = "Genererad av";
+
+// MARK: - Loading Phases
+"loading.phase.initializing" = "Initierar...";
+"loading.phase.loading" = "Laddar modell...";
+"loading.phase.preparing" = "Förbereder inferensmotor...";
+"loading.phase.almost" = "Nästan klar...";
+
+// MARK: - Welcome Screen
+"welcome.greeting" = "Fråga mig något";
+"welcome.subtitle" = "Din integritet-först AI-assistent";
+"suggestion.idea" = "Hjälp mig brainstorma idéer";
+"suggestion.write" = "Hjälp mig skriva något";
+"suggestion.question" = "Svara på mina frågor";
+
+// MARK: - Kokoro TTS
+"tts.download.title" = "Högkvalitativ röst";
+"tts.download.action" = "Ladda ner";
+"tts.download.use_system" = "Använd systemröst";
+"tts.download.message" = "Ladda ner Kokoro TTS-modellen (~87MB) för mer naturlig japansk text-till-tal.";
+"tts.downloading" = "Laddar ner TTS-modell...";
+
+// MARK: - Feedback
+"feedback.consent.title" = "Skicka feedback";
+"feedback.send" = "Skicka";
+"feedback.positive.title" = "Var detta svar hjälpsamt?";
+"feedback.negative.title" = "Kan detta förbättras?";
+"feedback.explanation" = "Din feedback hjälper till att förbättra AI-kvaliteten. Granska vilken data som kommer att skickas innan du skickar in.";
+"feedback.data.section" = "Data som ska skickas";
+"feedback.data.conversation" = "Konversation";
+"feedback.data.conversation.desc" = "AI-svaret och ditt tidigare meddelande";
+"feedback.data.model" = "Modellinfo";
+"feedback.data.model.desc" = "Namnet på den använda AI-modellen";
+"feedback.data.timestamp" = "Tidsstämpel";
+"feedback.data.timestamp.desc" = "När feedbacken skickades in";
+"feedback.privacy.section" = "Integritet";
+"feedback.privacy.anonymous" = "Ingen personligt identifierbar information skickas";
+"feedback.privacy.improvement" = "Används endast för att förbättra AI-kvaliteten";
+"feedback.privacy.optional" = "Att skicka feedback är helt valfritt";
+"feedback.comment.section" = "Kommentar (valfritt)";
+"feedback.comment.placeholder" = "Berätta vad som kan förbättras eller vad som fungerade bra...";
+"feedback.remember.title" = "Kom ihåg detta val";
+"feedback.remember.description" = "Skicka feedback utan att fråga nästa gång";
+
+// MARK: - Emergency Mode
+"emergency.sos.button" = "Nödläge (långtryck för att växla)";
+"emergency.mode.active" = "Nödläge aktivt";
+"emergency.action.firstaid" = "Första hjälpen";
+"emergency.action.firstaid.message" = "Ge första hjälpen-instruktioner. Jag kommer att beskriva skadan eller symptomen: ";
+"emergency.action.disaster" = "Katastrof";
+"emergency.action.disaster.message" = "En katastrof har inträffat. Ge responsprocedurer: ";
+"emergency.action.factcheck" = "Faktakontroll";
+"emergency.action.factcheck.message" = "Verifiera tillförlitligheten hos denna information: ";
+"emergency.action.contacts" = "Nödsituation";
+"emergency.action.contacts.message" = "Visa mig en lista över nödnummer";
+"emergency.action.evacuation" = "Evakuera";
+"emergency.action.evacuation.message" = "Skapa en evakueringschecklista för den aktuella situationen: ";
+"mcp.emergency_kb" = "Nöd KB";
+"mcp.emergency_kb.desc" = "Nöd- & katastrofinformation";
+
+// MARK: - Emergency Templates
+"template.firstaid.name" = "Första hjälpen-guide";
+"template.firstaid.content" = "Ge första hjälpen-instruktioner för: ";
+"template.disaster.name" = "Katastrofrespons";
+"template.disaster.content" = "Följande katastrof har inträffat. Ge responsprocedurer: ";
+"template.factcheck.name" = "Faktakontroll";
+"template.factcheck.content" = "Verifiera tillförlitligheten hos denna information och ge faktakontr tips: ";
+"template.evacuation.name" = "Evakueringschecklista";
+"template.evacuation.content" = "Skapa en evakueringschecklista för den aktuella situationen: ";
+
+// MARK: - ChatWeb.ai Integration
+"chatweb.title" = "ChatWeb.ai";
+"chatweb.desc" = "Moln AI-chatt";
+"chatweb.connect" = "Anslut till ChatWeb.ai";
+"chatweb.qr.title" = "Anslut via QR-kod";
+"chatweb.qr.scan" = "Skanna QR-kod";
+"chatweb.open" = "Öppna ChatWeb.ai";
+
+// MARK: - Peer Connection
+"peer.title" = "Närliggande enheter";
+"peer.desc" = "Anslut med närliggande Elio-enheter";
+"peer.connect" = "Anslut till enhet";
+"peer.code.title" = "Anslutningskod";
+"peer.code.enter" = "Ange 4-siffrig kod";
+"peer.code.your" = "Din kod";
+"peer.connected" = "Ansluten";
+"peer.disconnected" = "Frånkopplad";
+"peer.inference.offload" = "Dela inferens";
+
+// MARK: - Web Search
+"chat.web.search" = "Webbsökning";
+"search.privacy.title" = "Integritetsskyddad sökning";
+"search.privacy.proceed" = "Sök";
+"search.privacy.message" = "ElioChat webbsökning skyddar din integritet:\n\n🔒 Söker via DuckDuckGo\n🚫 Ingen spårning eller profilering\n🔐 Sökhistorik lagras inte\n📱 Ingen data lagras utanför din enhet\n\nEndast din sökfråga skickas till DuckDuckGo, och resultat bearbetas på din enhet.";
+"chat.web.analyzing" = "[Analyserar webbsida]";

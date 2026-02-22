@@ -1,0 +1,635 @@
+/*
+  Localizable.strings (Finnish)
+  Elio
+*/
+
+// MARK: - App General
+"app.name" = "Elio";
+"app.tagline" = "Salaisuuksia säilyttävä toinen aivosi.";
+
+// MARK: - Common Actions
+"common.done" = "Valmis";
+"common.cancel" = "Peruuta";
+"common.delete" = "Poista";
+"common.save" = "Tallenna";
+"common.edit" = "Muokkaa";
+"common.share" = "Jaa";
+"common.copy" = "Kopioi";
+"common.copied" = "Kopioitu";
+"common.loading" = "Ladataan...";
+"common.error" = "Virhe";
+"common.retry" = "Yritä uudelleen";
+"common.skip" = "Ohita";
+"common.next" = "Seuraava";
+"common.start" = "Aloita";
+"common.add" = "Lisää";
+"common.close" = "Sulje";
+"common.details" = "Tiedot";
+"common.yes" = "Kyllä";
+"common.no" = "Ei";
+"common.unknown" = "Tuntematon";
+
+// MARK: - Chat
+"chat.placeholder" = "Kysy mitä tahansa";
+"chat.model.not.loaded" = "Mallia ei ladattu";
+"chat.model.not.loaded.description" = "Lataa malli Asetuksista";
+"chat.go.to.settings" = "Siirry Asetuksiin";
+"chat.new.conversation" = "Uusi keskustelu";
+"chat.stop.generation" = "Pysäytä";
+"chat.generation.stopped" = "\n\n[Generointi pysäytetty]";
+"chat.image.sent" = "[Kuva lähetetty]";
+"chat.images.sent" = "[%d kuvaa lähetetty]";
+"chat.pdf.sent" = "[PDF liitetty: %@]";
+"chat.pdf.sent.vision" = "[PDF kuvalla: %@]";
+"chat.pdf.context" = "Seuraava on tekstisisältöä PDF-dokumentista \"%@\":\n\n%@";
+"chat.pdf.context.vision" = "Tämä on sivu 1 PDF-dokumentista \"%@\". Poimittu tekstisisältö on:\n\n%@\n\nAnalysoi sekä visuaalinen sisältö että teksti.";
+"chat.pdf.analyze" = "Analysoi tämä PDF-sivu dokumentista \"%@\".";
+"chat.url.sent" = "[Verkkosivu: %@]";
+"chat.url.context" = "Seuraava on sisältöä verkkosivulta \"%@\" (%@):\n\n%@";
+"chat.thinking" = "Ajattelee...";
+"chat.generating" = "Generoi vastausta...";
+"chat.welcome" = "Kuinka voin auttaa?";
+"chat.suggestion.schedule" = "Näytä tämän päivän aikataulu";
+"chat.suggestion.reminder" = "Luo muistutus";
+"chat.suggestion.weather" = "Millainen sää on tänään?";
+"chat.suggestion.help" = "Kuinka käyttää tätä sovellusta";
+"chat.websearch.on" = "Verkkohaku päällä";
+"chat.websearch.off" = "Verkkohaku pois";
+"chat.thinking.on" = "Ajattelu päällä";
+"chat.thinking.off" = "Ajattelu pois";
+"chat.transcribing" = "Litteroidaan...";
+"chat.offline" = "Offline-tilassa";
+
+// Voice Conversation Mode
+"voice.listening" = "Kuuntelee...";
+"voice.processing" = "Käsitellään...";
+"voice.thinking" = "Ajattelee...";
+"voice.speaking" = "Puhuu...";
+"voice.tap.to.send" = "Napauta lähettääksesi";
+"chat.templates" = "Mallipohjat";
+"chat.websearch.privacy.title" = "Tietoa verkkohausta";
+"chat.websearch.privacy.message" = "Verkkohaun käyttöönotto antaa tekoälylle mahdollisuuden etsiä internetistä ajantasaista tietoa DuckDuckGon kautta. Hakukyselyt lähetetään DuckDuckGolle, mutta niitä ei seurata.";
+"chat.websearch.privacy.enable" = "Ota käyttöön";
+"chat.websearch.privacy.disable" = "Pidä pois käytöstä";
+
+// MARK: - Settings
+"settings.title" = "Asetukset";
+"settings.model.section" = "Tekoälymallit";
+"settings.model.recommended" = "Suositeltu: %@";
+"settings.model.local.execution" = "Mallit toimivat paikallisesti laitteessasi";
+"settings.model.show.more" = "Muut mallit (%d)";
+"settings.model.show.less" = "Näytä vähemmän";
+"settings.appearance.section" = "Ulkoasu";
+"settings.tools.section" = "Älykkäät ominaisuudet";
+"settings.mcp.servers" = "Integraatiot";
+"settings.mcp.servers.description" = "Kalenteri, tiedostot, muistutukset ja muuta";
+"settings.mcp.enabled.count" = "%d käytössä";
+"settings.mcp.enabled.count.suffix" = " käytössä";
+"settings.about.section" = "Tietoa";
+"settings.version" = "Versio";
+"settings.about.app" = "Tietoa sovelluksesta";
+"settings.about.mcp" = "Tietoa integraatioista";
+"settings.privacy.badge" = "Toimii offline-tilassa";
+"settings.privacy.description" = "Toimii lentotilassa";
+"settings.airplane.mode" = "Käynnissä lentotilassa";
+"settings.offline.ready" = "Valmis offline-käyttöön";
+
+// MARK: - Model States
+"model.status.downloading" = "Ladataan... %d%%";
+"model.status.loading" = "Ladataan...";
+"model.status.in.use" = "Käytössä";
+"model.status.recommended" = "Suositeltu";
+"model.status.heavy" = "Raskas";
+"model.action.download" = "Lataa";
+"model.action.load" = "Lataa";
+"model.action.delete" = "Poista";
+"model.action.use" = "Käytä tätä mallia";
+"model.delete.confirm.title" = "Poista malli";
+"model.delete.confirm.message" = "Poistetaanko %@? Sinun täytyy ladata se uudelleen käyttääksesi sitä.";
+"model.select.title" = "Valitse malli";
+"model.select.prompt" = "Valitse malli";
+"model.downloaded" = "Ladattu";
+
+// MARK: - Inference Mode
+"inference.mode.title" = "Kiihdytys";
+"inference.mode.auto" = "Automaattinen";
+"inference.mode.auto.desc" = "Optimaalinen suorituskyky automaattisesti";
+"inference.mode.gpu" = "GPU (Metal)";
+"inference.mode.gpu.desc" = "Maksimi nopeus Metalilla";
+"inference.mode.cpu" = "Vain CPU";
+"inference.mode.cpu.desc" = "Akkua säästävä tila";
+"inference.mode.hybrid" = "Hybridi";
+"inference.mode.hybrid.desc" = "Tasapaino nopeuden ja akun välillä";
+
+// MARK: - Theme
+"theme.system" = "Järjestelmän";
+"theme.light" = "Vaalea";
+"theme.dark" = "Tumma";
+
+// MARK: - Onboarding
+"onboarding.welcome.title" = "Tervetuloa ElioChatiin";
+"onboarding.welcome.subtitle" = "Yksityinen tekoälyavustajasi";
+"onboarding.features.title" = "Aidosti yksityinen tekoäly";
+"onboarding.feature.offline" = "Toimii lentotilassa";
+"onboarding.feature.offline.desc" = "Käytä lennoilla tai maan alla";
+"onboarding.feature.privacy" = "Nolla tiedonsiirtoa";
+"onboarding.feature.privacy.desc" = "Keskustelusi eivät poistu puhelimestasi";
+"onboarding.feature.vault" = "Älykkäät integraatiot";
+"onboarding.feature.vault.desc" = "Yhdistä kalenteriin ja tiedostoihin";
+"onboarding.feature.secure" = "Työturvallinen tekoäly";
+"onboarding.feature.secure.desc" = "Turvallinen yritykskäyttöön";
+"onboarding.feature.thinking" = "Ajatteluprosessi";
+"onboarding.privacy.title" = "Tietosi pysyvät sinulla";
+"onboarding.privacy.item1" = "Kaikki käsittely tapahtuu iPhonessasi";
+"onboarding.privacy.item2" = "Tietoja ei lähetetä pilvipalvelimille";
+"onboarding.privacy.item3" = "Ei koskaan käytetä tekoälyn koulutukseen";
+"onboarding.getstarted.title" = "Valmis yhdellä napautuksella";
+"onboarding.getstarted.subtitle" = "Lataa suositeltu tekoälymalli\nja aloita keskustelu heti";
+"onboarding.step1" = "Lataa suositeltu malli";
+"onboarding.step2" = "Odota muutama minuutti";
+"onboarding.step3" = "Olet valmis!";
+
+// MARK: - About
+"about.title" = "Tietoa sovelluksesta";
+"about.rate.app" = "Arvostele sovellus";
+"about.share.app" = "Jaa ystäville";
+"about.privacy.policy" = "Tietosuojakäytäntö";
+"about.terms" = "Käyttöehdot";
+"about.tech.info" = "Tekniset tiedot";
+"about.tech.engine" = "Tekoälymoottori";
+"about.tech.format" = "Tuettu formaatti";
+"about.tech.inference" = "Päättely";
+"about.data.management" = "Tiedonhallinta";
+"about.delete.all" = "Poista kaikki keskustelut";
+"about.credits" = "Tekijätiedot";
+"about.credits.description" = "Tämä sovellus käyttää avoimen lähdekoodin kirjastoja";
+"about.privacy.section" = "Yksityisyys";
+"about.gguf.format" = "GGUF-formaatti";
+"about.metal.gpu" = "Metal GPU -kiihdytys";
+
+// MARK: - Referral
+"referral.title" = "Suosittele ystäville";
+"referral.code.title" = "Suosittelukoodisi";
+"referral.code.copy" = "Kopioi koodi";
+"referral.code.copied" = "Kopioitu";
+"referral.share.button" = "Jaa ystäville";
+"referral.share.description" = "Jaa Elio ystävillesi!";
+"referral.count" = "Suositellut %d henkilöä";
+"referral.enter.title" = "Syötä suosittelukoodi";
+"referral.enter.placeholder" = "Suosittelukoodi";
+"referral.enter.button" = "Käytä";
+"referral.enter.success" = "Suosittelukoodi käytetty";
+"referral.enter.error" = "Virheellinen suosittelukoodi";
+
+// MARK: - Privacy Policy
+"privacy.title" = "Tietosuojakäytäntö";
+"privacy.data.collection.title" = "Tietojen keruu";
+"privacy.data.collection.content" = "Tämä sovellus ajaa paikallista tekoälyä täysin offline-tilassa.\nTietoja ei lähetetä ulkoisille palvelimille.\nKaikki keskustelut tallennetaan vain laitteellesi.";
+"privacy.stored.data.title" = "Tallennetut tiedot";
+"privacy.stored.data.content" = "Keskusteluhistoria (tallennettu vain laitteelle)\nTekoälymallitiedostot (tallennettu vain laitteelle)\nSovelluksen asetukset (tallennettu vain laitteelle)\n\nNäitä tietoja ei koskaan jaeta ulkoisesti.";
+"privacy.data.deletion.title" = "Tietojen poistaminen";
+"privacy.data.deletion.content" = "Voit poistaa kaikki tiedot milloin tahansa kohdasta Asetukset > Tiedonhallinta.\nSovelluksen poistaminen poistaa kaikki tiedot.";
+
+// MARK: - Terms of Service
+"terms.title" = "Käyttöehdot";
+"terms.service.title" = "Palvelun kuvaus";
+"terms.service.content" = "Tämä sovellus tarjoaa tekoälyavustajatoimintoja paikallisesti toimivan tekoälymallin avulla.";
+"terms.disclaimer.title" = "Vastuuvapauslauseke";
+"terms.disclaimer.content" = "Tekoälyvastaukset voivat sisältää virheitä.\nTärkeät päätökset tulee aina varmistaa ammattilaiselta.\nEmme ole vastuussa tämän sovelluksen käytöstä aiheutuvista vahingoista.";
+"terms.prohibited.title" = "Kielletyt toiminnot";
+"terms.prohibited.content" = "Laittomat toiminnot\nToisten oikeuksia loukkaavat toiminnot\nTämän sovelluksen käänteinen suunnittelu\nTämän sovelluksen luvaton kopiointi";
+"terms.ip.title" = "Immateriaalioikeudet";
+"terms.ip.content" = "Tämän sovelluksen immateriaalioikeudet kuuluvat kehittäjälle.\nLuvaton käyttö on kielletty.";
+
+// MARK: - Conversations
+"conversations.title" = "Keskustelut";
+"conversations.new" = "Uusi keskustelu";
+"conversations.empty" = "Ei vielä keskusteluja";
+"conversations.delete" = "Poista keskustelu";
+"conversations.default.title" = "Uusi keskustelu";
+"conversations.today" = "Tänään";
+"conversations.yesterday" = "Eilen";
+"conversations.past7days" = "Viimeiset 7 päivää";
+"conversations.past30days" = "Viimeiset 30 päivää";
+"conversations.older" = "Vanhemmat";
+"conversations.created" = "Luotu: %@";
+"conversations.user" = "Käyttäjä";
+"conversations.assistant" = "Avustaja";
+"conversations.search.placeholder" = "Hae keskusteluja";
+"conversations.search.no_results" = "Ei tuloksia";
+
+// MARK: - Message Actions
+"message.copy" = "Kopioi";
+"message.speak" = "Puhu";
+"message.stop.speaking" = "Lopeta puhuminen";
+"message.share" = "Jaa";
+"message.share.card" = "Jaa korttina";
+"message.like" = "Tykkää";
+
+// MARK: - Share Card
+"share.card.title" = "Jaa kortti";
+"share.card.preview" = "Esikatselu";
+"share.card.button" = "Jaa kuva";
+"message.dislike" = "Ei tykkää";
+"message.thinking.process" = "Ajatteluprosessi";
+"message.tool.running" = "Käynnistää työkalua";
+"message.tool.error" = "Virhe";
+"message.tool.completed" = "Valmis";
+
+// MARK: - Attachment
+"attachment.title" = "Liite";
+"attachment.photo.library" = "Valitse kuva";
+"attachment.camera" = "Ota kuva";
+"attachment.pdf" = "Valitse PDF";
+"attachment.pdf.chars" = "%d merkkiä";
+"attachment.pdf.pages" = "%d sivua";
+"attachment.pdf.vision.enabled" = "Kuva-analyysi käytössä";
+"attachment.pdf.text.only" = "Vain teksti -tila";
+"attachment.url" = "Lue verkkosivu";
+"attachment.url.title" = "Syötä URL";
+"attachment.url.placeholder" = "https://esimerkki.com";
+"attachment.url.message" = "Liitä URL poimiaksesi sen sisällön";
+"attachment.url.fetch" = "Hae";
+"attachment.url.loading" = "Ladataan sivua...";
+
+// MARK: - Errors
+"error.model.not.found" = "Mallitiedostoa ei löydy";
+"error.model.not.loaded" = "Mallia ei ladattu";
+"error.context.failed" = "Kontekstin luonti epäonnistui";
+"error.tokenization.failed" = "Tokenointi epäonnistui";
+"error.generation.failed" = "Generointivirhe: %@";
+"error.occurred" = "Tapahtui virhe: %@";
+"error.invalid.url" = "Virheellinen URL";
+"error.download.failed" = "Lataus epäonnistui";
+"error.extraction.failed" = "Purkaminen epäonnistui";
+"error.config.not.found" = "Asetustiedostoa ei löydy";
+
+// MARK: - Ghost Search
+"ghost.search.title" = "Aaveetsintä";
+"ghost.search.description" = "Anonyymi haku DuckDuckGon kautta (ei seurantaa)";
+"ghost.search.connecting" = "Yhdistetään anonyymiin verkkoon...";
+"ghost.search.privacy.note" = "Hakuhistoriaasi ei koskaan seurata";
+
+// MARK: - MCP Servers
+"mcp.filesystem" = "Tiedostojärjestelmä";
+"mcp.filesystem.desc" = "Lue ja kirjoita tiedostoja sovelluksessa";
+"mcp.calendar" = "Kalenteri";
+"mcp.calendar.desc" = "Lue ja kirjoita tapahtumia";
+"mcp.reminders" = "Muistutukset";
+"mcp.reminders.desc" = "Hallitse muistutuksia";
+"mcp.contacts" = "Yhteystiedot";
+"mcp.contacts.desc" = "Etsi ja katso yhteystietoja";
+"mcp.photos" = "Kuvat";
+"mcp.photos.desc" = "Pääsy kuvakirjastoon";
+"mcp.location" = "Sijainti";
+"mcp.location.desc" = "Hae nykyinen sijainti ja etsi paikkoja";
+"mcp.health" = "Terveys";
+"mcp.health.desc" = "Pääsy terveystietoihin";
+"mcp.shortcuts" = "Pikakuvakkeet";
+"mcp.shortcuts.desc" = "Suorita pikakuvakkeita";
+"mcp.websearch" = "Verkkohaku";
+"mcp.websearch.desc" = "Anonyymi verkkohaku";
+"mcp.custom" = "Mukautettu integraatio";
+"mcp.custom.add" = "Lisää integraatio";
+"mcp.custom.setup" = "Määritä ulkoinen palveluintegraatio";
+"mcp.custom.title" = "Mukautetut integraatiot";
+"mcp.settings.title" = "Integraatioasetukset";
+"mcp.server.name" = "Palvelimen nimi";
+"mcp.server.name.placeholder" = "esim. Oma palvelimeni";
+"mcp.config.url" = "Asetustiedoston URL";
+"mcp.import.file" = "Tuo tiedostosta";
+"mcp.config.example" = "Esimerkki asetustiedostosta";
+"mcp.permission.note" = "Oikeuksia pyydetään jokaisen ominaisuuden ensimmäisellä käytöllä";
+
+// MARK: - MCP Tool Messages
+"mcp.tool.available" = "Saatavilla olevat työkalut:";
+"mcp.tool.parameters" = "Parametrit:";
+"mcp.prompt.available" = "Saatavilla olevat kehotteet:";
+"mcp.prompt.arguments" = "Argumentit:";
+"mcp.tool.name" = "työkalu_nimi";
+"mcp.tool.arg.name" = "arg_nimi";
+"mcp.tool.arg.value" = "arvo";
+"mcp.tool.no.result" = "Ei tulosta";
+"mcp.tool.running" = "Suoritetaan työkalua: %@";
+"mcp.tool.error" = "Työkalun suoritusvirhe: %@";
+
+// MARK: - MCP Error Messages
+"mcp.error.server.not.found" = "Palvelinta ei löydy: %@";
+"mcp.error.tool.not.found" = "Työkalua ei löydy: %@";
+"mcp.error.invalid.args" = "Virheelliset argumentit: %@";
+"mcp.error.execution" = "Suoritusvirhe: %@";
+"mcp.error.permission" = "Oikeus evätty: %@";
+
+// MARK: - Calendar Messages
+"calendar.no.events" = "Ei tapahtumia";
+"calendar.event.created" = "Tapahtuma luotu: %@";
+"calendar.event.deleted" = "Tapahtuma poistettu: %@";
+"calendar.allday.created" = "Koko päivän tapahtuma luotu: %@";
+"calendar.access.denied" = "Kalenteripääsy evätty";
+"calendar.today.none" = "Ei tapahtumia tänään";
+"calendar.untitled" = "Ei otsikkoa";
+
+// MARK: - Reminders Messages
+"reminders.none" = "Ei muistutuksia";
+"reminders.created" = "Muistutus luotu: %@";
+"reminders.completed" = "Muistutus suoritettu: %@";
+"reminders.deleted" = "Muistutus poistettu: %@";
+"reminders.access.denied" = "Muistutuspääsy evätty";
+"reminders.untitled" = "Ei otsikkoa";
+
+// MARK: - Photos Messages
+"photos.access.denied" = "Kuvapääsy evätty";
+"photos.not.found" = "Kuvaa ei löydy";
+"photos.untitled" = "Ei otsikkoa";
+"photos.count" = "Kuvat: %d";
+"photos.videos.count" = "Videot: %d";
+"photos.albums.count" = "Albumit: %d";
+"photos.favorites.count" = "Suosikit: %d";
+"photos.date" = "Päivämäärä: %@";
+"photos.size" = "Koko: %d x %d";
+"photos.location" = "Sijainti: %@, %@";
+"photos.media.type" = "Mediatyyppi: %@";
+"photos.duration" = "Kesto: %dm %ds";
+"photos.favorite" = "Suosikki: %@";
+"photos.type.image" = "Kuva";
+"photos.type.video" = "Video";
+"photos.type.audio" = "Ääni";
+
+// MARK: - Contacts Messages
+"contacts.access.denied" = "Yhteystietopääsy evätty";
+"contacts.not.found" = "Ei vastaavia yhteystietoja";
+"contacts.no.groups" = "Ei ryhmiä";
+"contacts.no.card" = "Yhteystietokorttia ei asetettu";
+"contacts.name" = "Nimi: %@";
+"contacts.company" = "Yritys: %@";
+"contacts.job" = "Tehtävänimike: %@";
+
+// MARK: - Location Messages
+"location.access.denied" = "Sijaintipääsy evätty";
+"location.not.found" = "Osoitetta ei löydy";
+"location.latitude" = "Leveysaste: %@";
+"location.longitude" = "Pituusaste: %@";
+"location.accuracy" = "Tarkkuus: %dm";
+"location.altitude" = "Korkeus: %dm";
+"location.search" = "Haku: %@";
+"location.address" = "Osoite: %@";
+"location.country" = "Maa: %@";
+"location.postal" = "Postinumero: %@";
+"location.from" = "Lähde: (%@, %@)";
+"location.to" = "Kohde: (%@, %@)";
+"location.distance.km" = "Etäisyys: %.2f km";
+"location.distance.m" = "Etäisyys: %d m";
+
+// MARK: - Health Messages
+"health.not.available" = "Terveys ei ole saatavilla tässä laitteessa";
+"health.date" = "Päivämäärä: %@";
+"health.steps" = "Askeleet: %@ askelta";
+"health.goal.progress" = "Tavoitteen edistyminen: %d%% (10 000 askeleen tavoite)";
+"health.no.data" = "Ei saatavilla olevaa dataa";
+"health.avg.bpm" = "Keskiarvo: %d lyöntiä/min";
+"health.min.bpm" = "Minimi: %d lyöntiä/min";
+"health.max.bpm" = "Maksimi: %d lyöntiä/min";
+"health.measurements" = "Mittaukset: %d";
+"health.no.sleep" = "Ei unitietoja";
+"health.sleep.total" = "Kokonaisuni: %dt %dm";
+"health.bedtime" = "Nukkumaanmenoaika: %@";
+"health.waketime" = "Heräämisaika: %@";
+"health.calories" = "Kalorit: %d kcal";
+
+// MARK: - File System Messages
+"filesystem.not.found" = "Tiedostoa ei löydy: %@";
+"filesystem.written" = "Tiedosto kirjoitettu: %@";
+"filesystem.dir.created" = "Hakemisto luotu: %@";
+"filesystem.deleted" = "Poistettu: %@";
+"filesystem.size" = "Koko: %@";
+"filesystem.created" = "Luotu: %@";
+"filesystem.modified" = "Muokattu: %@";
+"filesystem.type" = "Tyyppi: %@";
+
+// MARK: - Shortcuts Messages
+"shortcuts.executed" = "Pikakuvake '%@' suoritettu";
+"shortcuts.opened" = "Pikakuvakkeet-sovellus avattu";
+"shortcuts.settings.opened" = "Asetukset (%@) avattu";
+"shortcuts.mail.opened" = "Sähköpostin kirjoitus avattu";
+"shortcuts.calling" = "Soitetaan: %@";
+"shortcuts.message.opened" = "Viestin kirjoitus avattu";
+"shortcuts.failed" = "Pikakuvakkeen avaaminen epäonnistui";
+
+// MARK: - Model Tiers
+"model.tier.entry" = "Perus";
+"model.tier.standard" = "Standardi";
+"model.tier.pro" = "Pro";
+
+// MARK: - Tool Parser
+"tool.arguments" = "Argumentit:";
+
+// MARK: - Model Settings
+"model.action.settings" = "Asetukset";
+"settings.model.parameters" = "Malliasetukset";
+"settings.model.parameters.description" = "Mukauta tälle mallille generointiparametreja";
+"settings.preset.title" = "Esiasetukset";
+"settings.preset.custom" = "Mukautettu";
+"settings.preset.balanced" = "Tasapainoinen";
+"settings.preset.creative" = "Luova";
+"settings.preset.precise" = "Tarkka";
+"settings.preset.coding" = "Koodaus";
+"settings.preset.japanese" = "Japani";
+"settings.parameters.title" = "Parametrit";
+"settings.parameter.temperature" = "Lämpötila";
+"settings.parameter.temperature.description" = "Korkeampi = luovempi, matalampi = keskittyneempi";
+"settings.parameter.top.p" = "Top P";
+"settings.parameter.top.p.description" = "Nucleus-näytteenoton todennäköisyys";
+"settings.parameter.top.k" = "Top K";
+"settings.parameter.top.k.description" = "Huomioon otettavien top-tokenien määrä";
+"settings.parameter.max.tokens" = "Maks tokeneja";
+"settings.parameter.max.tokens.description" = "Maksimi vastauksen pituus";
+"settings.parameter.repeat.penalty" = "Toistosäätö";
+"settings.parameter.repeat.penalty.description" = "Korkeampi = vähemmän toistoa";
+"settings.parameter.thinking" = "Ajattelutila";
+"settings.parameter.thinking.description" = "Näytä tekoälyn päättelyprosessi";
+"settings.system.prompt.title" = "Järjestelmäkehote";
+"settings.system.prompt.description" = "Mukautetut ohjeet tekoälylle";
+"settings.reset.to.default" = "Palauta oletukseksi";
+
+// MARK: - Vision Model
+"vision.model.required.title" = "Näköymälä vaaditaan";
+"vision.model.required.header" = "Kuvantunnistus vaaditaan";
+"vision.model.required.description" = "Kuvien analysointiin tarvitset näkökykyisen tekoälymallin";
+"vision.model.switch" = "Vaihda mallia";
+"vision.model.switch.message %@" = "Vaihda malliin %@ ottaaksesi kuva-analyysin käyttöön?";
+"vision.model.download" = "Lataa";
+"vision.model.download.message %@ %@" = "Ladataanko %@ (%@) kuvien analysointia varten?";
+"vision.model.not.available" = "Yhteensopivaa näkömallia ei ole saatavilla laitteellesi";
+"vision.model.switching" = "Vaihdetaan mallia...";
+"vision.model.download.title" = "Näkömallit";
+"vision.model.recommended" = "Suositeltu laitteellesi";
+"vision.model.recommended.size %@" = "Suositeltu: %@";
+"vision.model.use.this" = "Käytä tätä mallia";
+"vision.model.download.button %@" = "Lataa (%@)";
+"vision.model.other.options" = "Muut näkömallit";
+"vision.model.download.complete" = "Lataus valmis";
+"vision.model.download.complete.message" = "Valmis analysoimaan kuvia";
+
+// MARK: - Whisper Voice Input (Legacy)
+"whisper.download.title" = "Puheentunnistus vaaditaan";
+"whisper.download.action" = "Lataa";
+"whisper.download.message" = "Puhesyötteen käyttöön tarvitset puheentunnistusmallin (~150 Mt).";
+"whisper.downloading" = "Ladataan puheentunnistusmallia...";
+"whisper.download.error" = "Latausvirhe";
+"whisper.load.error" = "Mallin latausvirhe";
+"whisper.permission.denied" = "Mikrofonipääsy ei sallittu";
+"whisper.transcribe.error" = "Litterointivirhe";
+"whisper.error.permission" = "Mikrofoninlupa vaaditaan";
+"whisper.error.not.recording" = "Ei parhaillaan nauhoiteta";
+"whisper.error.no.recording" = "Ei nauhoitusdataa";
+"whisper.error.model.not.loaded" = "Puheentunnistusmallia ei ladattu";
+"whisper.error.transcription" = "Litterointi epäonnistui";
+
+// MARK: - Speech Recognition (ReazonSpeech)
+"speech.download.title" = "Puheentunnistus vaaditaan";
+"speech.download.action" = "Lataa";
+"speech.download.message" = "Puhesyötteen käyttöön tarvitset japanilaisen puheentunnistusmallin (~155 Mt).";
+"speech.downloading" = "Ladataan puheentunnistusmallia...";
+
+// MARK: - Language Settings
+"settings.language.section" = "Kieli";
+"language.system" = "Käytä järjestelmän kieltä";
+"settings.language.restart.hint" = "Kielimuutokset tulevat voimaan sovelluksen uudelleenkäynnistyksen jälkeen";
+"settings.language.changed.title" = "Kieli vaihdettu";
+"settings.language.changed.message" = "Käynnistä sovellus uudelleen ottaaksesi muutokset käyttöön";
+"common.ok" = "OK";
+
+// MARK: - System Prompt Settings
+"settings.prompt.section" = "Järjestelmäkehote";
+"settings.prompt.edit" = "Muokkaa kehotetta";
+"settings.prompt.default" = "Käytetään oletusta";
+"settings.prompt.custom" = "Mukautettu kehote asetettu";
+"settings.prompt.hint" = "Mukauta tekoälyn toimintaa";
+"settings.prompt.editor.title" = "Muokkaa kehotetta";
+"settings.prompt.editor.instruction" = "Lisää mukautettuja ohjeita tekoälylle. Jätä tyhjäksi käyttääksesi oletuskehotetta.";
+"settings.prompt.default.preview" = "Oletuskehote (katkelma):";
+"settings.prompt.reset" = "Palauta";
+"settings.prompt.reset.title" = "Palauta kehote";
+"settings.prompt.reset.message" = "Poistetaanko mukautettu kehote ja palautetaan oletukseksi?";
+
+// MARK: - Prompt Templates
+"templates.title" = "Kehotemallit";
+"templates.empty" = "Ei vielä malleja";
+"templates.add" = "Lisää malli";
+"template.add.title" = "Lisää malli";
+"template.edit.title" = "Muokkaa mallia";
+"template.name.header" = "Nimi";
+"template.name.placeholder" = "Mallin nimi";
+"template.content.header" = "Kehotteen sisältö";
+"template.icon.header" = "Kuvake";
+"template.translate.name" = "Käännä";
+"template.translate.content" = "Käännä seuraava: ";
+"template.summarize.name" = "Tiivistä";
+"template.summarize.content" = "Tiivistä seuraava: ";
+"template.explain.name" = "Selitä";
+"template.explain.content" = "Selitä seuraava: ";
+"template.code.name" = "Koodi";
+"template.code.content" = "Kirjoita koodi: ";
+
+// MARK: - Export
+"export.title" = "Vie keskustelu";
+"export.format.markdown" = "Markdown";
+"export.format.pdf" = "PDF";
+"export.format.text" = "Pelkkä teksti";
+"export.created" = "Luotu";
+"export.image.attached" = "Kuva liitetty";
+"export.generated.by" = "Luonut";
+
+// MARK: - Loading Phases
+"loading.phase.initializing" = "Alustetaan...";
+"loading.phase.loading" = "Ladataan mallia...";
+"loading.phase.preparing" = "Valmistellaan päättelymoottoria...";
+"loading.phase.almost" = "Melkein valmis...";
+
+// MARK: - Welcome Screen
+"welcome.greeting" = "Kysy mitä tahansa";
+"welcome.subtitle" = "Yksityisyyttä ensisijaisesti arvostava tekoälyavustajasi";
+"suggestion.idea" = "Auta minua ideoimaan";
+"suggestion.write" = "Auta minua kirjoittamaan jotain";
+"suggestion.question" = "Vastaa kysymyksiini";
+
+// MARK: - Kokoro TTS
+"tts.download.title" = "Korkealaatuinen ääni";
+"tts.download.action" = "Lataa";
+"tts.download.use_system" = "Käytä järjestelmän ääntä";
+"tts.download.message" = "Lataa Kokoro TTS -malli (~87 Mt) luonnollisempaa japanilaista tekstistä puheeksi -toimintoa varten.";
+"tts.downloading" = "Ladataan TTS-mallia...";
+
+// MARK: - Feedback
+"feedback.consent.title" = "Lähetä palautetta";
+"feedback.send" = "Lähetä";
+"feedback.positive.title" = "Oliko tästä vastauksesta apua?";
+"feedback.negative.title" = "Voisiko tätä parantaa?";
+"feedback.explanation" = "Palautteesi auttaa parantamaan tekoälyn laatua. Tarkista lähetettävät tiedot ennen lähettämistä.";
+"feedback.data.section" = "Lähetettävät tiedot";
+"feedback.data.conversation" = "Keskustelu";
+"feedback.data.conversation.desc" = "Tekoälyvastaus ja edellinen viestisi";
+"feedback.data.model" = "Mallitiedot";
+"feedback.data.model.desc" = "Käytetyn tekoälymallin nimi";
+"feedback.data.timestamp" = "Aikaleima";
+"feedback.data.timestamp.desc" = "Milloin palaute lähetettiin";
+"feedback.privacy.section" = "Yksityisyys";
+"feedback.privacy.anonymous" = "Henkilökohtaisia tunnistetietoja ei lähetetä";
+"feedback.privacy.improvement" = "Käytetään vain tekoälyn laadun parantamiseen";
+"feedback.privacy.optional" = "Palautteen lähettäminen on täysin vapaaehtoista";
+"feedback.comment.section" = "Kommentti (valinnainen)";
+"feedback.comment.placeholder" = "Kerro mitä voitaisiin parantaa tai mikä toimi hyvin...";
+"feedback.remember.title" = "Muista tämä valinta";
+"feedback.remember.description" = "Lähetä palaute kysymättä seuraavalla kerralla";
+
+// MARK: - Emergency Mode
+"emergency.sos.button" = "Hätätila (paina pitkään vaihtaaksesi)";
+"emergency.mode.active" = "Hätätila aktiivinen";
+"emergency.action.firstaid" = "Ensiapu";
+"emergency.action.firstaid.message" = "Anna ensiapuohjeita. Kuvailen vamman tai oireet: ";
+"emergency.action.disaster" = "Katastrofi";
+"emergency.action.disaster.message" = "Katastrofi on tapahtunut. Anna toimintaohjeet: ";
+"emergency.action.factcheck" = "Faktantarkistus";
+"emergency.action.factcheck.message" = "Tarkista tämän tiedon luotettavuus: ";
+"emergency.action.contacts" = "Hätänumerot";
+"emergency.action.contacts.message" = "Näytä luettelo hätänumeroista";
+"emergency.action.evacuation" = "Evakuoi";
+"emergency.action.evacuation.message" = "Luo evakuointitarkistuslista nykyiseen tilanteeseen: ";
+"mcp.emergency_kb" = "Hätä-KB";
+"mcp.emergency_kb.desc" = "Hätä- ja katastrofitietoja";
+
+// MARK: - Emergency Templates
+"template.firstaid.name" = "Ensiapuohje";
+"template.firstaid.content" = "Anna ensiapuohjeita: ";
+"template.disaster.name" = "Katastrofivaste";
+"template.disaster.content" = "Seuraava katastrofi on tapahtunut. Anna toimintaohjeet: ";
+"template.factcheck.name" = "Faktantarkistus";
+"template.factcheck.content" = "Tarkista tämän tiedon luotettavuus ja anna faktantarkistusvinkkejä: ";
+"template.evacuation.name" = "Evakuointitarkistuslista";
+"template.evacuation.content" = "Luo evakuointitarkistuslista nykyiseen tilanteeseen: ";
+
+// MARK: - ChatWeb.ai Integration
+"chatweb.title" = "ChatWeb.ai";
+"chatweb.desc" = "Pilvi-tekoäly-chat";
+"chatweb.connect" = "Yhdistä ChatWeb.ai-palveluun";
+"chatweb.qr.title" = "Yhdistä QR-koodilla";
+"chatweb.qr.scan" = "Skannaa QR-koodi";
+"chatweb.open" = "Avaa ChatWeb.ai";
+
+// MARK: - Peer Connection
+"peer.title" = "Läheiset laitteet";
+"peer.desc" = "Yhdistä läheisiin Elio-laitteisiin";
+"peer.connect" = "Yhdistä laitteeseen";
+"peer.code.title" = "Yhteyskoodi";
+"peer.code.enter" = "Syötä 4-numeroinen koodi";
+"peer.code.your" = "Sinun koodisi";
+"peer.connected" = "Yhdistetty";
+"peer.disconnected" = "Yhteys katkaistu";
+"peer.inference.offload" = "Jakaa päättelyä";
+
+// MARK: - Web Search
+"chat.web.search" = "Verkkohaku";
+"search.privacy.title" = "Yksityisyyssuojattu haku";
+"search.privacy.proceed" = "Hae";
+"search.privacy.message" = "ElioChat verkkohaku suojaa yksityisyyttäsi:\n\n🔒 Haku DuckDuckGon kautta\n🚫 Ei seurantaa tai profilointia\n🔐 Hakuhistoriaa ei tallenneta\n📱 Dataa ei tallenneta laitteen ulkopuolelle\n\nVain hakukyselysi lähetetään DuckDuckGolle, ja tulokset käsitellään laitteessasi.";
+"chat.web.analyzing" = "[Analysoidaan verkkosivua]";

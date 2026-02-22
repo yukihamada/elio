@@ -1,0 +1,635 @@
+/*
+  Localizable.strings (Vietnamese)
+  Elio
+*/
+
+// MARK: - App General
+"app.name" = "Elio";
+"app.tagline" = "Bộ não thứ hai giữ bí mật của bạn.";
+
+// MARK: - Common Actions
+"common.done" = "Xong";
+"common.cancel" = "Hủy";
+"common.delete" = "Xóa";
+"common.save" = "Lưu";
+"common.edit" = "Chỉnh sửa";
+"common.share" = "Chia sẻ";
+"common.copy" = "Sao chép";
+"common.copied" = "Đã sao chép";
+"common.loading" = "Đang tải...";
+"common.error" = "Lỗi";
+"common.retry" = "Thử lại";
+"common.skip" = "Bỏ qua";
+"common.next" = "Tiếp theo";
+"common.start" = "Bắt đầu";
+"common.add" = "Thêm";
+"common.close" = "Đóng";
+"common.details" = "Chi tiết";
+"common.yes" = "Có";
+"common.no" = "Không";
+"common.unknown" = "Không rõ";
+
+// MARK: - Chat
+"chat.placeholder" = "Hỏi bất cứ điều gì";
+"chat.model.not.loaded" = "Không có mô hình nào được tải";
+"chat.model.not.loaded.description" = "Vui lòng tải xuống mô hình từ Cài đặt";
+"chat.go.to.settings" = "Đi tới Cài đặt";
+"chat.new.conversation" = "Cuộc trò chuyện mới";
+"chat.stop.generation" = "Dừng";
+"chat.generation.stopped" = "\n\n[Đã dừng tạo]";
+"chat.image.sent" = "[Đã gửi hình ảnh]";
+"chat.images.sent" = "[Đã gửi %d hình ảnh]";
+"chat.pdf.sent" = "[PDF đính kèm: %@]";
+"chat.pdf.sent.vision" = "[PDF có hình ảnh: %@]";
+"chat.pdf.context" = "Sau đây là nội dung văn bản được trích xuất từ tài liệu PDF \"%@\":\n\n%@";
+"chat.pdf.context.vision" = "Đây là trang 1 của tài liệu PDF \"%@\". Nội dung văn bản được trích xuất là:\n\n%@\n\nVui lòng phân tích cả nội dung hình ảnh và văn bản.";
+"chat.pdf.analyze" = "Vui lòng phân tích trang PDF này từ \"%@\".";
+"chat.url.sent" = "[Trang web: %@]";
+"chat.url.context" = "Sau đây là nội dung được trích xuất từ trang web \"%@\" (%@):\n\n%@";
+"chat.thinking" = "Đang suy nghĩ...";
+"chat.generating" = "Đang tạo phản hồi...";
+"chat.welcome" = "Tôi có thể giúp gì cho bạn?";
+"chat.suggestion.schedule" = "Hiển thị lịch trình hôm nay";
+"chat.suggestion.reminder" = "Tạo lời nhắc";
+"chat.suggestion.weather" = "Thời tiết hôm nay thế nào?";
+"chat.suggestion.help" = "Cách sử dụng ứng dụng này";
+"chat.websearch.on" = "Tìm kiếm Web đang bật";
+"chat.websearch.off" = "Tìm kiếm Web đang tắt";
+"chat.thinking.on" = "Chế độ suy nghĩ đang bật";
+"chat.thinking.off" = "Chế độ suy nghĩ đang tắt";
+"chat.transcribing" = "Đang phiên âm...";
+"chat.offline" = "Ngoại tuyến";
+
+// Voice Conversation Mode
+"voice.listening" = "Đang nghe...";
+"voice.processing" = "Đang xử lý...";
+"voice.thinking" = "Đang suy nghĩ...";
+"voice.speaking" = "Đang nói...";
+"voice.tap.to.send" = "Nhấn để gửi";
+"chat.templates" = "Mẫu";
+"chat.websearch.privacy.title" = "Về Tìm kiếm Web";
+"chat.websearch.privacy.message" = "Bật tìm kiếm web cho phép AI tìm kiếm internet qua DuckDuckGo để có thông tin cập nhật. Truy vấn tìm kiếm được gửi đến DuckDuckGo nhưng không bị theo dõi.";
+"chat.websearch.privacy.enable" = "Bật";
+"chat.websearch.privacy.disable" = "Giữ tắt";
+
+// MARK: - Settings
+"settings.title" = "Cài đặt";
+"settings.model.section" = "Mô hình AI";
+"settings.model.recommended" = "Đề xuất: %@";
+"settings.model.local.execution" = "Mô hình chạy cục bộ trên thiết bị của bạn";
+"settings.model.show.more" = "Mô hình khác (%d)";
+"settings.model.show.less" = "Hiển thị ít hơn";
+"settings.appearance.section" = "Giao diện";
+"settings.tools.section" = "Tính năng thông minh";
+"settings.mcp.servers" = "Tích hợp";
+"settings.mcp.servers.description" = "Lịch, Tệp, Lời nhắc & hơn nữa";
+"settings.mcp.enabled.count" = "%d đã bật";
+"settings.mcp.enabled.count.suffix" = " đã bật";
+"settings.about.section" = "Giới thiệu";
+"settings.version" = "Phiên bản";
+"settings.about.app" = "Về ứng dụng này";
+"settings.about.mcp" = "Về tích hợp";
+"settings.privacy.badge" = "Hoạt động ngoại tuyến";
+"settings.privacy.description" = "Hoạt động ở chế độ máy bay";
+"settings.airplane.mode" = "Đang chạy ở chế độ máy bay";
+"settings.offline.ready" = "Sẵn sàng ngoại tuyến";
+
+// MARK: - Model States
+"model.status.downloading" = "Đang tải xuống... %d%%";
+"model.status.loading" = "Đang tải...";
+"model.status.in.use" = "Đang sử dụng";
+"model.status.recommended" = "Đề xuất";
+"model.status.heavy" = "Nặng";
+"model.action.download" = "Tải xuống";
+"model.action.load" = "Tải";
+"model.action.delete" = "Xóa";
+"model.action.use" = "Sử dụng mô hình này";
+"model.delete.confirm.title" = "Xóa mô hình";
+"model.delete.confirm.message" = "Xóa %@? Bạn sẽ cần tải xuống lại để sử dụng.";
+"model.select.title" = "Chọn mô hình";
+"model.select.prompt" = "Vui lòng chọn mô hình";
+"model.downloaded" = "Đã tải xuống";
+
+// MARK: - Inference Mode
+"inference.mode.title" = "Tăng tốc";
+"inference.mode.auto" = "Tự động";
+"inference.mode.auto.desc" = "Hiệu suất tối ưu tự động";
+"inference.mode.gpu" = "GPU (Metal)";
+"inference.mode.gpu.desc" = "Tốc độ tối đa với Metal";
+"inference.mode.cpu" = "Chỉ CPU";
+"inference.mode.cpu.desc" = "Chế độ tiết kiệm pin";
+"inference.mode.hybrid" = "Kết hợp";
+"inference.mode.hybrid.desc" = "Cân bằng tốc độ và pin";
+
+// MARK: - Theme
+"theme.system" = "Hệ thống";
+"theme.light" = "Sáng";
+"theme.dark" = "Tối";
+
+// MARK: - Onboarding
+"onboarding.welcome.title" = "Chào mừng đến với ElioChat";
+"onboarding.welcome.subtitle" = "Trợ lý AI riêng tư của bạn";
+"onboarding.features.title" = "AI thực sự riêng tư";
+"onboarding.feature.offline" = "Hoạt động ở chế độ máy bay";
+"onboarding.feature.offline.desc" = "Sử dụng trên máy bay hoặc dưới lòng đất";
+"onboarding.feature.privacy" = "Truyền dữ liệu bằng không";
+"onboarding.feature.privacy.desc" = "Cuộc trò chuyện không rời khỏi điện thoại";
+"onboarding.feature.vault" = "Tích hợp thông minh";
+"onboarding.feature.vault.desc" = "Kết nối với Lịch & Tệp";
+"onboarding.feature.secure" = "AI an toàn cho công việc";
+"onboarding.feature.secure.desc" = "An toàn cho sử dụng doanh nghiệp";
+"onboarding.feature.thinking" = "Quy trình suy nghĩ";
+"onboarding.privacy.title" = "Dữ liệu của bạn là của bạn";
+"onboarding.privacy.item1" = "Tất cả xử lý xảy ra trên iPhone của bạn";
+"onboarding.privacy.item2" = "Không có dữ liệu được gửi đến máy chủ đám mây";
+"onboarding.privacy.item3" = "Không bao giờ được sử dụng để đào tạo AI";
+"onboarding.getstarted.title" = "Sẵn sàng trong một chạm";
+"onboarding.getstarted.subtitle" = "Tải xuống mô hình AI được đề xuất\nvà bắt đầu trò chuyện ngay";
+"onboarding.step1" = "Tải xuống mô hình được đề xuất";
+"onboarding.step2" = "Chờ vài phút";
+"onboarding.step3" = "Bạn đã sẵn sàng!";
+
+// MARK: - About
+"about.title" = "Về ứng dụng này";
+"about.rate.app" = "Đánh giá ứng dụng";
+"about.share.app" = "Chia sẻ với bạn bè";
+"about.privacy.policy" = "Chính sách quyền riêng tư";
+"about.terms" = "Điều khoản dịch vụ";
+"about.tech.info" = "Thông tin kỹ thuật";
+"about.tech.engine" = "Công cụ AI";
+"about.tech.format" = "Định dạng được hỗ trợ";
+"about.tech.inference" = "Suy luận";
+"about.data.management" = "Quản lý dữ liệu";
+"about.delete.all" = "Xóa tất cả cuộc trò chuyện";
+"about.credits" = "Tín dụng";
+"about.credits.description" = "Ứng dụng này sử dụng thư viện nguồn mở";
+"about.privacy.section" = "Quyền riêng tư";
+"about.gguf.format" = "Định dạng GGUF";
+"about.metal.gpu" = "Tăng tốc GPU Metal";
+
+// MARK: - Referral
+"referral.title" = "Giới thiệu bạn bè";
+"referral.code.title" = "Mã giới thiệu của bạn";
+"referral.code.copy" = "Sao chép mã";
+"referral.code.copied" = "Đã sao chép";
+"referral.share.button" = "Chia sẻ với bạn bè";
+"referral.share.description" = "Chia sẻ Elio với bạn bè của bạn!";
+"referral.count" = "Đã giới thiệu %d người";
+"referral.enter.title" = "Nhập mã giới thiệu";
+"referral.enter.placeholder" = "Mã giới thiệu";
+"referral.enter.button" = "Áp dụng";
+"referral.enter.success" = "Đã áp dụng mã giới thiệu";
+"referral.enter.error" = "Mã giới thiệu không hợp lệ";
+
+// MARK: - Privacy Policy
+"privacy.title" = "Chính sách quyền riêng tư";
+"privacy.data.collection.title" = "Thu thập dữ liệu";
+"privacy.data.collection.content" = "Ứng dụng này chạy AI cục bộ hoàn toàn ngoại tuyến.\nKhông có dữ liệu được gửi đến máy chủ bên ngoài.\nTất cả cuộc trò chuyện chỉ được lưu trữ trên thiết bị của bạn.";
+"privacy.stored.data.title" = "Dữ liệu được lưu trữ";
+"privacy.stored.data.content" = "Lịch sử cuộc trò chuyện (chỉ lưu trên thiết bị)\nTệp mô hình AI (chỉ lưu trên thiết bị)\nCài đặt ứng dụng (chỉ lưu trên thiết bị)\n\nDữ liệu này không bao giờ được chia sẻ bên ngoài.";
+"privacy.data.deletion.title" = "Xóa dữ liệu";
+"privacy.data.deletion.content" = "Bạn có thể xóa tất cả dữ liệu bất cứ lúc nào từ Cài đặt > Quản lý dữ liệu.\nGỡ cài đặt ứng dụng sẽ xóa tất cả dữ liệu.";
+
+// MARK: - Terms of Service
+"terms.title" = "Điều khoản dịch vụ";
+"terms.service.title" = "Mô tả dịch vụ";
+"terms.service.content" = "Ứng dụng này cung cấp chức năng trợ lý AI sử dụng mô hình AI chạy cục bộ.";
+"terms.disclaimer.title" = "Tuyên bố từ chối trách nhiệm";
+"terms.disclaimer.content" = "Phản hồi của AI có thể chứa lỗi.\nCác quyết định quan trọng phải luôn được xác minh bởi chuyên gia.\nChúng tôi không chịu trách nhiệm về bất kỳ thiệt hại nào phát sinh từ việc sử dụng ứng dụng này.";
+"terms.prohibited.title" = "Hoạt động bị cấm";
+"terms.prohibited.content" = "Hoạt động bất hợp pháp\nHoạt động vi phạm quyền của người khác\nDịch ngược ứng dụng này\nSao chép ứng dụng này mà không có sự cho phép";
+"terms.ip.title" = "Sở hữu trí tuệ";
+"terms.ip.content" = "Quyền sở hữu trí tuệ của ứng dụng này thuộc về nhà phát triển.\nSử dụng trái phép bị cấm.";
+
+// MARK: - Conversations
+"conversations.title" = "Cuộc trò chuyện";
+"conversations.new" = "Cuộc trò chuyện mới";
+"conversations.empty" = "Chưa có cuộc trò chuyện";
+"conversations.delete" = "Xóa cuộc trò chuyện";
+"conversations.default.title" = "Cuộc trò chuyện mới";
+"conversations.today" = "Hôm nay";
+"conversations.yesterday" = "Hôm qua";
+"conversations.past7days" = "7 ngày qua";
+"conversations.past30days" = "30 ngày qua";
+"conversations.older" = "Cũ hơn";
+"conversations.created" = "Đã tạo: %@";
+"conversations.user" = "Người dùng";
+"conversations.assistant" = "Trợ lý";
+"conversations.search.placeholder" = "Tìm kiếm cuộc trò chuyện";
+"conversations.search.no_results" = "Không tìm thấy kết quả";
+
+// MARK: - Message Actions
+"message.copy" = "Sao chép";
+"message.speak" = "Nói";
+"message.stop.speaking" = "Dừng nói";
+"message.share" = "Chia sẻ";
+"message.share.card" = "Chia sẻ dưới dạng thẻ";
+"message.like" = "Thích";
+
+// MARK: - Share Card
+"share.card.title" = "Chia sẻ thẻ";
+"share.card.preview" = "Xem trước";
+"share.card.button" = "Chia sẻ hình ảnh";
+"message.dislike" = "Không thích";
+"message.thinking.process" = "Quy trình suy nghĩ";
+"message.tool.running" = "Đang chạy công cụ";
+"message.tool.error" = "Lỗi";
+"message.tool.completed" = "Hoàn thành";
+
+// MARK: - Attachment
+"attachment.title" = "Đính kèm";
+"attachment.photo.library" = "Chọn ảnh";
+"attachment.camera" = "Chụp ảnh";
+"attachment.pdf" = "Chọn PDF";
+"attachment.pdf.chars" = "%d ký tự";
+"attachment.pdf.pages" = "%d trang";
+"attachment.pdf.vision.enabled" = "Phân tích hình ảnh đã bật";
+"attachment.pdf.text.only" = "Chế độ chỉ văn bản";
+"attachment.url" = "Đọc trang web";
+"attachment.url.title" = "Nhập URL";
+"attachment.url.placeholder" = "https://example.com";
+"attachment.url.message" = "Dán URL để trích xuất nội dung";
+"attachment.url.fetch" = "Lấy";
+"attachment.url.loading" = "Đang tải trang...";
+
+// MARK: - Errors
+"error.model.not.found" = "Không tìm thấy tệp mô hình";
+"error.model.not.loaded" = "Mô hình chưa được tải";
+"error.context.failed" = "Không thể tạo ngữ cảnh";
+"error.tokenization.failed" = "Mã hóa token thất bại";
+"error.generation.failed" = "Lỗi tạo: %@";
+"error.occurred" = "Đã xảy ra lỗi: %@";
+"error.invalid.url" = "URL không hợp lệ";
+"error.download.failed" = "Tải xuống thất bại";
+"error.extraction.failed" = "Trích xuất thất bại";
+"error.config.not.found" = "Không tìm thấy tệp cấu hình";
+
+// MARK: - Ghost Search
+"ghost.search.title" = "Tìm kiếm ma";
+"ghost.search.description" = "Tìm kiếm ẩn danh qua DuckDuckGo (không theo dõi)";
+"ghost.search.connecting" = "Đang kết nối mạng ẩn danh...";
+"ghost.search.privacy.note" = "Lịch sử tìm kiếm của bạn không bao giờ bị theo dõi";
+
+// MARK: - MCP Servers
+"mcp.filesystem" = "Hệ thống tệp";
+"mcp.filesystem.desc" = "Đọc và ghi tệp trong ứng dụng";
+"mcp.calendar" = "Lịch";
+"mcp.calendar.desc" = "Đọc và ghi sự kiện";
+"mcp.reminders" = "Lời nhắc";
+"mcp.reminders.desc" = "Quản lý lời nhắc";
+"mcp.contacts" = "Liên hệ";
+"mcp.contacts.desc" = "Tìm kiếm và xem liên hệ";
+"mcp.photos" = "Ảnh";
+"mcp.photos.desc" = "Truy cập thư viện ảnh";
+"mcp.location" = "Vị trí";
+"mcp.location.desc" = "Lấy vị trí hiện tại và tìm kiếm địa điểm";
+"mcp.health" = "Sức khỏe";
+"mcp.health.desc" = "Truy cập dữ liệu sức khỏe";
+"mcp.shortcuts" = "Phím tắt";
+"mcp.shortcuts.desc" = "Chạy phím tắt";
+"mcp.websearch" = "Tìm kiếm web";
+"mcp.websearch.desc" = "Tìm kiếm web ẩn danh";
+"mcp.custom" = "Tích hợp tùy chỉnh";
+"mcp.custom.add" = "Thêm tích hợp";
+"mcp.custom.setup" = "Thiết lập tích hợp dịch vụ bên ngoài";
+"mcp.custom.title" = "Tích hợp tùy chỉnh";
+"mcp.settings.title" = "Cài đặt tích hợp";
+"mcp.server.name" = "Tên máy chủ";
+"mcp.server.name.placeholder" = "vd., Máy chủ tùy chỉnh của tôi";
+"mcp.config.url" = "URL tệp cấu hình";
+"mcp.import.file" = "Nhập từ tệp";
+"mcp.config.example" = "Ví dụ tệp cấu hình";
+"mcp.permission.note" = "Quyền sẽ được yêu cầu khi sử dụng mỗi tính năng lần đầu tiên";
+
+// MARK: - MCP Tool Messages
+"mcp.tool.available" = "Công cụ có sẵn:";
+"mcp.tool.parameters" = "Tham số:";
+"mcp.prompt.available" = "Lời nhắc có sẵn:";
+"mcp.prompt.arguments" = "Đối số:";
+"mcp.tool.name" = "tool_name";
+"mcp.tool.arg.name" = "arg_name";
+"mcp.tool.arg.value" = "value";
+"mcp.tool.no.result" = "Không có kết quả";
+"mcp.tool.running" = "Đang chạy công cụ: %@";
+"mcp.tool.error" = "Lỗi thực thi công cụ: %@";
+
+// MARK: - MCP Error Messages
+"mcp.error.server.not.found" = "Không tìm thấy máy chủ: %@";
+"mcp.error.tool.not.found" = "Không tìm thấy công cụ: %@";
+"mcp.error.invalid.args" = "Đối số không hợp lệ: %@";
+"mcp.error.execution" = "Lỗi thực thi: %@";
+"mcp.error.permission" = "Quyền bị từ chối: %@";
+
+// MARK: - Calendar Messages
+"calendar.no.events" = "Không có sự kiện";
+"calendar.event.created" = "Đã tạo sự kiện: %@";
+"calendar.event.deleted" = "Đã xóa sự kiện: %@";
+"calendar.allday.created" = "Đã tạo sự kiện cả ngày: %@";
+"calendar.access.denied" = "Truy cập lịch bị từ chối";
+"calendar.today.none" = "Không có sự kiện hôm nay";
+"calendar.untitled" = "Không có tiêu đề";
+
+// MARK: - Reminders Messages
+"reminders.none" = "Không có lời nhắc";
+"reminders.created" = "Đã tạo lời nhắc: %@";
+"reminders.completed" = "Đã hoàn thành lời nhắc: %@";
+"reminders.deleted" = "Đã xóa lời nhắc: %@";
+"reminders.access.denied" = "Truy cập lời nhắc bị từ chối";
+"reminders.untitled" = "Không có tiêu đề";
+
+// MARK: - Photos Messages
+"photos.access.denied" = "Truy cập ảnh bị từ chối";
+"photos.not.found" = "Không tìm thấy ảnh";
+"photos.untitled" = "Không có tiêu đề";
+"photos.count" = "Ảnh: %d";
+"photos.videos.count" = "Video: %d";
+"photos.albums.count" = "Album: %d";
+"photos.favorites.count" = "Yêu thích: %d";
+"photos.date" = "Ngày: %@";
+"photos.size" = "Kích thước: %d x %d";
+"photos.location" = "Vị trí: %@, %@";
+"photos.media.type" = "Loại phương tiện: %@";
+"photos.duration" = "Thời lượng: %dm %ds";
+"photos.favorite" = "Yêu thích: %@";
+"photos.type.image" = "Ảnh";
+"photos.type.video" = "Video";
+"photos.type.audio" = "Âm thanh";
+
+// MARK: - Contacts Messages
+"contacts.access.denied" = "Truy cập liên hệ bị từ chối";
+"contacts.not.found" = "Không tìm thấy liên hệ khớp";
+"contacts.no.groups" = "Không có nhóm";
+"contacts.no.card" = "Không có thẻ liên hệ nào được đặt";
+"contacts.name" = "Tên: %@";
+"contacts.company" = "Công ty: %@";
+"contacts.job" = "Chức danh: %@";
+
+// MARK: - Location Messages
+"location.access.denied" = "Truy cập vị trí bị từ chối";
+"location.not.found" = "Không tìm thấy địa chỉ";
+"location.latitude" = "Vĩ độ: %@";
+"location.longitude" = "Kinh độ: %@";
+"location.accuracy" = "Độ chính xác: %dm";
+"location.altitude" = "Độ cao: %dm";
+"location.search" = "Tìm kiếm: %@";
+"location.address" = "Địa chỉ: %@";
+"location.country" = "Quốc gia: %@";
+"location.postal" = "Mã bưu điện: %@";
+"location.from" = "Từ: (%@, %@)";
+"location.to" = "Đến: (%@, %@)";
+"location.distance.km" = "Khoảng cách: %.2f km";
+"location.distance.m" = "Khoảng cách: %d m";
+
+// MARK: - Health Messages
+"health.not.available" = "Sức khỏe không có sẵn trên thiết bị này";
+"health.date" = "Ngày: %@";
+"health.steps" = "Bước: %@ bước";
+"health.goal.progress" = "Tiến độ mục tiêu: %d%% (mục tiêu 10.000 bước)";
+"health.no.data" = "Không có dữ liệu";
+"health.avg.bpm" = "Trung bình: %d bpm";
+"health.min.bpm" = "Tối thiểu: %d bpm";
+"health.max.bpm" = "Tối đa: %d bpm";
+"health.measurements" = "Đo lường: %d";
+"health.no.sleep" = "Không có dữ liệu giấc ngủ";
+"health.sleep.total" = "Tổng giấc ngủ: %dh %dm";
+"health.bedtime" = "Giờ đi ngủ: %@";
+"health.waketime" = "Giờ thức dậy: %@";
+"health.calories" = "Calo: %d kcal";
+
+// MARK: - File System Messages
+"filesystem.not.found" = "Không tìm thấy tệp: %@";
+"filesystem.written" = "Đã ghi tệp: %@";
+"filesystem.dir.created" = "Đã tạo thư mục: %@";
+"filesystem.deleted" = "Đã xóa: %@";
+"filesystem.size" = "Kích thước: %@";
+"filesystem.created" = "Đã tạo: %@";
+"filesystem.modified" = "Đã sửa đổi: %@";
+"filesystem.type" = "Loại: %@";
+
+// MARK: - Shortcuts Messages
+"shortcuts.executed" = "Phím tắt '%@' đã được thực thi";
+"shortcuts.opened" = "Ứng dụng phím tắt đã mở";
+"shortcuts.settings.opened" = "Cài đặt (%@) đã mở";
+"shortcuts.mail.opened" = "Trình soạn thư đã mở";
+"shortcuts.calling" = "Đang gọi: %@";
+"shortcuts.message.opened" = "Trình soạn tin nhắn đã mở";
+"shortcuts.failed" = "Không thể mở phím tắt";
+
+// MARK: - Model Tiers
+"model.tier.entry" = "Nhập môn";
+"model.tier.standard" = "Tiêu chuẩn";
+"model.tier.pro" = "Chuyên nghiệp";
+
+// MARK: - Tool Parser
+"tool.arguments" = "Đối số:";
+
+// MARK: - Model Settings
+"model.action.settings" = "Cài đặt";
+"settings.model.parameters" = "Cài đặt mô hình";
+"settings.model.parameters.description" = "Tùy chỉnh tham số tạo cho mô hình này";
+"settings.preset.title" = "Cài đặt sẵn";
+"settings.preset.custom" = "Tùy chỉnh";
+"settings.preset.balanced" = "Cân bằng";
+"settings.preset.creative" = "Sáng tạo";
+"settings.preset.precise" = "Chính xác";
+"settings.preset.coding" = "Lập trình";
+"settings.preset.japanese" = "Tiếng Nhật";
+"settings.parameters.title" = "Tham số";
+"settings.parameter.temperature" = "Nhiệt độ";
+"settings.parameter.temperature.description" = "Cao hơn = sáng tạo hơn, thấp hơn = tập trung hơn";
+"settings.parameter.top.p" = "Top P";
+"settings.parameter.top.p.description" = "Xác suất lấy mẫu nhân";
+"settings.parameter.top.k" = "Top K";
+"settings.parameter.top.k.description" = "Số lượng token hàng đầu để xem xét";
+"settings.parameter.max.tokens" = "Token tối đa";
+"settings.parameter.max.tokens.description" = "Độ dài phản hồi tối đa";
+"settings.parameter.repeat.penalty" = "Phạt lặp lại";
+"settings.parameter.repeat.penalty.description" = "Cao hơn = đầu ra ít lặp lại hơn";
+"settings.parameter.thinking" = "Chế độ suy nghĩ";
+"settings.parameter.thinking.description" = "Hiển thị quá trình suy luận của AI";
+"settings.system.prompt.title" = "Lời nhắc hệ thống";
+"settings.system.prompt.description" = "Hướng dẫn tùy chỉnh cho AI";
+"settings.reset.to.default" = "Đặt lại về mặc định";
+
+// MARK: - Vision Model
+"vision.model.required.title" = "Yêu cầu mô hình thị giác";
+"vision.model.required.header" = "Yêu cầu nhận dạng hình ảnh";
+"vision.model.required.description" = "Để phân tích hình ảnh, bạn cần mô hình AI có khả năng thị giác";
+"vision.model.switch" = "Chuyển mô hình";
+"vision.model.switch.message %@" = "Chuyển sang %@ để bật phân tích hình ảnh?";
+"vision.model.download" = "Tải xuống";
+"vision.model.download.message %@ %@" = "Tải xuống %@ (%@) để phân tích hình ảnh?";
+"vision.model.not.available" = "Không có mô hình thị giác tương thích cho thiết bị của bạn";
+"vision.model.switching" = "Đang chuyển mô hình...";
+"vision.model.download.title" = "Mô hình thị giác";
+"vision.model.recommended" = "Đề xuất cho thiết bị của bạn";
+"vision.model.recommended.size %@" = "Đề xuất: %@";
+"vision.model.use.this" = "Sử dụng mô hình này";
+"vision.model.download.button %@" = "Tải xuống (%@)";
+"vision.model.other.options" = "Mô hình thị giác khác";
+"vision.model.download.complete" = "Tải xuống hoàn tất";
+"vision.model.download.complete.message" = "Sẵn sàng phân tích hình ảnh";
+
+// MARK: - Whisper Voice Input (Legacy)
+"whisper.download.title" = "Yêu cầu nhận dạng giọng nói";
+"whisper.download.action" = "Tải xuống";
+"whisper.download.message" = "Để sử dụng đầu vào giọng nói, bạn cần tải xuống mô hình nhận dạng giọng nói (~150MB).";
+"whisper.downloading" = "Đang tải xuống mô hình nhận dạng giọng nói...";
+"whisper.download.error" = "Lỗi tải xuống";
+"whisper.load.error" = "Lỗi tải mô hình";
+"whisper.permission.denied" = "Truy cập micrô không được phép";
+"whisper.transcribe.error" = "Lỗi phiên âm";
+"whisper.error.permission" = "Yêu cầu quyền micrô";
+"whisper.error.not.recording" = "Hiện không ghi âm";
+"whisper.error.no.recording" = "Không có dữ liệu ghi âm";
+"whisper.error.model.not.loaded" = "Mô hình nhận dạng giọng nói chưa được tải";
+"whisper.error.transcription" = "Phiên âm thất bại";
+
+// MARK: - Speech Recognition (ReazonSpeech)
+"speech.download.title" = "Yêu cầu nhận dạng giọng nói";
+"speech.download.action" = "Tải xuống";
+"speech.download.message" = "Để sử dụng đầu vào giọng nói, bạn cần tải xuống mô hình nhận dạng giọng nói tiếng Nhật (~155MB).";
+"speech.downloading" = "Đang tải xuống mô hình nhận dạng giọng nói...";
+
+// MARK: - Language Settings
+"settings.language.section" = "Ngôn ngữ";
+"language.system" = "Sử dụng ngôn ngữ hệ thống";
+"settings.language.restart.hint" = "Thay đổi ngôn ngữ sẽ có hiệu lực sau khi khởi động lại ứng dụng";
+"settings.language.changed.title" = "Đã thay đổi ngôn ngữ";
+"settings.language.changed.message" = "Vui lòng khởi động lại ứng dụng để áp dụng thay đổi";
+"common.ok" = "OK";
+
+// MARK: - System Prompt Settings
+"settings.prompt.section" = "Lời nhắc hệ thống";
+"settings.prompt.edit" = "Chỉnh sửa lời nhắc";
+"settings.prompt.default" = "Đang sử dụng mặc định";
+"settings.prompt.custom" = "Đã đặt lời nhắc tùy chỉnh";
+"settings.prompt.hint" = "Tùy chỉnh hành vi AI";
+"settings.prompt.editor.title" = "Chỉnh sửa lời nhắc";
+"settings.prompt.editor.instruction" = "Thêm hướng dẫn tùy chỉnh cho AI. Để trống để sử dụng lời nhắc mặc định.";
+"settings.prompt.default.preview" = "Lời nhắc mặc định (trích dẫn):";
+"settings.prompt.reset" = "Đặt lại";
+"settings.prompt.reset.title" = "Đặt lại lời nhắc";
+"settings.prompt.reset.message" = "Xóa lời nhắc tùy chỉnh và khôi phục về mặc định?";
+
+// MARK: - Prompt Templates
+"templates.title" = "Mẫu lời nhắc";
+"templates.empty" = "Chưa có mẫu";
+"templates.add" = "Thêm mẫu";
+"template.add.title" = "Thêm mẫu";
+"template.edit.title" = "Chỉnh sửa mẫu";
+"template.name.header" = "Tên";
+"template.name.placeholder" = "Tên mẫu";
+"template.content.header" = "Nội dung lời nhắc";
+"template.icon.header" = "Biểu tượng";
+"template.translate.name" = "Dịch";
+"template.translate.content" = "Vui lòng dịch nội dung sau: ";
+"template.summarize.name" = "Tóm tắt";
+"template.summarize.content" = "Vui lòng tóm tắt nội dung sau: ";
+"template.explain.name" = "Giải thích";
+"template.explain.content" = "Vui lòng giải thích nội dung sau: ";
+"template.code.name" = "Mã";
+"template.code.content" = "Vui lòng viết mã cho: ";
+
+// MARK: - Export
+"export.title" = "Xuất cuộc trò chuyện";
+"export.format.markdown" = "Markdown";
+"export.format.pdf" = "PDF";
+"export.format.text" = "Văn bản thuần";
+"export.created" = "Đã tạo";
+"export.image.attached" = "Hình ảnh đính kèm";
+"export.generated.by" = "Được tạo bởi";
+
+// MARK: - Loading Phases
+"loading.phase.initializing" = "Đang khởi tạo...";
+"loading.phase.loading" = "Đang tải mô hình...";
+"loading.phase.preparing" = "Đang chuẩn bị công cụ suy luận...";
+"loading.phase.almost" = "Gần sẵn sàng...";
+
+// MARK: - Welcome Screen
+"welcome.greeting" = "Hỏi bất cứ điều gì";
+"welcome.subtitle" = "Trợ lý AI ưu tiên quyền riêng tư của bạn";
+"suggestion.idea" = "Giúp tôi động não ý tưởng";
+"suggestion.write" = "Giúp tôi viết gì đó";
+"suggestion.question" = "Trả lời câu hỏi của tôi";
+
+// MARK: - Kokoro TTS
+"tts.download.title" = "Giọng nói chất lượng cao";
+"tts.download.action" = "Tải xuống";
+"tts.download.use_system" = "Sử dụng giọng hệ thống";
+"tts.download.message" = "Tải xuống mô hình Kokoro TTS (~87MB) để chuyển văn bản thành giọng nói tiếng Nhật tự nhiên hơn.";
+"tts.downloading" = "Đang tải xuống mô hình TTS...";
+
+// MARK: - Feedback
+"feedback.consent.title" = "Gửi phản hồi";
+"feedback.send" = "Gửi";
+"feedback.positive.title" = "Phản hồi này có hữu ích không?";
+"feedback.negative.title" = "Có thể cải thiện điều này không?";
+"feedback.explanation" = "Phản hồi của bạn giúp cải thiện chất lượng AI. Vui lòng xem xét dữ liệu nào sẽ được gửi trước khi gửi.";
+"feedback.data.section" = "Dữ liệu sẽ được gửi";
+"feedback.data.conversation" = "Cuộc trò chuyện";
+"feedback.data.conversation.desc" = "Phản hồi AI và tin nhắn trước đó của bạn";
+"feedback.data.model" = "Thông tin mô hình";
+"feedback.data.model.desc" = "Tên của mô hình AI được sử dụng";
+"feedback.data.timestamp" = "Dấu thời gian";
+"feedback.data.timestamp.desc" = "Khi phản hồi được gửi";
+"feedback.privacy.section" = "Quyền riêng tư";
+"feedback.privacy.anonymous" = "Không có thông tin nhận dạng cá nhân được gửi";
+"feedback.privacy.improvement" = "Chỉ được sử dụng để cải thiện chất lượng AI";
+"feedback.privacy.optional" = "Gửi phản hồi hoàn toàn tùy chọn";
+"feedback.comment.section" = "Nhận xét (tùy chọn)";
+"feedback.comment.placeholder" = "Cho chúng tôi biết điều gì có thể được cải thiện hoặc hoạt động tốt...";
+"feedback.remember.title" = "Ghi nhớ lựa chọn này";
+"feedback.remember.description" = "Gửi phản hồi mà không hỏi lần sau";
+
+// MARK: - Emergency Mode
+"emergency.sos.button" = "Chế độ khẩn cấp (nhấn giữ để chuyển đổi)";
+"emergency.mode.active" = "Chế độ khẩn cấp đang hoạt động";
+"emergency.action.firstaid" = "Sơ cứu";
+"emergency.action.firstaid.message" = "Vui lòng cung cấp hướng dẫn sơ cứu. Tôi sẽ mô tả vết thương hoặc triệu chứng: ";
+"emergency.action.disaster" = "Thảm họa";
+"emergency.action.disaster.message" = "Thảm họa đã xảy ra. Vui lòng cung cấp quy trình ứng phó: ";
+"emergency.action.factcheck" = "Kiểm tra sự thật";
+"emergency.action.factcheck.message" = "Vui lòng xác minh độ tin cậy của thông tin này: ";
+"emergency.action.contacts" = "Khẩn cấp";
+"emergency.action.contacts.message" = "Vui lòng hiển thị danh sách số liên lạc khẩn cấp";
+"emergency.action.evacuation" = "Sơ tán";
+"emergency.action.evacuation.message" = "Vui lòng tạo danh sách kiểm tra sơ tán cho tình huống hiện tại: ";
+"mcp.emergency_kb" = "KB khẩn cấp";
+"mcp.emergency_kb.desc" = "Thông tin khẩn cấp & thảm họa";
+
+// MARK: - Emergency Templates
+"template.firstaid.name" = "Hướng dẫn sơ cứu";
+"template.firstaid.content" = "Vui lòng cung cấp hướng dẫn sơ cứu cho: ";
+"template.disaster.name" = "Ứng phó thảm họa";
+"template.disaster.content" = "Thảm họa sau đã xảy ra. Vui lòng cung cấp quy trình ứng phó: ";
+"template.factcheck.name" = "Kiểm tra sự thật";
+"template.factcheck.content" = "Vui lòng xác minh độ tin cậy của thông tin này và cung cấp mẹo kiểm tra sự thật: ";
+"template.evacuation.name" = "Danh sách kiểm tra sơ tán";
+"template.evacuation.content" = "Vui lòng tạo danh sách kiểm tra sơ tán cho tình huống hiện tại: ";
+
+// MARK: - ChatWeb.ai Integration
+"chatweb.title" = "ChatWeb.ai";
+"chatweb.desc" = "Chat AI đám mây";
+"chatweb.connect" = "Kết nối với ChatWeb.ai";
+"chatweb.qr.title" = "Kết nối qua mã QR";
+"chatweb.qr.scan" = "Quét mã QR";
+"chatweb.open" = "Mở ChatWeb.ai";
+
+// MARK: - Peer Connection
+"peer.title" = "Thiết bị gần đây";
+"peer.desc" = "Kết nối với thiết bị Elio gần đây";
+"peer.connect" = "Kết nối với thiết bị";
+"peer.code.title" = "Mã kết nối";
+"peer.code.enter" = "Nhập mã 4 chữ số";
+"peer.code.your" = "Mã của bạn";
+"peer.connected" = "Đã kết nối";
+"peer.disconnected" = "Đã ngắt kết nối";
+"peer.inference.offload" = "Chia sẻ suy luận";
+
+// MARK: - Web Search
+"chat.web.search" = "Tìm kiếm web";
+"search.privacy.title" = "Tìm kiếm được bảo vệ quyền riêng tư";
+"search.privacy.proceed" = "Tìm kiếm";
+"search.privacy.message" = "Tìm kiếm web ElioChat bảo vệ quyền riêng tư của bạn:\n\n🔒 Tìm kiếm qua DuckDuckGo\n🚫 Không theo dõi hoặc lập hồ sơ\n🔐 Lịch sử tìm kiếm không được lưu trữ\n📱 Không có dữ liệu được lưu trữ bên ngoài thiết bị của bạn\n\nChỉ truy vấn tìm kiếm của bạn được gửi đến DuckDuckGo, và kết quả được xử lý trên thiết bị của bạn.";
+"chat.web.analyzing" = "[Đang phân tích trang web]";

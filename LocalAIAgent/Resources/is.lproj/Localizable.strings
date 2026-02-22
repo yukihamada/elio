@@ -1,0 +1,635 @@
+/*
+  Localizable.strings (Icelandic)
+  Elio
+*/
+
+// MARK: - App General
+"app.name" = "Elio";
+"app.tagline" = "Annað heilastarfsemi þín sem geymir leyndarmál.";
+
+// MARK: - Common Actions
+"common.done" = "Lokið";
+"common.cancel" = "Hætta við";
+"common.delete" = "Eyða";
+"common.save" = "Vista";
+"common.edit" = "Breyta";
+"common.share" = "Deila";
+"common.copy" = "Afrita";
+"common.copied" = "Afritað";
+"common.loading" = "Hleður...";
+"common.error" = "Villa";
+"common.retry" = "Reyna aftur";
+"common.skip" = "Sleppa";
+"common.next" = "Næsta";
+"common.start" = "Byrja";
+"common.add" = "Bæta við";
+"common.close" = "Loka";
+"common.details" = "Upplýsingar";
+"common.yes" = "Já";
+"common.no" = "Nei";
+"common.unknown" = "Óþekkt";
+
+// MARK: - Chat
+"chat.placeholder" = "Spurðu mig um hvað sem er";
+"chat.model.not.loaded" = "Ekkert líkan hlaðið";
+"chat.model.not.loaded.description" = "Vinsamlegast sæktu líkan í stillingum";
+"chat.go.to.settings" = "Fara í stillingar";
+"chat.new.conversation" = "Nýtt spjall";
+"chat.stop.generation" = "Stöðva";
+"chat.generation.stopped" = "\n\n[Myndun stöðvuð]";
+"chat.image.sent" = "[Mynd send]";
+"chat.images.sent" = "[%d myndir sendar]";
+"chat.pdf.sent" = "[PDF hengt við: %@]";
+"chat.pdf.sent.vision" = "[PDF með mynd: %@]";
+"chat.pdf.context" = "Eftirfarandi er textainnihald útdregið úr PDF skjalinu \"%@\":\n\n%@";
+"chat.pdf.context.vision" = "Þetta er síða 1 af PDF skjalinu \"%@\". Útdregið textainnihald er:\n\n%@\n\nVinsamlegast greindu bæði sjónræna innihaldið og textann.";
+"chat.pdf.analyze" = "Vinsamlegast greindu þessa PDF síðu úr \"%@\".";
+"chat.url.sent" = "[Vefsíða: %@]";
+"chat.url.context" = "Eftirfarandi er innihald útdregið úr vefsíðunni \"%@\" (%@):\n\n%@";
+"chat.thinking" = "Hugsa...";
+"chat.generating" = "Mynda svar...";
+"chat.welcome" = "Hvernig get ég aðstoðað þig?";
+"chat.suggestion.schedule" = "Sýna dagskrá dagsins";
+"chat.suggestion.reminder" = "Búa til áminningu";
+"chat.suggestion.weather" = "Hvaða veður er í dag?";
+"chat.suggestion.help" = "Hvernig nota ég þetta app";
+"chat.websearch.on" = "Vefleit virk";
+"chat.websearch.off" = "Vefleit óvirk";
+"chat.thinking.on" = "Hugsun virk";
+"chat.thinking.off" = "Hugsun óvirk";
+"chat.transcribing" = "Afritar...";
+"chat.offline" = "Ótengt";
+
+// Voice Conversation Mode
+"voice.listening" = "Hlusta...";
+"voice.processing" = "Vinnur úr...";
+"voice.thinking" = "Hugsa...";
+"voice.speaking" = "Talar...";
+"voice.tap.to.send" = "Pikka til að senda";
+"chat.templates" = "Sniðmát";
+"chat.websearch.privacy.title" = "Um vefleit";
+"chat.websearch.privacy.message" = "Vefleit gerir gervigreind kleift að leita á internetinu í gegnum DuckDuckGo fyrir nýjustu upplýsingar. Leitarfyrirspurnir eru sendar til DuckDuckGo en eru ekki raktar.";
+"chat.websearch.privacy.enable" = "Virkja";
+"chat.websearch.privacy.disable" = "Halda óvirku";
+
+// MARK: - Settings
+"settings.title" = "Stillingar";
+"settings.model.section" = "Gervigreindarlíkön";
+"settings.model.recommended" = "Mælt með: %@";
+"settings.model.local.execution" = "Líkön keyra staðbundið á tækinu";
+"settings.model.show.more" = "Önnur líkön (%d)";
+"settings.model.show.less" = "Sýna minna";
+"settings.appearance.section" = "Útlit";
+"settings.tools.section" = "Snjallar eiginleikar";
+"settings.mcp.servers" = "Samþættingar";
+"settings.mcp.servers.description" = "Dagatal, skrár, áminningar og fleira";
+"settings.mcp.enabled.count" = "%d virkjaðar";
+"settings.mcp.enabled.count.suffix" = " virkjaðar";
+"settings.about.section" = "Um";
+"settings.version" = "Útgáfa";
+"settings.about.app" = "Um þetta app";
+"settings.about.mcp" = "Um samþættingar";
+"settings.privacy.badge" = "Virkar ótengt";
+"settings.privacy.description" = "Virkar í flugstillingu";
+"settings.airplane.mode" = "Keyrir í flugstillingu";
+"settings.offline.ready" = "Tilbúið ótengt";
+
+// MARK: - Model States
+"model.status.downloading" = "Sækir... %d%%";
+"model.status.loading" = "Hleður...";
+"model.status.in.use" = "Í notkun";
+"model.status.recommended" = "Mælt með";
+"model.status.heavy" = "Þungt";
+"model.action.download" = "Sækja";
+"model.action.load" = "Hlaða";
+"model.action.delete" = "Eyða";
+"model.action.use" = "Nota þetta líkan";
+"model.delete.confirm.title" = "Eyða líkani";
+"model.delete.confirm.message" = "Eyða %@? Þú þarft að sækja það aftur til að nota.";
+"model.select.title" = "Velja líkan";
+"model.select.prompt" = "Vinsamlegast veldu líkan";
+"model.downloaded" = "Sótt";
+
+// MARK: - Inference Mode
+"inference.mode.title" = "Hröðun";
+"inference.mode.auto" = "Sjálfvirkt";
+"inference.mode.auto.desc" = "Bestun sjálfvirkt";
+"inference.mode.gpu" = "GPU (Metal)";
+"inference.mode.gpu.desc" = "Hámarkshraði með Metal";
+"inference.mode.cpu" = "Aðeins CPU";
+"inference.mode.cpu.desc" = "Rafhlöðusparnaður";
+"inference.mode.hybrid" = "Tvíþætt";
+"inference.mode.hybrid.desc" = "Jafnvægi hraða og rafhlöðu";
+
+// MARK: - Theme
+"theme.system" = "Kerfi";
+"theme.light" = "Ljóst";
+"theme.dark" = "Dökkt";
+
+// MARK: - Onboarding
+"onboarding.welcome.title" = "Velkomin í ElioChat";
+"onboarding.welcome.subtitle" = "Einka gervigreindaraðstoðarinn þinn";
+"onboarding.features.title" = "Raunverulega einka gervigreind";
+"onboarding.feature.offline" = "Virkar í flugstillingu";
+"onboarding.feature.offline.desc" = "Notaðu á flugi eða neðanjarðar";
+"onboarding.feature.privacy" = "Engin gagnasending";
+"onboarding.feature.privacy.desc" = "Spjall þitt yfirgefa aldrei símann";
+"onboarding.feature.vault" = "Snjallar samþættingar";
+"onboarding.feature.vault.desc" = "Tengist dagatal og skrám";
+"onboarding.feature.secure" = "Öruggt fyrir vinnu";
+"onboarding.feature.secure.desc" = "Öruggt fyrir fyrirtækjanotkun";
+"onboarding.feature.thinking" = "Hugsanaferli";
+"onboarding.privacy.title" = "Gögnin þín eru þín";
+"onboarding.privacy.item1" = "Öll vinnsla á sér stað á iPhone þínu";
+"onboarding.privacy.item2" = "Engin gögn send til skýþjóna";
+"onboarding.privacy.item3" = "Aldrei notað til gervigreindarþjálfunar";
+"onboarding.getstarted.title" = "Tilbúið með einni pikk";
+"onboarding.getstarted.subtitle" = "Sæktu ráðlagða gervigreindarlíkanið\nog byrjaðu að spjalla strax";
+"onboarding.step1" = "Sækja ráðlagt líkan";
+"onboarding.step2" = "Bíða í nokkrar mínútur";
+"onboarding.step3" = "Allt tilbúið!";
+
+// MARK: - About
+"about.title" = "Um þetta app";
+"about.rate.app" = "Gefa appinu einkunn";
+"about.share.app" = "Deila með vinum";
+"about.privacy.policy" = "Persónuverndarstefna";
+"about.terms" = "Þjónustuskilmálar";
+"about.tech.info" = "Tæknilegar upplýsingar";
+"about.tech.engine" = "Gervigreindarvél";
+"about.tech.format" = "Stutt snið";
+"about.tech.inference" = "Ályktun";
+"about.data.management" = "Gagnastjórnun";
+"about.delete.all" = "Eyða öllum samtölum";
+"about.credits" = "Framlög";
+"about.credits.description" = "Þetta app notar opinn hugbúnað";
+"about.privacy.section" = "Persónuvernd";
+"about.gguf.format" = "GGUF snið";
+"about.metal.gpu" = "Metal GPU hröðun";
+
+// MARK: - Referral
+"referral.title" = "Mæla með vinum";
+"referral.code.title" = "Tilvísunarkóði þinn";
+"referral.code.copy" = "Afrita kóða";
+"referral.code.copied" = "Afritað";
+"referral.share.button" = "Deila með vinum";
+"referral.share.description" = "Deildu Elio með vinum!";
+"referral.count" = "Vísaði til %d manns";
+"referral.enter.title" = "Slá inn tilvísunarkóða";
+"referral.enter.placeholder" = "Tilvísunarkóði";
+"referral.enter.button" = "Nota";
+"referral.enter.success" = "Tilvísunarkóði notaður";
+"referral.enter.error" = "Ógildur tilvísunarkóði";
+
+// MARK: - Privacy Policy
+"privacy.title" = "Persónuverndarstefna";
+"privacy.data.collection.title" = "Gagnasöfnun";
+"privacy.data.collection.content" = "Þetta app keyrir staðbundna gervigreind alveg ótengt.\nEngin gögn eru send til ytri þjóna.\nAllar samræður eru geymdar aðeins á tækinu.";
+"privacy.stored.data.title" = "Geymd gögn";
+"privacy.stored.data.content" = "Samræðusaga (geymd aðeins á tækinu)\nGervigreindarlíkanskrár (geymd aðeins á tækinu)\nApp stillingar (geymdar aðeins á tækinu)\n\nÞessi gögn eru aldrei deild utan.";
+"privacy.data.deletion.title" = "Gagneyðing";
+"privacy.data.deletion.content" = "Þú getur eytt öllum gögnum hvenær sem er úr Stillingar > Gagnastjórnun.\nAf­fjarlæging appsins mun eyða öllum gögnum.";
+
+// MARK: - Terms of Service
+"terms.title" = "Þjónustuskilmálar";
+"terms.service.title" = "Þjónustulýsing";
+"terms.service.content" = "Þetta app veitir gervigreindaraðstoð með staðbundnu gervigreindarlíkani.";
+"terms.disclaimer.title" = "Fyrirvari";
+"terms.disclaimer.content" = "Gervigreindarsvar geta innihaldið villur.\nMikilvægar ákvarðanir ættu alltaf að vera staðfestar af fagmanni.\nVið berum ekki ábyrgð á tjóni sem stafar af notkun þessa apps.";
+"terms.prohibited.title" = "Bönnuð starfsemi";
+"terms.prohibited.content" = "Ólögleg starfsemi\nStarfsemi sem brýtur gegn réttindum annarra\nAfturköllunarverkfræði þessa apps\nÓheimil afritan þessa apps";
+"terms.ip.title" = "Hugverk";
+"terms.ip.content" = "Hugverkaréttindi þessa apps tilheyra forriturum.\nÓheimil notkun er bönnuð.";
+
+// MARK: - Conversations
+"conversations.title" = "Samræður";
+"conversations.new" = "Ný samræða";
+"conversations.empty" = "Engar samræður enn";
+"conversations.delete" = "Eyða samræðu";
+"conversations.default.title" = "Ný samræða";
+"conversations.today" = "Í dag";
+"conversations.yesterday" = "Í gær";
+"conversations.past7days" = "Síðustu 7 dagar";
+"conversations.past30days" = "Síðustu 30 dagar";
+"conversations.older" = "Eldra";
+"conversations.created" = "Búin til: %@";
+"conversations.user" = "Notandi";
+"conversations.assistant" = "Aðstoðarmaður";
+"conversations.search.placeholder" = "Leita í samræðum";
+"conversations.search.no_results" = "Engar niðurstöður fundust";
+
+// MARK: - Message Actions
+"message.copy" = "Afrita";
+"message.speak" = "Tala";
+"message.stop.speaking" = "Stöðva tal";
+"message.share" = "Deila";
+"message.share.card" = "Deila sem spjaldi";
+"message.like" = "Líkar";
+
+// MARK: - Share Card
+"share.card.title" = "Deila spjaldi";
+"share.card.preview" = "Forskoðun";
+"share.card.button" = "Deila mynd";
+"message.dislike" = "Líkar ekki";
+"message.thinking.process" = "Hugsanaferli";
+"message.tool.running" = "Keyrir tól";
+"message.tool.error" = "Villa";
+"message.tool.completed" = "Lokið";
+
+// MARK: - Attachment
+"attachment.title" = "Viðhengi";
+"attachment.photo.library" = "Velja mynd";
+"attachment.camera" = "Taka mynd";
+"attachment.pdf" = "Velja PDF";
+"attachment.pdf.chars" = "%d stafir";
+"attachment.pdf.pages" = "%d síður";
+"attachment.pdf.vision.enabled" = "Myndgreining virk";
+"attachment.pdf.text.only" = "Aðeins texti";
+"attachment.url" = "Lesa vefsíðu";
+"attachment.url.title" = "Slá inn URL";
+"attachment.url.placeholder" = "https://example.com";
+"attachment.url.message" = "Límdu URL til að draga út innihaldið";
+"attachment.url.fetch" = "Sækja";
+"attachment.url.loading" = "Hleður síðu...";
+
+// MARK: - Errors
+"error.model.not.found" = "Líkanskrá fannst ekki";
+"error.model.not.loaded" = "Líkan ekki hlaðið";
+"error.context.failed" = "Mistókst að búa til samhengi";
+"error.tokenization.failed" = "Tókunvæðing mistókst";
+"error.generation.failed" = "Myndunarvilla: %@";
+"error.occurred" = "Villa kom upp: %@";
+"error.invalid.url" = "Ógilt URL";
+"error.download.failed" = "Niðurhal mistókst";
+"error.extraction.failed" = "Útdráttur mistókst";
+"error.config.not.found" = "Stillingarskrá fannst ekki";
+
+// MARK: - Ghost Search
+"ghost.search.title" = "Draugaleit";
+"ghost.search.description" = "Nafnlaus leit í gegnum DuckDuckGo (engin rakning)";
+"ghost.search.connecting" = "Tengist nafnlausu neti...";
+"ghost.search.privacy.note" = "Leitarsaga þín er aldrei rakin";
+
+// MARK: - MCP Servers
+"mcp.filesystem" = "Skráakerfi";
+"mcp.filesystem.desc" = "Lesa og skrifa skrár í app";
+"mcp.calendar" = "Dagatal";
+"mcp.calendar.desc" = "Lesa og skrifa viðburði";
+"mcp.reminders" = "Áminningar";
+"mcp.reminders.desc" = "Stjórna áminningum";
+"mcp.contacts" = "Tengiliðir";
+"mcp.contacts.desc" = "Leita að og skoða tengiliði";
+"mcp.photos" = "Myndir";
+"mcp.photos.desc" = "Aðgangur að myndabókasafni";
+"mcp.location" = "Staðsetning";
+"mcp.location.desc" = "Fá núverandi staðsetningu og leita að stöðum";
+"mcp.health" = "Heilsa";
+"mcp.health.desc" = "Aðgangur að heilsugögnum";
+"mcp.shortcuts" = "Flýtileiðir";
+"mcp.shortcuts.desc" = "Keyra flýtileiðir";
+"mcp.websearch" = "Vefleit";
+"mcp.websearch.desc" = "Nafnlaus vefleit";
+"mcp.custom" = "Sérsniðin samþætting";
+"mcp.custom.add" = "Bæta við samþættingu";
+"mcp.custom.setup" = "Setja upp ytri þjónustusamþættingu";
+"mcp.custom.title" = "Sérsniðnar samþættingar";
+"mcp.settings.title" = "Samþættingarstillingar";
+"mcp.server.name" = "Heiti þjóns";
+"mcp.server.name.placeholder" = "t.d. Minn sérsniðinn þjónn";
+"mcp.config.url" = "URL stillingarskráar";
+"mcp.import.file" = "Flytja inn úr skrá";
+"mcp.config.example" = "Dæmi um stillingarskrá";
+"mcp.permission.note" = "Heimildir verða óskað þegar hver eiginleiki er notaður fyrst";
+
+// MARK: - MCP Tool Messages
+"mcp.tool.available" = "Tæk tól:";
+"mcp.tool.parameters" = "Breytur:";
+"mcp.prompt.available" = "Tæk boð:";
+"mcp.prompt.arguments" = "Frumbreytur:";
+"mcp.tool.name" = "tool_name";
+"mcp.tool.arg.name" = "arg_name";
+"mcp.tool.arg.value" = "value";
+"mcp.tool.no.result" = "Engin niðurstaða";
+"mcp.tool.running" = "Keyri tól: %@";
+"mcp.tool.error" = "Villa við keyrslu tóls: %@";
+
+// MARK: - MCP Error Messages
+"mcp.error.server.not.found" = "Þjónn fannst ekki: %@";
+"mcp.error.tool.not.found" = "Tól fannst ekki: %@";
+"mcp.error.invalid.args" = "Ógildar frumbreytur: %@";
+"mcp.error.execution" = "Keyrsluvilla: %@";
+"mcp.error.permission" = "Heimild synjuð: %@";
+
+// MARK: - Calendar Messages
+"calendar.no.events" = "Engir viðburðir";
+"calendar.event.created" = "Viðburður búinn til: %@";
+"calendar.event.deleted" = "Viðburði eytt: %@";
+"calendar.allday.created" = "Heilsdagsviðburður búinn til: %@";
+"calendar.access.denied" = "Aðgangur að dagatali synjuð";
+"calendar.today.none" = "Engir viðburðir í dag";
+"calendar.untitled" = "Án titils";
+
+// MARK: - Reminders Messages
+"reminders.none" = "Engar áminningar";
+"reminders.created" = "Áminningu búin til: %@";
+"reminders.completed" = "Áminningu lokið: %@";
+"reminders.deleted" = "Áminningu eytt: %@";
+"reminders.access.denied" = "Aðgangur að áminningum synjuð";
+"reminders.untitled" = "Án titils";
+
+// MARK: - Photos Messages
+"photos.access.denied" = "Aðgangur að myndum synjuð";
+"photos.not.found" = "Mynd fannst ekki";
+"photos.untitled" = "Án titils";
+"photos.count" = "Myndir: %d";
+"photos.videos.count" = "Myndskeið: %d";
+"photos.albums.count" = "Albúm: %d";
+"photos.favorites.count" = "Uppáhalds: %d";
+"photos.date" = "Dagsetning: %@";
+"photos.size" = "Stærð: %d x %d";
+"photos.location" = "Staðsetning: %@, %@";
+"photos.media.type" = "Miðilstegund: %@";
+"photos.duration" = "Lengd: %dm %ds";
+"photos.favorite" = "Uppáhald: %@";
+"photos.type.image" = "Mynd";
+"photos.type.video" = "Myndband";
+"photos.type.audio" = "Hljóð";
+
+// MARK: - Contacts Messages
+"contacts.access.denied" = "Aðgangur að tengiliðum synjuð";
+"contacts.not.found" = "Engir samsvarandi tengiliðir fundust";
+"contacts.no.groups" = "Engir hópar";
+"contacts.no.card" = "Ekkert tengiliðaspjald sett";
+"contacts.name" = "Nafn: %@";
+"contacts.company" = "Fyrirtæki: %@";
+"contacts.job" = "Starfsheiti: %@";
+
+// MARK: - Location Messages
+"location.access.denied" = "Aðgangur að staðsetningu synjuð";
+"location.not.found" = "Heimilisfang fannst ekki";
+"location.latitude" = "Breiddargráða: %@";
+"location.longitude" = "Lengdargráða: %@";
+"location.accuracy" = "Nákvæmni: %dm";
+"location.altitude" = "Hæð: %dm";
+"location.search" = "Leit: %@";
+"location.address" = "Heimilisfang: %@";
+"location.country" = "Land: %@";
+"location.postal" = "Póstnúmer: %@";
+"location.from" = "Frá: (%@, %@)";
+"location.to" = "Til: (%@, %@)";
+"location.distance.km" = "Fjarlægð: %.2f km";
+"location.distance.m" = "Fjarlægð: %d m";
+
+// MARK: - Health Messages
+"health.not.available" = "Heilsa ekki tæk á þessu tæki";
+"health.date" = "Dagsetning: %@";
+"health.steps" = "Skref: %@ skref";
+"health.goal.progress" = "Markaframvinda: %d%% (10.000 skrefa markmið)";
+"health.no.data" = "Engin gögn tæk";
+"health.avg.bpm" = "Meðaltal: %d bpm";
+"health.min.bpm" = "Lágmark: %d bpm";
+"health.max.bpm" = "Hámark: %d bpm";
+"health.measurements" = "Mælingar: %d";
+"health.no.sleep" = "Engin svefngögn";
+"health.sleep.total" = "Heildarssvefn: %dh %dm";
+"health.bedtime" = "Svefnstími: %@";
+"health.waketime" = "Vaknartími: %@";
+"health.calories" = "Kaloríur: %d kcal";
+
+// MARK: - File System Messages
+"filesystem.not.found" = "Skrá fannst ekki: %@";
+"filesystem.written" = "Skrá skrifuð: %@";
+"filesystem.dir.created" = "Möppu búin til: %@";
+"filesystem.deleted" = "Eytt: %@";
+"filesystem.size" = "Stærð: %@";
+"filesystem.created" = "Búin til: %@";
+"filesystem.modified" = "Breytt: %@";
+"filesystem.type" = "Tegund: %@";
+
+// MARK: - Shortcuts Messages
+"shortcuts.executed" = "Flýtileið '%@' keyrð";
+"shortcuts.opened" = "Flýtileiðaapp opnað";
+"shortcuts.settings.opened" = "Stillingar (%@) opnaðar";
+"shortcuts.mail.opened" = "Tölvupóstsamsetning opnuð";
+"shortcuts.calling" = "Hringi: %@";
+"shortcuts.message.opened" = "Skilaboðasamsetning opnuð";
+"shortcuts.failed" = "Gat ekki opnað flýtileið";
+
+// MARK: - Model Tiers
+"model.tier.entry" = "Byrjandi";
+"model.tier.standard" = "Staðlað";
+"model.tier.pro" = "Atvinnumaður";
+
+// MARK: - Tool Parser
+"tool.arguments" = "Frumbreytur:";
+
+// MARK: - Model Settings
+"model.action.settings" = "Stillingar";
+"settings.model.parameters" = "Líkanastillingar";
+"settings.model.parameters.description" = "Sérsníða myndabreytustikar fyrir þetta líkan";
+"settings.preset.title" = "Forskipanir";
+"settings.preset.custom" = "Sérsniðið";
+"settings.preset.balanced" = "Jafnvægi";
+"settings.preset.creative" = "Skapandi";
+"settings.preset.precise" = "Nákvæmt";
+"settings.preset.coding" = "Forritun";
+"settings.preset.japanese" = "Japanskt";
+"settings.parameters.title" = "Breytur";
+"settings.parameter.temperature" = "Hitastig";
+"settings.parameter.temperature.description" = "Hærra = skapandi, lægra = einbeitt";
+"settings.parameter.top.p" = "Top P";
+"settings.parameter.top.p.description" = "Kjarnatölulagslíkindi";
+"settings.parameter.top.k" = "Top K";
+"settings.parameter.top.k.description" = "Fjöldi efstu tókna til skoðunar";
+"settings.parameter.max.tokens" = "Hámarks tókn";
+"settings.parameter.max.tokens.description" = "Hámarks svarslengd";
+"settings.parameter.repeat.penalty" = "Endurtekningarsekt";
+"settings.parameter.repeat.penalty.description" = "Hærra = minni endurtekningar í úttaki";
+"settings.parameter.thinking" = "Hugsanahamur";
+"settings.parameter.thinking.description" = "Sýna röksemdaferli gervigreindarinnar";
+"settings.system.prompt.title" = "Kerfisboð";
+"settings.system.prompt.description" = "Sérsniðnar leiðbeiningar fyrir gervigreindina";
+"settings.reset.to.default" = "Endurstilla í sjálfgefið";
+
+// MARK: - Vision Model
+"vision.model.required.title" = "Sjónlíkan nauðsynlegt";
+"vision.model.required.header" = "Myndgreining nauðsynleg";
+"vision.model.required.description" = "Til að greina myndir þarftu sjónhæft gervigreindarlíkan";
+"vision.model.switch" = "Skipta um líkan";
+"vision.model.switch.message %@" = "Skipta yfir í %@ til að virkja myndgreiningu?";
+"vision.model.download" = "Sækja";
+"vision.model.download.message %@ %@" = "Sækja %@ (%@) til að greina myndir?";
+"vision.model.not.available" = "Ekkert samhæft sjónlíkan tækt fyrir tækið þitt";
+"vision.model.switching" = "Skipti um líkan...";
+"vision.model.download.title" = "Sjónlíkön";
+"vision.model.recommended" = "Mælt með fyrir tækið þitt";
+"vision.model.recommended.size %@" = "Mælt með: %@";
+"vision.model.use.this" = "Nota þetta líkan";
+"vision.model.download.button %@" = "Sækja (%@)";
+"vision.model.other.options" = "Önnur sjónlíkön";
+"vision.model.download.complete" = "Niðurhal lokið";
+"vision.model.download.complete.message" = "Tilbúið til að greina myndir";
+
+// MARK: - Whisper Voice Input (Legacy)
+"whisper.download.title" = "Raddþekking nauðsynleg";
+"whisper.download.action" = "Sækja";
+"whisper.download.message" = "Til að nota raddinntak þarftu að sækja raddgreininga­líkanið (~150MB).";
+"whisper.downloading" = "Sæki raddgreiningarlíkan...";
+"whisper.download.error" = "Niðurhalsvilla";
+"whisper.load.error" = "Líkanshleðsluvilla";
+"whisper.permission.denied" = "Aðgangur að hljóðnema ekki leyfður";
+"whisper.transcribe.error" = "Afriturvilla";
+"whisper.error.permission" = "Heimild hljóðnema nauðsynleg";
+"whisper.error.not.recording" = "Ekki að taka upp eins og er";
+"whisper.error.no.recording" = "Engin upptökugögn";
+"whisper.error.model.not.loaded" = "Raddgreiningarlíkan ekki hlaðið";
+"whisper.error.transcription" = "Afritun mistókst";
+
+// MARK: - Speech Recognition (ReazonSpeech)
+"speech.download.title" = "Raddþekking nauðsynleg";
+"speech.download.action" = "Sækja";
+"speech.download.message" = "Til að nota raddinntak þarftu að sækja japanska raddgreiningarlíkanið (~155MB).";
+"speech.downloading" = "Sæki raddgreiningarlíkan...";
+
+// MARK: - Language Settings
+"settings.language.section" = "Tungumál";
+"language.system" = "Nota kerfistungumál";
+"settings.language.restart.hint" = "Tungumálabreytingar taka gildi eftir endurræsingu apps";
+"settings.language.changed.title" = "Tungumáli breytt";
+"settings.language.changed.message" = "Vinsamlegast endurræstu appið til að beita breytingunum";
+"common.ok" = "Í lagi";
+
+// MARK: - System Prompt Settings
+"settings.prompt.section" = "Kerfisboð";
+"settings.prompt.edit" = "Breyta boði";
+"settings.prompt.default" = "Nota sjálfgefið";
+"settings.prompt.custom" = "Sérsniðið boð sett";
+"settings.prompt.hint" = "Sérsníða hegðun gervigreindarinnar";
+"settings.prompt.editor.title" = "Breyta boði";
+"settings.prompt.editor.instruction" = "Bættu við sérsniðnum leiðbeiningum fyrir gervigreindina. Skildu eftir autt til að nota sjálfgefna boðið.";
+"settings.prompt.default.preview" = "Sjálfgefið boð (útdráttur):";
+"settings.prompt.reset" = "Endurstilla";
+"settings.prompt.reset.title" = "Endurstilla boð";
+"settings.prompt.reset.message" = "Eyða sérsniðnu boði og endurheimta sjálfgefið?";
+
+// MARK: - Prompt Templates
+"templates.title" = "Boðsniðmát";
+"templates.empty" = "Engin sniðmát enn";
+"templates.add" = "Bæta við sniðmáti";
+"template.add.title" = "Bæta við sniðmáti";
+"template.edit.title" = "Breyta sniðmáti";
+"template.name.header" = "Nafn";
+"template.name.placeholder" = "Heiti sniðmáts";
+"template.content.header" = "Innihald boðs";
+"template.icon.header" = "Tákn";
+"template.translate.name" = "Þýða";
+"template.translate.content" = "Vinsamlegast þýddu eftirfarandi: ";
+"template.summarize.name" = "Draga saman";
+"template.summarize.content" = "Vinsamlegast dragðu saman eftirfarandi: ";
+"template.explain.name" = "Útskýra";
+"template.explain.content" = "Vinsamlegast útskýrðu eftirfarandi: ";
+"template.code.name" = "Kóði";
+"template.code.content" = "Vinsamlegast skrifaðu kóða fyrir: ";
+
+// MARK: - Export
+"export.title" = "Flytja út samræðu";
+"export.format.markdown" = "Markdown";
+"export.format.pdf" = "PDF";
+"export.format.text" = "Einfaldur texti";
+"export.created" = "Búin til";
+"export.image.attached" = "Mynd hengt við";
+"export.generated.by" = "Myndað af";
+
+// MARK: - Loading Phases
+"loading.phase.initializing" = "Frumstilla...";
+"loading.phase.loading" = "Hleður líkan...";
+"loading.phase.preparing" = "Undirbý áfylktunarvél...";
+"loading.phase.almost" = "Næstum tilbúið...";
+
+// MARK: - Welcome Screen
+"welcome.greeting" = "Spurðu mig um hvað sem er";
+"welcome.subtitle" = "Persónuverndartilbúinn gervigreindaraðstoðarinn þinn";
+"suggestion.idea" = "Hjálpaðu mér með hugmyndavinn";
+"suggestion.write" = "Hjálpaðu mér að skrifa eitthvað";
+"suggestion.question" = "Svaraðu spurningum mínum";
+
+// MARK: - Kokoro TTS
+"tts.download.title" = "Hágæða rödd";
+"tts.download.action" = "Sækja";
+"tts.download.use_system" = "Nota kerfisrödd";
+"tts.download.message" = "Sæktu Kokoro TTS líkanið (~87MB) fyrir náttúrulegra japanskt tal til texta.";
+"tts.downloading" = "Sæki TTS líkan...";
+
+// MARK: - Feedback
+"feedback.consent.title" = "Senda ábendingu";
+"feedback.send" = "Senda";
+"feedback.positive.title" = "Var þetta svar gagnlegt?";
+"feedback.negative.title" = "Gæti þetta verið bætt?";
+"feedback.explanation" = "Ábendingin þín hjálpar til við að bæta gervigreindargæði. Vinsamlegast farðu yfir hvaða gögn verða send áður en þú sendir.";
+"feedback.data.section" = "Gögn sem verða send";
+"feedback.data.conversation" = "Samræða";
+"feedback.data.conversation.desc" = "Gervigreindarsvarið og fyrri skilaboð þín";
+"feedback.data.model" = "Upplýsingar um líkan";
+"feedback.data.model.desc" = "Heiti gervigreindarlíkansins sem notað var";
+"feedback.data.timestamp" = "Tímastimpill";
+"feedback.data.timestamp.desc" = "Hvenær ábendingin var send";
+"feedback.privacy.section" = "Persónuvernd";
+"feedback.privacy.anonymous" = "Engar persónugreinanlegar upplýsingar eru sendar";
+"feedback.privacy.improvement" = "Notað aðeins til að bæta gervigreindargæði";
+"feedback.privacy.optional" = "Að senda ábendingu er alveg valfrjálst";
+"feedback.comment.section" = "Athugasemd (valfrjálst)";
+"feedback.comment.placeholder" = "Segðu okkur hvað mætti bæta eða hvað gekk vel...";
+"feedback.remember.title" = "Muna þetta val";
+"feedback.remember.description" = "Senda ábendingu án þess að spyrja næst";
+
+// MARK: - Emergency Mode
+"emergency.sos.button" = "Neyðarhamur (haldtu niðri til að víxla)";
+"emergency.mode.active" = "Neyðarhamur virkur";
+"emergency.action.firstaid" = "Fyrstu hjálp";
+"emergency.action.firstaid.message" = "Vinsamlegast veittu fyrstu hjálp leiðbeiningar. Ég mun lýsa meiðslunum eða einkennum: ";
+"emergency.action.disaster" = "Hamfarir";
+"emergency.action.disaster.message" = "Hamfarir hafa átt sér stað. Vinsamlegast veittu viðbragðsferli: ";
+"emergency.action.factcheck" = "Staðreyndaskoðun";
+"emergency.action.factcheck.message" = "Vinsamlegast staðfestu áreiðanleika þessara upplýsinga: ";
+"emergency.action.contacts" = "Neyðar";
+"emergency.action.contacts.message" = "Vinsamlegast sýndu mér lista yfir neyðarsímanúmer";
+"emergency.action.evacuation" = "Rýma";
+"emergency.action.evacuation.message" = "Vinsamlegast búðu til rýmingarlista fyrir núverandi aðstæður: ";
+"mcp.emergency_kb" = "Neyðar KB";
+"mcp.emergency_kb.desc" = "Neyðar- og hamfaraupplýsingar";
+
+// MARK: - Emergency Templates
+"template.firstaid.name" = "Fyrstu hjálp leiðbeiningar";
+"template.firstaid.content" = "Vinsamlegast veittu fyrstu hjálp leiðbeiningar fyrir: ";
+"template.disaster.name" = "Hamfaraviðbrögð";
+"template.disaster.content" = "Eftirfarandi hamfarir hafa átt sér stað. Vinsamlegast veittu viðbragðsferli: ";
+"template.factcheck.name" = "Staðreyndaskoðun";
+"template.factcheck.content" = "Vinsamlegast staðfestu áreiðanleika þessara upplýsinga og veittu ábendingar um staðreyndaskoðun: ";
+"template.evacuation.name" = "Rýmingarlisti";
+"template.evacuation.content" = "Vinsamlegast búðu til rýmingarlista fyrir núverandi aðstæður: ";
+
+// MARK: - ChatWeb.ai Integration
+"chatweb.title" = "ChatWeb.ai";
+"chatweb.desc" = "Skýjagervigreindarspjall";
+"chatweb.connect" = "Tengja við ChatWeb.ai";
+"chatweb.qr.title" = "Tengja með QR kóða";
+"chatweb.qr.scan" = "Skanna QR kóða";
+"chatweb.open" = "Opna ChatWeb.ai";
+
+// MARK: - Peer Connection
+"peer.title" = "Nálæg tæki";
+"peer.desc" = "Tengja við nálæg Elio tæki";
+"peer.connect" = "Tengja við tæki";
+"peer.code.title" = "Tengingarskóði";
+"peer.code.enter" = "Slá inn 4 stafa kóða";
+"peer.code.your" = "Þinn kóði";
+"peer.connected" = "Tengt";
+"peer.disconnected" = "Aftengt";
+"peer.inference.offload" = "Deila ályktun";
+
+// MARK: - Web Search
+"chat.web.search" = "Vefleit";
+"search.privacy.title" = "Persónuverndarvarin leit";
+"search.privacy.proceed" = "Leita";
+"search.privacy.message" = "ElioChat vefleit verndar persónuvernd þína:\n\n🔒 Leitir með DuckDuckGo\n🚫 Engin rakning eða prófílun\n🔐 Leitarsaga er ekki geymd\n📱 Engin gögn geymd utan tækisins\n\nAðeins leitarfyrirspurn þín er send til DuckDuckGo og niðurstöður eru unnar á tækinu.";
+"chat.web.analyzing" = "[Greini vefsíðu]";

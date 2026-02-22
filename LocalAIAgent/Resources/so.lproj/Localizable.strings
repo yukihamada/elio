@@ -1,0 +1,635 @@
+/*
+  Localizable.strings (Somali)
+  Elio
+*/
+
+// MARK: - App General
+"app.name" = "Elio";
+"app.tagline" = "Maskaxdaada labaad ee ilaalisa sirta.";
+
+// MARK: - Common Actions
+"common.done" = "Dhammaystiran";
+"common.cancel" = "Ka laabo";
+"common.delete" = "Tirtir";
+"common.save" = "Keydi";
+"common.edit" = "Wax ka beddel";
+"common.share" = "La wadaag";
+"common.copy" = "Koobi";
+"common.copied" = "Waa la koobiyeeyay";
+"common.loading" = "Waa la soo rarayo...";
+"common.error" = "Qalad";
+"common.retry" = "Mar kale isku day";
+"common.skip" = "Iska bood";
+"common.next" = "Xigta";
+"common.start" = "Bilow";
+"common.add" = "Ku dar";
+"common.close" = "Xir";
+"common.details" = "Faahfaahin";
+"common.yes" = "Haa";
+"common.no" = "Maya";
+"common.unknown" = "Aan la garanayn";
+
+// MARK: - Chat
+"chat.placeholder" = "Wax kasta i weydii";
+"chat.model.not.loaded" = "Qaab Aan La Rarrin";
+"chat.model.not.loaded.description" = "Fadlan soo dejiso qaab ka Goobaha";
+"chat.go.to.settings" = "U tag Goobaha";
+"chat.new.conversation" = "Wadahadal Cusub";
+"chat.stop.generation" = "Joogso";
+"chat.generation.stopped" = "\n\n[Soo saarida waa la joojiyay]";
+"chat.image.sent" = "[Sawir la diray]";
+"chat.images.sent" = "[Sawirro %d la diray]";
+"chat.pdf.sent" = "[PDF ku lifaaqan: %@]";
+"chat.pdf.sent.vision" = "[PDF oo leh sawir: %@]";
+"chat.pdf.context" = "Kani waa nuxurka qoraalka laga soo saaray dukumeentiga PDF \"%@\":\n\n%@";
+"chat.pdf.context.vision" = "Kani waa bog 1 ee dukumeentiga PDF \"%@\". Nuxurka qoraalka la soo saaray waa:\n\n%@\n\nFadlan falanqee labadaba waxa muuqda iyo qoraalka.";
+"chat.pdf.analyze" = "Fadlan falanqee boggan PDF ee \"%@\".";
+"chat.url.sent" = "[Bog web: %@]";
+"chat.url.context" = "Kani waa nuxur laga soo saaray bogga websaydhka \"%@\" (%@):\n\n%@";
+"chat.thinking" = "Waan fikirayaa...";
+"chat.generating" = "Jawaab la soo saarayo...";
+"chat.welcome" = "Sidee baan kaa caawin karaa?";
+"chat.suggestion.schedule" = "Tus jadwalka maanta";
+"chat.suggestion.reminder" = "Samee xusuusin";
+"chat.suggestion.weather" = "Cimilada maanta maxay tahay?";
+"chat.suggestion.help" = "Sida loo isticmaalo app-kan";
+"chat.websearch.on" = "Raadinta Websaydhka Furan";
+"chat.websearch.off" = "Raadinta Websaydhka Xidhan";
+"chat.thinking.on" = "Fikirka Furan";
+"chat.thinking.off" = "Fikirka Xidhan";
+"chat.transcribing" = "Waa la qorayaa...";
+"chat.offline" = "Offline ah";
+
+// Voice Conversation Mode
+"voice.listening" = "Waan dhegaysanayaa...";
+"voice.processing" = "Waa la habeynayaa...";
+"voice.thinking" = "Waan fikirayaa...";
+"voice.speaking" = "Waan hadlayaa...";
+"voice.tap.to.send" = "Taabo si aad u dirto";
+"chat.templates" = "Qaababka";
+"chat.websearch.privacy.title" = "Ku saabsan Raadinta Websaydhka";
+"chat.websearch.privacy.message" = "Furitaanka raadinta websaydhka waxay AI u ogolaanaysaa inuu raadshaho internetka iyada oo loo marayo DuckDuckGo macluumaad cusub. Su'aalaha raadinta waxaa loo diraa DuckDuckGo laakiin lama raadsan karaan.";
+"chat.websearch.privacy.enable" = "Fur";
+"chat.websearch.privacy.disable" = "Ku hayso Xiran";
+
+// MARK: - Settings
+"settings.title" = "Goobaha";
+"settings.model.section" = "Qaababka AI";
+"settings.model.recommended" = "Lagu talinayaa: %@";
+"settings.model.local.execution" = "Qaababku waxay ku socdaan qalabkaaga";
+"settings.model.show.more" = "Qaabab Kale (%d)";
+"settings.model.show.less" = "Muuji Yar";
+"settings.appearance.section" = "Muuqaalka";
+"settings.tools.section" = "Sifooyinka Caqliga leh";
+"settings.mcp.servers" = "Xiriiriyeyaasha";
+"settings.mcp.servers.description" = "Calaamad, Faylal, Xusuusiyeyaal & wax kale";
+"settings.mcp.enabled.count" = "%d la furay";
+"settings.mcp.enabled.count.suffix" = " la furay";
+"settings.about.section" = "Ku saabsan";
+"settings.version" = "Nooca";
+"settings.about.app" = "Ku saabsan App-kan";
+"settings.about.mcp" = "Ku saabsan Xiriiriyeyaasha";
+"settings.privacy.badge" = "Waxay ka shaqeysaa Offline";
+"settings.privacy.description" = "Waxay ka shaqeysaa Qaabka Diyaaradda";
+"settings.airplane.mode" = "Waxay ku socdaa Qaabka Diyaaradda";
+"settings.offline.ready" = "Diyaar ah Offline";
+
+// MARK: - Model States
+"model.status.downloading" = "Waa la soo dejinayaa... %d%%";
+"model.status.loading" = "Waa la rarayaa...";
+"model.status.in.use" = "Isticmaalka ku jiro";
+"model.status.recommended" = "Lagu talinayaa";
+"model.status.heavy" = "Culus";
+"model.action.download" = "Soo dejiso";
+"model.action.load" = "Rar";
+"model.action.delete" = "Tirtir";
+"model.action.use" = "Isticmaal Qaabkan";
+"model.delete.confirm.title" = "Tirtir Qaabka";
+"model.delete.confirm.message" = "Tirtir %@? Waxaad u baahan doontaa inaad mar kale soo dejiso si aad mar kale u isticmaasho.";
+"model.select.title" = "Dooro Qaab";
+"model.select.prompt" = "Fadlan dooro qaab";
+"model.downloaded" = "La soo dejiyay";
+
+// MARK: - Inference Mode
+"inference.mode.title" = "Dardargelinta";
+"inference.mode.auto" = "Otomaatig ah";
+"inference.mode.auto.desc" = "Waxqabadka ugu wanaagsan si otomaatig ah";
+"inference.mode.gpu" = "GPU (Metal)";
+"inference.mode.gpu.desc" = "Xawaaraha ugu badan ee Metal";
+"inference.mode.cpu" = "CPU kaliya";
+"inference.mode.cpu.desc" = "Qaabka kaydinta batarida";
+"inference.mode.hybrid" = "Isku dhafan";
+"inference.mode.hybrid.desc" = "Dheelitirka xawaare iyo batari";
+
+// MARK: - Theme
+"theme.system" = "Nidaam";
+"theme.light" = "Iftiin";
+"theme.dark" = "Madow";
+
+// MARK: - Onboarding
+"onboarding.welcome.title" = "Ku soo dhawoow ElioChat";
+"onboarding.welcome.subtitle" = "Kaaliyahaaga AI-ga gaarka ah";
+"onboarding.features.title" = "AI Gaar ah Run ahaan";
+"onboarding.feature.offline" = "Waxay ka shaqeysaa Qaabka Diyaaradda";
+"onboarding.feature.offline.desc" = "Ku isticmaal diyaaradaha ama dhulka hoostiisa";
+"onboarding.feature.privacy" = "Ma jiro Qaadista Xogta";
+"onboarding.feature.privacy.desc" = "Wadahadaladaadu ma ka baxaan taleefoonkaaga";
+"onboarding.feature.vault" = "Xiriiriyeyaasha Caqliga leh";
+"onboarding.feature.vault.desc" = "Ku xidh Calaamadda & Faylalka";
+"onboarding.feature.secure" = "AI Ammaan ah Shaqada";
+"onboarding.feature.secure.desc" = "Ammaan ah isticmaalka shirkadaha";
+"onboarding.feature.thinking" = "Habka Fikirka";
+"onboarding.privacy.title" = "Xogtaadu Waa Taada";
+"onboarding.privacy.item1" = "Dhammaan habka wuxuu ka dhacayaa iPhone-kaaga";
+"onboarding.privacy.item2" = "Xogta laguma diro serverka daruuraha";
+"onboarding.privacy.item3" = "Weligeed looma isticmaalo tababarka AI";
+"onboarding.getstarted.title" = "Diyaar hal Taabo";
+"onboarding.getstarted.subtitle" = "Soo dejiso qaabka AI ee lagu talinayo\noo bilow wadahadallo isla markiiba";
+"onboarding.step1" = "Soo dejiso qaabka lagu talinayo";
+"onboarding.step2" = "Sug daqiiqado yar";
+"onboarding.step3" = "Waxaad diyaar tahay!";
+
+// MARK: - About
+"about.title" = "Ku saabsan App-kan";
+"about.rate.app" = "Qiimee App-ka";
+"about.share.app" = "La wadaag Saaxiibada";
+"about.privacy.policy" = "Siyaasadda Sirta";
+"about.terms" = "Shuruudaha Adeegga";
+"about.tech.info" = "Macluumaadka Farsamada";
+"about.tech.engine" = "Matoorka AI";
+"about.tech.format" = "Qaabka La Taageerayo";
+"about.tech.inference" = "Dulqaad";
+"about.data.management" = "Maaraynta Xogta";
+"about.delete.all" = "Tirtir Dhammaan Wadahadalada";
+"about.credits" = "Ammaanta";
+"about.credits.description" = "App-kani wuxuu isticmaalaa maktabado fursan il furan";
+"about.privacy.section" = "Sirta";
+"about.gguf.format" = "Qaabka GGUF";
+"about.metal.gpu" = "Dardargelinta GPU Metal";
+
+// MARK: - Referral
+"referral.title" = "Soo jeedi Saaxiibada";
+"referral.code.title" = "Koodhka Soo jeedinta";
+"referral.code.copy" = "Koobi Koodhka";
+"referral.code.copied" = "Waa la koobiyeeyay";
+"referral.share.button" = "La wadaag Saaxiibada";
+"referral.share.description" = "La wadaag Elio saaxiibadaada!";
+"referral.count" = "Waxaad soo jeedisay %d qof";
+"referral.enter.title" = "Geli Koodhka Soo jeedinta";
+"referral.enter.placeholder" = "Koodhka Soo jeedinta";
+"referral.enter.button" = "Codsado";
+"referral.enter.success" = "Koodhka soo jeedinta waa la codsaday";
+"referral.enter.error" = "Koodhka soo jeedinta ma aha mid sax ah";
+
+// MARK: - Privacy Policy
+"privacy.title" = "Siyaasadda Sirta";
+"privacy.data.collection.title" = "Ururinta Xogta";
+"privacy.data.collection.content" = "App-kani wuxuu ka socdaa AI maxalli ah si buuxda offline.\nXogta laguma diro serverka dibadda.\nDhammaan wadahadalada waxaa lagu kaydiyay qalabkaaga kaliya.";
+"privacy.stored.data.title" = "Xogta La Kaydiyay";
+"privacy.stored.data.content" = "Taariikhda wadahadal (waxaa lagu kaydiyay qalabka kaliya)\nFaylalka qaabka AI (waxaa lagu kaydiyay qalabka kaliya)\nGoobaha app-ka (waxaa lagu kaydiyay qalabka kaliya)\n\nXogtaan lama wadaago dibadda abid.";
+"privacy.data.deletion.title" = "Tirtirid Xogta";
+"privacy.data.deletion.content" = "Waxaad tirtiri kartaa dhammaan xogta mar kasta ka Goobaha > Maaraynta Xogta.\nKa saaridda app-ka waxay tirtiri doontaa dhammaan xogta.";
+
+// MARK: - Terms of Service
+"terms.title" = "Shuruudaha Adeegga";
+"terms.service.title" = "Sharaxaadda Adeegga";
+"terms.service.content" = "App-kani wuxuu bixiyaa adeegga kaaliyaha AI adoo isticmaalaya qaab AI ah oo maxalli ah.";
+"terms.disclaimer.title" = "Diiwaangelin";
+"terms.disclaimer.content" = "Jawaabaha AI-gu waxa uu yeelan karaa khaladaad.\nGo'aanada muhiimka ah waa in ay caddayn khabiir.\nAnagu mas'uul kama nihin waxyeello ka dhalan kara isticmaalka app-kan.";
+"terms.prohibited.title" = "Hawlaha La Reebay";
+"terms.prohibited.content" = "Hawlo sharci darro ah\nHawlo ku xadgudba xuquuqda dadka kale\nDib u habayn app-kan\nKoobi sameyn app-kan iyada oo aan la oggolaanin";
+"terms.ip.title" = "Hantida Maskaxda";
+"terms.ip.content" = "Xuquuqda hantida maskaxda ee app-kani waxaa iska leh horumariyaha.\nMa la ogola isticmaalka aan la oggolaanayn.";
+
+// MARK: - Conversations
+"conversations.title" = "Wadahadalo";
+"conversations.new" = "Wadahadal Cusub";
+"conversations.empty" = "Weli ma jiraan wadahadalo";
+"conversations.delete" = "Tirtir Wadahadal";
+"conversations.default.title" = "Wadahadal Cusub";
+"conversations.today" = "Maanta";
+"conversations.yesterday" = "Shalay";
+"conversations.past7days" = "7 Maalmood oo la soo dhaafay";
+"conversations.past30days" = "30 Maalmood oo la soo dhaafay";
+"conversations.older" = "Ka hore";
+"conversations.created" = "La sameeyay: %@";
+"conversations.user" = "Isticmaale";
+"conversations.assistant" = "Kaaliye";
+"conversations.search.placeholder" = "Raadi wadahadalo";
+"conversations.search.no_results" = "Natiijo la helin";
+
+// MARK: - Message Actions
+"message.copy" = "Koobi";
+"message.speak" = "Hadal";
+"message.stop.speaking" = "Joogsi Hadalka";
+"message.share" = "La wadaag";
+"message.share.card" = "La wadaag Sidii Kaarka";
+"message.like" = "Jeclaansho";
+
+// MARK: - Share Card
+"share.card.title" = "La wadaag Kaarka";
+"share.card.preview" = "Muuqaal";
+"share.card.button" = "La wadaag Sawirka";
+"message.dislike" = "Ma jeclahay";
+"message.thinking.process" = "Habka Fikirka";
+"message.tool.running" = "Qalab la Socdaa";
+"message.tool.error" = "Qalad";
+"message.tool.completed" = "Dhameystiran";
+
+// MARK: - Attachment
+"attachment.title" = "Lifaaqan";
+"attachment.photo.library" = "Dooro Sawir";
+"attachment.camera" = "Qaado Sawir";
+"attachment.pdf" = "Dooro PDF";
+"attachment.pdf.chars" = "%d xaraf";
+"attachment.pdf.pages" = "%d bog";
+"attachment.pdf.vision.enabled" = "Falanqaynta sawirka la furay";
+"attachment.pdf.text.only" = "Qaabka qoraalka kaliya";
+"attachment.url" = "Aqri Bogga Websaydhka";
+"attachment.url.title" = "Geli URL";
+"attachment.url.placeholder" = "https://tusaale.com";
+"attachment.url.message" = "Dhig URL si aad u soo saarto nuxurkeeda";
+"attachment.url.fetch" = "Soo qaado";
+"attachment.url.loading" = "Bogga waa la rarayaa...";
+
+// MARK: - Errors
+"error.model.not.found" = "Faylka qaabka lama helin";
+"error.model.not.loaded" = "Qaabka lama rarin";
+"error.context.failed" = "Lama soo saari karin xaaladda";
+"error.tokenization.failed" = "Sameynta calaamadda ayaa fashilantay";
+"error.generation.failed" = "Khalad soo saar: %@";
+"error.occurred" = "Qalad ayaa dhacday: %@";
+"error.invalid.url" = "URL aan sax ahayn";
+"error.download.failed" = "Soo dejinta ayaa fashilantay";
+"error.extraction.failed" = "Soo saarida ayaa fashilantay";
+"error.config.not.found" = "Faylka qaabaynta lama helin";
+
+// MARK: - Ghost Search
+"ghost.search.title" = "Raadinta Qarsoodi";
+"ghost.search.description" = "Raadin aan la aqoonsan oo loo marayo DuckDuckGo (la'aan raadid)";
+"ghost.search.connecting" = "Waxaa lagu xiraya shabakad aan la aqoonsan...";
+"ghost.search.privacy.note" = "Taariikhda raadintaada waligeed lama raadsan karo";
+
+// MARK: - MCP Servers
+"mcp.filesystem" = "Nidaamka Faylka";
+"mcp.filesystem.desc" = "Aqri oo qor faylal app-ka gudihiisa";
+"mcp.calendar" = "Calaamadda";
+"mcp.calendar.desc" = "Aqri oo qor dhacdooyinka";
+"mcp.reminders" = "Xusuusiyeyaasha";
+"mcp.reminders.desc" = "Maaree xusuusiyeyaasha";
+"mcp.contacts" = "Xiriiriyeyaasha";
+"mcp.contacts.desc" = "Raadi oo arag xiriiriyeyaasha";
+"mcp.photos" = "Sawirrada";
+"mcp.photos.desc" = "Hel maktabada sawirrada";
+"mcp.location" = "Goobta";
+"mcp.location.desc" = "Hel goobta hadda iyo raadinta meelaha";
+"mcp.health" = "Caafimaadka";
+"mcp.health.desc" = "Hel xogta caafimaadka";
+"mcp.shortcuts" = "Soo koobid";
+"mcp.shortcuts.desc" = "Socdsi soo koobid";
+"mcp.websearch" = "Raadinta Websaydhka";
+"mcp.websearch.desc" = "Raadinta websaydhka aan la aqoonsan";
+"mcp.custom" = "Xiriiriye Gaarka ah";
+"mcp.custom.add" = "Ku dar Xiriiriye";
+"mcp.custom.setup" = "Dejiso xiriirka adeegga dibadda";
+"mcp.custom.title" = "Xiriiriyeyaasha Gaarka ah";
+"mcp.settings.title" = "Goobaha Xiriirka";
+"mcp.server.name" = "Magaca Serverka";
+"mcp.server.name.placeholder" = "tusaale ahaan, Serverka Gaarka ah";
+"mcp.config.url" = "URL Faylka Qaabaynta";
+"mcp.import.file" = "Soo deji ka Faylka";
+"mcp.config.example" = "Tusaalaha Faylka Qaabaynta";
+"mcp.permission.note" = "Ogolaansho ayaa la weydiisan doonaa marka ugu horeysay ee aad isticmaasho sifada kasta";
+
+// MARK: - MCP Tool Messages
+"mcp.tool.available" = "Qalabka La Heli Karo:";
+"mcp.tool.parameters" = "Cabbirrada:";
+"mcp.prompt.available" = "Tilmaamaha La Heli Karo:";
+"mcp.prompt.arguments" = "Doodaha:";
+"mcp.tool.name" = "magaca_qalabka";
+"mcp.tool.arg.name" = "magaca_dooda";
+"mcp.tool.arg.value" = "qiimaha";
+"mcp.tool.no.result" = "Natijo la'aan";
+"mcp.tool.running" = "Qalabka la socdaa: %@";
+"mcp.tool.error" = "Khalad fulin qalabka: %@";
+
+// MARK: - MCP Error Messages
+"mcp.error.server.not.found" = "Serverka lama helin: %@";
+"mcp.error.tool.not.found" = "Qalabka lama helin: %@";
+"mcp.error.invalid.args" = "Doodo aan sax ahayn: %@";
+"mcp.error.execution" = "Khalad fulin: %@";
+"mcp.error.permission" = "Ogolaanshaha waa la diiday: %@";
+
+// MARK: - Calendar Messages
+"calendar.no.events" = "Dhacdooyin malaha";
+"calendar.event.created" = "Dhacdo la sameeyay: %@";
+"calendar.event.deleted" = "Dhacdo la tirtiray: %@";
+"calendar.allday.created" = "Dhacdo maalinti oo dhan la sameeyay: %@";
+"calendar.access.denied" = "Gelitaanka calaamadda waa la diiday";
+"calendar.today.none" = "Maanta dhacdooyin malaha";
+"calendar.untitled" = "Cinwaan la'aan";
+
+// MARK: - Reminders Messages
+"reminders.none" = "Xusuusiyeyaal malaha";
+"reminders.created" = "Xusuusin la sameeyay: %@";
+"reminders.completed" = "Xusuusin la dhammaystray: %@";
+"reminders.deleted" = "Xusuusin la tirtiray: %@";
+"reminders.access.denied" = "Gelitaanka xusuusiyeyaasha waa la diiday";
+"reminders.untitled" = "Cinwaan la'aan";
+
+// MARK: - Photos Messages
+"photos.access.denied" = "Gelitaanka sawirrada waa la diiday";
+"photos.not.found" = "Sawirka lama helin";
+"photos.untitled" = "Cinwaan la'aan";
+"photos.count" = "Sawirro: %d";
+"photos.videos.count" = "Fiidiyooyin: %d";
+"photos.albums.count" = "Albamyo: %d";
+"photos.favorites.count" = "Kuwa la jecel yahay: %d";
+"photos.date" = "Taariikhda: %@";
+"photos.size" = "Cabbirka: %d x %d";
+"photos.location" = "Goobta: %@, %@";
+"photos.media.type" = "Nooca Warbaahineed: %@";
+"photos.duration" = "Mudada: %dm %ds";
+"photos.favorite" = "La jecel yahay: %@";
+"photos.type.image" = "Sawir";
+"photos.type.video" = "Fiidiyow";
+"photos.type.audio" = "Codka";
+
+// MARK: - Contacts Messages
+"contacts.access.denied" = "Gelitaanka xiriiriyeyaasha waa la diiday";
+"contacts.not.found" = "Lama helin xiriiriyeyaal u dhigma";
+"contacts.no.groups" = "Kooxo malaha";
+"contacts.no.card" = "Kaarka xiriirka lama dejin";
+"contacts.name" = "Magaca: %@";
+"contacts.company" = "Shirkadda: %@";
+"contacts.job" = "Cinwaanka Shaqada: %@";
+
+// MARK: - Location Messages
+"location.access.denied" = "Gelitaanka goobta waa la diiday";
+"location.not.found" = "Cinwaanka lama helin";
+"location.latitude" = "Latitude: %@";
+"location.longitude" = "Longitude: %@";
+"location.accuracy" = "Saxnaanta: %dm";
+"location.altitude" = "Sare: %dm";
+"location.search" = "Raadi: %@";
+"location.address" = "Cinwaanka: %@";
+"location.country" = "Wadanka: %@";
+"location.postal" = "Koodhka Boostada: %@";
+"location.from" = "Ka: (%@, %@)";
+"location.to" = "Ilaa: (%@, %@)";
+"location.distance.km" = "Masaafada: %.2f km";
+"location.distance.m" = "Masaafada: %d m";
+
+// MARK: - Health Messages
+"health.not.available" = "Caafimaadku kuma jirto qalabkan";
+"health.date" = "Taariikhda: %@";
+"health.steps" = "Tallaabooyin: %@ tallaabooyin";
+"health.goal.progress" = "Horumarka yoolka: %d%% (yoolka tallaabada 10,000)";
+"health.no.data" = "Xog la heli karo malaha";
+"health.avg.bpm" = "Celceliska: %d bpm";
+"health.min.bpm" = "Ugu yar: %d bpm";
+"health.max.bpm" = "Ugu badan: %d bpm";
+"health.measurements" = "Cabirrada: %d";
+"health.no.sleep" = "Xogta hurdada malaha";
+"health.sleep.total" = "Wadarta hurdada: %dh %dm";
+"health.bedtime" = "Waqtiga hurdada: %@";
+"health.waketime" = "Waqtiga kicinta: %@";
+"health.calories" = "Kaloriyada: %d kcal";
+
+// MARK: - File System Messages
+"filesystem.not.found" = "Faylka lama helin: %@";
+"filesystem.written" = "Faylka la qoray: %@";
+"filesystem.dir.created" = "Galka la sameeyay: %@";
+"filesystem.deleted" = "La tirtiray: %@";
+"filesystem.size" = "Cabbirka: %@";
+"filesystem.created" = "La sameeyay: %@";
+"filesystem.modified" = "La beddelay: %@";
+"filesystem.type" = "Nooca: %@";
+
+// MARK: - Shortcuts Messages
+"shortcuts.executed" = "Soo kooban '%@' la fuliyay";
+"shortcuts.opened" = "App-ka soo kooban la furay";
+"shortcuts.settings.opened" = "Goobaha (%@) la furay";
+"shortcuts.mail.opened" = "Qorista iimeylka la furay";
+"shortcuts.calling" = "Waan wacayaa: %@";
+"shortcuts.message.opened" = "Qorista fariinta la furay";
+"shortcuts.failed" = "Lama furi karin soo koobidda";
+
+// MARK: - Model Tiers
+"model.tier.entry" = "Gelitaan";
+"model.tier.standard" = "Caadi ah";
+"model.tier.pro" = "Xirfad leh";
+
+// MARK: - Tool Parser
+"tool.arguments" = "Doodaha:";
+
+// MARK: - Model Settings
+"model.action.settings" = "Goobaha";
+"settings.model.parameters" = "Goobaha Qaabka";
+"settings.model.parameters.description" = "Qaabso cabbirrada soo saarista qaabkan";
+"settings.preset.title" = "Goobaha Hore";
+"settings.preset.custom" = "Gaarka ah";
+"settings.preset.balanced" = "Dheellitiran";
+"settings.preset.creative" = "Hal-abuur";
+"settings.preset.precise" = "Sax ah";
+"settings.preset.coding" = "Kodhka";
+"settings.preset.japanese" = "Japanese";
+"settings.parameters.title" = "Cabbirrada";
+"settings.parameter.temperature" = "Heerkulka";
+"settings.parameter.temperature.description" = "Sarreeya = hal-abuur badan, hoose = diiradda badan";
+"settings.parameter.top.p" = "Top P";
+"settings.parameter.top.p.description" = "Suurtagalnimada sampling nucleus";
+"settings.parameter.top.k" = "Top K";
+"settings.parameter.top.k.description" = "Tirada calaamadaha sare ee la tixgeliyo";
+"settings.parameter.max.tokens" = "Calaamadaha Ugu Badan";
+"settings.parameter.max.tokens.description" = "Dhererka jawaabta ugu badan";
+"settings.parameter.repeat.penalty" = "Ciqaabta Ku-celinta";
+"settings.parameter.repeat.penalty.description" = "Sarreeya = wax soo saar ku-celin ah yar";
+"settings.parameter.thinking" = "Qaabka Fikirka";
+"settings.parameter.thinking.description" = "Tus habka fikirka AI";
+"settings.system.prompt.title" = "Tilmaamaha Nidaamka";
+"settings.system.prompt.description" = "Tilmaamaha gaarka ah ee AI";
+"settings.reset.to.default" = "Ku celi Aasaasiga";
+
+// MARK: - Vision Model
+"vision.model.required.title" = "Qaabka Aragtida Loo Baahan Yahay";
+"vision.model.required.header" = "Aqoonsiga Sawirka Loo Baahan Yahay";
+"vision.model.required.description" = "Si aad u falanqeyso sawirrada, waxaad u baahan tahay qaab AI oo awood u leh aragga";
+"vision.model.switch" = "Bedel Qaabka";
+"vision.model.switch.message %@" = "U bedelo %@ si aad u furtid falanqaynta sawirka?";
+"vision.model.download" = "Soo dejiso";
+"vision.model.download.message %@ %@" = "Soo dejiso %@ (%@) si aad u falanqeyso sawirrada?";
+"vision.model.not.available" = "Ma jiro qaab aragti ah oo ku habboon qalabkaaga";
+"vision.model.switching" = "Qaabka la beddelayo...";
+"vision.model.download.title" = "Qaababka Aragtida";
+"vision.model.recommended" = "Waxaa lagu talinayaa qalabkaaga";
+"vision.model.recommended.size %@" = "Waxaa lagu talinayaa: %@";
+"vision.model.use.this" = "Isticmaal Qaabkan";
+"vision.model.download.button %@" = "Soo dejiso (%@)";
+"vision.model.other.options" = "Qaababka Aragtida Kale";
+"vision.model.download.complete" = "Dejinta Dhammaystiran";
+"vision.model.download.complete.message" = "Diyaar u ah falanqaynta sawirrada";
+
+// MARK: - Whisper Voice Input (Legacy)
+"whisper.download.title" = "Aqoonsiga Codka Loo Baahan Yahay";
+"whisper.download.action" = "Soo dejiso";
+"whisper.download.message" = "Si aad u isticmaasho gelinta codka, waxaad u baahan tahay inaad soo dejiso qaabka aqoonsiga hadalka (~150MB).";
+"whisper.downloading" = "Waxaa la soo dejinayaa qaabka aqoonsiga hadalka...";
+"whisper.download.error" = "Khalad Soo Dejinta";
+"whisper.load.error" = "Khalad Rarid Qaabka";
+"whisper.permission.denied" = "Ogolaanshaha makarafoonka lama oggolaan";
+"whisper.transcribe.error" = "Khalad Qorista";
+"whisper.error.permission" = "Ogolaanshaha makarafoonka ayaa loo baahan yahay";
+"whisper.error.not.recording" = "Hadda lama duubayo";
+"whisper.error.no.recording" = "Xogta duubista malaha";
+"whisper.error.model.not.loaded" = "Qaabka aqoonsiga hadalka lama rarin";
+"whisper.error.transcription" = "Qorista ayaa fashilantay";
+
+// MARK: - Speech Recognition (ReazonSpeech)
+"speech.download.title" = "Aqoonsiga Codka Loo Baahan Yahay";
+"speech.download.action" = "Soo dejiso";
+"speech.download.message" = "Si aad u isticmaasho gelinta codka, waxaad u baahan tahay inaad soo dejiso qaabka aqoonsiga hadalka Japanese (~155MB).";
+"speech.downloading" = "Waxaa la soo dejinayaa qaabka aqoonsiga hadalka...";
+
+// MARK: - Language Settings
+"settings.language.section" = "Luqadda";
+"language.system" = "Isticmaal Luqadda Nidaamka";
+"settings.language.restart.hint" = "Isbeddelka luqadda wuxuu noqon doonaa marka aad dib u bilowdo app-ka";
+"settings.language.changed.title" = "Luqadda La Beddelay";
+"settings.language.changed.message" = "Fadlan dib u bilow app-ka si aad u codsato isbeddelka";
+"common.ok" = "Waa hagaag";
+
+// MARK: - System Prompt Settings
+"settings.prompt.section" = "Tilmaamaha Nidaamka";
+"settings.prompt.edit" = "Wax ka beddel Tilmaamaha";
+"settings.prompt.default" = "Isticmaalaya aasaasiga";
+"settings.prompt.custom" = "Tilmaamaha gaarka ah la dejiyay";
+"settings.prompt.hint" = "Qaabso dhaqanka AI";
+"settings.prompt.editor.title" = "Wax ka beddel Tilmaamaha";
+"settings.prompt.editor.instruction" = "Ku dar tilmaamo gaarka ah AI. Ka tag maran si aad u isticmaasho tilmaamaha aasaasiga.";
+"settings.prompt.default.preview" = "Tilmaamaha aasaasiga (qayb):";
+"settings.prompt.reset" = "Dib u deji";
+"settings.prompt.reset.title" = "Dib u deji Tilmaamaha";
+"settings.prompt.reset.message" = "Tirtir tilmaamaha gaarka ah oo ku celi aasaasiga?";
+
+// MARK: - Prompt Templates
+"templates.title" = "Qaababka Tilmaamaha";
+"templates.empty" = "Weli qaabab malaha";
+"templates.add" = "Ku dar Qaab";
+"template.add.title" = "Ku dar Qaab";
+"template.edit.title" = "Wax ka beddel Qaabka";
+"template.name.header" = "Magaca";
+"template.name.placeholder" = "Magaca qaabka";
+"template.content.header" = "Nuxurka Tilmaamaha";
+"template.icon.header" = "Astaan";
+"template.translate.name" = "Turjun";
+"template.translate.content" = "Fadlan turjun tan: ";
+"template.summarize.name" = "Soo koob";
+"template.summarize.content" = "Fadlan soo koob tan: ";
+"template.explain.name" = "Sharax";
+"template.explain.content" = "Fadlan sharax tan: ";
+"template.code.name" = "Koodh";
+"template.code.content" = "Fadlan qor koodh loogu talagalay: ";
+
+// MARK: - Export
+"export.title" = "Dhoofinta Wadahadal";
+"export.format.markdown" = "Markdown";
+"export.format.pdf" = "PDF";
+"export.format.text" = "Qoraal Cad";
+"export.created" = "La sameeyay";
+"export.image.attached" = "Sawirka la ku lifaaqay";
+"export.generated.by" = "Waxaa soo saaray";
+
+// MARK: - Loading Phases
+"loading.phase.initializing" = "Waa la bilaabayaa...";
+"loading.phase.loading" = "Qaabka la rarayaa...";
+"loading.phase.preparing" = "Matoorka dulqaadka la diyaarinayo...";
+"loading.phase.almost" = "Dhowaad diyaar ah...";
+
+// MARK: - Welcome Screen
+"welcome.greeting" = "Wax kasta i weydii";
+"welcome.subtitle" = "Kaaliyahaaga AI ee sirta marka hore";
+"suggestion.idea" = "Iga caawin aan u fekero fikrado";
+"suggestion.write" = "Iga caawin aan wax qoro";
+"suggestion.question" = "Ka jawaab su'aalahayga";
+
+// MARK: - Kokoro TTS
+"tts.download.title" = "Cod Tayo Sare";
+"tts.download.action" = "Soo dejiso";
+"tts.download.use_system" = "Isticmaal Codka Nidaamka";
+"tts.download.message" = "Soo dejiso qaabka Kokoro TTS (~87MB) loogu talagalay qoraal-ilaa-hadal Japanese oo dabiici ah oo wanaagsan.";
+"tts.downloading" = "Waxaa la soo dejinayaa qaabka TTS...";
+
+// MARK: - Feedback
+"feedback.consent.title" = "Dir Jawaab Celin";
+"feedback.send" = "Dir";
+"feedback.positive.title" = "Jawaabtan miyay caawisay?";
+"feedback.negative.title" = "Miyaa la wanaajin karaa tan?";
+"feedback.explanation" = "Jawaabcelintaada waxay caawisaa horumarinta tayada AI. Fadlan dib u eeg xogta la diri doono ka hor dirista.";
+"feedback.data.section" = "Xogta la diri doono";
+"feedback.data.conversation" = "Wadahadal";
+"feedback.data.conversation.desc" = "Jawaabta AI iyo fariintaada hore";
+"feedback.data.model" = "Macluumaadka qaabka";
+"feedback.data.model.desc" = "Magaca qaabka AI la isticmaalay";
+"feedback.data.timestamp" = "Waqtiga";
+"feedback.data.timestamp.desc" = "Marka la diray jawaabcelinta";
+"feedback.privacy.section" = "Sirta";
+"feedback.privacy.anonymous" = "Macluumaad aqoonsi ah la ma diro";
+"feedback.privacy.improvement" = "Waxaa loo isticmaalaa kaliya horumarinta tayada AI";
+"feedback.privacy.optional" = "Dirista jawaabcelinta waa ikhtiyaar buuxda";
+"feedback.comment.section" = "Faallo (ikhtiyaari)";
+"feedback.comment.placeholder" = "Noo sheeg waxa la hagaajin karo ama waxa si fiican u shaqeeyay...";
+"feedback.remember.title" = "Xusuuso doorashadaan";
+"feedback.remember.description" = "Soo gudbi jawaab celin adigoon weydiisan markii dambe";
+
+// MARK: - Emergency Mode
+"emergency.sos.button" = "Qaabka Deg-degga ah (riix dheer si aad u beddesho)";
+"emergency.mode.active" = "Qaabka Deg-degga ah Shaqaynaya";
+"emergency.action.firstaid" = "Caawinta Kowaad";
+"emergency.action.firstaid.message" = "Fadlan bixi tilmaamaha caawinta kowaad. Waxaan sharxi doonaa dhaawaca ama calaamadaha: ";
+"emergency.action.disaster" = "Masiibo";
+"emergency.action.disaster.message" = "Masiibo ayaa dhacday. Fadlan bixi habraacyada ka jawaabida: ";
+"emergency.action.factcheck" = "Xaqiiji Xaqiiqada";
+"emergency.action.factcheck.message" = "Fadlan xaqiiji kalsoonida macluumaadkan: ";
+"emergency.action.contacts" = "Deg-deg ah";
+"emergency.action.contacts.message" = "Fadlan i tus liiska nambarada xiriirka deg-degga ah";
+"emergency.action.evacuation" = "Barakac";
+"emergency.action.evacuation.message" = "Fadlan samee liis hubinta barakaca xaaladda hadda: ";
+"mcp.emergency_kb" = "KB Deg-deg ah";
+"mcp.emergency_kb.desc" = "Macluumaadka deg-degga ah & masiibada";
+
+// MARK: - Emergency Templates
+"template.firstaid.name" = "Hagaha Caawinta Kowaad";
+"template.firstaid.content" = "Fadlan bixi tilmaamaha caawinta kowaad loogu talagalay: ";
+"template.disaster.name" = "Ka Jawaabida Masiibada";
+"template.disaster.content" = "Masiibadan ayaa dhacday. Fadlan bixi habraacyada ka jawaabida: ";
+"template.factcheck.name" = "Xaqiiji Xaqiiqada";
+"template.factcheck.content" = "Fadlan xaqiiji kalsoonida macluumaadkan oo bixi talooyinka hubinta xaqiiqada: ";
+"template.evacuation.name" = "Liiska Hubinta Barakaca";
+"template.evacuation.content" = "Fadlan samee liis hubinta barakaca xaaladda hadda: ";
+
+// MARK: - ChatWeb.ai Integration
+"chatweb.title" = "ChatWeb.ai";
+"chatweb.desc" = "Wadahadalka AI Daruuraha";
+"chatweb.connect" = "Ku xidh ChatWeb.ai";
+"chatweb.qr.title" = "Ku xidh Kodhka QR";
+"chatweb.qr.scan" = "Falanqee Kodhka QR";
+"chatweb.open" = "Fur ChatWeb.ai";
+
+// MARK: - Peer Connection
+"peer.title" = "Qalabka Dhowdhow";
+"peer.desc" = "Ku xidh qalabka Elio ee dhowdhow";
+"peer.connect" = "Ku xidh Qalabka";
+"peer.code.title" = "Kodhka Xiriirka";
+"peer.code.enter" = "Geli kodhka 4 lambar";
+"peer.code.your" = "Koodhkaaga";
+"peer.connected" = "La xidhiidhay";
+"peer.disconnected" = "La gooyay";
+"peer.inference.offload" = "La wadaagayo dulqaadka";
+
+// MARK: - Web Search
+"chat.web.search" = "Raadinta Websaydhka";
+"search.privacy.title" = "Raadin La Ilaaliyay Sirta";
+"search.privacy.proceed" = "Raadi";
+"search.privacy.message" = "Raadinta Websaydhka ElioChat waxay ilaalisa sirtaada:\n\n🔒 Raadinta oo loo marayo DuckDuckGo\n🚫 Ma jiro raadid ama sharaf\n🔐 Taariikhdda raadinta lama kaydin\n📱 Xog kama kaydinayo dibadda qalabkaaga\n\nKaliya su'aasha raadintaada ayaa loo diraa DuckDuckGo, natiijooyinkana waxaa lagu habeeyaa qalabkaaga.";
+"chat.web.analyzing" = "[Waxaa la falanqeeyay bogga websaydhka]";

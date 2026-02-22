@@ -1,0 +1,635 @@
+/*
+  Localizable.strings (Romanian)
+  Elio
+*/
+
+// MARK: - App General
+"app.name" = "Elio";
+"app.tagline" = "Al doilea creier care îți păstrează secretele.";
+
+// MARK: - Common Actions
+"common.done" = "Gata";
+"common.cancel" = "Anulează";
+"common.delete" = "Șterge";
+"common.save" = "Salvează";
+"common.edit" = "Editează";
+"common.share" = "Distribuie";
+"common.copy" = "Copiază";
+"common.copied" = "Copiat";
+"common.loading" = "Se încarcă...";
+"common.error" = "Eroare";
+"common.retry" = "Reîncearcă";
+"common.skip" = "Omite";
+"common.next" = "Următorul";
+"common.start" = "Începe";
+"common.add" = "Adaugă";
+"common.close" = "Închide";
+"common.details" = "Detalii";
+"common.yes" = "Da";
+"common.no" = "Nu";
+"common.unknown" = "Necunoscut";
+
+// MARK: - Chat
+"chat.placeholder" = "Întreabă orice";
+"chat.model.not.loaded" = "Niciun model încărcat";
+"chat.model.not.loaded.description" = "Descarcă un model din Setări";
+"chat.go.to.settings" = "Mergi la Setări";
+"chat.new.conversation" = "Chat nou";
+"chat.stop.generation" = "Oprește";
+"chat.generation.stopped" = "\n\n[Generare oprită]";
+"chat.image.sent" = "[Imagine trimisă]";
+"chat.images.sent" = "[%d imagini trimise]";
+"chat.pdf.sent" = "[PDF atașat: %@]";
+"chat.pdf.sent.vision" = "[PDF cu imagine: %@]";
+"chat.pdf.context" = "Următorul este conținut text extras din documentul PDF \"%@\":\n\n%@";
+"chat.pdf.context.vision" = "Aceasta este pagina 1 din documentul PDF \"%@\". Conținutul text extras este:\n\n%@\n\nTe rog analizează atât conținutul vizual cât și textul.";
+"chat.pdf.analyze" = "Te rog analizează această pagină PDF din \"%@\".";
+"chat.url.sent" = "[Pagină web: %@]";
+"chat.url.context" = "Următorul este conținut extras din pagina web \"%@\" (%@):\n\n%@";
+"chat.thinking" = "Mă gândesc...";
+"chat.generating" = "Generez răspuns...";
+"chat.welcome" = "Cu ce te pot ajuta?";
+"chat.suggestion.schedule" = "Arată programul de azi";
+"chat.suggestion.reminder" = "Creează un reminder";
+"chat.suggestion.weather" = "Cum e vremea azi?";
+"chat.suggestion.help" = "Cum folosesc această aplicație";
+"chat.websearch.on" = "Căutare Web activă";
+"chat.websearch.off" = "Căutare Web dezactivată";
+"chat.thinking.on" = "Gândire activă";
+"chat.thinking.off" = "Gândire dezactivată";
+"chat.transcribing" = "Transcriu...";
+"chat.offline" = "Offline";
+
+// Voice Conversation Mode
+"voice.listening" = "Ascult...";
+"voice.processing" = "Procesez...";
+"voice.thinking" = "Mă gândesc...";
+"voice.speaking" = "Vorbesc...";
+"voice.tap.to.send" = "Atinge pentru a trimite";
+"chat.templates" = "Șabloane";
+"chat.websearch.privacy.title" = "Despre Căutare Web";
+"chat.websearch.privacy.message" = "Activarea căutării web permite AI-ului să caute pe internet prin DuckDuckGo pentru informații actualizate. Interogările de căutare sunt trimise către DuckDuckGo dar nu sunt urmărite.";
+"chat.websearch.privacy.enable" = "Activează";
+"chat.websearch.privacy.disable" = "Păstrează dezactivat";
+
+// MARK: - Settings
+"settings.title" = "Setări";
+"settings.model.section" = "Modele AI";
+"settings.model.recommended" = "Recomandat: %@";
+"settings.model.local.execution" = "Modelele rulează local pe dispozitivul tău";
+"settings.model.show.more" = "Alte modele (%d)";
+"settings.model.show.less" = "Arată mai puțin";
+"settings.appearance.section" = "Aspect";
+"settings.tools.section" = "Funcții inteligente";
+"settings.mcp.servers" = "Integrări";
+"settings.mcp.servers.description" = "Calendar, Fișiere, Reminder-uri și altele";
+"settings.mcp.enabled.count" = "%d activate";
+"settings.mcp.enabled.count.suffix" = " activate";
+"settings.about.section" = "Despre";
+"settings.version" = "Versiune";
+"settings.about.app" = "Despre această aplicație";
+"settings.about.mcp" = "Despre integrări";
+"settings.privacy.badge" = "Funcționează offline";
+"settings.privacy.description" = "Funcționează în modul avion";
+"settings.airplane.mode" = "Rulează în modul avion";
+"settings.offline.ready" = "Pregătit offline";
+
+// MARK: - Model States
+"model.status.downloading" = "Descărcare... %d%%";
+"model.status.loading" = "Se încarcă...";
+"model.status.in.use" = "În utilizare";
+"model.status.recommended" = "Recomandat";
+"model.status.heavy" = "Greu";
+"model.action.download" = "Descarcă";
+"model.action.load" = "Încarcă";
+"model.action.delete" = "Șterge";
+"model.action.use" = "Folosește acest model";
+"model.delete.confirm.title" = "Șterge modelul";
+"model.delete.confirm.message" = "Ștergi %@? Va trebui să îl descarci din nou pentru a-l folosi.";
+"model.select.title" = "Selectează model";
+"model.select.prompt" = "Te rog selectează un model";
+"model.downloaded" = "Descărcat";
+
+// MARK: - Inference Mode
+"inference.mode.title" = "Accelerare";
+"inference.mode.auto" = "Auto";
+"inference.mode.auto.desc" = "Performanță optimă automat";
+"inference.mode.gpu" = "GPU (Metal)";
+"inference.mode.gpu.desc" = "Viteză maximă cu Metal";
+"inference.mode.cpu" = "Doar CPU";
+"inference.mode.cpu.desc" = "Mod economisire baterie";
+"inference.mode.hybrid" = "Hibrid";
+"inference.mode.hybrid.desc" = "Echilibru între viteză și baterie";
+
+// MARK: - Theme
+"theme.system" = "Sistem";
+"theme.light" = "Luminos";
+"theme.dark" = "Întunecat";
+
+// MARK: - Onboarding
+"onboarding.welcome.title" = "Bun venit la ElioChat";
+"onboarding.welcome.subtitle" = "Asistentul tău AI privat";
+"onboarding.features.title" = "AI cu adevărat privat";
+"onboarding.feature.offline" = "Funcționează în modul avion";
+"onboarding.feature.offline.desc" = "Folosește-l în zbor sau în metrou";
+"onboarding.feature.privacy" = "Zero transmisie de date";
+"onboarding.feature.privacy.desc" = "Chat-urile tale nu părăsesc niciodată telefonul";
+"onboarding.feature.vault" = "Integrări inteligente";
+"onboarding.feature.vault.desc" = "Conectează-te cu Calendarul și Fișierele";
+"onboarding.feature.secure" = "AI sigur pentru muncă";
+"onboarding.feature.secure.desc" = "Sigur pentru utilizare corporativă";
+"onboarding.feature.thinking" = "Proces de gândire";
+"onboarding.privacy.title" = "Datele tale rămân ale tale";
+"onboarding.privacy.item1" = "Toată procesarea se întâmplă pe iPhone-ul tău";
+"onboarding.privacy.item2" = "Niciun dat trimis către servere cloud";
+"onboarding.privacy.item3" = "Niciodată folosit pentru antrenarea AI";
+"onboarding.getstarted.title" = "Gata într-o atingere";
+"onboarding.getstarted.subtitle" = "Descarcă modelul AI recomandat\nși începe să conversezi imediat";
+"onboarding.step1" = "Descarcă modelul recomandat";
+"onboarding.step2" = "Așteaptă câteva minute";
+"onboarding.step3" = "Totul e gata!";
+
+// MARK: - About
+"about.title" = "Despre această aplicație";
+"about.rate.app" = "Evaluează aplicația";
+"about.share.app" = "Distribuie prietenilor";
+"about.privacy.policy" = "Politica de confidențialitate";
+"about.terms" = "Termeni și condiții";
+"about.tech.info" = "Informații tehnice";
+"about.tech.engine" = "Motor AI";
+"about.tech.format" = "Format suportat";
+"about.tech.inference" = "Inferență";
+"about.data.management" = "Gestionarea datelor";
+"about.delete.all" = "Șterge toate conversațiile";
+"about.credits" = "Credite";
+"about.credits.description" = "Această aplicație folosește biblioteci open source";
+"about.privacy.section" = "Confidențialitate";
+"about.gguf.format" = "Format GGUF";
+"about.metal.gpu" = "Accelerare Metal GPU";
+
+// MARK: - Referral
+"referral.title" = "Recomandă prieteni";
+"referral.code.title" = "Codul tău de recomandare";
+"referral.code.copy" = "Copiază codul";
+"referral.code.copied" = "Copiat";
+"referral.share.button" = "Distribuie prietenilor";
+"referral.share.description" = "Distribuie Elio prietenilor tăi!";
+"referral.count" = "%d persoane recomandate";
+"referral.enter.title" = "Introdu cod de recomandare";
+"referral.enter.placeholder" = "Cod de recomandare";
+"referral.enter.button" = "Aplică";
+"referral.enter.success" = "Cod de recomandare aplicat";
+"referral.enter.error" = "Cod de recomandare invalid";
+
+// MARK: - Privacy Policy
+"privacy.title" = "Politica de confidențialitate";
+"privacy.data.collection.title" = "Colectarea datelor";
+"privacy.data.collection.content" = "Această aplicație rulează un AI local complet offline.\nNiciun dat nu este trimis către servere externe.\nToate conversațiile sunt stocate doar pe dispozitivul tău.";
+"privacy.stored.data.title" = "Date stocate";
+"privacy.stored.data.content" = "Istoric conversații (stocat doar pe dispozitiv)\nFișiere model AI (stocate doar pe dispozitiv)\nSetări aplicație (stocate doar pe dispozitiv)\n\nAceste date nu sunt niciodată partajate extern.";
+"privacy.data.deletion.title" = "Ștergerea datelor";
+"privacy.data.deletion.content" = "Poți șterge toate datele oricând din Setări > Gestionarea datelor.\nDezinstalarea aplicației va șterge toate datele.";
+
+// MARK: - Terms of Service
+"terms.title" = "Termeni și condiții";
+"terms.service.title" = "Descrierea serviciului";
+"terms.service.content" = "Această aplicație oferă funcționalitate de asistent AI folosind un model AI care rulează local.";
+"terms.disclaimer.title" = "Declinarea responsabilității";
+"terms.disclaimer.content" = "Răspunsurile AI pot conține erori.\nDeciziile importante ar trebui verificate întotdeauna de un profesionist.\nNu suntem responsabili pentru nicio daună rezultată din utilizarea acestei aplicații.";
+"terms.prohibited.title" = "Activități interzise";
+"terms.prohibited.content" = "Activități ilegale\nActivități care încalcă drepturile altora\nInginerie inversă a acestei aplicații\nCopierea neautorizată a acestei aplicații";
+"terms.ip.title" = "Proprietate intelectuală";
+"terms.ip.content" = "Drepturile de proprietate intelectuală ale acestei aplicații aparțin dezvoltatorului.\nUtilizarea neautorizată este interzisă.";
+
+// MARK: - Conversations
+"conversations.title" = "Conversații";
+"conversations.new" = "Conversație nouă";
+"conversations.empty" = "Încă nu sunt conversații";
+"conversations.delete" = "Șterge conversația";
+"conversations.default.title" = "Conversație nouă";
+"conversations.today" = "Azi";
+"conversations.yesterday" = "Ieri";
+"conversations.past7days" = "Ultimele 7 zile";
+"conversations.past30days" = "Ultimele 30 de zile";
+"conversations.older" = "Mai vechi";
+"conversations.created" = "Creat: %@";
+"conversations.user" = "Utilizator";
+"conversations.assistant" = "Asistent";
+"conversations.search.placeholder" = "Caută conversații";
+"conversations.search.no_results" = "Niciun rezultat";
+
+// MARK: - Message Actions
+"message.copy" = "Copiază";
+"message.speak" = "Vorbește";
+"message.stop.speaking" = "Oprește vorbitul";
+"message.share" = "Distribuie";
+"message.share.card" = "Distribuie ca card";
+"message.like" = "Apreciază";
+
+// MARK: - Share Card
+"share.card.title" = "Distribuie card";
+"share.card.preview" = "Previzualizare";
+"share.card.button" = "Distribuie imagine";
+"message.dislike" = "Nu apreciază";
+"message.thinking.process" = "Proces de gândire";
+"message.tool.running" = "Rulează instrument";
+"message.tool.error" = "Eroare";
+"message.tool.completed" = "Finalizat";
+
+// MARK: - Attachment
+"attachment.title" = "Atașament";
+"attachment.photo.library" = "Alege fotografie";
+"attachment.camera" = "Fă fotografie";
+"attachment.pdf" = "Selectează PDF";
+"attachment.pdf.chars" = "%d caractere";
+"attachment.pdf.pages" = "%d pagini";
+"attachment.pdf.vision.enabled" = "Analiză imagini activată";
+"attachment.pdf.text.only" = "Doar mod text";
+"attachment.url" = "Citește pagină web";
+"attachment.url.title" = "Introdu URL";
+"attachment.url.placeholder" = "https://exemplu.ro";
+"attachment.url.message" = "Lipește un URL pentru a-i extrage conținutul";
+"attachment.url.fetch" = "Preia";
+"attachment.url.loading" = "Se încarcă pagina...";
+
+// MARK: - Errors
+"error.model.not.found" = "Fișier model negăsit";
+"error.model.not.loaded" = "Model neîncărcat";
+"error.context.failed" = "Eșec la crearea contextului";
+"error.tokenization.failed" = "Tokenizare eșuată";
+"error.generation.failed" = "Eroare de generare: %@";
+"error.occurred" = "A apărut o eroare: %@";
+"error.invalid.url" = "URL invalid";
+"error.download.failed" = "Descărcare eșuată";
+"error.extraction.failed" = "Extracție eșuată";
+"error.config.not.found" = "Fișier de configurare negăsit";
+
+// MARK: - Ghost Search
+"ghost.search.title" = "Căutare fantomă";
+"ghost.search.description" = "Căutare anonimă prin DuckDuckGo (fără urmărire)";
+"ghost.search.connecting" = "Conectare la rețea anonimă...";
+"ghost.search.privacy.note" = "Istoricul căutărilor tale nu este niciodată urmărit";
+
+// MARK: - MCP Servers
+"mcp.filesystem" = "Sistem de fișiere";
+"mcp.filesystem.desc" = "Citește și scrie fișiere în aplicație";
+"mcp.calendar" = "Calendar";
+"mcp.calendar.desc" = "Citește și scrie evenimente";
+"mcp.reminders" = "Reminder-uri";
+"mcp.reminders.desc" = "Gestionează reminder-uri";
+"mcp.contacts" = "Contacte";
+"mcp.contacts.desc" = "Caută și vizualizează contacte";
+"mcp.photos" = "Fotografii";
+"mcp.photos.desc" = "Acces la biblioteca foto";
+"mcp.location" = "Locație";
+"mcp.location.desc" = "Obține locația curentă și caută locuri";
+"mcp.health" = "Sănătate";
+"mcp.health.desc" = "Acces la date de sănătate";
+"mcp.shortcuts" = "Comenzi rapide";
+"mcp.shortcuts.desc" = "Rulează comenzi rapide";
+"mcp.websearch" = "Căutare Web";
+"mcp.websearch.desc" = "Căutare web anonimă";
+"mcp.custom" = "Integrare personalizată";
+"mcp.custom.add" = "Adaugă integrare";
+"mcp.custom.setup" = "Configurează integrarea serviciului extern";
+"mcp.custom.title" = "Integrări personalizate";
+"mcp.settings.title" = "Setări integrare";
+"mcp.server.name" = "Nume server";
+"mcp.server.name.placeholder" = "ex., Serverul meu personalizat";
+"mcp.config.url" = "URL fișier configurare";
+"mcp.import.file" = "Importă din fișier";
+"mcp.config.example" = "Exemplu fișier configurare";
+"mcp.permission.note" = "Permisiunile vor fi solicitate la prima utilizare a fiecărei funcții";
+
+// MARK: - MCP Tool Messages
+"mcp.tool.available" = "Instrumente disponibile:";
+"mcp.tool.parameters" = "Parametri:";
+"mcp.prompt.available" = "Prompturi disponibile:";
+"mcp.prompt.arguments" = "Argumente:";
+"mcp.tool.name" = "nume_instrument";
+"mcp.tool.arg.name" = "nume_argument";
+"mcp.tool.arg.value" = "valoare";
+"mcp.tool.no.result" = "Niciun rezultat";
+"mcp.tool.running" = "Rulează instrument: %@";
+"mcp.tool.error" = "Eroare execuție instrument: %@";
+
+// MARK: - MCP Error Messages
+"mcp.error.server.not.found" = "Server negăsit: %@";
+"mcp.error.tool.not.found" = "Instrument negăsit: %@";
+"mcp.error.invalid.args" = "Argumente invalide: %@";
+"mcp.error.execution" = "Eroare de execuție: %@";
+"mcp.error.permission" = "Permisiune refuzată: %@";
+
+// MARK: - Calendar Messages
+"calendar.no.events" = "Niciun eveniment";
+"calendar.event.created" = "Eveniment creat: %@";
+"calendar.event.deleted" = "Eveniment șters: %@";
+"calendar.allday.created" = "Eveniment toată ziua creat: %@";
+"calendar.access.denied" = "Acces calendar refuzat";
+"calendar.today.none" = "Niciun eveniment azi";
+"calendar.untitled" = "Fără titlu";
+
+// MARK: - Reminders Messages
+"reminders.none" = "Niciun reminder";
+"reminders.created" = "Reminder creat: %@";
+"reminders.completed" = "Reminder finalizat: %@";
+"reminders.deleted" = "Reminder șters: %@";
+"reminders.access.denied" = "Acces reminder-uri refuzat";
+"reminders.untitled" = "Fără titlu";
+
+// MARK: - Photos Messages
+"photos.access.denied" = "Acces fotografii refuzat";
+"photos.not.found" = "Fotografie negăsită";
+"photos.untitled" = "Fără titlu";
+"photos.count" = "Fotografii: %d";
+"photos.videos.count" = "Videoclipuri: %d";
+"photos.albums.count" = "Albume: %d";
+"photos.favorites.count" = "Favorite: %d";
+"photos.date" = "Dată: %@";
+"photos.size" = "Dimensiune: %d x %d";
+"photos.location" = "Locație: %@, %@";
+"photos.media.type" = "Tip media: %@";
+"photos.duration" = "Durată: %dm %ds";
+"photos.favorite" = "Favorit: %@";
+"photos.type.image" = "Fotografie";
+"photos.type.video" = "Videoclip";
+"photos.type.audio" = "Audio";
+
+// MARK: - Contacts Messages
+"contacts.access.denied" = "Acces contacte refuzat";
+"contacts.not.found" = "Niciun contact corespunzător";
+"contacts.no.groups" = "Niciun grup";
+"contacts.no.card" = "Niciun card de contact setat";
+"contacts.name" = "Nume: %@";
+"contacts.company" = "Companie: %@";
+"contacts.job" = "Funcție: %@";
+
+// MARK: - Location Messages
+"location.access.denied" = "Acces locație refuzat";
+"location.not.found" = "Adresă negăsită";
+"location.latitude" = "Latitudine: %@";
+"location.longitude" = "Longitudine: %@";
+"location.accuracy" = "Precizie: %dm";
+"location.altitude" = "Altitudine: %dm";
+"location.search" = "Căutare: %@";
+"location.address" = "Adresă: %@";
+"location.country" = "Țară: %@";
+"location.postal" = "Cod poștal: %@";
+"location.from" = "De la: (%@, %@)";
+"location.to" = "Către: (%@, %@)";
+"location.distance.km" = "Distanță: %.2f km";
+"location.distance.m" = "Distanță: %d m";
+
+// MARK: - Health Messages
+"health.not.available" = "Sănătate nu este disponibilă pe acest dispozitiv";
+"health.date" = "Dată: %@";
+"health.steps" = "Pași: %@ pași";
+"health.goal.progress" = "Progres obiectiv: %d%% (obiectiv 10.000 pași)";
+"health.no.data" = "Nicio dată disponibilă";
+"health.avg.bpm" = "Medie: %d bpm";
+"health.min.bpm" = "Minim: %d bpm";
+"health.max.bpm" = "Maxim: %d bpm";
+"health.measurements" = "Măsurători: %d";
+"health.no.sleep" = "Nicio dată despre somn";
+"health.sleep.total" = "Somn total: %dh %dm";
+"health.bedtime" = "Ora de culcare: %@";
+"health.waketime" = "Ora de trezire: %@";
+"health.calories" = "Calorii: %d kcal";
+
+// MARK: - File System Messages
+"filesystem.not.found" = "Fișier negăsit: %@";
+"filesystem.written" = "Fișier scris: %@";
+"filesystem.dir.created" = "Director creat: %@";
+"filesystem.deleted" = "Șters: %@";
+"filesystem.size" = "Dimensiune: %@";
+"filesystem.created" = "Creat: %@";
+"filesystem.modified" = "Modificat: %@";
+"filesystem.type" = "Tip: %@";
+
+// MARK: - Shortcuts Messages
+"shortcuts.executed" = "Comandă rapidă '%@' executată";
+"shortcuts.opened" = "Aplicație comenzi rapide deschisă";
+"shortcuts.settings.opened" = "Setări (%@) deschise";
+"shortcuts.mail.opened" = "Compunere email deschisă";
+"shortcuts.calling" = "Apelare: %@";
+"shortcuts.message.opened" = "Compunere mesaj deschisă";
+"shortcuts.failed" = "Nu se poate deschide comanda rapidă";
+
+// MARK: - Model Tiers
+"model.tier.entry" = "Începător";
+"model.tier.standard" = "Standard";
+"model.tier.pro" = "Pro";
+
+// MARK: - Tool Parser
+"tool.arguments" = "Argumente:";
+
+// MARK: - Model Settings
+"model.action.settings" = "Setări";
+"settings.model.parameters" = "Setări model";
+"settings.model.parameters.description" = "Personalizează parametrii de generare pentru acest model";
+"settings.preset.title" = "Presetări";
+"settings.preset.custom" = "Personalizat";
+"settings.preset.balanced" = "Echilibrat";
+"settings.preset.creative" = "Creativ";
+"settings.preset.precise" = "Precis";
+"settings.preset.coding" = "Programare";
+"settings.preset.japanese" = "Japoneză";
+"settings.parameters.title" = "Parametri";
+"settings.parameter.temperature" = "Temperatură";
+"settings.parameter.temperature.description" = "Mai mare = mai creativ, mai mic = mai focusat";
+"settings.parameter.top.p" = "Top P";
+"settings.parameter.top.p.description" = "Probabilitate nucleus sampling";
+"settings.parameter.top.k" = "Top K";
+"settings.parameter.top.k.description" = "Număr de token-uri top de considerat";
+"settings.parameter.max.tokens" = "Max. token-uri";
+"settings.parameter.max.tokens.description" = "Lungime maximă răspuns";
+"settings.parameter.repeat.penalty" = "Penalizare repetare";
+"settings.parameter.repeat.penalty.description" = "Mai mare = output mai puțin repetitiv";
+"settings.parameter.thinking" = "Mod gândire";
+"settings.parameter.thinking.description" = "Arată procesul de raționament AI";
+"settings.system.prompt.title" = "Prompt sistem";
+"settings.system.prompt.description" = "Instrucțiuni personalizate pentru AI";
+"settings.reset.to.default" = "Resetează la implicit";
+
+// MARK: - Vision Model
+"vision.model.required.title" = "Model viziune necesar";
+"vision.model.required.header" = "Recunoaștere imagine necesară";
+"vision.model.required.description" = "Pentru a analiza imagini, ai nevoie de un model AI cu capabilitate viziune";
+"vision.model.switch" = "Schimbă model";
+"vision.model.switch.message %@" = "Schimbi la %@ pentru a activa analiza imaginilor?";
+"vision.model.download" = "Descarcă";
+"vision.model.download.message %@ %@" = "Descarci %@ (%@) pentru a analiza imagini?";
+"vision.model.not.available" = "Niciun model viziune compatibil disponibil pentru dispozitivul tău";
+"vision.model.switching" = "Schimbare model...";
+"vision.model.download.title" = "Modele viziune";
+"vision.model.recommended" = "Recomandat pentru dispozitivul tău";
+"vision.model.recommended.size %@" = "Recomandat: %@";
+"vision.model.use.this" = "Folosește acest model";
+"vision.model.download.button %@" = "Descarcă (%@)";
+"vision.model.other.options" = "Alte modele viziune";
+"vision.model.download.complete" = "Descărcare finalizată";
+"vision.model.download.complete.message" = "Pregătit pentru analizarea imaginilor";
+
+// MARK: - Whisper Voice Input (Legacy)
+"whisper.download.title" = "Recunoaștere vocală necesară";
+"whisper.download.action" = "Descarcă";
+"whisper.download.message" = "Pentru a folosi input vocal, trebuie să descarci modelul de recunoaștere vocală (~150MB).";
+"whisper.downloading" = "Descărcare model recunoaștere vocală...";
+"whisper.download.error" = "Eroare descărcare";
+"whisper.load.error" = "Eroare încărcare model";
+"whisper.permission.denied" = "Acces microfon nepermiș";
+"whisper.transcribe.error" = "Eroare transcriere";
+"whisper.error.permission" = "Permisiune microfon necesară";
+"whisper.error.not.recording" = "Nu se înregistrează în prezent";
+"whisper.error.no.recording" = "Nicio dată de înregistrare";
+"whisper.error.model.not.loaded" = "Model recunoaștere vocală neîncărcat";
+"whisper.error.transcription" = "Transcriere eșuată";
+
+// MARK: - Speech Recognition (ReazonSpeech)
+"speech.download.title" = "Recunoaștere vocală necesară";
+"speech.download.action" = "Descarcă";
+"speech.download.message" = "Pentru a folosi input vocal, trebuie să descarci modelul japonez de recunoaștere vocală (~155MB).";
+"speech.downloading" = "Descărcare model recunoaștere vocală...";
+
+// MARK: - Language Settings
+"settings.language.section" = "Limbă";
+"language.system" = "Folosește limba sistemului";
+"settings.language.restart.hint" = "Schimbările de limbă vor avea efect după repornirea aplicației";
+"settings.language.changed.title" = "Limbă schimbată";
+"settings.language.changed.message" = "Te rog repornește aplicația pentru a aplica schimbările";
+"common.ok" = "OK";
+
+// MARK: - System Prompt Settings
+"settings.prompt.section" = "Prompt sistem";
+"settings.prompt.edit" = "Editează prompt";
+"settings.prompt.default" = "Folosește implicit";
+"settings.prompt.custom" = "Prompt personalizat setat";
+"settings.prompt.hint" = "Personalizează comportamentul AI";
+"settings.prompt.editor.title" = "Editează prompt";
+"settings.prompt.editor.instruction" = "Adaugă instrucțiuni personalizate pentru AI. Lasă gol pentru a folosi promptul implicit.";
+"settings.prompt.default.preview" = "Prompt implicit (extras):";
+"settings.prompt.reset" = "Resetează";
+"settings.prompt.reset.title" = "Resetează prompt";
+"settings.prompt.reset.message" = "Ștergi promptul personalizat și restaurezi implicit?";
+
+// MARK: - Prompt Templates
+"templates.title" = "Șabloane prompt";
+"templates.empty" = "Încă nu sunt șabloane";
+"templates.add" = "Adaugă șablon";
+"template.add.title" = "Adaugă șablon";
+"template.edit.title" = "Editează șablon";
+"template.name.header" = "Nume";
+"template.name.placeholder" = "Nume șablon";
+"template.content.header" = "Conținut prompt";
+"template.icon.header" = "Pictogramă";
+"template.translate.name" = "Traduce";
+"template.translate.content" = "Te rog traduce următoarele: ";
+"template.summarize.name" = "Sumarizează";
+"template.summarize.content" = "Te rog sumarizează următoarele: ";
+"template.explain.name" = "Explică";
+"template.explain.content" = "Te rog explică următoarele: ";
+"template.code.name" = "Cod";
+"template.code.content" = "Te rog scrie cod pentru: ";
+
+// MARK: - Export
+"export.title" = "Exportă conversație";
+"export.format.markdown" = "Markdown";
+"export.format.pdf" = "PDF";
+"export.format.text" = "Text simplu";
+"export.created" = "Creat";
+"export.image.attached" = "Imagine atașată";
+"export.generated.by" = "Generat de";
+
+// MARK: - Loading Phases
+"loading.phase.initializing" = "Inițializare...";
+"loading.phase.loading" = "Încărcare model...";
+"loading.phase.preparing" = "Pregătire motor inferență...";
+"loading.phase.almost" = "Aproape gata...";
+
+// MARK: - Welcome Screen
+"welcome.greeting" = "Întreabă orice";
+"welcome.subtitle" = "Asistentul tău AI care prioritizează confidențialitatea";
+"suggestion.idea" = "Ajută-mă să generez idei";
+"suggestion.write" = "Ajută-mă să scriu ceva";
+"suggestion.question" = "Răspunde la întrebările mele";
+
+// MARK: - Kokoro TTS
+"tts.download.title" = "Voce de înaltă calitate";
+"tts.download.action" = "Descarcă";
+"tts.download.use_system" = "Folosește vocea sistemului";
+"tts.download.message" = "Descarcă modelul Kokoro TTS (~87MB) pentru text-to-speech japonez mai natural.";
+"tts.downloading" = "Descărcare model TTS...";
+
+// MARK: - Feedback
+"feedback.consent.title" = "Trimite feedback";
+"feedback.send" = "Trimite";
+"feedback.positive.title" = "A fost util acest răspuns?";
+"feedback.negative.title" = "Poate fi îmbunătățit?";
+"feedback.explanation" = "Feedback-ul tău ajută la îmbunătățirea calității AI. Te rog verifică ce date vor fi trimise înainte de trimitere.";
+"feedback.data.section" = "Date de trimis";
+"feedback.data.conversation" = "Conversație";
+"feedback.data.conversation.desc" = "Răspunsul AI și mesajul tău anterior";
+"feedback.data.model" = "Info model";
+"feedback.data.model.desc" = "Numele modelului AI folosit";
+"feedback.data.timestamp" = "Timestamp";
+"feedback.data.timestamp.desc" = "Când a fost trimis feedback-ul";
+"feedback.privacy.section" = "Confidențialitate";
+"feedback.privacy.anonymous" = "Nicio informație identificabilă personal trimisă";
+"feedback.privacy.improvement" = "Folosit doar pentru îmbunătățirea calității AI";
+"feedback.privacy.optional" = "Trimiterea feedback-ului este complet opțională";
+"feedback.comment.section" = "Comentariu (opțional)";
+"feedback.comment.placeholder" = "Spune-ne ce ar putea fi îmbunătățit sau ce a funcționat bine...";
+"feedback.remember.title" = "Ține minte această alegere";
+"feedback.remember.description" = "Trimite feedback fără să întrebi data viitoare";
+
+// MARK: - Emergency Mode
+"emergency.sos.button" = "Mod urgență (apăsare lungă pentru a comuta)";
+"emergency.mode.active" = "Mod urgență activ";
+"emergency.action.firstaid" = "Prim ajutor";
+"emergency.action.firstaid.message" = "Te rog oferă instrucțiuni de prim ajutor. Voi descrie rănirea sau simptomele: ";
+"emergency.action.disaster" = "Dezastru";
+"emergency.action.disaster.message" = "A avut loc un dezastru. Te rog oferă proceduri de răspuns: ";
+"emergency.action.factcheck" = "Verificare fapte";
+"emergency.action.factcheck.message" = "Te rog verifică fiabilitatea acestei informații: ";
+"emergency.action.contacts" = "Urgență";
+"emergency.action.contacts.message" = "Te rog arată-mi o listă de numere de urgență";
+"emergency.action.evacuation" = "Evacuare";
+"emergency.action.evacuation.message" = "Te rog creează o listă de verificare pentru evacuare pentru situația curentă: ";
+"mcp.emergency_kb" = "Bază cunoștințe urgență";
+"mcp.emergency_kb.desc" = "Informații de urgență și dezastre";
+
+// MARK: - Emergency Templates
+"template.firstaid.name" = "Ghid prim ajutor";
+"template.firstaid.content" = "Te rog oferă instrucțiuni de prim ajutor pentru: ";
+"template.disaster.name" = "Răspuns dezastru";
+"template.disaster.content" = "Următorul dezastru a avut loc. Te rog oferă proceduri de răspuns: ";
+"template.factcheck.name" = "Verificare fapte";
+"template.factcheck.content" = "Te rog verifică fiabilitatea acestei informații și oferă sfaturi de verificare fapte: ";
+"template.evacuation.name" = "Listă verificare evacuare";
+"template.evacuation.content" = "Te rog creează o listă de verificare pentru evacuare pentru situația curentă: ";
+
+// MARK: - ChatWeb.ai Integration
+"chatweb.title" = "ChatWeb.ai";
+"chatweb.desc" = "Chat AI Cloud";
+"chatweb.connect" = "Conectează-te la ChatWeb.ai";
+"chatweb.qr.title" = "Conectare prin cod QR";
+"chatweb.qr.scan" = "Scanează cod QR";
+"chatweb.open" = "Deschide ChatWeb.ai";
+
+// MARK: - Peer Connection
+"peer.title" = "Dispozitive în apropiere";
+"peer.desc" = "Conectează-te cu dispozitive Elio în apropiere";
+"peer.connect" = "Conectează-te la dispozitiv";
+"peer.code.title" = "Cod de conectare";
+"peer.code.enter" = "Introdu cod de 4 cifre";
+"peer.code.your" = "Codul tău";
+"peer.connected" = "Conectat";
+"peer.disconnected" = "Deconectat";
+"peer.inference.offload" = "Partajare inferență";
+
+// MARK: - Web Search
+"chat.web.search" = "Căutare Web";
+"search.privacy.title" = "Căutare protejată de confidențialitate";
+"search.privacy.proceed" = "Caută";
+"search.privacy.message" = "Căutarea Web ElioChat îți protejează confidențialitatea:\n\n🔒 Căutări prin DuckDuckGo\n🚫 Fără urmărire sau profilare\n🔐 Istoricul căutărilor nu este stocat\n📱 Nicio dată stocată în afara dispozitivului\n\nDoar interogarea ta de căutare este trimisă către DuckDuckGo, iar rezultatele sunt procesate pe dispozitivul tău.";
+"chat.web.analyzing" = "[Analizez pagină web]";

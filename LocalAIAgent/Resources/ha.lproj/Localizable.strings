@@ -1,0 +1,635 @@
+/*
+  Localizable.strings (Hausa)
+  Elio
+*/
+
+// MARK: - App General
+"app.name" = "Elio";
+"app.tagline" = "Ƙwayar kwakwalwarka ta biyu mai kiyaye asiri.";
+
+// MARK: - Common Actions
+"common.done" = "An gama";
+"common.cancel" = "Soke";
+"common.delete" = "Share";
+"common.save" = "Ajiye";
+"common.edit" = "Gyara";
+"common.share" = "Raba";
+"common.copy" = "Kwafi";
+"common.copied" = "An kwafi";
+"common.loading" = "Ana lodin...";
+"common.error" = "Kuskure";
+"common.retry" = "Sake gwadawa";
+"common.skip" = "Tsallake";
+"common.next" = "Na gaba";
+"common.start" = "Fara";
+"common.add" = "Ƙara";
+"common.close" = "Rufe";
+"common.details" = "Cikakken bayani";
+"common.yes" = "E";
+"common.no" = "A'a";
+"common.unknown" = "Ba a sani ba";
+
+// MARK: - Chat
+"chat.placeholder" = "Tambaye ni komai";
+"chat.model.not.loaded" = "Ba a loda Model ba";
+"chat.model.not.loaded.description" = "Don Allah saukad da model daga Saitunan";
+"chat.go.to.settings" = "Je Saitunan";
+"chat.new.conversation" = "Sabon Hira";
+"chat.stop.generation" = "Tsaya";
+"chat.generation.stopped" = "\n\n[An tsai da halitta]";
+"chat.image.sent" = "[An aika hoto]";
+"chat.images.sent" = "[An aika hotuna %d]";
+"chat.pdf.sent" = "[An haɗa PDF: %@]";
+"chat.pdf.sent.vision" = "[PDF tare da hoto: %@]";
+"chat.pdf.context" = "Wannan shine abubuwan rubutu da aka cire daga takaddar PDF \"%@\":\n\n%@";
+"chat.pdf.context.vision" = "Wannan shine shafi na 1 na takaddar PDF \"%@\". Abubuwan rubutu da aka cire sune:\n\n%@\n\nDon Allah bincika duka abin da ake gani da rubutu.";
+"chat.pdf.analyze" = "Don Allah bincika wannan shafin PDF daga \"%@\".";
+"chat.url.sent" = "[Shafin yanar gizo: %@]";
+"chat.url.context" = "Wannan shine abubuwan da aka cire daga shafin yanar gizo \"%@\" (%@):\n\n%@";
+"chat.thinking" = "Ana tunani...";
+"chat.generating" = "Ana halitta amsa...";
+"chat.welcome" = "Ta yaya zan iya taimaka maka?";
+"chat.suggestion.schedule" = "Nuna jadawalin yau";
+"chat.suggestion.reminder" = "Kirkiro tunatarwa";
+"chat.suggestion.weather" = "Yaya yanayi yake a yau?";
+"chat.suggestion.help" = "Yadda ake amfani da wannan app";
+"chat.websearch.on" = "Binciken Yanar gizo A kunna";
+"chat.websearch.off" = "Binciken Yanar gizo A kashe";
+"chat.thinking.on" = "Tunani A kunna";
+"chat.thinking.off" = "Tunani A kashe";
+"chat.transcribing" = "Ana rubuta...";
+"chat.offline" = "Ba tare da intanet ba";
+
+// Voice Conversation Mode
+"voice.listening" = "Ana saurare...";
+"voice.processing" = "Ana sarrafa...";
+"voice.thinking" = "Ana tunani...";
+"voice.speaking" = "Ana magana...";
+"voice.tap.to.send" = "Danna don aikawa";
+"chat.templates" = "Samfuran";
+"chat.websearch.privacy.title" = "Game da Binciken Yanar gizo";
+"chat.websearch.privacy.message" = "Kunna binciken yanar gizo zai ba da damar AI ya bincika intanet ta DuckDuckGo don samun sabon bayani. Ana aika tambayoyin bincike zuwa DuckDuckGo amma ba a bin diddigin su ba.";
+"chat.websearch.privacy.enable" = "Kunna";
+"chat.websearch.privacy.disable" = "Ajiye Kashe";
+
+// MARK: - Settings
+"settings.title" = "Saitunan";
+"settings.model.section" = "Mudulolin AI";
+"settings.model.recommended" = "Ana ba da shawara: %@";
+"settings.model.local.execution" = "Muduloli suna gudana a kan na'urar ku";
+"settings.model.show.more" = "Sauran Muduloli (%d)";
+"settings.model.show.less" = "Nuna Ƙasa";
+"settings.appearance.section" = "Bayyanar";
+"settings.tools.section" = "Fasalolin Hankali";
+"settings.mcp.servers" = "Haɗin kai";
+"settings.mcp.servers.description" = "Kalanda, Fayiloli, Tunatarwa da sauransu";
+"settings.mcp.enabled.count" = "%d an kunna";
+"settings.mcp.enabled.count.suffix" = " an kunna";
+"settings.about.section" = "Game da";
+"settings.version" = "Sigar";
+"settings.about.app" = "Game da Wannan App";
+"settings.about.mcp" = "Game da Haɗin kai";
+"settings.privacy.badge" = "Yana aiki ba tare da intanet ba";
+"settings.privacy.description" = "Yana aiki a cikin Yanayin Jirgin sama";
+"settings.airplane.mode" = "Yana gudana a cikin Yanayin Jirgin sama";
+"settings.offline.ready" = "Shirye ba tare da intanet ba";
+
+// MARK: - Model States
+"model.status.downloading" = "Ana saukad da... %d%%";
+"model.status.loading" = "Ana lodin...";
+"model.status.in.use" = "Ana Amfani";
+"model.status.recommended" = "Ana ba da shawara";
+"model.status.heavy" = "Mai nauyi";
+"model.action.download" = "Saukad da";
+"model.action.load" = "Loda";
+"model.action.delete" = "Share";
+"model.action.use" = "Yi amfani da Wannan Muduli";
+"model.delete.confirm.title" = "Share Muduli";
+"model.delete.confirm.message" = "Share %@? Zaku buƙaci sake saukad da shi don sake amfani.";
+"model.select.title" = "Zaɓi Muduli";
+"model.select.prompt" = "Don Allah zaɓi muduli";
+"model.downloaded" = "An saukad da";
+
+// MARK: - Inference Mode
+"inference.mode.title" = "Haɓakawa";
+"inference.mode.auto" = "Kai tsaye";
+"inference.mode.auto.desc" = "Ingantaccen aiki kai tsaye";
+"inference.mode.gpu" = "GPU (Metal)";
+"inference.mode.gpu.desc" = "Mafi girman sauri tare da Metal";
+"inference.mode.cpu" = "CPU Kadai";
+"inference.mode.cpu.desc" = "Yanayin ajiyar baturi";
+"inference.mode.hybrid" = "Hybrid";
+"inference.mode.hybrid.desc" = "Daidaiton sauri da baturi";
+
+// MARK: - Theme
+"theme.system" = "Tsarin";
+"theme.light" = "Haske";
+"theme.dark" = "Duhu";
+
+// MARK: - Onboarding
+"onboarding.welcome.title" = "Barka da zuwa ElioChat";
+"onboarding.welcome.subtitle" = "Mataimakinka na keɓaɓɓen AI";
+"onboarding.features.title" = "AI na Keɓaɓɓen Gaske";
+"onboarding.feature.offline" = "Yana aiki a cikin Yanayin Jirgin sama";
+"onboarding.feature.offline.desc" = "Yi amfani da shi a cikin jiragen sama ko ƙarƙashin ƙasa";
+"onboarding.feature.privacy" = "Babu Watsa Bayanai";
+"onboarding.feature.privacy.desc" = "Hirarku ba su barin wayarku ba";
+"onboarding.feature.vault" = "Haɗin kai na Hankali";
+"onboarding.feature.vault.desc" = "Haɗa tare da Kalanda & Fayiloli";
+"onboarding.feature.secure" = "AI mai Aminci don Aiki";
+"onboarding.feature.secure.desc" = "Lafiya don amfani kamfani";
+"onboarding.feature.thinking" = "Tsarin Tunani";
+"onboarding.privacy.title" = "Bayananku na ku ne";
+"onboarding.privacy.item1" = "Duk aiki yana faruwa a kan iPhone ɗinku";
+"onboarding.privacy.item2" = "Ba a aika bayanai zuwa sabar girgije ba";
+"onboarding.privacy.item3" = "Ba a taɓa amfani da su don horar da AI ba";
+"onboarding.getstarted.title" = "Shirye a Danna Ɗaya";
+"onboarding.getstarted.subtitle" = "Saukad da muduli na AI da aka ba da shawara\nkuma fara hira nan take";
+"onboarding.step1" = "Saukad da muduli da aka ba da shawara";
+"onboarding.step2" = "Jira 'yan mintuna";
+"onboarding.step3" = "Ka shirya!";
+
+// MARK: - About
+"about.title" = "Game da Wannan App";
+"about.rate.app" = "Ƙimar App";
+"about.share.app" = "Raba da Abokai";
+"about.privacy.policy" = "Manufar Sirri";
+"about.terms" = "Sharuɗɗan Sabis";
+"about.tech.info" = "Bayani na Fasaha";
+"about.tech.engine" = "Injin AI";
+"about.tech.format" = "Tsarin da aka Tallafa";
+"about.tech.inference" = "Gabatarwa";
+"about.data.management" = "Gudanar da Bayanai";
+"about.delete.all" = "Share Duk Hirarru";
+"about.credits" = "Girmamawa";
+"about.credits.description" = "Wannan app yana amfani da ɗakunan littattafai buɗe ido";
+"about.privacy.section" = "Sirri";
+"about.gguf.format" = "Tsarin GGUF";
+"about.metal.gpu" = "Haɓakar GPU na Metal";
+
+// MARK: - Referral
+"referral.title" = "Tura Abokai";
+"referral.code.title" = "Lambar Turawa Naku";
+"referral.code.copy" = "Kwafi Lambar";
+"referral.code.copied" = "An kwafi";
+"referral.share.button" = "Raba da Abokai";
+"referral.share.description" = "Raba Elio da abokanku!";
+"referral.count" = "An tura mutane %d";
+"referral.enter.title" = "Shigar da Lambar Turawa";
+"referral.enter.placeholder" = "Lambar Turawa";
+"referral.enter.button" = "Yi amfani";
+"referral.enter.success" = "An yi amfani da lambar turawa";
+"referral.enter.error" = "Lambar turawa mara inganci";
+
+// MARK: - Privacy Policy
+"privacy.title" = "Manufar Sirri";
+"privacy.data.collection.title" = "Tattara Bayanai";
+"privacy.data.collection.content" = "Wannan app yana gudanar da AI na gida gaba ɗaya ba tare da intanet ba.\nBabu bayanan da ake aikawa zuwa sabobin waje.\nDuk hirarru ana adana su a kan na'urar ku kawai.";
+"privacy.stored.data.title" = "Bayanan da aka Adana";
+"privacy.stored.data.content" = "Tarihin hira (ana adanawa a kan na'ura kawai)\nFayilolin muduli AI (ana adanawa a kan na'ura kawai)\nSaitunan app (ana adanawa a kan na'ura kawai)\n\nBa a taɓa raba wannan bayanan waje ba.";
+"privacy.data.deletion.title" = "Share Bayanai";
+"privacy.data.deletion.content" = "Kuna iya share duk bayanai kowane lokaci daga Saitunan > Gudanar da Bayanai.\nCire app zai share duk bayanai.";
+
+// MARK: - Terms of Service
+"terms.title" = "Sharuɗɗan Sabis";
+"terms.service.title" = "Bayanin Sabis";
+"terms.service.content" = "Wannan app yana ba da aikin mataimakin AI ta amfani da muduli AI na gida.";
+"terms.disclaimer.title" = "Ƙin Wajabci";
+"terms.disclaimer.content" = "Amsoshin AI na iya ƙunsar kurakurai.\nYakamata a tabbatar da yanke shawara masu mahimmanci ta hanyar masani.\nBa mu da alhakin duk wani asara da ke tasowa daga amfani da wannan app.";
+"terms.prohibited.title" = "Ayyukan da aka Haramta";
+"terms.prohibited.content" = "Ayyukan haramtattun\nAyyukan da ke cin hakkoki wasu\nJujjuya wannan app\nKwafi wannan app ba tare da izini ba";
+"terms.ip.title" = "Mallakar Hankali";
+"terms.ip.content" = "Haƙƙoƙin mallakar hankali na wannan app na mabukaci ne.\nBa a yarda da amfani ba tare da izini ba.";
+
+// MARK: - Conversations
+"conversations.title" = "Hirarru";
+"conversations.new" = "Sabon Hira";
+"conversations.empty" = "Babu hirarru tukuna";
+"conversations.delete" = "Share Hira";
+"conversations.default.title" = "Sabon Hira";
+"conversations.today" = "Yau";
+"conversations.yesterday" = "Jiya";
+"conversations.past7days" = "Kwanaki 7 da suka wuce";
+"conversations.past30days" = "Kwanaki 30 da suka wuce";
+"conversations.older" = "Mafi tsufa";
+"conversations.created" = "An kirkira: %@";
+"conversations.user" = "Mai amfani";
+"conversations.assistant" = "Mataimaki";
+"conversations.search.placeholder" = "Nemo hirarru";
+"conversations.search.no_results" = "Ba a samu sakamako ba";
+
+// MARK: - Message Actions
+"message.copy" = "Kwafi";
+"message.speak" = "Magana";
+"message.stop.speaking" = "Tsai da Magana";
+"message.share" = "Raba";
+"message.share.card" = "Raba a matsayin Kati";
+"message.like" = "So";
+
+// MARK: - Share Card
+"share.card.title" = "Raba Kati";
+"share.card.preview" = "Duba";
+"share.card.button" = "Raba Hoto";
+"message.dislike" = "Ba so";
+"message.thinking.process" = "Tsarin Tunani";
+"message.tool.running" = "Ana Gudanar da Kayan aiki";
+"message.tool.error" = "Kuskure";
+"message.tool.completed" = "An gama";
+
+// MARK: - Attachment
+"attachment.title" = "Abin da aka Haɗa";
+"attachment.photo.library" = "Zaɓi Hoto";
+"attachment.camera" = "Ɗauki Hoto";
+"attachment.pdf" = "Zaɓi PDF";
+"attachment.pdf.chars" = "haruffa %d";
+"attachment.pdf.pages" = "shafuka %d";
+"attachment.pdf.vision.enabled" = "An kunna nazarin hoto";
+"attachment.pdf.text.only" = "Yanayin rubutu kawai";
+"attachment.url" = "Karanta Shafin Yanar gizo";
+"attachment.url.title" = "Shigar da URL";
+"attachment.url.placeholder" = "https://misali.com";
+"attachment.url.message" = "Manna URL don cire abubuwan sa";
+"attachment.url.fetch" = "Ɗauka";
+"attachment.url.loading" = "Ana lodin shafi...";
+
+// MARK: - Errors
+"error.model.not.found" = "Ba a sami fayil ɗin muduli ba";
+"error.model.not.loaded" = "Ba a loda muduli ba";
+"error.context.failed" = "An kasa kirkiro mahallin";
+"error.tokenization.failed" = "Alama ta kasa";
+"error.generation.failed" = "Kuskuren halitta: %@";
+"error.occurred" = "Kuskure ya faru: %@";
+"error.invalid.url" = "URL mara inganci";
+"error.download.failed" = "Saukad da ya kasa";
+"error.extraction.failed" = "Cirewa ta kasa";
+"error.config.not.found" = "Ba a sami fayil ɗin config ba";
+
+// MARK: - Ghost Search
+"ghost.search.title" = "Binciken Fatalwa";
+"ghost.search.description" = "Bincike ba a sani ba ta DuckDuckGo (babu bin diddigi)";
+"ghost.search.connecting" = "Ana haɗawa zuwa hanyar sadarwa ba a sani ba...";
+"ghost.search.privacy.note" = "Ba a taɓa bin diddigin tarihin binciken ku ba";
+
+// MARK: - MCP Servers
+"mcp.filesystem" = "Tsarin Fayil";
+"mcp.filesystem.desc" = "Karanta da rubuta fayiloli a cikin app";
+"mcp.calendar" = "Kalanda";
+"mcp.calendar.desc" = "Karanta da rubuta abubuwan da suka faru";
+"mcp.reminders" = "Tunatarwa";
+"mcp.reminders.desc" = "Sarrafa tunatarwa";
+"mcp.contacts" = "Lambobi";
+"mcp.contacts.desc" = "Nemo da duba lambobi";
+"mcp.photos" = "Hotuna";
+"mcp.photos.desc" = "Samun damar ɗakin hotuna";
+"mcp.location" = "Wurin";
+"mcp.location.desc" = "Samo wurin yanzu da nemo wurare";
+"mcp.health" = "Lafiya";
+"mcp.health.desc" = "Samun damar bayanan lafiya";
+"mcp.shortcuts" = "Gajerun hanya";
+"mcp.shortcuts.desc" = "Gudanar da gajerun hanya";
+"mcp.websearch" = "Binciken Yanar gizo";
+"mcp.websearch.desc" = "Bincike na yanar gizo ba a sani ba";
+"mcp.custom" = "Haɗin kai na Al'ada";
+"mcp.custom.add" = "Ƙara Haɗin kai";
+"mcp.custom.setup" = "Saita haɗin kai sabis na waje";
+"mcp.custom.title" = "Haɗin kai na Al'ada";
+"mcp.settings.title" = "Saitunan Haɗin kai";
+"mcp.server.name" = "Sunan Saba";
+"mcp.server.name.placeholder" = "misali, Sabar Na Al'ada";
+"mcp.config.url" = "URL Fayil ɗin Config";
+"mcp.import.file" = "Shigo da daga Fayil";
+"mcp.config.example" = "Misalin Fayil ɗin Config";
+"mcp.permission.note" = "Za a nemi izini lokacin fara amfani da kowane fasalin";
+
+// MARK: - MCP Tool Messages
+"mcp.tool.available" = "Kayan aiki da Ake da su:";
+"mcp.tool.parameters" = "Sigogi:";
+"mcp.prompt.available" = "Gabatarwa da Ake da su:";
+"mcp.prompt.arguments" = "Muhawara:";
+"mcp.tool.name" = "sunan_kayan_aiki";
+"mcp.tool.arg.name" = "sunan_muhawara";
+"mcp.tool.arg.value" = "daraja";
+"mcp.tool.no.result" = "Babu sakamako";
+"mcp.tool.running" = "Ana gudanar da kayan aiki: %@";
+"mcp.tool.error" = "Kuskuren aiwatar da kayan aiki: %@";
+
+// MARK: - MCP Error Messages
+"mcp.error.server.not.found" = "Ba a sami saba ba: %@";
+"mcp.error.tool.not.found" = "Ba a sami kayan aiki ba: %@";
+"mcp.error.invalid.args" = "Muhawara marasa inganci: %@";
+"mcp.error.execution" = "Kuskuren aiwatarwa: %@";
+"mcp.error.permission" = "An ƙi izini: %@";
+
+// MARK: - Calendar Messages
+"calendar.no.events" = "Babu abubuwan da suka faru";
+"calendar.event.created" = "An kirkiro abin da ya faru: %@";
+"calendar.event.deleted" = "An share abin da ya faru: %@";
+"calendar.allday.created" = "An kirkiro abin da ya faru duk rana: %@";
+"calendar.access.denied" = "An ƙi damar kalanda";
+"calendar.today.none" = "Babu abubuwan da suka faru a yau";
+"calendar.untitled" = "Ba taken";
+
+// MARK: - Reminders Messages
+"reminders.none" = "Babu tunatarwa";
+"reminders.created" = "An kirkiro tunatarwa: %@";
+"reminders.completed" = "An kammala tunatarwa: %@";
+"reminders.deleted" = "An share tunatarwa: %@";
+"reminders.access.denied" = "An ƙi damar tunatarwa";
+"reminders.untitled" = "Ba taken";
+
+// MARK: - Photos Messages
+"photos.access.denied" = "An ƙi damar hotuna";
+"photos.not.found" = "Ba a sami hoto ba";
+"photos.untitled" = "Ba taken";
+"photos.count" = "Hotuna: %d";
+"photos.videos.count" = "Bidiyo: %d";
+"photos.albums.count" = "Kundi: %d";
+"photos.favorites.count" = "Abubuwan da ake so: %d";
+"photos.date" = "Kwanan wata: %@";
+"photos.size" = "Girma: %d x %d";
+"photos.location" = "Wurin: %@, %@";
+"photos.media.type" = "Nau'in Kafofin Watsa Labarai: %@";
+"photos.duration" = "Tsawon lokaci: %dm %ds";
+"photos.favorite" = "Abin da ake so: %@";
+"photos.type.image" = "Hoto";
+"photos.type.video" = "Bidiyo";
+"photos.type.audio" = "Sauti";
+
+// MARK: - Contacts Messages
+"contacts.access.denied" = "An ƙi damar lambobi";
+"contacts.not.found" = "Ba a sami lambobin da suka dace ba";
+"contacts.no.groups" = "Babu kungiyoyi";
+"contacts.no.card" = "Ba a saita katin lamba ba";
+"contacts.name" = "Suna: %@";
+"contacts.company" = "Kamfani: %@";
+"contacts.job" = "Matsayin Aiki: %@";
+
+// MARK: - Location Messages
+"location.access.denied" = "An ƙi damar wurin";
+"location.not.found" = "Ba a sami adireshin ba";
+"location.latitude" = "Latitude: %@";
+"location.longitude" = "Longitude: %@";
+"location.accuracy" = "Daidaito: %dm";
+"location.altitude" = "Tsayi: %dm";
+"location.search" = "Nemo: %@";
+"location.address" = "Adireshi: %@";
+"location.country" = "Ƙasa: %@";
+"location.postal" = "Lambar Gidan Waya: %@";
+"location.from" = "Daga: (%@, %@)";
+"location.to" = "Zuwa: (%@, %@)";
+"location.distance.km" = "Nisa: %.2f km";
+"location.distance.m" = "Nisa: %d m";
+
+// MARK: - Health Messages
+"health.not.available" = "Lafiya ba ta samuwa akan wannan na'ura ba";
+"health.date" = "Kwanan wata: %@";
+"health.steps" = "Matakai: %@ matakai";
+"health.goal.progress" = "Ci gaban manufa: %d%% (manufar matakai 10,000)";
+"health.no.data" = "Babu bayanan da ake samu";
+"health.avg.bpm" = "Matsakaita: %d bpm";
+"health.min.bpm" = "Mafi ƙanƙanta: %d bpm";
+"health.max.bpm" = "Mafi girma: %d bpm";
+"health.measurements" = "Ma'auni: %d";
+"health.no.sleep" = "Babu bayanan barci";
+"health.sleep.total" = "Jimillar barci: %dh %dm";
+"health.bedtime" = "Lokacin barci: %@";
+"health.waketime" = "Lokacin farkawa: %@";
+"health.calories" = "Kalori: %d kcal";
+
+// MARK: - File System Messages
+"filesystem.not.found" = "Ba a sami fayil ba: %@";
+"filesystem.written" = "An rubuta fayil: %@";
+"filesystem.dir.created" = "An kirkiro littafi: %@";
+"filesystem.deleted" = "An share: %@";
+"filesystem.size" = "Girma: %@";
+"filesystem.created" = "An kirkira: %@";
+"filesystem.modified" = "An gyara: %@";
+"filesystem.type" = "Nau'i: %@";
+
+// MARK: - Shortcuts Messages
+"shortcuts.executed" = "An aiwatar da gajeriyar hanya '%@'";
+"shortcuts.opened" = "An buɗe app ɗin gajerun hanya";
+"shortcuts.settings.opened" = "An buɗe saitunan (%@)";
+"shortcuts.mail.opened" = "An buɗe rubuta saƙo";
+"shortcuts.calling" = "Ana kira: %@";
+"shortcuts.message.opened" = "An buɗe rubuta saƙo";
+"shortcuts.failed" = "Ba a iya buɗe gajeriyar hanya ba";
+
+// MARK: - Model Tiers
+"model.tier.entry" = "Shiga";
+"model.tier.standard" = "Misali";
+"model.tier.pro" = "Ƙwararru";
+
+// MARK: - Tool Parser
+"tool.arguments" = "Muhawara:";
+
+// MARK: - Model Settings
+"model.action.settings" = "Saitunan";
+"settings.model.parameters" = "Saitunan Muduli";
+"settings.model.parameters.description" = "Keɓanta sigogi halitta don wannan muduli";
+"settings.preset.title" = "Saiti";
+"settings.preset.custom" = "Na Al'ada";
+"settings.preset.balanced" = "Daidai";
+"settings.preset.creative" = "M mai ƙirƙira";
+"settings.preset.precise" = "Madaidaici";
+"settings.preset.coding" = "Codind";
+"settings.preset.japanese" = "Jafananci";
+"settings.parameters.title" = "Sigogi";
+"settings.parameter.temperature" = "Zafin jiki";
+"settings.parameter.temperature.description" = "Mafi girma = mafi ƙirƙira, mafi ƙasa = mafi mayar da hankali";
+"settings.parameter.top.p" = "Top P";
+"settings.parameter.top.p.description" = "Yuwuwar samfu na nucleus";
+"settings.parameter.top.k" = "Top K";
+"settings.parameter.top.k.description" = "Adadin manyan alamomi don la'akari";
+"settings.parameter.max.tokens" = "Mafi yawan Alamomi";
+"settings.parameter.max.tokens.description" = "Mafi tsawon amsa";
+"settings.parameter.repeat.penalty" = "Hukuncin Maimaituwa";
+"settings.parameter.repeat.penalty.description" = "Mafi girma = ƙarancin fitarwa mai maimaituwa";
+"settings.parameter.thinking" = "Yanayin Tunani";
+"settings.parameter.thinking.description" = "Nuna tsarin tunani AI";
+"settings.system.prompt.title" = "Gabatarwar Tsarin";
+"settings.system.prompt.description" = "Umarnin al'ada don AI";
+"settings.reset.to.default" = "Mayar zuwa Tsoho";
+
+// MARK: - Vision Model
+"vision.model.required.title" = "Ana Bukatar Muduli na Hangen nesa";
+"vision.model.required.header" = "Ana Bukatar Gane Hoto";
+"vision.model.required.description" = "Don bincika hotuna, kuna buƙatar muduli AI mai iya hangen nesa";
+"vision.model.switch" = "Canza Muduli";
+"vision.model.switch.message %@" = "Canza zuwa %@ don kunna nazarin hoto?";
+"vision.model.download" = "Saukad da";
+"vision.model.download.message %@ %@" = "Saukad da %@ (%@) don bincika hotuna?";
+"vision.model.not.available" = "Babu muduli na hangen nesa mai dacewa da na'urar ku";
+"vision.model.switching" = "Ana canza muduli...";
+"vision.model.download.title" = "Mudulolin Hangen nesa";
+"vision.model.recommended" = "Ana ba da shawara don na'urar ku";
+"vision.model.recommended.size %@" = "Ana ba da shawara: %@";
+"vision.model.use.this" = "Yi amfani da Wannan Muduli";
+"vision.model.download.button %@" = "Saukad da (%@)";
+"vision.model.other.options" = "Sauran Mudulolin Hangen nesa";
+"vision.model.download.complete" = "Saukad da Ya Kammala";
+"vision.model.download.complete.message" = "Shirye don bincika hotuna";
+
+// MARK: - Whisper Voice Input (Legacy)
+"whisper.download.title" = "Ana Bukatar Gane Murya";
+"whisper.download.action" = "Saukad da";
+"whisper.download.message" = "Don amfani da shigar da murya, kuna buƙatar saukad da muduli na gane magana (~150MB).";
+"whisper.downloading" = "Ana saukad da muduli na gane magana...";
+"whisper.download.error" = "Kuskuren Saukad da";
+"whisper.load.error" = "Kuskuren Lodin Muduli";
+"whisper.permission.denied" = "Ba a yarda da damar makirufo ba";
+"whisper.transcribe.error" = "Kuskuren Rubuta";
+"whisper.error.permission" = "Ana buƙatar izinin makirufo";
+"whisper.error.not.recording" = "Ba a yin rikodi a yanzu ba";
+"whisper.error.no.recording" = "Babu bayanan rikodi";
+"whisper.error.model.not.loaded" = "Ba a loda muduli na gane magana ba";
+"whisper.error.transcription" = "Rubuta ya kasa";
+
+// MARK: - Speech Recognition (ReazonSpeech)
+"speech.download.title" = "Ana Bukatar Gane Murya";
+"speech.download.action" = "Saukad da";
+"speech.download.message" = "Don amfani da shigar da murya, kuna buƙatar saukad da muduli na gane magana ta Jafananci (~155MB).";
+"speech.downloading" = "Ana saukad da muduli na gane magana...";
+
+// MARK: - Language Settings
+"settings.language.section" = "Harshe";
+"language.system" = "Yi amfani da Harshen Tsarin";
+"settings.language.restart.hint" = "Canje-canjen harshe za su yi tasiri bayan sake kunna app";
+"settings.language.changed.title" = "Harshe Ya Canza";
+"settings.language.changed.message" = "Don Allah sake kunna app don aiwatar da canje-canjen";
+"common.ok" = "Shigar";
+
+// MARK: - System Prompt Settings
+"settings.prompt.section" = "Gabatarwar Tsarin";
+"settings.prompt.edit" = "Gyara Gabatarwa";
+"settings.prompt.default" = "Ana amfani da tsoho";
+"settings.prompt.custom" = "An saita gabatarwar al'ada";
+"settings.prompt.hint" = "Keɓanta halayen AI";
+"settings.prompt.editor.title" = "Gyara Gabatarwa";
+"settings.prompt.editor.instruction" = "Ƙara umarnin al'ada don AI. Bari babu komai don amfani da gabatarwar tsoho.";
+"settings.prompt.default.preview" = "Gabatarwar tsoho (cirewar):";
+"settings.prompt.reset" = "Mayar";
+"settings.prompt.reset.title" = "Mayar da Gabatarwa";
+"settings.prompt.reset.message" = "Share gabatarwar al'ada da mayarwa zuwa tsoho?";
+
+// MARK: - Prompt Templates
+"templates.title" = "Samfuran Gabatarwa";
+"templates.empty" = "Babu samfuran tukuna";
+"templates.add" = "Ƙara Samfurin";
+"template.add.title" = "Ƙara Samfurin";
+"template.edit.title" = "Gyara Samfurin";
+"template.name.header" = "Suna";
+"template.name.placeholder" = "Sunan samfurin";
+"template.content.header" = "Abubuwan Gabatarwa";
+"template.icon.header" = "Alamar";
+"template.translate.name" = "Fassara";
+"template.translate.content" = "Don Allah fassara wannan: ";
+"template.summarize.name" = "Taƙaita";
+"template.summarize.content" = "Don Allah taƙaita wannan: ";
+"template.explain.name" = "Bayyana";
+"template.explain.content" = "Don Allah bayyana wannan: ";
+"template.code.name" = "Code";
+"template.code.content" = "Don Allah rubuta code don: ";
+
+// MARK: - Export
+"export.title" = "Fitarwar Hira";
+"export.format.markdown" = "Markdown";
+"export.format.pdf" = "PDF";
+"export.format.text" = "Rubutu Bayyananne";
+"export.created" = "An kirkira";
+"export.image.attached" = "An haɗa hoto";
+"export.generated.by" = "An halitta ta";
+
+// MARK: - Loading Phases
+"loading.phase.initializing" = "Ana farawa...";
+"loading.phase.loading" = "Ana lodin muduli...";
+"loading.phase.preparing" = "Ana shirya injin gabatarwa...";
+"loading.phase.almost" = "Kusan shirye...";
+
+// MARK: - Welcome Screen
+"welcome.greeting" = "Tambaye ni komai";
+"welcome.subtitle" = "Mataimakinka na AI mai fifikon sirri";
+"suggestion.idea" = "Taimake ni in yi tunani akan ra'ayoyi";
+"suggestion.write" = "Taimake ni in rubuta wani abu";
+"suggestion.question" = "Amsa tambayoyi na";
+
+// MARK: - Kokoro TTS
+"tts.download.title" = "Murya Mai Inganci";
+"tts.download.action" = "Saukad da";
+"tts.download.use_system" = "Yi amfani da Murya Tsarin";
+"tts.download.message" = "Saukad da muduli Kokoro TTS (~87MB) don samun magana ta Jafananci mai yanayi.";
+"tts.downloading" = "Ana saukad da muduli TTS...";
+
+// MARK: - Feedback
+"feedback.consent.title" = "Aika Ra'ayi";
+"feedback.send" = "Aika";
+"feedback.positive.title" = "Shin wannan amsa ta taimaka?";
+"feedback.negative.title" = "Za a iya inganta wannan?";
+"feedback.explanation" = "Ra'ayinku yana taimakawa inganta ingancin AI. Don Allah duba abin da za a aika kafin aikawa.";
+"feedback.data.section" = "Bayanan da za a aika";
+"feedback.data.conversation" = "Hira";
+"feedback.data.conversation.desc" = "Amsar AI da saƙonku na baya";
+"feedback.data.model" = "Bayanan muduli";
+"feedback.data.model.desc" = "Sunan muduli AI da aka yi amfani";
+"feedback.data.timestamp" = "Lokacin";
+"feedback.data.timestamp.desc" = "Lokacin da aka aika ra'ayi";
+"feedback.privacy.section" = "Sirri";
+"feedback.privacy.anonymous" = "Ba a aika bayanan ganewa ba";
+"feedback.privacy.improvement" = "Ana amfani kawai don inganta ingancin AI";
+"feedback.privacy.optional" = "Aika ra'ayi na zaɓi ne gaba ɗaya";
+"feedback.comment.section" = "Sharhi (na zaɓi)";
+"feedback.comment.placeholder" = "Faɗa mana abin da za a iya ingantawa ko abin da ya yi aiki da kyau...";
+"feedback.remember.title" = "Tuna wannan zaɓin";
+"feedback.remember.description" = "Aika ra'ayi ba tare da tambaya sau na gaba ba";
+
+// MARK: - Emergency Mode
+"emergency.sos.button" = "Yanayin Gaggawa (danna tsayi don canzawa)";
+"emergency.mode.active" = "Yanayin Gaggawa Ana aiki";
+"emergency.action.firstaid" = "Taimako na Farko";
+"emergency.action.firstaid.message" = "Don Allah bayar da umarnin taimako na farko. Zan bayyana rauni ko alamomi: ";
+"emergency.action.disaster" = "Bala'i";
+"emergency.action.disaster.message" = "Bala'i ya faru. Don Allah bayar da hanyoyin mayar da martani: ";
+"emergency.action.factcheck" = "Bincika Gaskiya";
+"emergency.action.factcheck.message" = "Don Allah tabbatar da amincin wannan bayanan: ";
+"emergency.action.contacts" = "Gaggawa";
+"emergency.action.contacts.message" = "Don Allah nuna mini jerin lambobin lambobin gaggawa";
+"emergency.action.evacuation" = "Ƙaura";
+"emergency.action.evacuation.message" = "Don Allah kirkiri jerin ayyuka na ƙaura don yanayin yanzu: ";
+"mcp.emergency_kb" = "KB Gaggawa";
+"mcp.emergency_kb.desc" = "Bayanan gaggawa & bala'i";
+
+// MARK: - Emergency Templates
+"template.firstaid.name" = "Jagorar Taimako na Farko";
+"template.firstaid.content" = "Don Allah bayar da umarnin taimako na farko don: ";
+"template.disaster.name" = "Mayar da Martani Bala'i";
+"template.disaster.content" = "Bala'in nan ya faru. Don Allah bayar da hanyoyin mayar da martani: ";
+"template.factcheck.name" = "Bincika Gaskiya";
+"template.factcheck.content" = "Don Allah tabbatar da amincin wannan bayanan da bayar da shawarwarin bincika gaskiya: ";
+"template.evacuation.name" = "Jerin Ayyuka na Ƙaura";
+"template.evacuation.content" = "Don Allah kirkiri jerin ayyuka na ƙaura don yanayin yanzu: ";
+
+// MARK: - ChatWeb.ai Integration
+"chatweb.title" = "ChatWeb.ai";
+"chatweb.desc" = "Hira AI Girgije";
+"chatweb.connect" = "Haɗa zuwa ChatWeb.ai";
+"chatweb.qr.title" = "Haɗa ta QR Code";
+"chatweb.qr.scan" = "Bincika QR Code";
+"chatweb.open" = "Buɗe ChatWeb.ai";
+
+// MARK: - Peer Connection
+"peer.title" = "Na'urorin Kusa";
+"peer.desc" = "Haɗa da na'urorin Elio na kusa";
+"peer.connect" = "Haɗa zuwa Na'ura";
+"peer.code.title" = "Lambar Haɗi";
+"peer.code.enter" = "Shigar da lambar 4 lambobi";
+"peer.code.your" = "Lambarku";
+"peer.connected" = "An haɗa";
+"peer.disconnected" = "An katse";
+"peer.inference.offload" = "Ana raba gabatarwa";
+
+// MARK: - Web Search
+"chat.web.search" = "Binciken Yanar gizo";
+"search.privacy.title" = "Bincike Mai Kare Sirri";
+"search.privacy.proceed" = "Bincika";
+"search.privacy.message" = "Binciken Yanar gizo ElioChat yana kare sirrin ku:\n\n🔒 Bincike ta DuckDuckGo\n🚫 Babu bin diddigi ko bayanan martaba\n🔐 Ba a adana tarihin bincike ba\n📱 Ba a adana bayanan a waje na'urar ku ba\n\nTambayar bincike kawai ake aika zuwa DuckDuckGo, kuma ana sarrafa sakamakon a kan na'urar ku.";
+"chat.web.analyzing" = "[Ana nazarin shafin yanar gizo]";

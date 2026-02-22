@@ -1,0 +1,635 @@
+/*
+  Localizable.strings (Urdu)
+  Elio
+*/
+
+// MARK: - App General
+"app.name" = "Elio";
+"app.tagline" = "آپ کا رازدار دوسرا دماغ۔";
+
+// MARK: - Common Actions
+"common.done" = "مکمل";
+"common.cancel" = "منسوخ کریں";
+"common.delete" = "حذف کریں";
+"common.save" = "محفوظ کریں";
+"common.edit" = "ترمیم کریں";
+"common.share" = "شیئر کریں";
+"common.copy" = "کاپی کریں";
+"common.copied" = "کاپی ہو گیا";
+"common.loading" = "لوڈ ہو رہا ہے...";
+"common.error" = "خرابی";
+"common.retry" = "دوبارہ کوشش کریں";
+"common.skip" = "چھوڑیں";
+"common.next" = "اگلا";
+"common.start" = "شروع کریں";
+"common.add" = "شامل کریں";
+"common.close" = "بند کریں";
+"common.details" = "تفصیلات";
+"common.yes" = "ہاں";
+"common.no" = "نہیں";
+"common.unknown" = "نامعلوم";
+
+// MARK: - Chat
+"chat.placeholder" = "کچھ بھی پوچھیں";
+"chat.model.not.loaded" = "کوئی ماڈل لوڈ نہیں ہے";
+"chat.model.not.loaded.description" = "براہ کرم ترتیبات سے ایک ماڈل ڈاؤن لوڈ کریں";
+"chat.go.to.settings" = "ترتیبات پر جائیں";
+"chat.new.conversation" = "نئی چیٹ";
+"chat.stop.generation" = "روکیں";
+"chat.generation.stopped" = "\n\n[تخلیق روک دی گئی]";
+"chat.image.sent" = "[تصویر بھیج دی گئی]";
+"chat.images.sent" = "[%d تصاویر بھیج دی گئیں]";
+"chat.pdf.sent" = "[PDF منسلک: %@]";
+"chat.pdf.sent.vision" = "[PDF تصویر کے ساتھ: %@]";
+"chat.pdf.context" = "مندرجہ ذیل PDF دستاویز \"%@\" سے نکالا گیا متن ہے:\n\n%@";
+"chat.pdf.context.vision" = "یہ PDF دستاویز \"%@\" کا صفحہ 1 ہے۔ نکالا گیا متن یہ ہے:\n\n%@\n\nبراہ کرم بصری مواد اور متن دونوں کا تجزیہ کریں۔";
+"chat.pdf.analyze" = "براہ کرم \"%@\" سے اس PDF صفحے کا تجزیہ کریں۔";
+"chat.url.sent" = "[ویب صفحہ: %@]";
+"chat.url.context" = "مندرجہ ذیل ویب صفحہ \"%@\" (%@) سے نکالا گیا مواد ہے:\n\n%@";
+"chat.thinking" = "سوچ رہا ہے...";
+"chat.generating" = "جواب بنا رہا ہے...";
+"chat.welcome" = "میں آپ کی کیسے مدد کر سکتا ہوں؟";
+"chat.suggestion.schedule" = "آج کا شیڈول دکھائیں";
+"chat.suggestion.reminder" = "ایک یاد دہانی بنائیں";
+"chat.suggestion.weather" = "آج موسم کیسا ہے؟";
+"chat.suggestion.help" = "اس ایپ کو کیسے استعمال کریں";
+"chat.websearch.on" = "ویب سرچ آن";
+"chat.websearch.off" = "ویب سرچ آف";
+"chat.thinking.on" = "سوچ آن";
+"chat.thinking.off" = "سوچ آف";
+"chat.transcribing" = "لکھاوٹ ہو رہی ہے...";
+"chat.offline" = "آف لائن";
+
+// Voice Conversation Mode
+"voice.listening" = "سن رہا ہے...";
+"voice.processing" = "کارروائی ہو رہی ہے...";
+"voice.thinking" = "سوچ رہا ہے...";
+"voice.speaking" = "بول رہا ہے...";
+"voice.tap.to.send" = "بھیجنے کے لیے ٹیپ کریں";
+"chat.templates" = "ٹیمپلیٹس";
+"chat.websearch.privacy.title" = "ویب سرچ کے بارے میں";
+"chat.websearch.privacy.message" = "ویب سرچ فعال کرنا AI کو تازہ معلومات کے لیے DuckDuckGo کے ذریعے انٹرنیٹ پر تلاش کرنے کی اجازت دیتا ہے۔ تلاش کی queries DuckDuckGo کو بھیجی جاتی ہیں لیکن ٹریک نہیں کی جاتیں۔";
+"chat.websearch.privacy.enable" = "فعال کریں";
+"chat.websearch.privacy.disable" = "غیر فعال رکھیں";
+
+// MARK: - Settings
+"settings.title" = "ترتیبات";
+"settings.model.section" = "AI ماڈلز";
+"settings.model.recommended" = "تجویز کردہ: %@";
+"settings.model.local.execution" = "ماڈلز آپ کے آلے پر مقامی طور پر چلتے ہیں";
+"settings.model.show.more" = "دیگر ماڈلز (%d)";
+"settings.model.show.less" = "کم دکھائیں";
+"settings.appearance.section" = "ظہور";
+"settings.tools.section" = "سمارٹ فیچرز";
+"settings.mcp.servers" = "انضمام";
+"settings.mcp.servers.description" = "کیلنڈر، فائلیں، یاد دہانیاں اور مزید";
+"settings.mcp.enabled.count" = "%d فعال";
+"settings.mcp.enabled.count.suffix" = " فعال";
+"settings.about.section" = "کے بارے میں";
+"settings.version" = "ورژن";
+"settings.about.app" = "اس ایپ کے بارے میں";
+"settings.about.mcp" = "انضمام کے بارے میں";
+"settings.privacy.badge" = "آف لائن کام کرتا ہے";
+"settings.privacy.description" = "ہوائی جہاز موڈ میں کام کرتا ہے";
+"settings.airplane.mode" = "ہوائی جہاز موڈ میں چل رہا ہے";
+"settings.offline.ready" = "آف لائن تیار";
+
+// MARK: - Model States
+"model.status.downloading" = "ڈاؤن لوڈ ہو رہا ہے... %d%%";
+"model.status.loading" = "لوڈ ہو رہا ہے...";
+"model.status.in.use" = "استعمال میں";
+"model.status.recommended" = "تجویز کردہ";
+"model.status.heavy" = "بھاری";
+"model.action.download" = "ڈاؤن لوڈ کریں";
+"model.action.load" = "لوڈ کریں";
+"model.action.delete" = "حذف کریں";
+"model.action.use" = "یہ ماڈل استعمال کریں";
+"model.delete.confirm.title" = "ماڈل حذف کریں";
+"model.delete.confirm.message" = "%@ حذف کریں؟ دوبارہ استعمال کرنے کے لیے آپ کو اسے دوبارہ ڈاؤن لوڈ کرنا ہوگا۔";
+"model.select.title" = "ماڈل منتخب کریں";
+"model.select.prompt" = "براہ کرم ایک ماڈل منتخب کریں";
+"model.downloaded" = "ڈاؤن لوڈ ہو گیا";
+
+// MARK: - Inference Mode
+"inference.mode.title" = "رفتار";
+"inference.mode.auto" = "خودکار";
+"inference.mode.auto.desc" = "خودکار طور پر بہترین کارکردگی";
+"inference.mode.gpu" = "GPU (Metal)";
+"inference.mode.gpu.desc" = "Metal کے ساتھ زیادہ سے زیادہ رفتار";
+"inference.mode.cpu" = "صرف CPU";
+"inference.mode.cpu.desc" = "بیٹری بچت موڈ";
+"inference.mode.hybrid" = "ہائبرڈ";
+"inference.mode.hybrid.desc" = "رفتار اور بیٹری کا توازن";
+
+// MARK: - Theme
+"theme.system" = "سسٹم";
+"theme.light" = "روشن";
+"theme.dark" = "تاریک";
+
+// MARK: - Onboarding
+"onboarding.welcome.title" = "ElioChat میں خوش آمدید";
+"onboarding.welcome.subtitle" = "آپ کا نجی AI معاون";
+"onboarding.features.title" = "واقعی نجی AI";
+"onboarding.feature.offline" = "ہوائی جہاز موڈ میں کام کرتا ہے";
+"onboarding.feature.offline.desc" = "پروازوں یا زیر زمین استعمال کریں";
+"onboarding.feature.privacy" = "صفر ڈیٹا ٹرانسمیشن";
+"onboarding.feature.privacy.desc" = "آپ کی چیٹس فون سے باہر نہیں جاتیں";
+"onboarding.feature.vault" = "سمارٹ انضمام";
+"onboarding.feature.vault.desc" = "کیلنڈر اور فائلوں سے جڑیں";
+"onboarding.feature.secure" = "کام کے لیے محفوظ AI";
+"onboarding.feature.secure.desc" = "کارپوریٹ استعمال کے لیے محفوظ";
+"onboarding.feature.thinking" = "سوچنے کا عمل";
+"onboarding.privacy.title" = "آپ کا ڈیٹا آپ کا ہے";
+"onboarding.privacy.item1" = "تمام پروسیسنگ آپ کے iPhone پر ہوتی ہے";
+"onboarding.privacy.item2" = "کلاؤڈ سرورز کو کوئی ڈیٹا نہیں بھیجا جاتا";
+"onboarding.privacy.item3" = "کبھی AI تربیت کے لیے استعمال نہیں ہوتا";
+"onboarding.getstarted.title" = "ایک ٹیپ میں تیار";
+"onboarding.getstarted.subtitle" = "تجویز کردہ AI ماڈل ڈاؤن لوڈ کریں\nاور فوری طور پر چیٹ شروع کریں";
+"onboarding.step1" = "تجویز کردہ ماڈل ڈاؤن لوڈ کریں";
+"onboarding.step2" = "چند منٹ انتظار کریں";
+"onboarding.step3" = "آپ تیار ہیں!";
+
+// MARK: - About
+"about.title" = "اس ایپ کے بارے میں";
+"about.rate.app" = "ایپ کو ریٹ کریں";
+"about.share.app" = "دوستوں کے ساتھ شیئر کریں";
+"about.privacy.policy" = "رازداری کی پالیسی";
+"about.terms" = "خدمات کی شرائط";
+"about.tech.info" = "تکنیکی معلومات";
+"about.tech.engine" = "AI انجن";
+"about.tech.format" = "معاونت یافتہ فارمیٹ";
+"about.tech.inference" = "استنتاج";
+"about.data.management" = "ڈیٹا کا انتظام";
+"about.delete.all" = "تمام گفتگو حذف کریں";
+"about.credits" = "کریڈٹس";
+"about.credits.description" = "یہ ایپ اوپن سورس لائبریریاں استعمال کرتی ہے";
+"about.privacy.section" = "رازداری";
+"about.gguf.format" = "GGUF فارمیٹ";
+"about.metal.gpu" = "Metal GPU رفتار";
+
+// MARK: - Referral
+"referral.title" = "دوستوں کو حوالہ دیں";
+"referral.code.title" = "آپ کا حوالہ کوڈ";
+"referral.code.copy" = "کوڈ کاپی کریں";
+"referral.code.copied" = "کاپی ہو گیا";
+"referral.share.button" = "دوستوں کے ساتھ شیئر کریں";
+"referral.share.description" = "Elio اپنے دوستوں کے ساتھ شیئر کریں!";
+"referral.count" = "%d لوگوں کو حوالہ دیا";
+"referral.enter.title" = "حوالہ کوڈ درج کریں";
+"referral.enter.placeholder" = "حوالہ کوڈ";
+"referral.enter.button" = "لاگو کریں";
+"referral.enter.success" = "حوالہ کوڈ لاگو ہو گیا";
+"referral.enter.error" = "غلط حوالہ کوڈ";
+
+// MARK: - Privacy Policy
+"privacy.title" = "رازداری کی پالیسی";
+"privacy.data.collection.title" = "ڈیٹا اکٹھا کرنا";
+"privacy.data.collection.content" = "یہ ایپ مکمل طور پر آف لائن مقامی AI چلاتی ہے۔\nبیرونی سرورز کو کوئی ڈیٹا نہیں بھیجا جاتا۔\nتمام گفتگو صرف آپ کے آلے پر محفوظ ہے۔";
+"privacy.stored.data.title" = "محفوظ شدہ ڈیٹا";
+"privacy.stored.data.content" = "گفتگو کی تاریخ (صرف آلے پر محفوظ)\nAI ماڈل فائلیں (صرف آلے پر محفوظ)\nایپ کی ترتیبات (صرف آلے پر محفوظ)\n\nیہ ڈیٹا کبھی بیرونی طور پر شیئر نہیں کیا جاتا۔";
+"privacy.data.deletion.title" = "ڈیٹا حذف کرنا";
+"privacy.data.deletion.content" = "آپ کسی بھی وقت ترتیبات > ڈیٹا کا انتظام سے تمام ڈیٹا حذف کر سکتے ہیں۔\nایپ ان انسٹال کرنے سے تمام ڈیٹا حذف ہو جائے گا۔";
+
+// MARK: - Terms of Service
+"terms.title" = "خدمات کی شرائط";
+"terms.service.title" = "خدمات کی تفصیل";
+"terms.service.content" = "یہ ایپ مقامی طور پر چلنے والے AI ماڈل کا استعمال کرتے ہوئے AI معاون فعالیت فراہم کرتی ہے۔";
+"terms.disclaimer.title" = "اعلان دست برداری";
+"terms.disclaimer.content" = "AI کے جوابات میں غلطیاں ہو سکتی ہیں۔\nاہم فیصلے ہمیشہ کسی ماہر سے تصدیق کرنی چاہئیں۔\nہم اس ایپ کے استعمال سے پیدا ہونے والے کسی نقصان کے ذمہ دار نہیں ہیں۔";
+"terms.prohibited.title" = "ممنوعہ سرگرمیاں";
+"terms.prohibited.content" = "غیر قانونی سرگرمیاں\nدوسروں کے حقوق کی خلاف ورزی کرنے والی سرگرمیاں\nاس ایپ کی ریورس انجینئرنگ\nاس ایپ کی غیر مجاز نقل";
+"terms.ip.title" = "دانشورانہ جائیداد";
+"terms.ip.content" = "اس ایپ کے دانشورانہ جائیداد کے حقوق ڈویلپر سے تعلق رکھتے ہیں۔\nغیر مجاز استعمال ممنوع ہے۔";
+
+// MARK: - Conversations
+"conversations.title" = "گفتگو";
+"conversations.new" = "نئی گفتگو";
+"conversations.empty" = "ابھی تک کوئی گفتگو نہیں";
+"conversations.delete" = "گفتگو حذف کریں";
+"conversations.default.title" = "نئی گفتگو";
+"conversations.today" = "آج";
+"conversations.yesterday" = "کل";
+"conversations.past7days" = "پچھلے 7 دن";
+"conversations.past30days" = "پچھلے 30 دن";
+"conversations.older" = "پرانی";
+"conversations.created" = "بنایا گیا: %@";
+"conversations.user" = "صارف";
+"conversations.assistant" = "معاون";
+"conversations.search.placeholder" = "گفتگو تلاش کریں";
+"conversations.search.no_results" = "کوئی نتیجہ نہیں ملا";
+
+// MARK: - Message Actions
+"message.copy" = "کاپی کریں";
+"message.speak" = "بولیں";
+"message.stop.speaking" = "بولنا روکیں";
+"message.share" = "شیئر کریں";
+"message.share.card" = "کارڈ کے طور پر شیئر کریں";
+"message.like" = "پسند کریں";
+
+// MARK: - Share Card
+"share.card.title" = "کارڈ شیئر کریں";
+"share.card.preview" = "پیش نظارہ";
+"share.card.button" = "تصویر شیئر کریں";
+"message.dislike" = "ناپسند کریں";
+"message.thinking.process" = "سوچنے کا عمل";
+"message.tool.running" = "ٹول چل رہا ہے";
+"message.tool.error" = "خرابی";
+"message.tool.completed" = "مکمل ہو گیا";
+
+// MARK: - Attachment
+"attachment.title" = "منسلک";
+"attachment.photo.library" = "تصویر منتخب کریں";
+"attachment.camera" = "تصویر لیں";
+"attachment.pdf" = "PDF منتخب کریں";
+"attachment.pdf.chars" = "%d حروف";
+"attachment.pdf.pages" = "%d صفحات";
+"attachment.pdf.vision.enabled" = "تصویر کا تجزیہ فعال ہے";
+"attachment.pdf.text.only" = "صرف متن موڈ";
+"attachment.url" = "ویب صفحہ پڑھیں";
+"attachment.url.title" = "URL درج کریں";
+"attachment.url.placeholder" = "https://example.com";
+"attachment.url.message" = "اس کا مواد نکالنے کے لیے URL پیسٹ کریں";
+"attachment.url.fetch" = "حاصل کریں";
+"attachment.url.loading" = "صفحہ لوڈ ہو رہا ہے...";
+
+// MARK: - Errors
+"error.model.not.found" = "ماڈل فائل نہیں ملی";
+"error.model.not.loaded" = "ماڈل لوڈ نہیں ہوا";
+"error.context.failed" = "سیاق و سباق بنانا ناکام";
+"error.tokenization.failed" = "ٹوکنائزیشن ناکام";
+"error.generation.failed" = "تخلیق کی خرابی: %@";
+"error.occurred" = "ایک خرابی واقع ہوئی: %@";
+"error.invalid.url" = "غلط URL";
+"error.download.failed" = "ڈاؤن لوڈ ناکام";
+"error.extraction.failed" = "نکالنا ناکام";
+"error.config.not.found" = "کنفگ فائل نہیں ملی";
+
+// MARK: - Ghost Search
+"ghost.search.title" = "بھوت تلاش";
+"ghost.search.description" = "DuckDuckGo کے ذریعے گمنام تلاش (کوئی ٹریکنگ نہیں)";
+"ghost.search.connecting" = "گمنام نیٹ ورک سے جڑ رہا ہے...";
+"ghost.search.privacy.note" = "آپ کی تلاش کی تاریخ کبھی ٹریک نہیں کی جاتی";
+
+// MARK: - MCP Servers
+"mcp.filesystem" = "فائل سسٹم";
+"mcp.filesystem.desc" = "ایپ میں فائلیں پڑھیں اور لکھیں";
+"mcp.calendar" = "کیلنڈر";
+"mcp.calendar.desc" = "واقعات پڑھیں اور لکھیں";
+"mcp.reminders" = "یاد دہانیاں";
+"mcp.reminders.desc" = "یاد دہانیوں کا انتظام کریں";
+"mcp.contacts" = "رابطے";
+"mcp.contacts.desc" = "رابطے تلاش کریں اور دیکھیں";
+"mcp.photos" = "تصاویر";
+"mcp.photos.desc" = "تصویر لائبریری تک رسائی";
+"mcp.location" = "مقام";
+"mcp.location.desc" = "موجودہ مقام حاصل کریں اور جگہیں تلاش کریں";
+"mcp.health" = "صحت";
+"mcp.health.desc" = "صحت کے ڈیٹا تک رسائی";
+"mcp.shortcuts" = "شارٹ کٹس";
+"mcp.shortcuts.desc" = "شارٹ کٹس چلائیں";
+"mcp.websearch" = "ویب تلاش";
+"mcp.websearch.desc" = "گمنام ویب تلاش";
+"mcp.custom" = "حسب ضرورت انضمام";
+"mcp.custom.add" = "انضمام شامل کریں";
+"mcp.custom.setup" = "بیرونی سروس کا انضمام ترتیب دیں";
+"mcp.custom.title" = "حسب ضرورت انضمام";
+"mcp.settings.title" = "انضمام کی ترتیبات";
+"mcp.server.name" = "سرور کا نام";
+"mcp.server.name.placeholder" = "مثال کے طور پر، میرا حسب ضرورت سرور";
+"mcp.config.url" = "کنفگ فائل URL";
+"mcp.import.file" = "فائل سے درآمد کریں";
+"mcp.config.example" = "کنفگ فائل کی مثال";
+"mcp.permission.note" = "ہر فیچر کے پہلے استعمال پر اجازتیں طلب کی جائیں گی";
+
+// MARK: - MCP Tool Messages
+"mcp.tool.available" = "دستیاب ٹولز:";
+"mcp.tool.parameters" = "پیرامیٹرز:";
+"mcp.prompt.available" = "دستیاب پرامپٹس:";
+"mcp.prompt.arguments" = "دلائل:";
+"mcp.tool.name" = "tool_name";
+"mcp.tool.arg.name" = "arg_name";
+"mcp.tool.arg.value" = "value";
+"mcp.tool.no.result" = "کوئی نتیجہ نہیں";
+"mcp.tool.running" = "ٹول چل رہا ہے: %@";
+"mcp.tool.error" = "ٹول چلانے کی خرابی: %@";
+
+// MARK: - MCP Error Messages
+"mcp.error.server.not.found" = "سرور نہیں ملا: %@";
+"mcp.error.tool.not.found" = "ٹول نہیں ملا: %@";
+"mcp.error.invalid.args" = "غلط دلائل: %@";
+"mcp.error.execution" = "چلانے کی خرابی: %@";
+"mcp.error.permission" = "اجازت مسترد: %@";
+
+// MARK: - Calendar Messages
+"calendar.no.events" = "کوئی واقعات نہیں";
+"calendar.event.created" = "واقعہ بنایا گیا: %@";
+"calendar.event.deleted" = "واقعہ حذف کیا گیا: %@";
+"calendar.allday.created" = "پورے دن کا واقعہ بنایا گیا: %@";
+"calendar.access.denied" = "کیلنڈر تک رسائی مسترد";
+"calendar.today.none" = "آج کوئی واقعات نہیں";
+"calendar.untitled" = "بے عنوان";
+
+// MARK: - Reminders Messages
+"reminders.none" = "کوئی یاد دہانیاں نہیں";
+"reminders.created" = "یاد دہانی بنائی گئی: %@";
+"reminders.completed" = "یاد دہانی مکمل ہوئی: %@";
+"reminders.deleted" = "یاد دہانی حذف کی گئی: %@";
+"reminders.access.denied" = "یاد دہانیوں تک رسائی مسترد";
+"reminders.untitled" = "بے عنوان";
+
+// MARK: - Photos Messages
+"photos.access.denied" = "تصاویر تک رسائی مسترد";
+"photos.not.found" = "تصویر نہیں ملی";
+"photos.untitled" = "بے عنوان";
+"photos.count" = "تصاویر: %d";
+"photos.videos.count" = "ویڈیوز: %d";
+"photos.albums.count" = "البمز: %d";
+"photos.favorites.count" = "پسندیدہ: %d";
+"photos.date" = "تاریخ: %@";
+"photos.size" = "سائز: %d x %d";
+"photos.location" = "مقام: %@, %@";
+"photos.media.type" = "میڈیا کی قسم: %@";
+"photos.duration" = "دورانیہ: %dم %dس";
+"photos.favorite" = "پسندیدہ: %@";
+"photos.type.image" = "تصویر";
+"photos.type.video" = "ویڈیو";
+"photos.type.audio" = "آڈیو";
+
+// MARK: - Contacts Messages
+"contacts.access.denied" = "رابطوں تک رسائی مسترد";
+"contacts.not.found" = "کوئی مماثل رابطہ نہیں ملا";
+"contacts.no.groups" = "کوئی گروپ نہیں";
+"contacts.no.card" = "کوئی رابطہ کارڈ سیٹ نہیں";
+"contacts.name" = "نام: %@";
+"contacts.company" = "کمپنی: %@";
+"contacts.job" = "عہدہ: %@";
+
+// MARK: - Location Messages
+"location.access.denied" = "مقام تک رسائی مسترد";
+"location.not.found" = "پتہ نہیں ملا";
+"location.latitude" = "عرض البلد: %@";
+"location.longitude" = "طول البلد: %@";
+"location.accuracy" = "درستگی: %dم";
+"location.altitude" = "اونچائی: %dم";
+"location.search" = "تلاش: %@";
+"location.address" = "پتہ: %@";
+"location.country" = "ملک: %@";
+"location.postal" = "ڈاک کوڈ: %@";
+"location.from" = "سے: (%@, %@)";
+"location.to" = "تک: (%@, %@)";
+"location.distance.km" = "فاصلہ: %.2f کلومیٹر";
+"location.distance.m" = "فاصلہ: %d میٹر";
+
+// MARK: - Health Messages
+"health.not.available" = "صحت اس آلے پر دستیاب نہیں";
+"health.date" = "تاریخ: %@";
+"health.steps" = "قدم: %@ قدم";
+"health.goal.progress" = "ہدف کی پیش رفت: %d%% (10,000 قدموں کا ہدف)";
+"health.no.data" = "کوئی ڈیٹا دستیاب نہیں";
+"health.avg.bpm" = "اوسط: %d دھڑکن فی منٹ";
+"health.min.bpm" = "کم از کم: %d دھڑکن فی منٹ";
+"health.max.bpm" = "زیادہ سے زیادہ: %d دھڑکن فی منٹ";
+"health.measurements" = "پیمائشیں: %d";
+"health.no.sleep" = "نیند کا کوئی ڈیٹا نہیں";
+"health.sleep.total" = "کل نیند: %dگھنٹے %dمنٹ";
+"health.bedtime" = "سونے کا وقت: %@";
+"health.waketime" = "جاگنے کا وقت: %@";
+"health.calories" = "کیلوریز: %d کلو کیلوری";
+
+// MARK: - File System Messages
+"filesystem.not.found" = "فائل نہیں ملی: %@";
+"filesystem.written" = "فائل لکھی گئی: %@";
+"filesystem.dir.created" = "ڈائرکٹری بنائی گئی: %@";
+"filesystem.deleted" = "حذف شدہ: %@";
+"filesystem.size" = "سائز: %@";
+"filesystem.created" = "بنایا گیا: %@";
+"filesystem.modified" = "ترمیم شدہ: %@";
+"filesystem.type" = "قسم: %@";
+
+// MARK: - Shortcuts Messages
+"shortcuts.executed" = "شارٹ کٹ '%@' چلایا گیا";
+"shortcuts.opened" = "شارٹ کٹس ایپ کھلی";
+"shortcuts.settings.opened" = "ترتیبات (%@) کھلیں";
+"shortcuts.mail.opened" = "میل لکھنا کھلا";
+"shortcuts.calling" = "کال کر رہے ہیں: %@";
+"shortcuts.message.opened" = "پیغام لکھنا کھلا";
+"shortcuts.failed" = "شارٹ کٹ نہیں کھل سکا";
+
+// MARK: - Model Tiers
+"model.tier.entry" = "داخلہ";
+"model.tier.standard" = "معیاری";
+"model.tier.pro" = "پرو";
+
+// MARK: - Tool Parser
+"tool.arguments" = "دلائل:";
+
+// MARK: - Model Settings
+"model.action.settings" = "ترتیبات";
+"settings.model.parameters" = "ماڈل کی ترتیبات";
+"settings.model.parameters.description" = "اس ماڈل کے لیے تخلیق کے پیرامیٹرز کو حسب ضرورت بنائیں";
+"settings.preset.title" = "پہلے سے طے شدہ";
+"settings.preset.custom" = "حسب ضرورت";
+"settings.preset.balanced" = "متوازن";
+"settings.preset.creative" = "تخلیقی";
+"settings.preset.precise" = "درست";
+"settings.preset.coding" = "کوڈنگ";
+"settings.preset.japanese" = "جاپانی";
+"settings.parameters.title" = "پیرامیٹرز";
+"settings.parameter.temperature" = "درجہ حرارت";
+"settings.parameter.temperature.description" = "زیادہ = زیادہ تخلیقی، کم = زیادہ مرکوز";
+"settings.parameter.top.p" = "Top P";
+"settings.parameter.top.p.description" = "نیوکلیئس سیمپلنگ کا امکان";
+"settings.parameter.top.k" = "Top K";
+"settings.parameter.top.k.description" = "غور کرنے کے لیے اوپری ٹوکنز کی تعداد";
+"settings.parameter.max.tokens" = "زیادہ سے زیادہ ٹوکنز";
+"settings.parameter.max.tokens.description" = "زیادہ سے زیادہ جواب کی لمبائی";
+"settings.parameter.repeat.penalty" = "دہرانے کی سزا";
+"settings.parameter.repeat.penalty.description" = "زیادہ = کم تکراری آؤٹ پٹ";
+"settings.parameter.thinking" = "سوچ موڈ";
+"settings.parameter.thinking.description" = "AI کی استدلال کا عمل دکھائیں";
+"settings.system.prompt.title" = "سسٹم پرامپٹ";
+"settings.system.prompt.description" = "AI کے لیے حسب ضرورت ہدایات";
+"settings.reset.to.default" = "ڈیفالٹ پر ری سیٹ کریں";
+
+// MARK: - Vision Model
+"vision.model.required.title" = "ویژن ماڈل کی ضرورت ہے";
+"vision.model.required.header" = "تصویر کی شناخت کی ضرورت ہے";
+"vision.model.required.description" = "تصاویر کا تجزیہ کرنے کے لیے، آپ کو ویژن قابل AI ماڈل کی ضرورت ہے";
+"vision.model.switch" = "ماڈل تبدیل کریں";
+"vision.model.switch.message %@" = "تصویر کا تجزیہ فعال کرنے کے لیے %@ میں تبدیل کریں؟";
+"vision.model.download" = "ڈاؤن لوڈ کریں";
+"vision.model.download.message %@ %@" = "تصاویر کا تجزیہ کرنے کے لیے %@ (%@) ڈاؤن لوڈ کریں؟";
+"vision.model.not.available" = "آپ کے آلے کے لیے کوئی ہم آہنگ ویژن ماڈل دستیاب نہیں";
+"vision.model.switching" = "ماڈل تبدیل ہو رہا ہے...";
+"vision.model.download.title" = "ویژن ماڈلز";
+"vision.model.recommended" = "آپ کے آلے کے لیے تجویز کردہ";
+"vision.model.recommended.size %@" = "تجویز کردہ: %@";
+"vision.model.use.this" = "یہ ماڈل استعمال کریں";
+"vision.model.download.button %@" = "ڈاؤن لوڈ کریں (%@)";
+"vision.model.other.options" = "دیگر ویژن ماڈلز";
+"vision.model.download.complete" = "ڈاؤن لوڈ مکمل";
+"vision.model.download.complete.message" = "تصاویر کا تجزیہ کرنے کے لیے تیار";
+
+// MARK: - Whisper Voice Input (Legacy)
+"whisper.download.title" = "آواز کی شناخت کی ضرورت ہے";
+"whisper.download.action" = "ڈاؤن لوڈ کریں";
+"whisper.download.message" = "آواز کی ان پٹ استعمال کرنے کے لیے، آپ کو تقریر کی شناخت کا ماڈل (~150MB) ڈاؤن لوڈ کرنا ہوگا۔";
+"whisper.downloading" = "تقریر کی شناخت کا ماڈل ڈاؤن لوڈ ہو رہا ہے...";
+"whisper.download.error" = "ڈاؤن لوڈ کی خرابی";
+"whisper.load.error" = "ماڈل لوڈ کی خرابی";
+"whisper.permission.denied" = "مائیکروفون تک رسائی کی اجازت نہیں";
+"whisper.transcribe.error" = "نقل کی خرابی";
+"whisper.error.permission" = "مائیکروفون کی اجازت درکار ہے";
+"whisper.error.not.recording" = "فی الوقت ریکارڈنگ نہیں ہو رہی";
+"whisper.error.no.recording" = "کوئی ریکارڈنگ ڈیٹا نہیں";
+"whisper.error.model.not.loaded" = "تقریر کی شناخت کا ماڈل لوڈ نہیں ہوا";
+"whisper.error.transcription" = "نقل ناکام";
+
+// MARK: - Speech Recognition (ReazonSpeech)
+"speech.download.title" = "آواز کی شناخت کی ضرورت ہے";
+"speech.download.action" = "ڈاؤن لوڈ کریں";
+"speech.download.message" = "آواز کی ان پٹ استعمال کرنے کے لیے، آپ کو جاپانی تقریر کی شناخت کا ماڈل (~155MB) ڈاؤن لوڈ کرنا ہوگا۔";
+"speech.downloading" = "تقریر کی شناخت کا ماڈل ڈاؤن لوڈ ہو رہا ہے...";
+
+// MARK: - Language Settings
+"settings.language.section" = "زبان";
+"language.system" = "سسٹم کی زبان استعمال کریں";
+"settings.language.restart.hint" = "زبان کی تبدیلیاں ایپ دوبارہ شروع کرنے کے بعد لاگو ہوں گی";
+"settings.language.changed.title" = "زبان تبدیل ہو گئی";
+"settings.language.changed.message" = "تبدیلیاں لاگو کرنے کے لیے براہ کرم ایپ دوبارہ شروع کریں";
+"common.ok" = "ٹھیک ہے";
+
+// MARK: - System Prompt Settings
+"settings.prompt.section" = "سسٹم پرامپٹ";
+"settings.prompt.edit" = "پرامپٹ میں ترمیم کریں";
+"settings.prompt.default" = "ڈیفالٹ استعمال کر رہے ہیں";
+"settings.prompt.custom" = "حسب ضرورت پرامپٹ سیٹ ہے";
+"settings.prompt.hint" = "AI کے رویے کو حسب ضرورت بنائیں";
+"settings.prompt.editor.title" = "پرامپٹ میں ترمیم کریں";
+"settings.prompt.editor.instruction" = "AI کے لیے حسب ضرورت ہدایات شامل کریں۔ ڈیفالٹ پرامپٹ استعمال کرنے کے لیے خالی چھوڑ دیں۔";
+"settings.prompt.default.preview" = "ڈیفالٹ پرامپٹ (اقتباس):";
+"settings.prompt.reset" = "ری سیٹ کریں";
+"settings.prompt.reset.title" = "پرامپٹ ری سیٹ کریں";
+"settings.prompt.reset.message" = "حسب ضرورت پرامپٹ حذف کریں اور ڈیفالٹ پر بحال کریں؟";
+
+// MARK: - Prompt Templates
+"templates.title" = "پرامپٹ ٹیمپلیٹس";
+"templates.empty" = "ابھی تک کوئی ٹیمپلیٹس نہیں";
+"templates.add" = "ٹیمپلیٹ شامل کریں";
+"template.add.title" = "ٹیمپلیٹ شامل کریں";
+"template.edit.title" = "ٹیمپلیٹ میں ترمیم کریں";
+"template.name.header" = "نام";
+"template.name.placeholder" = "ٹیمپلیٹ کا نام";
+"template.content.header" = "پرامپٹ کا مواد";
+"template.icon.header" = "آئیکن";
+"template.translate.name" = "ترجمہ کریں";
+"template.translate.content" = "براہ کرم مندرجہ ذیل کا ترجمہ کریں: ";
+"template.summarize.name" = "خلاصہ کریں";
+"template.summarize.content" = "براہ کرم مندرجہ ذیل کا خلاصہ کریں: ";
+"template.explain.name" = "وضاحت کریں";
+"template.explain.content" = "براہ کرم مندرجہ ذیل کی وضاحت کریں: ";
+"template.code.name" = "کوڈ";
+"template.code.content" = "براہ کرم اس کے لیے کوڈ لکھیں: ";
+
+// MARK: - Export
+"export.title" = "گفتگو برآمد کریں";
+"export.format.markdown" = "Markdown";
+"export.format.pdf" = "PDF";
+"export.format.text" = "سادہ متن";
+"export.created" = "بنایا گیا";
+"export.image.attached" = "تصویر منسلک";
+"export.generated.by" = "بنایا گیا بذریعہ";
+
+// MARK: - Loading Phases
+"loading.phase.initializing" = "شروع ہو رہا ہے...";
+"loading.phase.loading" = "ماڈل لوڈ ہو رہا ہے...";
+"loading.phase.preparing" = "استنتاج انجن تیار ہو رہا ہے...";
+"loading.phase.almost" = "تقریباً تیار...";
+
+// MARK: - Welcome Screen
+"welcome.greeting" = "کچھ بھی پوچھیں";
+"welcome.subtitle" = "آپ کا رازداری کو پہلے رکھنے والا AI معاون";
+"suggestion.idea" = "خیالات سوچنے میں میری مدد کریں";
+"suggestion.write" = "کچھ لکھنے میں میری مدد کریں";
+"suggestion.question" = "میرے سوالات کے جواب دیں";
+
+// MARK: - Kokoro TTS
+"tts.download.title" = "اعلیٰ معیار کی آواز";
+"tts.download.action" = "ڈاؤن لوڈ کریں";
+"tts.download.use_system" = "سسٹم کی آواز استعمال کریں";
+"tts.download.message" = "زیادہ قدرتی جاپانی متن سے تقریر کے لیے Kokoro TTS ماڈل (~87MB) ڈاؤن لوڈ کریں۔";
+"tts.downloading" = "TTS ماڈل ڈاؤن لوڈ ہو رہا ہے...";
+
+// MARK: - Feedback
+"feedback.consent.title" = "رائے بھیجیں";
+"feedback.send" = "بھیجیں";
+"feedback.positive.title" = "کیا یہ جواب مددگار تھا؟";
+"feedback.negative.title" = "کیا اسے بہتر بنایا جا سکتا ہے؟";
+"feedback.explanation" = "آپ کی رائے AI کے معیار کو بہتر بنانے میں مدد کرتی ہے۔ براہ کرم جمع کرانے سے پہلے بھیجے جانے والے ڈیٹا کا جائزہ لیں۔";
+"feedback.data.section" = "بھیجا جانے والا ڈیٹا";
+"feedback.data.conversation" = "گفتگو";
+"feedback.data.conversation.desc" = "AI کا جواب اور آپ کا پچھلا پیغام";
+"feedback.data.model" = "ماڈل کی معلومات";
+"feedback.data.model.desc" = "استعمال شدہ AI ماڈل کا نام";
+"feedback.data.timestamp" = "ٹائم اسٹیمپ";
+"feedback.data.timestamp.desc" = "رائے کب جمع کرائی گئی";
+"feedback.privacy.section" = "رازداری";
+"feedback.privacy.anonymous" = "کوئی ذاتی شناختی معلومات نہیں بھیجی جاتی";
+"feedback.privacy.improvement" = "صرف AI کے معیار کو بہتر بنانے کے لیے استعمال ہوتی ہے";
+"feedback.privacy.optional" = "رائے بھیجنا مکمل طور پر اختیاری ہے";
+"feedback.comment.section" = "تبصرہ (اختیاری)";
+"feedback.comment.placeholder" = "ہمیں بتائیں کہ کیا بہتر ہو سکتا ہے یا کیا اچھا کام کیا...";
+"feedback.remember.title" = "یہ انتخاب یاد رکھیں";
+"feedback.remember.description" = "اگلی بار پوچھے بغیر رائے بھیجیں";
+
+// MARK: - Emergency Mode
+"emergency.sos.button" = "ایمرجنسی موڈ (ٹوگل کرنے کے لیے لمبا دبائیں)";
+"emergency.mode.active" = "ایمرجنسی موڈ فعال";
+"emergency.action.firstaid" = "ابتدائی طبی امداد";
+"emergency.action.firstaid.message" = "براہ کرم ابتدائی طبی امداد کی ہدایات فراہم کریں۔ میں زخم یا علامات بیان کروں گا: ";
+"emergency.action.disaster" = "آفت";
+"emergency.action.disaster.message" = "ایک آفت واقع ہوئی ہے۔ براہ کرم جوابی طریقہ کار فراہم کریں: ";
+"emergency.action.factcheck" = "حقیقت کی جانچ";
+"emergency.action.factcheck.message" = "براہ کرم اس معلومات کی قابل اعتماد کی تصدیق کریں: ";
+"emergency.action.contacts" = "ایمرجنسی";
+"emergency.action.contacts.message" = "براہ کرم مجھے ایمرجنسی رابطہ نمبروں کی فہرست دکھائیں";
+"emergency.action.evacuation" = "انخلاء";
+"emergency.action.evacuation.message" = "براہ کرم موجودہ صورتحال کے لیے انخلاء کی چیک لسٹ بنائیں: ";
+"mcp.emergency_kb" = "ایمرجنسی نالج بیس";
+"mcp.emergency_kb.desc" = "ایمرجنسی اور آفت کی معلومات";
+
+// MARK: - Emergency Templates
+"template.firstaid.name" = "ابتدائی طبی امداد کی رہنمائی";
+"template.firstaid.content" = "براہ کرم اس کے لیے ابتدائی طبی امداد کی ہدایات فراہم کریں: ";
+"template.disaster.name" = "آفت کا جواب";
+"template.disaster.content" = "مندرجہ ذیل آفت واقع ہوئی ہے۔ براہ کرم جوابی طریقہ کار فراہم کریں: ";
+"template.factcheck.name" = "حقیقت کی جانچ";
+"template.factcheck.content" = "براہ کرم اس معلومات کی قابل اعتماد کی تصدیق کریں اور حقیقت کی جانچ کی تجاویز فراہم کریں: ";
+"template.evacuation.name" = "انخلاء چیک لسٹ";
+"template.evacuation.content" = "براہ کرم موجودہ صورتحال کے لیے انخلاء کی چیک لسٹ بنائیں: ";
+
+// MARK: - ChatWeb.ai Integration
+"chatweb.title" = "ChatWeb.ai";
+"chatweb.desc" = "کلاؤڈ AI چیٹ";
+"chatweb.connect" = "ChatWeb.ai سے جڑیں";
+"chatweb.qr.title" = "QR کوڈ کے ذریعے جڑیں";
+"chatweb.qr.scan" = "QR کوڈ اسکین کریں";
+"chatweb.open" = "ChatWeb.ai کھولیں";
+
+// MARK: - Peer Connection
+"peer.title" = "قریبی آلات";
+"peer.desc" = "قریبی Elio آلات سے جڑیں";
+"peer.connect" = "آلے سے جڑیں";
+"peer.code.title" = "کنکشن کوڈ";
+"peer.code.enter" = "4 ہندسوں کا کوڈ درج کریں";
+"peer.code.your" = "آپ کا کوڈ";
+"peer.connected" = "جڑ گیا";
+"peer.disconnected" = "منقطع ہو گیا";
+"peer.inference.offload" = "استنتاج شیئر کر رہا ہے";
+
+// MARK: - Web Search
+"chat.web.search" = "ویب تلاش";
+"search.privacy.title" = "رازداری محفوظ تلاش";
+"search.privacy.proceed" = "تلاش کریں";
+"search.privacy.message" = "ElioChat ویب تلاش آپ کی رازداری کی حفاظت کرتی ہے:\n\n🔒 DuckDuckGo کے ذریعے تلاش\n🚫 کوئی ٹریکنگ یا پروفائلنگ نہیں\n🔐 تلاش کی تاریخ محفوظ نہیں کی جاتی\n📱 آپ کے آلے کے باہر کوئی ڈیٹا محفوظ نہیں کیا جاتا\n\nصرف آپ کی تلاش کی query DuckDuckGo کو بھیجی جاتی ہے، اور نتائج آپ کے آلے پر پروسیس ہوتے ہیں۔";
+"chat.web.analyzing" = "[ویب صفحہ کا تجزیہ ہو رہا ہے]";

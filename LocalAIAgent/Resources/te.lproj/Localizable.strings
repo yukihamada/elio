@@ -1,0 +1,635 @@
+/*
+  Localizable.strings (Telugu)
+  Elio
+*/
+
+// MARK: - App General
+"app.name" = "Elio";
+"app.tagline" = "మీ రహస్య-కాపాడే రెండవ మెదడు.";
+
+// MARK: - Common Actions
+"common.done" = "పూర్తయింది";
+"common.cancel" = "రద్దు చేయి";
+"common.delete" = "తొలగించు";
+"common.save" = "సేవ్ చేయి";
+"common.edit" = "సవరించు";
+"common.share" = "షేర్ చేయి";
+"common.copy" = "కాపీ చేయి";
+"common.copied" = "కాపీ చేయబడింది";
+"common.loading" = "లోడ్ అవుతోంది...";
+"common.error" = "లోపం";
+"common.retry" = "మళ్లీ ప్రయత్నించు";
+"common.skip" = "దాటవేయి";
+"common.next" = "తర్వాత";
+"common.start" = "ప్రారంభించండి";
+"common.add" = "జోడించు";
+"common.close" = "మూసివేయి";
+"common.details" = "వివరాలు";
+"common.yes" = "అవును";
+"common.no" = "కాదు";
+"common.unknown" = "తెలియదు";
+
+// MARK: - Chat
+"chat.placeholder" = "ఏదైనా అడగండి";
+"chat.model.not.loaded" = "మోడల్ లోడ్ కాలేదు";
+"chat.model.not.loaded.description" = "దయచేసి సెట్టింగ్స్ నుండి మోడల్‌ను డౌన్‌లోడ్ చేయండి";
+"chat.go.to.settings" = "సెట్టింగ్స్‌కు వెళ్లండి";
+"chat.new.conversation" = "కొత్త చాట్";
+"chat.stop.generation" = "ఆపివేయి";
+"chat.generation.stopped" = "\n\n[జనరేషన్ ఆపివేయబడింది]";
+"chat.image.sent" = "[చిత్రం పంపబడింది]";
+"chat.images.sent" = "[%d చిత్రాలు పంపబడ్డాయి]";
+"chat.pdf.sent" = "[PDF జోడించబడింది: %@]";
+"chat.pdf.sent.vision" = "[చిత్రంతో PDF: %@]";
+"chat.pdf.context" = "క్రింది వాటి PDF డాక్యుమెంట్ \"%@\" నుండి సేకరించిన టెక్స్ట్ కంటెంట్:\n\n%@";
+"chat.pdf.context.vision" = "ఇది PDF డాక్యుమెంట్ \"%@\" యొక్క పేజీ 1. సేకరించిన టెక్స్ట్ కంటెంట్:\n\n%@\n\nదయచేసి దృశ్య కంటెంట్ మరియు టెక్స్ట్ రెండింటినీ విశ్లేషించండి.";
+"chat.pdf.analyze" = "దయచేసి \"%@\" నుండి ఈ PDF పేజీని విశ్లేషించండి.";
+"chat.url.sent" = "[వెబ్ పేజీ: %@]";
+"chat.url.context" = "క్రింది వాటి వెబ్ పేజీ \"%@\" (%@) నుండి సేకరించిన కంటెంట్:\n\n%@";
+"chat.thinking" = "ఆలోచిస్తోంది...";
+"chat.generating" = "ప్రతిస్పందన సృష్టిస్తోంది...";
+"chat.welcome" = "నేను మీకు ఎలా సహాయం చేయగలను?";
+"chat.suggestion.schedule" = "నేటి షెడ్యూల్ చూపించు";
+"chat.suggestion.reminder" = "రిమైండర్ సృష్టించు";
+"chat.suggestion.weather" = "ఈరోజు వాతావరణం ఎలా ఉంది?";
+"chat.suggestion.help" = "ఈ యాప్‌ను ఎలా ఉపయోగించాలి";
+"chat.websearch.on" = "వెబ్ సెర్చ్ ఆన్";
+"chat.websearch.off" = "వెబ్ సెర్చ్ ఆఫ్";
+"chat.thinking.on" = "థింకింగ్ ఆన్";
+"chat.thinking.off" = "థింకింగ్ ఆఫ్";
+"chat.transcribing" = "ట్రాన్స్‌క్రైబ్ చేస్తోంది...";
+"chat.offline" = "ఆఫ్‌లైన్";
+
+// Voice Conversation Mode
+"voice.listening" = "వింటోంది...";
+"voice.processing" = "ప్రాసెస్ చేస్తోంది...";
+"voice.thinking" = "ఆలోచిస్తోంది...";
+"voice.speaking" = "మాట్లాడుతోంది...";
+"voice.tap.to.send" = "పంపడానికి ట్యాప్ చేయండి";
+"chat.templates" = "టెంప్లేట్స్";
+"chat.websearch.privacy.title" = "వెబ్ సెర్చ్ గురించి";
+"chat.websearch.privacy.message" = "వెబ్ సెర్చ్‌ను ఎనేబుల్ చేయడం వల్ల AI DuckDuckGo ద్వారా తాజా సమాచారం కోసం ఇంటర్నెట్‌ను సెర్చ్ చేయగలదు. సెర్చ్ క్వెరీలు DuckDuckGo కు పంపబడతాయి కానీ ట్రాక్ చేయబడవు.";
+"chat.websearch.privacy.enable" = "ఎనేబుల్ చేయి";
+"chat.websearch.privacy.disable" = "డిసేబుల్ చేసి ఉంచండి";
+
+// MARK: - Settings
+"settings.title" = "సెట్టింగ్స్";
+"settings.model.section" = "AI మోడల్స్";
+"settings.model.recommended" = "సిఫార్సు చేయబడింది: %@";
+"settings.model.local.execution" = "మోడల్స్ మీ పరికరంలో స్థానికంగా రన్ అవుతాయి";
+"settings.model.show.more" = "ఇతర మోడల్స్ (%d)";
+"settings.model.show.less" = "తక్కువ చూపించు";
+"settings.appearance.section" = "అప్పియరెన్స్";
+"settings.tools.section" = "స్మార్ట్ ఫీచర్స్";
+"settings.mcp.servers" = "ఇంటిగ్రేషన్స్";
+"settings.mcp.servers.description" = "క్యాలెండర్, ఫైల్స్, రిమైండర్స్ & మరిన్ని";
+"settings.mcp.enabled.count" = "%d ఎనేబుల్ చేయబడింది";
+"settings.mcp.enabled.count.suffix" = " ఎనేబుల్ చేయబడింది";
+"settings.about.section" = "గురించి";
+"settings.version" = "వెర్షన్";
+"settings.about.app" = "ఈ యాప్ గురించి";
+"settings.about.mcp" = "ఇంటిగ్రేషన్స్ గురించి";
+"settings.privacy.badge" = "ఆఫ్‌లైన్‌లో పనిచేస్తుంది";
+"settings.privacy.description" = "ఎయిర్‌ప్లేన్ మోడ్‌లో పనిచేస్తుంది";
+"settings.airplane.mode" = "ఎయిర్‌ప్లేన్ మోడ్‌లో రన్ అవుతోంది";
+"settings.offline.ready" = "ఆఫ్‌లైన్ రెడీ";
+
+// MARK: - Model States
+"model.status.downloading" = "డౌన్‌లోడ్ అవుతోంది... %d%%";
+"model.status.loading" = "లోడ్ అవుతోంది...";
+"model.status.in.use" = "ఉపయోగంలో";
+"model.status.recommended" = "సిఫార్సు చేయబడింది";
+"model.status.heavy" = "హెవీ";
+"model.action.download" = "డౌన్‌లోడ్";
+"model.action.load" = "లోడ్ చేయి";
+"model.action.delete" = "తొలగించు";
+"model.action.use" = "ఈ మోడల్‌ను ఉపయోగించు";
+"model.delete.confirm.title" = "మోడల్‌ను తొలగించు";
+"model.delete.confirm.message" = "%@ను తొలగించాలా? మళ్లీ ఉపయోగించడానికి మీరు దీన్ని మళ్లీ డౌన్‌లోడ్ చేయాల్సి ఉంటుంది.";
+"model.select.title" = "మోడల్‌ను ఎంచుకోండి";
+"model.select.prompt" = "దయచేసి మోడల్‌ను ఎంచుకోండి";
+"model.downloaded" = "డౌన్‌లోడ్ చేయబడింది";
+
+// MARK: - Inference Mode
+"inference.mode.title" = "వేగవృద్ధి";
+"inference.mode.auto" = "ఆటో";
+"inference.mode.auto.desc" = "ఆప్టిమల్ పెర్ఫార్మెన్స్ ఆటోమేటిక్‌గా";
+"inference.mode.gpu" = "GPU (Metal)";
+"inference.mode.gpu.desc" = "Metal తో గరిష్ట వేగం";
+"inference.mode.cpu" = "CPU మాత్రమే";
+"inference.mode.cpu.desc" = "బ్యాటరీ సేవింగ్ మోడ్";
+"inference.mode.hybrid" = "హైబ్రిడ్";
+"inference.mode.hybrid.desc" = "వేగం మరియు బ్యాటరీ బ్యాలెన్స్";
+
+// MARK: - Theme
+"theme.system" = "సిస్టమ్";
+"theme.light" = "లైట్";
+"theme.dark" = "డార్క్";
+
+// MARK: - Onboarding
+"onboarding.welcome.title" = "ElioChat కు స్వాగతం";
+"onboarding.welcome.subtitle" = "మీ ప్రైవేట్ AI అసిస్టెంట్";
+"onboarding.features.title" = "నిజంగా ప్రైవేట్ AI";
+"onboarding.feature.offline" = "ఎయిర్‌ప్లేన్ మోడ్‌లో పనిచేస్తుంది";
+"onboarding.feature.offline.desc" = "ఫ్లైట్స్‌లో లేదా భూమిలో ఉపయోగించండి";
+"onboarding.feature.privacy" = "జీరో డేటా ట్రాన్స్‌మిషన్";
+"onboarding.feature.privacy.desc" = "మీ చాట్స్ మీ ఫోన్ విడిచిపెట్టవు";
+"onboarding.feature.vault" = "స్మార్ట్ ఇంటిగ్రేషన్స్";
+"onboarding.feature.vault.desc" = "క్యాలెండర్ & ఫైల్స్‌తో కనెక్ట్ చేయండి";
+"onboarding.feature.secure" = "వర్క్-సేఫ్ AI";
+"onboarding.feature.secure.desc" = "కార్పొరేట్ ఉపయోగం కోసం సురక్షితమైనది";
+"onboarding.feature.thinking" = "థింకింగ్ ప్రాసెస్";
+"onboarding.privacy.title" = "మీ డేటా మీదే";
+"onboarding.privacy.item1" = "అన్ని ప్రాసెసింగ్ మీ iPhone లో జరుగుతుంది";
+"onboarding.privacy.item2" = "క్లౌడ్ సర్వర్లకు డేటా పంపబడదు";
+"onboarding.privacy.item3" = "AI ట్రైనింగ్ కోసం ఎప్పుడూ ఉపయోగించబడదు";
+"onboarding.getstarted.title" = "ఒక ట్యాప్‌లో రెడీ";
+"onboarding.getstarted.subtitle" = "సిఫార్సు చేయబడిన AI మోడల్‌ను డౌన్‌లోడ్ చేసి\nవెంటనే చాట్ చేయడం ప్రారంభించండి";
+"onboarding.step1" = "సిఫార్సు చేయబడిన మోడల్‌ను డౌన్‌లోడ్ చేయండి";
+"onboarding.step2" = "కొన్ని నిమిషాలు వేచి ఉండండి";
+"onboarding.step3" = "మీరు పూర్తయ్యారు!";
+
+// MARK: - About
+"about.title" = "ఈ యాప్ గురించి";
+"about.rate.app" = "యాప్‌ను రేట్ చేయండి";
+"about.share.app" = "స్నేహితులతో షేర్ చేయండి";
+"about.privacy.policy" = "ప్రైవసీ పాలసీ";
+"about.terms" = "సర్వీస్ నిబంధనలు";
+"about.tech.info" = "టెక్నికల్ సమాచారం";
+"about.tech.engine" = "AI ఇంజిన్";
+"about.tech.format" = "సపోర్టెడ్ ఫార్మాట్";
+"about.tech.inference" = "ఇన్‌ఫరెన్స్";
+"about.data.management" = "డేటా మేనేజ్‌మెంట్";
+"about.delete.all" = "అన్ని సంభాషణలను తొలగించు";
+"about.credits" = "క్రెడిట్స్";
+"about.credits.description" = "ఈ యాప్ ఓపెన్ సోర్స్ లైబ్రరీలను ఉపయోగిస్తుంది";
+"about.privacy.section" = "ప్రైవసీ";
+"about.gguf.format" = "GGUF ఫార్మాట్";
+"about.metal.gpu" = "Metal GPU వేగవృద్ధి";
+
+// MARK: - Referral
+"referral.title" = "స్నేహితులను రెఫర్ చేయండి";
+"referral.code.title" = "మీ రెఫెరల్ కోడ్";
+"referral.code.copy" = "కోడ్ కాపీ చేయి";
+"referral.code.copied" = "కాపీ చేయబడింది";
+"referral.share.button" = "స్నేహితులతో షేర్ చేయండి";
+"referral.share.description" = "Elioను మీ స్నేహితులతో షేర్ చేయండి!";
+"referral.count" = "%d మందిని రెఫర్ చేశారు";
+"referral.enter.title" = "రెఫెరల్ కోడ్ ఎంటర్ చేయండి";
+"referral.enter.placeholder" = "రెఫెరల్ కోడ్";
+"referral.enter.button" = "వర్తింపజేయి";
+"referral.enter.success" = "రెఫెరల్ కోడ్ వర్తింపజేయబడింది";
+"referral.enter.error" = "చెల్లని రెఫెరల్ కోడ్";
+
+// MARK: - Privacy Policy
+"privacy.title" = "ప్రైవసీ పాలసీ";
+"privacy.data.collection.title" = "డేటా సేకరణ";
+"privacy.data.collection.content" = "ఈ యాప్ పూర్తిగా ఆఫ్‌లైన్‌లో స్థానిక AIను రన్ చేస్తుంది.\nబాహ్య సర్వర్లకు డేటా పంపబడదు.\nఅన్ని సంభాషణలు మీ పరికరంలో మాత్రమే నిల్వ చేయబడతాయి.";
+"privacy.stored.data.title" = "నిల్వ చేసిన డేటా";
+"privacy.stored.data.content" = "సంభాషణ చరిత్ర (పరికరంలో మాత్రమే నిల్వ)\nAI మోడల్ ఫైల్స్ (పరికరంలో మాత్రమే నిల్వ)\nయాప్ సెట్టింగ్స్ (పరికరంలో మాత్రమే నిల్వ)\n\nఈ డేటా బాహ్యంగా ఎప్పుడూ షేర్ చేయబడదు.";
+"privacy.data.deletion.title" = "డేటా తొలగింపు";
+"privacy.data.deletion.content" = "మీరు సెట్టింగ్స్ > డేటా మేనేజ్‌మెంట్ నుండి ఎప్పుడైనా అన్ని డేటాను తొలగించవచ్చు.\nయాప్‌ను అన్‌ఇన్‌స్టాల్ చేయడం వల్ల అన్ని డేటా తొలగించబడుతుంది.";
+
+// MARK: - Terms of Service
+"terms.title" = "సర్వీస్ నిబంధనలు";
+"terms.service.title" = "సర్వీస్ వివరణ";
+"terms.service.content" = "ఈ యాప్ స్థానికంగా రన్ అయ్యే AI మోడల్‌ను ఉపయోగించి AI అసిస్టెంట్ ఫంక్షనాలిటీని అందిస్తుంది.";
+"terms.disclaimer.title" = "నిరాకరణ";
+"terms.disclaimer.content" = "AI ప్రతిస్పందనలలో లోపాలు ఉండవచ్చు.\nముఖ్యమైన నిర్ణయాలను ఎల్లప్పుడూ ప్రొఫెషనల్ ద్వారా ధృవీకరించాలి.\nఈ యాప్ ఉపయోగం నుండి ఉత్పన్నమయ్యే ఏ నష్టానికి మేము బాధ్యత వహించము.";
+"terms.prohibited.title" = "నిషేధిత కార్యకలాపాలు";
+"terms.prohibited.content" = "చట్టవిరుద్ధ కార్యకలాపాలు\nఇతరుల హక్కులను ఉల్లంఘించే కార్యకలాపాలు\nఈ యాప్‌ను రివర్స్ ఇంజనీరింగ్ చేయడం\nఈ యాప్‌ను అనధికారంగా కాపీ చేయడం";
+"terms.ip.title" = "మేధో సంపత్తి";
+"terms.ip.content" = "ఈ యాప్ యొక్క మేధో సంపత్తి హక్కులు డెవలపర్‌కు చెందినవి.\nఅనధికార ఉపయోగం నిషేధించబడింది.";
+
+// MARK: - Conversations
+"conversations.title" = "సంభాషణలు";
+"conversations.new" = "కొత్త సంభాషణ";
+"conversations.empty" = "ఇంకా సంభాషణలు లేవు";
+"conversations.delete" = "సంభాషణను తొలగించు";
+"conversations.default.title" = "కొత్త సంభాషణ";
+"conversations.today" = "ఈరోజు";
+"conversations.yesterday" = "నిన్న";
+"conversations.past7days" = "గత 7 రోజులు";
+"conversations.past30days" = "గత 30 రోజులు";
+"conversations.older" = "పాతవి";
+"conversations.created" = "సృష్టించబడింది: %@";
+"conversations.user" = "వినియోగదారు";
+"conversations.assistant" = "అసిస్టెంట్";
+"conversations.search.placeholder" = "సంభాషణలను శోధించండి";
+"conversations.search.no_results" = "ఫలితాలు కనిపించలేదు";
+
+// MARK: - Message Actions
+"message.copy" = "కాపీ";
+"message.speak" = "మాట్లాడు";
+"message.stop.speaking" = "మాట్లాడటం ఆపు";
+"message.share" = "షేర్ చేయి";
+"message.share.card" = "కార్డ్‌గా షేర్ చేయి";
+"message.like" = "లైక్";
+
+// MARK: - Share Card
+"share.card.title" = "కార్డ్ షేర్ చేయి";
+"share.card.preview" = "ప్రివ్యూ";
+"share.card.button" = "చిత్రం షేర్ చేయి";
+"message.dislike" = "డిస్‌లైక్";
+"message.thinking.process" = "థింకింగ్ ప్రాసెస్";
+"message.tool.running" = "టూల్ రన్ అవుతోంది";
+"message.tool.error" = "లోపం";
+"message.tool.completed" = "పూర్తయింది";
+
+// MARK: - Attachment
+"attachment.title" = "అటాచ్‌మెంట్";
+"attachment.photo.library" = "ఫోటో ఎంచుకోండి";
+"attachment.camera" = "ఫోటో తీయండి";
+"attachment.pdf" = "PDF ఎంచుకోండి";
+"attachment.pdf.chars" = "%d అక్షరాలు";
+"attachment.pdf.pages" = "%d పేజీలు";
+"attachment.pdf.vision.enabled" = "చిత్ర విశ్లేషణ ఎనేబుల్ చేయబడింది";
+"attachment.pdf.text.only" = "టెక్స్ట్ మాత్రమే మోడ్";
+"attachment.url" = "వెబ్ పేజీ చదవండి";
+"attachment.url.title" = "URL ఎంటర్ చేయండి";
+"attachment.url.placeholder" = "https://example.com";
+"attachment.url.message" = "దాని కంటెంట్‌ను సేకరించడానికి URLను పేస్ట్ చేయండి";
+"attachment.url.fetch" = "తీసుకురండి";
+"attachment.url.loading" = "పేజీ లోడ్ అవుతోంది...";
+
+// MARK: - Errors
+"error.model.not.found" = "మోడల్ ఫైల్ కనిపించలేదు";
+"error.model.not.loaded" = "మోడల్ లోడ్ కాలేదు";
+"error.context.failed" = "కాంటెక్స్ట్ సృష్టించడం విఫలమైంది";
+"error.tokenization.failed" = "టోకనైజేషన్ విఫలమైంది";
+"error.generation.failed" = "జనరేషన్ లోపం: %@";
+"error.occurred" = "ఒక లోపం సంభవించింది: %@";
+"error.invalid.url" = "చెల్లని URL";
+"error.download.failed" = "డౌన్‌లోడ్ విఫలమైంది";
+"error.extraction.failed" = "సేకరణ విఫలమైంది";
+"error.config.not.found" = "కాన్ఫిగ్ ఫైల్ కనిపించలేదు";
+
+// MARK: - Ghost Search
+"ghost.search.title" = "ఘోస్ట్ సెర్చ్";
+"ghost.search.description" = "DuckDuckGo ద్వారా అనామక సెర్చ్ (ట్రాకింగ్ లేదు)";
+"ghost.search.connecting" = "అనామక నెట్‌వర్క్‌కు కనెక్ట్ అవుతోంది...";
+"ghost.search.privacy.note" = "మీ సెర్చ్ చరిత్ర ఎప్పుడూ ట్రాక్ చేయబడదు";
+
+// MARK: - MCP Servers
+"mcp.filesystem" = "ఫైల్ సిస్టమ్";
+"mcp.filesystem.desc" = "యాప్‌లో ఫైల్స్‌ను చదవండి మరియు వ్రాయండి";
+"mcp.calendar" = "క్యాలెండర్";
+"mcp.calendar.desc" = "ఈవెంట్స్‌ను చదవండి మరియు వ్రాయండి";
+"mcp.reminders" = "రిమైండర్స్";
+"mcp.reminders.desc" = "రిమైండర్స్‌ను నిర్వహించండి";
+"mcp.contacts" = "కాంటాక్ట్స్";
+"mcp.contacts.desc" = "కాంటాక్ట్స్‌ను శోధించండి మరియు వీక్షించండి";
+"mcp.photos" = "ఫోటోలు";
+"mcp.photos.desc" = "ఫోటో లైబ్రరీని యాక్సెస్ చేయండి";
+"mcp.location" = "స్థానం";
+"mcp.location.desc" = "ప్రస్తుత స్థానం పొందండి మరియు స్థలాలను శోధించండి";
+"mcp.health" = "ఆరోగ్యం";
+"mcp.health.desc" = "ఆరోగ్య డేటాను యాక్సెస్ చేయండి";
+"mcp.shortcuts" = "షార్ట్‌కట్స్";
+"mcp.shortcuts.desc" = "షార్ట్‌కట్స్‌ను రన్ చేయండి";
+"mcp.websearch" = "వెబ్ సెర్చ్";
+"mcp.websearch.desc" = "అనామక వెబ్ సెర్చ్";
+"mcp.custom" = "కస్టమ్ ఇంటిగ్రేషన్";
+"mcp.custom.add" = "ఇంటిగ్రేషన్ జోడించండి";
+"mcp.custom.setup" = "బాహ్య సర్వీస్ ఇంటిగ్రేషన్‌ను సెటప్ చేయండి";
+"mcp.custom.title" = "కస్టమ్ ఇంటిగ్రేషన్స్";
+"mcp.settings.title" = "ఇంటిగ్రేషన్ సెట్టింగ్స్";
+"mcp.server.name" = "సర్వర్ పేరు";
+"mcp.server.name.placeholder" = "ఉదా., నా కస్టమ్ సర్వర్";
+"mcp.config.url" = "కాన్ఫిగ్ ఫైల్ URL";
+"mcp.import.file" = "ఫైల్ నుండి ఇంపోర్ట్ చేయండి";
+"mcp.config.example" = "కాన్ఫిగ్ ఫైల్ ఉదాహరణ";
+"mcp.permission.note" = "ప్రతి ఫీచర్‌ను మొదటిసారి ఉపయోగించేటప్పుడు అనుమతులు అభ్యర్థించబడతాయి";
+
+// MARK: - MCP Tool Messages
+"mcp.tool.available" = "అందుబాటులో ఉన్న టూల్స్:";
+"mcp.tool.parameters" = "పారామీటర్లు:";
+"mcp.prompt.available" = "అందుబాటులో ఉన్న ప్రాంప్ట్స్:";
+"mcp.prompt.arguments" = "ఆర్గ్యుమెంట్స్:";
+"mcp.tool.name" = "tool_name";
+"mcp.tool.arg.name" = "arg_name";
+"mcp.tool.arg.value" = "value";
+"mcp.tool.no.result" = "ఫలితం లేదు";
+"mcp.tool.running" = "టూల్ రన్ అవుతోంది: %@";
+"mcp.tool.error" = "టూల్ ఎగ్జిక్యూషన్ లోపం: %@";
+
+// MARK: - MCP Error Messages
+"mcp.error.server.not.found" = "సర్వర్ కనిపించలేదు: %@";
+"mcp.error.tool.not.found" = "టూల్ కనిపించలేదు: %@";
+"mcp.error.invalid.args" = "చెల్లని ఆర్గ్యుమెంట్స్: %@";
+"mcp.error.execution" = "ఎగ్జిక్యూషన్ లోపం: %@";
+"mcp.error.permission" = "అనుమతి తిరస్కరించబడింది: %@";
+
+// MARK: - Calendar Messages
+"calendar.no.events" = "ఈవెంట్స్ లేవు";
+"calendar.event.created" = "ఈవెంట్ సృష్టించబడింది: %@";
+"calendar.event.deleted" = "ఈవెంట్ తొలగించబడింది: %@";
+"calendar.allday.created" = "రోజంతా ఈవెంట్ సృష్టించబడింది: %@";
+"calendar.access.denied" = "క్యాలెండర్ యాక్సెస్ తిరస్కరించబడింది";
+"calendar.today.none" = "ఈరోజు ఈవెంట్స్ లేవు";
+"calendar.untitled" = "శీర్షిక లేని";
+
+// MARK: - Reminders Messages
+"reminders.none" = "రిమైండర్స్ లేవు";
+"reminders.created" = "రిమైండర్ సృష్టించబడింది: %@";
+"reminders.completed" = "రిమైండర్ పూర్తయింది: %@";
+"reminders.deleted" = "రిమైండర్ తొలగించబడింది: %@";
+"reminders.access.denied" = "రిమైండర్స్ యాక్సెస్ తిరస్కరించబడింది";
+"reminders.untitled" = "శీర్షిక లేని";
+
+// MARK: - Photos Messages
+"photos.access.denied" = "ఫోటోల యాక్సెస్ తిరస్కరించబడింది";
+"photos.not.found" = "ఫోటో కనిపించలేదు";
+"photos.untitled" = "శీర్షిక లేని";
+"photos.count" = "ఫోటోలు: %d";
+"photos.videos.count" = "వీడియోలు: %d";
+"photos.albums.count" = "ఆల్బమ్‌లు: %d";
+"photos.favorites.count" = "ఇష్టమైనవి: %d";
+"photos.date" = "తేదీ: %@";
+"photos.size" = "పరిమాణం: %d x %d";
+"photos.location" = "స్థానం: %@, %@";
+"photos.media.type" = "మీడియా రకం: %@";
+"photos.duration" = "వ్యవధి: %dm %ds";
+"photos.favorite" = "ఇష్టమైనది: %@";
+"photos.type.image" = "ఫోటో";
+"photos.type.video" = "వీడియో";
+"photos.type.audio" = "ఆడియో";
+
+// MARK: - Contacts Messages
+"contacts.access.denied" = "కాంటాక్ట్స్ యాక్సెస్ తిరస్కరించబడింది";
+"contacts.not.found" = "సరిపోలే కాంటాక్ట్స్ కనిపించలేదు";
+"contacts.no.groups" = "గ్రూప్‌లు లేవు";
+"contacts.no.card" = "కాంటాక్ట్ కార్డ్ సెట్ చేయబడలేదు";
+"contacts.name" = "పేరు: %@";
+"contacts.company" = "కంపెనీ: %@";
+"contacts.job" = "ఉద్యోగ శీర్షిక: %@";
+
+// MARK: - Location Messages
+"location.access.denied" = "స్థానం యాక్సెస్ తిరస్కరించబడింది";
+"location.not.found" = "చిరునామా కనిపించలేదు";
+"location.latitude" = "అక్షాంశం: %@";
+"location.longitude" = "రేఖాంశం: %@";
+"location.accuracy" = "ఖచ్చితత్వం: %dm";
+"location.altitude" = "ఎత్తు: %dm";
+"location.search" = "శోధన: %@";
+"location.address" = "చిరునామా: %@";
+"location.country" = "దేశం: %@";
+"location.postal" = "పోస్టల్ కోడ్: %@";
+"location.from" = "నుండి: (%@, %@)";
+"location.to" = "కు: (%@, %@)";
+"location.distance.km" = "దూరం: %.2f km";
+"location.distance.m" = "దూరం: %d m";
+
+// MARK: - Health Messages
+"health.not.available" = "ఈ పరికరంలో ఆరోగ్యం అందుబాటులో లేదు";
+"health.date" = "తేదీ: %@";
+"health.steps" = "అడుగులు: %@ అడుగులు";
+"health.goal.progress" = "లక్ష్య పురోగతి: %d%% (10,000 అడుగుల లక్ష్యం)";
+"health.no.data" = "డేటా అందుబాటులో లేదు";
+"health.avg.bpm" = "సగటు: %d bpm";
+"health.min.bpm" = "కనిష్ట: %d bpm";
+"health.max.bpm" = "గరిష్ట: %d bpm";
+"health.measurements" = "కొలతలు: %d";
+"health.no.sleep" = "నిద్ర డేటా లేదు";
+"health.sleep.total" = "మొత్తం నిద్ర: %dh %dm";
+"health.bedtime" = "నిద్ర సమయం: %@";
+"health.waketime" = "మేల్కొను సమయం: %@";
+"health.calories" = "కేలరీలు: %d kcal";
+
+// MARK: - File System Messages
+"filesystem.not.found" = "ఫైల్ కనిపించలేదు: %@";
+"filesystem.written" = "ఫైల్ వ్రాయబడింది: %@";
+"filesystem.dir.created" = "డైరెక్టరీ సృష్టించబడింది: %@";
+"filesystem.deleted" = "తొలగించబడింది: %@";
+"filesystem.size" = "పరిమాణం: %@";
+"filesystem.created" = "సృష్టించబడింది: %@";
+"filesystem.modified" = "సవరించబడింది: %@";
+"filesystem.type" = "రకం: %@";
+
+// MARK: - Shortcuts Messages
+"shortcuts.executed" = "షార్ట్‌కట్ '%@' ఎగ్జిక్యూట్ చేయబడింది";
+"shortcuts.opened" = "షార్ట్‌కట్స్ యాప్ తెరవబడింది";
+"shortcuts.settings.opened" = "సెట్టింగ్స్ (%@) తెరవబడింది";
+"shortcuts.mail.opened" = "మెయిల్ కంపోజ్ తెరవబడింది";
+"shortcuts.calling" = "కాల్ చేస్తోంది: %@";
+"shortcuts.message.opened" = "మెసేజ్ కంపోజ్ తెరవబడింది";
+"shortcuts.failed" = "షార్ట్‌కట్‌ను తెరవలేకపోయింది";
+
+// MARK: - Model Tiers
+"model.tier.entry" = "ఎంట్రీ";
+"model.tier.standard" = "స్టాండర్డ్";
+"model.tier.pro" = "ప్రో";
+
+// MARK: - Tool Parser
+"tool.arguments" = "ఆర్గ్యుమెంట్స్:";
+
+// MARK: - Model Settings
+"model.action.settings" = "సెట్టింగ్స్";
+"settings.model.parameters" = "మోడల్ సెట్టింగ్స్";
+"settings.model.parameters.description" = "ఈ మోడల్ కోసం జనరేషన్ పారామీటర్లను అనుకూలీకరించండి";
+"settings.preset.title" = "ప్రీసెట్స్";
+"settings.preset.custom" = "కస్టమ్";
+"settings.preset.balanced" = "బ్యాలెన్స్డ్";
+"settings.preset.creative" = "క్రియేటివ్";
+"settings.preset.precise" = "ప్రెసైజ్";
+"settings.preset.coding" = "కోడింగ్";
+"settings.preset.japanese" = "జపనీస్";
+"settings.parameters.title" = "పారామీటర్లు";
+"settings.parameter.temperature" = "టెంపరేచర్";
+"settings.parameter.temperature.description" = "ఎక్కువ = మరింత క్రియేటివ్, తక్కువ = మరింత ఫోకస్డ్";
+"settings.parameter.top.p" = "టాప్ P";
+"settings.parameter.top.p.description" = "న్యూక్లియస్ శాంపిలింగ్ సంభావ్యత";
+"settings.parameter.top.k" = "టాప్ K";
+"settings.parameter.top.k.description" = "పరిగణించవలసిన టాప్ టోకెన్ల సంఖ్య";
+"settings.parameter.max.tokens" = "మాక్స్ టోకెన్స్";
+"settings.parameter.max.tokens.description" = "గరిష్ట ప్రతిస్పందన పొడవు";
+"settings.parameter.repeat.penalty" = "రిపీట్ పెనల్టీ";
+"settings.parameter.repeat.penalty.description" = "ఎక్కువ = తక్కువ పునరావృత అవుట్‌పుట్";
+"settings.parameter.thinking" = "థింకింగ్ మోడ్";
+"settings.parameter.thinking.description" = "AI యొక్క రీజనింగ్ ప్రాసెస్‌ను చూపించు";
+"settings.system.prompt.title" = "సిస్టమ్ ప్రాంప్ట్";
+"settings.system.prompt.description" = "AI కోసం కస్టమ్ సూచనలు";
+"settings.reset.to.default" = "డిఫాల్ట్‌కు రీసెట్ చేయి";
+
+// MARK: - Vision Model
+"vision.model.required.title" = "విజన్ మోడల్ అవసరం";
+"vision.model.required.header" = "చిత్ర గుర్తింపు అవసరం";
+"vision.model.required.description" = "చిత్రాలను విశ్లేషించడానికి, మీకు విజన్-సామర్థ్య AI మోడల్ అవసరం";
+"vision.model.switch" = "మోడల్‌ను మార్చు";
+"vision.model.switch.message %@" = "చిత్ర విశ్లేషణ ఎనేబుల్ చేయడానికి %@కు మారాలా?";
+"vision.model.download" = "డౌన్‌లోడ్";
+"vision.model.download.message %@ %@" = "చిత్రాలను విశ్లేషించడానికి %@ (%@) డౌన్‌లోడ్ చేయాలా?";
+"vision.model.not.available" = "మీ పరికరం కోసం అనుకూల విజన్ మోడల్ అందుబాటులో లేదు";
+"vision.model.switching" = "మోడల్ మారుస్తోంది...";
+"vision.model.download.title" = "విజన్ మోడల్స్";
+"vision.model.recommended" = "మీ పరికరం కోసం సిఫార్సు చేయబడింది";
+"vision.model.recommended.size %@" = "సిఫార్సు చేయబడింది: %@";
+"vision.model.use.this" = "ఈ మోడల్‌ను ఉపయోగించు";
+"vision.model.download.button %@" = "డౌన్‌లోడ్ (%@)";
+"vision.model.other.options" = "ఇతర విజన్ మోడల్స్";
+"vision.model.download.complete" = "డౌన్‌లోడ్ పూర్తయింది";
+"vision.model.download.complete.message" = "చిత్రాలను విశ్లేషించడానికి రెడీ";
+
+// MARK: - Whisper Voice Input (Legacy)
+"whisper.download.title" = "వాయిస్ గుర్తింపు అవసరం";
+"whisper.download.action" = "డౌన్‌లోడ్";
+"whisper.download.message" = "వాయిస్ ఇన్‌పుట్ ఉపయోగించడానికి, మీరు స్పీచ్ రికగ్నిషన్ మోడల్ (~150MB) డౌన్‌లోడ్ చేయాలి.";
+"whisper.downloading" = "స్పీచ్ రికగ్నిషన్ మోడల్ డౌన్‌లోడ్ అవుతోంది...";
+"whisper.download.error" = "డౌన్‌లోడ్ లోపం";
+"whisper.load.error" = "మోడల్ లోడ్ లోపం";
+"whisper.permission.denied" = "మైక్రోఫోన్ యాక్సెస్ అనుమతించబడలేదు";
+"whisper.transcribe.error" = "ట్రాన్స్‌క్రిప్షన్ లోపం";
+"whisper.error.permission" = "మైక్రోఫోన్ అనుమతి అవసరం";
+"whisper.error.not.recording" = "ప్రస్తుతం రికార్డింగ్ లేదు";
+"whisper.error.no.recording" = "రికార్డింగ్ డేటా లేదు";
+"whisper.error.model.not.loaded" = "స్పీచ్ రికగ్నిషన్ మోడల్ లోడ్ కాలేదు";
+"whisper.error.transcription" = "ట్రాన్స్‌క్రిప్షన్ విఫలమైంది";
+
+// MARK: - Speech Recognition (ReazonSpeech)
+"speech.download.title" = "వాయిస్ గుర్తింపు అవసరం";
+"speech.download.action" = "డౌన్‌లోడ్";
+"speech.download.message" = "వాయిస్ ఇన్‌పుట్ ఉపయోగించడానికి, మీరు జపనీస్ స్పీచ్ రికగ్నిషన్ మోడల్ (~155MB) డౌన్‌లోడ్ చేయాలి.";
+"speech.downloading" = "స్పీచ్ రికగ్నిషన్ మోడల్ డౌన్‌లోడ్ అవుతోంది...";
+
+// MARK: - Language Settings
+"settings.language.section" = "భాష";
+"language.system" = "సిస్టమ్ భాషను ఉపయోగించండి";
+"settings.language.restart.hint" = "భాష మార్పులు యాప్‌ను రీస్టార్ట్ చేసిన తర్వాత అమలు అవుతాయి";
+"settings.language.changed.title" = "భాష మార్చబడింది";
+"settings.language.changed.message" = "మార్పులను వర్తింపజేయడానికి దయచేసి యాప్‌ను రీస్టార్ట్ చేయండి";
+"common.ok" = "సరే";
+
+// MARK: - System Prompt Settings
+"settings.prompt.section" = "సిస్టమ్ ప్రాంప్ట్";
+"settings.prompt.edit" = "ప్రాంప్ట్ సవరించు";
+"settings.prompt.default" = "డిఫాల్ట్ ఉపయోగిస్తోంది";
+"settings.prompt.custom" = "కస్టమ్ ప్రాంప్ట్ సెట్ చేయబడింది";
+"settings.prompt.hint" = "AI ప్రవర్తనను అనుకూలీకరించండి";
+"settings.prompt.editor.title" = "ప్రాంప్ట్ సవరించు";
+"settings.prompt.editor.instruction" = "AI కోసం కస్టమ్ సూచనలను జోడించండి. డిఫాల్ట్ ప్రాంప్ట్ ఉపయోగించడానికి ఖాళీగా వదిలేయండి.";
+"settings.prompt.default.preview" = "డిఫాల్ట్ ప్రాంప్ట్ (సారాంశం):";
+"settings.prompt.reset" = "రీసెట్";
+"settings.prompt.reset.title" = "ప్రాంప్ట్ రీసెట్ చేయి";
+"settings.prompt.reset.message" = "కస్టమ్ ప్రాంప్ట్ తొలగించి డిఫాల్ట్‌కు పునరుద్ధరించాలా?";
+
+// MARK: - Prompt Templates
+"templates.title" = "ప్రాంప్ట్ టెంప్లేట్స్";
+"templates.empty" = "ఇంకా టెంప్లేట్స్ లేవు";
+"templates.add" = "టెంప్లేట్ జోడించు";
+"template.add.title" = "టెంప్లేట్ జోడించు";
+"template.edit.title" = "టెంప్లేట్ సవరించు";
+"template.name.header" = "పేరు";
+"template.name.placeholder" = "టెంప్లేట్ పేరు";
+"template.content.header" = "ప్రాంప్ట్ కంటెంట్";
+"template.icon.header" = "చిహ్నం";
+"template.translate.name" = "అనువదించు";
+"template.translate.content" = "దయచేసి క్రింది వాటిని అనువదించండి: ";
+"template.summarize.name" = "సారాంశం";
+"template.summarize.content" = "దయచేసి క్రింది వాటిని సంగ్రహించండి: ";
+"template.explain.name" = "వివరించు";
+"template.explain.content" = "దయచేసి క్రింది వాటిని వివరించండి: ";
+"template.code.name" = "కోడ్";
+"template.code.content" = "దయచేసి దీని కోసం కోడ్ వ్రాయండి: ";
+
+// MARK: - Export
+"export.title" = "సంభాషణను ఎగుమతి చేయి";
+"export.format.markdown" = "Markdown";
+"export.format.pdf" = "PDF";
+"export.format.text" = "ప్లెయిన్ టెక్స్ట్";
+"export.created" = "సృష్టించబడింది";
+"export.image.attached" = "చిత్రం జోడించబడింది";
+"export.generated.by" = "జనరేట్ చేసినది";
+
+// MARK: - Loading Phases
+"loading.phase.initializing" = "ప్రారంభించబడుతోంది...";
+"loading.phase.loading" = "మోడల్ లోడ్ అవుతోంది...";
+"loading.phase.preparing" = "ఇన్‌ఫరెన్స్ ఇంజిన్ సిద్ధం చేస్తోంది...";
+"loading.phase.almost" = "దాదాపు రెడీ...";
+
+// MARK: - Welcome Screen
+"welcome.greeting" = "ఏదైనా అడగండి";
+"welcome.subtitle" = "మీ ప్రైవసీ-మొదటి AI అసిస్టెంట్";
+"suggestion.idea" = "ఆలోచనల కోసం నాకు సహాయం చేయండి";
+"suggestion.write" = "ఏదైనా వ్రాయడానికి నాకు సహాయం చేయండి";
+"suggestion.question" = "నా ప్రశ్నలకు సమాధానం ఇవ్వండి";
+
+// MARK: - Kokoro TTS
+"tts.download.title" = "హై-క్వాలిటీ వాయిస్";
+"tts.download.action" = "డౌన్‌లోడ్";
+"tts.download.use_system" = "సిస్టమ్ వాయిస్ ఉపయోగించు";
+"tts.download.message" = "మరింత సహజమైన జపనీస్ టెక్స్ట్-టు-స్పీచ్ కోసం Kokoro TTS మోడల్ (~87MB) డౌన్‌లోడ్ చేయండి.";
+"tts.downloading" = "TTS మోడల్ డౌన్‌లోడ్ అవుతోంది...";
+
+// MARK: - Feedback
+"feedback.consent.title" = "ఫీడ్‌బ్యాక్ పంపండి";
+"feedback.send" = "పంపు";
+"feedback.positive.title" = "ఈ ప్రతిస్పందన ఉపయోగకరంగా ఉందా?";
+"feedback.negative.title" = "ఇది మెరుగుపరచబడవచ్చా?";
+"feedback.explanation" = "మీ ఫీడ్‌బ్యాక్ AI నాణ్యతను మెరుగుపరచడంలో సహాయపడుతుంది. సబ్మిట్ చేసే ముందు ఏ డేటా పంపబడుతుందో దయచేసి సమీక్షించండి.";
+"feedback.data.section" = "పంపబడే డేటా";
+"feedback.data.conversation" = "సంభాషణ";
+"feedback.data.conversation.desc" = "AI ప్రతిస్పందన మరియు మీ మునుపటి సందేశం";
+"feedback.data.model" = "మోడల్ సమాచారం";
+"feedback.data.model.desc" = "ఉపయోగించిన AI మోడల్ పేరు";
+"feedback.data.timestamp" = "టైమ్‌స్టాంప్";
+"feedback.data.timestamp.desc" = "ఫీడ్‌బ్యాక్ సబ్మిట్ చేసిన సమయం";
+"feedback.privacy.section" = "ప్రైవసీ";
+"feedback.privacy.anonymous" = "వ్యక్తిగతంగా గుర్తించదగిన సమాచారం పంపబడదు";
+"feedback.privacy.improvement" = "AI నాణ్యతను మెరుగుపరచడానికి మాత్రమే ఉపయోగించబడుతుంది";
+"feedback.privacy.optional" = "ఫీడ్‌బ్యాక్ పంపడం పూర్తిగా ఐచ్ఛికం";
+"feedback.comment.section" = "వ్యాఖ్య (ఐచ్ఛికం)";
+"feedback.comment.placeholder" = "ఏమి మెరుగుపరచవచ్చో లేదా ఏది బాగా పనిచేసిందో మాకు చెప్పండి...";
+"feedback.remember.title" = "ఈ ఎంపికను గుర్తుంచుకోండి";
+"feedback.remember.description" = "తదుపరి సారి అడగకుండా ఫీడ్‌బ్యాక్ సబ్మిట్ చేయండి";
+
+// MARK: - Emergency Mode
+"emergency.sos.button" = "ఎమర్జెన్సీ మోడ్ (టోగుల్ చేయడానికి లాంగ్ ప్రెస్)";
+"emergency.mode.active" = "ఎమర్జెన్సీ మోడ్ యాక్టివ్";
+"emergency.action.firstaid" = "ప్రథమ చికిత్స";
+"emergency.action.firstaid.message" = "దయచేసి ప్రథమ చికిత్స సూచనలను అందించండి. నేను గాయం లేదా లక్షణాలను వివరిస్తాను: ";
+"emergency.action.disaster" = "విపత్తు";
+"emergency.action.disaster.message" = "విపత్తు సంభవించింది. దయచేసి ప్రతిస్పందన విధానాలను అందించండి: ";
+"emergency.action.factcheck" = "వాస్తవ తనిఖీ";
+"emergency.action.factcheck.message" = "దయచేసి ఈ సమాచారం యొక్క విశ్వసనీయతను ధృవీకరించండి: ";
+"emergency.action.contacts" = "ఎమర్జెన్సీ";
+"emergency.action.contacts.message" = "దయచేసి ఎమర్జెన్సీ సంప్రదింపు నంబర్ల జాబితాను నాకు చూపించండి";
+"emergency.action.evacuation" = "తరలించు";
+"emergency.action.evacuation.message" = "దయచేసి ప్రస్తుత పరిస్థితి కోసం తరలింపు చెక్‌లిస్ట్‌ను సృష్టించండి: ";
+"mcp.emergency_kb" = "ఎమర్జెన్సీ KB";
+"mcp.emergency_kb.desc" = "ఎమర్జెన్సీ & విపత్తు సమాచారం";
+
+// MARK: - Emergency Templates
+"template.firstaid.name" = "ప్రథమ చికిత్స గైడ్";
+"template.firstaid.content" = "దయచేసి దీనికి ప్రథమ చికిత్స సూచనలను అందించండి: ";
+"template.disaster.name" = "విపత్తు ప్రతిస్పందన";
+"template.disaster.content" = "క్రింది విపత్తు సంభవించింది. దయచేసి ప్రతిస్పందన విధానాలను అందించండి: ";
+"template.factcheck.name" = "వాస్తవ తనిఖీ";
+"template.factcheck.content" = "దయచేసి ఈ సమాచారం యొక్క విశ్వసనీయతను ధృవీకరించండి మరియు వాస్తవ-తనిఖీ చిట్కాలను అందించండి: ";
+"template.evacuation.name" = "తరలింపు చెక్‌లిస్ట్";
+"template.evacuation.content" = "దయచేసి ప్రస్తుత పరిస్థితి కోసం తరలింపు చెక్‌లిస్ట్‌ను సృష్టించండి: ";
+
+// MARK: - ChatWeb.ai Integration
+"chatweb.title" = "ChatWeb.ai";
+"chatweb.desc" = "క్లౌడ్ AI చాట్";
+"chatweb.connect" = "ChatWeb.ai కు కనెక్ట్ చేయండి";
+"chatweb.qr.title" = "QR కోడ్ ద్వారా కనెక్ట్ చేయండి";
+"chatweb.qr.scan" = "QR కోడ్ స్కాన్ చేయండి";
+"chatweb.open" = "ChatWeb.ai తెరవండి";
+
+// MARK: - Peer Connection
+"peer.title" = "సమీపంలోని పరికరాలు";
+"peer.desc" = "సమీపంలోని Elio పరికరాలతో కనెక్ట్ చేయండి";
+"peer.connect" = "పరికరానికి కనెక్ట్ చేయండి";
+"peer.code.title" = "కనెక్షన్ కోడ్";
+"peer.code.enter" = "4-అంకెల కోడ్ ఎంటర్ చేయండి";
+"peer.code.your" = "మీ కోడ్";
+"peer.connected" = "కనెక్ట్ చేయబడింది";
+"peer.disconnected" = "డిస్‌కనెక్ట్ చేయబడింది";
+"peer.inference.offload" = "ఇన్‌ఫరెన్స్ షేర్ చేస్తోంది";
+
+// MARK: - Web Search
+"chat.web.search" = "వెబ్ సెర్చ్";
+"search.privacy.title" = "ప్రైవసీ-రక్షిత సెర్చ్";
+"search.privacy.proceed" = "సెర్చ్";
+"search.privacy.message" = "ElioChat వెబ్ సెర్చ్ మీ ప్రైవసీని రక్షిస్తుంది:\n\n🔒 DuckDuckGo ద్వారా సెర్చ్\n🚫 ట్రాకింగ్ లేదా ప్రొఫైలింగ్ లేదు\n🔐 సెర్చ్ చరిత్ర నిల్వ చేయబడదు\n📱 మీ పరికరం వెలుపల డేటా నిల్వ చేయబడదు\n\nమీ సెర్చ్ క్వెరీ మాత్రమే DuckDuckGo కు పంపబడుతుంది మరియు ఫలితాలు మీ పరికరంలో ప్రాసెస్ చేయబడతాయి.";
+"chat.web.analyzing" = "[వెబ్ పేజీని విశ్లేషిస్తోంది]";

@@ -1,0 +1,635 @@
+/*
+  Localizable.strings (Albanian)
+  Elio
+*/
+
+// MARK: - App General
+"app.name" = "Elio";
+"app.tagline" = "Truri juaj i dytë që ruan sekrete.";
+
+// MARK: - Common Actions
+"common.done" = "U krye";
+"common.cancel" = "Anulo";
+"common.delete" = "Fshi";
+"common.save" = "Ruaj";
+"common.edit" = "Ndrysho";
+"common.share" = "Shpërndaj";
+"common.copy" = "Kopjo";
+"common.copied" = "U kopjua";
+"common.loading" = "Po ngarkohet...";
+"common.error" = "Gabim";
+"common.retry" = "Provo përsëri";
+"common.skip" = "Kalo";
+"common.next" = "Tjetra";
+"common.start" = "Fillo";
+"common.add" = "Shto";
+"common.close" = "Mbyll";
+"common.details" = "Detaje";
+"common.yes" = "Po";
+"common.no" = "Jo";
+"common.unknown" = "E panjohur";
+
+// MARK: - Chat
+"chat.placeholder" = "Më pyet çfarë të duash";
+"chat.model.not.loaded" = "Asnjë model i ngarkuar";
+"chat.model.not.loaded.description" = "Ju lutemi shkarkoni një model nga Cilësimet";
+"chat.go.to.settings" = "Shko te Cilësimet";
+"chat.new.conversation" = "Bisedë e re";
+"chat.stop.generation" = "Ndalo";
+"chat.generation.stopped" = "\n\n[Gjenerimi u ndal]";
+"chat.image.sent" = "[Imazhi u dërgua]";
+"chat.images.sent" = "[%d imazhe u dërguan]";
+"chat.pdf.sent" = "[PDF i bashkangjitur: %@]";
+"chat.pdf.sent.vision" = "[PDF me imazh: %@]";
+"chat.pdf.context" = "Sa vijon është përmbajtje tekstuale e nxjerrë nga dokumenti PDF \"%@\":\n\n%@";
+"chat.pdf.context.vision" = "Kjo është faqja 1 e dokumentit PDF \"%@\". Përmbajtja e nxjerrë tekstuale është:\n\n%@\n\nJu lutemi analizoni si përmbajtjen vizuale ashtu edhe tekstin.";
+"chat.pdf.analyze" = "Ju lutemi analizoni këtë faqe PDF nga \"%@\".";
+"chat.url.sent" = "[Faqe interneti: %@]";
+"chat.url.context" = "Sa vijon është përmbajtje e nxjerrë nga faqja e internetit \"%@\" (%@):\n\n%@";
+"chat.thinking" = "Po mendoj...";
+"chat.generating" = "Po gjenerojë përgjigje...";
+"chat.welcome" = "Si mund t'ju ndihmoj?";
+"chat.suggestion.schedule" = "Trego orar të sotëm";
+"chat.suggestion.reminder" = "Krijo një kujtesë";
+"chat.suggestion.weather" = "Si është moti sot?";
+"chat.suggestion.help" = "Si ta përdor këtë aplikacion";
+"chat.websearch.on" = "Kërkim në internet i aktivizuar";
+"chat.websearch.off" = "Kërkim në internet i çaktivizuar";
+"chat.thinking.on" = "Mendimi i aktivizuar";
+"chat.thinking.off" = "Mendimi i çaktivizuar";
+"chat.transcribing" = "Po transkriptoj...";
+"chat.offline" = "Jashtë linje";
+
+// Voice Conversation Mode
+"voice.listening" = "Po dëgjoj...";
+"voice.processing" = "Po përpunoj...";
+"voice.thinking" = "Po mendoj...";
+"voice.speaking" = "Po flas...";
+"voice.tap.to.send" = "Prek për të dërguar";
+"chat.templates" = "Shabllone";
+"chat.websearch.privacy.title" = "Rreth kërkimit në internet";
+"chat.websearch.privacy.message" = "Aktivizimi i kërkimit në internet i lejon AI-së të kërkojë në internet përmes DuckDuckGo për informacion të përditësuar. Kërkesat e kërkimit dërgohen te DuckDuckGo por nuk gjurmohen.";
+"chat.websearch.privacy.enable" = "Aktivizo";
+"chat.websearch.privacy.disable" = "Mbaje të çaktivizuar";
+
+// MARK: - Settings
+"settings.title" = "Cilësimet";
+"settings.model.section" = "Modelet AI";
+"settings.model.recommended" = "E rekomanduar: %@";
+"settings.model.local.execution" = "Modelet ekzekutohen lokalisht në pajisjen tuaj";
+"settings.model.show.more" = "Modele të tjera (%d)";
+"settings.model.show.less" = "Trego më pak";
+"settings.appearance.section" = "Pamja";
+"settings.tools.section" = "Veçori të zgjuara";
+"settings.mcp.servers" = "Integrime";
+"settings.mcp.servers.description" = "Kalendar, skedarë, kujtesa dhe më shumë";
+"settings.mcp.enabled.count" = "%d të aktivizuara";
+"settings.mcp.enabled.count.suffix" = " të aktivizuara";
+"settings.about.section" = "Rreth";
+"settings.version" = "Versioni";
+"settings.about.app" = "Rreth këtij aplikacioni";
+"settings.about.mcp" = "Rreth integrimeve";
+"settings.privacy.badge" = "Punon jashtë linje";
+"settings.privacy.description" = "Punon në modalitetin avion";
+"settings.airplane.mode" = "Po ekzekutohet në modalitetin avion";
+"settings.offline.ready" = "Gati për jashtë linje";
+
+// MARK: - Model States
+"model.status.downloading" = "Po shkarkohet... %d%%";
+"model.status.loading" = "Po ngarkohet...";
+"model.status.in.use" = "Në përdorim";
+"model.status.recommended" = "E rekomanduara";
+"model.status.heavy" = "E rëndë";
+"model.action.download" = "Shkarko";
+"model.action.load" = "Ngarko";
+"model.action.delete" = "Fshi";
+"model.action.use" = "Përdor këtë model";
+"model.delete.confirm.title" = "Fshi modelin";
+"model.delete.confirm.message" = "Të fshihet %@? Do t'ju duhet ta shkarkoni përsëri për ta përdorur.";
+"model.select.title" = "Zgjidhni modelin";
+"model.select.prompt" = "Ju lutemi zgjidhni një model";
+"model.downloaded" = "U shkarkua";
+
+// MARK: - Inference Mode
+"inference.mode.title" = "Përshpejtim";
+"inference.mode.auto" = "Automatike";
+"inference.mode.auto.desc" = "Performancë optimale automatikisht";
+"inference.mode.gpu" = "GPU (Metal)";
+"inference.mode.gpu.desc" = "Shpejtësi maksimale me Metal";
+"inference.mode.cpu" = "Vetëm CPU";
+"inference.mode.cpu.desc" = "Modalitet kursimi i baterisë";
+"inference.mode.hybrid" = "Hibride";
+"inference.mode.hybrid.desc" = "Balancë e shpejtësisë dhe baterisë";
+
+// MARK: - Theme
+"theme.system" = "Sistem";
+"theme.light" = "E çelët";
+"theme.dark" = "E errët";
+
+// MARK: - Onboarding
+"onboarding.welcome.title" = "Mirë se vini në ElioChat";
+"onboarding.welcome.subtitle" = "Asistenti juaj privat AI";
+"onboarding.features.title" = "AI me të vërtetë private";
+"onboarding.feature.offline" = "Punon në modalitetin avion";
+"onboarding.feature.offline.desc" = "Përdoreni në fluturime ose nën tokë";
+"onboarding.feature.privacy" = "Zero transmetim të dhënash";
+"onboarding.feature.privacy.desc" = "Bisedat tuaja nuk e lënë kurrë telefonin";
+"onboarding.feature.vault" = "Integrime të zgjuara";
+"onboarding.feature.vault.desc" = "Lidhuni me kalendarin dhe skedarët";
+"onboarding.feature.secure" = "AI e sigurt për punë";
+"onboarding.feature.secure.desc" = "E sigurt për përdorim korporativ";
+"onboarding.feature.thinking" = "Procesi i mendimit";
+"onboarding.privacy.title" = "Të dhënat tuaja janë tuajat";
+"onboarding.privacy.item1" = "Të gjitha përpunimet ndodhin në iPhone tuaj";
+"onboarding.privacy.item2" = "Nuk dërgohen të dhëna te serverët në re";
+"onboarding.privacy.item3" = "Nuk përdoren kurrë për stërvitje AI";
+"onboarding.getstarted.title" = "Gati me një prekje";
+"onboarding.getstarted.subtitle" = "Shkarkoni modelin e rekomanduar AI\ndhe filloni të bisedoni menjëherë";
+"onboarding.step1" = "Shkarko modelin e rekomanduar";
+"onboarding.step2" = "Prit disa minuta";
+"onboarding.step3" = "Jeni gati!";
+
+// MARK: - About
+"about.title" = "Rreth këtij aplikacioni";
+"about.rate.app" = "Vlerëso aplikacionin";
+"about.share.app" = "Shpërndaje me miqtë";
+"about.privacy.policy" = "Politika e privatësisë";
+"about.terms" = "Kushtet e shërbimit";
+"about.tech.info" = "Informacion teknik";
+"about.tech.engine" = "Motori AI";
+"about.tech.format" = "Format i mbështetur";
+"about.tech.inference" = "Inferenca";
+"about.data.management" = "Menaxhimi i të dhënave";
+"about.delete.all" = "Fshi të gjitha bisedat";
+"about.credits" = "Kredite";
+"about.credits.description" = "Ky aplikacion përdor librari me kod të hapur";
+"about.privacy.section" = "Privatësia";
+"about.gguf.format" = "Format GGUF";
+"about.metal.gpu" = "Përshpejtim GPU Metal";
+
+// MARK: - Referral
+"referral.title" = "Referoni miqtë";
+"referral.code.title" = "Kodi juaj i referimit";
+"referral.code.copy" = "Kopjo kodin";
+"referral.code.copied" = "U kopjua";
+"referral.share.button" = "Shpërndaje me miqtë";
+"referral.share.description" = "Shpërndaje Elio me miqtë e tu!";
+"referral.count" = "Keni referuar %d persona";
+"referral.enter.title" = "Futni kodin e referimit";
+"referral.enter.placeholder" = "Kodi i referimit";
+"referral.enter.button" = "Apliko";
+"referral.enter.success" = "Kodi i referimit u aplikua";
+"referral.enter.error" = "Kod i pavlefshëm referimi";
+
+// MARK: - Privacy Policy
+"privacy.title" = "Politika e privatësisë";
+"privacy.data.collection.title" = "Grumbullimi i të dhënave";
+"privacy.data.collection.content" = "Ky aplikacion ekzekuton një AI lokale plotësisht jashtë linje.\nNuk dërgohen të dhëna te serverët e jashtëm.\nTë gjitha bisedat ruhen vetëm në pajisjen tuaj.";
+"privacy.stored.data.title" = "Të dhëna të ruajtura";
+"privacy.stored.data.content" = "Historiku i bisedave (i ruajtur vetëm në pajisje)\nSkedarët e modelit AI (të ruajtur vetëm në pajisje)\nCilësimet e aplikacionit (të ruajtura vetëm në pajisje)\n\nKëto të dhëna nuk ndahen kurrë jashtë.";
+"privacy.data.deletion.title" = "Fshirja e të dhënave";
+"privacy.data.deletion.content" = "Mund t'i fshini të gjitha të dhënat në çdo kohë nga Cilësimet > Menaxhimi i të dhënave.\nÇinstalimi i aplikacionit do t'i fshijë të gjitha të dhënat.";
+
+// MARK: - Terms of Service
+"terms.title" = "Kushtet e shërbimit";
+"terms.service.title" = "Përshkrimi i shërbimit";
+"terms.service.content" = "Ky aplikacion ofron funksionalitet asistenti AI duke përdorur një model AI që ekzekutohet lokalisht.";
+"terms.disclaimer.title" = "Mohim përgjegjësie";
+"terms.disclaimer.content" = "Përgjigjet e AI mund të përmbajnë gabime.\nVendime të rëndësishme duhet të verifikohen gjithmonë nga një profesionist.\nNuk jemi përgjegjës për çfarëdo dëmi që rrjedh nga përdorimi i këtij aplikacioni.";
+"terms.prohibited.title" = "Aktivitete të ndaluara";
+"terms.prohibited.content" = "Aktivitete të paligjshme\nAktivitete që shkel të drejtat e të tjerëve\nInxhinieri i anasjelltë i këtij aplikacioni\nKopjim i paautorizuar i këtij aplikacioni";
+"terms.ip.title" = "Pronësia intelektuale";
+"terms.ip.content" = "Të drejtat e pronësisë intelektuale të këtij aplikacioni i takojnë zhvilluesit.\nPërdorimi i paautorizuar është i ndaluar.";
+
+// MARK: - Conversations
+"conversations.title" = "Biseda";
+"conversations.new" = "Bisedë e re";
+"conversations.empty" = "Ende nuk ka biseda";
+"conversations.delete" = "Fshi bisedën";
+"conversations.default.title" = "Bisedë e re";
+"conversations.today" = "Sot";
+"conversations.yesterday" = "Dje";
+"conversations.past7days" = "7 ditët e fundit";
+"conversations.past30days" = "30 ditët e fundit";
+"conversations.older" = "Më të vjetër";
+"conversations.created" = "U krijua: %@";
+"conversations.user" = "Përdorues";
+"conversations.assistant" = "Asistent";
+"conversations.search.placeholder" = "Kërko në biseda";
+"conversations.search.no_results" = "Nuk u gjetën rezultate";
+
+// MARK: - Message Actions
+"message.copy" = "Kopjo";
+"message.speak" = "Fol";
+"message.stop.speaking" = "Ndalo të folurit";
+"message.share" = "Shpërndaj";
+"message.share.card" = "Shpërndaj si kartë";
+"message.like" = "Më pëlqen";
+
+// MARK: - Share Card
+"share.card.title" = "Shpërndaj kartën";
+"share.card.preview" = "Paraparje";
+"share.card.button" = "Shpërndaj imazhin";
+"message.dislike" = "Nuk më pëlqen";
+"message.thinking.process" = "Procesi i mendimit";
+"message.tool.running" = "Mjet duke u ekzekutuar";
+"message.tool.error" = "Gabim";
+"message.tool.completed" = "U përfundua";
+
+// MARK: - Attachment
+"attachment.title" = "Bashkangjitje";
+"attachment.photo.library" = "Zgjidh foto";
+"attachment.camera" = "Bëj një foto";
+"attachment.pdf" = "Zgjidh PDF";
+"attachment.pdf.chars" = "%d karaktere";
+"attachment.pdf.pages" = "%d faqe";
+"attachment.pdf.vision.enabled" = "Analiza e imazhit e aktivizuar";
+"attachment.pdf.text.only" = "Modalitet vetëm tekst";
+"attachment.url" = "Lexo faqe interneti";
+"attachment.url.title" = "Fut URL";
+"attachment.url.placeholder" = "https://example.com";
+"attachment.url.message" = "Ngjit një URL për të nxjerrë përmbajtjen e tij";
+"attachment.url.fetch" = "Merr";
+"attachment.url.loading" = "Po ngarkohet faqja...";
+
+// MARK: - Errors
+"error.model.not.found" = "Skedari i modelit nuk u gjet";
+"error.model.not.loaded" = "Modeli nuk është ngarkuar";
+"error.context.failed" = "Krijimi i kontekstit dështoi";
+"error.tokenization.failed" = "Tokenizimi dështoi";
+"error.generation.failed" = "Gabim gjenerimi: %@";
+"error.occurred" = "Ndodhi një gabim: %@";
+"error.invalid.url" = "URL e pavlefshme";
+"error.download.failed" = "Shkarkimi dështoi";
+"error.extraction.failed" = "Nxjerrja dështoi";
+"error.config.not.found" = "Skedari i konfigurimit nuk u gjet";
+
+// MARK: - Ghost Search
+"ghost.search.title" = "Kërkim fantazmë";
+"ghost.search.description" = "Kërkim anonim përmes DuckDuckGo (pa gjurmim)";
+"ghost.search.connecting" = "Po lidhet me rrjetin anonim...";
+"ghost.search.privacy.note" = "Historiku i kërkimit tuaj nuk gjurmohet kurrë";
+
+// MARK: - MCP Servers
+"mcp.filesystem" = "Sistemi i skedarëve";
+"mcp.filesystem.desc" = "Lexo dhe shkruaj skedarë në aplikacion";
+"mcp.calendar" = "Kalendar";
+"mcp.calendar.desc" = "Lexo dhe shkruaj ngjarje";
+"mcp.reminders" = "Kujtesa";
+"mcp.reminders.desc" = "Menaxho kujtesat";
+"mcp.contacts" = "Kontakte";
+"mcp.contacts.desc" = "Kërko dhe shiko kontaktet";
+"mcp.photos" = "Foto";
+"mcp.photos.desc" = "Hyr te biblioteka e fotove";
+"mcp.location" = "Vendndodhja";
+"mcp.location.desc" = "Merr vendndodhjen aktuale dhe kërko vende";
+"mcp.health" = "Shëndeti";
+"mcp.health.desc" = "Hyr te të dhënat e shëndetit";
+"mcp.shortcuts" = "Shkurtore";
+"mcp.shortcuts.desc" = "Ekzekuto shkurtore";
+"mcp.websearch" = "Kërkim në internet";
+"mcp.websearch.desc" = "Kërkim anonim në internet";
+"mcp.custom" = "Integrim i personalizuar";
+"mcp.custom.add" = "Shto integrim";
+"mcp.custom.setup" = "Konfiguro integrim shërbimi të jashtëm";
+"mcp.custom.title" = "Integrime të personalizuara";
+"mcp.settings.title" = "Cilësimet e integrimit";
+"mcp.server.name" = "Emri i serverit";
+"mcp.server.name.placeholder" = "p.sh., Serveri im i personalizuar";
+"mcp.config.url" = "URL e skedarit të konfigurimit";
+"mcp.import.file" = "Importo nga skedari";
+"mcp.config.example" = "Shembull skedari konfigurimi";
+"mcp.permission.note" = "Lejet do të kërkohen kur përdoret çdo veçori për herë të parë";
+
+// MARK: - MCP Tool Messages
+"mcp.tool.available" = "Mjete në dispozicion:";
+"mcp.tool.parameters" = "Parametra:";
+"mcp.prompt.available" = "Kërkesa në dispozicion:";
+"mcp.prompt.arguments" = "Argumente:";
+"mcp.tool.name" = "tool_name";
+"mcp.tool.arg.name" = "arg_name";
+"mcp.tool.arg.value" = "value";
+"mcp.tool.no.result" = "Nuk ka rezultat";
+"mcp.tool.running" = "Po ekzekutohet mjeti: %@";
+"mcp.tool.error" = "Gabim ekzekutimi i mjetit: %@";
+
+// MARK: - MCP Error Messages
+"mcp.error.server.not.found" = "Serveri nuk u gjet: %@";
+"mcp.error.tool.not.found" = "Mjeti nuk u gjet: %@";
+"mcp.error.invalid.args" = "Argumente të pavlefshme: %@";
+"mcp.error.execution" = "Gabim ekzekutimi: %@";
+"mcp.error.permission" = "Leja u refuzua: %@";
+
+// MARK: - Calendar Messages
+"calendar.no.events" = "Nuk ka ngjarje";
+"calendar.event.created" = "Ngjarje u krijua: %@";
+"calendar.event.deleted" = "Ngjarje u fshi: %@";
+"calendar.allday.created" = "Ngjarje gjithë ditore u krijua: %@";
+"calendar.access.denied" = "Hyrja te kalendari u refuzua";
+"calendar.today.none" = "Sot nuk ka ngjarje";
+"calendar.untitled" = "Pa titull";
+
+// MARK: - Reminders Messages
+"reminders.none" = "Nuk ka kujtesa";
+"reminders.created" = "Kujtesë u krijua: %@";
+"reminders.completed" = "Kujtesë u përfundua: %@";
+"reminders.deleted" = "Kujtesë u fshi: %@";
+"reminders.access.denied" = "Hyrja te kujtesat u refuzua";
+"reminders.untitled" = "Pa titull";
+
+// MARK: - Photos Messages
+"photos.access.denied" = "Hyrja te fotot u refuzua";
+"photos.not.found" = "Foto nuk u gjet";
+"photos.untitled" = "Pa titull";
+"photos.count" = "Foto: %d";
+"photos.videos.count" = "Video: %d";
+"photos.albums.count" = "Albume: %d";
+"photos.favorites.count" = "Të preferuarat: %d";
+"photos.date" = "Data: %@";
+"photos.size" = "Madhësia: %d x %d";
+"photos.location" = "Vendndodhja: %@, %@";
+"photos.media.type" = "Lloji i medias: %@";
+"photos.duration" = "Kohëzgjatja: %dm %ds";
+"photos.favorite" = "E preferuar: %@";
+"photos.type.image" = "Foto";
+"photos.type.video" = "Video";
+"photos.type.audio" = "Audio";
+
+// MARK: - Contacts Messages
+"contacts.access.denied" = "Hyrja te kontaktet u refuzua";
+"contacts.not.found" = "Nuk u gjetën kontakte përputhëse";
+"contacts.no.groups" = "Nuk ka grupe";
+"contacts.no.card" = "Nuk ka kartë kontakti të vendosur";
+"contacts.name" = "Emri: %@";
+"contacts.company" = "Kompania: %@";
+"contacts.job" = "Titulli i punës: %@";
+
+// MARK: - Location Messages
+"location.access.denied" = "Hyrja te vendndodhja u refuzua";
+"location.not.found" = "Adresa nuk u gjet";
+"location.latitude" = "Gjerësia gjeografike: %@";
+"location.longitude" = "Gjatësia gjeografike: %@";
+"location.accuracy" = "Saktësia: %dm";
+"location.altitude" = "Lartësia: %dm";
+"location.search" = "Kërkim: %@";
+"location.address" = "Adresa: %@";
+"location.country" = "Shteti: %@";
+"location.postal" = "Kodi postar: %@";
+"location.from" = "Nga: (%@, %@)";
+"location.to" = "Te: (%@, %@)";
+"location.distance.km" = "Distanca: %.2f km";
+"location.distance.m" = "Distanca: %d m";
+
+// MARK: - Health Messages
+"health.not.available" = "Shëndeti nuk është në dispozicion në këtë pajisje";
+"health.date" = "Data: %@";
+"health.steps" = "Hapa: %@ hapa";
+"health.goal.progress" = "Progresi i objektivit: %d%% (objektiv 10,000 hapa)";
+"health.no.data" = "Nuk ka të dhëna në dispozicion";
+"health.avg.bpm" = "Mesatarja: %d bpm";
+"health.min.bpm" = "Minimum: %d bpm";
+"health.max.bpm" = "Maksimum: %d bpm";
+"health.measurements" = "Matjet: %d";
+"health.no.sleep" = "Nuk ka të dhëna gjumi";
+"health.sleep.total" = "Gjumi total: %dh %dm";
+"health.bedtime" = "Koha e gjumit: %@";
+"health.waketime" = "Koha e zgjimit: %@";
+"health.calories" = "Kalori: %d kcal";
+
+// MARK: - File System Messages
+"filesystem.not.found" = "Skedari nuk u gjet: %@";
+"filesystem.written" = "Skedari u shkrua: %@";
+"filesystem.dir.created" = "Direktoria u krijua: %@";
+"filesystem.deleted" = "U fshi: %@";
+"filesystem.size" = "Madhësia: %@";
+"filesystem.created" = "U krijua: %@";
+"filesystem.modified" = "U ndryshua: %@";
+"filesystem.type" = "Lloji: %@";
+
+// MARK: - Shortcuts Messages
+"shortcuts.executed" = "Shkurtorja '%@' u ekzekutua";
+"shortcuts.opened" = "Aplikacioni i shkurtoreve u hap";
+"shortcuts.settings.opened" = "Cilësimet (%@) u hapën";
+"shortcuts.mail.opened" = "Kompozimi i postës u hap";
+"shortcuts.calling" = "Po thërret: %@";
+"shortcuts.message.opened" = "Kompozimi i mesazhit u hap";
+"shortcuts.failed" = "Nuk mund të hapej shkurtorja";
+
+// MARK: - Model Tiers
+"model.tier.entry" = "Hyrës";
+"model.tier.standard" = "Standard";
+"model.tier.pro" = "Profesional";
+
+// MARK: - Tool Parser
+"tool.arguments" = "Argumente:";
+
+// MARK: - Model Settings
+"model.action.settings" = "Cilësimet";
+"settings.model.parameters" = "Cilësimet e modelit";
+"settings.model.parameters.description" = "Personalizoni parametrat e gjenerimit për këtë model";
+"settings.preset.title" = "Paravendosjet";
+"settings.preset.custom" = "E personalizuar";
+"settings.preset.balanced" = "E balancuar";
+"settings.preset.creative" = "Kreative";
+"settings.preset.precise" = "E saktë";
+"settings.preset.coding" = "Programim";
+"settings.preset.japanese" = "Japoneze";
+"settings.parameters.title" = "Parametra";
+"settings.parameter.temperature" = "Temperatura";
+"settings.parameter.temperature.description" = "Më e lartë = më kreative, më e ulët = më e fokusuar";
+"settings.parameter.top.p" = "Top P";
+"settings.parameter.top.p.description" = "Probabiliteti i marrjes së mostrave të bërthamës";
+"settings.parameter.top.k" = "Top K";
+"settings.parameter.top.k.description" = "Numri i tokenëve kryesorë për t'u marrë parasysh";
+"settings.parameter.max.tokens" = "Tokenë maksimalë";
+"settings.parameter.max.tokens.description" = "Gjatësia maksimale e përgjigjes";
+"settings.parameter.repeat.penalty" = "Ndëshkim përsëritjeje";
+"settings.parameter.repeat.penalty.description" = "Më e lartë = dalje më pak përsëritëse";
+"settings.parameter.thinking" = "Modaliteti i mendimit";
+"settings.parameter.thinking.description" = "Trego procesin e arsyetimit të AI";
+"settings.system.prompt.title" = "Kërkesa e sistemit";
+"settings.system.prompt.description" = "Udhëzime të personalizuara për AI";
+"settings.reset.to.default" = "Rivendos në paracaktuar";
+
+// MARK: - Vision Model
+"vision.model.required.title" = "Kërkohet model i shikimit";
+"vision.model.required.header" = "Kërkohet njohje e imazhit";
+"vision.model.required.description" = "Për të analizuar imazhe, ju nevojitet një model AI me aftësi shikimi";
+"vision.model.switch" = "Ndrysho modelin";
+"vision.model.switch.message %@" = "Të kalojmë te %@ për të aktivizuar analizën e imazhit?";
+"vision.model.download" = "Shkarko";
+"vision.model.download.message %@ %@" = "Të shkarkojmë %@ (%@) për të analizuar imazhe?";
+"vision.model.not.available" = "Nuk ka model të përputhshëm shikimi në dispozicion për pajisjen tuaj";
+"vision.model.switching" = "Po ndryshohet modeli...";
+"vision.model.download.title" = "Modele shikimi";
+"vision.model.recommended" = "E rekomanduar për pajisjen tuaj";
+"vision.model.recommended.size %@" = "E rekomanduara: %@";
+"vision.model.use.this" = "Përdor këtë model";
+"vision.model.download.button %@" = "Shkarko (%@)";
+"vision.model.other.options" = "Modele të tjera shikimi";
+"vision.model.download.complete" = "Shkarkimi u përfundua";
+"vision.model.download.complete.message" = "Gati për të analizuar imazhe";
+
+// MARK: - Whisper Voice Input (Legacy)
+"whisper.download.title" = "Kërkohet njohje e zërit";
+"whisper.download.action" = "Shkarko";
+"whisper.download.message" = "Për të përdorur hyrjen zanore, duhet të shkarkoni modelin e njohjes së të folurit (~150MB).";
+"whisper.downloading" = "Po shkarkohet modeli i njohjes së të folurit...";
+"whisper.download.error" = "Gabim shkarkimi";
+"whisper.load.error" = "Gabim ngarkimi i modelit";
+"whisper.permission.denied" = "Hyrja te mikrofoni nuk është e lejuar";
+"whisper.transcribe.error" = "Gabim transkriptimi";
+"whisper.error.permission" = "Kërkohet leje mikrofoni";
+"whisper.error.not.recording" = "Aktualisht nuk po regjistron";
+"whisper.error.no.recording" = "Nuk ka të dhëna regjistrimi";
+"whisper.error.model.not.loaded" = "Modeli i njohjes së të folurit nuk është ngarkuar";
+"whisper.error.transcription" = "Transkriptimi dështoi";
+
+// MARK: - Speech Recognition (ReazonSpeech)
+"speech.download.title" = "Kërkohet njohje e zërit";
+"speech.download.action" = "Shkarko";
+"speech.download.message" = "Për të përdorur hyrjen zanore, duhet të shkarkoni modelin japonez të njohjes së të folurit (~155MB).";
+"speech.downloading" = "Po shkarkohet modeli i njohjes së të folurit...";
+
+// MARK: - Language Settings
+"settings.language.section" = "Gjuha";
+"language.system" = "Përdor gjuhën e sistemit";
+"settings.language.restart.hint" = "Ndryshimet e gjuhës do të hyjnë në fuqi pas rinisjes së aplikacionit";
+"settings.language.changed.title" = "Gjuha u ndryshua";
+"settings.language.changed.message" = "Ju lutemi rinisni aplikacionin për të aplikuar ndryshimet";
+"common.ok" = "Në rregull";
+
+// MARK: - System Prompt Settings
+"settings.prompt.section" = "Kërkesa e sistemit";
+"settings.prompt.edit" = "Ndrysho kërkesën";
+"settings.prompt.default" = "Duke përdorur të paracaktuar";
+"settings.prompt.custom" = "Kërkesë e personalizuar e vendosur";
+"settings.prompt.hint" = "Personalizoni sjelljen e AI";
+"settings.prompt.editor.title" = "Ndrysho kërkesën";
+"settings.prompt.editor.instruction" = "Shtoni udhëzime të personalizuara për AI. Lëreni bosh për të përdorur kërkesën e paracaktuar.";
+"settings.prompt.default.preview" = "Kërkesa e paracaktuar (fragment):";
+"settings.prompt.reset" = "Rivendos";
+"settings.prompt.reset.title" = "Rivendos kërkesën";
+"settings.prompt.reset.message" = "Të fshihet kërkesa e personalizuar dhe të rikthehet te e paracaktuara?";
+
+// MARK: - Prompt Templates
+"templates.title" = "Shabllone kërkesash";
+"templates.empty" = "Ende nuk ka shabllone";
+"templates.add" = "Shto shabllon";
+"template.add.title" = "Shto shabllon";
+"template.edit.title" = "Ndrysho shabllon";
+"template.name.header" = "Emri";
+"template.name.placeholder" = "Emri i shabllonit";
+"template.content.header" = "Përmbajtja e kërkesës";
+"template.icon.header" = "Ikona";
+"template.translate.name" = "Përkthe";
+"template.translate.content" = "Ju lutemi përktheni sa vijon: ";
+"template.summarize.name" = "Përmbledh";
+"template.summarize.content" = "Ju lutemi përmbledhni sa vijon: ";
+"template.explain.name" = "Shpjego";
+"template.explain.content" = "Ju lutemi shpjegoni sa vijon: ";
+"template.code.name" = "Kod";
+"template.code.content" = "Ju lutemi shkruani kod për: ";
+
+// MARK: - Export
+"export.title" = "Eksporto bisedën";
+"export.format.markdown" = "Markdown";
+"export.format.pdf" = "PDF";
+"export.format.text" = "Tekst i thjeshtë";
+"export.created" = "U krijua";
+"export.image.attached" = "Imazhi u bashkëngjit";
+"export.generated.by" = "Gjeneruar nga";
+
+// MARK: - Loading Phases
+"loading.phase.initializing" = "Po inicializohet...";
+"loading.phase.loading" = "Po ngarkohet modeli...";
+"loading.phase.preparing" = "Po përgatitet motori i inferencës...";
+"loading.phase.almost" = "Pothuajse gati...";
+
+// MARK: - Welcome Screen
+"welcome.greeting" = "Më pyet çfarë të duash";
+"welcome.subtitle" = "Asistenti juaj AI me prioritet privatësinë";
+"suggestion.idea" = "Më ndihmo të gjenerojë ide";
+"suggestion.write" = "Më ndihmo të shkruaj diçka";
+"suggestion.question" = "Përgjigjuni pyetjeve të mia";
+
+// MARK: - Kokoro TTS
+"tts.download.title" = "Zë cilësie të lartë";
+"tts.download.action" = "Shkarko";
+"tts.download.use_system" = "Përdor zërin e sistemit";
+"tts.download.message" = "Shkarkoni modelin Kokoro TTS (~87MB) për sintezë më natyrale të të folurit japonez.";
+"tts.downloading" = "Po shkarkohet modeli TTS...";
+
+// MARK: - Feedback
+"feedback.consent.title" = "Dërgo përshtypje";
+"feedback.send" = "Dërgo";
+"feedback.positive.title" = "A qe e dobishme kjo përgjigje?";
+"feedback.negative.title" = "A mund të përmirësohet kjo?";
+"feedback.explanation" = "Përshtypjet tuaja ndihmojnë në përmirësimin e cilësisë së AI. Ju lutemi rishikoni cilat të dhëna do të dërgohen para dorëzimit.";
+"feedback.data.section" = "Të dhëna që do të dërgohen";
+"feedback.data.conversation" = "Biseda";
+"feedback.data.conversation.desc" = "Përgjigja e AI dhe mesazhi juaj i mëparshëm";
+"feedback.data.model" = "Informacion i modelit";
+"feedback.data.model.desc" = "Emri i modelit AI të përdorur";
+"feedback.data.timestamp" = "Vula kohore";
+"feedback.data.timestamp.desc" = "Kur u dorëzuan përshtypjet";
+"feedback.privacy.section" = "Privatësia";
+"feedback.privacy.anonymous" = "Nuk dërgohet asnjë informacion identifikues personal";
+"feedback.privacy.improvement" = "Përdoret vetëm për të përmirësuar cilësinë e AI";
+"feedback.privacy.optional" = "Dërgimi i përshtypjeve është plotësisht opsional";
+"feedback.comment.section" = "Koment (opsional)";
+"feedback.comment.placeholder" = "Na tregoni çfarë mund të përmirësohet ose çfarë funksionoi mirë...";
+"feedback.remember.title" = "Mbaj mend këtë zgjedhje";
+"feedback.remember.description" = "Dërgo përshtypje pa pyetur herën tjetër";
+
+// MARK: - Emergency Mode
+"emergency.sos.button" = "Modaliteti i emergjencës (mbaj të shtypur për të ndryshuar)";
+"emergency.mode.active" = "Modaliteti i emergjencës aktiv";
+"emergency.action.firstaid" = "Ndihmë e parë";
+"emergency.action.firstaid.message" = "Ju lutemi jepni udhëzime për ndihmë të parë. Do të përshkruaj dëmtimin ose simptomat: ";
+"emergency.action.disaster" = "Fatkeqësi";
+"emergency.action.disaster.message" = "Ka ndodhur një fatkeqësi. Ju lutemi jepni procedura përgjigje: ";
+"emergency.action.factcheck" = "Kontroll faktesh";
+"emergency.action.factcheck.message" = "Ju lutemi verifikoni besueshmerinë e këtij informacioni: ";
+"emergency.action.contacts" = "Emergjenca";
+"emergency.action.contacts.message" = "Ju lutemi më tregoni një listë të numrave të kontaktit të emergjencës";
+"emergency.action.evacuation" = "Evakuo";
+"emergency.action.evacuation.message" = "Ju lutemi krijoni një listë kontrolli evakuimi për situatën aktuale: ";
+"mcp.emergency_kb" = "Baza e njohur emergjencë";
+"mcp.emergency_kb.desc" = "Informacion emergjence dhe fatkeqësie";
+
+// MARK: - Emergency Templates
+"template.firstaid.name" = "Udhëzues ndihmë e parë";
+"template.firstaid.content" = "Ju lutemi jepni udhëzime për ndihmë të parë për: ";
+"template.disaster.name" = "Përgjigje ndaj fatkeqësisë";
+"template.disaster.content" = "Ka ndodhur fatkeqësia e mëposhtme. Ju lutemi jepni procedura përgjigje: ";
+"template.factcheck.name" = "Kontroll faktesh";
+"template.factcheck.content" = "Ju lutemi verifikoni besueshmerinë e këtij informacioni dhe jepni këshilla për kontroll faktesh: ";
+"template.evacuation.name" = "Listë kontrolli evakuimi";
+"template.evacuation.content" = "Ju lutemi krijoni një listë kontrolli evakuimi për situatën aktuale: ";
+
+// MARK: - ChatWeb.ai Integration
+"chatweb.title" = "ChatWeb.ai";
+"chatweb.desc" = "Bisedë AI në re";
+"chatweb.connect" = "Lidhu me ChatWeb.ai";
+"chatweb.qr.title" = "Lidhu përmes kodit QR";
+"chatweb.qr.scan" = "Skano kodin QR";
+"chatweb.open" = "Hap ChatWeb.ai";
+
+// MARK: - Peer Connection
+"peer.title" = "Pajisje afër";
+"peer.desc" = "Lidhu me pajisje Elio afër";
+"peer.connect" = "Lidhu me pajisje";
+"peer.code.title" = "Kodi i lidhjes";
+"peer.code.enter" = "Fut kodin me 4 shifra";
+"peer.code.your" = "Kodi juaj";
+"peer.connected" = "E lidhur";
+"peer.disconnected" = "E shkëputur";
+"peer.inference.offload" = "Ndarja e inferencës";
+
+// MARK: - Web Search
+"chat.web.search" = "Kërkim në internet";
+"search.privacy.title" = "Kërkim i mbrojtur me privatësi";
+"search.privacy.proceed" = "Kërko";
+"search.privacy.message" = "Kërkimi në internet i ElioChat e mbron privatësinë tuaj:\n\n🔒 Kërkim përmes DuckDuckGo\n🚫 Pa gjurmim ose profilizim\n🔐 Historiku i kërkimit nuk ruhet\n📱 Asnjë të dhënë e ruajtur jashtë pajisjes tuaj\n\nVetëm kërkesa juaj e kërkimit dërgohet te DuckDuckGo dhe rezultatet përpunohen në pajisjen tuaj.";
+"chat.web.analyzing" = "[Po analizohet faqja e internetit]";

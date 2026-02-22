@@ -1,0 +1,635 @@
+/*
+  Localizable.strings (Filipino)
+  Elio
+*/
+
+// MARK: - App General
+"app.name" = "Elio";
+"app.tagline" = "Ang iyong pangalawang utak na nag-iingat ng lihim.";
+
+// MARK: - Common Actions
+"common.done" = "Tapos";
+"common.cancel" = "Kanselahin";
+"common.delete" = "Burahin";
+"common.save" = "I-save";
+"common.edit" = "I-edit";
+"common.share" = "Ibahagi";
+"common.copy" = "Kopyahin";
+"common.copied" = "Nakopya";
+"common.loading" = "Naglo-load...";
+"common.error" = "Error";
+"common.retry" = "Subukan Muli";
+"common.skip" = "Laktawan";
+"common.next" = "Susunod";
+"common.start" = "Magsimula";
+"common.add" = "Magdagdag";
+"common.close" = "Isara";
+"common.details" = "Mga Detalye";
+"common.yes" = "Oo";
+"common.no" = "Hindi";
+"common.unknown" = "Hindi Kilala";
+
+// MARK: - Chat
+"chat.placeholder" = "Magtanong ng kahit ano";
+"chat.model.not.loaded" = "Walang Na-load na Model";
+"chat.model.not.loaded.description" = "Mangyaring mag-download ng model mula sa Settings";
+"chat.go.to.settings" = "Pumunta sa Settings";
+"chat.new.conversation" = "Bagong Chat";
+"chat.stop.generation" = "Ihinto";
+"chat.generation.stopped" = "\n\n[Itinigil ang generation]";
+"chat.image.sent" = "[Ipinadala ang larawan]";
+"chat.images.sent" = "[Ipinadala ang %d larawan]";
+"chat.pdf.sent" = "[Nakalakip na PDF: %@]";
+"chat.pdf.sent.vision" = "[PDF na may larawan: %@]";
+"chat.pdf.context" = "Ang sumusunod ay nilalaman ng teksto na kinuha mula sa PDF document \"%@\":\n\n%@";
+"chat.pdf.context.vision" = "Ito ang pahina 1 ng PDF document \"%@\". Ang kinuhang nilalaman ng teksto ay:\n\n%@\n\nPakianalisa ang visual content at teksto.";
+"chat.pdf.analyze" = "Pakianalisa ang PDF page na ito mula sa \"%@\".";
+"chat.url.sent" = "[Web page: %@]";
+"chat.url.context" = "Ang sumusunod ay nilalaman na kinuha mula sa web page \"%@\" (%@):\n\n%@";
+"chat.thinking" = "Nag-iisip...";
+"chat.generating" = "Gumagawa ng tugon...";
+"chat.welcome" = "Paano kita matutulungan?";
+"chat.suggestion.schedule" = "Ipakita ang schedule ngayong araw";
+"chat.suggestion.reminder" = "Gumawa ng paalala";
+"chat.suggestion.weather" = "Ano ang panahon ngayong araw?";
+"chat.suggestion.help" = "Paano gamitin ang app na ito";
+"chat.websearch.on" = "Web Search Bukas";
+"chat.websearch.off" = "Web Search Sarado";
+"chat.thinking.on" = "Thinking Bukas";
+"chat.thinking.off" = "Thinking Sarado";
+"chat.transcribing" = "Nag-transcribe...";
+"chat.offline" = "Offline";
+
+// Voice Conversation Mode
+"voice.listening" = "Nakikinig...";
+"voice.processing" = "Nagpoproseso...";
+"voice.thinking" = "Nag-iisip...";
+"voice.speaking" = "Nagsasalita...";
+"voice.tap.to.send" = "I-tap para ipadala";
+"chat.templates" = "Mga Template";
+"chat.websearch.privacy.title" = "Tungkol sa Web Search";
+"chat.websearch.privacy.message" = "Ang pag-enable ng web search ay nagpapahintulot sa AI na maghanap sa internet sa pamamagitan ng DuckDuckGo para sa pinakabagong impormasyon. Ang mga search query ay ipinapadala sa DuckDuckGo ngunit hindi sinusubaybayan.";
+"chat.websearch.privacy.enable" = "I-enable";
+"chat.websearch.privacy.disable" = "Panatilihing Naka-disable";
+
+// MARK: - Settings
+"settings.title" = "Settings";
+"settings.model.section" = "Mga AI Model";
+"settings.model.recommended" = "Inirerekemenda: %@";
+"settings.model.local.execution" = "Ang mga model ay tumatakbo nang lokal sa iyong device";
+"settings.model.show.more" = "Iba Pang Mga Model (%d)";
+"settings.model.show.less" = "Magpakita ng Mas Kaunti";
+"settings.appearance.section" = "Hitsura";
+"settings.tools.section" = "Mga Smart Feature";
+"settings.mcp.servers" = "Mga Integration";
+"settings.mcp.servers.description" = "Calendar, Mga File, Mga Paalala at iba pa";
+"settings.mcp.enabled.count" = "%d naka-enable";
+"settings.mcp.enabled.count.suffix" = " naka-enable";
+"settings.about.section" = "Tungkol";
+"settings.version" = "Bersyon";
+"settings.about.app" = "Tungkol sa App na Ito";
+"settings.about.mcp" = "Tungkol sa Mga Integration";
+"settings.privacy.badge" = "Gumagana Offline";
+"settings.privacy.description" = "Gumagana sa Airplane Mode";
+"settings.airplane.mode" = "Tumatakbo sa Airplane Mode";
+"settings.offline.ready" = "Handa para Offline";
+
+// MARK: - Model States
+"model.status.downloading" = "Nagda-download... %d%%";
+"model.status.loading" = "Naglo-load...";
+"model.status.in.use" = "Ginagamit";
+"model.status.recommended" = "Inirerekemenda";
+"model.status.heavy" = "Mabigat";
+"model.action.download" = "I-download";
+"model.action.load" = "I-load";
+"model.action.delete" = "Burahin";
+"model.action.use" = "Gamitin ang Model na Ito";
+"model.delete.confirm.title" = "Burahin ang Model";
+"model.delete.confirm.message" = "Burahin ang %@? Kailangan mong i-download muli para magamit.";
+"model.select.title" = "Pumili ng Model";
+"model.select.prompt" = "Mangyaring pumili ng model";
+"model.downloaded" = "Na-download";
+
+// MARK: - Inference Mode
+"inference.mode.title" = "Acceleration";
+"inference.mode.auto" = "Auto";
+"inference.mode.auto.desc" = "Optimal na performance nang awtomatiko";
+"inference.mode.gpu" = "GPU (Metal)";
+"inference.mode.gpu.desc" = "Maximum na bilis gamit ang Metal";
+"inference.mode.cpu" = "CPU Lamang";
+"inference.mode.cpu.desc" = "Battery saving mode";
+"inference.mode.hybrid" = "Hybrid";
+"inference.mode.hybrid.desc" = "Balanse ng bilis at battery";
+
+// MARK: - Theme
+"theme.system" = "Sistema";
+"theme.light" = "Maliwanag";
+"theme.dark" = "Madilim";
+
+// MARK: - Onboarding
+"onboarding.welcome.title" = "Maligayang Pagdating sa ElioChat";
+"onboarding.welcome.subtitle" = "Ang iyong pribadong AI assistant";
+"onboarding.features.title" = "Tunay na Pribadong AI";
+"onboarding.feature.offline" = "Gumagana sa Airplane Mode";
+"onboarding.feature.offline.desc" = "Gamitin sa mga flight o sa ilalim ng lupa";
+"onboarding.feature.privacy" = "Zero Data Transmission";
+"onboarding.feature.privacy.desc" = "Ang iyong mga chat ay hindi umaalis sa telepono";
+"onboarding.feature.vault" = "Mga Smart Integration";
+"onboarding.feature.vault.desc" = "Kumonekta sa Calendar at Mga File";
+"onboarding.feature.secure" = "Work-Safe AI";
+"onboarding.feature.secure.desc" = "Ligtas para sa corporate na paggamit";
+"onboarding.feature.thinking" = "Proseso ng Pag-iisip";
+"onboarding.privacy.title" = "Ang Iyong Data ay Sa Iyo";
+"onboarding.privacy.item1" = "Lahat ng processing ay nangyayari sa iyong iPhone";
+"onboarding.privacy.item2" = "Walang data na ipinapadala sa cloud servers";
+"onboarding.privacy.item3" = "Hindi kailanman ginagamit para sa AI training";
+"onboarding.getstarted.title" = "Handa sa Isang Tap";
+"onboarding.getstarted.subtitle" = "I-download ang inirerekomendang AI model\nat magsimulang mag-chat kaagad";
+"onboarding.step1" = "I-download ang inirerekomendang model";
+"onboarding.step2" = "Maghintay ng ilang minuto";
+"onboarding.step3" = "Handa ka na!";
+
+// MARK: - About
+"about.title" = "Tungkol sa App na Ito";
+"about.rate.app" = "I-rate ang App";
+"about.share.app" = "Ibahagi sa Mga Kaibigan";
+"about.privacy.policy" = "Privacy Policy";
+"about.terms" = "Mga Tuntunin ng Serbisyo";
+"about.tech.info" = "Teknikal na Impormasyon";
+"about.tech.engine" = "AI Engine";
+"about.tech.format" = "Suportadong Format";
+"about.tech.inference" = "Inference";
+"about.data.management" = "Pamamahala ng Data";
+"about.delete.all" = "Burahin ang Lahat ng Conversation";
+"about.credits" = "Mga Kredito";
+"about.credits.description" = "Ang app na ito ay gumagamit ng open source libraries";
+"about.privacy.section" = "Privacy";
+"about.gguf.format" = "GGUF Format";
+"about.metal.gpu" = "Metal GPU Acceleration";
+
+// MARK: - Referral
+"referral.title" = "Mag-refer ng Mga Kaibigan";
+"referral.code.title" = "Ang Iyong Referral Code";
+"referral.code.copy" = "Kopyahin ang Code";
+"referral.code.copied" = "Nakopya";
+"referral.share.button" = "Ibahagi sa Mga Kaibigan";
+"referral.share.description" = "Ibahagi ang Elio sa iyong mga kaibigan!";
+"referral.count" = "Nag-refer ng %d tao";
+"referral.enter.title" = "Maglagay ng Referral Code";
+"referral.enter.placeholder" = "Referral Code";
+"referral.enter.button" = "Ilapat";
+"referral.enter.success" = "Nailapat ang referral code";
+"referral.enter.error" = "Di-wastong referral code";
+
+// MARK: - Privacy Policy
+"privacy.title" = "Privacy Policy";
+"privacy.data.collection.title" = "Pagkolekta ng Data";
+"privacy.data.collection.content" = "Ang app na ito ay gumagamit ng lokal na AI nang ganap na offline.\nWalang data na ipinapadala sa external servers.\nLahat ng conversation ay nakaimbak lamang sa iyong device.";
+"privacy.stored.data.title" = "Nakaimbak na Data";
+"privacy.stored.data.content" = "Kasaysayan ng conversation (nakaimbak sa device lamang)\nMga AI model file (nakaimbak sa device lamang)\nMga setting ng app (nakaimbak sa device lamang)\n\nAng data na ito ay hindi kailanman ibinabahagi sa labas.";
+"privacy.data.deletion.title" = "Pagbura ng Data";
+"privacy.data.deletion.content" = "Maaari mong burahin ang lahat ng data anumang oras mula sa Settings > Pamamahala ng Data.\nAng pag-uninstall ng app ay magbubura ng lahat ng data.";
+
+// MARK: - Terms of Service
+"terms.title" = "Mga Tuntunin ng Serbisyo";
+"terms.service.title" = "Paglalarawan ng Serbisyo";
+"terms.service.content" = "Ang app na ito ay nagbibigay ng AI assistant functionality gamit ang AI model na tumatakbo nang lokal.";
+"terms.disclaimer.title" = "Disclaimer";
+"terms.disclaimer.content" = "Ang mga tugon ng AI ay maaaring maglaman ng mga pagkakamali.\nAng mga mahalagang desisyon ay dapat laging i-verify ng propesyonal.\nHindi kami responsable para sa anumang pinsala na nagmumula sa paggamit ng app na ito.";
+"terms.prohibited.title" = "Mga Ipinagbabawal na Aktibidad";
+"terms.prohibited.content" = "Mga ilegal na aktibidad\nMga aktibidad na lumalabag sa mga karapatan ng iba\nReverse engineering ng app na ito\nHindi awtorisadong pagkopya ng app na ito";
+"terms.ip.title" = "Intelektwal na Ari-arian";
+"terms.ip.content" = "Ang mga karapatan sa intelektwal na ari-arian ng app na ito ay pag-aari ng developer.\nAng hindi awtorisadong paggamit ay ipinagbabawal.";
+
+// MARK: - Conversations
+"conversations.title" = "Mga Conversation";
+"conversations.new" = "Bagong Conversation";
+"conversations.empty" = "Wala pang mga conversation";
+"conversations.delete" = "Burahin ang Conversation";
+"conversations.default.title" = "Bagong Conversation";
+"conversations.today" = "Ngayong Araw";
+"conversations.yesterday" = "Kahapon";
+"conversations.past7days" = "Nakaraang 7 Araw";
+"conversations.past30days" = "Nakaraang 30 Araw";
+"conversations.older" = "Mas Luma";
+"conversations.created" = "Nilikha: %@";
+"conversations.user" = "User";
+"conversations.assistant" = "Assistant";
+"conversations.search.placeholder" = "Maghanap ng mga conversation";
+"conversations.search.no_results" = "Walang nahanap na resulta";
+
+// MARK: - Message Actions
+"message.copy" = "Kopyahin";
+"message.speak" = "Magsalita";
+"message.stop.speaking" = "Ihinto ang Pagsasalita";
+"message.share" = "Ibahagi";
+"message.share.card" = "Ibahagi bilang Card";
+"message.like" = "Like";
+
+// MARK: - Share Card
+"share.card.title" = "Ibahagi ang Card";
+"share.card.preview" = "Preview";
+"share.card.button" = "Ibahagi ang Larawan";
+"message.dislike" = "Dislike";
+"message.thinking.process" = "Proseso ng Pag-iisip";
+"message.tool.running" = "Tumatakbo ang Tool";
+"message.tool.error" = "Error";
+"message.tool.completed" = "Nakumpleto";
+
+// MARK: - Attachment
+"attachment.title" = "Attachment";
+"attachment.photo.library" = "Pumili ng Larawan";
+"attachment.camera" = "Kumuha ng Larawan";
+"attachment.pdf" = "Pumili ng PDF";
+"attachment.pdf.chars" = "%d character";
+"attachment.pdf.pages" = "%d pahina";
+"attachment.pdf.vision.enabled" = "Naka-enable ang image analysis";
+"attachment.pdf.text.only" = "Text only mode";
+"attachment.url" = "Basahin ang Web Page";
+"attachment.url.title" = "Maglagay ng URL";
+"attachment.url.placeholder" = "https://example.com";
+"attachment.url.message" = "Mag-paste ng URL para kunin ang nilalaman nito";
+"attachment.url.fetch" = "Kunin";
+"attachment.url.loading" = "Naglo-load ng pahina...";
+
+// MARK: - Errors
+"error.model.not.found" = "Hindi nahanap ang model file";
+"error.model.not.loaded" = "Hindi na-load ang model";
+"error.context.failed" = "Nabigo ang paggawa ng context";
+"error.tokenization.failed" = "Nabigo ang tokenization";
+"error.generation.failed" = "Error sa generation: %@";
+"error.occurred" = "May naganap na error: %@";
+"error.invalid.url" = "Di-wastong URL";
+"error.download.failed" = "Nabigo ang pag-download";
+"error.extraction.failed" = "Nabigo ang extraction";
+"error.config.not.found" = "Hindi nahanap ang config file";
+
+// MARK: - Ghost Search
+"ghost.search.title" = "Ghost Search";
+"ghost.search.description" = "Anonymous na paghahanap sa pamamagitan ng DuckDuckGo (walang pagsubaybay)";
+"ghost.search.connecting" = "Kumukonekta sa anonymous network...";
+"ghost.search.privacy.note" = "Ang iyong kasaysayan ng paghahanap ay hindi kailanman sinusubaybayan";
+
+// MARK: - MCP Servers
+"mcp.filesystem" = "File System";
+"mcp.filesystem.desc" = "Magbasa at magsulat ng mga file sa app";
+"mcp.calendar" = "Calendar";
+"mcp.calendar.desc" = "Magbasa at magsulat ng mga event";
+"mcp.reminders" = "Mga Paalala";
+"mcp.reminders.desc" = "Pamahalaan ang mga paalala";
+"mcp.contacts" = "Mga Contact";
+"mcp.contacts.desc" = "Maghanap at tingnan ang mga contact";
+"mcp.photos" = "Mga Larawan";
+"mcp.photos.desc" = "I-access ang photo library";
+"mcp.location" = "Lokasyon";
+"mcp.location.desc" = "Kunin ang kasalukuyang lokasyon at maghanap ng mga lugar";
+"mcp.health" = "Kalusugan";
+"mcp.health.desc" = "I-access ang health data";
+"mcp.shortcuts" = "Mga Shortcut";
+"mcp.shortcuts.desc" = "Patakbuhin ang mga shortcut";
+"mcp.websearch" = "Web Search";
+"mcp.websearch.desc" = "Anonymous na web search";
+"mcp.custom" = "Custom na Integration";
+"mcp.custom.add" = "Magdagdag ng Integration";
+"mcp.custom.setup" = "I-set up ang external service integration";
+"mcp.custom.title" = "Mga Custom na Integration";
+"mcp.settings.title" = "Mga Setting ng Integration";
+"mcp.server.name" = "Pangalan ng Server";
+"mcp.server.name.placeholder" = "hal., Aking Custom Server";
+"mcp.config.url" = "URL ng Config File";
+"mcp.import.file" = "Mag-import mula sa File";
+"mcp.config.example" = "Halimbawa ng Config File";
+"mcp.permission.note" = "Hihingin ang mga permission kapag unang ginagamit ang bawat feature";
+
+// MARK: - MCP Tool Messages
+"mcp.tool.available" = "Mga Available na Tool:";
+"mcp.tool.parameters" = "Mga Parameter:";
+"mcp.prompt.available" = "Mga Available na Prompt:";
+"mcp.prompt.arguments" = "Mga Argument:";
+"mcp.tool.name" = "tool_name";
+"mcp.tool.arg.name" = "arg_name";
+"mcp.tool.arg.value" = "value";
+"mcp.tool.no.result" = "Walang resulta";
+"mcp.tool.running" = "Tumatakbo ang tool: %@";
+"mcp.tool.error" = "Error sa pagpapatupad ng tool: %@";
+
+// MARK: - MCP Error Messages
+"mcp.error.server.not.found" = "Hindi nahanap ang server: %@";
+"mcp.error.tool.not.found" = "Hindi nahanap ang tool: %@";
+"mcp.error.invalid.args" = "Di-wastong mga argument: %@";
+"mcp.error.execution" = "Error sa pagpapatupad: %@";
+"mcp.error.permission" = "Tinanggihan ang permission: %@";
+
+// MARK: - Calendar Messages
+"calendar.no.events" = "Walang mga event";
+"calendar.event.created" = "Nilikha ang event: %@";
+"calendar.event.deleted" = "Binura ang event: %@";
+"calendar.allday.created" = "Nilikha ang all-day event: %@";
+"calendar.access.denied" = "Tinanggihan ang access sa calendar";
+"calendar.today.none" = "Walang mga event ngayong araw";
+"calendar.untitled" = "Walang Pamagat";
+
+// MARK: - Reminders Messages
+"reminders.none" = "Walang mga paalala";
+"reminders.created" = "Nilikha ang paalala: %@";
+"reminders.completed" = "Nakumpleto ang paalala: %@";
+"reminders.deleted" = "Binura ang paalala: %@";
+"reminders.access.denied" = "Tinanggihan ang access sa mga paalala";
+"reminders.untitled" = "Walang Pamagat";
+
+// MARK: - Photos Messages
+"photos.access.denied" = "Tinanggihan ang access sa mga larawan";
+"photos.not.found" = "Hindi nahanap ang larawan";
+"photos.untitled" = "Walang Pamagat";
+"photos.count" = "Mga Larawan: %d";
+"photos.videos.count" = "Mga Video: %d";
+"photos.albums.count" = "Mga Album: %d";
+"photos.favorites.count" = "Mga Pabor ito: %d";
+"photos.date" = "Petsa: %@";
+"photos.size" = "Sukat: %d x %d";
+"photos.location" = "Lokasyon: %@, %@";
+"photos.media.type" = "Uri ng Media: %@";
+"photos.duration" = "Tagal: %dm %ds";
+"photos.favorite" = "Paborito: %@";
+"photos.type.image" = "Larawan";
+"photos.type.video" = "Video";
+"photos.type.audio" = "Audio";
+
+// MARK: - Contacts Messages
+"contacts.access.denied" = "Tinanggihan ang access sa mga contact";
+"contacts.not.found" = "Walang nahanap na tugmang contact";
+"contacts.no.groups" = "Walang mga grupo";
+"contacts.no.card" = "Walang naka-set na contact card";
+"contacts.name" = "Pangalan: %@";
+"contacts.company" = "Kumpanya: %@";
+"contacts.job" = "Posisyon: %@";
+
+// MARK: - Location Messages
+"location.access.denied" = "Tinanggihan ang access sa lokasyon";
+"location.not.found" = "Hindi nahanap ang address";
+"location.latitude" = "Latitude: %@";
+"location.longitude" = "Longitude: %@";
+"location.accuracy" = "Katumpakan: %dm";
+"location.altitude" = "Altitude: %dm";
+"location.search" = "Paghahanap: %@";
+"location.address" = "Address: %@";
+"location.country" = "Bansa: %@";
+"location.postal" = "Postal Code: %@";
+"location.from" = "Mula sa: (%@, %@)";
+"location.to" = "Papunta sa: (%@, %@)";
+"location.distance.km" = "Distansya: %.2f km";
+"location.distance.m" = "Distansya: %d m";
+
+// MARK: - Health Messages
+"health.not.available" = "Ang kalusugan ay hindi available sa device na ito";
+"health.date" = "Petsa: %@";
+"health.steps" = "Mga Hakbang: %@ hakbang";
+"health.goal.progress" = "Progreso sa layunin: %d%% (10,000 hakbang na layunin)";
+"health.no.data" = "Walang available na data";
+"health.avg.bpm" = "Average: %d bpm";
+"health.min.bpm" = "Minimum: %d bpm";
+"health.max.bpm" = "Maximum: %d bpm";
+"health.measurements" = "Mga Pagsukat: %d";
+"health.no.sleep" = "Walang sleep data";
+"health.sleep.total" = "Kabuuang tulog: %dh %dm";
+"health.bedtime" = "Oras ng pagtulog: %@";
+"health.waketime" = "Oras ng paggising: %@";
+"health.calories" = "Calories: %d kcal";
+
+// MARK: - File System Messages
+"filesystem.not.found" = "Hindi nahanap ang file: %@";
+"filesystem.written" = "Naisulat ang file: %@";
+"filesystem.dir.created" = "Nilikha ang directory: %@";
+"filesystem.deleted" = "Binura: %@";
+"filesystem.size" = "Sukat: %@";
+"filesystem.created" = "Nilikha: %@";
+"filesystem.modified" = "Binago: %@";
+"filesystem.type" = "Uri: %@";
+
+// MARK: - Shortcuts Messages
+"shortcuts.executed" = "Naipatupad ang shortcut '%@'";
+"shortcuts.opened" = "Binuksan ang Shortcuts app";
+"shortcuts.settings.opened" = "Binuksan ang Settings (%@)";
+"shortcuts.mail.opened" = "Binuksan ang mail compose";
+"shortcuts.calling" = "Tumatawag: %@";
+"shortcuts.message.opened" = "Binuksan ang message compose";
+"shortcuts.failed" = "Hindi mabuksan ang shortcut";
+
+// MARK: - Model Tiers
+"model.tier.entry" = "Entry";
+"model.tier.standard" = "Standard";
+"model.tier.pro" = "Pro";
+
+// MARK: - Tool Parser
+"tool.arguments" = "Mga Argument:";
+
+// MARK: - Model Settings
+"model.action.settings" = "Settings";
+"settings.model.parameters" = "Mga Setting ng Model";
+"settings.model.parameters.description" = "I-customize ang mga generation parameter para sa model na ito";
+"settings.preset.title" = "Mga Preset";
+"settings.preset.custom" = "Custom";
+"settings.preset.balanced" = "Balanse";
+"settings.preset.creative" = "Creative";
+"settings.preset.precise" = "Tumpak";
+"settings.preset.coding" = "Coding";
+"settings.preset.japanese" = "Hapon";
+"settings.parameters.title" = "Mga Parameter";
+"settings.parameter.temperature" = "Temperature";
+"settings.parameter.temperature.description" = "Mas mataas = mas creative, mas mababa = mas naka-focus";
+"settings.parameter.top.p" = "Top P";
+"settings.parameter.top.p.description" = "Nucleus sampling probability";
+"settings.parameter.top.k" = "Top K";
+"settings.parameter.top.k.description" = "Bilang ng mga top token na isasaalang-alang";
+"settings.parameter.max.tokens" = "Max Tokens";
+"settings.parameter.max.tokens.description" = "Maximum na haba ng response";
+"settings.parameter.repeat.penalty" = "Repeat Penalty";
+"settings.parameter.repeat.penalty.description" = "Mas mataas = mas kaunting pag-uulit";
+"settings.parameter.thinking" = "Thinking Mode";
+"settings.parameter.thinking.description" = "Ipakita ang proseso ng pag-iisip ng AI";
+"settings.system.prompt.title" = "System Prompt";
+"settings.system.prompt.description" = "Mga custom na tagubilin para sa AI";
+"settings.reset.to.default" = "I-reset sa Default";
+
+// MARK: - Vision Model
+"vision.model.required.title" = "Kailangan ang Vision Model";
+"vision.model.required.header" = "Kailangan ang Image Recognition";
+"vision.model.required.description" = "Para mag-analisa ng mga larawan, kailangan mo ng vision-capable na AI model";
+"vision.model.switch" = "Lumipat ng Model";
+"vision.model.switch.message %@" = "Lumipat sa %@ para i-enable ang image analysis?";
+"vision.model.download" = "I-download";
+"vision.model.download.message %@ %@" = "I-download ang %@ (%@) para mag-analisa ng mga larawan?";
+"vision.model.not.available" = "Walang compatible na vision model na available para sa iyong device";
+"vision.model.switching" = "Lumilipat ng model...";
+"vision.model.download.title" = "Mga Vision Model";
+"vision.model.recommended" = "Inirerekemenda para sa iyong device";
+"vision.model.recommended.size %@" = "Inirerekemenda: %@";
+"vision.model.use.this" = "Gamitin ang Model na Ito";
+"vision.model.download.button %@" = "I-download (%@)";
+"vision.model.other.options" = "Iba Pang Mga Vision Model";
+"vision.model.download.complete" = "Nakumpleto ang Download";
+"vision.model.download.complete.message" = "Handa nang mag-analisa ng mga larawan";
+
+// MARK: - Whisper Voice Input (Legacy)
+"whisper.download.title" = "Kailangan ang Voice Recognition";
+"whisper.download.action" = "I-download";
+"whisper.download.message" = "Para magamit ang voice input, kailangan mong i-download ang speech recognition model (~150MB).";
+"whisper.downloading" = "Nagda-download ng speech recognition model...";
+"whisper.download.error" = "Error sa Download";
+"whisper.load.error" = "Error sa Model Load";
+"whisper.permission.denied" = "Hindi pinahintulutan ang access sa microphone";
+"whisper.transcribe.error" = "Error sa Transcription";
+"whisper.error.permission" = "Kailangan ang permission sa microphone";
+"whisper.error.not.recording" = "Hindi kasalukuyang nagrererecord";
+"whisper.error.no.recording" = "Walang recording data";
+"whisper.error.model.not.loaded" = "Hindi na-load ang speech recognition model";
+"whisper.error.transcription" = "Nabigo ang transcription";
+
+// MARK: - Speech Recognition (ReazonSpeech)
+"speech.download.title" = "Kailangan ang Voice Recognition";
+"speech.download.action" = "I-download";
+"speech.download.message" = "Para magamit ang voice input, kailangan mong i-download ang Japanese speech recognition model (~155MB).";
+"speech.downloading" = "Nagda-download ng speech recognition model...";
+
+// MARK: - Language Settings
+"settings.language.section" = "Wika";
+"language.system" = "Gamitin ang Wika ng Sistema";
+"settings.language.restart.hint" = "Ang mga pagbabago sa wika ay magkakabisa pagkatapos i-restart ang app";
+"settings.language.changed.title" = "Nabago ang Wika";
+"settings.language.changed.message" = "Mangyaring i-restart ang app para ilapat ang mga pagbabago";
+"common.ok" = "OK";
+
+// MARK: - System Prompt Settings
+"settings.prompt.section" = "System Prompt";
+"settings.prompt.edit" = "I-edit ang Prompt";
+"settings.prompt.default" = "Ginagamit ang default";
+"settings.prompt.custom" = "Naka-set ang custom prompt";
+"settings.prompt.hint" = "I-customize ang kilos ng AI";
+"settings.prompt.editor.title" = "I-edit ang Prompt";
+"settings.prompt.editor.instruction" = "Magdagdag ng mga custom na tagubilin para sa AI. Iwanang blangko para gamitin ang default prompt.";
+"settings.prompt.default.preview" = "Default prompt (excerpt):";
+"settings.prompt.reset" = "I-reset";
+"settings.prompt.reset.title" = "I-reset ang Prompt";
+"settings.prompt.reset.message" = "Burahin ang custom prompt at ibalik sa default?";
+
+// MARK: - Prompt Templates
+"templates.title" = "Mga Prompt Template";
+"templates.empty" = "Wala pang mga template";
+"templates.add" = "Magdagdag ng Template";
+"template.add.title" = "Magdagdag ng Template";
+"template.edit.title" = "I-edit ang Template";
+"template.name.header" = "Pangalan";
+"template.name.placeholder" = "Pangalan ng template";
+"template.content.header" = "Nilalaman ng Prompt";
+"template.icon.header" = "Icon";
+"template.translate.name" = "Isalin";
+"template.translate.content" = "Pakisalin ang sumusunod: ";
+"template.summarize.name" = "Buod";
+"template.summarize.content" = "Pakibuod ang sumusunod: ";
+"template.explain.name" = "Ipaliwanag";
+"template.explain.content" = "Pakipaliwanag ang sumusunod: ";
+"template.code.name" = "Code";
+"template.code.content" = "Pakisulat ng code para sa: ";
+
+// MARK: - Export
+"export.title" = "I-export ang Conversation";
+"export.format.markdown" = "Markdown";
+"export.format.pdf" = "PDF";
+"export.format.text" = "Plain Text";
+"export.created" = "Nilikha";
+"export.image.attached" = "Nakalakip ang larawan";
+"export.generated.by" = "Ginawa ng";
+
+// MARK: - Loading Phases
+"loading.phase.initializing" = "Nagsisimula...";
+"loading.phase.loading" = "Naglo-load ng model...";
+"loading.phase.preparing" = "Naghahanda ng inference engine...";
+"loading.phase.almost" = "Halos handa na...";
+
+// MARK: - Welcome Screen
+"welcome.greeting" = "Magtanong ng kahit ano";
+"welcome.subtitle" = "Ang iyong privacy-first AI assistant";
+"suggestion.idea" = "Tulungan mo akong mag-brainstorm ng mga ideya";
+"suggestion.write" = "Tulungan mo akong magsulat ng isang bagay";
+"suggestion.question" = "Sagutin ang aking mga tanong";
+
+// MARK: - Kokoro TTS
+"tts.download.title" = "High-Quality na Boses";
+"tts.download.action" = "I-download";
+"tts.download.use_system" = "Gamitin ang System Voice";
+"tts.download.message" = "I-download ang Kokoro TTS model (~87MB) para sa mas natural na Japanese text-to-speech.";
+"tts.downloading" = "Nagda-download ng TTS model...";
+
+// MARK: - Feedback
+"feedback.consent.title" = "Magpadala ng Feedback";
+"feedback.send" = "Ipadala";
+"feedback.positive.title" = "Nakatulong ba ang response na ito?";
+"feedback.negative.title" = "Maaari bang pagbutihin ito?";
+"feedback.explanation" = "Ang iyong feedback ay tumutulong na mapabuti ang kalidad ng AI. Mangyaring suriin ang data na ipapadala bago magsumite.";
+"feedback.data.section" = "Data na ipapadala";
+"feedback.data.conversation" = "Conversation";
+"feedback.data.conversation.desc" = "Ang AI response at ang iyong nakaraang mensahe";
+"feedback.data.model" = "Impormasyon ng model";
+"feedback.data.model.desc" = "Pangalan ng AI model na ginamit";
+"feedback.data.timestamp" = "Timestamp";
+"feedback.data.timestamp.desc" = "Kailan isinumite ang feedback";
+"feedback.privacy.section" = "Privacy";
+"feedback.privacy.anonymous" = "Walang ipinapadala na personal na impormasyon";
+"feedback.privacy.improvement" = "Ginagamit lamang para mapabuti ang kalidad ng AI";
+"feedback.privacy.optional" = "Ang pagpapadala ng feedback ay ganap na opsyonal";
+"feedback.comment.section" = "Komento (opsyonal)";
+"feedback.comment.placeholder" = "Sabihin sa amin kung ano ang maaaring mapabuti o kung ano ang gumana nang maayos...";
+"feedback.remember.title" = "Tandaan ang pagpiling ito";
+"feedback.remember.description" = "Magpadala ng feedback nang hindi na nagtatanong sa susunod";
+
+// MARK: - Emergency Mode
+"emergency.sos.button" = "Emergency Mode (long press para mag-toggle)";
+"emergency.mode.active" = "Aktibo ang Emergency Mode";
+"emergency.action.firstaid" = "First Aid";
+"emergency.action.firstaid.message" = "Mangyaring magbigay ng first aid na tagubilin. Ililalarawan ko ang pinsala o sintomas: ";
+"emergency.action.disaster" = "Sakuna";
+"emergency.action.disaster.message" = "May naganap na sakuna. Mangyaring magbigay ng mga prosedura ng tugon: ";
+"emergency.action.factcheck" = "Fact Check";
+"emergency.action.factcheck.message" = "Mangyaring i-verify ang reliability ng impormasyong ito: ";
+"emergency.action.contacts" = "Emergency";
+"emergency.action.contacts.message" = "Mangyaring ipakita sa akin ang listahan ng mga emergency contact number";
+"emergency.action.evacuation" = "Lumikas";
+"emergency.action.evacuation.message" = "Mangyaring gumawa ng evacuation checklist para sa kasalukuyang sitwasyon: ";
+"mcp.emergency_kb" = "Emergency KB";
+"mcp.emergency_kb.desc" = "Impormasyon sa emergency at sakuna";
+
+// MARK: - Emergency Templates
+"template.firstaid.name" = "First Aid Guide";
+"template.firstaid.content" = "Mangyaring magbigay ng first aid na tagubilin para sa: ";
+"template.disaster.name" = "Tugon sa Sakuna";
+"template.disaster.content" = "Ang sumusunod na sakuna ay naganap. Mangyaring magbigay ng mga prosedura ng tugon: ";
+"template.factcheck.name" = "Fact Check";
+"template.factcheck.content" = "Mangyaring i-verify ang reliability ng impormasyong ito at magbigay ng fact-checking tips: ";
+"template.evacuation.name" = "Evacuation Checklist";
+"template.evacuation.content" = "Mangyaring gumawa ng evacuation checklist para sa kasalukuyang sitwasyon: ";
+
+// MARK: - ChatWeb.ai Integration
+"chatweb.title" = "ChatWeb.ai";
+"chatweb.desc" = "Cloud AI Chat";
+"chatweb.connect" = "Kumonekta sa ChatWeb.ai";
+"chatweb.qr.title" = "Kumonekta sa pamamagitan ng QR Code";
+"chatweb.qr.scan" = "I-scan ang QR Code";
+"chatweb.open" = "Buksan ang ChatWeb.ai";
+
+// MARK: - Peer Connection
+"peer.title" = "Mga Malapit na Device";
+"peer.desc" = "Kumonekta sa malapit na Elio devices";
+"peer.connect" = "Kumonekta sa Device";
+"peer.code.title" = "Connection Code";
+"peer.code.enter" = "Maglagay ng 4-digit code";
+"peer.code.your" = "Ang Iyong Code";
+"peer.connected" = "Nakakonekta";
+"peer.disconnected" = "Nadiskonekta";
+"peer.inference.offload" = "Nagbabahagi ng inference";
+
+// MARK: - Web Search
+"chat.web.search" = "Web Search";
+"search.privacy.title" = "Privacy-Protected na Paghahanap";
+"search.privacy.proceed" = "Maghanap";
+"search.privacy.message" = "Ang ElioChat Web Search ay pinoprotektahan ang iyong privacy:\n\n🔒 Paghahanap sa pamamagitan ng DuckDuckGo\n🚫 Walang pagsubaybay o profiling\n🔐 Ang kasaysayan ng paghahanap ay hindi nakaimbak\n📱 Walang data na nakaimbak sa labas ng iyong device\n\nTanging ang iyong search query lang ang ipinapadala sa DuckDuckGo, at ang mga resulta ay pinoproseso sa iyong device.";
+"chat.web.analyzing" = "[Nag-aanalisa ng web page]";

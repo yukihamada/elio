@@ -1,0 +1,635 @@
+/*
+  Localizable.strings (Lithuanian)
+  Elio
+*/
+
+// MARK: - App General
+"app.name" = "Elio";
+"app.tagline" = "Jūsų paslaptis saugantis antrasis smegenys.";
+
+// MARK: - Common Actions
+"common.done" = "Atlikta";
+"common.cancel" = "Atšaukti";
+"common.delete" = "Ištrinti";
+"common.save" = "Išsaugoti";
+"common.edit" = "Redaguoti";
+"common.share" = "Dalintis";
+"common.copy" = "Kopijuoti";
+"common.copied" = "Nukopijuota";
+"common.loading" = "Įkeliama...";
+"common.error" = "Klaida";
+"common.retry" = "Bandyti dar kartą";
+"common.skip" = "Praleisti";
+"common.next" = "Toliau";
+"common.start" = "Pradėti";
+"common.add" = "Pridėti";
+"common.close" = "Uždaryti";
+"common.details" = "Informacija";
+"common.yes" = "Taip";
+"common.no" = "Ne";
+"common.unknown" = "Nežinoma";
+
+// MARK: - Chat
+"chat.placeholder" = "Klauskite bet ko";
+"chat.model.not.loaded" = "Modelis neįkeltas";
+"chat.model.not.loaded.description" = "Atsisiųskite modelį iš nustatymų";
+"chat.go.to.settings" = "Eiti į nustatymus";
+"chat.new.conversation" = "Naujas pokalbis";
+"chat.stop.generation" = "Sustabdyti";
+"chat.generation.stopped" = "\n\n[Generavimas sustabdytas]";
+"chat.image.sent" = "[Vaizdas išsiųstas]";
+"chat.images.sent" = "[Išsiųsta vaizdų: %d]";
+"chat.pdf.sent" = "[PDF pridėtas: %@]";
+"chat.pdf.sent.vision" = "[PDF su vaizdu: %@]";
+"chat.pdf.context" = "Tai tekstinis turinys, išgautas iš PDF dokumento \"%@\":\n\n%@";
+"chat.pdf.context.vision" = "Tai 1 puslapis iš PDF dokumento \"%@\". Išgautas tekstinis turinys:\n\n%@\n\nPrašome analizuoti tiek vizualinį turinį, tiek tekstą.";
+"chat.pdf.analyze" = "Prašome analizuoti šį PDF puslapį iš \"%@\".";
+"chat.url.sent" = "[Interneto puslapis: %@]";
+"chat.url.context" = "Tai turinys, išgautas iš interneto puslapio \"%@\" (%@):\n\n%@";
+"chat.thinking" = "Galvoju...";
+"chat.generating" = "Generuojamas atsakymas...";
+"chat.welcome" = "Kaip galiu padėti?";
+"chat.suggestion.schedule" = "Rodyti šiandienos tvarkaraštį";
+"chat.suggestion.reminder" = "Sukurti priminimą";
+"chat.suggestion.weather" = "Koks šiandien oras?";
+"chat.suggestion.help" = "Kaip naudoti šią programą";
+"chat.websearch.on" = "Paieška įjungta";
+"chat.websearch.off" = "Paieška išjungta";
+"chat.thinking.on" = "Mąstymas įjungtas";
+"chat.thinking.off" = "Mąstymas išjungtas";
+"chat.transcribing" = "Transkribuojama...";
+"chat.offline" = "Neprisijungęs";
+
+// Voice Conversation Mode
+"voice.listening" = "Klausoma...";
+"voice.processing" = "Apdorojama...";
+"voice.thinking" = "Galvoju...";
+"voice.speaking" = "Kalbama...";
+"voice.tap.to.send" = "Palieskite norėdami išsiųsti";
+"chat.templates" = "Šablonai";
+"chat.websearch.privacy.title" = "Apie žiniatinklio paiešką";
+"chat.websearch.privacy.message" = "Įjungus žiniatinklio paiešką, AI gali ieškoti informacijos internete per DuckDuckGo. Paieškos užklausos siunčiamos DuckDuckGo, bet nėra stebimos.";
+"chat.websearch.privacy.enable" = "Įjungti";
+"chat.websearch.privacy.disable" = "Palikti išjungtą";
+
+// MARK: - Settings
+"settings.title" = "Nustatymai";
+"settings.model.section" = "AI modeliai";
+"settings.model.recommended" = "Rekomenduojama: %@";
+"settings.model.local.execution" = "Modeliai vykdomi vietoje jūsų įrenginyje";
+"settings.model.show.more" = "Kiti modeliai (%d)";
+"settings.model.show.less" = "Rodyti mažiau";
+"settings.appearance.section" = "Išvaizda";
+"settings.tools.section" = "Išmaniosios funkcijos";
+"settings.mcp.servers" = "Integracijos";
+"settings.mcp.servers.description" = "Kalendorius, failai, priminimai ir kt.";
+"settings.mcp.enabled.count" = "Įjungta: %d";
+"settings.mcp.enabled.count.suffix" = " įjungta";
+"settings.about.section" = "Apie";
+"settings.version" = "Versija";
+"settings.about.app" = "Apie šią programą";
+"settings.about.mcp" = "Apie integracijas";
+"settings.privacy.badge" = "Veikia neprisijungus";
+"settings.privacy.description" = "Veikia lėktuvo režimu";
+"settings.airplane.mode" = "Veikia lėktuvo režimu";
+"settings.offline.ready" = "Paruošta darbui neprisijungus";
+
+// MARK: - Model States
+"model.status.downloading" = "Atsiunčiama... %d%%";
+"model.status.loading" = "Įkeliama...";
+"model.status.in.use" = "Naudojamas";
+"model.status.recommended" = "Rekomenduojama";
+"model.status.heavy" = "Sunkus";
+"model.action.download" = "Atsisiųsti";
+"model.action.load" = "Įkelti";
+"model.action.delete" = "Ištrinti";
+"model.action.use" = "Naudoti šį modelį";
+"model.delete.confirm.title" = "Ištrinti modelį";
+"model.delete.confirm.message" = "Ištrinti %@? Norėdami vėl naudoti, turėsite atsisiųsti iš naujo.";
+"model.select.title" = "Pasirinkti modelį";
+"model.select.prompt" = "Pasirinkite modelį";
+"model.downloaded" = "Atsisiųsta";
+
+// MARK: - Inference Mode
+"inference.mode.title" = "Pagreitinimas";
+"inference.mode.auto" = "Automatinis";
+"inference.mode.auto.desc" = "Optimali sparta automatiškai";
+"inference.mode.gpu" = "GPU (Metal)";
+"inference.mode.gpu.desc" = "Maksimali sparta su Metal";
+"inference.mode.cpu" = "Tik CPU";
+"inference.mode.cpu.desc" = "Baterijos taupymo režimas";
+"inference.mode.hybrid" = "Hibridinis";
+"inference.mode.hybrid.desc" = "Spartos ir baterijos pusiausvyra";
+
+// MARK: - Theme
+"theme.system" = "Sistemos";
+"theme.light" = "Šviesus";
+"theme.dark" = "Tamsus";
+
+// MARK: - Onboarding
+"onboarding.welcome.title" = "Sveiki atvykę į ElioChat";
+"onboarding.welcome.subtitle" = "Jūsų privatus AI asistentas";
+"onboarding.features.title" = "Tikrai privatus AI";
+"onboarding.feature.offline" = "Veikia lėktuvo režimu";
+"onboarding.feature.offline.desc" = "Naudokite skrydžio ar metro metu";
+"onboarding.feature.privacy" = "Nulinis duomenų perdavimas";
+"onboarding.feature.privacy.desc" = "Pokalbiai neišeina iš telefono";
+"onboarding.feature.vault" = "Išmaniosios integracijos";
+"onboarding.feature.vault.desc" = "Prisijunkite prie kalendoriaus ir failų";
+"onboarding.feature.secure" = "Saugus darbui AI";
+"onboarding.feature.secure.desc" = "Saugus naudoti įmonėje";
+"onboarding.feature.thinking" = "Mąstymo procesas";
+"onboarding.privacy.title" = "Jūsų duomenys lieka jūsų";
+"onboarding.privacy.item1" = "Viskas apdorojama jūsų iPhone";
+"onboarding.privacy.item2" = "Duomenys nesiųsiami į debesį";
+"onboarding.privacy.item3" = "Niekada nenaudojama AI mokymui";
+"onboarding.getstarted.title" = "Paruošta vienu palietimu";
+"onboarding.getstarted.subtitle" = "Atsisiųskite rekomenduojamą AI modelį\nir pradėkite pokalbį iš karto";
+"onboarding.step1" = "Atsisiųsti rekomenduojamą modelį";
+"onboarding.step2" = "Palaukti kelias minutes";
+"onboarding.step3" = "Viskas paruošta!";
+
+// MARK: - About
+"about.title" = "Apie šią programą";
+"about.rate.app" = "Įvertinti programą";
+"about.share.app" = "Dalintis su draugais";
+"about.privacy.policy" = "Privatumo politika";
+"about.terms" = "Naudojimo sąlygos";
+"about.tech.info" = "Techninė informacija";
+"about.tech.engine" = "AI variklis";
+"about.tech.format" = "Palaikomas formatas";
+"about.tech.inference" = "Išvedimas";
+"about.data.management" = "Duomenų valdymas";
+"about.delete.all" = "Ištrinti visus pokalbius";
+"about.credits" = "Kreditai";
+"about.credits.description" = "Ši programa naudoja atvirojo kodo bibliotekas";
+"about.privacy.section" = "Privatumas";
+"about.gguf.format" = "GGUF formatas";
+"about.metal.gpu" = "Metal GPU pagreitinimas";
+
+// MARK: - Referral
+"referral.title" = "Rekomenduoti draugams";
+"referral.code.title" = "Jūsų rekomendacijos kodas";
+"referral.code.copy" = "Kopijuoti kodą";
+"referral.code.copied" = "Nukopijuota";
+"referral.share.button" = "Dalintis su draugais";
+"referral.share.description" = "Dalinkitės Elio su draugais!";
+"referral.count" = "Rekomendavote %d žmonių";
+"referral.enter.title" = "Įvesti rekomendacijos kodą";
+"referral.enter.placeholder" = "Rekomendacijos kodas";
+"referral.enter.button" = "Taikyti";
+"referral.enter.success" = "Rekomendacijos kodas pritaikytas";
+"referral.enter.error" = "Netinkamas rekomendacijos kodas";
+
+// MARK: - Privacy Policy
+"privacy.title" = "Privatumo politika";
+"privacy.data.collection.title" = "Duomenų rinkimas";
+"privacy.data.collection.content" = "Ši programa vykdo vietinį AI visiškai neprisijungus.\nJokie duomenys nesiųsiami į išorinius serverius.\nVisi pokalbiai saugomi tik jūsų įrenginyje.";
+"privacy.stored.data.title" = "Saugomi duomenys";
+"privacy.stored.data.content" = "Pokalbių istorija (saugoma tik įrenginyje)\nAI modelio failai (saugomi tik įrenginyje)\nProgramos nustatymai (saugomi tik įrenginyje)\n\nŠie duomenys niekada nesidalijami išoriškai.";
+"privacy.data.deletion.title" = "Duomenų trynimas";
+"privacy.data.deletion.content" = "Galite ištrinti visus duomenis bet kada iš Nustatymų > Duomenų valdymas.\nPašalinus programą bus ištrinti visi duomenys.";
+
+// MARK: - Terms of Service
+"terms.title" = "Naudojimo sąlygos";
+"terms.service.title" = "Paslaugos aprašymas";
+"terms.service.content" = "Ši programa teikia AI asistento funkcionalumą naudodama vietinį AI modelį.";
+"terms.disclaimer.title" = "Atsakomybės apribojimas";
+"terms.disclaimer.content" = "AI atsakymai gali būti netikslūs.\nSvarbūs sprendimai visada turėtų būti patikrinti specialisto.\nMes neatsakome už žalą, atsiradusią dėl šios programos naudojimo.";
+"terms.prohibited.title" = "Draudžiama veikla";
+"terms.prohibited.content" = "Neteisėta veikla\nVeikla, pažeidžianti kitų teises\nŠios programos inžinerija atgal\nNeleistinas šios programos kopijavimas";
+"terms.ip.title" = "Intelektinė nuosavybė";
+"terms.ip.content" = "Šios programos intelektinės nuosavybės teisės priklauso kūrėjui.\nNeleistinas naudojimas draudžiamas.";
+
+// MARK: - Conversations
+"conversations.title" = "Pokalbiai";
+"conversations.new" = "Naujas pokalbis";
+"conversations.empty" = "Pokalbių dar nėra";
+"conversations.delete" = "Ištrinti pokalbį";
+"conversations.default.title" = "Naujas pokalbis";
+"conversations.today" = "Šiandien";
+"conversations.yesterday" = "Vakar";
+"conversations.past7days" = "Per 7 dienas";
+"conversations.past30days" = "Per 30 dienų";
+"conversations.older" = "Seniau";
+"conversations.created" = "Sukurta: %@";
+"conversations.user" = "Vartotojas";
+"conversations.assistant" = "Asistentas";
+"conversations.search.placeholder" = "Ieškoti pokalbių";
+"conversations.search.no_results" = "Rezultatų nerasta";
+
+// MARK: - Message Actions
+"message.copy" = "Kopijuoti";
+"message.speak" = "Ištarti";
+"message.stop.speaking" = "Sustabdyti kalbėjimą";
+"message.share" = "Dalintis";
+"message.share.card" = "Dalintis kaip kortelę";
+"message.like" = "Patinka";
+
+// MARK: - Share Card
+"share.card.title" = "Dalintis kortele";
+"share.card.preview" = "Peržiūra";
+"share.card.button" = "Dalintis vaizdu";
+"message.dislike" = "Nepatinka";
+"message.thinking.process" = "Mąstymo procesas";
+"message.tool.running" = "Įrankis vykdomas";
+"message.tool.error" = "Klaida";
+"message.tool.completed" = "Atlikta";
+
+// MARK: - Attachment
+"attachment.title" = "Priedas";
+"attachment.photo.library" = "Pasirinkti nuotrauką";
+"attachment.camera" = "Fotografuoti";
+"attachment.pdf" = "Pasirinkti PDF";
+"attachment.pdf.chars" = "%d simbolių";
+"attachment.pdf.pages" = "%d puslapių";
+"attachment.pdf.vision.enabled" = "Vaizdo analizė įjungta";
+"attachment.pdf.text.only" = "Tik teksto režimas";
+"attachment.url" = "Skaityti interneto puslapį";
+"attachment.url.title" = "Įvesti URL";
+"attachment.url.placeholder" = "https://example.com";
+"attachment.url.message" = "Įklijuokite URL norėdami išgauti jo turinį";
+"attachment.url.fetch" = "Gauti";
+"attachment.url.loading" = "Įkeliamas puslapis...";
+
+// MARK: - Errors
+"error.model.not.found" = "Modelio failas nerastas";
+"error.model.not.loaded" = "Modelis neįkeltas";
+"error.context.failed" = "Nepavyko sukurti konteksto";
+"error.tokenization.failed" = "Tokenizacija nepavyko";
+"error.generation.failed" = "Generavimo klaida: %@";
+"error.occurred" = "Įvyko klaida: %@";
+"error.invalid.url" = "Netinkamas URL";
+"error.download.failed" = "Atsiuntimas nepavyko";
+"error.extraction.failed" = "Išgavimas nepavyko";
+"error.config.not.found" = "Konfigūracijos failas nerastas";
+
+// MARK: - Ghost Search
+"ghost.search.title" = "Anonimiškas paieška";
+"ghost.search.description" = "Anoniminė paieška per DuckDuckGo (be stebėjimo)";
+"ghost.search.connecting" = "Jungiamasi prie anoniminės tinklo...";
+"ghost.search.privacy.note" = "Jūsų paieškos istorija niekada nestebima";
+
+// MARK: - MCP Servers
+"mcp.filesystem" = "Failų sistema";
+"mcp.filesystem.desc" = "Skaityti ir rašyti failus programoje";
+"mcp.calendar" = "Kalendorius";
+"mcp.calendar.desc" = "Skaityti ir rašyti įvykius";
+"mcp.reminders" = "Priminimai";
+"mcp.reminders.desc" = "Valdyti priminimus";
+"mcp.contacts" = "Kontaktai";
+"mcp.contacts.desc" = "Ieškoti ir peržiūrėti kontaktus";
+"mcp.photos" = "Nuotraukos";
+"mcp.photos.desc" = "Pasiekti nuotraukų biblioteką";
+"mcp.location" = "Vieta";
+"mcp.location.desc" = "Gauti dabartinę vietą ir ieškoti vietų";
+"mcp.health" = "Sveikata";
+"mcp.health.desc" = "Pasiekti sveikatos duomenis";
+"mcp.shortcuts" = "Spartieji klavišai";
+"mcp.shortcuts.desc" = "Vykdyti sparčiuosius klavišus";
+"mcp.websearch" = "Žiniatinklio paieška";
+"mcp.websearch.desc" = "Anoniminė žiniatinklio paieška";
+"mcp.custom" = "Pasirinktinė integracija";
+"mcp.custom.add" = "Pridėti integraciją";
+"mcp.custom.setup" = "Nustatyti išorinės paslaugos integraciją";
+"mcp.custom.title" = "Pasirinktinės integracijos";
+"mcp.settings.title" = "Integracijos nustatymai";
+"mcp.server.name" = "Serverio pavadinimas";
+"mcp.server.name.placeholder" = "pvz., Mano pasirinktinis serveris";
+"mcp.config.url" = "Konfigūracijos failo URL";
+"mcp.import.file" = "Importuoti iš failo";
+"mcp.config.example" = "Konfigūracijos failo pavyzdys";
+"mcp.permission.note" = "Leidimai bus prašomi pirmą kartą naudojant kiekvieną funkciją";
+
+// MARK: - MCP Tool Messages
+"mcp.tool.available" = "Galimi įrankiai:";
+"mcp.tool.parameters" = "Parametrai:";
+"mcp.prompt.available" = "Galimos raginimas:";
+"mcp.prompt.arguments" = "Argumentai:";
+"mcp.tool.name" = "įrankio_pavadinimas";
+"mcp.tool.arg.name" = "arg_pavadinimas";
+"mcp.tool.arg.value" = "reikšmė";
+"mcp.tool.no.result" = "Rezultatų nėra";
+"mcp.tool.running" = "Vykdomas įrankis: %@";
+"mcp.tool.error" = "Įrankio vykdymo klaida: %@";
+
+// MARK: - MCP Error Messages
+"mcp.error.server.not.found" = "Serveris nerastas: %@";
+"mcp.error.tool.not.found" = "Įrankis nerastas: %@";
+"mcp.error.invalid.args" = "Netinkami argumentai: %@";
+"mcp.error.execution" = "Vykdymo klaida: %@";
+"mcp.error.permission" = "Leidimas atmestas: %@";
+
+// MARK: - Calendar Messages
+"calendar.no.events" = "Įvykių nėra";
+"calendar.event.created" = "Įvykis sukurtas: %@";
+"calendar.event.deleted" = "Įvykis ištrintas: %@";
+"calendar.allday.created" = "Visos dienos įvykis sukurtas: %@";
+"calendar.access.denied" = "Prieiga prie kalendoriaus atmesta";
+"calendar.today.none" = "Šiandien įvykių nėra";
+"calendar.untitled" = "Be pavadinimo";
+
+// MARK: - Reminders Messages
+"reminders.none" = "Priminimų nėra";
+"reminders.created" = "Priminimas sukurtas: %@";
+"reminders.completed" = "Priminimas atliktas: %@";
+"reminders.deleted" = "Priminimas ištrintas: %@";
+"reminders.access.denied" = "Prieiga prie priminimų atmesta";
+"reminders.untitled" = "Be pavadinimo";
+
+// MARK: - Photos Messages
+"photos.access.denied" = "Prieiga prie nuotraukų atmesta";
+"photos.not.found" = "Nuotrauka nerasta";
+"photos.untitled" = "Be pavadinimo";
+"photos.count" = "Nuotraukų: %d";
+"photos.videos.count" = "Vaizdo įrašų: %d";
+"photos.albums.count" = "Albumų: %d";
+"photos.favorites.count" = "Mėgstamų: %d";
+"photos.date" = "Data: %@";
+"photos.size" = "Dydis: %d x %d";
+"photos.location" = "Vieta: %@, %@";
+"photos.media.type" = "Medijos tipas: %@";
+"photos.duration" = "Trukmė: %dm %ds";
+"photos.favorite" = "Mėgstamas: %@";
+"photos.type.image" = "Nuotrauka";
+"photos.type.video" = "Vaizdo įrašas";
+"photos.type.audio" = "Garsas";
+
+// MARK: - Contacts Messages
+"contacts.access.denied" = "Prieiga prie kontaktų atmesta";
+"contacts.not.found" = "Atitinkamų kontaktų nerasta";
+"contacts.no.groups" = "Grupių nėra";
+"contacts.no.card" = "Kontakto kortelė nenustatyta";
+"contacts.name" = "Vardas: %@";
+"contacts.company" = "Įmonė: %@";
+"contacts.job" = "Pareigos: %@";
+
+// MARK: - Location Messages
+"location.access.denied" = "Prieiga prie vietos atmesta";
+"location.not.found" = "Adresas nerastas";
+"location.latitude" = "Platuma: %@";
+"location.longitude" = "Ilguma: %@";
+"location.accuracy" = "Tikslumas: %dm";
+"location.altitude" = "Aukštis: %dm";
+"location.search" = "Paieška: %@";
+"location.address" = "Adresas: %@";
+"location.country" = "Šalis: %@";
+"location.postal" = "Pašto kodas: %@";
+"location.from" = "Nuo: (%@, %@)";
+"location.to" = "Iki: (%@, %@)";
+"location.distance.km" = "Atstumas: %.2f km";
+"location.distance.m" = "Atstumas: %d m";
+
+// MARK: - Health Messages
+"health.not.available" = "Sveikata nepasiekiama šiame įrenginyje";
+"health.date" = "Data: %@";
+"health.steps" = "Žingsnių: %@";
+"health.goal.progress" = "Tikslo pažanga: %d%% (10 000 žingsnių tikslas)";
+"health.no.data" = "Duomenų nėra";
+"health.avg.bpm" = "Vidurkis: %d bpm";
+"health.min.bpm" = "Minimumas: %d bpm";
+"health.max.bpm" = "Maksimumas: %d bpm";
+"health.measurements" = "Matavimai: %d";
+"health.no.sleep" = "Miego duomenų nėra";
+"health.sleep.total" = "Bendras miegas: %dh %dm";
+"health.bedtime" = "Miego laikas: %@";
+"health.waketime" = "Pabundimo laikas: %@";
+"health.calories" = "Kalorijos: %d kcal";
+
+// MARK: - File System Messages
+"filesystem.not.found" = "Failas nerastas: %@";
+"filesystem.written" = "Failas įrašytas: %@";
+"filesystem.dir.created" = "Katalogas sukurtas: %@";
+"filesystem.deleted" = "Ištrinta: %@";
+"filesystem.size" = "Dydis: %@";
+"filesystem.created" = "Sukurta: %@";
+"filesystem.modified" = "Modifikuota: %@";
+"filesystem.type" = "Tipas: %@";
+
+// MARK: - Shortcuts Messages
+"shortcuts.executed" = "Spartysis klavišas '%@' vykdytas";
+"shortcuts.opened" = "Sparčiųjų klavišų programa atidaryta";
+"shortcuts.settings.opened" = "Nustatymai (%@) atidaryti";
+"shortcuts.mail.opened" = "Laiško rašymas atidarytas";
+"shortcuts.calling" = "Skambinama: %@";
+"shortcuts.message.opened" = "Pranešimo rašymas atidarytas";
+"shortcuts.failed" = "Nepavyko atidaryti sparčiojo klavišo";
+
+// MARK: - Model Tiers
+"model.tier.entry" = "Įvestis";
+"model.tier.standard" = "Standartinis";
+"model.tier.pro" = "Pro";
+
+// MARK: - Tool Parser
+"tool.arguments" = "Argumentai:";
+
+// MARK: - Model Settings
+"model.action.settings" = "Nustatymai";
+"settings.model.parameters" = "Modelio nustatymai";
+"settings.model.parameters.description" = "Tinkinti generavimo parametrus šiam modeliui";
+"settings.preset.title" = "Išankstiniai nustatymai";
+"settings.preset.custom" = "Pasirinktiniai";
+"settings.preset.balanced" = "Subalansuoti";
+"settings.preset.creative" = "Kūrybingi";
+"settings.preset.precise" = "Tikslūs";
+"settings.preset.coding" = "Programavimas";
+"settings.preset.japanese" = "Japonų";
+"settings.parameters.title" = "Parametrai";
+"settings.parameter.temperature" = "Temperatūra";
+"settings.parameter.temperature.description" = "Aukštesnė = kūrybiškesnė, žemesnė = labiau sutelkta";
+"settings.parameter.top.p" = "Top P";
+"settings.parameter.top.p.description" = "Branduolio atrankos tikimybė";
+"settings.parameter.top.k" = "Top K";
+"settings.parameter.top.k.description" = "Skaičius viršutinių tokenų svarstyti";
+"settings.parameter.max.tokens" = "Maks. tokenų";
+"settings.parameter.max.tokens.description" = "Maksimalus atsakymo ilgis";
+"settings.parameter.repeat.penalty" = "Kartojimo bauda";
+"settings.parameter.repeat.penalty.description" = "Aukštesnė = mažiau pasikartojančios išvesties";
+"settings.parameter.thinking" = "Mąstymo režimas";
+"settings.parameter.thinking.description" = "Rodyti AI argumentavimo procesą";
+"settings.system.prompt.title" = "Sistemos raginimas";
+"settings.system.prompt.description" = "Pasirinktinės instrukcijos AI";
+"settings.reset.to.default" = "Atkurti numatytąsias";
+
+// MARK: - Vision Model
+"vision.model.required.title" = "Reikalingas vaizdo modelis";
+"vision.model.required.header" = "Reikalingas vaizdų atpažinimas";
+"vision.model.required.description" = "Norint analizuoti vaizdus, reikia vaizdo galimybių AI modelio";
+"vision.model.switch" = "Perjungti modelį";
+"vision.model.switch.message %@" = "Perjungti į %@ norint įjungti vaizdų analizę?";
+"vision.model.download" = "Atsisiųsti";
+"vision.model.download.message %@ %@" = "Atsisiųsti %@ (%@) vaizdų analizei?";
+"vision.model.not.available" = "Nėra suderinamų vaizdo modelių jūsų įrenginiui";
+"vision.model.switching" = "Perjungiamas modelis...";
+"vision.model.download.title" = "Vaizdo modeliai";
+"vision.model.recommended" = "Rekomenduojama jūsų įrenginiui";
+"vision.model.recommended.size %@" = "Rekomenduojama: %@";
+"vision.model.use.this" = "Naudoti šį modelį";
+"vision.model.download.button %@" = "Atsisiųsti (%@)";
+"vision.model.other.options" = "Kiti vaizdo modeliai";
+"vision.model.download.complete" = "Atsiuntimas baigtas";
+"vision.model.download.complete.message" = "Paruošta analizuoti vaizdus";
+
+// MARK: - Whisper Voice Input (Legacy)
+"whisper.download.title" = "Reikalingas balso atpažinimas";
+"whisper.download.action" = "Atsisiųsti";
+"whisper.download.message" = "Norint naudoti balso įvestį, reikia atsisiųsti kalbos atpažinimo modelį (~150MB).";
+"whisper.downloading" = "Atsiunčiamas kalbos atpažinimo modelis...";
+"whisper.download.error" = "Atsiuntimo klaida";
+"whisper.load.error" = "Modelio įkėlimo klaida";
+"whisper.permission.denied" = "Mikrofono prieiga neleista";
+"whisper.transcribe.error" = "Transkripcijos klaida";
+"whisper.error.permission" = "Reikalingas mikrofono leidimas";
+"whisper.error.not.recording" = "Šiuo metu neįrašoma";
+"whisper.error.no.recording" = "Įrašo duomenų nėra";
+"whisper.error.model.not.loaded" = "Kalbos atpažinimo modelis neįkeltas";
+"whisper.error.transcription" = "Transkripcija nepavyko";
+
+// MARK: - Speech Recognition (ReazonSpeech)
+"speech.download.title" = "Reikalingas balso atpažinimas";
+"speech.download.action" = "Atsisiųsti";
+"speech.download.message" = "Norint naudoti balso įvestį, reikia atsisiųsti japonų kalbos atpažinimo modelį (~155MB).";
+"speech.downloading" = "Atsiunčiamas kalbos atpažinimo modelis...";
+
+// MARK: - Language Settings
+"settings.language.section" = "Kalba";
+"language.system" = "Naudoti sistemos kalbą";
+"settings.language.restart.hint" = "Kalbos pakeitimai įsigalios paleidus programą iš naujo";
+"settings.language.changed.title" = "Kalba pakeista";
+"settings.language.changed.message" = "Paleiskite programą iš naujo, kad pakeitimai įsigaliotų";
+"common.ok" = "Gerai";
+
+// MARK: - System Prompt Settings
+"settings.prompt.section" = "Sistemos raginimas";
+"settings.prompt.edit" = "Redaguoti raginimą";
+"settings.prompt.default" = "Naudojamas numatytasis";
+"settings.prompt.custom" = "Pasirinktinis raginimas nustatytas";
+"settings.prompt.hint" = "Tinkinti AI elgesį";
+"settings.prompt.editor.title" = "Redaguoti raginimą";
+"settings.prompt.editor.instruction" = "Pridėkite pasirinktines instrukcijas AI. Palikite tuščią, kad naudotumėte numatytąjį raginimą.";
+"settings.prompt.default.preview" = "Numatytasis raginimas (ištrauka):";
+"settings.prompt.reset" = "Atkurti";
+"settings.prompt.reset.title" = "Atkurti raginimą";
+"settings.prompt.reset.message" = "Ištrinti pasirinktinį raginimą ir atkurti numatytąjį?";
+
+// MARK: - Prompt Templates
+"templates.title" = "Raginimų šablonai";
+"templates.empty" = "Šablonų dar nėra";
+"templates.add" = "Pridėti šabloną";
+"template.add.title" = "Pridėti šabloną";
+"template.edit.title" = "Redaguoti šabloną";
+"template.name.header" = "Pavadinimas";
+"template.name.placeholder" = "Šablono pavadinimas";
+"template.content.header" = "Raginimo turinys";
+"template.icon.header" = "Piktograma";
+"template.translate.name" = "Versti";
+"template.translate.content" = "Prašome išversti:";
+"template.summarize.name" = "Apibendrinti";
+"template.summarize.content" = "Prašome apibendrinti:";
+"template.explain.name" = "Paaiškinti";
+"template.explain.content" = "Prašome paaiškinti:";
+"template.code.name" = "Kodas";
+"template.code.content" = "Prašome parašyti kodą:";
+
+// MARK: - Export
+"export.title" = "Eksportuoti pokalbį";
+"export.format.markdown" = "Markdown";
+"export.format.pdf" = "PDF";
+"export.format.text" = "Paprastas tekstas";
+"export.created" = "Sukurta";
+"export.image.attached" = "Vaizdas pridėtas";
+"export.generated.by" = "Sugeneruota";
+
+// MARK: - Loading Phases
+"loading.phase.initializing" = "Inicijuojama...";
+"loading.phase.loading" = "Įkeliamas modelis...";
+"loading.phase.preparing" = "Ruošiamas išvedimo variklis...";
+"loading.phase.almost" = "Beveik paruošta...";
+
+// MARK: - Welcome Screen
+"welcome.greeting" = "Klauskite bet ko";
+"welcome.subtitle" = "Jūsų privatumą pirmaujantis AI asistentas";
+"suggestion.idea" = "Padėkite sugalvoti idėjų";
+"suggestion.write" = "Padėkite ką nors parašyti";
+"suggestion.question" = "Atsakykite į klausimus";
+
+// MARK: - Kokoro TTS
+"tts.download.title" = "Aukštos kokybės balsas";
+"tts.download.action" = "Atsisiųsti";
+"tts.download.use_system" = "Naudoti sistemos balsą";
+"tts.download.message" = "Atsisiųskite Kokoro TTS modelį (~87MB) natūralesniam japonų kalbos sintezei.";
+"tts.downloading" = "Atsiunčiamas TTS modelis...";
+
+// MARK: - Feedback
+"feedback.consent.title" = "Siųsti atsiliepimą";
+"feedback.send" = "Siųsti";
+"feedback.positive.title" = "Ar šis atsakymas buvo naudingas?";
+"feedback.negative.title" = "Ar tai galėtų būti patobulinta?";
+"feedback.explanation" = "Jūsų atsiliepimai padeda gerinti AI kokybę. Prašome peržiūrėti, kokie duomenys bus išsiųsti prieš pateikiant.";
+"feedback.data.section" = "Duomenys, kurie bus išsiųsti";
+"feedback.data.conversation" = "Pokalbis";
+"feedback.data.conversation.desc" = "AI atsakymas ir jūsų ankstesnis pranešimas";
+"feedback.data.model" = "Modelio informacija";
+"feedback.data.model.desc" = "Naudoto AI modelio pavadinimas";
+"feedback.data.timestamp" = "Laiko žyma";
+"feedback.data.timestamp.desc" = "Kada atsiliepimas buvo pateiktas";
+"feedback.privacy.section" = "Privatumas";
+"feedback.privacy.anonymous" = "Jokia asmeniškai identifikuojama informacija nesiųsiama";
+"feedback.privacy.improvement" = "Naudojama tik AI kokybės gerinimui";
+"feedback.privacy.optional" = "Atsiliepimų siuntimas visiškai pasirenkamas";
+"feedback.comment.section" = "Komentaras (neprivalomas)";
+"feedback.comment.placeholder" = "Pasakykite, ką galėtų būti patobulinta arba kas veikė gerai...";
+"feedback.remember.title" = "Įsiminti šį pasirinkimą";
+"feedback.remember.description" = "Pateikti atsiliepimą be klausimo kitą kartą";
+
+// MARK: - Emergency Mode
+"emergency.sos.button" = "Avarinė padėtis (ilgai paspauskite perjungimui)";
+"emergency.mode.active" = "Avarinis režimas aktyvus";
+"emergency.action.firstaid" = "Pirmoji pagalba";
+"emergency.action.firstaid.message" = "Prašome pateikti pirmosios pagalbos instrukcijas. Apibūdinsiu sužalojimą ar simptomus:";
+"emergency.action.disaster" = "Nelaimė";
+"emergency.action.disaster.message" = "Įvyko nelaimė. Prašome pateikti atsako procedūras:";
+"emergency.action.factcheck" = "Faktų tikrinimas";
+"emergency.action.factcheck.message" = "Prašome patikrinti šios informacijos patikimumą:";
+"emergency.action.contacts" = "Skubaus";
+"emergency.action.contacts.message" = "Prašome parodyti skubių kontaktų sąrašą";
+"emergency.action.evacuation" = "Evakuoti";
+"emergency.action.evacuation.message" = "Prašome sukurti evakuacijos kontrolinį sąrašą dabartinei situacijai:";
+"mcp.emergency_kb" = "Avarinė žinių bazė";
+"mcp.emergency_kb.desc" = "Avarinė ir nelaimės informacija";
+
+// MARK: - Emergency Templates
+"template.firstaid.name" = "Pirmosios pagalbos vadovas";
+"template.firstaid.content" = "Prašome pateikti pirmosios pagalbos instrukcijas:";
+"template.disaster.name" = "Nelaimės atsakas";
+"template.disaster.content" = "Įvyko ši nelaimė. Prašome pateikti atsako procedūras:";
+"template.factcheck.name" = "Faktų tikrinimas";
+"template.factcheck.content" = "Prašome patikrinti šios informacijos patikimumą ir pateikti faktų tikrinimo patarimus:";
+"template.evacuation.name" = "Evakuacijos kontrolinis sąrašas";
+"template.evacuation.content" = "Prašome sukurti evakuacijos kontrolinį sąrašą dabartinei situacijai:";
+
+// MARK: - ChatWeb.ai Integration
+"chatweb.title" = "ChatWeb.ai";
+"chatweb.desc" = "Debesų AI pokalbis";
+"chatweb.connect" = "Prisijungti prie ChatWeb.ai";
+"chatweb.qr.title" = "Prisijungti per QR kodą";
+"chatweb.qr.scan" = "Skenuoti QR kodą";
+"chatweb.open" = "Atidaryti ChatWeb.ai";
+
+// MARK: - Peer Connection
+"peer.title" = "Netoliese esantys įrenginiai";
+"peer.desc" = "Prisijungti prie netoliese esančių Elio įrenginių";
+"peer.connect" = "Prisijungti prie įrenginio";
+"peer.code.title" = "Prisijungimo kodas";
+"peer.code.enter" = "Įveskite 4 skaitmenų kodą";
+"peer.code.your" = "Jūsų kodas";
+"peer.connected" = "Prisijungta";
+"peer.disconnected" = "Atjungta";
+"peer.inference.offload" = "Išvedimas dalijamas";
+
+// MARK: - Web Search
+"chat.web.search" = "Žiniatinklio paieška";
+"search.privacy.title" = "Privatumo saugoma paieška";
+"search.privacy.proceed" = "Ieškoti";
+"search.privacy.message" = "ElioChat žiniatinklio paieška apsaugo jūsų privatumą:\n\n🔒 Paieška per DuckDuckGo\n🚫 Be stebėjimo ar profiliavimo\n🔐 Paieškos istorija nesaugoma\n📱 Duomenys nesaugomi už jūsų įrenginio ribų\n\nTik jūsų paieškos užklausa siunčiama DuckDuckGo, o rezultatai apdorojami jūsų įrenginyje.";
+"chat.web.analyzing" = "[Analizuojamas interneto puslapis]";

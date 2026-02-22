@@ -1,0 +1,635 @@
+/*
+  Localizable.strings (Bosnian)
+  Elio
+*/
+
+// MARK: - App General
+"app.name" = "Elio";
+"app.tagline" = "Vaš drugi mozak koji čuva tajne.";
+
+// MARK: - Common Actions
+"common.done" = "Gotovo";
+"common.cancel" = "Otkaži";
+"common.delete" = "Obriši";
+"common.save" = "Sačuvaj";
+"common.edit" = "Uredi";
+"common.share" = "Podijeli";
+"common.copy" = "Kopiraj";
+"common.copied" = "Kopirano";
+"common.loading" = "Učitavanje...";
+"common.error" = "Greška";
+"common.retry" = "Pokušaj ponovo";
+"common.skip" = "Preskoči";
+"common.next" = "Sljedeće";
+"common.start" = "Počni";
+"common.add" = "Dodaj";
+"common.close" = "Zatvori";
+"common.details" = "Detalji";
+"common.yes" = "Da";
+"common.no" = "Ne";
+"common.unknown" = "Nepoznato";
+
+// MARK: - Chat
+"chat.placeholder" = "Pitaj me bilo što";
+"chat.model.not.loaded" = "Model nije učitan";
+"chat.model.not.loaded.description" = "Molimo preuzmite model iz Postavki";
+"chat.go.to.settings" = "Idi na Postavke";
+"chat.new.conversation" = "Novi razgovor";
+"chat.stop.generation" = "Zaustavi";
+"chat.generation.stopped" = "\n\n[Generisanje zaustavljeno]";
+"chat.image.sent" = "[Slika poslata]";
+"chat.images.sent" = "[%d slika poslato]";
+"chat.pdf.sent" = "[PDF priložen: %@]";
+"chat.pdf.sent.vision" = "[PDF sa slikom: %@]";
+"chat.pdf.context" = "Slijedi tekstualni sadržaj izvučen iz PDF dokumenta \"%@\":\n\n%@";
+"chat.pdf.context.vision" = "Ovo je stranica 1 PDF dokumenta \"%@\". Izvučeni tekstualni sadržaj je:\n\n%@\n\nMolimo analiziraj i vizuelni sadržaj i tekst.";
+"chat.pdf.analyze" = "Molimo analiziraj ovu PDF stranicu iz \"%@\".";
+"chat.url.sent" = "[Web stranica: %@]";
+"chat.url.context" = "Slijedi sadržaj izvučen sa web stranice \"%@\" (%@):\n\n%@";
+"chat.thinking" = "Razmišljam...";
+"chat.generating" = "Generišem odgovor...";
+"chat.welcome" = "Kako mogu pomoći?";
+"chat.suggestion.schedule" = "Prikaži današnji raspored";
+"chat.suggestion.reminder" = "Napravi podsjetnik";
+"chat.suggestion.weather" = "Kakvo je vrijeme danas?";
+"chat.suggestion.help" = "Kako koristiti ovu aplikaciju";
+"chat.websearch.on" = "Web pretraga uključena";
+"chat.websearch.off" = "Web pretraga isključena";
+"chat.thinking.on" = "Razmišljanje uključeno";
+"chat.thinking.off" = "Razmišljanje isključeno";
+"chat.transcribing" = "Transkripcija...";
+"chat.offline" = "Van mreže";
+
+// Voice Conversation Mode
+"voice.listening" = "Slušam...";
+"voice.processing" = "Obrađujem...";
+"voice.thinking" = "Razmišljam...";
+"voice.speaking" = "Govorim...";
+"voice.tap.to.send" = "Dodirni za slanje";
+"chat.templates" = "Predlošci";
+"chat.websearch.privacy.title" = "O web pretrazi";
+"chat.websearch.privacy.message" = "Omogućavanje web pretrage omogućava AI-ju da pretražuje internet putem DuckDuckGo-a za aktuelne informacije. Upiti za pretragu se šalju DuckDuckGo-u ali se ne prate.";
+"chat.websearch.privacy.enable" = "Omogući";
+"chat.websearch.privacy.disable" = "Ostavi isključeno";
+
+// MARK: - Settings
+"settings.title" = "Postavke";
+"settings.model.section" = "AI modeli";
+"settings.model.recommended" = "Preporučeno: %@";
+"settings.model.local.execution" = "Modeli rade lokalno na vašem uređaju";
+"settings.model.show.more" = "Ostali modeli (%d)";
+"settings.model.show.less" = "Prikaži manje";
+"settings.appearance.section" = "Izgled";
+"settings.tools.section" = "Pametne funkcije";
+"settings.mcp.servers" = "Integracije";
+"settings.mcp.servers.description" = "Kalendar, datoteke, podsjetnici i drugo";
+"settings.mcp.enabled.count" = "%d omogućeno";
+"settings.mcp.enabled.count.suffix" = " omogućeno";
+"settings.about.section" = "O aplikaciji";
+"settings.version" = "Verzija";
+"settings.about.app" = "O ovoj aplikaciji";
+"settings.about.mcp" = "O integracijama";
+"settings.privacy.badge" = "Radi van mreže";
+"settings.privacy.description" = "Radi u avionskom režimu";
+"settings.airplane.mode" = "Pokreće se u avionskom režimu";
+"settings.offline.ready" = "Spremno za rad van mreže";
+
+// MARK: - Model States
+"model.status.downloading" = "Preuzimanje... %d%%";
+"model.status.loading" = "Učitavanje...";
+"model.status.in.use" = "U upotrebi";
+"model.status.recommended" = "Preporučeno";
+"model.status.heavy" = "Teško";
+"model.action.download" = "Preuzmi";
+"model.action.load" = "Učitaj";
+"model.action.delete" = "Obriši";
+"model.action.use" = "Koristi ovaj model";
+"model.delete.confirm.title" = "Obriši model";
+"model.delete.confirm.message" = "Obrisati %@? Moraćete ga ponovo preuzeti da biste ga koristili.";
+"model.select.title" = "Odaberi model";
+"model.select.prompt" = "Molimo odaberite model";
+"model.downloaded" = "Preuzeto";
+
+// MARK: - Inference Mode
+"inference.mode.title" = "Ubrzanje";
+"inference.mode.auto" = "Automatski";
+"inference.mode.auto.desc" = "Optimalne performanse automatski";
+"inference.mode.gpu" = "GPU (Metal)";
+"inference.mode.gpu.desc" = "Maksimalna brzina s Metalom";
+"inference.mode.cpu" = "Samo CPU";
+"inference.mode.cpu.desc" = "Režim štednje baterije";
+"inference.mode.hybrid" = "Hibridni";
+"inference.mode.hybrid.desc" = "Balans brzine i baterije";
+
+// MARK: - Theme
+"theme.system" = "Sistemska";
+"theme.light" = "Svijetla";
+"theme.dark" = "Tamna";
+
+// MARK: - Onboarding
+"onboarding.welcome.title" = "Dobrodošli u ElioChat";
+"onboarding.welcome.subtitle" = "Vaš privatni AI asistent";
+"onboarding.features.title" = "Zaista privatan AI";
+"onboarding.feature.offline" = "Radi u avionskom režimu";
+"onboarding.feature.offline.desc" = "Koristite ga na letovima ili pod zemljom";
+"onboarding.feature.privacy" = "Nula prijenosa podataka";
+"onboarding.feature.privacy.desc" = "Vaši razgovori nikada ne napuštaju vaš telefon";
+"onboarding.feature.vault" = "Pametne integracije";
+"onboarding.feature.vault.desc" = "Povežite se s kalendarom i datotekama";
+"onboarding.feature.secure" = "AI siguran za posao";
+"onboarding.feature.secure.desc" = "Siguran za korporativnu upotrebu";
+"onboarding.feature.thinking" = "Proces razmišljanja";
+"onboarding.privacy.title" = "Vaši podaci ostaju vaši";
+"onboarding.privacy.item1" = "Sva obrada se dešava na vašem iPhone-u";
+"onboarding.privacy.item2" = "Nema slanja podataka na cloud servere";
+"onboarding.privacy.item3" = "Nikada se ne koristi za AI obuku";
+"onboarding.getstarted.title" = "Spremno jednim dodirom";
+"onboarding.getstarted.subtitle" = "Preuzmite preporučeni AI model\ni počnite čavrljati odmah";
+"onboarding.step1" = "Preuzmite preporučeni model";
+"onboarding.step2" = "Pričekajte nekoliko minuta";
+"onboarding.step3" = "Sve je spremno!";
+
+// MARK: - About
+"about.title" = "O ovoj aplikaciji";
+"about.rate.app" = "Ocijeni aplikaciju";
+"about.share.app" = "Podijeli s prijateljima";
+"about.privacy.policy" = "Politika privatnosti";
+"about.terms" = "Uvjeti korištenja";
+"about.tech.info" = "Tehničke informacije";
+"about.tech.engine" = "AI motor";
+"about.tech.format" = "Podržani format";
+"about.tech.inference" = "Zaključivanje";
+"about.data.management" = "Upravljanje podacima";
+"about.delete.all" = "Obriši sve razgovore";
+"about.credits" = "Zasluge";
+"about.credits.description" = "Ova aplikacija koristi biblioteke otvorenog koda";
+"about.privacy.section" = "Privatnost";
+"about.gguf.format" = "GGUF format";
+"about.metal.gpu" = "Metal GPU ubrzanje";
+
+// MARK: - Referral
+"referral.title" = "Preporuči prijatelje";
+"referral.code.title" = "Vaš kod za preporuku";
+"referral.code.copy" = "Kopiraj kod";
+"referral.code.copied" = "Kopirano";
+"referral.share.button" = "Podijeli s prijateljima";
+"referral.share.description" = "Podijeli Elio sa svojim prijateljima!";
+"referral.count" = "Preporučeno %d ljudi";
+"referral.enter.title" = "Unesi kod za preporuku";
+"referral.enter.placeholder" = "Kod za preporuku";
+"referral.enter.button" = "Primijeni";
+"referral.enter.success" = "Kod za preporuku primijenjen";
+"referral.enter.error" = "Nevažeći kod za preporuku";
+
+// MARK: - Privacy Policy
+"privacy.title" = "Politika privatnosti";
+"privacy.data.collection.title" = "Prikupljanje podataka";
+"privacy.data.collection.content" = "Ova aplikacija pokreće lokalni AI potpuno van mreže.\nNema slanja podataka na vanjske servere.\nSvi razgovori su sačuvani samo na vašem uređaju.";
+"privacy.stored.data.title" = "Sačuvani podaci";
+"privacy.stored.data.content" = "Historija razgovora (sačuvana samo na uređaju)\nAI datoteke modela (sačuvane samo na uređaju)\nPostavke aplikacije (sačuvane samo na uređaju)\n\nOvi podaci se nikada ne dijele izvana.";
+"privacy.data.deletion.title" = "Brisanje podataka";
+"privacy.data.deletion.content" = "Možete obrisati sve podatke u bilo kojem trenutku iz Postavke > Upravljanje podacima.\nDeinstaliranje aplikacije će obrisati sve podatke.";
+
+// MARK: - Terms of Service
+"terms.title" = "Uvjeti korištenja";
+"terms.service.title" = "Opis usluge";
+"terms.service.content" = "Ova aplikacija pruža funkcionalnost AI asistenta koristeći lokalno pokrenuti AI model.";
+"terms.disclaimer.title" = "Odricanje odgovornosti";
+"terms.disclaimer.content" = "AI odgovori mogu sadržavati greške.\nVažne odluke uvijek treba verificirati profesionalac.\nNismo odgovorni za bilo kakvu štetu nastalu upotrebom ove aplikacije.";
+"terms.prohibited.title" = "Zabranjene aktivnosti";
+"terms.prohibited.content" = "Nezakonite aktivnosti\nAktivnosti koje krše prava drugih\nObrnuti inženjering ove aplikacije\nNeovlašteno kopiranje ove aplikacije";
+"terms.ip.title" = "Intelektualna svojina";
+"terms.ip.content" = "Prava intelektualne svojine ove aplikacije pripadaju programeru.\nNeovlaštena upotreba je zabranjena.";
+
+// MARK: - Conversations
+"conversations.title" = "Razgovori";
+"conversations.new" = "Novi razgovor";
+"conversations.empty" = "Još nema razgovora";
+"conversations.delete" = "Obriši razgovor";
+"conversations.default.title" = "Novi razgovor";
+"conversations.today" = "Danas";
+"conversations.yesterday" = "Jučer";
+"conversations.past7days" = "Zadnjih 7 dana";
+"conversations.past30days" = "Zadnjih 30 dana";
+"conversations.older" = "Starije";
+"conversations.created" = "Kreirano: %@";
+"conversations.user" = "Korisnik";
+"conversations.assistant" = "Asistent";
+"conversations.search.placeholder" = "Pretraži razgovore";
+"conversations.search.no_results" = "Nema pronađenih rezultata";
+
+// MARK: - Message Actions
+"message.copy" = "Kopiraj";
+"message.speak" = "Izgovori";
+"message.stop.speaking" = "Zaustavi govor";
+"message.share" = "Podijeli";
+"message.share.card" = "Podijeli kao karticu";
+"message.like" = "Sviđa mi se";
+
+// MARK: - Share Card
+"share.card.title" = "Podijeli karticu";
+"share.card.preview" = "Pregled";
+"share.card.button" = "Podijeli sliku";
+"message.dislike" = "Ne sviđa mi se";
+"message.thinking.process" = "Proces razmišljanja";
+"message.tool.running" = "Pokretanje alata";
+"message.tool.error" = "Greška";
+"message.tool.completed" = "Završeno";
+
+// MARK: - Attachment
+"attachment.title" = "Prilog";
+"attachment.photo.library" = "Odaberi fotografiju";
+"attachment.camera" = "Fotografiraj";
+"attachment.pdf" = "Odaberi PDF";
+"attachment.pdf.chars" = "%d znakova";
+"attachment.pdf.pages" = "%d stranica";
+"attachment.pdf.vision.enabled" = "Analiza slike omogućena";
+"attachment.pdf.text.only" = "Samo tekst režim";
+"attachment.url" = "Pročitaj web stranicu";
+"attachment.url.title" = "Unesi URL";
+"attachment.url.placeholder" = "https://example.com";
+"attachment.url.message" = "Zalijepi URL da izvučeš njegov sadržaj";
+"attachment.url.fetch" = "Preuzmi";
+"attachment.url.loading" = "Učitavanje stranice...";
+
+// MARK: - Errors
+"error.model.not.found" = "Datoteka modela nije pronađena";
+"error.model.not.loaded" = "Model nije učitan";
+"error.context.failed" = "Kreiranje konteksta nije uspjelo";
+"error.tokenization.failed" = "Tokenizacija nije uspjela";
+"error.generation.failed" = "Greška pri generisanju: %@";
+"error.occurred" = "Došlo je do greške: %@";
+"error.invalid.url" = "Nevažeći URL";
+"error.download.failed" = "Preuzimanje nije uspjelo";
+"error.extraction.failed" = "Ekstrakcija nije uspjela";
+"error.config.not.found" = "Konfiguracijska datoteka nije pronađena";
+
+// MARK: - Ghost Search
+"ghost.search.title" = "Ghost pretraga";
+"ghost.search.description" = "Anonimna pretraga putem DuckDuckGo-a (bez praćenja)";
+"ghost.search.connecting" = "Povezivanje sa anonimnom mrežom...";
+"ghost.search.privacy.note" = "Vaša historija pretrage se nikada ne prati";
+
+// MARK: - MCP Servers
+"mcp.filesystem" = "Sistem datoteka";
+"mcp.filesystem.desc" = "Čitaj i piši datoteke u aplikaciji";
+"mcp.calendar" = "Kalendar";
+"mcp.calendar.desc" = "Čitaj i piši događaje";
+"mcp.reminders" = "Podsjetnici";
+"mcp.reminders.desc" = "Upravljaj podsjetnicima";
+"mcp.contacts" = "Kontakti";
+"mcp.contacts.desc" = "Pretraži i pregledaj kontakte";
+"mcp.photos" = "Fotografije";
+"mcp.photos.desc" = "Pristup biblioteci fotografija";
+"mcp.location" = "Lokacija";
+"mcp.location.desc" = "Dobij trenutnu lokaciju i pretraži mjesta";
+"mcp.health" = "Zdravlje";
+"mcp.health.desc" = "Pristup zdravstvenim podacima";
+"mcp.shortcuts" = "Prečice";
+"mcp.shortcuts.desc" = "Pokreni prečice";
+"mcp.websearch" = "Web pretraga";
+"mcp.websearch.desc" = "Anonimna web pretraga";
+"mcp.custom" = "Prilagođena integracija";
+"mcp.custom.add" = "Dodaj integraciju";
+"mcp.custom.setup" = "Postavi integraciju vanjske usluge";
+"mcp.custom.title" = "Prilagođene integracije";
+"mcp.settings.title" = "Postavke integracije";
+"mcp.server.name" = "Ime servera";
+"mcp.server.name.placeholder" = "npr., Moj prilagođeni server";
+"mcp.config.url" = "URL konfiguracijske datoteke";
+"mcp.import.file" = "Uvezi iz datoteke";
+"mcp.config.example" = "Primjer konfiguracijske datoteke";
+"mcp.permission.note" = "Dozvole će biti zatražene pri prvom korištenju svake funkcije";
+
+// MARK: - MCP Tool Messages
+"mcp.tool.available" = "Dostupni alati:";
+"mcp.tool.parameters" = "Parametri:";
+"mcp.prompt.available" = "Dostupni upiti:";
+"mcp.prompt.arguments" = "Argumenti:";
+"mcp.tool.name" = "ime_alata";
+"mcp.tool.arg.name" = "ime_argumenta";
+"mcp.tool.arg.value" = "vrijednost";
+"mcp.tool.no.result" = "Nema rezultata";
+"mcp.tool.running" = "Pokretanje alata: %@";
+"mcp.tool.error" = "Greška pri izvršavanju alata: %@";
+
+// MARK: - MCP Error Messages
+"mcp.error.server.not.found" = "Server nije pronađen: %@";
+"mcp.error.tool.not.found" = "Alat nije pronađen: %@";
+"mcp.error.invalid.args" = "Nevažeći argumenti: %@";
+"mcp.error.execution" = "Greška pri izvršavanju: %@";
+"mcp.error.permission" = "Dozvola odbijena: %@";
+
+// MARK: - Calendar Messages
+"calendar.no.events" = "Nema događaja";
+"calendar.event.created" = "Događaj kreiran: %@";
+"calendar.event.deleted" = "Događaj obrisan: %@";
+"calendar.allday.created" = "Cjelodnevni događaj kreiran: %@";
+"calendar.access.denied" = "Pristup kalendaru odbijen";
+"calendar.today.none" = "Nema događaja danas";
+"calendar.untitled" = "Bez naslova";
+
+// MARK: - Reminders Messages
+"reminders.none" = "Nema podsjetnika";
+"reminders.created" = "Podsjetnik kreiran: %@";
+"reminders.completed" = "Podsjetnik završen: %@";
+"reminders.deleted" = "Podsjetnik obrisan: %@";
+"reminders.access.denied" = "Pristup podsjetnicima odbijen";
+"reminders.untitled" = "Bez naslova";
+
+// MARK: - Photos Messages
+"photos.access.denied" = "Pristup fotografijama odbijen";
+"photos.not.found" = "Fotografija nije pronađena";
+"photos.untitled" = "Bez naslova";
+"photos.count" = "Fotografije: %d";
+"photos.videos.count" = "Video snimci: %d";
+"photos.albums.count" = "Albumi: %d";
+"photos.favorites.count" = "Omiljene: %d";
+"photos.date" = "Datum: %@";
+"photos.size" = "Veličina: %d x %d";
+"photos.location" = "Lokacija: %@, %@";
+"photos.media.type" = "Tip medija: %@";
+"photos.duration" = "Trajanje: %dm %ds";
+"photos.favorite" = "Omiljena: %@";
+"photos.type.image" = "Fotografija";
+"photos.type.video" = "Video";
+"photos.type.audio" = "Audio";
+
+// MARK: - Contacts Messages
+"contacts.access.denied" = "Pristup kontaktima odbijen";
+"contacts.not.found" = "Nema pronađenih kontakata";
+"contacts.no.groups" = "Nema grupa";
+"contacts.no.card" = "Nije postavljena kartica kontakta";
+"contacts.name" = "Ime: %@";
+"contacts.company" = "Kompanija: %@";
+"contacts.job" = "Radno mjesto: %@";
+
+// MARK: - Location Messages
+"location.access.denied" = "Pristup lokaciji odbijen";
+"location.not.found" = "Adresa nije pronađena";
+"location.latitude" = "Geografska širina: %@";
+"location.longitude" = "Geografska dužina: %@";
+"location.accuracy" = "Tačnost: %dm";
+"location.altitude" = "Nadmorska visina: %dm";
+"location.search" = "Pretraga: %@";
+"location.address" = "Adresa: %@";
+"location.country" = "Država: %@";
+"location.postal" = "Poštanski broj: %@";
+"location.from" = "Od: (%@, %@)";
+"location.to" = "Do: (%@, %@)";
+"location.distance.km" = "Udaljenost: %.2f km";
+"location.distance.m" = "Udaljenost: %d m";
+
+// MARK: - Health Messages
+"health.not.available" = "Zdravlje nije dostupno na ovom uređaju";
+"health.date" = "Datum: %@";
+"health.steps" = "Koraci: %@ koraka";
+"health.goal.progress" = "Napredak cilja: %d%% (cilj 10.000 koraka)";
+"health.no.data" = "Nema dostupnih podataka";
+"health.avg.bpm" = "Prosjek: %d otkucaja/min";
+"health.min.bpm" = "Minimum: %d otkucaja/min";
+"health.max.bpm" = "Maksimum: %d otkucaja/min";
+"health.measurements" = "Mjerenja: %d";
+"health.no.sleep" = "Nema podataka o spavanju";
+"health.sleep.total" = "Ukupno spavanje: %dh %dm";
+"health.bedtime" = "Vrijeme spavanja: %@";
+"health.waketime" = "Vrijeme buđenja: %@";
+"health.calories" = "Kalorije: %d kcal";
+
+// MARK: - File System Messages
+"filesystem.not.found" = "Datoteka nije pronađena: %@";
+"filesystem.written" = "Datoteka napisana: %@";
+"filesystem.dir.created" = "Direktorij kreiran: %@";
+"filesystem.deleted" = "Obrisano: %@";
+"filesystem.size" = "Veličina: %@";
+"filesystem.created" = "Kreirano: %@";
+"filesystem.modified" = "Izmijenjeno: %@";
+"filesystem.type" = "Tip: %@";
+
+// MARK: - Shortcuts Messages
+"shortcuts.executed" = "Prečica '%@' izvršena";
+"shortcuts.opened" = "Aplikacija za prečice otvorena";
+"shortcuts.settings.opened" = "Postavke (%@) otvorene";
+"shortcuts.mail.opened" = "Komponovanje pošte otvoreno";
+"shortcuts.calling" = "Pozivanje: %@";
+"shortcuts.message.opened" = "Komponovanje poruke otvoreno";
+"shortcuts.failed" = "Nije moguće otvoriti prečicu";
+
+// MARK: - Model Tiers
+"model.tier.entry" = "Početni";
+"model.tier.standard" = "Standardni";
+"model.tier.pro" = "Pro";
+
+// MARK: - Tool Parser
+"tool.arguments" = "Argumenti:";
+
+// MARK: - Model Settings
+"model.action.settings" = "Postavke";
+"settings.model.parameters" = "Postavke modela";
+"settings.model.parameters.description" = "Prilagodi parametre generisanja za ovaj model";
+"settings.preset.title" = "Predloške";
+"settings.preset.custom" = "Prilagođeno";
+"settings.preset.balanced" = "Balansirano";
+"settings.preset.creative" = "Kreativno";
+"settings.preset.precise" = "Precizno";
+"settings.preset.coding" = "Kodiranje";
+"settings.preset.japanese" = "Japanski";
+"settings.parameters.title" = "Parametri";
+"settings.parameter.temperature" = "Temperatura";
+"settings.parameter.temperature.description" = "Više = kreativnije, manje = fokusiranije";
+"settings.parameter.top.p" = "Top P";
+"settings.parameter.top.p.description" = "Vjerojatnoća nucleus uzorkovanja";
+"settings.parameter.top.k" = "Top K";
+"settings.parameter.top.k.description" = "Broj vrhunskih tokena za razmatranje";
+"settings.parameter.max.tokens" = "Maksimum tokena";
+"settings.parameter.max.tokens.description" = "Maksimalna dužina odgovora";
+"settings.parameter.repeat.penalty" = "Kazna za ponavljanje";
+"settings.parameter.repeat.penalty.description" = "Više = manje ponavljajući izlaz";
+"settings.parameter.thinking" = "Režim razmišljanja";
+"settings.parameter.thinking.description" = "Prikaži proces rezoniranja AI-ja";
+"settings.system.prompt.title" = "Sistemski upit";
+"settings.system.prompt.description" = "Prilagođena uputstva za AI";
+"settings.reset.to.default" = "Resetuj na zadano";
+
+// MARK: - Vision Model
+"vision.model.required.title" = "Potreban model za viziju";
+"vision.model.required.header" = "Potrebno prepoznavanje slike";
+"vision.model.required.description" = "Za analizu slika, potreban vam je AI model sposoban za viziju";
+"vision.model.switch" = "Promijeni model";
+"vision.model.switch.message %@" = "Prebaci na %@ da omogućiš analizu slike?";
+"vision.model.download" = "Preuzmi";
+"vision.model.download.message %@ %@" = "Preuzmi %@ (%@) za analizu slika?";
+"vision.model.not.available" = "Nema kompatibilnog modela za viziju dostupnog za vaš uređaj";
+"vision.model.switching" = "Promjena modela...";
+"vision.model.download.title" = "Modeli za viziju";
+"vision.model.recommended" = "Preporučeno za vaš uređaj";
+"vision.model.recommended.size %@" = "Preporučeno: %@";
+"vision.model.use.this" = "Koristi ovaj model";
+"vision.model.download.button %@" = "Preuzmi (%@)";
+"vision.model.other.options" = "Ostali modeli za viziju";
+"vision.model.download.complete" = "Preuzimanje završeno";
+"vision.model.download.complete.message" = "Spremno za analizu slika";
+
+// MARK: - Whisper Voice Input (Legacy)
+"whisper.download.title" = "Potrebno prepoznavanje glasa";
+"whisper.download.action" = "Preuzmi";
+"whisper.download.message" = "Za korištenje glasovnog unosa, morate preuzeti model za prepoznavanje govora (~150MB).";
+"whisper.downloading" = "Preuzimanje modela za prepoznavanje govora...";
+"whisper.download.error" = "Greška pri preuzimanju";
+"whisper.load.error" = "Greška pri učitavanju modela";
+"whisper.permission.denied" = "Pristup mikrofonu nije dopušten";
+"whisper.transcribe.error" = "Greška pri transkripciji";
+"whisper.error.permission" = "Potrebna je dozvola za mikrofon";
+"whisper.error.not.recording" = "Trenutno se ne snima";
+"whisper.error.no.recording" = "Nema podataka o snimanju";
+"whisper.error.model.not.loaded" = "Model za prepoznavanje govora nije učitan";
+"whisper.error.transcription" = "Transkripcija nije uspjela";
+
+// MARK: - Speech Recognition (ReazonSpeech)
+"speech.download.title" = "Potrebno prepoznavanje glasa";
+"speech.download.action" = "Preuzmi";
+"speech.download.message" = "Za korištenje glasovnog unosa, morate preuzeti japanski model za prepoznavanje govora (~155MB).";
+"speech.downloading" = "Preuzimanje modela za prepoznavanje govora...";
+
+// MARK: - Language Settings
+"settings.language.section" = "Jezik";
+"language.system" = "Koristi sistemski jezik";
+"settings.language.restart.hint" = "Promjene jezika će stupiti na snagu nakon ponovnog pokretanja aplikacije";
+"settings.language.changed.title" = "Jezik promijenjen";
+"settings.language.changed.message" = "Molimo ponovo pokrenite aplikaciju da primijenite promjene";
+"common.ok" = "U redu";
+
+// MARK: - System Prompt Settings
+"settings.prompt.section" = "Sistemski upit";
+"settings.prompt.edit" = "Uredi upit";
+"settings.prompt.default" = "Korištenje zadanog";
+"settings.prompt.custom" = "Prilagođeni upit postavljen";
+"settings.prompt.hint" = "Prilagodi ponašanje AI-ja";
+"settings.prompt.editor.title" = "Uredi upit";
+"settings.prompt.editor.instruction" = "Dodaj prilagođena uputstva za AI. Ostavi prazno za korištenje zadanog upita.";
+"settings.prompt.default.preview" = "Zadani upit (odlomak):";
+"settings.prompt.reset" = "Resetuj";
+"settings.prompt.reset.title" = "Resetuj upit";
+"settings.prompt.reset.message" = "Obrisati prilagođeni upit i vratiti na zadani?";
+
+// MARK: - Prompt Templates
+"templates.title" = "Predlošci upita";
+"templates.empty" = "Još nema predložaka";
+"templates.add" = "Dodaj predložak";
+"template.add.title" = "Dodaj predložak";
+"template.edit.title" = "Uredi predložak";
+"template.name.header" = "Ime";
+"template.name.placeholder" = "Ime predloška";
+"template.content.header" = "Sadržaj upita";
+"template.icon.header" = "Ikona";
+"template.translate.name" = "Prevedi";
+"template.translate.content" = "Molimo prevedi sljedeće: ";
+"template.summarize.name" = "Sažmi";
+"template.summarize.content" = "Molimo sažmi sljedeće: ";
+"template.explain.name" = "Objasni";
+"template.explain.content" = "Molimo objasni sljedeće: ";
+"template.code.name" = "Kod";
+"template.code.content" = "Molimo napiši kod za: ";
+
+// MARK: - Export
+"export.title" = "Izvezi razgovor";
+"export.format.markdown" = "Markdown";
+"export.format.pdf" = "PDF";
+"export.format.text" = "Obični tekst";
+"export.created" = "Kreirano";
+"export.image.attached" = "Slika priložena";
+"export.generated.by" = "Generisao";
+
+// MARK: - Loading Phases
+"loading.phase.initializing" = "Inicijalizacija...";
+"loading.phase.loading" = "Učitavanje modela...";
+"loading.phase.preparing" = "Priprema inference motora...";
+"loading.phase.almost" = "Skoro spremno...";
+
+// MARK: - Welcome Screen
+"welcome.greeting" = "Pitaj me bilo što";
+"welcome.subtitle" = "Vaš AI asistent koji brine o privatnosti";
+"suggestion.idea" = "Pomozi mi razmisliti o idejama";
+"suggestion.write" = "Pomozi mi nešto napisati";
+"suggestion.question" = "Odgovori na moja pitanja";
+
+// MARK: - Kokoro TTS
+"tts.download.title" = "Glas visokog kvaliteta";
+"tts.download.action" = "Preuzmi";
+"tts.download.use_system" = "Koristi sistemski glas";
+"tts.download.message" = "Preuzmite Kokoro TTS model (~87MB) za prirodniji japanski text-to-speech.";
+"tts.downloading" = "Preuzimanje TTS modela...";
+
+// MARK: - Feedback
+"feedback.consent.title" = "Pošalji povratnu informaciju";
+"feedback.send" = "Pošalji";
+"feedback.positive.title" = "Da li je ovaj odgovor bio koristan?";
+"feedback.negative.title" = "Može li ovo biti poboljšano?";
+"feedback.explanation" = "Vaša povratna informacija pomaže u poboljšanju kvaliteta AI-ja. Molimo pregledajte koje podatke ćemo poslati prije slanja.";
+"feedback.data.section" = "Podaci za slanje";
+"feedback.data.conversation" = "Razgovor";
+"feedback.data.conversation.desc" = "AI odgovor i vaša prethodna poruka";
+"feedback.data.model" = "Informacije o modelu";
+"feedback.data.model.desc" = "Ime korištenog AI modela";
+"feedback.data.timestamp" = "Vremenska oznaka";
+"feedback.data.timestamp.desc" = "Kada je povratna informacija poslana";
+"feedback.privacy.section" = "Privatnost";
+"feedback.privacy.anonymous" = "Ne šalju se lični podaci koji mogu identificirati";
+"feedback.privacy.improvement" = "Koristi se samo za poboljšanje kvaliteta AI-ja";
+"feedback.privacy.optional" = "Slanje povratne informacije je potpuno opcionalno";
+"feedback.comment.section" = "Komentar (opcionalno)";
+"feedback.comment.placeholder" = "Recite nam što bi moglo biti poboljšano ili što je dobro funkcionisalo...";
+"feedback.remember.title" = "Zapamti ovaj izbor";
+"feedback.remember.description" = "Pošalji povratnu informaciju bez pitanja sljedeći put";
+
+// MARK: - Emergency Mode
+"emergency.sos.button" = "Režim za hitne slučajeve (dugi pritisak za uključivanje/isključivanje)";
+"emergency.mode.active" = "Režim za hitne slučajeve aktivan";
+"emergency.action.firstaid" = "Prva pomoć";
+"emergency.action.firstaid.message" = "Molimo dajte upute za prvu pomoć. Opisat ću povredu ili simptome: ";
+"emergency.action.disaster" = "Katastrofa";
+"emergency.action.disaster.message" = "Dogodila se katastrofa. Molimo dajte procedure za odgovor: ";
+"emergency.action.factcheck" = "Provjera činjenica";
+"emergency.action.factcheck.message" = "Molimo verificirajte pouzdanost ove informacije: ";
+"emergency.action.contacts" = "Hitni slučaj";
+"emergency.action.contacts.message" = "Molimo prikažite mi listu brojeva za hitne slučajeve";
+"emergency.action.evacuation" = "Evakuacija";
+"emergency.action.evacuation.message" = "Molimo kreirajte listu provjere za evakuaciju za trenutnu situaciju: ";
+"mcp.emergency_kb" = "Baza znanja za hitne slučajeve";
+"mcp.emergency_kb.desc" = "Informacije o hitnim slučajevima i katastrofama";
+
+// MARK: - Emergency Templates
+"template.firstaid.name" = "Vodič za prvu pomoć";
+"template.firstaid.content" = "Molimo dajte upute za prvu pomoć za: ";
+"template.disaster.name" = "Odgovor na katastrofu";
+"template.disaster.content" = "Dogodila se sljedeća katastrofa. Molimo dajte procedure za odgovor: ";
+"template.factcheck.name" = "Provjera činjenica";
+"template.factcheck.content" = "Molimo verificirajte pouzdanost ove informacije i dajte savjete za provjeru činjenica: ";
+"template.evacuation.name" = "Lista provjere za evakuaciju";
+"template.evacuation.content" = "Molimo kreirajte listu provjere za evakuaciju za trenutnu situaciju: ";
+
+// MARK: - ChatWeb.ai Integration
+"chatweb.title" = "ChatWeb.ai";
+"chatweb.desc" = "Cloud AI razgovor";
+"chatweb.connect" = "Povežite se sa ChatWeb.ai";
+"chatweb.qr.title" = "Povežite se putem QR koda";
+"chatweb.qr.scan" = "Skenirajte QR kod";
+"chatweb.open" = "Otvorite ChatWeb.ai";
+
+// MARK: - Peer Connection
+"peer.title" = "Uređaji u blizini";
+"peer.desc" = "Povežite se s uređajima Elio u blizini";
+"peer.connect" = "Povežite se s uređajem";
+"peer.code.title" = "Kod za povezivanje";
+"peer.code.enter" = "Unesite 4-znamenkasti kod";
+"peer.code.your" = "Vaš kod";
+"peer.connected" = "Povezano";
+"peer.disconnected" = "Odspojeno";
+"peer.inference.offload" = "Dijeljenje inference-a";
+
+// MARK: - Web Search
+"chat.web.search" = "Web pretraga";
+"search.privacy.title" = "Pretraga zaštićena privatnošću";
+"search.privacy.proceed" = "Pretraži";
+"search.privacy.message" = "ElioChat web pretraga štiti vašu privatnost:\n\n🔒 Pretrage putem DuckDuckGo-a\n🚫 Nema praćenja ili profiliranja\n🔐 Historija pretrage se ne pohranjuje\n📱 Nema podataka van vašeg uređaja\n\nSamo vaš upit za pretragu se šalje DuckDuckGo-u, a rezultati se obrađuju na vašem uređaju.";
+"chat.web.analyzing" = "[Analiza web stranice]";

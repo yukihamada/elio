@@ -1,0 +1,635 @@
+/*
+  Localizable.strings (Malay)
+  Elio
+*/
+
+// MARK: - App General
+"app.name" = "Elio";
+"app.tagline" = "Otak kedua anda yang menjaga rahsia.";
+
+// MARK: - Common Actions
+"common.done" = "Selesai";
+"common.cancel" = "Batal";
+"common.delete" = "Padam";
+"common.save" = "Simpan";
+"common.edit" = "Edit";
+"common.share" = "Kongsi";
+"common.copy" = "Salin";
+"common.copied" = "Disalin";
+"common.loading" = "Memuatkan...";
+"common.error" = "Ralat";
+"common.retry" = "Cuba Lagi";
+"common.skip" = "Langkau";
+"common.next" = "Seterusnya";
+"common.start" = "Mulakan";
+"common.add" = "Tambah";
+"common.close" = "Tutup";
+"common.details" = "Butiran";
+"common.yes" = "Ya";
+"common.no" = "Tidak";
+"common.unknown" = "Tidak Diketahui";
+
+// MARK: - Chat
+"chat.placeholder" = "Tanya apa sahaja";
+"chat.model.not.loaded" = "Tiada Model Dimuatkan";
+"chat.model.not.loaded.description" = "Sila muat turun model dari Tetapan";
+"chat.go.to.settings" = "Pergi ke Tetapan";
+"chat.new.conversation" = "Sembang Baharu";
+"chat.stop.generation" = "Henti";
+"chat.generation.stopped" = "\n\n[Penjanaan dihentikan]";
+"chat.image.sent" = "[Imej dihantar]";
+"chat.images.sent" = "[%d imej dihantar]";
+"chat.pdf.sent" = "[PDF dilampirkan: %@]";
+"chat.pdf.sent.vision" = "[PDF dengan imej: %@]";
+"chat.pdf.context" = "Berikut adalah kandungan teks yang diekstrak daripada dokumen PDF \"%@\":\n\n%@";
+"chat.pdf.context.vision" = "Ini adalah muka surat 1 dokumen PDF \"%@\". Kandungan teks yang diekstrak ialah:\n\n%@\n\nSila analisis kandungan visual dan teks.";
+"chat.pdf.analyze" = "Sila analisis halaman PDF ini daripada \"%@\".";
+"chat.url.sent" = "[Halaman web: %@]";
+"chat.url.context" = "Berikut adalah kandungan yang diekstrak daripada halaman web \"%@\" (%@):\n\n%@";
+"chat.thinking" = "Berfikir...";
+"chat.generating" = "Menjana respons...";
+"chat.welcome" = "Bagaimana saya boleh membantu anda?";
+"chat.suggestion.schedule" = "Tunjukkan jadual hari ini";
+"chat.suggestion.reminder" = "Cipta peringatan";
+"chat.suggestion.weather" = "Bagaimana cuaca hari ini?";
+"chat.suggestion.help" = "Cara menggunakan aplikasi ini";
+"chat.websearch.on" = "Carian Web Hidup";
+"chat.websearch.off" = "Carian Web Mati";
+"chat.thinking.on" = "Pemikiran Hidup";
+"chat.thinking.off" = "Pemikiran Mati";
+"chat.transcribing" = "Menyalin...";
+"chat.offline" = "Luar Talian";
+
+// Voice Conversation Mode
+"voice.listening" = "Mendengar...";
+"voice.processing" = "Memproses...";
+"voice.thinking" = "Berfikir...";
+"voice.speaking" = "Bercakap...";
+"voice.tap.to.send" = "Ketik untuk hantar";
+"chat.templates" = "Templat";
+"chat.websearch.privacy.title" = "Tentang Carian Web";
+"chat.websearch.privacy.message" = "Mengaktifkan carian web membolehkan AI mencari internet melalui DuckDuckGo untuk maklumat terkini. Pertanyaan carian dihantar ke DuckDuckGo tetapi tidak dijejaki.";
+"chat.websearch.privacy.enable" = "Aktifkan";
+"chat.websearch.privacy.disable" = "Kekal Dilumpuhkan";
+
+// MARK: - Settings
+"settings.title" = "Tetapan";
+"settings.model.section" = "Model AI";
+"settings.model.recommended" = "Disyorkan: %@";
+"settings.model.local.execution" = "Model berjalan secara tempatan pada peranti anda";
+"settings.model.show.more" = "Model Lain (%d)";
+"settings.model.show.less" = "Tunjukkan Kurang";
+"settings.appearance.section" = "Penampilan";
+"settings.tools.section" = "Ciri Pintar";
+"settings.mcp.servers" = "Integrasi";
+"settings.mcp.servers.description" = "Kalendar, Fail, Peringatan & lagi";
+"settings.mcp.enabled.count" = "%d diaktifkan";
+"settings.mcp.enabled.count.suffix" = " diaktifkan";
+"settings.about.section" = "Perihal";
+"settings.version" = "Versi";
+"settings.about.app" = "Tentang Aplikasi Ini";
+"settings.about.mcp" = "Tentang Integrasi";
+"settings.privacy.badge" = "Berfungsi Luar Talian";
+"settings.privacy.description" = "Berfungsi dalam Mod Pesawat";
+"settings.airplane.mode" = "Berjalan dalam Mod Pesawat";
+"settings.offline.ready" = "Sedia Luar Talian";
+
+// MARK: - Model States
+"model.status.downloading" = "Memuat turun... %d%%";
+"model.status.loading" = "Memuatkan...";
+"model.status.in.use" = "Sedang Digunakan";
+"model.status.recommended" = "Disyorkan";
+"model.status.heavy" = "Berat";
+"model.action.download" = "Muat Turun";
+"model.action.load" = "Muatkan";
+"model.action.delete" = "Padam";
+"model.action.use" = "Gunakan Model Ini";
+"model.delete.confirm.title" = "Padam Model";
+"model.delete.confirm.message" = "Padam %@? Anda perlu muat turun semula untuk menggunakannya lagi.";
+"model.select.title" = "Pilih Model";
+"model.select.prompt" = "Sila pilih model";
+"model.downloaded" = "Dimuat Turun";
+
+// MARK: - Inference Mode
+"inference.mode.title" = "Pecutan";
+"inference.mode.auto" = "Auto";
+"inference.mode.auto.desc" = "Prestasi optimum secara automatik";
+"inference.mode.gpu" = "GPU (Metal)";
+"inference.mode.gpu.desc" = "Kelajuan maksimum dengan Metal";
+"inference.mode.cpu" = "CPU Sahaja";
+"inference.mode.cpu.desc" = "Mod penjimatan bateri";
+"inference.mode.hybrid" = "Hibrid";
+"inference.mode.hybrid.desc" = "Keseimbangan kelajuan dan bateri";
+
+// MARK: - Theme
+"theme.system" = "Sistem";
+"theme.light" = "Terang";
+"theme.dark" = "Gelap";
+
+// MARK: - Onboarding
+"onboarding.welcome.title" = "Selamat Datang ke ElioChat";
+"onboarding.welcome.subtitle" = "Pembantu AI peribadi anda";
+"onboarding.features.title" = "AI Yang Benar-Benar Peribadi";
+"onboarding.feature.offline" = "Berfungsi dalam Mod Pesawat";
+"onboarding.feature.offline.desc" = "Gunakan semasa penerbangan atau bawah tanah";
+"onboarding.feature.privacy" = "Sifar Penghantaran Data";
+"onboarding.feature.privacy.desc" = "Sembang anda tidak meninggalkan telefon";
+"onboarding.feature.vault" = "Integrasi Pintar";
+"onboarding.feature.vault.desc" = "Sambungkan dengan Kalendar & Fail";
+"onboarding.feature.secure" = "AI Selamat untuk Kerja";
+"onboarding.feature.secure.desc" = "Selamat untuk kegunaan korporat";
+"onboarding.feature.thinking" = "Proses Pemikiran";
+"onboarding.privacy.title" = "Data Anda Tetap Milik Anda";
+"onboarding.privacy.item1" = "Semua pemprosesan berlaku pada iPhone anda";
+"onboarding.privacy.item2" = "Tiada data dihantar ke pelayan awan";
+"onboarding.privacy.item3" = "Tidak pernah digunakan untuk latihan AI";
+"onboarding.getstarted.title" = "Sedia dalam Satu Ketik";
+"onboarding.getstarted.subtitle" = "Muat turun model AI yang disyorkan\ndan mula sembang dengan serta-merta";
+"onboarding.step1" = "Muat turun model yang disyorkan";
+"onboarding.step2" = "Tunggu beberapa minit";
+"onboarding.step3" = "Anda sudah bersedia!";
+
+// MARK: - About
+"about.title" = "Tentang Aplikasi Ini";
+"about.rate.app" = "Nilai Aplikasi";
+"about.share.app" = "Kongsi dengan Rakan";
+"about.privacy.policy" = "Dasar Privasi";
+"about.terms" = "Terma Perkhidmatan";
+"about.tech.info" = "Maklumat Teknikal";
+"about.tech.engine" = "Enjin AI";
+"about.tech.format" = "Format Yang Disokong";
+"about.tech.inference" = "Inferens";
+"about.data.management" = "Pengurusan Data";
+"about.delete.all" = "Padam Semua Perbualan";
+"about.credits" = "Kredit";
+"about.credits.description" = "Aplikasi ini menggunakan perpustakaan sumber terbuka";
+"about.privacy.section" = "Privasi";
+"about.gguf.format" = "Format GGUF";
+"about.metal.gpu" = "Pecutan Metal GPU";
+
+// MARK: - Referral
+"referral.title" = "Rujuk Rakan";
+"referral.code.title" = "Kod Rujukan Anda";
+"referral.code.copy" = "Salin Kod";
+"referral.code.copied" = "Disalin";
+"referral.share.button" = "Kongsi dengan Rakan";
+"referral.share.description" = "Kongsi Elio dengan rakan anda!";
+"referral.count" = "Merujuk %d orang";
+"referral.enter.title" = "Masukkan Kod Rujukan";
+"referral.enter.placeholder" = "Kod Rujukan";
+"referral.enter.button" = "Guna";
+"referral.enter.success" = "Kod rujukan digunakan";
+"referral.enter.error" = "Kod rujukan tidak sah";
+
+// MARK: - Privacy Policy
+"privacy.title" = "Dasar Privasi";
+"privacy.data.collection.title" = "Pengumpulan Data";
+"privacy.data.collection.content" = "Aplikasi ini menjalankan AI tempatan sepenuhnya di luar talian.\nTiada data dihantar ke pelayan luaran.\nSemua perbualan disimpan hanya pada peranti anda.";
+"privacy.stored.data.title" = "Data Yang Disimpan";
+"privacy.stored.data.content" = "Sejarah perbualan (disimpan pada peranti sahaja)\nFail model AI (disimpan pada peranti sahaja)\nTetapan aplikasi (disimpan pada peranti sahaja)\n\nData ini tidak pernah dikongsi secara luaran.";
+"privacy.data.deletion.title" = "Pemadaman Data";
+"privacy.data.deletion.content" = "Anda boleh memadam semua data pada bila-bila masa dari Tetapan > Pengurusan Data.\nMenyahpasang aplikasi akan memadam semua data.";
+
+// MARK: - Terms of Service
+"terms.title" = "Terma Perkhidmatan";
+"terms.service.title" = "Penerangan Perkhidmatan";
+"terms.service.content" = "Aplikasi ini menyediakan fungsi pembantu AI menggunakan model AI yang berjalan secara tempatan.";
+"terms.disclaimer.title" = "Penafian";
+"terms.disclaimer.content" = "Respons AI mungkin mengandungi kesilapan.\nKeputusan penting harus sentiasa disahkan oleh profesional.\nKami tidak bertanggungjawab terhadap sebarang kerosakan yang timbul daripada penggunaan aplikasi ini.";
+"terms.prohibited.title" = "Aktiviti Terlarang";
+"terms.prohibited.content" = "Aktiviti yang menyalahi undang-undang\nAktiviti yang melanggar hak orang lain\nKejuruteraan terbalik aplikasi ini\nPenyalinan tidak dibenarkan aplikasi ini";
+"terms.ip.title" = "Harta Intelek";
+"terms.ip.content" = "Hak harta intelek aplikasi ini adalah milik pembangun.\nPenggunaan tanpa kebenaran adalah dilarang.";
+
+// MARK: - Conversations
+"conversations.title" = "Perbualan";
+"conversations.new" = "Perbualan Baharu";
+"conversations.empty" = "Tiada perbualan lagi";
+"conversations.delete" = "Padam Perbualan";
+"conversations.default.title" = "Perbualan Baharu";
+"conversations.today" = "Hari Ini";
+"conversations.yesterday" = "Semalam";
+"conversations.past7days" = "7 Hari Lepas";
+"conversations.past30days" = "30 Hari Lepas";
+"conversations.older" = "Lebih Lama";
+"conversations.created" = "Dicipta: %@";
+"conversations.user" = "Pengguna";
+"conversations.assistant" = "Pembantu";
+"conversations.search.placeholder" = "Cari perbualan";
+"conversations.search.no_results" = "Tiada hasil ditemui";
+
+// MARK: - Message Actions
+"message.copy" = "Salin";
+"message.speak" = "Sebut";
+"message.stop.speaking" = "Henti Bercakap";
+"message.share" = "Kongsi";
+"message.share.card" = "Kongsi sebagai Kad";
+"message.like" = "Suka";
+
+// MARK: - Share Card
+"share.card.title" = "Kongsi Kad";
+"share.card.preview" = "Pratonton";
+"share.card.button" = "Kongsi Imej";
+"message.dislike" = "Tidak Suka";
+"message.thinking.process" = "Proses Pemikiran";
+"message.tool.running" = "Menjalankan Alat";
+"message.tool.error" = "Ralat";
+"message.tool.completed" = "Selesai";
+
+// MARK: - Attachment
+"attachment.title" = "Lampiran";
+"attachment.photo.library" = "Pilih Foto";
+"attachment.camera" = "Ambil Foto";
+"attachment.pdf" = "Pilih PDF";
+"attachment.pdf.chars" = "%d aksara";
+"attachment.pdf.pages" = "%d halaman";
+"attachment.pdf.vision.enabled" = "Analisis imej diaktifkan";
+"attachment.pdf.text.only" = "Mod teks sahaja";
+"attachment.url" = "Baca Halaman Web";
+"attachment.url.title" = "Masukkan URL";
+"attachment.url.placeholder" = "https://example.com";
+"attachment.url.message" = "Tampal URL untuk ekstrak kandungannya";
+"attachment.url.fetch" = "Ambil";
+"attachment.url.loading" = "Memuatkan halaman...";
+
+// MARK: - Errors
+"error.model.not.found" = "Fail model tidak dijumpai";
+"error.model.not.loaded" = "Model tidak dimuatkan";
+"error.context.failed" = "Gagal mencipta konteks";
+"error.tokenization.failed" = "Token gagal";
+"error.generation.failed" = "Ralat penjanaan: %@";
+"error.occurred" = "Ralat berlaku: %@";
+"error.invalid.url" = "URL tidak sah";
+"error.download.failed" = "Muat turun gagal";
+"error.extraction.failed" = "Pengekstrakan gagal";
+"error.config.not.found" = "Fail konfigurasi tidak dijumpai";
+
+// MARK: - Ghost Search
+"ghost.search.title" = "Carian Hantu";
+"ghost.search.description" = "Carian tanpa nama melalui DuckDuckGo (tiada penjejakan)";
+"ghost.search.connecting" = "Menyambung ke rangkaian tanpa nama...";
+"ghost.search.privacy.note" = "Sejarah carian anda tidak pernah dijejaki";
+
+// MARK: - MCP Servers
+"mcp.filesystem" = "Sistem Fail";
+"mcp.filesystem.desc" = "Baca dan tulis fail dalam aplikasi";
+"mcp.calendar" = "Kalendar";
+"mcp.calendar.desc" = "Baca dan tulis acara";
+"mcp.reminders" = "Peringatan";
+"mcp.reminders.desc" = "Urus peringatan";
+"mcp.contacts" = "Kenalan";
+"mcp.contacts.desc" = "Cari dan lihat kenalan";
+"mcp.photos" = "Foto";
+"mcp.photos.desc" = "Akses perpustakaan foto";
+"mcp.location" = "Lokasi";
+"mcp.location.desc" = "Dapatkan lokasi semasa dan cari tempat";
+"mcp.health" = "Kesihatan";
+"mcp.health.desc" = "Akses data kesihatan";
+"mcp.shortcuts" = "Pintasan";
+"mcp.shortcuts.desc" = "Jalankan pintasan";
+"mcp.websearch" = "Carian Web";
+"mcp.websearch.desc" = "Carian web tanpa nama";
+"mcp.custom" = "Integrasi Tersuai";
+"mcp.custom.add" = "Tambah Integrasi";
+"mcp.custom.setup" = "Sediakan integrasi perkhidmatan luaran";
+"mcp.custom.title" = "Integrasi Tersuai";
+"mcp.settings.title" = "Tetapan Integrasi";
+"mcp.server.name" = "Nama Pelayan";
+"mcp.server.name.placeholder" = "cth., Pelayan Tersuai Saya";
+"mcp.config.url" = "URL Fail Konfigurasi";
+"mcp.import.file" = "Import dari Fail";
+"mcp.config.example" = "Contoh Fail Konfigurasi";
+"mcp.permission.note" = "Kebenaran akan diminta apabila pertama kali menggunakan setiap ciri";
+
+// MARK: - MCP Tool Messages
+"mcp.tool.available" = "Alat Yang Tersedia:";
+"mcp.tool.parameters" = "Parameter:";
+"mcp.prompt.available" = "Prompt Yang Tersedia:";
+"mcp.prompt.arguments" = "Argumen:";
+"mcp.tool.name" = "tool_name";
+"mcp.tool.arg.name" = "arg_name";
+"mcp.tool.arg.value" = "value";
+"mcp.tool.no.result" = "Tiada hasil";
+"mcp.tool.running" = "Menjalankan alat: %@";
+"mcp.tool.error" = "Ralat pelaksanaan alat: %@";
+
+// MARK: - MCP Error Messages
+"mcp.error.server.not.found" = "Pelayan tidak dijumpai: %@";
+"mcp.error.tool.not.found" = "Alat tidak dijumpai: %@";
+"mcp.error.invalid.args" = "Argumen tidak sah: %@";
+"mcp.error.execution" = "Ralat pelaksanaan: %@";
+"mcp.error.permission" = "Kebenaran ditolak: %@";
+
+// MARK: - Calendar Messages
+"calendar.no.events" = "Tiada acara";
+"calendar.event.created" = "Acara dicipta: %@";
+"calendar.event.deleted" = "Acara dipadam: %@";
+"calendar.allday.created" = "Acara sepanjang hari dicipta: %@";
+"calendar.access.denied" = "Akses kalendar ditolak";
+"calendar.today.none" = "Tiada acara hari ini";
+"calendar.untitled" = "Tanpa Tajuk";
+
+// MARK: - Reminders Messages
+"reminders.none" = "Tiada peringatan";
+"reminders.created" = "Peringatan dicipta: %@";
+"reminders.completed" = "Peringatan selesai: %@";
+"reminders.deleted" = "Peringatan dipadam: %@";
+"reminders.access.denied" = "Akses peringatan ditolak";
+"reminders.untitled" = "Tanpa Tajuk";
+
+// MARK: - Photos Messages
+"photos.access.denied" = "Akses foto ditolak";
+"photos.not.found" = "Foto tidak dijumpai";
+"photos.untitled" = "Tanpa Tajuk";
+"photos.count" = "Foto: %d";
+"photos.videos.count" = "Video: %d";
+"photos.albums.count" = "Album: %d";
+"photos.favorites.count" = "Kegemaran: %d";
+"photos.date" = "Tarikh: %@";
+"photos.size" = "Saiz: %d x %d";
+"photos.location" = "Lokasi: %@, %@";
+"photos.media.type" = "Jenis Media: %@";
+"photos.duration" = "Tempoh: %dm %ds";
+"photos.favorite" = "Kegemaran: %@";
+"photos.type.image" = "Foto";
+"photos.type.video" = "Video";
+"photos.type.audio" = "Audio";
+
+// MARK: - Contacts Messages
+"contacts.access.denied" = "Akses kenalan ditolak";
+"contacts.not.found" = "Tiada kenalan yang sepadan dijumpai";
+"contacts.no.groups" = "Tiada kumpulan";
+"contacts.no.card" = "Tiada kad kenalan ditetapkan";
+"contacts.name" = "Nama: %@";
+"contacts.company" = "Syarikat: %@";
+"contacts.job" = "Jawatan: %@";
+
+// MARK: - Location Messages
+"location.access.denied" = "Akses lokasi ditolak";
+"location.not.found" = "Alamat tidak dijumpai";
+"location.latitude" = "Latitud: %@";
+"location.longitude" = "Longitud: %@";
+"location.accuracy" = "Ketepatan: %dm";
+"location.altitude" = "Altitud: %dm";
+"location.search" = "Carian: %@";
+"location.address" = "Alamat: %@";
+"location.country" = "Negara: %@";
+"location.postal" = "Kod Pos: %@";
+"location.from" = "Dari: (%@, %@)";
+"location.to" = "Ke: (%@, %@)";
+"location.distance.km" = "Jarak: %.2f km";
+"location.distance.m" = "Jarak: %d m";
+
+// MARK: - Health Messages
+"health.not.available" = "Kesihatan tidak tersedia pada peranti ini";
+"health.date" = "Tarikh: %@";
+"health.steps" = "Langkah: %@ langkah";
+"health.goal.progress" = "Kemajuan sasaran: %d%% (sasaran 10,000 langkah)";
+"health.no.data" = "Tiada data tersedia";
+"health.avg.bpm" = "Purata: %d dpm";
+"health.min.bpm" = "Minimum: %d dpm";
+"health.max.bpm" = "Maksimum: %d dpm";
+"health.measurements" = "Pengukuran: %d";
+"health.no.sleep" = "Tiada data tidur";
+"health.sleep.total" = "Jumlah tidur: %dj %dm";
+"health.bedtime" = "Masa tidur: %@";
+"health.waketime" = "Masa bangun: %@";
+"health.calories" = "Kalori: %d kkal";
+
+// MARK: - File System Messages
+"filesystem.not.found" = "Fail tidak dijumpai: %@";
+"filesystem.written" = "Fail ditulis: %@";
+"filesystem.dir.created" = "Direktori dicipta: %@";
+"filesystem.deleted" = "Dipadam: %@";
+"filesystem.size" = "Saiz: %@";
+"filesystem.created" = "Dicipta: %@";
+"filesystem.modified" = "Diubahsuai: %@";
+"filesystem.type" = "Jenis: %@";
+
+// MARK: - Shortcuts Messages
+"shortcuts.executed" = "Pintasan '%@' dilaksanakan";
+"shortcuts.opened" = "Aplikasi Pintasan dibuka";
+"shortcuts.settings.opened" = "Tetapan (%@) dibuka";
+"shortcuts.mail.opened" = "Gubahan mel dibuka";
+"shortcuts.calling" = "Memanggil: %@";
+"shortcuts.message.opened" = "Gubahan mesej dibuka";
+"shortcuts.failed" = "Tidak dapat membuka pintasan";
+
+// MARK: - Model Tiers
+"model.tier.entry" = "Kemasukan";
+"model.tier.standard" = "Standard";
+"model.tier.pro" = "Pro";
+
+// MARK: - Tool Parser
+"tool.arguments" = "Argumen:";
+
+// MARK: - Model Settings
+"model.action.settings" = "Tetapan";
+"settings.model.parameters" = "Tetapan Model";
+"settings.model.parameters.description" = "Sesuaikan parameter penjanaan untuk model ini";
+"settings.preset.title" = "Pratetap";
+"settings.preset.custom" = "Tersuai";
+"settings.preset.balanced" = "Seimbang";
+"settings.preset.creative" = "Kreatif";
+"settings.preset.precise" = "Tepat";
+"settings.preset.coding" = "Pengekodan";
+"settings.preset.japanese" = "Jepun";
+"settings.parameters.title" = "Parameter";
+"settings.parameter.temperature" = "Temperature";
+"settings.parameter.temperature.description" = "Lebih tinggi = lebih kreatif, lebih rendah = lebih fokus";
+"settings.parameter.top.p" = "Top P";
+"settings.parameter.top.p.description" = "Kebarangkalian pensampelan nukleus";
+"settings.parameter.top.k" = "Top K";
+"settings.parameter.top.k.description" = "Bilangan token teratas untuk dipertimbangkan";
+"settings.parameter.max.tokens" = "Max Tokens";
+"settings.parameter.max.tokens.description" = "Panjang respons maksimum";
+"settings.parameter.repeat.penalty" = "Repeat Penalty";
+"settings.parameter.repeat.penalty.description" = "Lebih tinggi = kurang pengulangan";
+"settings.parameter.thinking" = "Mod Pemikiran";
+"settings.parameter.thinking.description" = "Tunjukkan proses penaakulan AI";
+"settings.system.prompt.title" = "System Prompt";
+"settings.system.prompt.description" = "Arahan tersuai untuk AI";
+"settings.reset.to.default" = "Tetapkan Semula kepada Lalai";
+
+// MARK: - Vision Model
+"vision.model.required.title" = "Model Penglihatan Diperlukan";
+"vision.model.required.header" = "Pengecaman Imej Diperlukan";
+"vision.model.required.description" = "Untuk menganalisis imej, anda memerlukan model AI yang berkebolehan penglihatan";
+"vision.model.switch" = "Tukar Model";
+"vision.model.switch.message %@" = "Tukar ke %@ untuk mengaktifkan analisis imej?";
+"vision.model.download" = "Muat Turun";
+"vision.model.download.message %@ %@" = "Muat turun %@ (%@) untuk menganalisis imej?";
+"vision.model.not.available" = "Tiada model penglihatan yang serasi tersedia untuk peranti anda";
+"vision.model.switching" = "Menukar model...";
+"vision.model.download.title" = "Model Penglihatan";
+"vision.model.recommended" = "Disyorkan untuk peranti anda";
+"vision.model.recommended.size %@" = "Disyorkan: %@";
+"vision.model.use.this" = "Gunakan Model Ini";
+"vision.model.download.button %@" = "Muat Turun (%@)";
+"vision.model.other.options" = "Model Penglihatan Lain";
+"vision.model.download.complete" = "Muat Turun Selesai";
+"vision.model.download.complete.message" = "Sedia untuk menganalisis imej";
+
+// MARK: - Whisper Voice Input (Legacy)
+"whisper.download.title" = "Pengecaman Suara Diperlukan";
+"whisper.download.action" = "Muat Turun";
+"whisper.download.message" = "Untuk menggunakan input suara, anda perlu memuat turun model pengecaman pertuturan (~150MB).";
+"whisper.downloading" = "Memuat turun model pengecaman pertuturan...";
+"whisper.download.error" = "Ralat Muat Turun";
+"whisper.load.error" = "Ralat Muatan Model";
+"whisper.permission.denied" = "Akses mikrofon tidak dibenarkan";
+"whisper.transcribe.error" = "Ralat Transkripsi";
+"whisper.error.permission" = "Kebenaran mikrofon diperlukan";
+"whisper.error.not.recording" = "Tidak merakam pada masa ini";
+"whisper.error.no.recording" = "Tiada data rakaman";
+"whisper.error.model.not.loaded" = "Model pengecaman pertuturan tidak dimuatkan";
+"whisper.error.transcription" = "Transkripsi gagal";
+
+// MARK: - Speech Recognition (ReazonSpeech)
+"speech.download.title" = "Pengecaman Suara Diperlukan";
+"speech.download.action" = "Muat Turun";
+"speech.download.message" = "Untuk menggunakan input suara, anda perlu memuat turun model pengecaman pertuturan Jepun (~155MB).";
+"speech.downloading" = "Memuat turun model pengecaman pertuturan...";
+
+// MARK: - Language Settings
+"settings.language.section" = "Bahasa";
+"language.system" = "Gunakan Bahasa Sistem";
+"settings.language.restart.hint" = "Perubahan bahasa akan berkuat kuasa selepas memulakan semula aplikasi";
+"settings.language.changed.title" = "Bahasa Ditukar";
+"settings.language.changed.message" = "Sila mulakan semula aplikasi untuk menggunakan perubahan";
+"common.ok" = "OK";
+
+// MARK: - System Prompt Settings
+"settings.prompt.section" = "System Prompt";
+"settings.prompt.edit" = "Edit Prompt";
+"settings.prompt.default" = "Menggunakan lalai";
+"settings.prompt.custom" = "Prompt tersuai ditetapkan";
+"settings.prompt.hint" = "Sesuaikan tingkah laku AI";
+"settings.prompt.editor.title" = "Edit Prompt";
+"settings.prompt.editor.instruction" = "Tambah arahan tersuai untuk AI. Biarkan kosong untuk menggunakan prompt lalai.";
+"settings.prompt.default.preview" = "Prompt lalai (petikan):";
+"settings.prompt.reset" = "Tetapkan Semula";
+"settings.prompt.reset.title" = "Tetapkan Semula Prompt";
+"settings.prompt.reset.message" = "Padam prompt tersuai dan pulihkan kepada lalai?";
+
+// MARK: - Prompt Templates
+"templates.title" = "Templat Prompt";
+"templates.empty" = "Tiada templat lagi";
+"templates.add" = "Tambah Templat";
+"template.add.title" = "Tambah Templat";
+"template.edit.title" = "Edit Templat";
+"template.name.header" = "Nama";
+"template.name.placeholder" = "Nama templat";
+"template.content.header" = "Kandungan Prompt";
+"template.icon.header" = "Ikon";
+"template.translate.name" = "Terjemah";
+"template.translate.content" = "Sila terjemahkan yang berikut: ";
+"template.summarize.name" = "Ringkaskan";
+"template.summarize.content" = "Sila ringkaskan yang berikut: ";
+"template.explain.name" = "Terangkan";
+"template.explain.content" = "Sila terangkan yang berikut: ";
+"template.code.name" = "Kod";
+"template.code.content" = "Sila tulis kod untuk: ";
+
+// MARK: - Export
+"export.title" = "Eksport Perbualan";
+"export.format.markdown" = "Markdown";
+"export.format.pdf" = "PDF";
+"export.format.text" = "Teks Biasa";
+"export.created" = "Dicipta";
+"export.image.attached" = "Imej dilampirkan";
+"export.generated.by" = "Dijana oleh";
+
+// MARK: - Loading Phases
+"loading.phase.initializing" = "Memulakan...";
+"loading.phase.loading" = "Memuatkan model...";
+"loading.phase.preparing" = "Menyediakan enjin inferens...";
+"loading.phase.almost" = "Hampir sedia...";
+
+// MARK: - Welcome Screen
+"welcome.greeting" = "Tanya apa sahaja";
+"welcome.subtitle" = "Pembantu AI yang mengutamakan privasi anda";
+"suggestion.idea" = "Bantu saya bertukar fikiran";
+"suggestion.write" = "Bantu saya menulis sesuatu";
+"suggestion.question" = "Jawab soalan saya";
+
+// MARK: - Kokoro TTS
+"tts.download.title" = "Suara Berkualiti Tinggi";
+"tts.download.action" = "Muat Turun";
+"tts.download.use_system" = "Gunakan Suara Sistem";
+"tts.download.message" = "Muat turun model Kokoro TTS (~87MB) untuk teks-ke-pertuturan Jepun yang lebih semula jadi.";
+"tts.downloading" = "Memuat turun model TTS...";
+
+// MARK: - Feedback
+"feedback.consent.title" = "Hantar Maklum Balas";
+"feedback.send" = "Hantar";
+"feedback.positive.title" = "Adakah respons ini membantu?";
+"feedback.negative.title" = "Bolehkah ini diperbaiki?";
+"feedback.explanation" = "Maklum balas anda membantu meningkatkan kualiti AI. Sila semak data yang akan dihantar sebelum menghantar.";
+"feedback.data.section" = "Data yang akan dihantar";
+"feedback.data.conversation" = "Perbualan";
+"feedback.data.conversation.desc" = "Respons AI dan mesej anda sebelum ini";
+"feedback.data.model" = "Maklumat model";
+"feedback.data.model.desc" = "Nama model AI yang digunakan";
+"feedback.data.timestamp" = "Cap masa";
+"feedback.data.timestamp.desc" = "Bila maklum balas dihantar";
+"feedback.privacy.section" = "Privasi";
+"feedback.privacy.anonymous" = "Tiada maklumat pengenalan peribadi dihantar";
+"feedback.privacy.improvement" = "Digunakan hanya untuk meningkatkan kualiti AI";
+"feedback.privacy.optional" = "Menghantar maklum balas adalah sepenuhnya pilihan";
+"feedback.comment.section" = "Komen (pilihan)";
+"feedback.comment.placeholder" = "Beritahu kami apa yang boleh diperbaiki atau apa yang berfungsi dengan baik...";
+"feedback.remember.title" = "Ingat pilihan ini";
+"feedback.remember.description" = "Hantar maklum balas tanpa bertanya lain kali";
+
+// MARK: - Emergency Mode
+"emergency.sos.button" = "Mod Kecemasan (tekan lama untuk togol)";
+"emergency.mode.active" = "Mod Kecemasan Aktif";
+"emergency.action.firstaid" = "Pertolongan Cemas";
+"emergency.action.firstaid.message" = "Sila berikan arahan pertolongan cemas. Saya akan menerangkan kecederaan atau gejala: ";
+"emergency.action.disaster" = "Bencana";
+"emergency.action.disaster.message" = "Bencana telah berlaku. Sila berikan prosedur tindak balas: ";
+"emergency.action.factcheck" = "Semak Fakta";
+"emergency.action.factcheck.message" = "Sila sahkan kebolehpercayaan maklumat ini: ";
+"emergency.action.contacts" = "Kecemasan";
+"emergency.action.contacts.message" = "Sila tunjukkan senarai nombor kenalan kecemasan";
+"emergency.action.evacuation" = "Berpindah";
+"emergency.action.evacuation.message" = "Sila cipta senarai semak pemindahan untuk situasi semasa: ";
+"mcp.emergency_kb" = "Pangkalan Pengetahuan Kecemasan";
+"mcp.emergency_kb.desc" = "Maklumat kecemasan & bencana";
+
+// MARK: - Emergency Templates
+"template.firstaid.name" = "Panduan Pertolongan Cemas";
+"template.firstaid.content" = "Sila berikan arahan pertolongan cemas untuk: ";
+"template.disaster.name" = "Tindak Balas Bencana";
+"template.disaster.content" = "Bencana berikut telah berlaku. Sila berikan prosedur tindak balas: ";
+"template.factcheck.name" = "Semak Fakta";
+"template.factcheck.content" = "Sila sahkan kebolehpercayaan maklumat ini dan berikan petua penyemakan fakta: ";
+"template.evacuation.name" = "Senarai Semak Pemindahan";
+"template.evacuation.content" = "Sila cipta senarai semak pemindahan untuk situasi semasa: ";
+
+// MARK: - ChatWeb.ai Integration
+"chatweb.title" = "ChatWeb.ai";
+"chatweb.desc" = "Sembang AI Awan";
+"chatweb.connect" = "Sambung ke ChatWeb.ai";
+"chatweb.qr.title" = "Sambung melalui Kod QR";
+"chatweb.qr.scan" = "Imbas Kod QR";
+"chatweb.open" = "Buka ChatWeb.ai";
+
+// MARK: - Peer Connection
+"peer.title" = "Peranti Berdekatan";
+"peer.desc" = "Sambung dengan peranti Elio berdekatan";
+"peer.connect" = "Sambung ke Peranti";
+"peer.code.title" = "Kod Sambungan";
+"peer.code.enter" = "Masukkan kod 4 digit";
+"peer.code.your" = "Kod Anda";
+"peer.connected" = "Disambungkan";
+"peer.disconnected" = "Diputuskan";
+"peer.inference.offload" = "Berkongsi inferens";
+
+// MARK: - Web Search
+"chat.web.search" = "Carian Web";
+"search.privacy.title" = "Carian Terlindung Privasi";
+"search.privacy.proceed" = "Cari";
+"search.privacy.message" = "Carian Web ElioChat melindungi privasi anda:\n\n🔒 Carian melalui DuckDuckGo\n🚫 Tiada penjejakan atau pemprofelan\n🔐 Sejarah carian tidak disimpan\n📱 Tiada data disimpan di luar peranti anda\n\nHanya pertanyaan carian anda dihantar ke DuckDuckGo, dan hasil diproses pada peranti anda.";
+"chat.web.analyzing" = "[Menganalisis halaman web]";

@@ -1,0 +1,635 @@
+/*
+  Localizable.strings (Hungarian)
+  Elio
+*/
+
+// MARK: - App General
+"app.name" = "Elio";
+"app.tagline" = "Titkaid őrző második agyad.";
+
+// MARK: - Common Actions
+"common.done" = "Kész";
+"common.cancel" = "Mégse";
+"common.delete" = "Törlés";
+"common.save" = "Mentés";
+"common.edit" = "Szerkesztés";
+"common.share" = "Megosztás";
+"common.copy" = "Másolás";
+"common.copied" = "Másolva";
+"common.loading" = "Betöltés...";
+"common.error" = "Hiba";
+"common.retry" = "Újra";
+"common.skip" = "Kihagyás";
+"common.next" = "Következő";
+"common.start" = "Kezdjük";
+"common.add" = "Hozzáadás";
+"common.close" = "Bezárás";
+"common.details" = "Részletek";
+"common.yes" = "Igen";
+"common.no" = "Nem";
+"common.unknown" = "Ismeretlen";
+
+// MARK: - Chat
+"chat.placeholder" = "Kérdezz bármit";
+"chat.model.not.loaded" = "Nincs betöltött modell";
+"chat.model.not.loaded.description" = "Tölts le egy modellt a Beállításokban";
+"chat.go.to.settings" = "Ugrás a Beállításokhoz";
+"chat.new.conversation" = "Új chat";
+"chat.stop.generation" = "Leállítás";
+"chat.generation.stopped" = "\n\n[Generálás leállítva]";
+"chat.image.sent" = "[Kép elküldve]";
+"chat.images.sent" = "[%d kép elküldve]";
+"chat.pdf.sent" = "[PDF csatolva: %@]";
+"chat.pdf.sent.vision" = "[PDF képpel: %@]";
+"chat.pdf.context" = "A következő a PDF dokumentumból \"%@\" kinyert szöveges tartalom:\n\n%@";
+"chat.pdf.context.vision" = "Ez az 1. oldal a PDF dokumentumból \"%@\". A kinyert szöveges tartalom:\n\n%@\n\nKérlek elemezd mind a vizuális tartalmat, mind a szöveget.";
+"chat.pdf.analyze" = "Kérlek elemezd ezt a PDF oldalt innen: \"%@\".";
+"chat.url.sent" = "[Weboldal: %@]";
+"chat.url.context" = "A következő a weboldalról \"%@\" (%@) kinyert tartalom:\n\n%@";
+"chat.thinking" = "Gondolkodok...";
+"chat.generating" = "Válasz generálása...";
+"chat.welcome" = "Miben segíthetek?";
+"chat.suggestion.schedule" = "Mai naptár mutatása";
+"chat.suggestion.reminder" = "Emlékeztető létrehozása";
+"chat.suggestion.weather" = "Milyen az időjárás ma?";
+"chat.suggestion.help" = "Hogyan használjam az appot";
+"chat.websearch.on" = "Webes keresés be";
+"chat.websearch.off" = "Webes keresés ki";
+"chat.thinking.on" = "Gondolkodás be";
+"chat.thinking.off" = "Gondolkodás ki";
+"chat.transcribing" = "Átírás...";
+"chat.offline" = "Offline";
+
+// Voice Conversation Mode
+"voice.listening" = "Hallgatlak...";
+"voice.processing" = "Feldolgozás...";
+"voice.thinking" = "Gondolkodás...";
+"voice.speaking" = "Beszélés...";
+"voice.tap.to.send" = "Koppints a küldéshez";
+"chat.templates" = "Sablonok";
+"chat.websearch.privacy.title" = "A webes keresésről";
+"chat.websearch.privacy.message" = "A webes keresés engedélyezése lehetővé teszi az AI számára, hogy a DuckDuckGo-n keresztül keressen az interneten naprakész információért. A keresési lekérdezések elküldésre kerülnek a DuckDuckGo-nak, de nem követik őket.";
+"chat.websearch.privacy.enable" = "Engedélyezés";
+"chat.websearch.privacy.disable" = "Maradjon kikapcsolva";
+
+// MARK: - Settings
+"settings.title" = "Beállítások";
+"settings.model.section" = "AI modellek";
+"settings.model.recommended" = "Ajánlott: %@";
+"settings.model.local.execution" = "A modellek helyben futnak az eszközödön";
+"settings.model.show.more" = "További modellek (%d)";
+"settings.model.show.less" = "Kevesebb mutatása";
+"settings.appearance.section" = "Megjelenés";
+"settings.tools.section" = "Okos funkciók";
+"settings.mcp.servers" = "Integrációk";
+"settings.mcp.servers.description" = "Naptár, Fájlok, Emlékeztetők és több";
+"settings.mcp.enabled.count" = "%d engedélyezve";
+"settings.mcp.enabled.count.suffix" = " engedélyezve";
+"settings.about.section" = "Névjegy";
+"settings.version" = "Verzió";
+"settings.about.app" = "Az appról";
+"settings.about.mcp" = "Az integrációkról";
+"settings.privacy.badge" = "Offline működés";
+"settings.privacy.description" = "Repülőgép módban is működik";
+"settings.airplane.mode" = "Repülőgép módban fut";
+"settings.offline.ready" = "Offline-ra kész";
+
+// MARK: - Model States
+"model.status.downloading" = "Letöltés... %d%%";
+"model.status.loading" = "Betöltés...";
+"model.status.in.use" = "Használatban";
+"model.status.recommended" = "Ajánlott";
+"model.status.heavy" = "Nehéz";
+"model.action.download" = "Letöltés";
+"model.action.load" = "Betöltés";
+"model.action.delete" = "Törlés";
+"model.action.use" = "Ezt használom";
+"model.delete.confirm.title" = "Modell törlése";
+"model.delete.confirm.message" = "Töröljük %@? Újra le kell töltened, hogy használhasd.";
+"model.select.title" = "Modell kiválasztása";
+"model.select.prompt" = "Kérlek válassz modellt";
+"model.downloaded" = "Letöltve";
+
+// MARK: - Inference Mode
+"inference.mode.title" = "Gyorsítás";
+"inference.mode.auto" = "Auto";
+"inference.mode.auto.desc" = "Optimális teljesítmény automatikusan";
+"inference.mode.gpu" = "GPU (Metal)";
+"inference.mode.gpu.desc" = "Maximális sebesség Metal-lal";
+"inference.mode.cpu" = "Csak CPU";
+"inference.mode.cpu.desc" = "Akkumulátorkímélő mód";
+"inference.mode.hybrid" = "Hibrid";
+"inference.mode.hybrid.desc" = "Sebesség és akkumulátor egyensúlya";
+
+// MARK: - Theme
+"theme.system" = "Rendszer";
+"theme.light" = "Világos";
+"theme.dark" = "Sötét";
+
+// MARK: - Onboarding
+"onboarding.welcome.title" = "Üdvözöl az ElioChat";
+"onboarding.welcome.subtitle" = "Személyes AI asszisztensed";
+"onboarding.features.title" = "Valóban privát AI";
+"onboarding.feature.offline" = "Repülőgép módban is működik";
+"onboarding.feature.offline.desc" = "Használd repülőn vagy metróban";
+"onboarding.feature.privacy" = "Nulla adatátvitel";
+"onboarding.feature.privacy.desc" = "A chatjeid soha nem hagyják el a telefonodat";
+"onboarding.feature.vault" = "Okos integrációk";
+"onboarding.feature.vault.desc" = "Csatlakozás naptárhoz és fájlokhoz";
+"onboarding.feature.secure" = "Munkabiztos AI";
+"onboarding.feature.secure.desc" = "Biztonságos céges használatra";
+"onboarding.feature.thinking" = "Gondolkodási folyamat";
+"onboarding.privacy.title" = "Az adataid a tieid maradnak";
+"onboarding.privacy.item1" = "Minden feldolgozás az iPhone-odon történik";
+"onboarding.privacy.item2" = "Semmilyen adat nem kerül felhő szerverekre";
+"onboarding.privacy.item3" = "Soha nem használjuk AI tanításhoz";
+"onboarding.getstarted.title" = "Kész egy koppintásra";
+"onboarding.getstarted.subtitle" = "Töltsd le az ajánlott AI modellt\nés kezdj el chattelni azonnal";
+"onboarding.step1" = "Töltsd le az ajánlott modellt";
+"onboarding.step2" = "Várj pár percet";
+"onboarding.step3" = "Minden kész!";
+
+// MARK: - About
+"about.title" = "Az appról";
+"about.rate.app" = "App értékelése";
+"about.share.app" = "Megosztás barátokkal";
+"about.privacy.policy" = "Adatvédelmi szabályzat";
+"about.terms" = "Szolgáltatási feltételek";
+"about.tech.info" = "Technikai információ";
+"about.tech.engine" = "AI motor";
+"about.tech.format" = "Támogatott formátum";
+"about.tech.inference" = "Következtetés";
+"about.data.management" = "Adatkezelés";
+"about.delete.all" = "Minden beszélgetés törlése";
+"about.credits" = "Köszönetnyilvánítás";
+"about.credits.description" = "Ez az app nyílt forráskódú könyvtárakat használ";
+"about.privacy.section" = "Adatvédelem";
+"about.gguf.format" = "GGUF formátum";
+"about.metal.gpu" = "Metal GPU gyorsítás";
+
+// MARK: - Referral
+"referral.title" = "Barátok ajánlása";
+"referral.code.title" = "Ajánlási kódod";
+"referral.code.copy" = "Kód másolása";
+"referral.code.copied" = "Másolva";
+"referral.share.button" = "Megosztás barátokkal";
+"referral.share.description" = "Oszd meg az Elio-t a barátaiddal!";
+"referral.count" = "%d ember ajánlva";
+"referral.enter.title" = "Ajánlási kód megadása";
+"referral.enter.placeholder" = "Ajánlási kód";
+"referral.enter.button" = "Alkalmazás";
+"referral.enter.success" = "Ajánlási kód alkalmazva";
+"referral.enter.error" = "Érvénytelen ajánlási kód";
+
+// MARK: - Privacy Policy
+"privacy.title" = "Adatvédelmi szabályzat";
+"privacy.data.collection.title" = "Adatgyűjtés";
+"privacy.data.collection.content" = "Ez az app egy helyi AI-t futtat teljesen offline.\nSemmilyen adat nem kerül külső szerverekre.\nMinden beszélgetés csak az eszközödön tárolódik.";
+"privacy.stored.data.title" = "Tárolt adatok";
+"privacy.stored.data.content" = "Beszélgetési előzmények (csak eszközön tárolva)\nAI modell fájlok (csak eszközön tárolva)\nApp beállítások (csak eszközön tárolva)\n\nEzek az adatok soha nem kerülnek külsőleg megosztásra.";
+"privacy.data.deletion.title" = "Adattörlés";
+"privacy.data.deletion.content" = "Bármikor törölheted az összes adatot a Beállítások > Adatkezelés menüben.\nAz app eltávolítása törli az összes adatot.";
+
+// MARK: - Terms of Service
+"terms.title" = "Szolgáltatási feltételek";
+"terms.service.title" = "Szolgáltatás leírása";
+"terms.service.content" = "Ez az app AI asszisztens funkciókat biztosít egy helyben futó AI modell használatával.";
+"terms.disclaimer.title" = "Felelősség kizárása";
+"terms.disclaimer.content" = "Az AI válaszai tartalmazhatnak hibákat.\nFontos döntéseket mindig szakértővel ellenőrizz.\nNem vállalunk felelősséget az app használatából eredő károkért.";
+"terms.prohibited.title" = "Tiltott tevékenységek";
+"terms.prohibited.content" = "Illegális tevékenységek\nMások jogait sértő tevékenységek\nAz app visszafejtése\nAz app jogosulatlan másolása";
+"terms.ip.title" = "Szellemi tulajdon";
+"terms.ip.content" = "Az app szellemi tulajdonjogai a fejlesztőt illetik.\nJogosulatlan használat tilos.";
+
+// MARK: - Conversations
+"conversations.title" = "Beszélgetések";
+"conversations.new" = "Új beszélgetés";
+"conversations.empty" = "Még nincsenek beszélgetések";
+"conversations.delete" = "Beszélgetés törlése";
+"conversations.default.title" = "Új beszélgetés";
+"conversations.today" = "Ma";
+"conversations.yesterday" = "Tegnap";
+"conversations.past7days" = "Elmúlt 7 nap";
+"conversations.past30days" = "Elmúlt 30 nap";
+"conversations.older" = "Régebbi";
+"conversations.created" = "Létrehozva: %@";
+"conversations.user" = "Felhasználó";
+"conversations.assistant" = "Asszisztens";
+"conversations.search.placeholder" = "Beszélgetések keresése";
+"conversations.search.no_results" = "Nincs találat";
+
+// MARK: - Message Actions
+"message.copy" = "Másolás";
+"message.speak" = "Felolvasás";
+"message.stop.speaking" = "Felolvasás leállítása";
+"message.share" = "Megosztás";
+"message.share.card" = "Megosztás kártyaként";
+"message.like" = "Tetszik";
+
+// MARK: - Share Card
+"share.card.title" = "Kártya megosztása";
+"share.card.preview" = "Előnézet";
+"share.card.button" = "Kép megosztása";
+"message.dislike" = "Nem tetszik";
+"message.thinking.process" = "Gondolkodási folyamat";
+"message.tool.running" = "Eszköz futtatása";
+"message.tool.error" = "Hiba";
+"message.tool.completed" = "Befejezve";
+
+// MARK: - Attachment
+"attachment.title" = "Melléklet";
+"attachment.photo.library" = "Fotó választása";
+"attachment.camera" = "Fénykép készítése";
+"attachment.pdf" = "PDF kiválasztása";
+"attachment.pdf.chars" = "%d karakter";
+"attachment.pdf.pages" = "%d oldal";
+"attachment.pdf.vision.enabled" = "Képelemzés engedélyezve";
+"attachment.pdf.text.only" = "Csak szöveges mód";
+"attachment.url" = "Weboldal olvasása";
+"attachment.url.title" = "URL megadása";
+"attachment.url.placeholder" = "https://pelda.hu";
+"attachment.url.message" = "Illessz be URL-t a tartalom kinyeréséhez";
+"attachment.url.fetch" = "Lekérés";
+"attachment.url.loading" = "Oldal betöltése...";
+
+// MARK: - Errors
+"error.model.not.found" = "Modell fájl nem található";
+"error.model.not.loaded" = "Modell nincs betöltve";
+"error.context.failed" = "Kontextus létrehozása sikertelen";
+"error.tokenization.failed" = "Tokenizálás sikertelen";
+"error.generation.failed" = "Generálási hiba: %@";
+"error.occurred" = "Hiba történt: %@";
+"error.invalid.url" = "Érvénytelen URL";
+"error.download.failed" = "Letöltés sikertelen";
+"error.extraction.failed" = "Kinyerés sikertelen";
+"error.config.not.found" = "Konfigurációs fájl nem található";
+
+// MARK: - Ghost Search
+"ghost.search.title" = "Anonim keresés";
+"ghost.search.description" = "Anonim keresés DuckDuckGo-n keresztül (nincs követés)";
+"ghost.search.connecting" = "Csatlakozás anonim hálózathoz...";
+"ghost.search.privacy.note" = "A keresési előzményeid soha nincsenek követve";
+
+// MARK: - MCP Servers
+"mcp.filesystem" = "Fájlrendszer";
+"mcp.filesystem.desc" = "Fájlok olvasása és írása az appban";
+"mcp.calendar" = "Naptár";
+"mcp.calendar.desc" = "Események olvasása és írása";
+"mcp.reminders" = "Emlékeztetők";
+"mcp.reminders.desc" = "Emlékeztetők kezelése";
+"mcp.contacts" = "Névjegyzék";
+"mcp.contacts.desc" = "Névjegyek keresése és megtekintése";
+"mcp.photos" = "Fotók";
+"mcp.photos.desc" = "Fotótár elérése";
+"mcp.location" = "Helyszín";
+"mcp.location.desc" = "Aktuális helyszín és helyek keresése";
+"mcp.health" = "Egészség";
+"mcp.health.desc" = "Egészségügyi adatok elérése";
+"mcp.shortcuts" = "Gyorsbillentyűk";
+"mcp.shortcuts.desc" = "Gyorsbillentyűk futtatása";
+"mcp.websearch" = "Webes keresés";
+"mcp.websearch.desc" = "Anonim webes keresés";
+"mcp.custom" = "Egyéni integráció";
+"mcp.custom.add" = "Integráció hozzáadása";
+"mcp.custom.setup" = "Külső szolgáltatás integráció beállítása";
+"mcp.custom.title" = "Egyéni integrációk";
+"mcp.settings.title" = "Integráció beállítások";
+"mcp.server.name" = "Szerver neve";
+"mcp.server.name.placeholder" = "pl. Saját szerver";
+"mcp.config.url" = "Konfigurációs fájl URL";
+"mcp.import.file" = "Importálás fájlból";
+"mcp.config.example" = "Konfigurációs fájl példa";
+"mcp.permission.note" = "Engedélyek minden funkció első használatakor kérésre kerülnek";
+
+// MARK: - MCP Tool Messages
+"mcp.tool.available" = "Elérhető eszközök:";
+"mcp.tool.parameters" = "Paraméterek:";
+"mcp.prompt.available" = "Elérhető promptok:";
+"mcp.prompt.arguments" = "Argumentumok:";
+"mcp.tool.name" = "eszköz_neve";
+"mcp.tool.arg.name" = "argumentum_neve";
+"mcp.tool.arg.value" = "érték";
+"mcp.tool.no.result" = "Nincs eredmény";
+"mcp.tool.running" = "Eszköz futtatása: %@";
+"mcp.tool.error" = "Eszköz végrehajtási hiba: %@";
+
+// MARK: - MCP Error Messages
+"mcp.error.server.not.found" = "Szerver nem található: %@";
+"mcp.error.tool.not.found" = "Eszköz nem található: %@";
+"mcp.error.invalid.args" = "Érvénytelen argumentumok: %@";
+"mcp.error.execution" = "Végrehajtási hiba: %@";
+"mcp.error.permission" = "Engedély megtagadva: %@";
+
+// MARK: - Calendar Messages
+"calendar.no.events" = "Nincsenek események";
+"calendar.event.created" = "Esemény létrehozva: %@";
+"calendar.event.deleted" = "Esemény törölve: %@";
+"calendar.allday.created" = "Egész napos esemény létrehozva: %@";
+"calendar.access.denied" = "Naptár hozzáférés megtagadva";
+"calendar.today.none" = "Ma nincsenek események";
+"calendar.untitled" = "Névtelen";
+
+// MARK: - Reminders Messages
+"reminders.none" = "Nincsenek emlékeztetők";
+"reminders.created" = "Emlékeztető létrehozva: %@";
+"reminders.completed" = "Emlékeztető befejezve: %@";
+"reminders.deleted" = "Emlékeztető törölve: %@";
+"reminders.access.denied" = "Emlékeztetők hozzáférés megtagadva";
+"reminders.untitled" = "Névtelen";
+
+// MARK: - Photos Messages
+"photos.access.denied" = "Fotók hozzáférés megtagadva";
+"photos.not.found" = "Fotó nem található";
+"photos.untitled" = "Névtelen";
+"photos.count" = "Fotók: %d";
+"photos.videos.count" = "Videók: %d";
+"photos.albums.count" = "Albumok: %d";
+"photos.favorites.count" = "Kedvencek: %d";
+"photos.date" = "Dátum: %@";
+"photos.size" = "Méret: %d x %d";
+"photos.location" = "Helyszín: %@, %@";
+"photos.media.type" = "Média típus: %@";
+"photos.duration" = "Hossz: %dm %ds";
+"photos.favorite" = "Kedvenc: %@";
+"photos.type.image" = "Fotó";
+"photos.type.video" = "Videó";
+"photos.type.audio" = "Hang";
+
+// MARK: - Contacts Messages
+"contacts.access.denied" = "Névjegyzék hozzáférés megtagadva";
+"contacts.not.found" = "Nincs egyező névjegy";
+"contacts.no.groups" = "Nincsenek csoportok";
+"contacts.no.card" = "Nincs névjegykártya beállítva";
+"contacts.name" = "Név: %@";
+"contacts.company" = "Cég: %@";
+"contacts.job" = "Beosztás: %@";
+
+// MARK: - Location Messages
+"location.access.denied" = "Helyszín hozzáférés megtagadva";
+"location.not.found" = "Cím nem található";
+"location.latitude" = "Szélesség: %@";
+"location.longitude" = "Hosszúság: %@";
+"location.accuracy" = "Pontosság: %dm";
+"location.altitude" = "Magasság: %dm";
+"location.search" = "Keresés: %@";
+"location.address" = "Cím: %@";
+"location.country" = "Ország: %@";
+"location.postal" = "Irányítószám: %@";
+"location.from" = "Honnan: (%@, %@)";
+"location.to" = "Hová: (%@, %@)";
+"location.distance.km" = "Távolság: %.2f km";
+"location.distance.m" = "Távolság: %d m";
+
+// MARK: - Health Messages
+"health.not.available" = "Egészség nem elérhető ezen az eszközön";
+"health.date" = "Dátum: %@";
+"health.steps" = "Lépések: %@ lépés";
+"health.goal.progress" = "Cél előrehaladása: %d%% (10 000 lépés cél)";
+"health.no.data" = "Nincs elérhető adat";
+"health.avg.bpm" = "Átlag: %d bpm";
+"health.min.bpm" = "Minimum: %d bpm";
+"health.max.bpm" = "Maximum: %d bpm";
+"health.measurements" = "Mérések: %d";
+"health.no.sleep" = "Nincs alvási adat";
+"health.sleep.total" = "Teljes alvás: %dó %dp";
+"health.bedtime" = "Lefekvés: %@";
+"health.waketime" = "Ébresztés: %@";
+"health.calories" = "Kalóriák: %d kcal";
+
+// MARK: - File System Messages
+"filesystem.not.found" = "Fájl nem található: %@";
+"filesystem.written" = "Fájl írva: %@";
+"filesystem.dir.created" = "Könyvtár létrehozva: %@";
+"filesystem.deleted" = "Törölve: %@";
+"filesystem.size" = "Méret: %@";
+"filesystem.created" = "Létrehozva: %@";
+"filesystem.modified" = "Módosítva: %@";
+"filesystem.type" = "Típus: %@";
+
+// MARK: - Shortcuts Messages
+"shortcuts.executed" = "'%@' gyorsbillentyű végrehajtva";
+"shortcuts.opened" = "Gyorsbillentyűk app megnyitva";
+"shortcuts.settings.opened" = "Beállítások (%@) megnyitva";
+"shortcuts.mail.opened" = "E-mail írás megnyitva";
+"shortcuts.calling" = "Hívás: %@";
+"shortcuts.message.opened" = "Üzenet írás megnyitva";
+"shortcuts.failed" = "Nem lehet megnyitni a gyorsbillentyűt";
+
+// MARK: - Model Tiers
+"model.tier.entry" = "Kezdő";
+"model.tier.standard" = "Standard";
+"model.tier.pro" = "Pro";
+
+// MARK: - Tool Parser
+"tool.arguments" = "Argumentumok:";
+
+// MARK: - Model Settings
+"model.action.settings" = "Beállítások";
+"settings.model.parameters" = "Modell beállítások";
+"settings.model.parameters.description" = "Generálási paraméterek testreszabása ehhez a modellhez";
+"settings.preset.title" = "Előbeállítások";
+"settings.preset.custom" = "Egyéni";
+"settings.preset.balanced" = "Kiegyensúlyozott";
+"settings.preset.creative" = "Kreatív";
+"settings.preset.precise" = "Pontos";
+"settings.preset.coding" = "Kódolás";
+"settings.preset.japanese" = "Japán";
+"settings.parameters.title" = "Paraméterek";
+"settings.parameter.temperature" = "Hőmérséklet";
+"settings.parameter.temperature.description" = "Magasabb = kreatívabb, alacsonyabb = fókuszáltabb";
+"settings.parameter.top.p" = "Top P";
+"settings.parameter.top.p.description" = "Nucleus sampling valószínűség";
+"settings.parameter.top.k" = "Top K";
+"settings.parameter.top.k.description" = "Figyelembe veendő felső tokenek száma";
+"settings.parameter.max.tokens" = "Max. tokenek";
+"settings.parameter.max.tokens.description" = "Maximális válasz hossz";
+"settings.parameter.repeat.penalty" = "Ismétlési büntetés";
+"settings.parameter.repeat.penalty.description" = "Magasabb = kevesebb ismétlődő kimenet";
+"settings.parameter.thinking" = "Gondolkodási mód";
+"settings.parameter.thinking.description" = "AI érvelési folyamat mutatása";
+"settings.system.prompt.title" = "Rendszer prompt";
+"settings.system.prompt.description" = "Egyéni utasítások az AI számára";
+"settings.reset.to.default" = "Alapértelmezett visszaállítása";
+
+// MARK: - Vision Model
+"vision.model.required.title" = "Látás modell szükséges";
+"vision.model.required.header" = "Képfelismerés szükséges";
+"vision.model.required.description" = "Képek elemzéséhez látás-képes AI modellre van szükség";
+"vision.model.switch" = "Modell váltás";
+"vision.model.switch.message %@" = "Váltás %@ modellre a képelemzés engedélyezéséhez?";
+"vision.model.download" = "Letöltés";
+"vision.model.download.message %@ %@" = "%@ (%@) letöltése képek elemzéséhez?";
+"vision.model.not.available" = "Nincs kompatibilis látás modell az eszközhöz";
+"vision.model.switching" = "Modell váltás...";
+"vision.model.download.title" = "Látás modellek";
+"vision.model.recommended" = "Ajánlott az eszközhöz";
+"vision.model.recommended.size %@" = "Ajánlott: %@";
+"vision.model.use.this" = "Ezt használom";
+"vision.model.download.button %@" = "Letöltés (%@)";
+"vision.model.other.options" = "További látás modellek";
+"vision.model.download.complete" = "Letöltés befejezve";
+"vision.model.download.complete.message" = "Kész a képek elemzésére";
+
+// MARK: - Whisper Voice Input (Legacy)
+"whisper.download.title" = "Hangfelismerés szükséges";
+"whisper.download.action" = "Letöltés";
+"whisper.download.message" = "Hangbemenet használatához le kell töltened a beszédfelismerő modellt (~150MB).";
+"whisper.downloading" = "Beszédfelismerő modell letöltése...";
+"whisper.download.error" = "Letöltési hiba";
+"whisper.load.error" = "Modell betöltési hiba";
+"whisper.permission.denied" = "Mikrofon hozzáférés nem engedélyezett";
+"whisper.transcribe.error" = "Átírási hiba";
+"whisper.error.permission" = "Mikrofon engedély szükséges";
+"whisper.error.not.recording" = "Jelenleg nem rögzít";
+"whisper.error.no.recording" = "Nincs felvételi adat";
+"whisper.error.model.not.loaded" = "Beszédfelismerő modell nincs betöltve";
+"whisper.error.transcription" = "Átírás sikertelen";
+
+// MARK: - Speech Recognition (ReazonSpeech)
+"speech.download.title" = "Hangfelismerés szükséges";
+"speech.download.action" = "Letöltés";
+"speech.download.message" = "Hangbemenet használatához le kell töltened a japán beszédfelismerő modellt (~155MB).";
+"speech.downloading" = "Beszédfelismerő modell letöltése...";
+
+// MARK: - Language Settings
+"settings.language.section" = "Nyelv";
+"language.system" = "Rendszer nyelv használata";
+"settings.language.restart.hint" = "A nyelvváltozások az app újraindítása után lépnek életbe";
+"settings.language.changed.title" = "Nyelv megváltoztatva";
+"settings.language.changed.message" = "Kérlek indítsd újra az appot a változások alkalmazásához";
+"common.ok" = "OK";
+
+// MARK: - System Prompt Settings
+"settings.prompt.section" = "Rendszer prompt";
+"settings.prompt.edit" = "Prompt szerkesztése";
+"settings.prompt.default" = "Alapértelmezett használata";
+"settings.prompt.custom" = "Egyéni prompt beállítva";
+"settings.prompt.hint" = "AI viselkedés testreszabása";
+"settings.prompt.editor.title" = "Prompt szerkesztése";
+"settings.prompt.editor.instruction" = "Adj hozzá egyéni utasításokat az AI számára. Hagyd üresen az alapértelmezett prompt használatához.";
+"settings.prompt.default.preview" = "Alapértelmezett prompt (részlet):";
+"settings.prompt.reset" = "Visszaállítás";
+"settings.prompt.reset.title" = "Prompt visszaállítása";
+"settings.prompt.reset.message" = "Egyéni prompt törlése és alapértelmezett visszaállítása?";
+
+// MARK: - Prompt Templates
+"templates.title" = "Prompt sablonok";
+"templates.empty" = "Még nincsenek sablonok";
+"templates.add" = "Sablon hozzáadása";
+"template.add.title" = "Sablon hozzáadása";
+"template.edit.title" = "Sablon szerkesztése";
+"template.name.header" = "Név";
+"template.name.placeholder" = "Sablon neve";
+"template.content.header" = "Prompt tartalom";
+"template.icon.header" = "Ikon";
+"template.translate.name" = "Fordítás";
+"template.translate.content" = "Kérlek fordítsd le a következőt: ";
+"template.summarize.name" = "Összefoglalás";
+"template.summarize.content" = "Kérlek foglasd össze a következőt: ";
+"template.explain.name" = "Magyarázat";
+"template.explain.content" = "Kérlek magyarázd el a következőt: ";
+"template.code.name" = "Kód";
+"template.code.content" = "Kérlek írj kódot ehhez: ";
+
+// MARK: - Export
+"export.title" = "Beszélgetés exportálása";
+"export.format.markdown" = "Markdown";
+"export.format.pdf" = "PDF";
+"export.format.text" = "Egyszerű szöveg";
+"export.created" = "Létrehozva";
+"export.image.attached" = "Kép csatolva";
+"export.generated.by" = "Generálta";
+
+// MARK: - Loading Phases
+"loading.phase.initializing" = "Inicializálás...";
+"loading.phase.loading" = "Modell betöltése...";
+"loading.phase.preparing" = "Következtetési motor előkészítése...";
+"loading.phase.almost" = "Majdnem kész...";
+
+// MARK: - Welcome Screen
+"welcome.greeting" = "Kérdezz bármit";
+"welcome.subtitle" = "Az adatvédelem-központú AI asszisztensed";
+"suggestion.idea" = "Segíts ötleteket kitalálni";
+"suggestion.write" = "Segíts írni valamit";
+"suggestion.question" = "Válaszolj a kérdéseimre";
+
+// MARK: - Kokoro TTS
+"tts.download.title" = "Kiváló minőségű hang";
+"tts.download.action" = "Letöltés";
+"tts.download.use_system" = "Rendszer hang használata";
+"tts.download.message" = "Töltsd le a Kokoro TTS modellt (~87MB) természetesebb japán szövegfelolvasáshoz.";
+"tts.downloading" = "TTS modell letöltése...";
+
+// MARK: - Feedback
+"feedback.consent.title" = "Visszajelzés küldése";
+"feedback.send" = "Küldés";
+"feedback.positive.title" = "Hasznos volt ez a válasz?";
+"feedback.negative.title" = "Javítható lenne?";
+"feedback.explanation" = "A visszajelzésed segít javítani az AI minőségét. Kérlek ellenőrizd, milyen adatok kerülnek elküldésre a beküldés előtt.";
+"feedback.data.section" = "Elküldendő adatok";
+"feedback.data.conversation" = "Beszélgetés";
+"feedback.data.conversation.desc" = "Az AI válasz és az előző üzeneted";
+"feedback.data.model" = "Modell információ";
+"feedback.data.model.desc" = "A használt AI modell neve";
+"feedback.data.timestamp" = "Időbélyeg";
+"feedback.data.timestamp.desc" = "Mikor lett beküldve a visszajelzés";
+"feedback.privacy.section" = "Adatvédelem";
+"feedback.privacy.anonymous" = "Nincs személyazonosításra alkalmas információ elküldve";
+"feedback.privacy.improvement" = "Csak AI minőség javítására használva";
+"feedback.privacy.optional" = "A visszajelzés küldése teljesen opcionális";
+"feedback.comment.section" = "Megjegyzés (opcionális)";
+"feedback.comment.placeholder" = "Mondd el, mit lehetne javítani vagy mi működött jól...";
+"feedback.remember.title" = "Emlékezz erre a választásra";
+"feedback.remember.description" = "Következő alkalommal kérdés nélkül küldje a visszajelzést";
+
+// MARK: - Emergency Mode
+"emergency.sos.button" = "Vészhelyzeti mód (hosszú nyomás a váltáshoz)";
+"emergency.mode.active" = "Vészhelyzeti mód aktív";
+"emergency.action.firstaid" = "Elsősegély";
+"emergency.action.firstaid.message" = "Kérlek adj elsősegély utasításokat. Leírom a sérülést vagy tüneteket: ";
+"emergency.action.disaster" = "Katasztrófa";
+"emergency.action.disaster.message" = "Katasztrófa történt. Kérlek adj reakció eljárásokat: ";
+"emergency.action.factcheck" = "Tényellenőrzés";
+"emergency.action.factcheck.message" = "Kérlek ellenőrizd ennek az információnak a megbízhatóságát: ";
+"emergency.action.contacts" = "Vészhelyzet";
+"emergency.action.contacts.message" = "Kérlek mutass egy listát a vészhelyzeti kapcsolatokról";
+"emergency.action.evacuation" = "Evakuáció";
+"emergency.action.evacuation.message" = "Kérlek készíts evakuálási ellenőrző listát a jelenlegi helyzethez: ";
+"mcp.emergency_kb" = "Vészhelyzeti tudásbázis";
+"mcp.emergency_kb.desc" = "Vészhelyzeti és katasztrófa információk";
+
+// MARK: - Emergency Templates
+"template.firstaid.name" = "Elsősegély útmutató";
+"template.firstaid.content" = "Kérlek adj elsősegély utasításokat ehhez: ";
+"template.disaster.name" = "Katasztrófa reakció";
+"template.disaster.content" = "A következő katasztrófa történt. Kérlek adj reakció eljárásokat: ";
+"template.factcheck.name" = "Tényellenőrzés";
+"template.factcheck.content" = "Kérlek ellenőrizd ennek az információnak a megbízhatóságát és adj tényellenőrzési tippeket: ";
+"template.evacuation.name" = "Evakuálási ellenőrző lista";
+"template.evacuation.content" = "Kérlek készíts evakuálási ellenőrző listát a jelenlegi helyzethez: ";
+
+// MARK: - ChatWeb.ai Integration
+"chatweb.title" = "ChatWeb.ai";
+"chatweb.desc" = "Felhő AI Chat";
+"chatweb.connect" = "Csatlakozás ChatWeb.ai-hoz";
+"chatweb.qr.title" = "Csatlakozás QR kóddal";
+"chatweb.qr.scan" = "QR kód beolvasása";
+"chatweb.open" = "ChatWeb.ai megnyitása";
+
+// MARK: - Peer Connection
+"peer.title" = "Közeli eszközök";
+"peer.desc" = "Csatlakozás közeli Elio eszközökhöz";
+"peer.connect" = "Csatlakozás eszközhöz";
+"peer.code.title" = "Csatlakozási kód";
+"peer.code.enter" = "4 jegyű kód megadása";
+"peer.code.your" = "A kódod";
+"peer.connected" = "Csatlakozva";
+"peer.disconnected" = "Leválasztva";
+"peer.inference.offload" = "Következtetés megosztása";
+
+// MARK: - Web Search
+"chat.web.search" = "Webes keresés";
+"search.privacy.title" = "Adatvédett keresés";
+"search.privacy.proceed" = "Keresés";
+"search.privacy.message" = "Az ElioChat webes keresés védi az adatvédelmedet:\n\n🔒 Keresés DuckDuckGo-n keresztül\n🚫 Nincs követés vagy profilozás\n🔐 Keresési előzmények nem tárolódnak\n📱 Nincs adat tárolva az eszközödön kívül\n\nCsak a keresési lekérdezésed kerül elküldésre a DuckDuckGo-nak, és az eredmények az eszközödön kerülnek feldolgozásra.";
+"chat.web.analyzing" = "[Weboldal elemzése]";

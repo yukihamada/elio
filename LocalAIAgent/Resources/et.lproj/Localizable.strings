@@ -1,0 +1,635 @@
+/*
+  Localizable.strings (Estonian)
+  Elio
+*/
+
+// MARK: - App General
+"app.name" = "Elio";
+"app.tagline" = "Teie saladusi hoidev teine aju.";
+
+// MARK: - Common Actions
+"common.done" = "Valmis";
+"common.cancel" = "Tühista";
+"common.delete" = "Kustuta";
+"common.save" = "Salvesta";
+"common.edit" = "Muuda";
+"common.share" = "Jaga";
+"common.copy" = "Kopeeri";
+"common.copied" = "Kopeeritud";
+"common.loading" = "Laadimine...";
+"common.error" = "Viga";
+"common.retry" = "Proovi uuesti";
+"common.skip" = "Jäta vahele";
+"common.next" = "Edasi";
+"common.start" = "Alusta";
+"common.add" = "Lisa";
+"common.close" = "Sulge";
+"common.details" = "Üksikasjad";
+"common.yes" = "Jah";
+"common.no" = "Ei";
+"common.unknown" = "Teadmata";
+
+// MARK: - Chat
+"chat.placeholder" = "Küsi mida tahes";
+"chat.model.not.loaded" = "Mudel pole laaditud";
+"chat.model.not.loaded.description" = "Palun laadige mudel alla seadetest";
+"chat.go.to.settings" = "Mine seadetesse";
+"chat.new.conversation" = "Uus vestlus";
+"chat.stop.generation" = "Peata";
+"chat.generation.stopped" = "\n\n[Genereerimine peatatud]";
+"chat.image.sent" = "[Pilt saadetud]";
+"chat.images.sent" = "[Saadetud %d pilti]";
+"chat.pdf.sent" = "[PDF lisatud: %@]";
+"chat.pdf.sent.vision" = "[PDF pildiga: %@]";
+"chat.pdf.context" = "Järgnev on PDF-dokumendist \"%@\" ekstraktitud tekstisisu:\n\n%@";
+"chat.pdf.context.vision" = "See on PDF-dokumendi \"%@\" 1. lehekülg. Ekstraktitud tekstisisu:\n\n%@\n\nPalun analüüsige nii visuaalset sisu kui ka teksti.";
+"chat.pdf.analyze" = "Palun analüüsige seda PDF-lehekülge dokumentist \"%@\".";
+"chat.url.sent" = "[Veebileht: %@]";
+"chat.url.context" = "Järgnev on veebilehelt \"%@\" (%@) ekstraktitud sisu:\n\n%@";
+"chat.thinking" = "Mõtlen...";
+"chat.generating" = "Genereerin vastust...";
+"chat.welcome" = "Kuidas saan aidata?";
+"chat.suggestion.schedule" = "Näita tänast ajakava";
+"chat.suggestion.reminder" = "Loo meeldetuletus";
+"chat.suggestion.weather" = "Milline on täna ilm?";
+"chat.suggestion.help" = "Kuidas seda rakendust kasutada";
+"chat.websearch.on" = "Veebiotsing sisse";
+"chat.websearch.off" = "Veebiotsing välja";
+"chat.thinking.on" = "Mõtlemine sisse";
+"chat.thinking.off" = "Mõtlemine välja";
+"chat.transcribing" = "Transkribeerimine...";
+"chat.offline" = "Võrguühenduseta";
+
+// Voice Conversation Mode
+"voice.listening" = "Kuulan...";
+"voice.processing" = "Töötlemine...";
+"voice.thinking" = "Mõtlen...";
+"voice.speaking" = "Räägin...";
+"voice.tap.to.send" = "Puudutage saatmiseks";
+"chat.templates" = "Mallid";
+"chat.websearch.privacy.title" = "Veebiotsingu kohta";
+"chat.websearch.privacy.message" = "Veebiotsingu lubamine võimaldab AI-l otsida teavet internetist DuckDuckGo kaudu. Otsingupäringud saadetakse DuckDuckGo-le, kuid neid ei jälgita.";
+"chat.websearch.privacy.enable" = "Luba";
+"chat.websearch.privacy.disable" = "Jäta väljalülitatuks";
+
+// MARK: - Settings
+"settings.title" = "Seaded";
+"settings.model.section" = "AI mudelid";
+"settings.model.recommended" = "Soovitatav: %@";
+"settings.model.local.execution" = "Mudelid töötavad lokaalselt teie seadmes";
+"settings.model.show.more" = "Muud mudelid (%d)";
+"settings.model.show.less" = "Näita vähem";
+"settings.appearance.section" = "Välimus";
+"settings.tools.section" = "Nutikad funktsioonid";
+"settings.mcp.servers" = "Integratsioonid";
+"settings.mcp.servers.description" = "Kalender, failid, meeldetuletused jne";
+"settings.mcp.enabled.count" = "Sisse lülitatud: %d";
+"settings.mcp.enabled.count.suffix" = " sisse lülitatud";
+"settings.about.section" = "Teave";
+"settings.version" = "Versioon";
+"settings.about.app" = "Selle rakenduse kohta";
+"settings.about.mcp" = "Integratsioonide kohta";
+"settings.privacy.badge" = "Töötab võrguühenduseta";
+"settings.privacy.description" = "Töötab lennurežiimis";
+"settings.airplane.mode" = "Töötab lennurežiimis";
+"settings.offline.ready" = "Valmis võrguühenduseta tööks";
+
+// MARK: - Model States
+"model.status.downloading" = "Allalaadimine... %d%%";
+"model.status.loading" = "Laadimine...";
+"model.status.in.use" = "Kasutusel";
+"model.status.recommended" = "Soovitatav";
+"model.status.heavy" = "Raske";
+"model.action.download" = "Laadi alla";
+"model.action.load" = "Laadi";
+"model.action.delete" = "Kustuta";
+"model.action.use" = "Kasuta seda mudelit";
+"model.delete.confirm.title" = "Kustuta mudel";
+"model.delete.confirm.message" = "Kustutada %@? Uuesti kasutamiseks peate selle uuesti alla laadima.";
+"model.select.title" = "Vali mudel";
+"model.select.prompt" = "Palun valige mudel";
+"model.downloaded" = "Allalaaditud";
+
+// MARK: - Inference Mode
+"inference.mode.title" = "Kiirendus";
+"inference.mode.auto" = "Automaatne";
+"inference.mode.auto.desc" = "Optimaalne jõudlus automaatselt";
+"inference.mode.gpu" = "GPU (Metal)";
+"inference.mode.gpu.desc" = "Maksimaalne kiirus Metaliga";
+"inference.mode.cpu" = "Ainult CPU";
+"inference.mode.cpu.desc" = "Aku säästmise režiim";
+"inference.mode.hybrid" = "Hübriid";
+"inference.mode.hybrid.desc" = "Kiiruse ja aku tasakaal";
+
+// MARK: - Theme
+"theme.system" = "Süsteem";
+"theme.light" = "Hele";
+"theme.dark" = "Tume";
+
+// MARK: - Onboarding
+"onboarding.welcome.title" = "Tere tulemast ElioChati";
+"onboarding.welcome.subtitle" = "Teie privaatne AI assistent";
+"onboarding.features.title" = "Tõeliselt privaatne AI";
+"onboarding.feature.offline" = "Töötab lennurežiimis";
+"onboarding.feature.offline.desc" = "Kasutage lennul või maa all";
+"onboarding.feature.privacy" = "Null andmeedastust";
+"onboarding.feature.privacy.desc" = "Vestlused ei lahku teie telefonist";
+"onboarding.feature.vault" = "Nutikad integratsioonid";
+"onboarding.feature.vault.desc" = "Ühendage kalendri ja failidega";
+"onboarding.feature.secure" = "Tööks turvaline AI";
+"onboarding.feature.secure.desc" = "Turvaline kasutamiseks ettevõttes";
+"onboarding.feature.thinking" = "Mõtlemisprotsess";
+"onboarding.privacy.title" = "Teie andmed jäävad teie omaks";
+"onboarding.privacy.item1" = "Kõik töödeldakse teie iPhone'is";
+"onboarding.privacy.item2" = "Andmeid ei saadeta pilvserveritesse";
+"onboarding.privacy.item3" = "Ei kasutata kunagi AI õppimiseks";
+"onboarding.getstarted.title" = "Valmis ühe puudutusega";
+"onboarding.getstarted.subtitle" = "Laadige alla soovitatud AI mudel\nja alustage vestlust kohe";
+"onboarding.step1" = "Laadige alla soovitatud mudel";
+"onboarding.step2" = "Oodake mõni minut";
+"onboarding.step3" = "Kõik on valmis!";
+
+// MARK: - About
+"about.title" = "Selle rakenduse kohta";
+"about.rate.app" = "Hinda rakendust";
+"about.share.app" = "Jaga sõpradega";
+"about.privacy.policy" = "Privaatsuspoliitika";
+"about.terms" = "Kasutustingimused";
+"about.tech.info" = "Tehniline info";
+"about.tech.engine" = "AI mootor";
+"about.tech.format" = "Toetatud formaat";
+"about.tech.inference" = "Järeldamine";
+"about.data.management" = "Andmehaldus";
+"about.delete.all" = "Kustuta kõik vestlused";
+"about.credits" = "Autorid";
+"about.credits.description" = "See rakendus kasutab avatud lähtekoodiga teeke";
+"about.privacy.section" = "Privaatsus";
+"about.gguf.format" = "GGUF formaat";
+"about.metal.gpu" = "Metal GPU kiirendus";
+
+// MARK: - Referral
+"referral.title" = "Soovita sõpradele";
+"referral.code.title" = "Teie soovituskood";
+"referral.code.copy" = "Kopeeri kood";
+"referral.code.copied" = "Kopeeritud";
+"referral.share.button" = "Jaga sõpradega";
+"referral.share.description" = "Jagage Elio oma sõpradega!";
+"referral.count" = "Soovitatud %d inimest";
+"referral.enter.title" = "Sisesta soovituskood";
+"referral.enter.placeholder" = "Soovituskood";
+"referral.enter.button" = "Rakenda";
+"referral.enter.success" = "Soovituskood rakendatud";
+"referral.enter.error" = "Kehtetu soovituskood";
+
+// MARK: - Privacy Policy
+"privacy.title" = "Privaatsuspoliitika";
+"privacy.data.collection.title" = "Andmete kogumine";
+"privacy.data.collection.content" = "See rakendus käivitab kohalikku AI täielikult võrguühenduseta.\nAndmeid ei saadeta välisserveritesse.\nKõik vestlused salvestatakse ainult teie seadmesse.";
+"privacy.stored.data.title" = "Salvestatud andmed";
+"privacy.stored.data.content" = "Vestluste ajalugu (salvestatud ainult seadmes)\nAI mudeli failid (salvestatud ainult seadmes)\nRakenduse seaded (salvestatud ainult seadmes)\n\nNeid andmeid ei jagata kunagi väliselt.";
+"privacy.data.deletion.title" = "Andmete kustutamine";
+"privacy.data.deletion.content" = "Saate kustutada kõik andmed igal ajal Seaded > Andmehaldus.\nRakenduse desinstallimisel kustutatakse kõik andmed.";
+
+// MARK: - Terms of Service
+"terms.title" = "Kasutustingimused";
+"terms.service.title" = "Teenuse kirjeldus";
+"terms.service.content" = "See rakendus pakub AI assistendi funktsionaalsust, kasutades kohalikku AI mudelit.";
+"terms.disclaimer.title" = "Vastutuse piiramine";
+"terms.disclaimer.content" = "AI vastused võivad sisaldada vigu.\nOlulised otsused tuleb alati kontrollida spetsialistiga.\nMe ei vastuta kahju eest, mis tekib selle rakenduse kasutamisest.";
+"terms.prohibited.title" = "Keelatud tegevus";
+"terms.prohibited.content" = "Ebaseaduslik tegevus\nTegevus, mis rikub teiste õigusi\nSelle rakenduse pöördinseneeria\nSelle rakenduse loata kopeerimine";
+"terms.ip.title" = "Intellektuaalomand";
+"terms.ip.content" = "Selle rakenduse intellektuaalomandi õigused kuuluvad arendajale.\nLoata kasutamine on keelatud.";
+
+// MARK: - Conversations
+"conversations.title" = "Vestlused";
+"conversations.new" = "Uus vestlus";
+"conversations.empty" = "Vestlusi pole veel";
+"conversations.delete" = "Kustuta vestlus";
+"conversations.default.title" = "Uus vestlus";
+"conversations.today" = "Täna";
+"conversations.yesterday" = "Eile";
+"conversations.past7days" = "Viimased 7 päeva";
+"conversations.past30days" = "Viimased 30 päeva";
+"conversations.older" = "Vanemad";
+"conversations.created" = "Loodud: %@";
+"conversations.user" = "Kasutaja";
+"conversations.assistant" = "Assistent";
+"conversations.search.placeholder" = "Otsi vestlusi";
+"conversations.search.no_results" = "Tulemusi ei leitud";
+
+// MARK: - Message Actions
+"message.copy" = "Kopeeri";
+"message.speak" = "Hääldada";
+"message.stop.speaking" = "Peata hääldamine";
+"message.share" = "Jaga";
+"message.share.card" = "Jaga kaardina";
+"message.like" = "Meeldib";
+
+// MARK: - Share Card
+"share.card.title" = "Jaga kaarti";
+"share.card.preview" = "Eelvaade";
+"share.card.button" = "Jaga pilti";
+"message.dislike" = "Ei meeldi";
+"message.thinking.process" = "Mõtlemisprotsess";
+"message.tool.running" = "Tööriist töötab";
+"message.tool.error" = "Viga";
+"message.tool.completed" = "Lõpetatud";
+
+// MARK: - Attachment
+"attachment.title" = "Manus";
+"attachment.photo.library" = "Vali foto";
+"attachment.camera" = "Tee foto";
+"attachment.pdf" = "Vali PDF";
+"attachment.pdf.chars" = "%d tähemärki";
+"attachment.pdf.pages" = "%d lehekülge";
+"attachment.pdf.vision.enabled" = "Pildianalüüs sisse lülitatud";
+"attachment.pdf.text.only" = "Ainult teksti režiim";
+"attachment.url" = "Loe veebilehte";
+"attachment.url.title" = "Sisesta URL";
+"attachment.url.placeholder" = "https://example.com";
+"attachment.url.message" = "Kleepige URL selle sisu ekstraktimiseks";
+"attachment.url.fetch" = "Hangi";
+"attachment.url.loading" = "Laadib lehte...";
+
+// MARK: - Errors
+"error.model.not.found" = "Mudeli faili ei leitud";
+"error.model.not.loaded" = "Mudel pole laaditud";
+"error.context.failed" = "Konteksti loomine ebaõnnestus";
+"error.tokenization.failed" = "Tokeniseerimine ebaõnnestus";
+"error.generation.failed" = "Genereerimise viga: %@";
+"error.occurred" = "Ilmnes viga: %@";
+"error.invalid.url" = "Kehtetu URL";
+"error.download.failed" = "Allalaadimine ebaõnnestus";
+"error.extraction.failed" = "Ekstraheerimine ebaõnnestus";
+"error.config.not.found" = "Konfiguratsioonifaili ei leitud";
+
+// MARK: - Ghost Search
+"ghost.search.title" = "Tontide otsing";
+"ghost.search.description" = "Anonüümne otsing DuckDuckGo kaudu (jälituseta)";
+"ghost.search.connecting" = "Ühendamine anonüümse võrguga...";
+"ghost.search.privacy.note" = "Teie otsinguajalugu ei jälgita kunagi";
+
+// MARK: - MCP Servers
+"mcp.filesystem" = "Failisüsteem";
+"mcp.filesystem.desc" = "Lugege ja kirjutage faile rakenduses";
+"mcp.calendar" = "Kalender";
+"mcp.calendar.desc" = "Lugege ja kirjutage sündmusi";
+"mcp.reminders" = "Meeldetuletused";
+"mcp.reminders.desc" = "Haldage meeldetuletusi";
+"mcp.contacts" = "Kontaktid";
+"mcp.contacts.desc" = "Otsige ja vaadake kontakte";
+"mcp.photos" = "Fotod";
+"mcp.photos.desc" = "Juurdepääs fototeegile";
+"mcp.location" = "Asukoht";
+"mcp.location.desc" = "Hangi praegune asukoht ja otsi kohti";
+"mcp.health" = "Tervis";
+"mcp.health.desc" = "Juurdepääs tervisandmetele";
+"mcp.shortcuts" = "Kiirklahvid";
+"mcp.shortcuts.desc" = "Käivita kiirklahve";
+"mcp.websearch" = "Veebiotsing";
+"mcp.websearch.desc" = "Anonüümne veebiotsing";
+"mcp.custom" = "Kohandatud integratsioon";
+"mcp.custom.add" = "Lisa integratsioon";
+"mcp.custom.setup" = "Seadista välise teenuse integratsioon";
+"mcp.custom.title" = "Kohandatud integratsioonid";
+"mcp.settings.title" = "Integratsiooni seaded";
+"mcp.server.name" = "Serveri nimi";
+"mcp.server.name.placeholder" = "nt Minu kohandatud server";
+"mcp.config.url" = "Konfiguratsioonifaili URL";
+"mcp.import.file" = "Impordi failist";
+"mcp.config.example" = "Konfiguratsioonifaili näide";
+"mcp.permission.note" = "Lube küsitakse iga funktsiooni esmakordsel kasutamisel";
+
+// MARK: - MCP Tool Messages
+"mcp.tool.available" = "Saadaolevad tööriistad:";
+"mcp.tool.parameters" = "Parameetrid:";
+"mcp.prompt.available" = "Saadaolevad vihjed:";
+"mcp.prompt.arguments" = "Argumendid:";
+"mcp.tool.name" = "tööriista_nimi";
+"mcp.tool.arg.name" = "arg_nimi";
+"mcp.tool.arg.value" = "väärtus";
+"mcp.tool.no.result" = "Tulemusi pole";
+"mcp.tool.running" = "Töötab tööriist: %@";
+"mcp.tool.error" = "Tööriista käivitamise viga: %@";
+
+// MARK: - MCP Error Messages
+"mcp.error.server.not.found" = "Serverit ei leitud: %@";
+"mcp.error.tool.not.found" = "Tööriista ei leitud: %@";
+"mcp.error.invalid.args" = "Kehtetud argumendid: %@";
+"mcp.error.execution" = "Käivitamise viga: %@";
+"mcp.error.permission" = "Luba keeldutud: %@";
+
+// MARK: - Calendar Messages
+"calendar.no.events" = "Sündmusi pole";
+"calendar.event.created" = "Sündmus loodud: %@";
+"calendar.event.deleted" = "Sündmus kustutatud: %@";
+"calendar.allday.created" = "Tervepäeva sündmus loodud: %@";
+"calendar.access.denied" = "Kalendri juurdepääs keeldutud";
+"calendar.today.none" = "Täna pole sündmusi";
+"calendar.untitled" = "Pealkirjata";
+
+// MARK: - Reminders Messages
+"reminders.none" = "Meeldetuletusi pole";
+"reminders.created" = "Meeldetuletus loodud: %@";
+"reminders.completed" = "Meeldetuletus lõpetatud: %@";
+"reminders.deleted" = "Meeldetuletus kustutatud: %@";
+"reminders.access.denied" = "Meeldetuletuste juurdepääs keeldutud";
+"reminders.untitled" = "Pealkirjata";
+
+// MARK: - Photos Messages
+"photos.access.denied" = "Fotode juurdepääs keeldutud";
+"photos.not.found" = "Fotot ei leitud";
+"photos.untitled" = "Pealkirjata";
+"photos.count" = "Fotod: %d";
+"photos.videos.count" = "Videod: %d";
+"photos.albums.count" = "Albumid: %d";
+"photos.favorites.count" = "Lemmikud: %d";
+"photos.date" = "Kuupäev: %@";
+"photos.size" = "Suurus: %d x %d";
+"photos.location" = "Asukoht: %@, %@";
+"photos.media.type" = "Meedia tüüp: %@";
+"photos.duration" = "Kestus: %dm %ds";
+"photos.favorite" = "Lemmik: %@";
+"photos.type.image" = "Foto";
+"photos.type.video" = "Video";
+"photos.type.audio" = "Audio";
+
+// MARK: - Contacts Messages
+"contacts.access.denied" = "Kontaktide juurdepääs keeldutud";
+"contacts.not.found" = "Sobivaid kontakte ei leitud";
+"contacts.no.groups" = "Gruppe pole";
+"contacts.no.card" = "Kontaktikaarti pole määratud";
+"contacts.name" = "Nimi: %@";
+"contacts.company" = "Ettevõte: %@";
+"contacts.job" = "Ametinimetus: %@";
+
+// MARK: - Location Messages
+"location.access.denied" = "Asukoha juurdepääs keeldutud";
+"location.not.found" = "Aadressi ei leitud";
+"location.latitude" = "Laiuskraad: %@";
+"location.longitude" = "Pikkuskraad: %@";
+"location.accuracy" = "Täpsus: %dm";
+"location.altitude" = "Kõrgus: %dm";
+"location.search" = "Otsing: %@";
+"location.address" = "Aadress: %@";
+"location.country" = "Riik: %@";
+"location.postal" = "Postiindeks: %@";
+"location.from" = "Algus: (%@, %@)";
+"location.to" = "Lõpp: (%@, %@)";
+"location.distance.km" = "Kaugus: %.2f km";
+"location.distance.m" = "Kaugus: %d m";
+
+// MARK: - Health Messages
+"health.not.available" = "Tervis pole selles seadmes saadaval";
+"health.date" = "Kuupäev: %@";
+"health.steps" = "Sammud: %@";
+"health.goal.progress" = "Eesmärgi progress: %d%% (10 000 sammu eesmärk)";
+"health.no.data" = "Andmeid pole";
+"health.avg.bpm" = "Keskmine: %d bpm";
+"health.min.bpm" = "Miinimum: %d bpm";
+"health.max.bpm" = "Maksimum: %d bpm";
+"health.measurements" = "Mõõtmised: %d";
+"health.no.sleep" = "Uneandmeid pole";
+"health.sleep.total" = "Kogu uni: %dh %dm";
+"health.bedtime" = "Magamamineku aeg: %@";
+"health.waketime" = "Ärkamise aeg: %@";
+"health.calories" = "Kalorid: %d kcal";
+
+// MARK: - File System Messages
+"filesystem.not.found" = "Faili ei leitud: %@";
+"filesystem.written" = "Fail kirjutatud: %@";
+"filesystem.dir.created" = "Kataloog loodud: %@";
+"filesystem.deleted" = "Kustutatud: %@";
+"filesystem.size" = "Suurus: %@";
+"filesystem.created" = "Loodud: %@";
+"filesystem.modified" = "Muudetud: %@";
+"filesystem.type" = "Tüüp: %@";
+
+// MARK: - Shortcuts Messages
+"shortcuts.executed" = "Kiirklahv '%@' käivitatud";
+"shortcuts.opened" = "Kiirklahvide rakendus avatud";
+"shortcuts.settings.opened" = "Seaded (%@) avatud";
+"shortcuts.mail.opened" = "Kirja koostamine avatud";
+"shortcuts.calling" = "Helistamine: %@";
+"shortcuts.message.opened" = "Sõnumi koostamine avatud";
+"shortcuts.failed" = "Kiirklahvi avamine ebaõnnestus";
+
+// MARK: - Model Tiers
+"model.tier.entry" = "Sisend";
+"model.tier.standard" = "Standardne";
+"model.tier.pro" = "Pro";
+
+// MARK: - Tool Parser
+"tool.arguments" = "Argumendid:";
+
+// MARK: - Model Settings
+"model.action.settings" = "Seaded";
+"settings.model.parameters" = "Mudeli seaded";
+"settings.model.parameters.description" = "Kohandage selle mudeli genereerimisparameetreid";
+"settings.preset.title" = "Eelseadistused";
+"settings.preset.custom" = "Kohandatud";
+"settings.preset.balanced" = "Tasakaalustatud";
+"settings.preset.creative" = "Loov";
+"settings.preset.precise" = "Täpne";
+"settings.preset.coding" = "Programmeerimine";
+"settings.preset.japanese" = "Jaapani";
+"settings.parameters.title" = "Parameetrid";
+"settings.parameter.temperature" = "Temperatuur";
+"settings.parameter.temperature.description" = "Kõrgem = loovam, madalam = fokusseeritum";
+"settings.parameter.top.p" = "Top P";
+"settings.parameter.top.p.description" = "Tuuma valimi tõenäosus";
+"settings.parameter.top.k" = "Top K";
+"settings.parameter.top.k.description" = "Kaalutavate tippide arv";
+"settings.parameter.max.tokens" = "Maks. märke";
+"settings.parameter.max.tokens.description" = "Maksimaalne vastuse pikkus";
+"settings.parameter.repeat.penalty" = "Korduse karistus";
+"settings.parameter.repeat.penalty.description" = "Kõrgem = vähem korduvat väljundit";
+"settings.parameter.thinking" = "Mõtlemisrežiim";
+"settings.parameter.thinking.description" = "Näita AI arutlusprotsessi";
+"settings.system.prompt.title" = "Süsteemi viip";
+"settings.system.prompt.description" = "Kohandatud juhised AI-le";
+"settings.reset.to.default" = "Lähtesta vaikeväärtustele";
+
+// MARK: - Vision Model
+"vision.model.required.title" = "Vajalik nägemismudel";
+"vision.model.required.header" = "Vajalik pildituvastus";
+"vision.model.required.description" = "Piltide analüüsimiseks vajate nägemissuutlikku AI mudelit";
+"vision.model.switch" = "Vaheta mudelit";
+"vision.model.switch.message %@" = "Vahetada mudelile %@ pildianalüüsi lubamiseks?";
+"vision.model.download" = "Laadi alla";
+"vision.model.download.message %@ %@" = "Laadida alla %@ (%@) piltide analüüsimiseks?";
+"vision.model.not.available" = "Teie seadmele pole sobivaid nägemismudeleid saadaval";
+"vision.model.switching" = "Vahetatakse mudelit...";
+"vision.model.download.title" = "Nägemismudelid";
+"vision.model.recommended" = "Soovitatav teie seadmele";
+"vision.model.recommended.size %@" = "Soovitatav: %@";
+"vision.model.use.this" = "Kasuta seda mudelit";
+"vision.model.download.button %@" = "Laadi alla (%@)";
+"vision.model.other.options" = "Muud nägemismudelid";
+"vision.model.download.complete" = "Allalaadimine lõpetatud";
+"vision.model.download.complete.message" = "Valmis piltide analüüsimiseks";
+
+// MARK: - Whisper Voice Input (Legacy)
+"whisper.download.title" = "Vajalik häältuvastus";
+"whisper.download.action" = "Laadi alla";
+"whisper.download.message" = "Häälsisendi kasutamiseks peate alla laadima kõnetuvastuse mudeli (~150MB).";
+"whisper.downloading" = "Laadib kõnetuvastuse mudelit alla...";
+"whisper.download.error" = "Allalaadimise viga";
+"whisper.load.error" = "Mudeli laadimise viga";
+"whisper.permission.denied" = "Mikrofoni juurdepääs pole lubatud";
+"whisper.transcribe.error" = "Transkribeerimise viga";
+"whisper.error.permission" = "Vajalik mikrofoni luba";
+"whisper.error.not.recording" = "Praegu ei salvesta";
+"whisper.error.no.recording" = "Salvestusandmeid pole";
+"whisper.error.model.not.loaded" = "Kõnetuvastuse mudel pole laaditud";
+"whisper.error.transcription" = "Transkribimine ebaõnnestus";
+
+// MARK: - Speech Recognition (ReazonSpeech)
+"speech.download.title" = "Vajalik häältuvastus";
+"speech.download.action" = "Laadi alla";
+"speech.download.message" = "Häälsisendi kasutamiseks peate alla laadima jaapani keele kõnetuvastuse mudeli (~155MB).";
+"speech.downloading" = "Laadib kõnetuvastuse mudelit alla...";
+
+// MARK: - Language Settings
+"settings.language.section" = "Keel";
+"language.system" = "Kasuta süsteemi keelt";
+"settings.language.restart.hint" = "Keele muudatused jõustuvad pärast rakenduse taaskäivitamist";
+"settings.language.changed.title" = "Keel muudetud";
+"settings.language.changed.message" = "Palun taaskäivitage rakendus muudatuste rakendamiseks";
+"common.ok" = "OK";
+
+// MARK: - System Prompt Settings
+"settings.prompt.section" = "Süsteemi viip";
+"settings.prompt.edit" = "Muuda viipu";
+"settings.prompt.default" = "Kasutab vaikeväärtust";
+"settings.prompt.custom" = "Kohandatud viip määratud";
+"settings.prompt.hint" = "Kohandage AI käitumist";
+"settings.prompt.editor.title" = "Muuda viipu";
+"settings.prompt.editor.instruction" = "Lisage kohandatud juhised AI-le. Jätke tühjaks vaikeviibu kasutamiseks.";
+"settings.prompt.default.preview" = "Vaikeviipu (väljavõte):";
+"settings.prompt.reset" = "Lähtesta";
+"settings.prompt.reset.title" = "Lähtesta viip";
+"settings.prompt.reset.message" = "Kustutada kohandatud viip ja taastada vaikeväärtus?";
+
+// MARK: - Prompt Templates
+"templates.title" = "Viipide mallid";
+"templates.empty" = "Malle pole veel";
+"templates.add" = "Lisa mall";
+"template.add.title" = "Lisa mall";
+"template.edit.title" = "Muuda malli";
+"template.name.header" = "Nimi";
+"template.name.placeholder" = "Malli nimi";
+"template.content.header" = "Viibu sisu";
+"template.icon.header" = "Ikoon";
+"template.translate.name" = "Tõlgi";
+"template.translate.content" = "Palun tõlkige järgmine:";
+"template.summarize.name" = "Kokkuvõte";
+"template.summarize.content" = "Palun tehke järgmisest kokkuvõte:";
+"template.explain.name" = "Selgita";
+"template.explain.content" = "Palun selgitage järgmist:";
+"template.code.name" = "Kood";
+"template.code.content" = "Palun kirjutage kood:";
+
+// MARK: - Export
+"export.title" = "Ekspordi vestlus";
+"export.format.markdown" = "Markdown";
+"export.format.pdf" = "PDF";
+"export.format.text" = "Lihtne tekst";
+"export.created" = "Loodud";
+"export.image.attached" = "Pilt lisatud";
+"export.generated.by" = "Genereeritud";
+
+// MARK: - Loading Phases
+"loading.phase.initializing" = "Lähtestamine...";
+"loading.phase.loading" = "Mudeli laadimine...";
+"loading.phase.preparing" = "Järeldamisootori ettevalmistamine...";
+"loading.phase.almost" = "Peaaegu valmis...";
+
+// MARK: - Welcome Screen
+"welcome.greeting" = "Küsi mida tahes";
+"welcome.subtitle" = "Teie privaatsust esikohale seadav AI assistent";
+"suggestion.idea" = "Aita mul ideid leida";
+"suggestion.write" = "Aita mul midagi kirjutada";
+"suggestion.question" = "Vastake küsimustele";
+
+// MARK: - Kokoro TTS
+"tts.download.title" = "Kvaliteetne hääl";
+"tts.download.action" = "Laadi alla";
+"tts.download.use_system" = "Kasuta süsteemi häält";
+"tts.download.message" = "Laadige alla Kokoro TTS mudel (~87MB) loomulikumaks jaapani keele kõnesünteesiks.";
+"tts.downloading" = "Laadib TTS mudelit alla...";
+
+// MARK: - Feedback
+"feedback.consent.title" = "Saada tagasisidet";
+"feedback.send" = "Saada";
+"feedback.positive.title" = "Kas see vastus oli kasulik?";
+"feedback.negative.title" = "Kas seda saaks parandada?";
+"feedback.explanation" = "Teie tagasiside aitab parandada AI kvaliteeti. Palun vaadake üle, milliseid andmeid saadetakse enne esitamist.";
+"feedback.data.section" = "Saadetavad andmed";
+"feedback.data.conversation" = "Vestlus";
+"feedback.data.conversation.desc" = "AI vastus ja teie eelmine sõnum";
+"feedback.data.model" = "Mudeli info";
+"feedback.data.model.desc" = "Kasutatud AI mudeli nimi";
+"feedback.data.timestamp" = "Ajatempel";
+"feedback.data.timestamp.desc" = "Millal tagasiside esitati";
+"feedback.privacy.section" = "Privaatsus";
+"feedback.privacy.anonymous" = "Isikut tuvastav teave ei saadeta";
+"feedback.privacy.improvement" = "Kasutatakse ainult AI kvaliteedi parandamiseks";
+"feedback.privacy.optional" = "Tagasiside saatmine on täiesti vabatahtlik";
+"feedback.comment.section" = "Kommentaar (valikuline)";
+"feedback.comment.placeholder" = "Öelge meile, mida saaks parandada või mis töötas hästi...";
+"feedback.remember.title" = "Jäta see valik meelde";
+"feedback.remember.description" = "Esita tagasiside küsimata järgmine kord";
+
+// MARK: - Emergency Mode
+"emergency.sos.button" = "Hädaolukorra režiim (vajutage pikalt lülitamiseks)";
+"emergency.mode.active" = "Hädaolukorra režiim aktiivne";
+"emergency.action.firstaid" = "Esmaabi";
+"emergency.action.firstaid.message" = "Palun andke esmaabi juhiseid. Kirjeldan vigastust või sümptomeid:";
+"emergency.action.disaster" = "Katastroof";
+"emergency.action.disaster.message" = "On toimunud katastroof. Palun andke reageerimise protseduure:";
+"emergency.action.factcheck" = "Faktikontroll";
+"emergency.action.factcheck.message" = "Palun kontrollige selle teabe usaldusväärsust:";
+"emergency.action.contacts" = "Hädaabi";
+"emergency.action.contacts.message" = "Palun näidake mulle hädaabinumbrite nimekirja";
+"emergency.action.evacuation" = "Evakueerida";
+"emergency.action.evacuation.message" = "Palun koostage praeguse olukorra evakueerimise kontrollnimekiri:";
+"mcp.emergency_kb" = "Hädaolukorra teadmusbaas";
+"mcp.emergency_kb.desc" = "Hädaolukorra ja katastroofi teave";
+
+// MARK: - Emergency Templates
+"template.firstaid.name" = "Esmaabi juhend";
+"template.firstaid.content" = "Palun andke esmaabi juhiseid:";
+"template.disaster.name" = "Katastroofivastus";
+"template.disaster.content" = "On toimunud järgmine katastroof. Palun andke reageerimise protseduure:";
+"template.factcheck.name" = "Faktikontroll";
+"template.factcheck.content" = "Palun kontrollige selle teabe usaldusväärsust ja andke faktikontrolli näpunäiteid:";
+"template.evacuation.name" = "Evakueerimise kontrollnimekiri";
+"template.evacuation.content" = "Palun koostage praeguse olukorra evakueerimise kontrollnimekiri:";
+
+// MARK: - ChatWeb.ai Integration
+"chatweb.title" = "ChatWeb.ai";
+"chatweb.desc" = "Pilve AI vestlus";
+"chatweb.connect" = "Ühenda ChatWeb.ai-ga";
+"chatweb.qr.title" = "Ühenda QR-koodi kaudu";
+"chatweb.qr.scan" = "Skanni QR-koodi";
+"chatweb.open" = "Ava ChatWeb.ai";
+
+// MARK: - Peer Connection
+"peer.title" = "Lähedal olevad seadmed";
+"peer.desc" = "Ühendage lähedal olevate Elio seadmetega";
+"peer.connect" = "Ühenda seadmega";
+"peer.code.title" = "Ühenduskood";
+"peer.code.enter" = "Sisestage 4-kohaline kood";
+"peer.code.your" = "Teie kood";
+"peer.connected" = "Ühendatud";
+"peer.disconnected" = "Ühendus katkestatud";
+"peer.inference.offload" = "Järeldamine jagatakse";
+
+// MARK: - Web Search
+"chat.web.search" = "Veebiotsing";
+"search.privacy.title" = "Privaatsusega kaitstud otsing";
+"search.privacy.proceed" = "Otsi";
+"search.privacy.message" = "ElioChat veebiotsing kaitseb teie privaatsust:\n\n🔒 Otsingud DuckDuckGo kaudu\n🚫 Jälituseta või profileerimiseta\n🔐 Otsinguajalugu ei salvestata\n📱 Andmeid ei salvestata väljaspool teie seadet\n\nAinult teie otsingupäring saadetakse DuckDuckGo-le ja tulemusi töödeldakse teie seadmes.";
+"chat.web.analyzing" = "[Veebilehe analüüsimine]";

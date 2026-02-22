@@ -1,0 +1,635 @@
+/*
+  Localizable.strings (Yoruba)
+  Elio
+*/
+
+// MARK: - App General
+"app.name" = "Elio";
+"app.tagline" = "Ọpọlọ keji rẹ ti o tọju aṣiri.";
+
+// MARK: - Common Actions
+"common.done" = "Ti pari";
+"common.cancel" = "Fagilee";
+"common.delete" = "Pa rẹ";
+"common.save" = "Fi pamọ";
+"common.edit" = "Ṣatunkọ";
+"common.share" = "Pin";
+"common.copy" = "Ṣẹda";
+"common.copied" = "Ti ṣẹda";
+"common.loading" = "Nwọle...";
+"common.error" = "Aṣiṣe";
+"common.retry" = "Gbiyanju lẹẹkansi";
+"common.skip" = "Fo kọja";
+"common.next" = "Itele";
+"common.start" = "Bẹrẹ";
+"common.add" = "Fi kun";
+"common.close" = "Ti";
+"common.details" = "Awọn alaye";
+"common.yes" = "Bẹẹni";
+"common.no" = "Rara";
+"common.unknown" = "Aimọ";
+
+// MARK: - Chat
+"chat.placeholder" = "Beere ohunkohun lọwọ mi";
+"chat.model.not.loaded" = "Ko si Awoṣe Ti a Kojọpọ";
+"chat.model.not.loaded.description" = "Jọwọ gba awoṣe lati Eto";
+"chat.go.to.settings" = "Lọ si Eto";
+"chat.new.conversation" = "Ibaraẹnisọrọ Tuntun";
+"chat.stop.generation" = "Duro";
+"chat.generation.stopped" = "\n\n[Ipilẹṣẹ ti duro]";
+"chat.image.sent" = "[Aworan ti firanṣẹ]";
+"chat.images.sent" = "[Awọn aworan %d ti firanṣẹ]";
+"chat.pdf.sent" = "[PDF ti so mọ: %@]";
+"chat.pdf.sent.vision" = "[PDF pẹlu aworan: %@]";
+"chat.pdf.context" = "Eyi ni akoonu ọrọ ti a gba jade lati iwe PDF \"%@\":\n\n%@";
+"chat.pdf.context.vision" = "Eyi ni oju-iwe 1 ti iwe PDF \"%@\". Akoonu ọrọ ti a gba jade ni:\n\n%@\n\nJọwọ ṣe itupalẹ aworan ati ọrọ.";
+"chat.pdf.analyze" = "Jọwọ ṣe itupalẹ oju-iwe PDF yii lati \"%@\".";
+"chat.url.sent" = "[Oju-iwe wẹẹbu: %@]";
+"chat.url.context" = "Eyi ni akoonu ti a gba jade lati oju-iwe wẹẹbu \"%@\" (%@):\n\n%@";
+"chat.thinking" = "Nro...";
+"chat.generating" = "Nṣe esi...";
+"chat.welcome" = "Bawo ni Mo ṣe le ran ọ lọwọ?";
+"chat.suggestion.schedule" = "Fihan eto-ọjọ oni";
+"chat.suggestion.reminder" = "Ṣẹda olurannileti";
+"chat.suggestion.weather" = "Kini oju-ọjọ oni?";
+"chat.suggestion.help" = "Bii a ṣe le lo app yii";
+"chat.websearch.on" = "Wiwa Wẹẹbu Tan";
+"chat.websearch.off" = "Wiwa Wẹẹbu Pa";
+"chat.thinking.on" = "Ero Tan";
+"chat.thinking.off" = "Ero Pa";
+"chat.transcribing" = "Nkọ silẹ...";
+"chat.offline" = "Aisinipo";
+
+// Voice Conversation Mode
+"voice.listening" = "Ntẹtisi...";
+"voice.processing" = "Nṣiṣẹ...";
+"voice.thinking" = "Nro...";
+"voice.speaking" = "Nsọrọ...";
+"voice.tap.to.send" = "Tẹ lati firanṣẹ";
+"chat.templates" = "Awọn awoṣe";
+"chat.websearch.privacy.title" = "Nipa Wiwa Wẹẹbu";
+"chat.websearch.privacy.message" = "Ṣiṣi wiwa wẹẹbu ngbanilaaye AI lati wa intanẹẹti nipasẹ DuckDuckGo fun alaye titun. A firanṣẹ awọn ibeere wiwa si DuckDuckGo ṣugbọn a ko tọpa wọn.";
+"chat.websearch.privacy.enable" = "Tan";
+"chat.websearch.privacy.disable" = "Jẹ ki o Pa";
+
+// MARK: - Settings
+"settings.title" = "Eto";
+"settings.model.section" = "Awọn Awoṣe AI";
+"settings.model.recommended" = "A ṣeduro: %@";
+"settings.model.local.execution" = "Awọn awoṣe nṣiṣẹ lori ẹrọ rẹ";
+"settings.model.show.more" = "Awọn Awoṣe Miiran (%d)";
+"settings.model.show.less" = "Fi Kere Han";
+"settings.appearance.section" = "Irisi";
+"settings.tools.section" = "Awọn Ẹya Ọgbọn";
+"settings.mcp.servers" = "Awọn isopọ";
+"settings.mcp.servers.description" = "Kalẹnda, Awọn faili, Awọn olurannileti & diẹ sii";
+"settings.mcp.enabled.count" = "%d ti tan";
+"settings.mcp.enabled.count.suffix" = " ti tan";
+"settings.about.section" = "Nipa";
+"settings.version" = "Ẹya";
+"settings.about.app" = "Nipa App Yii";
+"settings.about.mcp" = "Nipa Awọn Isopọ";
+"settings.privacy.badge" = "Nṣiṣẹ Laisi Intanẹẹti";
+"settings.privacy.description" = "Nṣiṣẹ ni Ipo Ọkọ Ofurufu";
+"settings.airplane.mode" = "Nṣiṣẹ ni Ipo Ọkọ Ofurufu";
+"settings.offline.ready" = "Ṣetan Laisi Intanẹẹti";
+
+// MARK: - Model States
+"model.status.downloading" = "Ngba... %d%%";
+"model.status.loading" = "Nwọle...";
+"model.status.in.use" = "Nlo";
+"model.status.recommended" = "A ṣeduro";
+"model.status.heavy" = "Eru";
+"model.action.download" = "Gba";
+"model.action.load" = "Kojọpọ";
+"model.action.delete" = "Pa rẹ";
+"model.action.use" = "Lo Awoṣe Yii";
+"model.delete.confirm.title" = "Pa Awoṣe";
+"model.delete.confirm.message" = "Pa %@? Iwọ yoo nilo lati tun gba lati lo lẹẹkansi.";
+"model.select.title" = "Yan Awoṣe";
+"model.select.prompt" = "Jọwọ yan awoṣe kan";
+"model.downloaded" = "Ti gba";
+
+// MARK: - Inference Mode
+"inference.mode.title" = "Isare";
+"inference.mode.auto" = "Adaṣe";
+"inference.mode.auto.desc" = "Iṣẹ to dara julọ laifọwọyi";
+"inference.mode.gpu" = "GPU (Metal)";
+"inference.mode.gpu.desc" = "Iyara ti o pọju pẹlu Metal";
+"inference.mode.cpu" = "CPU Nikan";
+"inference.mode.cpu.desc" = "Ipo fifipamọ batiri";
+"inference.mode.hybrid" = "Apapọ";
+"inference.mode.hybrid.desc" = "Iwọntunwọnsi iyara ati batiri";
+
+// MARK: - Theme
+"theme.system" = "Eto";
+"theme.light" = "Imọlẹ";
+"theme.dark" = "Dudu";
+
+// MARK: - Onboarding
+"onboarding.welcome.title" = "Kaabo si ElioChat";
+"onboarding.welcome.subtitle" = "Oluranlọwọ AI aladani rẹ";
+"onboarding.features.title" = "AI Aladani Gidi";
+"onboarding.feature.offline" = "Nṣiṣẹ ni Ipo Ọkọ Ofurufu";
+"onboarding.feature.offline.desc" = "Lo lori awọn ọkọ ofurufu tabi labẹ ilẹ";
+"onboarding.feature.privacy" = "Ko si Gbigbe Data";
+"onboarding.feature.privacy.desc" = "Awọn ibaraẹnisọrọ rẹ ko fi foonu rẹ silẹ";
+"onboarding.feature.vault" = "Awọn Isopọ Ọgbọn";
+"onboarding.feature.vault.desc" = "Sopọ pẹlu Kalẹnda & Awọn Faili";
+"onboarding.feature.secure" = "AI Ailewu fun Iṣẹ";
+"onboarding.feature.secure.desc" = "Ailewu fun lilo ile-iṣẹ";
+"onboarding.feature.thinking" = "Ilana Ero";
+"onboarding.privacy.title" = "Data Rẹ Jẹ Tirẹ";
+"onboarding.privacy.item1" = "Gbogbo ṣiṣẹ nwaye lori iPhone rẹ";
+"onboarding.privacy.item2" = "A ko firanṣẹ data si awọn olupin awọsanma";
+"onboarding.privacy.item3" = "A ko lo rẹ fun ikẹkọ AI lailai";
+"onboarding.getstarted.title" = "Ṣetan ni Titẹ Kan";
+"onboarding.getstarted.subtitle" = "Gba awoṣe AI ti a ṣeduro\nki o bẹrẹ ibaraẹnisọrọ lẹsẹkẹsẹ";
+"onboarding.step1" = "Gba awoṣe ti a ṣeduro";
+"onboarding.step2" = "Duro iṣẹju diẹ";
+"onboarding.step3" = "O ti ṣetan!";
+
+// MARK: - About
+"about.title" = "Nipa App Yii";
+"about.rate.app" = "Ṣe Idiyele App";
+"about.share.app" = "Pin Pẹlu Awọn Ọrẹ";
+"about.privacy.policy" = "Eto Imulo Aṣiri";
+"about.terms" = "Awọn Ofin Iṣẹ";
+"about.tech.info" = "Alaye Imọ-ẹrọ";
+"about.tech.engine" = "Ẹrọ AI";
+"about.tech.format" = "Ọna Kika Ti a Ṣe atilẹyin";
+"about.tech.inference" = "Ifinu";
+"about.data.management" = "Iṣakoso Data";
+"about.delete.all" = "Pa Gbogbo Awọn Ibaraẹnisọrọ";
+"about.credits" = "Awọn Iyin";
+"about.credits.description" = "App yii nlo awọn ile-ikawe orisun ṣiṣi";
+"about.privacy.section" = "Aṣiri";
+"about.gguf.format" = "Ọna Kika GGUF";
+"about.metal.gpu" = "Isare GPU Metal";
+
+// MARK: - Referral
+"referral.title" = "Tọka Awọn Ọrẹ";
+"referral.code.title" = "Koodu Itọkasi Rẹ";
+"referral.code.copy" = "Ṣẹda Koodu";
+"referral.code.copied" = "Ti ṣẹda";
+"referral.share.button" = "Pin Pẹlu Awọn Ọrẹ";
+"referral.share.description" = "Pin Elio pẹlu awọn ọrẹ rẹ!";
+"referral.count" = "O tọka eniyan %d";
+"referral.enter.title" = "Tẹ Koodu Itọkasi";
+"referral.enter.placeholder" = "Koodu Itọkasi";
+"referral.enter.button" = "Lo";
+"referral.enter.success" = "Koodu itọkasi ti lo";
+"referral.enter.error" = "Koodu itọkasi ti ko tọ";
+
+// MARK: - Privacy Policy
+"privacy.title" = "Eto Imulo Aṣiri";
+"privacy.data.collection.title" = "Gbigba Data";
+"privacy.data.collection.content" = "App yii nṣiṣẹ AI agbegbe ni kikun laisi intanẹẹti.\nA ko firanṣẹ data si awọn olupin ita.\nGbogbo awọn ibaraẹnisọrọ ni a fipamọ lori ẹrọ rẹ nikan.";
+"privacy.stored.data.title" = "Data Ti a Fipamọ";
+"privacy.stored.data.content" = "Itan-akọọlẹ ibaraẹnisọrọ (ti fipamọ lori ẹrọ nikan)\nAwọn faili awoṣe AI (ti fipamọ lori ẹrọ nikan)\nEto app (ti fipamọ lori ẹrọ nikan)\n\nA ko pin data yii ni ita lailai.";
+"privacy.data.deletion.title" = "Pipa Data";
+"privacy.data.deletion.content" = "O le pa gbogbo data nigbakugba lati Eto > Iṣakoso Data.\nPipa app yii yoo pa gbogbo data.";
+
+// MARK: - Terms of Service
+"terms.title" = "Awọn Ofin Iṣẹ";
+"terms.service.title" = "Apejuwe Iṣẹ";
+"terms.service.content" = "App yii npese iṣẹ oluranlọwọ AI nipa lilo awoṣe AI ti nṣiṣẹ ni agbegbe.";
+"terms.disclaimer.title" = "Ikede";
+"terms.disclaimer.content" = "Awọn esi AI le ni awọn aṣiṣe.\nO yẹ ki o jẹrisi awọn ipinnu pataki nipasẹ alamọdaju.\nA ko ṣe ojuse fun eyikeyi ibajẹ ti o jade lati lilo app yii.";
+"terms.prohibited.title" = "Awọn Iṣẹ Ti a Ko gba";
+"terms.prohibited.content" = "Awọn iṣẹ ofin\nAwọn iṣẹ ti nfi awọn ẹtọ awọn miiran subú\nIyipada app yii\nẢdaako app yii laisi aṣẹ";
+"terms.ip.title" = "Ohun-ini Oye";
+"terms.ip.content" = "Awọn ẹtọ ohun-ini oye ti app yii jẹ ti olùdàgbà.\nA ko gba lilo laisi aṣẹ.";
+
+// MARK: - Conversations
+"conversations.title" = "Awọn Ibaraẹnisọrọ";
+"conversations.new" = "Ibaraẹnisọrọ Tuntun";
+"conversations.empty" = "Ko si awọn ibaraẹnisọrọ sibẹsibẹ";
+"conversations.delete" = "Pa Ibaraẹnisọrọ";
+"conversations.default.title" = "Ibaraẹnisọrọ Tuntun";
+"conversations.today" = "Oni";
+"conversations.yesterday" = "Ana";
+"conversations.past7days" = "Ọjọ 7 Sẹyin";
+"conversations.past30days" = "Ọjọ 30 Sẹyin";
+"conversations.older" = "Ti Atijọ";
+"conversations.created" = "Ti ṣẹda: %@";
+"conversations.user" = "Olumulo";
+"conversations.assistant" = "Oluranlọwọ";
+"conversations.search.placeholder" = "Wa awọn ibaraẹnisọrọ";
+"conversations.search.no_results" = "Ko si awọn abajade";
+
+// MARK: - Message Actions
+"message.copy" = "Ṣẹda";
+"message.speak" = "Sọrọ";
+"message.stop.speaking" = "Duro Sọrọ";
+"message.share" = "Pin";
+"message.share.card" = "Pin Bi Kaadi";
+"message.like" = "Fẹran";
+
+// MARK: - Share Card
+"share.card.title" = "Pin Kaadi";
+"share.card.preview" = "Wo Tẹlẹ";
+"share.card.button" = "Pin Aworan";
+"message.dislike" = "Ko fẹran";
+"message.thinking.process" = "Ilana Ero";
+"message.tool.running" = "Nṣe Irinṣẹ";
+"message.tool.error" = "Aṣiṣe";
+"message.tool.completed" = "Ti pari";
+
+// MARK: - Attachment
+"attachment.title" = "Asomọ";
+"attachment.photo.library" = "Yan Aworan";
+"attachment.camera" = "Ya Aworan";
+"attachment.pdf" = "Yan PDF";
+"attachment.pdf.chars" = "awọn ohun kikọ %d";
+"attachment.pdf.pages" = "awọn oju-iwe %d";
+"attachment.pdf.vision.enabled" = "Itupalẹ aworan ti tan";
+"attachment.pdf.text.only" = "Ipo ọrọ nikan";
+"attachment.url" = "Ka Oju-iwe Wẹẹbu";
+"attachment.url.title" = "Tẹ URL";
+"attachment.url.placeholder" = "https://apẹẹrẹ.com";
+"attachment.url.message" = "Lẹ URL lati gba akoonu rẹ";
+"attachment.url.fetch" = "Gba";
+"attachment.url.loading" = "Nwọle oju-iwe...";
+
+// MARK: - Errors
+"error.model.not.found" = "Ko ri faili awoṣe";
+"error.model.not.loaded" = "Ko wọle awoṣe";
+"error.context.failed" = "Kuna lati ṣẹda ipo";
+"error.tokenization.failed" = "Ṣiṣe ami kuna";
+"error.generation.failed" = "Aṣiṣe ipilẹṣẹ: %@";
+"error.occurred" = "Aṣiṣe kan ṣẹlẹ: %@";
+"error.invalid.url" = "URL ti ko tọ";
+"error.download.failed" = "Gbigba kuna";
+"error.extraction.failed" = "Yiyọ kuna";
+"error.config.not.found" = "Ko ri faili atunto";
+
+// MARK: - Ghost Search
+"ghost.search.title" = "Wiwa Iwin";
+"ghost.search.description" = "Wiwa alailọrukọ nipasẹ DuckDuckGo (ko si titọpa)";
+"ghost.search.connecting" = "Nsopọ si nẹtiwọọki alailọrukọ...";
+"ghost.search.privacy.note" = "A ko tọpa itan wiwa rẹ lailai";
+
+// MARK: - MCP Servers
+"mcp.filesystem" = "Eto Faili";
+"mcp.filesystem.desc" = "Ka ati kọ awọn faili ninu app";
+"mcp.calendar" = "Kalẹnda";
+"mcp.calendar.desc" = "Ka ati kọ awọn iṣẹlẹ";
+"mcp.reminders" = "Awọn Olurannileti";
+"mcp.reminders.desc" = "Ṣakoso awọn olurannileti";
+"mcp.contacts" = "Awọn Olubasọrọ";
+"mcp.contacts.desc" = "Wa ati wo awọn olubasọrọ";
+"mcp.photos" = "Awọn Aworan";
+"mcp.photos.desc" = "Wọle si ile-ipamọ aworan";
+"mcp.location" = "Ipo";
+"mcp.location.desc" = "Gba ipo lọwọlọwọ ki o wa awọn aaye";
+"mcp.health" = "Ilera";
+"mcp.health.desc" = "Wọle si data ilera";
+"mcp.shortcuts" = "Awọn Ọna Kukuru";
+"mcp.shortcuts.desc" = "Ṣe awọn ọna kukuru";
+"mcp.websearch" = "Wiwa Wẹẹbu";
+"mcp.websearch.desc" = "Wiwa wẹẹbu alailọrukọ";
+"mcp.custom" = "Isopọ Aṣa";
+"mcp.custom.add" = "Fi Isopọ kun";
+"mcp.custom.setup" = "Ṣeto isopọ iṣẹ ita";
+"mcp.custom.title" = "Awọn Isopọ Aṣa";
+"mcp.settings.title" = "Eto Isopọ";
+"mcp.server.name" = "Orukọ Olupin";
+"mcp.server.name.placeholder" = "fun apẹẹrẹ, Olupin Aṣa Mi";
+"mcp.config.url" = "URL Faili Atunto";
+"mcp.import.file" = "Gba lati Faili";
+"mcp.config.example" = "Apẹẹrẹ Faili Atunto";
+"mcp.permission.note" = "A oo beere awọn aṣẹ nigba akọkọ lilo ẹya kọọkan";
+
+// MARK: - MCP Tool Messages
+"mcp.tool.available" = "Awọn Irinṣẹ Ti o Wa:";
+"mcp.tool.parameters" = "Awọn Paramita:";
+"mcp.prompt.available" = "Awọn Itọka Ti o Wa:";
+"mcp.prompt.arguments" = "Awọn Ariyanjiyan:";
+"mcp.tool.name" = "orukọ_irinṣẹ";
+"mcp.tool.arg.name" = "orukọ_ariyanjiyan";
+"mcp.tool.arg.value" = "iye";
+"mcp.tool.no.result" = "Ko si abajade";
+"mcp.tool.running" = "Nṣe irinṣẹ: %@";
+"mcp.tool.error" = "Aṣiṣe ṣiṣe irinṣẹ: %@";
+
+// MARK: - MCP Error Messages
+"mcp.error.server.not.found" = "Ko ri olupin: %@";
+"mcp.error.tool.not.found" = "Ko ri irinṣẹ: %@";
+"mcp.error.invalid.args" = "Awọn ariyanjiyan ti ko tọ: %@";
+"mcp.error.execution" = "Aṣiṣe ṣiṣe: %@";
+"mcp.error.permission" = "Aṣẹ ti kọ: %@";
+
+// MARK: - Calendar Messages
+"calendar.no.events" = "Ko si awọn iṣẹlẹ";
+"calendar.event.created" = "Iṣẹlẹ ti ṣẹda: %@";
+"calendar.event.deleted" = "Iṣẹlẹ ti pa: %@";
+"calendar.allday.created" = "Iṣẹlẹ gbogbo ọjọ ti ṣẹda: %@";
+"calendar.access.denied" = "Wiwọle kalẹnda ti kọ";
+"calendar.today.none" = "Ko si awọn iṣẹlẹ oni";
+"calendar.untitled" = "Ko ni akọle";
+
+// MARK: - Reminders Messages
+"reminders.none" = "Ko si awọn olurannileti";
+"reminders.created" = "Olurannileti ti ṣẹda: %@";
+"reminders.completed" = "Olurannileti ti pari: %@";
+"reminders.deleted" = "Olurannileti ti pa: %@";
+"reminders.access.denied" = "Wiwọle olurannileti ti kọ";
+"reminders.untitled" = "Ko ni akọle";
+
+// MARK: - Photos Messages
+"photos.access.denied" = "Wiwọle awọn aworan ti kọ";
+"photos.not.found" = "Ko ri aworan";
+"photos.untitled" = "Ko ni akọle";
+"photos.count" = "Awọn aworan: %d";
+"photos.videos.count" = "Awọn fidio: %d";
+"photos.albums.count" = "Awọn awo-orin: %d";
+"photos.favorites.count" = "Awọn ayanfẹ: %d";
+"photos.date" = "Ọjọ: %@";
+"photos.size" = "Iwọn: %d x %d";
+"photos.location" = "Ipo: %@, %@";
+"photos.media.type" = "Iru Media: %@";
+"photos.duration" = "Ipari: %dm %ds";
+"photos.favorite" = "Ayanfẹ: %@";
+"photos.type.image" = "Aworan";
+"photos.type.video" = "Fidio";
+"photos.type.audio" = "Ohun";
+
+// MARK: - Contacts Messages
+"contacts.access.denied" = "Wiwọle awọn olubasọrọ ti kọ";
+"contacts.not.found" = "Ko ri awọn olubasọrọ ti o baamu";
+"contacts.no.groups" = "Ko si awọn ẹgbẹ";
+"contacts.no.card" = "Ko si kaadi olubasọrọ ti a ṣeto";
+"contacts.name" = "Orukọ: %@";
+"contacts.company" = "Ile-iṣẹ: %@";
+"contacts.job" = "Akọle Iṣẹ: %@";
+
+// MARK: - Location Messages
+"location.access.denied" = "Wiwọle ipo ti kọ";
+"location.not.found" = "Ko ri adirẹsi";
+"location.latitude" = "Latitude: %@";
+"location.longitude" = "Longitude: %@";
+"location.accuracy" = "Iṣedede: %dm";
+"location.altitude" = "Giga: %dm";
+"location.search" = "Wiwa: %@";
+"location.address" = "Adirẹsi: %@";
+"location.country" = "Orilẹ-ede: %@";
+"location.postal" = "Koodu Ifiweranṣẹ: %@";
+"location.from" = "Lati: (%@, %@)";
+"location.to" = "Si: (%@, %@)";
+"location.distance.km" = "Ijinna: %.2f km";
+"location.distance.m" = "Ijinna: %d m";
+
+// MARK: - Health Messages
+"health.not.available" = "Ilera ko wa lori ẹrọ yii";
+"health.date" = "Ọjọ: %@";
+"health.steps" = "Awọn igbesẹ: %@ awọn igbesẹ";
+"health.goal.progress" = "Ilọsiwaju ibi-afẹde: %d%% (ibi-afẹde igbesẹ 10,000)";
+"health.no.data" = "Ko si data to wa";
+"health.avg.bpm" = "Apapọ: %d bpm";
+"health.min.bpm" = "Kekere: %d bpm";
+"health.max.bpm" = "Nla: %d bpm";
+"health.measurements" = "Awọn wiwọn: %d";
+"health.no.sleep" = "Ko si data oorun";
+"health.sleep.total" = "Lapapọ oorun: %dh %dm";
+"health.bedtime" = "Akoko ibusun: %@";
+"health.waketime" = "Akoko jiji: %@";
+"health.calories" = "Awọn kalori: %d kcal";
+
+// MARK: - File System Messages
+"filesystem.not.found" = "Ko ri faili: %@";
+"filesystem.written" = "Faili ti kọ: %@";
+"filesystem.dir.created" = "Itọsọna ti ṣẹda: %@";
+"filesystem.deleted" = "Ti pa: %@";
+"filesystem.size" = "Iwọn: %@";
+"filesystem.created" = "Ti ṣẹda: %@";
+"filesystem.modified" = "Ti yipada: %@";
+"filesystem.type" = "Iru: %@";
+
+// MARK: - Shortcuts Messages
+"shortcuts.executed" = "Ọna kukuru '%@' ti ṣe";
+"shortcuts.opened" = "App awọn ọna kukuru ti ṣi";
+"shortcuts.settings.opened" = "Eto (%@) ti ṣi";
+"shortcuts.mail.opened" = "Kikọ imeeli ti ṣi";
+"shortcuts.calling" = "Npe: %@";
+"shortcuts.message.opened" = "Kikọ ifiranṣẹ ti ṣi";
+"shortcuts.failed" = "Ko le ṣii ọna kukuru";
+
+// MARK: - Model Tiers
+"model.tier.entry" = "Wiwọle";
+"model.tier.standard" = "Boṣewa";
+"model.tier.pro" = "Alamọdaju";
+
+// MARK: - Tool Parser
+"tool.arguments" = "Awọn Ariyanjiyan:";
+
+// MARK: - Model Settings
+"model.action.settings" = "Eto";
+"settings.model.parameters" = "Eto Awoṣe";
+"settings.model.parameters.description" = "Ṣe adani awọn paramita ipilẹṣẹ fun awoṣe yii";
+"settings.preset.title" = "Awọn Eto Tẹlẹ";
+"settings.preset.custom" = "Aṣa";
+"settings.preset.balanced" = "Iwọntunwọnsi";
+"settings.preset.creative" = "Ẹda";
+"settings.preset.precise" = "Deede";
+"settings.preset.coding" = "Kikọ koodu";
+"settings.preset.japanese" = "Japanese";
+"settings.parameters.title" = "Awọn Paramita";
+"settings.parameter.temperature" = "Iwọn otutu";
+"settings.parameter.temperature.description" = "Giga = diẹ sii ẹda, kekere = diẹ sii idojukọ";
+"settings.parameter.top.p" = "Oke P";
+"settings.parameter.top.p.description" = "Iṣeeṣe sampling nucleus";
+"settings.parameter.top.k" = "Oke K";
+"settings.parameter.top.k.description" = "Nọmba awọn ami oke lati ronu";
+"settings.parameter.max.tokens" = "Awọn Ami Pọju";
+"settings.parameter.max.tokens.description" = "Ipari esi pọju";
+"settings.parameter.repeat.penalty" = "Ijiya Atunwi";
+"settings.parameter.repeat.penalty.description" = "Giga = ijade atunwi kere";
+"settings.parameter.thinking" = "Ipo Ero";
+"settings.parameter.thinking.description" = "Fihan ilana ero AI";
+"settings.system.prompt.title" = "Itọka Eto";
+"settings.system.prompt.description" = "Awọn itọnisọna aṣa fun AI";
+"settings.reset.to.default" = "Tun ṣeto si Aiyipada";
+
+// MARK: - Vision Model
+"vision.model.required.title" = "Awoṣe Iran Nilo";
+"vision.model.required.header" = "Idanimọ Aworan Nilo";
+"vision.model.required.description" = "Lati ṣe itupalẹ awọn aworan, o nilo awoṣe AI ti o lagbara iran";
+"vision.model.switch" = "Yipada Awoṣe";
+"vision.model.switch.message %@" = "Yipada si %@ lati tan itupalẹ aworan?";
+"vision.model.download" = "Gba";
+"vision.model.download.message %@ %@" = "Gba %@ (%@) lati ṣe itupalẹ awọn aworan?";
+"vision.model.not.available" = "Ko si awoṣe iran ti o baamu ti o wa fun ẹrọ rẹ";
+"vision.model.switching" = "Nyipada awoṣe...";
+"vision.model.download.title" = "Awọn Awoṣe Iran";
+"vision.model.recommended" = "A ṣeduro fun ẹrọ rẹ";
+"vision.model.recommended.size %@" = "A ṣeduro: %@";
+"vision.model.use.this" = "Lo Awoṣe Yii";
+"vision.model.download.button %@" = "Gba (%@)";
+"vision.model.other.options" = "Awọn Awoṣe Iran Miiran";
+"vision.model.download.complete" = "Gbigba Ti pari";
+"vision.model.download.complete.message" = "Ṣetan lati ṣe itupalẹ awọn aworan";
+
+// MARK: - Whisper Voice Input (Legacy)
+"whisper.download.title" = "Idanimọ Ohun Nilo";
+"whisper.download.action" = "Gba";
+"whisper.download.message" = "Lati lo titẹ sii ohun, o nilo lati gba awoṣe idanimọ ọrọ (~150MB).";
+"whisper.downloading" = "Ngba awoṣe idanimọ ọrọ...";
+"whisper.download.error" = "Aṣiṣe Gbigba";
+"whisper.load.error" = "Aṣiṣe Wiwọle Awoṣe";
+"whisper.permission.denied" = "A ko gba wiwọle makirofonu";
+"whisper.transcribe.error" = "Aṣiṣe Kikọ Silẹ";
+"whisper.error.permission" = "Aṣẹ makirofonu nilo";
+"whisper.error.not.recording" = "Ko nṣe igbasilẹ lọwọlọwọ";
+"whisper.error.no.recording" = "Ko si data igbasilẹ";
+"whisper.error.model.not.loaded" = "Awoṣe idanimọ ọrọ ko ti wọle";
+"whisper.error.transcription" = "Kikọ silẹ kuna";
+
+// MARK: - Speech Recognition (ReazonSpeech)
+"speech.download.title" = "Idanimọ Ohun Nilo";
+"speech.download.action" = "Gba";
+"speech.download.message" = "Lati lo titẹ sii ohun, o nilo lati gba awoṣe idanimọ ọrọ Japanese (~155MB).";
+"speech.downloading" = "Ngba awoṣe idanimọ ọrọ...";
+
+// MARK: - Language Settings
+"settings.language.section" = "Ede";
+"language.system" = "Lo Ede Eto";
+"settings.language.restart.hint" = "Awọn iyipada ede yoo waye lẹhin atunbẹrẹ app";
+"settings.language.changed.title" = "Ede Ti Yipada";
+"settings.language.changed.message" = "Jọwọ tun bẹrẹ app lati lo awọn iyipada";
+"common.ok" = "O dara";
+
+// MARK: - System Prompt Settings
+"settings.prompt.section" = "Itọka Eto";
+"settings.prompt.edit" = "Ṣatunkọ Itọka";
+"settings.prompt.default" = "Lo aiyipada";
+"settings.prompt.custom" = "Itọka aṣa ti ṣeto";
+"settings.prompt.hint" = "Ṣe adani ihuwasi AI";
+"settings.prompt.editor.title" = "Ṣatunkọ Itọka";
+"settings.prompt.editor.instruction" = "Fi awọn itọnisọna aṣa kun fun AI. Fi ofo silẹ lati lo itọka aiyipada.";
+"settings.prompt.default.preview" = "Itọka aiyipada (ipin):";
+"settings.prompt.reset" = "Tun ṣeto";
+"settings.prompt.reset.title" = "Tun Ṣeto Itọka";
+"settings.prompt.reset.message" = "Pa itọka aṣa ki o pada si aiyipada?";
+
+// MARK: - Prompt Templates
+"templates.title" = "Awọn Awoṣe Itọka";
+"templates.empty" = "Ko si awọn awoṣe sibẹsibẹ";
+"templates.add" = "Fi Awoṣe kun";
+"template.add.title" = "Fi Awoṣe kun";
+"template.edit.title" = "Ṣatunkọ Awoṣe";
+"template.name.header" = "Orukọ";
+"template.name.placeholder" = "Orukọ awoṣe";
+"template.content.header" = "Akoonu Itọka";
+"template.icon.header" = "Aami";
+"template.translate.name" = "Tumọ";
+"template.translate.content" = "Jọwọ tumọ eyi: ";
+"template.summarize.name" = "Ṣe Akopọ";
+"template.summarize.content" = "Jọwọ ṣe akopọ eyi: ";
+"template.explain.name" = "Ṣalaye";
+"template.explain.content" = "Jọwọ ṣalaye eyi: ";
+"template.code.name" = "Koodu";
+"template.code.content" = "Jọwọ kọ koodu fun: ";
+
+// MARK: - Export
+"export.title" = "Gbe Ibaraẹnisọrọ Jade";
+"export.format.markdown" = "Markdown";
+"export.format.pdf" = "PDF";
+"export.format.text" = "Ọrọ Gbangba";
+"export.created" = "Ti ṣẹda";
+"export.image.attached" = "Aworan ti so mọ";
+"export.generated.by" = "Ti ṣẹda nipasẹ";
+
+// MARK: - Loading Phases
+"loading.phase.initializing" = "Nbẹrẹ...";
+"loading.phase.loading" = "Nwọle awoṣe...";
+"loading.phase.preparing" = "Nmurasilẹ ẹrọ ifinu...";
+"loading.phase.almost" = "O fẹrẹ ṣetan...";
+
+// MARK: - Welcome Screen
+"welcome.greeting" = "Beere ohunkohun lọwọ mi";
+"welcome.subtitle" = "Oluranlọwọ AI rẹ ti o kọkọ aṣiri";
+"suggestion.idea" = "Ran mi lọwọ lati ṣe agbero awọn imọran";
+"suggestion.write" = "Ran mi lọwọ lati kọ nkan kan";
+"suggestion.question" = "Da awọn ibeere mi lọhun";
+
+// MARK: - Kokoro TTS
+"tts.download.title" = "Ohun Didara Giga";
+"tts.download.action" = "Gba";
+"tts.download.use_system" = "Lo Ohun Eto";
+"tts.download.message" = "Gba awoṣe Kokoro TTS (~87MB) fun ọrọ-si-ọrọ Japanese ti o dara julọ.";
+"tts.downloading" = "Ngba awoṣe TTS...";
+
+// MARK: - Feedback
+"feedback.consent.title" = "Fi Esi ranṣẹ";
+"feedback.send" = "Firanṣẹ";
+"feedback.positive.title" = "Ṣe esi yii ṣe iranwọ?";
+"feedback.negative.title" = "Ṣe o le mu eyi dara si?";
+"feedback.explanation" = "Esi rẹ nran wa lọwọ lati mu didara AI dara si. Jọwọ ṣayẹwo data ti a o firanṣẹ ṣaaju kikojọpọ.";
+"feedback.data.section" = "Data lati firanṣẹ";
+"feedback.data.conversation" = "Ibaraẹnisọrọ";
+"feedback.data.conversation.desc" = "Esi AI ati ifiranṣẹ rẹ ti tẹlẹ";
+"feedback.data.model" = "Alaye awoṣe";
+"feedback.data.model.desc" = "Orukọ awoṣe AI ti a lo";
+"feedback.data.timestamp" = "Aago";
+"feedback.data.timestamp.desc" = "Nigba ti a fi esi ranṣẹ";
+"feedback.privacy.section" = "Aṣiri";
+"feedback.privacy.anonymous" = "Ko si alaye idanimọ ti a firanṣẹ";
+"feedback.privacy.improvement" = "A lo nikan lati mu didara AI dara si";
+"feedback.privacy.optional" = "Fifiranṣẹ esi jẹ yiyan ni kikun";
+"feedback.comment.section" = "Asọye (yiyan)";
+"feedback.comment.placeholder" = "Sọ fun wa ohun ti o le dara si tabi ohun ti o ṣiṣẹ daradara...";
+"feedback.remember.title" = "Ranti yiyan yii";
+"feedback.remember.description" = "Fi esi ranṣẹ laisi beere nigba to ba tọ";
+
+// MARK: - Emergency Mode
+"emergency.sos.button" = "Ipo Pajawiri (tẹ gigun lati yipada)";
+"emergency.mode.active" = "Ipo Pajawiri Nṣiṣẹ";
+"emergency.action.firstaid" = "Iranlọwọ Akọkọ";
+"emergency.action.firstaid.message" = "Jọwọ pese awọn itọnisọna iranlọwọ akọkọ. Emi yoo ṣe apejuwe ipalara tabi awọn ami: ";
+"emergency.action.disaster" = "Ajalu";
+"emergency.action.disaster.message" = "Ajalu kan ti ṣẹlẹ. Jọwọ pese awọn ilana esi: ";
+"emergency.action.factcheck" = "Ṣayẹwo Ododo";
+"emergency.action.factcheck.message" = "Jọwọ jẹrisi igbẹkẹle alaye yii: ";
+"emergency.action.contacts" = "Pajawiri";
+"emergency.action.contacts.message" = "Jọwọ fi atokọ awọn nọmba olubasọrọ pajawiri han mi";
+"emergency.action.evacuation" = "Yọkuro";
+"emergency.action.evacuation.message" = "Jọwọ ṣẹda atokọ ayẹwo yọkuro fun ipo lọwọlọwọ: ";
+"mcp.emergency_kb" = "KB Pajawiri";
+"mcp.emergency_kb.desc" = "Alaye pajawiri & ajalu";
+
+// MARK: - Emergency Templates
+"template.firstaid.name" = "Itọsọna Iranlọwọ Akọkọ";
+"template.firstaid.content" = "Jọwọ pese awọn itọnisọna iranlọwọ akọkọ fun: ";
+"template.disaster.name" = "Esi Ajalu";
+"template.disaster.content" = "Ajalu wọnyi ti ṣẹlẹ. Jọwọ pese awọn ilana esi: ";
+"template.factcheck.name" = "Ṣayẹwo Ododo";
+"template.factcheck.content" = "Jọwọ jẹrisi igbẹkẹle alaye yii ki o pese awọn imọran ṣiṣayẹwo ododo: ";
+"template.evacuation.name" = "Atokọ Ayẹwo Yọkuro";
+"template.evacuation.content" = "Jọwọ ṣẹda atokọ ayẹwo yọkuro fun ipo lọwọlọwọ: ";
+
+// MARK: - ChatWeb.ai Integration
+"chatweb.title" = "ChatWeb.ai";
+"chatweb.desc" = "Ibaraẹnisọrọ AI Awọsanma";
+"chatweb.connect" = "Sopọ si ChatWeb.ai";
+"chatweb.qr.title" = "Sopọ nipasẹ Koodu QR";
+"chatweb.qr.scan" = "Ṣayẹwo Koodu QR";
+"chatweb.open" = "Ṣi ChatWeb.ai";
+
+// MARK: - Peer Connection
+"peer.title" = "Awọn Ẹrọ Nitosi";
+"peer.desc" = "Sopọ pẹlu awọn ẹrọ Elio nitosi";
+"peer.connect" = "Sopọ si Ẹrọ";
+"peer.code.title" = "Koodu Asopọ";
+"peer.code.enter" = "Tẹ koodu oni-nọmba 4";
+"peer.code.your" = "Koodu Rẹ";
+"peer.connected" = "Ti sopọ";
+"peer.disconnected" = "Yapa";
+"peer.inference.offload" = "Pinpin ifinu";
+
+// MARK: - Web Search
+"chat.web.search" = "Wiwa Wẹẹbu";
+"search.privacy.title" = "Wiwa Ti o Daabo Aṣiri";
+"search.privacy.proceed" = "Wa";
+"search.privacy.message" = "Wiwa Wẹẹbu ElioChat daabo aṣiri rẹ:\n\n🔒 Wiwa nipasẹ DuckDuckGo\n🚫 Ko si titọpa tabi profaili\n🔐 A ko fipamọ itan wiwa\n📱 Ko si data ti a fipamọ ni ita ẹrọ rẹ\n\nIbeere wiwa rẹ nikan ni a firanṣẹ si DuckDuckGo, a si ṣe awọn esi lori ẹrọ rẹ.";
+"chat.web.analyzing" = "[Nṣe itupalẹ oju-iwe wẹẹbu]";

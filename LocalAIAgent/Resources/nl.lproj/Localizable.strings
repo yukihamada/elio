@@ -1,0 +1,635 @@
+/*
+  Localizable.strings (Dutch)
+  Elio
+*/
+
+// MARK: - App General
+"app.name" = "Elio";
+"app.tagline" = "Je geheimhoudende tweede brein.";
+
+// MARK: - Common Actions
+"common.done" = "Klaar";
+"common.cancel" = "Annuleer";
+"common.delete" = "Verwijder";
+"common.save" = "Bewaar";
+"common.edit" = "Bewerk";
+"common.share" = "Deel";
+"common.copy" = "Kopieer";
+"common.copied" = "Gekopieerd";
+"common.loading" = "Laden...";
+"common.error" = "Fout";
+"common.retry" = "Opnieuw";
+"common.skip" = "Overslaan";
+"common.next" = "Volgende";
+"common.start" = "Start";
+"common.add" = "Toevoegen";
+"common.close" = "Sluiten";
+"common.details" = "Details";
+"common.yes" = "Ja";
+"common.no" = "Nee";
+"common.unknown" = "Onbekend";
+
+// MARK: - Chat
+"chat.placeholder" = "Vraag me iets";
+"chat.model.not.loaded" = "Geen model geladen";
+"chat.model.not.loaded.description" = "Download een model via Instellingen";
+"chat.go.to.settings" = "Ga naar Instellingen";
+"chat.new.conversation" = "Nieuw gesprek";
+"chat.stop.generation" = "Stop";
+"chat.generation.stopped" = "\n\n[Generatie gestopt]";
+"chat.image.sent" = "[Afbeelding verzonden]";
+"chat.images.sent" = "[%d afbeeldingen verzonden]";
+"chat.pdf.sent" = "[PDF bijgevoegd: %@]";
+"chat.pdf.sent.vision" = "[PDF met afbeelding: %@]";
+"chat.pdf.context" = "Dit is tekstinhoud geëxtraheerd uit het PDF-document \"%@\":\n\n%@";
+"chat.pdf.context.vision" = "Dit is pagina 1 van het PDF-document \"%@\". De geëxtraheerde tekstinhoud:\n\n%@\n\nAnalyseer zowel de visuele inhoud als de tekst.";
+"chat.pdf.analyze" = "Analyseer deze PDF-pagina uit \"%@\".";
+"chat.url.sent" = "[Webpagina: %@]";
+"chat.url.context" = "Dit is inhoud geëxtraheerd van de webpagina \"%@\" (%@):\n\n%@";
+"chat.thinking" = "Bezig met nadenken...";
+"chat.generating" = "Antwoord genereren...";
+"chat.welcome" = "Hoe kan ik helpen?";
+"chat.suggestion.schedule" = "Toon vandaags agenda";
+"chat.suggestion.reminder" = "Maak een herinnering";
+"chat.suggestion.weather" = "Wat is het weer vandaag?";
+"chat.suggestion.help" = "Hoe gebruik ik deze app";
+"chat.websearch.on" = "Zoeken aan";
+"chat.websearch.off" = "Zoeken uit";
+"chat.thinking.on" = "Denken aan";
+"chat.thinking.off" = "Denken uit";
+"chat.transcribing" = "Transcriberen...";
+"chat.offline" = "Offline";
+
+// Voice Conversation Mode
+"voice.listening" = "Luisteren...";
+"voice.processing" = "Verwerken...";
+"voice.thinking" = "Denken...";
+"voice.speaking" = "Spreken...";
+"voice.tap.to.send" = "Tik om te verzenden";
+"chat.templates" = "Sjablonen";
+"chat.websearch.privacy.title" = "Over zoeken op het web";
+"chat.websearch.privacy.message" = "Het inschakelen van zoeken op het web stelt de AI in staat om via DuckDuckGo op internet te zoeken naar actuele informatie. Zoekopdrachten worden naar DuckDuckGo gestuurd maar niet gevolgd.";
+"chat.websearch.privacy.enable" = "Inschakelen";
+"chat.websearch.privacy.disable" = "Uitgeschakeld houden";
+
+// MARK: - Settings
+"settings.title" = "Instellingen";
+"settings.model.section" = "AI-modellen";
+"settings.model.recommended" = "Aanbevolen: %@";
+"settings.model.local.execution" = "Modellen draaien lokaal op je apparaat";
+"settings.model.show.more" = "Andere modellen (%d)";
+"settings.model.show.less" = "Toon minder";
+"settings.appearance.section" = "Uiterlijk";
+"settings.tools.section" = "Slimme functies";
+"settings.mcp.servers" = "Integraties";
+"settings.mcp.servers.description" = "Agenda, Bestanden, Herinneringen & meer";
+"settings.mcp.enabled.count" = "%d ingeschakeld";
+"settings.mcp.enabled.count.suffix" = " ingeschakeld";
+"settings.about.section" = "Over";
+"settings.version" = "Versie";
+"settings.about.app" = "Over deze app";
+"settings.about.mcp" = "Over integraties";
+"settings.privacy.badge" = "Werkt offline";
+"settings.privacy.description" = "Werkt in vliegtuigmodus";
+"settings.airplane.mode" = "Actief in vliegtuigmodus";
+"settings.offline.ready" = "Offline gereed";
+
+// MARK: - Model States
+"model.status.downloading" = "Downloaden... %d%%";
+"model.status.loading" = "Laden...";
+"model.status.in.use" = "In gebruik";
+"model.status.recommended" = "Aanbevolen";
+"model.status.heavy" = "Zwaar";
+"model.action.download" = "Download";
+"model.action.load" = "Laden";
+"model.action.delete" = "Verwijder";
+"model.action.use" = "Gebruik dit model";
+"model.delete.confirm.title" = "Model verwijderen";
+"model.delete.confirm.message" = "%@ verwijderen? Je moet het opnieuw downloaden om het te gebruiken.";
+"model.select.title" = "Selecteer model";
+"model.select.prompt" = "Selecteer een model";
+"model.downloaded" = "Gedownload";
+
+// MARK: - Inference Mode
+"inference.mode.title" = "Versnelling";
+"inference.mode.auto" = "Automatisch";
+"inference.mode.auto.desc" = "Automatisch optimale prestaties";
+"inference.mode.gpu" = "GPU (Metal)";
+"inference.mode.gpu.desc" = "Maximale snelheid met Metal";
+"inference.mode.cpu" = "Alleen CPU";
+"inference.mode.cpu.desc" = "Batterijbesparende modus";
+"inference.mode.hybrid" = "Hybride";
+"inference.mode.hybrid.desc" = "Balans tussen snelheid en batterij";
+
+// MARK: - Theme
+"theme.system" = "Systeem";
+"theme.light" = "Licht";
+"theme.dark" = "Donker";
+
+// MARK: - Onboarding
+"onboarding.welcome.title" = "Welkom bij ElioChat";
+"onboarding.welcome.subtitle" = "Je privé AI-assistent";
+"onboarding.features.title" = "Echt privé AI";
+"onboarding.feature.offline" = "Werkt in vliegtuigmodus";
+"onboarding.feature.offline.desc" = "Gebruik in het vliegtuig of de metro";
+"onboarding.feature.privacy" = "Geen gegevensoverdracht";
+"onboarding.feature.privacy.desc" = "Je gesprekken verlaten je telefoon niet";
+"onboarding.feature.vault" = "Slimme integraties";
+"onboarding.feature.vault.desc" = "Verbind met Agenda & Bestanden";
+"onboarding.feature.secure" = "Werkveilige AI";
+"onboarding.feature.secure.desc" = "Veilig voor zakelijk gebruik";
+"onboarding.feature.thinking" = "Denkproces";
+"onboarding.privacy.title" = "Jouw gegevens blijven van jou";
+"onboarding.privacy.item1" = "Alle verwerking gebeurt op je iPhone";
+"onboarding.privacy.item2" = "Geen gegevens verzonden naar de cloud";
+"onboarding.privacy.item3" = "Nooit gebruikt voor AI-training";
+"onboarding.getstarted.title" = "Klaar in één tik";
+"onboarding.getstarted.subtitle" = "Download het aanbevolen AI-model\nen begin meteen met chatten";
+"onboarding.step1" = "Download aanbevolen model";
+"onboarding.step2" = "Wacht enkele minuten";
+"onboarding.step3" = "Klaar!";
+
+// MARK: - About
+"about.title" = "Over deze app";
+"about.rate.app" = "Beoordeel app";
+"about.share.app" = "Deel met vrienden";
+"about.privacy.policy" = "Privacybeleid";
+"about.terms" = "Servicevoorwaarden";
+"about.tech.info" = "Technische info";
+"about.tech.engine" = "AI-engine";
+"about.tech.format" = "Ondersteund formaat";
+"about.tech.inference" = "Inferentie";
+"about.data.management" = "Gegevensbeheer";
+"about.delete.all" = "Verwijder alle gesprekken";
+"about.credits" = "Credits";
+"about.credits.description" = "Deze app maakt gebruik van open source bibliotheken";
+"about.privacy.section" = "Privacy";
+"about.gguf.format" = "GGUF-formaat";
+"about.metal.gpu" = "Metal GPU-versnelling";
+
+// MARK: - Referral
+"referral.title" = "Verwijs vrienden";
+"referral.code.title" = "Jouw verwijzingscode";
+"referral.code.copy" = "Kopieer code";
+"referral.code.copied" = "Gekopieerd";
+"referral.share.button" = "Deel met vrienden";
+"referral.share.description" = "Deel Elio met je vrienden!";
+"referral.count" = "%d mensen verwezen";
+"referral.enter.title" = "Voer verwijzingscode in";
+"referral.enter.placeholder" = "Verwijzingscode";
+"referral.enter.button" = "Toepassen";
+"referral.enter.success" = "Verwijzingscode toegepast";
+"referral.enter.error" = "Ongeldige verwijzingscode";
+
+// MARK: - Privacy Policy
+"privacy.title" = "Privacybeleid";
+"privacy.data.collection.title" = "Gegevensverzameling";
+"privacy.data.collection.content" = "Deze app draait een lokale AI volledig offline.\nGeen gegevens worden naar externe servers verzonden.\nAlle gesprekken worden alleen op je apparaat opgeslagen.";
+"privacy.stored.data.title" = "Opgeslagen gegevens";
+"privacy.stored.data.content" = "Gespreksgeschiedenis (alleen op apparaat opgeslagen)\nAI-modelbestanden (alleen op apparaat opgeslagen)\nApp-instellingen (alleen op apparaat opgeslagen)\n\nDeze gegevens worden nooit extern gedeeld.";
+"privacy.data.deletion.title" = "Gegevensverwijdering";
+"privacy.data.deletion.content" = "Je kunt alle gegevens op elk moment verwijderen via Instellingen > Gegevensbeheer.\nHet verwijderen van de app zal alle gegevens verwijderen.";
+
+// MARK: - Terms of Service
+"terms.title" = "Servicevoorwaarden";
+"terms.service.title" = "Servicebeschrijving";
+"terms.service.content" = "Deze app biedt AI-assistentfunctionaliteit met een lokaal draaiend AI-model.";
+"terms.disclaimer.title" = "Disclaimer";
+"terms.disclaimer.content" = "AI-antwoorden kunnen fouten bevatten.\nBelangrijke beslissingen moeten altijd worden geverifieerd door een professional.\nWij zijn niet aansprakelijk voor schade voortvloeiend uit het gebruik van deze app.";
+"terms.prohibited.title" = "Verboden activiteiten";
+"terms.prohibited.content" = "Illegale activiteiten\nActiviteiten die de rechten van anderen schenden\nReverse engineering van deze app\nOngeautoriseerd kopiëren van deze app";
+"terms.ip.title" = "Intellectueel eigendom";
+"terms.ip.content" = "De intellectuele eigendomsrechten van deze app behoren toe aan de ontwikkelaar.\nOngeautoriseerd gebruik is verboden.";
+
+// MARK: - Conversations
+"conversations.title" = "Gesprekken";
+"conversations.new" = "Nieuw gesprek";
+"conversations.empty" = "Nog geen gesprekken";
+"conversations.delete" = "Verwijder gesprek";
+"conversations.default.title" = "Nieuw gesprek";
+"conversations.today" = "Vandaag";
+"conversations.yesterday" = "Gisteren";
+"conversations.past7days" = "Afgelopen 7 dagen";
+"conversations.past30days" = "Afgelopen 30 dagen";
+"conversations.older" = "Ouder";
+"conversations.created" = "Aangemaakt: %@";
+"conversations.user" = "Gebruiker";
+"conversations.assistant" = "Assistent";
+"conversations.search.placeholder" = "Zoek gesprekken";
+"conversations.search.no_results" = "Geen resultaten gevonden";
+
+// MARK: - Message Actions
+"message.copy" = "Kopieer";
+"message.speak" = "Spreek";
+"message.stop.speaking" = "Stop spreken";
+"message.share" = "Deel";
+"message.share.card" = "Deel als kaart";
+"message.like" = "Vind ik leuk";
+
+// MARK: - Share Card
+"share.card.title" = "Deel kaart";
+"share.card.preview" = "Voorbeeld";
+"share.card.button" = "Deel afbeelding";
+"message.dislike" = "Vind ik niet leuk";
+"message.thinking.process" = "Denkproces";
+"message.tool.running" = "Tool uitvoeren";
+"message.tool.error" = "Fout";
+"message.tool.completed" = "Voltooid";
+
+// MARK: - Attachment
+"attachment.title" = "Bijlage";
+"attachment.photo.library" = "Kies foto";
+"attachment.camera" = "Maak foto";
+"attachment.pdf" = "Selecteer PDF";
+"attachment.pdf.chars" = "%d tekens";
+"attachment.pdf.pages" = "%d pagina's";
+"attachment.pdf.vision.enabled" = "Beeldanalyse ingeschakeld";
+"attachment.pdf.text.only" = "Alleen tekst";
+"attachment.url" = "Lees webpagina";
+"attachment.url.title" = "Voer URL in";
+"attachment.url.placeholder" = "https://voorbeeld.nl";
+"attachment.url.message" = "Plak een URL om de inhoud te extraheren";
+"attachment.url.fetch" = "Ophalen";
+"attachment.url.loading" = "Pagina laden...";
+
+// MARK: - Errors
+"error.model.not.found" = "Modelbestand niet gevonden";
+"error.model.not.loaded" = "Model niet geladen";
+"error.context.failed" = "Kon geen context maken";
+"error.tokenization.failed" = "Tokenisatie mislukt";
+"error.generation.failed" = "Generatiefout: %@";
+"error.occurred" = "Er is een fout opgetreden: %@";
+"error.invalid.url" = "Ongeldige URL";
+"error.download.failed" = "Download mislukt";
+"error.extraction.failed" = "Extractie mislukt";
+"error.config.not.found" = "Configuratiebestand niet gevonden";
+
+// MARK: - Ghost Search
+"ghost.search.title" = "Ghost Search";
+"ghost.search.description" = "Anoniem zoeken via DuckDuckGo (geen tracking)";
+"ghost.search.connecting" = "Verbinden met anoniem netwerk...";
+"ghost.search.privacy.note" = "Je zoekgeschiedenis wordt nooit gevolgd";
+
+// MARK: - MCP Servers
+"mcp.filesystem" = "Bestandssysteem";
+"mcp.filesystem.desc" = "Lees en schrijf bestanden in app";
+"mcp.calendar" = "Agenda";
+"mcp.calendar.desc" = "Lees en schrijf evenementen";
+"mcp.reminders" = "Herinneringen";
+"mcp.reminders.desc" = "Beheer herinneringen";
+"mcp.contacts" = "Contacten";
+"mcp.contacts.desc" = "Zoek en bekijk contacten";
+"mcp.photos" = "Foto's";
+"mcp.photos.desc" = "Toegang tot fotobibliotheek";
+"mcp.location" = "Locatie";
+"mcp.location.desc" = "Verkrijg huidige locatie en zoek plaatsen";
+"mcp.health" = "Gezondheid";
+"mcp.health.desc" = "Toegang tot gezondheidsgegevens";
+"mcp.shortcuts" = "Snelkoppelingen";
+"mcp.shortcuts.desc" = "Voer snelkoppelingen uit";
+"mcp.websearch" = "Zoeken op het web";
+"mcp.websearch.desc" = "Anoniem zoeken op het web";
+"mcp.custom" = "Aangepaste integratie";
+"mcp.custom.add" = "Voeg integratie toe";
+"mcp.custom.setup" = "Stel externe service-integratie in";
+"mcp.custom.title" = "Aangepaste integraties";
+"mcp.settings.title" = "Integratie-instellingen";
+"mcp.server.name" = "Servernaam";
+"mcp.server.name.placeholder" = "bijv. Mijn aangepaste server";
+"mcp.config.url" = "URL configuratiebestand";
+"mcp.import.file" = "Importeer uit bestand";
+"mcp.config.example" = "Voorbeeld configuratiebestand";
+"mcp.permission.note" = "Toestemmingen worden gevraagd bij het eerste gebruik van elke functie";
+
+// MARK: - MCP Tool Messages
+"mcp.tool.available" = "Beschikbare tools:";
+"mcp.tool.parameters" = "Parameters:";
+"mcp.prompt.available" = "Beschikbare prompts:";
+"mcp.prompt.arguments" = "Argumenten:";
+"mcp.tool.name" = "tool_naam";
+"mcp.tool.arg.name" = "arg_naam";
+"mcp.tool.arg.value" = "waarde";
+"mcp.tool.no.result" = "Geen resultaat";
+"mcp.tool.running" = "Tool uitvoeren: %@";
+"mcp.tool.error" = "Fout bij uitvoeren tool: %@";
+
+// MARK: - MCP Error Messages
+"mcp.error.server.not.found" = "Server niet gevonden: %@";
+"mcp.error.tool.not.found" = "Tool niet gevonden: %@";
+"mcp.error.invalid.args" = "Ongeldige argumenten: %@";
+"mcp.error.execution" = "Uitvoeringsfout: %@";
+"mcp.error.permission" = "Toestemming geweigerd: %@";
+
+// MARK: - Calendar Messages
+"calendar.no.events" = "Geen evenementen";
+"calendar.event.created" = "Evenement aangemaakt: %@";
+"calendar.event.deleted" = "Evenement verwijderd: %@";
+"calendar.allday.created" = "Dag-evenement aangemaakt: %@";
+"calendar.access.denied" = "Toegang tot agenda geweigerd";
+"calendar.today.none" = "Geen evenementen vandaag";
+"calendar.untitled" = "Zonder titel";
+
+// MARK: - Reminders Messages
+"reminders.none" = "Geen herinneringen";
+"reminders.created" = "Herinnering aangemaakt: %@";
+"reminders.completed" = "Herinnering voltooid: %@";
+"reminders.deleted" = "Herinnering verwijderd: %@";
+"reminders.access.denied" = "Toegang tot herinneringen geweigerd";
+"reminders.untitled" = "Zonder titel";
+
+// MARK: - Photos Messages
+"photos.access.denied" = "Toegang tot foto's geweigerd";
+"photos.not.found" = "Foto niet gevonden";
+"photos.untitled" = "Zonder titel";
+"photos.count" = "Foto's: %d";
+"photos.videos.count" = "Video's: %d";
+"photos.albums.count" = "Albums: %d";
+"photos.favorites.count" = "Favorieten: %d";
+"photos.date" = "Datum: %@";
+"photos.size" = "Grootte: %d x %d";
+"photos.location" = "Locatie: %@, %@";
+"photos.media.type" = "Mediatype: %@";
+"photos.duration" = "Duur: %dm %ds";
+"photos.favorite" = "Favoriet: %@";
+"photos.type.image" = "Foto";
+"photos.type.video" = "Video";
+"photos.type.audio" = "Audio";
+
+// MARK: - Contacts Messages
+"contacts.access.denied" = "Toegang tot contacten geweigerd";
+"contacts.not.found" = "Geen overeenkomende contacten gevonden";
+"contacts.no.groups" = "Geen groepen";
+"contacts.no.card" = "Geen contactkaart ingesteld";
+"contacts.name" = "Naam: %@";
+"contacts.company" = "Bedrijf: %@";
+"contacts.job" = "Functie: %@";
+
+// MARK: - Location Messages
+"location.access.denied" = "Toegang tot locatie geweigerd";
+"location.not.found" = "Adres niet gevonden";
+"location.latitude" = "Breedtegraad: %@";
+"location.longitude" = "Lengtegraad: %@";
+"location.accuracy" = "Nauwkeurigheid: %dm";
+"location.altitude" = "Hoogte: %dm";
+"location.search" = "Zoeken: %@";
+"location.address" = "Adres: %@";
+"location.country" = "Land: %@";
+"location.postal" = "Postcode: %@";
+"location.from" = "Van: (%@, %@)";
+"location.to" = "Naar: (%@, %@)";
+"location.distance.km" = "Afstand: %.2f km";
+"location.distance.m" = "Afstand: %d m";
+
+// MARK: - Health Messages
+"health.not.available" = "Gezondheid is niet beschikbaar op dit apparaat";
+"health.date" = "Datum: %@";
+"health.steps" = "Stappen: %@ stappen";
+"health.goal.progress" = "Doelvoortgang: %d%% (10.000 stappen doel)";
+"health.no.data" = "Geen gegevens beschikbaar";
+"health.avg.bpm" = "Gemiddeld: %d bpm";
+"health.min.bpm" = "Minimum: %d bpm";
+"health.max.bpm" = "Maximum: %d bpm";
+"health.measurements" = "Metingen: %d";
+"health.no.sleep" = "Geen slaapgegevens";
+"health.sleep.total" = "Totale slaap: %du %dm";
+"health.bedtime" = "Bedtijd: %@";
+"health.waketime" = "Wektijd: %@";
+"health.calories" = "Calorieën: %d kcal";
+
+// MARK: - File System Messages
+"filesystem.not.found" = "Bestand niet gevonden: %@";
+"filesystem.written" = "Bestand geschreven: %@";
+"filesystem.dir.created" = "Map aangemaakt: %@";
+"filesystem.deleted" = "Verwijderd: %@";
+"filesystem.size" = "Grootte: %@";
+"filesystem.created" = "Aangemaakt: %@";
+"filesystem.modified" = "Gewijzigd: %@";
+"filesystem.type" = "Type: %@";
+
+// MARK: - Shortcuts Messages
+"shortcuts.executed" = "Snelkoppeling '%@' uitgevoerd";
+"shortcuts.opened" = "Snelkoppelingen-app geopend";
+"shortcuts.settings.opened" = "Instellingen (%@) geopend";
+"shortcuts.mail.opened" = "Mail opstellen geopend";
+"shortcuts.calling" = "Bellen: %@";
+"shortcuts.message.opened" = "Bericht opstellen geopend";
+"shortcuts.failed" = "Kon snelkoppeling niet openen";
+
+// MARK: - Model Tiers
+"model.tier.entry" = "Basis";
+"model.tier.standard" = "Standaard";
+"model.tier.pro" = "Pro";
+
+// MARK: - Tool Parser
+"tool.arguments" = "Argumenten:";
+
+// MARK: - Model Settings
+"model.action.settings" = "Instellingen";
+"settings.model.parameters" = "Modelinstellingen";
+"settings.model.parameters.description" = "Pas generatieparameters aan voor dit model";
+"settings.preset.title" = "Voorinstellingen";
+"settings.preset.custom" = "Aangepast";
+"settings.preset.balanced" = "Gebalanceerd";
+"settings.preset.creative" = "Creatief";
+"settings.preset.precise" = "Nauwkeurig";
+"settings.preset.coding" = "Coderen";
+"settings.preset.japanese" = "Japans";
+"settings.parameters.title" = "Parameters";
+"settings.parameter.temperature" = "Temperatuur";
+"settings.parameter.temperature.description" = "Hoger = creatiever, lager = meer gefocust";
+"settings.parameter.top.p" = "Top P";
+"settings.parameter.top.p.description" = "Nucleus sampling waarschijnlijkheid";
+"settings.parameter.top.k" = "Top K";
+"settings.parameter.top.k.description" = "Aantal top tokens om te overwegen";
+"settings.parameter.max.tokens" = "Max tokens";
+"settings.parameter.max.tokens.description" = "Maximale antwoordlengte";
+"settings.parameter.repeat.penalty" = "Herhalingsstraf";
+"settings.parameter.repeat.penalty.description" = "Hoger = minder herhalingen";
+"settings.parameter.thinking" = "Denkmodus";
+"settings.parameter.thinking.description" = "Toon redeneringsproces van AI";
+"settings.system.prompt.title" = "Systeemprompt";
+"settings.system.prompt.description" = "Aangepaste instructies voor de AI";
+"settings.reset.to.default" = "Herstel naar standaard";
+
+// MARK: - Vision Model
+"vision.model.required.title" = "Vision-model vereist";
+"vision.model.required.header" = "Beeldherkenning vereist";
+"vision.model.required.description" = "Om afbeeldingen te analyseren, heb je een vision-capable AI-model nodig";
+"vision.model.switch" = "Wissel van model";
+"vision.model.switch.message %@" = "Overschakelen naar %@ om beeldanalyse in te schakelen?";
+"vision.model.download" = "Download";
+"vision.model.download.message %@ %@" = "%@ (%@) downloaden om afbeeldingen te analyseren?";
+"vision.model.not.available" = "Geen compatibel vision-model beschikbaar voor je apparaat";
+"vision.model.switching" = "Model wisselen...";
+"vision.model.download.title" = "Vision-modellen";
+"vision.model.recommended" = "Aanbevolen voor je apparaat";
+"vision.model.recommended.size %@" = "Aanbevolen: %@";
+"vision.model.use.this" = "Gebruik dit model";
+"vision.model.download.button %@" = "Download (%@)";
+"vision.model.other.options" = "Andere vision-modellen";
+"vision.model.download.complete" = "Download voltooid";
+"vision.model.download.complete.message" = "Klaar om afbeeldingen te analyseren";
+
+// MARK: - Whisper Voice Input (Legacy)
+"whisper.download.title" = "Spraakherkenning vereist";
+"whisper.download.action" = "Download";
+"whisper.download.message" = "Om spraakinvoer te gebruiken, moet je het spraakherkenningsmodel downloaden (~150MB).";
+"whisper.downloading" = "Spraakherkenningsmodel downloaden...";
+"whisper.download.error" = "Downloadfout";
+"whisper.load.error" = "Modellaadout";
+"whisper.permission.denied" = "Toegang tot microfoon niet toegestaan";
+"whisper.transcribe.error" = "Transcriptiefout";
+"whisper.error.permission" = "Microfoontoestemming vereist";
+"whisper.error.not.recording" = "Momenteel niet aan het opnemen";
+"whisper.error.no.recording" = "Geen opnamegegevens";
+"whisper.error.model.not.loaded" = "Spraakherkenningsmodel niet geladen";
+"whisper.error.transcription" = "Transcriptie mislukt";
+
+// MARK: - Speech Recognition (ReazonSpeech)
+"speech.download.title" = "Spraakherkenning vereist";
+"speech.download.action" = "Download";
+"speech.download.message" = "Om spraakinvoer te gebruiken, moet je het Japanse spraakherkenningsmodel downloaden (~155MB).";
+"speech.downloading" = "Spraakherkenningsmodel downloaden...";
+
+// MARK: - Language Settings
+"settings.language.section" = "Taal";
+"language.system" = "Gebruik systeemtaal";
+"settings.language.restart.hint" = "Taalwijzigingen worden van kracht na het opnieuw opstarten van de app";
+"settings.language.changed.title" = "Taal gewijzigd";
+"settings.language.changed.message" = "Start de app opnieuw op om de wijzigingen toe te passen";
+"common.ok" = "OK";
+
+// MARK: - System Prompt Settings
+"settings.prompt.section" = "Systeemprompt";
+"settings.prompt.edit" = "Bewerk prompt";
+"settings.prompt.default" = "Standaard gebruiken";
+"settings.prompt.custom" = "Aangepaste prompt ingesteld";
+"settings.prompt.hint" = "Pas AI-gedrag aan";
+"settings.prompt.editor.title" = "Bewerk prompt";
+"settings.prompt.editor.instruction" = "Voeg aangepaste instructies toe voor de AI. Laat leeg om de standaardprompt te gebruiken.";
+"settings.prompt.default.preview" = "Standaardprompt (fragment):";
+"settings.prompt.reset" = "Herstel";
+"settings.prompt.reset.title" = "Prompt herstellen";
+"settings.prompt.reset.message" = "Aangepaste prompt verwijderen en herstellen naar standaard?";
+
+// MARK: - Prompt Templates
+"templates.title" = "Promptsjablonen";
+"templates.empty" = "Nog geen sjablonen";
+"templates.add" = "Voeg sjabloon toe";
+"template.add.title" = "Voeg sjabloon toe";
+"template.edit.title" = "Bewerk sjabloon";
+"template.name.header" = "Naam";
+"template.name.placeholder" = "Sjabloonnaam";
+"template.content.header" = "Promptinhoud";
+"template.icon.header" = "Icoon";
+"template.translate.name" = "Vertaal";
+"template.translate.content" = "Vertaal het volgende: ";
+"template.summarize.name" = "Samenvatten";
+"template.summarize.content" = "Vat het volgende samen: ";
+"template.explain.name" = "Uitleggen";
+"template.explain.content" = "Leg het volgende uit: ";
+"template.code.name" = "Code";
+"template.code.content" = "Schrijf code voor: ";
+
+// MARK: - Export
+"export.title" = "Exporteer gesprek";
+"export.format.markdown" = "Markdown";
+"export.format.pdf" = "PDF";
+"export.format.text" = "Platte tekst";
+"export.created" = "Aangemaakt";
+"export.image.attached" = "Afbeelding bijgevoegd";
+"export.generated.by" = "Gegenereerd door";
+
+// MARK: - Loading Phases
+"loading.phase.initializing" = "Initialiseren...";
+"loading.phase.loading" = "Model laden...";
+"loading.phase.preparing" = "Inferentie-engine voorbereiden...";
+"loading.phase.almost" = "Bijna klaar...";
+
+// MARK: - Welcome Screen
+"welcome.greeting" = "Vraag me iets";
+"welcome.subtitle" = "Je privacy-first AI-assistent";
+"suggestion.idea" = "Help me met brainstormen";
+"suggestion.write" = "Help me iets te schrijven";
+"suggestion.question" = "Beantwoord mijn vragen";
+
+// MARK: - Kokoro TTS
+"tts.download.title" = "Hoogwaardige stem";
+"tts.download.action" = "Download";
+"tts.download.use_system" = "Gebruik systeemster";
+"tts.download.message" = "Download het Kokoro TTS-model (~87MB) voor natuurlijkere Japanse tekst-naar-spraak.";
+"tts.downloading" = "TTS-model downloaden...";
+
+// MARK: - Feedback
+"feedback.consent.title" = "Feedback verzenden";
+"feedback.send" = "Verzend";
+"feedback.positive.title" = "Was dit antwoord nuttig?";
+"feedback.negative.title" = "Kan dit verbeterd worden?";
+"feedback.explanation" = "Je feedback helpt de AI-kwaliteit te verbeteren. Controleer welke gegevens worden verzonden voordat je indient.";
+"feedback.data.section" = "Te verzenden gegevens";
+"feedback.data.conversation" = "Gesprek";
+"feedback.data.conversation.desc" = "Het AI-antwoord en je vorige bericht";
+"feedback.data.model" = "Modelinfo";
+"feedback.data.model.desc" = "Naam van het gebruikte AI-model";
+"feedback.data.timestamp" = "Tijdstempel";
+"feedback.data.timestamp.desc" = "Wanneer de feedback werd ingediend";
+"feedback.privacy.section" = "Privacy";
+"feedback.privacy.anonymous" = "Geen persoonlijk identificeerbare informatie wordt verzonden";
+"feedback.privacy.improvement" = "Alleen gebruikt om AI-kwaliteit te verbeteren";
+"feedback.privacy.optional" = "Het verzenden van feedback is volledig optioneel";
+"feedback.comment.section" = "Opmerking (optioneel)";
+"feedback.comment.placeholder" = "Vertel ons wat verbeterd kan worden of wat goed werkte...";
+"feedback.remember.title" = "Deze keuze onthouden";
+"feedback.remember.description" = "Feedback de volgende keer zonder vragen indienen";
+
+// MARK: - Emergency Mode
+"emergency.sos.button" = "Noodmodus (lang indrukken om te schakelen)";
+"emergency.mode.active" = "Noodmodus actief";
+"emergency.action.firstaid" = "Eerste hulp";
+"emergency.action.firstaid.message" = "Geef eerste hulp instructies. Ik zal het letsel of de symptomen beschrijven: ";
+"emergency.action.disaster" = "Ramp";
+"emergency.action.disaster.message" = "Er heeft een ramp plaatsgevonden. Geef reactieprocedures: ";
+"emergency.action.factcheck" = "Feitencontrole";
+"emergency.action.factcheck.message" = "Verifieer de betrouwbaarheid van deze informatie: ";
+"emergency.action.contacts" = "Nood";
+"emergency.action.contacts.message" = "Laat me een lijst met noodnummers zien";
+"emergency.action.evacuation" = "Evacueren";
+"emergency.action.evacuation.message" = "Maak een evacuatiechecklist voor de huidige situatie: ";
+"mcp.emergency_kb" = "Nood KB";
+"mcp.emergency_kb.desc" = "Nood- & rampinformatie";
+
+// MARK: - Emergency Templates
+"template.firstaid.name" = "Eerste hulp gids";
+"template.firstaid.content" = "Geef eerste hulp instructies voor: ";
+"template.disaster.name" = "Rampenrespons";
+"template.disaster.content" = "De volgende ramp heeft plaatsgevonden. Geef reactieprocedures: ";
+"template.factcheck.name" = "Feitencontrole";
+"template.factcheck.content" = "Verifieer de betrouwbaarheid van deze informatie en geef tips voor feitencontrole: ";
+"template.evacuation.name" = "Evacuatiechecklist";
+"template.evacuation.content" = "Maak een evacuatiechecklist voor de huidige situatie: ";
+
+// MARK: - ChatWeb.ai Integration
+"chatweb.title" = "ChatWeb.ai";
+"chatweb.desc" = "Cloud AI-chat";
+"chatweb.connect" = "Verbind met ChatWeb.ai";
+"chatweb.qr.title" = "Verbind via QR-code";
+"chatweb.qr.scan" = "Scan QR-code";
+"chatweb.open" = "Open ChatWeb.ai";
+
+// MARK: - Peer Connection
+"peer.title" = "Nabijgelegen apparaten";
+"peer.desc" = "Verbind met nabijgelegen Elio-apparaten";
+"peer.connect" = "Verbind met apparaat";
+"peer.code.title" = "Verbindingscode";
+"peer.code.enter" = "Voer 4-cijferige code in";
+"peer.code.your" = "Jouw code";
+"peer.connected" = "Verbonden";
+"peer.disconnected" = "Verbinding verbroken";
+"peer.inference.offload" = "Inferentie delen";
+
+// MARK: - Web Search
+"chat.web.search" = "Zoeken op het web";
+"search.privacy.title" = "Privacy-beschermd zoeken";
+"search.privacy.proceed" = "Zoeken";
+"search.privacy.message" = "ElioChat Zoeken op het web beschermt je privacy:\n\n🔒 Zoekt via DuckDuckGo\n🚫 Geen tracking of profilering\n🔐 Zoekgeschiedenis wordt niet opgeslagen\n📱 Geen gegevens opgeslagen buiten je apparaat\n\nAlleen je zoekopdracht wordt naar DuckDuckGo gestuurd en resultaten worden op je apparaat verwerkt.";
+"chat.web.analyzing" = "[Webpagina analyseren]";

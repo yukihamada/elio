@@ -1,0 +1,635 @@
+/*
+  Localizable.strings (Kannada)
+  Elio
+*/
+
+// MARK: - App General
+"app.name" = "Elio";
+"app.tagline" = "ನಿಮ್ಮ ರಹಸ್ಯ-ಕಾಪಾಡುವ ಎರಡನೇ ಮೆದುಳು.";
+
+// MARK: - Common Actions
+"common.done" = "ಮುಗಿದಿದೆ";
+"common.cancel" = "ರದ್ದುಗೊಳಿಸಿ";
+"common.delete" = "ಅಳಿಸಿ";
+"common.save" = "ಉಳಿಸಿ";
+"common.edit" = "ಸಂಪಾದಿಸಿ";
+"common.share" = "ಹಂಚಿಕೊಳ್ಳಿ";
+"common.copy" = "ನಕಲಿಸಿ";
+"common.copied" = "ನಕಲಿಸಲಾಗಿದೆ";
+"common.loading" = "ಲೋಡ್ ಆಗುತ್ತಿದೆ...";
+"common.error" = "ದೋಷ";
+"common.retry" = "ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ";
+"common.skip" = "ಬಿಟ್ಟುಬಿಡಿ";
+"common.next" = "ಮುಂದೆ";
+"common.start" = "ಪ್ರಾರಂಭಿಸಿ";
+"common.add" = "ಸೇರಿಸಿ";
+"common.close" = "ಮುಚ್ಚಿ";
+"common.details" = "ವಿವರಗಳು";
+"common.yes" = "ಹೌದು";
+"common.no" = "ಇಲ್ಲ";
+"common.unknown" = "ಅಜ್ಞಾತ";
+
+// MARK: - Chat
+"chat.placeholder" = "ಏನಾದರೂ ಕೇಳಿ";
+"chat.model.not.loaded" = "ಮಾಡೆಲ್ ಲೋಡ್ ಆಗಿಲ್ಲ";
+"chat.model.not.loaded.description" = "ದಯವಿಟ್ಟು ಸೆಟ್ಟಿಂಗ್‌ಗಳಿಂದ ಮಾಡೆಲ್ ಡೌನ್‌ಲೋಡ್ ಮಾಡಿ";
+"chat.go.to.settings" = "ಸೆಟ್ಟಿಂಗ್‌ಗಳಿಗೆ ಹೋಗಿ";
+"chat.new.conversation" = "ಹೊಸ ಚಾಟ್";
+"chat.stop.generation" = "ನಿಲ್ಲಿಸಿ";
+"chat.generation.stopped" = "\n\n[ಜನರೇಷನ್ ನಿಲ್ಲಿಸಲಾಗಿದೆ]";
+"chat.image.sent" = "[ಚಿತ್ರ ಕಳುಹಿಸಲಾಗಿದೆ]";
+"chat.images.sent" = "[%d ಚಿತ್ರಗಳು ಕಳುಹಿಸಲಾಗಿದೆ]";
+"chat.pdf.sent" = "[PDF ಲಗತ್ತಿಸಲಾಗಿದೆ: %@]";
+"chat.pdf.sent.vision" = "[ಚಿತ್ರದೊಂದಿಗೆ PDF: %@]";
+"chat.pdf.context" = "PDF ದಾಖಲೆ \"%@\" ನಿಂದ ಹೊರತೆಗೆದ ಕೆಳಗಿನ ಪಠ್ಯ ವಿಷಯ:\n\n%@";
+"chat.pdf.context.vision" = "ಇದು PDF ದಾಖಲೆ \"%@\" ಯ ಪುಟ 1. ಹೊರತೆಗೆದ ಪಠ್ಯ ವಿಷಯ:\n\n%@\n\nದಯವಿಟ್ಟು ದೃಶ್ಯ ವಿಷಯ ಮತ್ತು ಪಠ್ಯ ಎರಡನ್ನೂ ವಿಶ್ಲೇಷಿಸಿ.";
+"chat.pdf.analyze" = "ದಯವಿಟ್ಟು \"%@\" ನಿಂದ ಈ PDF ಪುಟವನ್ನು ವಿಶ್ಲೇಷಿಸಿ.";
+"chat.url.sent" = "[ವೆಬ್ ಪುಟ: %@]";
+"chat.url.context" = "ವೆಬ್ ಪುಟ \"%@\" (%@) ನಿಂದ ಹೊರತೆಗೆದ ಕೆಳಗಿನ ವಿಷಯ:\n\n%@";
+"chat.thinking" = "ಯೋಚಿಸುತ್ತಿದೆ...";
+"chat.generating" = "ಪ್ರತಿಕ್ರಿಯೆ ರಚಿಸುತ್ತಿದೆ...";
+"chat.welcome" = "ನಾನು ನಿಮಗೆ ಹೇಗೆ ಸಹಾಯ ಮಾಡಬಹುದು?";
+"chat.suggestion.schedule" = "ಇಂದಿನ ವೇಳಾಪಟ್ಟಿ ತೋರಿಸಿ";
+"chat.suggestion.reminder" = "ರಿಮೈಂಡರ್ ರಚಿಸಿ";
+"chat.suggestion.weather" = "ಇಂದು ಹವಾಮಾನ ಹೇಗಿದೆ?";
+"chat.suggestion.help" = "ಈ ಅಪ್ಲಿಕೇಶನ್ ಬಳಸುವುದು ಹೇಗೆ";
+"chat.websearch.on" = "ವೆಬ್ ಸರ್ಚ್ ಆನ್";
+"chat.websearch.off" = "ವೆಬ್ ಸರ್ಚ್ ಆಫ್";
+"chat.thinking.on" = "ಥಿಂಕಿಂಗ್ ಆನ್";
+"chat.thinking.off" = "ಥಿಂಕಿಂಗ್ ಆಫ್";
+"chat.transcribing" = "ಟ್ರಾನ್ಸ್‌ಕ್ರೈಬ್ ಮಾಡುತ್ತಿದೆ...";
+"chat.offline" = "ಆಫ್‌ಲೈನ್";
+
+// Voice Conversation Mode
+"voice.listening" = "ಕೇಳುತ್ತಿದೆ...";
+"voice.processing" = "ಪ್ರಕ್ರಿಯೆಗೊಳಿಸುತ್ತಿದೆ...";
+"voice.thinking" = "ಯೋಚಿಸುತ್ತಿದೆ...";
+"voice.speaking" = "ಮಾತನಾಡುತ್ತಿದೆ...";
+"voice.tap.to.send" = "ಕಳುಹಿಸಲು ಟ್ಯಾಪ್ ಮಾಡಿ";
+"chat.templates" = "ಟೆಂಪ್ಲೇಟ್‌ಗಳು";
+"chat.websearch.privacy.title" = "ವೆಬ್ ಸರ್ಚ್ ಬಗ್ಗೆ";
+"chat.websearch.privacy.message" = "ವೆಬ್ ಸರ್ಚ್ ಸಕ್ರಿಯಗೊಳಿಸುವುದರಿಂದ AI DuckDuckGo ಮೂಲಕ ಅಪ್-ಟು-ಡೇಟ್ ಮಾಹಿತಿಗಾಗಿ ಇಂಟರ್ನೆಟ್ ಹುಡುಕಬಹುದು. ಸರ್ಚ್ ಪ್ರಶ್ನೆಗಳನ್ನು DuckDuckGo ಗೆ ಕಳುಹಿಸಲಾಗುತ್ತದೆ ಆದರೆ ಟ್ರ್ಯಾಕ್ ಮಾಡಲಾಗುವುದಿಲ್ಲ.";
+"chat.websearch.privacy.enable" = "ಸಕ್ರಿಯಗೊಳಿಸಿ";
+"chat.websearch.privacy.disable" = "ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಿದ್ದನ್ನು ಇರಿಸಿ";
+
+// MARK: - Settings
+"settings.title" = "ಸೆಟ್ಟಿಂಗ್‌ಗಳು";
+"settings.model.section" = "AI ಮಾಡೆಲ್‌ಗಳು";
+"settings.model.recommended" = "ಶಿಫಾರಸು: %@";
+"settings.model.local.execution" = "ಮಾಡೆಲ್‌ಗಳು ನಿಮ್ಮ ಸಾಧನದಲ್ಲಿ ಸ್ಥಳೀಯವಾಗಿ ರನ್ ಆಗುತ್ತವೆ";
+"settings.model.show.more" = "ಇತರ ಮಾಡೆಲ್‌ಗಳು (%d)";
+"settings.model.show.less" = "ಕಡಿಮೆ ತೋರಿಸಿ";
+"settings.appearance.section" = "ನೋಟ";
+"settings.tools.section" = "ಸ್ಮಾರ್ಟ್ ವೈಶಿಷ್ಟ್ಯಗಳು";
+"settings.mcp.servers" = "ಏಕೀಕರಣಗಳು";
+"settings.mcp.servers.description" = "ಕ್ಯಾಲೆಂಡರ್, ಫೈಲ್‌ಗಳು, ರಿಮೈಂಡರ್‌ಗಳು ಮತ್ತು ಇನ್ನಷ್ಟು";
+"settings.mcp.enabled.count" = "%d ಸಕ್ರಿಯಗೊಳಿಸಲಾಗಿದೆ";
+"settings.mcp.enabled.count.suffix" = " ಸಕ್ರಿಯಗೊಳಿಸಲಾಗಿದೆ";
+"settings.about.section" = "ಬಗ್ಗೆ";
+"settings.version" = "ಆವೃತ್ತಿ";
+"settings.about.app" = "ಈ ಅಪ್ಲಿಕೇಶನ್ ಬಗ್ಗೆ";
+"settings.about.mcp" = "ಏಕೀಕರಣಗಳ ಬಗ್ಗೆ";
+"settings.privacy.badge" = "ಆಫ್‌ಲೈನ್‌ನಲ್ಲಿ ಕಾರ್ಯನಿರ್ವಹಿಸುತ್ತದೆ";
+"settings.privacy.description" = "ಏರ್‌ಪ್ಲೇನ್ ಮೋಡ್‌ನಲ್ಲಿ ಕಾರ್ಯನಿರ್ವಹಿಸುತ್ತದೆ";
+"settings.airplane.mode" = "ಏರ್‌ಪ್ಲೇನ್ ಮೋಡ್‌ನಲ್ಲಿ ರನ್ ಆಗುತ್ತಿದೆ";
+"settings.offline.ready" = "ಆಫ್‌ಲೈನ್ ಸಿದ್ಧ";
+
+// MARK: - Model States
+"model.status.downloading" = "ಡೌನ್‌ಲೋಡ್ ಆಗುತ್ತಿದೆ... %d%%";
+"model.status.loading" = "ಲೋಡ್ ಆಗುತ್ತಿದೆ...";
+"model.status.in.use" = "ಬಳಕೆಯಲ್ಲಿ";
+"model.status.recommended" = "ಶಿಫಾರಸು";
+"model.status.heavy" = "ಭಾರೀ";
+"model.action.download" = "ಡೌನ್‌ಲೋಡ್";
+"model.action.load" = "ಲೋಡ್ ಮಾಡಿ";
+"model.action.delete" = "ಅಳಿಸಿ";
+"model.action.use" = "ಈ ಮಾಡೆಲ್ ಬಳಸಿ";
+"model.delete.confirm.title" = "ಮಾಡೆಲ್ ಅಳಿಸಿ";
+"model.delete.confirm.message" = "%@ ಅಳಿಸಬೇಕೆ? ಮತ್ತೆ ಬಳಸಲು ನೀವು ಅದನ್ನು ಮತ್ತೆ ಡೌನ್‌ಲೋಡ್ ಮಾಡಬೇಕಾಗುತ್ತದೆ.";
+"model.select.title" = "ಮಾಡೆಲ್ ಆಯ್ಕೆಮಾಡಿ";
+"model.select.prompt" = "ದಯವಿಟ್ಟು ಮಾಡೆಲ್ ಆಯ್ಕೆಮಾಡಿ";
+"model.downloaded" = "ಡೌನ್‌ಲೋಡ್ ಮಾಡಲಾಗಿದೆ";
+
+// MARK: - Inference Mode
+"inference.mode.title" = "ವೇಗವರ್ಧನೆ";
+"inference.mode.auto" = "ಆಟೋ";
+"inference.mode.auto.desc" = "ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಅತ್ಯುತ್ತಮ ಕಾರ್ಯಕ್ಷಮತೆ";
+"inference.mode.gpu" = "GPU (Metal)";
+"inference.mode.gpu.desc" = "Metal ಜೊತೆಗೆ ಗರಿಷ್ಠ ವೇಗ";
+"inference.mode.cpu" = "CPU ಮಾತ್ರ";
+"inference.mode.cpu.desc" = "ಬ್ಯಾಟರಿ ಉಳಿಸುವ ಮೋಡ್";
+"inference.mode.hybrid" = "ಹೈಬ್ರಿಡ್";
+"inference.mode.hybrid.desc" = "ವೇಗ ಮತ್ತು ಬ್ಯಾಟರಿ ಸಮತೋಲನ";
+
+// MARK: - Theme
+"theme.system" = "ಸಿಸ್ಟಂ";
+"theme.light" = "ಹಗುರ";
+"theme.dark" = "ಗಾಢ";
+
+// MARK: - Onboarding
+"onboarding.welcome.title" = "ElioChat ಗೆ ಸುಸ್ವಾಗತ";
+"onboarding.welcome.subtitle" = "ನಿಮ್ಮ ಖಾಸಗಿ AI ಸಹಾಯಕ";
+"onboarding.features.title" = "ನಿಜವಾದ ಖಾಸಗಿ AI";
+"onboarding.feature.offline" = "ಏರ್‌ಪ್ಲೇನ್ ಮೋಡ್‌ನಲ್ಲಿ ಕಾರ್ಯನಿರ್ವಹಿಸುತ್ತದೆ";
+"onboarding.feature.offline.desc" = "ವಿಮಾನಗಳಲ್ಲಿ ಅಥವಾ ಭೂಗತದಲ್ಲಿ ಬಳಸಿ";
+"onboarding.feature.privacy" = "ಶೂನ್ಯ ಡೇಟಾ ಪ್ರಸರಣ";
+"onboarding.feature.privacy.desc" = "ನಿಮ್ಮ ಚಾಟ್‌ಗಳು ನಿಮ್ಮ ಫೋನ್ ಬಿಡುವುದಿಲ್ಲ";
+"onboarding.feature.vault" = "ಸ್ಮಾರ್ಟ್ ಏಕೀಕರಣಗಳು";
+"onboarding.feature.vault.desc" = "ಕ್ಯಾಲೆಂಡರ್ ಮತ್ತು ಫೈಲ್‌ಗಳೊಂದಿಗೆ ಸಂಪರ್ಕಿಸಿ";
+"onboarding.feature.secure" = "ಕಾರ್ಯ-ಸುರಕ್ಷಿತ AI";
+"onboarding.feature.secure.desc" = "ಕಾರ್ಪೊರೇಟ್ ಬಳಕೆಗೆ ಸುರಕ್ಷಿತ";
+"onboarding.feature.thinking" = "ಚಿಂತನಾ ಪ್ರಕ್ರಿಯೆ";
+"onboarding.privacy.title" = "ನಿಮ್ಮ ಡೇಟಾ ನಿಮ್ಮದೇ";
+"onboarding.privacy.item1" = "ಎಲ್ಲಾ ಪ್ರಕ್ರಿಯೆಗಳು ನಿಮ್ಮ iPhone ನಲ್ಲಿ ನಡೆಯುತ್ತವೆ";
+"onboarding.privacy.item2" = "ಕ್ಲೌಡ್ ಸರ್ವರ್‌ಗಳಿಗೆ ಡೇಟಾ ಕಳುಹಿಸಲಾಗುವುದಿಲ್ಲ";
+"onboarding.privacy.item3" = "AI ತರಬೇತಿಗಾಗಿ ಎಂದಿಗೂ ಬಳಸಲಾಗುವುದಿಲ್ಲ";
+"onboarding.getstarted.title" = "ಒಂದು ಟ್ಯಾಪ್‌ನಲ್ಲಿ ಸಿದ್ಧ";
+"onboarding.getstarted.subtitle" = "ಶಿಫಾರಸು ಮಾಡಲಾದ AI ಮಾಡೆಲ್ ಡೌನ್‌ಲೋಡ್ ಮಾಡಿ\nಮತ್ತು ತಕ್ಷಣ ಚಾಟ್ ಮಾಡಲು ಪ್ರಾರಂಭಿಸಿ";
+"onboarding.step1" = "ಶಿಫಾರಸು ಮಾಡಲಾದ ಮಾಡೆಲ್ ಡೌನ್‌ಲೋಡ್ ಮಾಡಿ";
+"onboarding.step2" = "ಕೆಲವು ನಿಮಿಷ ಕಾಯಿರಿ";
+"onboarding.step3" = "ನೀವು ಸಿದ್ಧರಿದ್ದೀರಿ!";
+
+// MARK: - About
+"about.title" = "ಈ ಅಪ್ಲಿಕೇಶನ್ ಬಗ್ಗೆ";
+"about.rate.app" = "ಅಪ್ಲಿಕೇಶನ್ ರೇಟ್ ಮಾಡಿ";
+"about.share.app" = "ಸ್ನೇಹಿತರೊಂದಿಗೆ ಹಂಚಿಕೊಳ್ಳಿ";
+"about.privacy.policy" = "ಗೌಪ್ಯತಾ ನೀತಿ";
+"about.terms" = "ಸೇವಾ ನಿಯಮಗಳು";
+"about.tech.info" = "ತಾಂತ್ರಿಕ ಮಾಹಿತಿ";
+"about.tech.engine" = "AI ಇಂಜಿನ್";
+"about.tech.format" = "ಬೆಂಬಲಿತ ಸ್ವರೂಪ";
+"about.tech.inference" = "ಇನ್‌ಫರೆನ್ಸ್";
+"about.data.management" = "ಡೇಟಾ ನಿರ್ವಹಣೆ";
+"about.delete.all" = "ಎಲ್ಲಾ ಸಂಭಾಷಣೆಗಳನ್ನು ಅಳಿಸಿ";
+"about.credits" = "ಕ್ರೆಡಿಟ್‌ಗಳು";
+"about.credits.description" = "ಈ ಅಪ್ಲಿಕೇಶನ್ ಓಪನ್ ಸೋರ್ಸ್ ಲೈಬ್ರರಿಗಳನ್ನು ಬಳಸುತ್ತದೆ";
+"about.privacy.section" = "ಗೌಪ್ಯತೆ";
+"about.gguf.format" = "GGUF ಸ್ವರೂಪ";
+"about.metal.gpu" = "Metal GPU ವೇಗವರ್ಧನೆ";
+
+// MARK: - Referral
+"referral.title" = "ಸ್ನೇಹಿತರನ್ನು ಉಲ್ಲೇಖಿಸಿ";
+"referral.code.title" = "ನಿಮ್ಮ ರೆಫರಲ್ ಕೋಡ್";
+"referral.code.copy" = "ಕೋಡ್ ನಕಲಿಸಿ";
+"referral.code.copied" = "ನಕಲಿಸಲಾಗಿದೆ";
+"referral.share.button" = "ಸ್ನೇಹಿತರೊಂದಿಗೆ ಹಂಚಿಕೊಳ್ಳಿ";
+"referral.share.description" = "Elioವನ್ನು ನಿಮ್ಮ ಸ್ನೇಹಿತರೊಂದಿಗೆ ಹಂಚಿಕೊಳ್ಳಿ!";
+"referral.count" = "%d ಜನರನ್ನು ಉಲ್ಲೇಖಿಸಲಾಗಿದೆ";
+"referral.enter.title" = "ರೆಫರಲ್ ಕೋಡ್ ನಮೂದಿಸಿ";
+"referral.enter.placeholder" = "ರೆಫರಲ್ ಕೋಡ್";
+"referral.enter.button" = "ಅನ್ವಯಿಸಿ";
+"referral.enter.success" = "ರೆಫರಲ್ ಕೋಡ್ ಅನ್ವಯಿಸಲಾಗಿದೆ";
+"referral.enter.error" = "ಅಮಾನ್ಯ ರೆಫರಲ್ ಕೋಡ್";
+
+// MARK: - Privacy Policy
+"privacy.title" = "ಗೌಪ್ಯತಾ ನೀತಿ";
+"privacy.data.collection.title" = "ಡೇಟಾ ಸಂಗ್ರಹಣೆ";
+"privacy.data.collection.content" = "ಈ ಅಪ್ಲಿಕೇಶನ್ ಸಂಪೂರ್ಣವಾಗಿ ಆಫ್‌ಲೈನ್ ಸ್ಥಳೀಯ AIವನ್ನು ರನ್ ಮಾಡುತ್ತದೆ.\nಬಾಹ್ಯ ಸರ್ವರ್‌ಗಳಿಗೆ ಡೇಟಾ ಕಳುಹಿಸಲಾಗುವುದಿಲ್ಲ.\nಎಲ್ಲಾ ಸಂಭಾಷಣೆಗಳನ್ನು ನಿಮ್ಮ ಸಾಧನದಲ್ಲಿ ಮಾತ್ರ ಸಂಗ್ರಹಿಸಲಾಗುತ್ತದೆ.";
+"privacy.stored.data.title" = "ಸಂಗ್ರಹಿತ ಡೇಟಾ";
+"privacy.stored.data.content" = "ಸಂಭಾಷಣೆ ಇತಿಹಾಸ (ಸಾಧನದಲ್ಲಿ ಮಾತ್ರ ಸಂಗ್ರಹಿಸಲಾಗಿದೆ)\nAI ಮಾಡೆಲ್ ಫೈಲ್‌ಗಳು (ಸಾಧನದಲ್ಲಿ ಮಾತ್ರ ಸಂಗ್ರಹಿಸಲಾಗಿದೆ)\nಅಪ್ಲಿಕೇಶನ್ ಸೆಟ್ಟಿಂಗ್‌ಗಳು (ಸಾಧನದಲ್ಲಿ ಮಾತ್ರ ಸಂಗ್ರಹಿಸಲಾಗಿದೆ)\n\nಈ ಡೇಟಾವನ್ನು ಎಂದಿಗೂ ಬಾಹ್ಯವಾಗಿ ಹಂಚಿಕೊಳ್ಳಲಾಗುವುದಿಲ್ಲ.";
+"privacy.data.deletion.title" = "ಡೇಟಾ ಅಳಿಸುವಿಕೆ";
+"privacy.data.deletion.content" = "ನೀವು ಸೆಟ್ಟಿಂಗ್‌ಗಳು > ಡೇಟಾ ನಿರ್ವಹಣೆಯಿಂದ ಯಾವುದೇ ಸಮಯದಲ್ಲಿ ಎಲ್ಲಾ ಡೇಟಾವನ್ನು ಅಳಿಸಬಹುದು.\nಅಪ್ಲಿಕೇಶನ್ ಅನ್‌ಇನ್‌ಸ್ಟಾಲ್ ಮಾಡುವುದರಿಂದ ಎಲ್ಲಾ ಡೇಟಾ ಅಳಿಸಲಾಗುತ್ತದೆ.";
+
+// MARK: - Terms of Service
+"terms.title" = "ಸೇವಾ ನಿಯಮಗಳು";
+"terms.service.title" = "ಸೇವೆಯ ವಿವರಣೆ";
+"terms.service.content" = "ಈ ಅಪ್ಲಿಕೇಶನ್ ಸ್ಥಳೀಯವಾಗಿ ರನ್ ಆಗುತ್ತಿರುವ AI ಮಾಡೆಲ್ ಬಳಸಿ AI ಸಹಾಯಕ ಕಾರ್ಯಶೀಲತೆಯನ್ನು ಒದಗಿಸುತ್ತದೆ.";
+"terms.disclaimer.title" = "ನಿರಾಕರಣೆ";
+"terms.disclaimer.content" = "AI ಪ್ರತಿಕ್ರಿಯೆಗಳಲ್ಲಿ ದೋಷಗಳಿರಬಹುದು.\nಮುಖ್ಯ ನಿರ್ಧಾರಗಳನ್ನು ಯಾವಾಗಲೂ ವೃತ್ತಿಪರರಿಂದ ಪರಿಶೀಲಿಸಬೇಕು.\nಈ ಅಪ್ಲಿಕೇಶನ್ ಬಳಕೆಯಿಂದ ಉಂಟಾಗುವ ಯಾವುದೇ ಹಾನಿಗಾಗಿ ನಾವು ಜವಾಬ್ದಾರರಲ್ಲ.";
+"terms.prohibited.title" = "ನಿಷೇಧಿತ ಚಟುವಟಿಕೆಗಳು";
+"terms.prohibited.content" = "ಕಾನೂನುಬಾಹಿರ ಚಟುವಟಿಕೆಗಳು\nಇತರರ ಹಕ್ಕುಗಳನ್ನು ಉಲ್ಲಂಘಿಸುವ ಚಟುವಟಿಕೆಗಳು\nಈ ಅಪ್ಲಿಕೇಶನ್‌ನ ರಿವರ್ಸ್ ಇಂಜಿನೀಯರಿಂಗ್\nಈ ಅಪ್ಲಿಕೇಶನ್‌ನ ಅನಧಿಕೃತ ನಕಲು";
+"terms.ip.title" = "ಬೌದ್ಧಿಕ ಆಸ್ತಿ";
+"terms.ip.content" = "ಈ ಅಪ್ಲಿಕೇಶನ್‌ನ ಬೌದ್ಧಿಕ ಆಸ್ತಿ ಹಕ್ಕುಗಳು ಡೆವಲಪರ್‌ಗೆ ಸೇರಿವೆ.\nಅನಧಿಕೃತ ಬಳಕೆ ನಿಷೇಧಿಸಲಾಗಿದೆ.";
+
+// MARK: - Conversations
+"conversations.title" = "ಸಂಭಾಷಣೆಗಳು";
+"conversations.new" = "ಹೊಸ ಸಂಭಾಷಣೆ";
+"conversations.empty" = "ಇನ್ನೂ ಸಂಭಾಷಣೆಗಳಿಲ್ಲ";
+"conversations.delete" = "ಸಂಭಾಷಣೆ ಅಳಿಸಿ";
+"conversations.default.title" = "ಹೊಸ ಸಂಭಾಷಣೆ";
+"conversations.today" = "ಇಂದು";
+"conversations.yesterday" = "ನಿನ್ನೆ";
+"conversations.past7days" = "ಕಳೆದ 7 ದಿನಗಳು";
+"conversations.past30days" = "ಕಳೆದ 30 ದಿನಗಳು";
+"conversations.older" = "ಹಳೆಯದು";
+"conversations.created" = "ರಚಿಸಲಾಗಿದೆ: %@";
+"conversations.user" = "ಬಳಕೆದಾರ";
+"conversations.assistant" = "ಸಹಾಯಕ";
+"conversations.search.placeholder" = "ಸಂಭಾಷಣೆಗಳನ್ನು ಹುಡುಕಿ";
+"conversations.search.no_results" = "ಫಲಿತಾಂಶಗಳು ಕಂಡುಬಂದಿಲ್ಲ";
+
+// MARK: - Message Actions
+"message.copy" = "ನಕಲಿಸಿ";
+"message.speak" = "ಮಾತನಾಡು";
+"message.stop.speaking" = "ಮಾತನಾಡುವುದನ್ನು ನಿಲ್ಲಿಸಿ";
+"message.share" = "ಹಂಚಿಕೊಳ್ಳಿ";
+"message.share.card" = "ಕಾರ್ಡ್ ಆಗಿ ಹಂಚಿಕೊಳ್ಳಿ";
+"message.like" = "ಇಷ್ಟ";
+
+// MARK: - Share Card
+"share.card.title" = "ಕಾರ್ಡ್ ಹಂಚಿಕೊಳ್ಳಿ";
+"share.card.preview" = "ಪೂರ್ವವೀಕ್ಷಣೆ";
+"share.card.button" = "ಚಿತ್ರ ಹಂಚಿಕೊಳ್ಳಿ";
+"message.dislike" = "ಇಷ್ಟವಿಲ್ಲ";
+"message.thinking.process" = "ಚಿಂತನಾ ಪ್ರಕ್ರಿಯೆ";
+"message.tool.running" = "ಟೂಲ್ ರನ್ ಆಗುತ್ತಿದೆ";
+"message.tool.error" = "ದೋಷ";
+"message.tool.completed" = "ಮುಗಿದಿದೆ";
+
+// MARK: - Attachment
+"attachment.title" = "ಲಗತ್ತು";
+"attachment.photo.library" = "ಫೋಟೋ ಆಯ್ಕೆಮಾಡಿ";
+"attachment.camera" = "ಫೋಟೋ ತೆಗೆಯಿರಿ";
+"attachment.pdf" = "PDF ಆಯ್ಕೆಮಾಡಿ";
+"attachment.pdf.chars" = "%d ಅಕ್ಷರಗಳು";
+"attachment.pdf.pages" = "%d ಪುಟಗಳು";
+"attachment.pdf.vision.enabled" = "ಚಿತ್ರ ವಿಶ್ಲೇಷಣೆ ಸಕ್ರಿಯಗೊಳಿಸಲಾಗಿದೆ";
+"attachment.pdf.text.only" = "ಪಠ್ಯ ಮಾತ್ರ ಮೋಡ್";
+"attachment.url" = "ವೆಬ್ ಪುಟ ಓದಿ";
+"attachment.url.title" = "URL ನಮೂದಿಸಿ";
+"attachment.url.placeholder" = "https://example.com";
+"attachment.url.message" = "ಅದರ ವಿಷಯವನ್ನು ಹೊರತೆಗೆಯಲು URL ಅಂಟಿಸಿ";
+"attachment.url.fetch" = "ತರುವುದು";
+"attachment.url.loading" = "ಪುಟ ಲೋಡ್ ಆಗುತ್ತಿದೆ...";
+
+// MARK: - Errors
+"error.model.not.found" = "ಮಾಡೆಲ್ ಫೈಲ್ ಕಂಡುಬಂದಿಲ್ಲ";
+"error.model.not.loaded" = "ಮಾಡೆಲ್ ಲೋಡ್ ಆಗಿಲ್ಲ";
+"error.context.failed" = "ಸಂದರ್ಭ ರಚಿಸಲು ವಿಫಲವಾಗಿದೆ";
+"error.tokenization.failed" = "ಟೋಕನೈಸೇಶನ್ ವಿಫಲವಾಗಿದೆ";
+"error.generation.failed" = "ಜನರೇಷನ್ ದೋಷ: %@";
+"error.occurred" = "ಒಂದು ದೋಷ ಸಂಭವಿಸಿದೆ: %@";
+"error.invalid.url" = "ಅಮಾನ್ಯ URL";
+"error.download.failed" = "ಡೌನ್‌ಲೋಡ್ ವಿಫಲವಾಗಿದೆ";
+"error.extraction.failed" = "ಹೊರತೆಗೆಯುವಿಕೆ ವಿಫಲವಾಗಿದೆ";
+"error.config.not.found" = "ಕಾನ್ಫಿಗ್ ಫೈಲ್ ಕಂಡುಬಂದಿಲ್ಲ";
+
+// MARK: - Ghost Search
+"ghost.search.title" = "ಘೋಸ್ಟ್ ಸರ್ಚ್";
+"ghost.search.description" = "DuckDuckGo ಮೂಲಕ ಅನಾಮಿಕ ಹುಡುಕಾಟ (ಟ್ರ್ಯಾಕಿಂಗ್ ಇಲ್ಲ)";
+"ghost.search.connecting" = "ಅನಾಮಿಕ ನೆಟ್‌ವರ್ಕ್‌ಗೆ ಸಂಪರ್ಕಿಸುತ್ತಿದೆ...";
+"ghost.search.privacy.note" = "ನಿಮ್ಮ ಹುಡುಕಾಟ ಇತಿಹಾಸವನ್ನು ಎಂದಿಗೂ ಟ್ರ್ಯಾಕ್ ಮಾಡಲಾಗುವುದಿಲ್ಲ";
+
+// MARK: - MCP Servers
+"mcp.filesystem" = "ಫೈಲ್ ಸಿಸ್ಟಂ";
+"mcp.filesystem.desc" = "ಅಪ್ಲಿಕೇಶನ್‌ನಲ್ಲಿ ಫೈಲ್‌ಗಳನ್ನು ಓದಿ ಮತ್ತು ಬರೆಯಿರಿ";
+"mcp.calendar" = "ಕ್ಯಾಲೆಂಡರ್";
+"mcp.calendar.desc" = "ಘಟನೆಗಳನ್ನು ಓದಿ ಮತ್ತು ಬರೆಯಿರಿ";
+"mcp.reminders" = "ರಿಮೈಂಡರ್‌ಗಳು";
+"mcp.reminders.desc" = "ರಿಮೈಂಡರ್‌ಗಳನ್ನು ನಿರ್ವಹಿಸಿ";
+"mcp.contacts" = "ಸಂಪರ್ಕಗಳು";
+"mcp.contacts.desc" = "ಸಂಪರ್ಕಗಳನ್ನು ಹುಡುಕಿ ಮತ್ತು ವೀಕ್ಷಿಸಿ";
+"mcp.photos" = "ಫೋಟೋಗಳು";
+"mcp.photos.desc" = "ಫೋಟೋ ಲೈಬ್ರರಿ ಪ್ರವೇಶಿಸಿ";
+"mcp.location" = "ಸ್ಥಳ";
+"mcp.location.desc" = "ಪ್ರಸ್ತುತ ಸ್ಥಳವನ್ನು ಪಡೆಯಿರಿ ಮತ್ತು ಸ್ಥಳಗಳನ್ನು ಹುಡುಕಿ";
+"mcp.health" = "ಆರೋಗ್ಯ";
+"mcp.health.desc" = "ಆರೋಗ್ಯ ಡೇಟಾ ಪ್ರವೇಶಿಸಿ";
+"mcp.shortcuts" = "ಶಾರ್ಟ್‌ಕಟ್‌ಗಳು";
+"mcp.shortcuts.desc" = "ಶಾರ್ಟ್‌ಕಟ್‌ಗಳನ್ನು ರನ್ ಮಾಡಿ";
+"mcp.websearch" = "ವೆಬ್ ಸರ್ಚ್";
+"mcp.websearch.desc" = "ಅನಾಮಿಕ ವೆಬ್ ಸರ್ಚ್";
+"mcp.custom" = "ಕಸ್ಟಮ್ ಏಕೀಕರಣ";
+"mcp.custom.add" = "ಏಕೀಕರಣ ಸೇರಿಸಿ";
+"mcp.custom.setup" = "ಬಾಹ್ಯ ಸೇವೆ ಏಕೀಕರಣ ಸೆಟಪ್ ಮಾಡಿ";
+"mcp.custom.title" = "ಕಸ್ಟಮ್ ಏಕೀಕರಣಗಳು";
+"mcp.settings.title" = "ಏಕೀಕರಣ ಸೆಟ್ಟಿಂಗ್‌ಗಳು";
+"mcp.server.name" = "ಸರ್ವರ್ ಹೆಸರು";
+"mcp.server.name.placeholder" = "ಉದಾ., ನನ್ನ ಕಸ್ಟಮ್ ಸರ್ವರ್";
+"mcp.config.url" = "ಕಾನ್ಫಿಗ್ ಫೈಲ್ URL";
+"mcp.import.file" = "ಫೈಲ್‌ನಿಂದ ಆಮದು ಮಾಡಿ";
+"mcp.config.example" = "ಕಾನ್ಫಿಗ್ ಫೈಲ್ ಉದಾಹರಣೆ";
+"mcp.permission.note" = "ಪ್ರತಿ ವೈಶಿಷ್ಟ್ಯವನ್ನು ಮೊದಲ ಬಾರಿಗೆ ಬಳಸುವಾಗ ಅನುಮತಿಗಳನ್ನು ವಿನಂತಿಸಲಾಗುತ್ತದೆ";
+
+// MARK: - MCP Tool Messages
+"mcp.tool.available" = "ಲಭ್ಯವಿರುವ ಟೂಲ್‌ಗಳು:";
+"mcp.tool.parameters" = "ಪ್ಯಾರಾಮೀಟರ್‌ಗಳು:";
+"mcp.prompt.available" = "ಲಭ್ಯವಿರುವ ಪ್ರಾಂಪ್ಟ್‌ಗಳು:";
+"mcp.prompt.arguments" = "ಆರ್ಗ್ಯುಮೆಂಟ್‌ಗಳು:";
+"mcp.tool.name" = "tool_name";
+"mcp.tool.arg.name" = "arg_name";
+"mcp.tool.arg.value" = "value";
+"mcp.tool.no.result" = "ಫಲಿತಾಂಶವಿಲ್ಲ";
+"mcp.tool.running" = "ಟೂಲ್ ರನ್ ಆಗುತ್ತಿದೆ: %@";
+"mcp.tool.error" = "ಟೂಲ್ ಎಕ್ಸಿಕ್ಯೂಶನ್ ದೋಷ: %@";
+
+// MARK: - MCP Error Messages
+"mcp.error.server.not.found" = "ಸರ್ವರ್ ಕಂಡುಬಂದಿಲ್ಲ: %@";
+"mcp.error.tool.not.found" = "ಟೂಲ್ ಕಂಡುಬಂದಿಲ್ಲ: %@";
+"mcp.error.invalid.args" = "ಅಮಾನ್ಯ ಆರ್ಗ್ಯುಮೆಂಟ್‌ಗಳು: %@";
+"mcp.error.execution" = "ಎಕ್ಸಿಕ್ಯೂಶನ್ ದೋಷ: %@";
+"mcp.error.permission" = "ಅನುಮತಿ ನಿರಾಕರಿಸಲಾಗಿದೆ: %@";
+
+// MARK: - Calendar Messages
+"calendar.no.events" = "ಘಟನೆಗಳಿಲ್ಲ";
+"calendar.event.created" = "ಘಟನೆ ರಚಿಸಲಾಗಿದೆ: %@";
+"calendar.event.deleted" = "ಘಟನೆ ಅಳಿಸಲಾಗಿದೆ: %@";
+"calendar.allday.created" = "ಇಡೀ ದಿನದ ಘಟನೆ ರಚಿಸಲಾಗಿದೆ: %@";
+"calendar.access.denied" = "ಕ್ಯಾಲೆಂಡರ್ ಪ್ರವೇಶ ನಿರಾಕರಿಸಲಾಗಿದೆ";
+"calendar.today.none" = "ಇಂದು ಘಟನೆಗಳಿಲ್ಲ";
+"calendar.untitled" = "ಶೀರ್ಷಿಕೆರಹಿತ";
+
+// MARK: - Reminders Messages
+"reminders.none" = "ರಿಮೈಂಡರ್‌ಗಳಿಲ್ಲ";
+"reminders.created" = "ರಿಮೈಂಡರ್ ರಚಿಸಲಾಗಿದೆ: %@";
+"reminders.completed" = "ರಿಮೈಂಡರ್ ಪೂರ್ಣಗೊಂಡಿದೆ: %@";
+"reminders.deleted" = "ರಿಮೈಂಡರ್ ಅಳಿಸಲಾಗಿದೆ: %@";
+"reminders.access.denied" = "ರಿಮೈಂಡರ್‌ಗಳ ಪ್ರವೇಶ ನಿರಾಕರಿಸಲಾಗಿದೆ";
+"reminders.untitled" = "ಶೀರ್ಷಿಕೆರಹಿತ";
+
+// MARK: - Photos Messages
+"photos.access.denied" = "ಫೋಟೋಗಳ ಪ್ರವೇಶ ನಿರಾಕರಿಸಲಾಗಿದೆ";
+"photos.not.found" = "ಫೋಟೋ ಕಂಡುಬಂದಿಲ್ಲ";
+"photos.untitled" = "ಶೀರ್ಷಿಕೆರಹಿತ";
+"photos.count" = "ಫೋಟೋಗಳು: %d";
+"photos.videos.count" = "ವೀಡಿಯೊಗಳು: %d";
+"photos.albums.count" = "ಆಲ್ಬಮ್‌ಗಳು: %d";
+"photos.favorites.count" = "ಮೆಚ್ಚಿನವುಗಳು: %d";
+"photos.date" = "ದಿನಾಂಕ: %@";
+"photos.size" = "ಗಾತ್ರ: %d x %d";
+"photos.location" = "ಸ್ಥಳ: %@, %@";
+"photos.media.type" = "ಮಾಧ್ಯಮ ಪ್ರಕಾರ: %@";
+"photos.duration" = "ಅವಧಿ: %dm %ds";
+"photos.favorite" = "ಮೆಚ್ಚಿನದು: %@";
+"photos.type.image" = "ಫೋಟೋ";
+"photos.type.video" = "ವೀಡಿಯೊ";
+"photos.type.audio" = "ಆಡಿಯೊ";
+
+// MARK: - Contacts Messages
+"contacts.access.denied" = "ಸಂಪರ್ಕಗಳ ಪ್ರವೇಶ ನಿರಾಕರಿಸಲಾಗಿದೆ";
+"contacts.not.found" = "ಹೊಂದಾಣಿಕೆಯ ಸಂಪರ್ಕಗಳು ಕಂಡುಬಂದಿಲ್ಲ";
+"contacts.no.groups" = "ಗುಂಪುಗಳಿಲ್ಲ";
+"contacts.no.card" = "ಸಂಪರ್ಕ ಕಾರ್ಡ್ ಸೆಟ್ ಮಾಡಲಾಗಿಲ್ಲ";
+"contacts.name" = "ಹೆಸರು: %@";
+"contacts.company" = "ಕಂಪನಿ: %@";
+"contacts.job" = "ಕೆಲಸದ ಶೀರ್ಷಿಕೆ: %@";
+
+// MARK: - Location Messages
+"location.access.denied" = "ಸ್ಥಳ ಪ್ರವೇಶ ನಿರಾಕರಿಸಲಾಗಿದೆ";
+"location.not.found" = "ವಿಳಾಸ ಕಂಡುಬಂದಿಲ್ಲ";
+"location.latitude" = "ಅಕ್ಷಾಂಶ: %@";
+"location.longitude" = "ರೇಖಾಂಶ: %@";
+"location.accuracy" = "ನಿಖರತೆ: %dm";
+"location.altitude" = "ಎತ್ತರ: %dm";
+"location.search" = "ಹುಡುಕಾಟ: %@";
+"location.address" = "ವಿಳಾಸ: %@";
+"location.country" = "ದೇಶ: %@";
+"location.postal" = "ಅಂಚೆ ಸಂಕೇತ: %@";
+"location.from" = "ನಿಂದ: (%@, %@)";
+"location.to" = "ಗೆ: (%@, %@)";
+"location.distance.km" = "ದೂರ: %.2f km";
+"location.distance.m" = "ದೂರ: %d m";
+
+// MARK: - Health Messages
+"health.not.available" = "ಈ ಸಾಧನದಲ್ಲಿ ಆರೋಗ್ಯ ಲಭ್ಯವಿಲ್ಲ";
+"health.date" = "ದಿನಾಂಕ: %@";
+"health.steps" = "ಹೆಜ್ಜೆಗಳು: %@ ಹೆಜ್ಜೆಗಳು";
+"health.goal.progress" = "ಗುರಿ ಪ್ರಗತಿ: %d%% (10,000 ಹೆಜ್ಜೆಗಳ ಗುರಿ)";
+"health.no.data" = "ಡೇಟಾ ಲಭ್ಯವಿಲ್ಲ";
+"health.avg.bpm" = "ಸರಾಸರಿ: %d bpm";
+"health.min.bpm" = "ಕನಿಷ್ಠ: %d bpm";
+"health.max.bpm" = "ಗರಿಷ್ಠ: %d bpm";
+"health.measurements" = "ಮಾಪನಗಳು: %d";
+"health.no.sleep" = "ನಿದ್ರೆ ಡೇಟಾ ಇಲ್ಲ";
+"health.sleep.total" = "ಒಟ್ಟು ನಿದ್ರೆ: %dh %dm";
+"health.bedtime" = "ಮಲಗುವ ಸಮಯ: %@";
+"health.waketime" = "ಎಚ್ಚರವಾಗುವ ಸಮಯ: %@";
+"health.calories" = "ಕ್ಯಾಲೊರಿಗಳು: %d kcal";
+
+// MARK: - File System Messages
+"filesystem.not.found" = "ಫೈಲ್ ಕಂಡುಬಂದಿಲ್ಲ: %@";
+"filesystem.written" = "ಫೈಲ್ ಬರೆಯಲಾಗಿದೆ: %@";
+"filesystem.dir.created" = "ಡೈರೆಕ್ಟರಿ ರಚಿಸಲಾಗಿದೆ: %@";
+"filesystem.deleted" = "ಅಳಿಸಲಾಗಿದೆ: %@";
+"filesystem.size" = "ಗಾತ್ರ: %@";
+"filesystem.created" = "ರಚಿಸಲಾಗಿದೆ: %@";
+"filesystem.modified" = "ಮಾರ್ಪಡಿಸಲಾಗಿದೆ: %@";
+"filesystem.type" = "ಪ್ರಕಾರ: %@";
+
+// MARK: - Shortcuts Messages
+"shortcuts.executed" = "ಶಾರ್ಟ್‌ಕಟ್ '%@' ಎಕ್ಸಿಕ್ಯೂಟ್ ಮಾಡಲಾಗಿದೆ";
+"shortcuts.opened" = "ಶಾರ್ಟ್‌ಕಟ್‌ಗಳ ಅಪ್ಲಿಕೇಶನ್ ತೆರೆಯಲಾಗಿದೆ";
+"shortcuts.settings.opened" = "ಸೆಟ್ಟಿಂಗ್‌ಗಳು (%@) ತೆರೆಯಲಾಗಿದೆ";
+"shortcuts.mail.opened" = "ಮೇಲ್ ಕಂಪೋಸ್ ತೆರೆಯಲಾಗಿದೆ";
+"shortcuts.calling" = "ಕರೆ ಮಾಡುತ್ತಿದೆ: %@";
+"shortcuts.message.opened" = "ಸಂದೇಶ ಕಂಪೋಸ್ ತೆರೆಯಲಾಗಿದೆ";
+"shortcuts.failed" = "ಶಾರ್ಟ್‌ಕಟ್ ತೆರೆಯಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ";
+
+// MARK: - Model Tiers
+"model.tier.entry" = "ಪ್ರವೇಶ";
+"model.tier.standard" = "ಮಾನಕ";
+"model.tier.pro" = "ಪ್ರೊ";
+
+// MARK: - Tool Parser
+"tool.arguments" = "ಆರ್ಗ್ಯುಮೆಂಟ್‌ಗಳು:";
+
+// MARK: - Model Settings
+"model.action.settings" = "ಸೆಟ್ಟಿಂಗ್‌ಗಳು";
+"settings.model.parameters" = "ಮಾಡೆಲ್ ಸೆಟ್ಟಿಂಗ್‌ಗಳು";
+"settings.model.parameters.description" = "ಈ ಮಾಡೆಲ್‌ಗಾಗಿ ಜನರೇಷನ್ ಪ್ಯಾರಾಮೀಟರ್‌ಗಳನ್ನು ಕಸ್ಟಮೈಸ್ ಮಾಡಿ";
+"settings.preset.title" = "ಪ್ರಿಸೆಟ್‌ಗಳು";
+"settings.preset.custom" = "ಕಸ್ಟಮ್";
+"settings.preset.balanced" = "ಸಮತೋಲಿತ";
+"settings.preset.creative" = "ಸೃಜನಾತ್ಮಕ";
+"settings.preset.precise" = "ನಿಖರ";
+"settings.preset.coding" = "ಕೋಡಿಂಗ್";
+"settings.preset.japanese" = "ಜಪಾನೀಸ್";
+"settings.parameters.title" = "ಪ್ಯಾರಾಮೀಟರ್‌ಗಳು";
+"settings.parameter.temperature" = "ತಾಪಮಾನ";
+"settings.parameter.temperature.description" = "ಹೆಚ್ಚು = ಹೆಚ್ಚು ಸೃಜನಾತ್ಮಕ, ಕಡಿಮೆ = ಹೆಚ್ಚು ಕೇಂದ್ರೀಕೃತ";
+"settings.parameter.top.p" = "ಟಾಪ್ P";
+"settings.parameter.top.p.description" = "ನ್ಯೂಕ್ಲಿಯಸ್ ಸ್ಯಾಂಪ್ಲಿಂಗ್ ಸಂಭವನೀಯತೆ";
+"settings.parameter.top.k" = "ಟಾಪ್ K";
+"settings.parameter.top.k.description" = "ಪರಿಗಣಿಸಬೇಕಾದ ಟಾಪ್ ಟೋಕನ್‌ಗಳ ಸಂಖ್ಯೆ";
+"settings.parameter.max.tokens" = "ಗರಿಷ್ಠ ಟೋಕನ್‌ಗಳು";
+"settings.parameter.max.tokens.description" = "ಗರಿಷ್ಠ ಪ್ರತಿಕ್ರಿಯೆ ಉದ್ದ";
+"settings.parameter.repeat.penalty" = "ಪುನರಾವರ್ತನೆ ದಂಡ";
+"settings.parameter.repeat.penalty.description" = "ಹೆಚ್ಚು = ಕಡಿಮೆ ಪುನರಾವರ್ತಕ ಔಟ್‌ಪುಟ್";
+"settings.parameter.thinking" = "ಥಿಂಕಿಂಗ್ ಮೋಡ್";
+"settings.parameter.thinking.description" = "AIಯ ತಾರ್ಕಿಕ ಪ್ರಕ್ರಿಯೆಯನ್ನು ತೋರಿಸಿ";
+"settings.system.prompt.title" = "ಸಿಸ್ಟಂ ಪ್ರಾಂಪ್ಟ್";
+"settings.system.prompt.description" = "AIಗಾಗಿ ಕಸ್ಟಮ್ ಸೂಚನೆಗಳು";
+"settings.reset.to.default" = "ಡಿಫಾಲ್ಟ್‌ಗೆ ರೀಸೆಟ್ ಮಾಡಿ";
+
+// MARK: - Vision Model
+"vision.model.required.title" = "ವಿಷನ್ ಮಾಡೆಲ್ ಅಗತ್ಯ";
+"vision.model.required.header" = "ಚಿತ್ರ ಗುರುತಿಸುವಿಕೆ ಅಗತ್ಯ";
+"vision.model.required.description" = "ಚಿತ್ರಗಳನ್ನು ವಿಶ್ಲೇಷಿಸಲು, ನಿಮಗೆ ವಿಷನ್-ಸಾಮರ್ಥ್ಯದ AI ಮಾಡೆಲ್ ಅಗತ್ಯವಿದೆ";
+"vision.model.switch" = "ಮಾಡೆಲ್ ಬದಲಿಸಿ";
+"vision.model.switch.message %@" = "ಚಿತ್ರ ವಿಶ್ಲೇಷಣೆಯನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಲು %@ ಗೆ ಬದಲಾಯಿಸುವುದೇ?";
+"vision.model.download" = "ಡೌನ್‌ಲೋಡ್";
+"vision.model.download.message %@ %@" = "ಚಿತ್ರಗಳನ್ನು ವಿಶ್ಲೇಷಿಸಲು %@ (%@) ಡೌನ್‌ಲೋಡ್ ಮಾಡುವುದೇ?";
+"vision.model.not.available" = "ನಿಮ್ಮ ಸಾಧನಕ್ಕಾಗಿ ಹೊಂದಾಣಿಕೆಯ ವಿಷನ್ ಮಾಡೆಲ್ ಲಭ್ಯವಿಲ್ಲ";
+"vision.model.switching" = "ಮಾಡೆಲ್ ಬದಲಾಯಿಸುತ್ತಿದೆ...";
+"vision.model.download.title" = "ವಿಷನ್ ಮಾಡೆಲ್‌ಗಳು";
+"vision.model.recommended" = "ನಿಮ್ಮ ಸಾಧನಕ್ಕಾಗಿ ಶಿಫಾರಸು";
+"vision.model.recommended.size %@" = "ಶಿಫಾರಸು: %@";
+"vision.model.use.this" = "ಈ ಮಾಡೆಲ್ ಬಳಸಿ";
+"vision.model.download.button %@" = "ಡೌನ್‌ಲೋಡ್ (%@)";
+"vision.model.other.options" = "ಇತರ ವಿಷನ್ ಮಾಡೆಲ್‌ಗಳು";
+"vision.model.download.complete" = "ಡೌನ್‌ಲೋಡ್ ಪೂರ್ಣಗೊಂಡಿದೆ";
+"vision.model.download.complete.message" = "ಚಿತ್ರಗಳನ್ನು ವಿಶ್ಲೇಷಿಸಲು ಸಿದ್ಧ";
+
+// MARK: - Whisper Voice Input (Legacy)
+"whisper.download.title" = "ಧ್ವನಿ ಗುರುತಿಸುವಿಕೆ ಅಗತ್ಯ";
+"whisper.download.action" = "ಡೌನ್‌ಲೋಡ್";
+"whisper.download.message" = "ಧ್ವನಿ ಇನ್‌ಪುಟ್ ಬಳಸಲು, ನೀವು ಸ್ಪೀಚ್ ರೆಕಗ್ನಿಷನ್ ಮಾಡೆಲ್ (~150MB) ಡೌನ್‌ಲೋಡ್ ಮಾಡಬೇಕು.";
+"whisper.downloading" = "ಸ್ಪೀಚ್ ರೆಕಗ್ನಿಷನ್ ಮಾಡೆಲ್ ಡೌನ್‌ಲೋಡ್ ಆಗುತ್ತಿದೆ...";
+"whisper.download.error" = "ಡೌನ್‌ಲೋಡ್ ದೋಷ";
+"whisper.load.error" = "ಮಾಡೆಲ್ ಲೋಡ್ ದೋಷ";
+"whisper.permission.denied" = "ಮೈಕ್ರೊಫೋನ್ ಪ್ರವೇಶ ಅನುಮತಿ ಇಲ್ಲ";
+"whisper.transcribe.error" = "ಟ್ರಾನ್ಸ್‌ಕ್ರಿಪ್ಶನ್ ದೋಷ";
+"whisper.error.permission" = "ಮೈಕ್ರೊಫೋನ್ ಅನುಮತಿ ಅಗತ್ಯ";
+"whisper.error.not.recording" = "ಪ್ರಸ್ತುತ ರೆಕಾರ್ಡಿಂಗ್ ಮಾಡುತ್ತಿಲ್ಲ";
+"whisper.error.no.recording" = "ರೆಕಾರ್ಡಿಂಗ್ ಡೇಟಾ ಇಲ್ಲ";
+"whisper.error.model.not.loaded" = "ಸ್ಪೀಚ್ ರೆಕಗ್ನಿಷನ್ ಮಾಡೆಲ್ ಲೋಡ್ ಆಗಿಲ್ಲ";
+"whisper.error.transcription" = "ಟ್ರಾನ್ಸ್‌ಕ್ರಿಪ್ಶನ್ ವಿಫಲವಾಗಿದೆ";
+
+// MARK: - Speech Recognition (ReazonSpeech)
+"speech.download.title" = "ಧ್ವನಿ ಗುರುತಿಸುವಿಕೆ ಅಗತ್ಯ";
+"speech.download.action" = "ಡೌನ್‌ಲೋಡ್";
+"speech.download.message" = "ಧ್ವನಿ ಇನ್‌ಪುಟ್ ಬಳಸಲು, ನೀವು ಜಪಾನೀಸ್ ಸ್ಪೀಚ್ ರೆಕಗ್ನಿಷನ್ ಮಾಡೆಲ್ (~155MB) ಡೌನ್‌ಲೋಡ್ ಮಾಡಬೇಕು.";
+"speech.downloading" = "ಸ್ಪೀಚ್ ರೆಕಗ್ನಿಷನ್ ಮಾಡೆಲ್ ಡೌನ್‌ಲೋಡ್ ಆಗುತ್ತಿದೆ...";
+
+// MARK: - Language Settings
+"settings.language.section" = "ಭಾಷೆ";
+"language.system" = "ಸಿಸ್ಟಂ ಭಾಷೆ ಬಳಸಿ";
+"settings.language.restart.hint" = "ಭಾಷಾ ಬದಲಾವಣೆಗಳು ಅಪ್ಲಿಕೇಶನ್ ಮರುಪ್ರಾರಂಭಿಸಿದ ನಂತರ ಜಾರಿಗೆ ಬರುತ್ತವೆ";
+"settings.language.changed.title" = "ಭಾಷೆ ಬದಲಾಯಿಸಲಾಗಿದೆ";
+"settings.language.changed.message" = "ಬದಲಾವಣೆಗಳನ್ನು ಅನ್ವಯಿಸಲು ದಯವಿಟ್ಟು ಅಪ್ಲಿಕೇಶನ್ ಮರುಪ್ರಾರಂಭಿಸಿ";
+"common.ok" = "ಸರಿ";
+
+// MARK: - System Prompt Settings
+"settings.prompt.section" = "ಸಿಸ್ಟಂ ಪ್ರಾಂಪ್ಟ್";
+"settings.prompt.edit" = "ಪ್ರಾಂಪ್ಟ್ ಸಂಪಾದಿಸಿ";
+"settings.prompt.default" = "ಡಿಫಾಲ್ಟ್ ಬಳಸುತ್ತಿದೆ";
+"settings.prompt.custom" = "ಕಸ್ಟಮ್ ಪ್ರಾಂಪ್ಟ್ ಸೆಟ್ ಮಾಡಲಾಗಿದೆ";
+"settings.prompt.hint" = "AI ವರ್ತನೆಯನ್ನು ಕಸ್ಟಮೈಸ್ ಮಾಡಿ";
+"settings.prompt.editor.title" = "ಪ್ರಾಂಪ್ಟ್ ಸಂಪಾದಿಸಿ";
+"settings.prompt.editor.instruction" = "AIಗಾಗಿ ಕಸ್ಟಮ್ ಸೂಚನೆಗಳನ್ನು ಸೇರಿಸಿ. ಡಿಫಾಲ್ಟ್ ಪ್ರಾಂಪ್ಟ್ ಬಳಸಲು ಖಾಲಿ ಬಿಡಿ.";
+"settings.prompt.default.preview" = "ಡಿಫಾಲ್ಟ್ ಪ್ರಾಂಪ್ಟ್ (ಸಾರಾಂಶ):";
+"settings.prompt.reset" = "ರೀಸೆಟ್";
+"settings.prompt.reset.title" = "ಪ್ರಾಂಪ್ಟ್ ರೀಸೆಟ್ ಮಾಡಿ";
+"settings.prompt.reset.message" = "ಕಸ್ಟಮ್ ಪ್ರಾಂಪ್ಟ್ ಅಳಿಸಿ ಮತ್ತು ಡಿಫಾಲ್ಟ್‌ಗೆ ಮರುಸ್ಥಾಪಿಸುವುದೇ?";
+
+// MARK: - Prompt Templates
+"templates.title" = "ಪ್ರಾಂಪ್ಟ್ ಟೆಂಪ್ಲೇಟ್‌ಗಳು";
+"templates.empty" = "ಇನ್ನೂ ಟೆಂಪ್ಲೇಟ್‌ಗಳಿಲ್ಲ";
+"templates.add" = "ಟೆಂಪ್ಲೇಟ್ ಸೇರಿಸಿ";
+"template.add.title" = "ಟೆಂಪ್ಲೇಟ್ ಸೇರಿಸಿ";
+"template.edit.title" = "ಟೆಂಪ್ಲೇಟ್ ಸಂಪಾದಿಸಿ";
+"template.name.header" = "ಹೆಸರು";
+"template.name.placeholder" = "ಟೆಂಪ್ಲೇಟ್ ಹೆಸರು";
+"template.content.header" = "ಪ್ರಾಂಪ್ಟ್ ವಿಷಯ";
+"template.icon.header" = "ಐಕಾನ್";
+"template.translate.name" = "ಅನುವಾದಿಸಿ";
+"template.translate.content" = "ದಯವಿಟ್ಟು ಕೆಳಗಿನದನ್ನು ಅನುವಾದಿಸಿ: ";
+"template.summarize.name" = "ಸಾರಾಂಶ";
+"template.summarize.content" = "ದಯವಿಟ್ಟು ಕೆಳಗಿನದನ್ನು ಸಂಗ್ರಹಿಸಿ: ";
+"template.explain.name" = "ವಿವರಿಸಿ";
+"template.explain.content" = "ದಯವಿಟ್ಟು ಕೆಳಗಿನದನ್ನು ವಿವರಿಸಿ: ";
+"template.code.name" = "ಕೋಡ್";
+"template.code.content" = "ದಯವಿಟ್ಟು ಇದಕ್ಕಾಗಿ ಕೋಡ್ ಬರೆಯಿರಿ: ";
+
+// MARK: - Export
+"export.title" = "ಸಂಭಾಷಣೆ ರಫ್ತು ಮಾಡಿ";
+"export.format.markdown" = "Markdown";
+"export.format.pdf" = "PDF";
+"export.format.text" = "ಸರಳ ಪಠ್ಯ";
+"export.created" = "ರಚಿಸಲಾಗಿದೆ";
+"export.image.attached" = "ಚಿತ್ರ ಲಗತ್ತಿಸಲಾಗಿದೆ";
+"export.generated.by" = "ರಚಿಸಿದವರು";
+
+// MARK: - Loading Phases
+"loading.phase.initializing" = "ಪ್ರಾರಂಭಿಸುತ್ತಿದೆ...";
+"loading.phase.loading" = "ಮಾಡೆಲ್ ಲೋಡ್ ಆಗುತ್ತಿದೆ...";
+"loading.phase.preparing" = "ಇನ್‌ಫರೆನ್ಸ್ ಇಂಜಿನ್ ತಯಾರಿಸುತ್ತಿದೆ...";
+"loading.phase.almost" = "ಬಹುತೇಕ ಸಿದ್ಧ...";
+
+// MARK: - Welcome Screen
+"welcome.greeting" = "ಏನಾದರೂ ಕೇಳಿ";
+"welcome.subtitle" = "ನಿಮ್ಮ ಗೌಪ್ಯತೆ-ಮೊದಲ AI ಸಹಾಯಕ";
+"suggestion.idea" = "ಕಲ್ಪನೆಗಳಿಗಾಗಿ ನನಗೆ ಸಹಾಯ ಮಾಡಿ";
+"suggestion.write" = "ಏನಾದರೂ ಬರೆಯಲು ನನಗೆ ಸಹಾಯ ಮಾಡಿ";
+"suggestion.question" = "ನನ್ನ ಪ್ರಶ್ನೆಗಳಿಗೆ ಉತ್ತರಿಸಿ";
+
+// MARK: - Kokoro TTS
+"tts.download.title" = "ಹೈ-ಕ್ವಾಲಿಟಿ ಧ್ವನಿ";
+"tts.download.action" = "ಡೌನ್‌ಲೋಡ್";
+"tts.download.use_system" = "ಸಿಸ್ಟಂ ಧ್ವನಿ ಬಳಸಿ";
+"tts.download.message" = "ಹೆಚ್ಚು ನೈಸರ್ಗಿಕ ಜಪಾನೀಸ್ ಟೆಕ್ಸ್ಟ್-ಟು-ಸ್ಪೀಚ್‌ಗಾಗಿ Kokoro TTS ಮಾಡೆಲ್ (~87MB) ಡೌನ್‌ಲೋಡ್ ಮಾಡಿ.";
+"tts.downloading" = "TTS ಮಾಡೆಲ್ ಡೌನ್‌ಲೋಡ್ ಆಗುತ್ತಿದೆ...";
+
+// MARK: - Feedback
+"feedback.consent.title" = "ಪ್ರತಿಕ್ರಿಯೆ ಕಳುಹಿಸಿ";
+"feedback.send" = "ಕಳುಹಿಸಿ";
+"feedback.positive.title" = "ಈ ಪ್ರತಿಕ್ರಿಯೆ ಸಹಾಯಕವಾಗಿತ್ತೇ?";
+"feedback.negative.title" = "ಇದನ್ನು ಸುಧಾರಿಸಬಹುದೇ?";
+"feedback.explanation" = "ನಿಮ್ಮ ಪ್ರತಿಕ್ರಿಯೆ AI ಗುಣಮಟ್ಟವನ್ನು ಸುಧಾರಿಸಲು ಸಹಾಯ ಮಾಡುತ್ತದೆ. ಸಲ್ಲಿಸುವ ಮೊದಲು ಯಾವ ಡೇಟಾವನ್ನು ಕಳುಹಿಸಲಾಗುತ್ತದೆ ಎಂಬುದನ್ನು ದಯವಿಟ್ಟು ಪರಿಶೀಲಿಸಿ.";
+"feedback.data.section" = "ಕಳುಹಿಸಲಾಗುವ ಡೇಟಾ";
+"feedback.data.conversation" = "ಸಂಭಾಷಣೆ";
+"feedback.data.conversation.desc" = "AI ಪ್ರತಿಕ್ರಿಯೆ ಮತ್ತು ನಿಮ್ಮ ಹಿಂದಿನ ಸಂದೇಶ";
+"feedback.data.model" = "ಮಾಡೆಲ್ ಮಾಹಿತಿ";
+"feedback.data.model.desc" = "ಬಳಸಿದ AI ಮಾಡೆಲ್‌ನ ಹೆಸರು";
+"feedback.data.timestamp" = "ಟೈಮ್‌ಸ್ಟ್ಯಾಂಪ್";
+"feedback.data.timestamp.desc" = "ಪ್ರತಿಕ್ರಿಯೆ ಸಲ್ಲಿಸಿದಾಗ";
+"feedback.privacy.section" = "ಗೌಪ್ಯತೆ";
+"feedback.privacy.anonymous" = "ವೈಯಕ್ತಿಕವಾಗಿ ಗುರುತಿಸಬಹುದಾದ ಮಾಹಿತಿಯನ್ನು ಕಳುಹಿಸಲಾಗುವುದಿಲ್ಲ";
+"feedback.privacy.improvement" = "AI ಗುಣಮಟ್ಟವನ್ನು ಸುಧಾರಿಸಲು ಮಾತ್ರ ಬಳಸಲಾಗುತ್ತದೆ";
+"feedback.privacy.optional" = "ಪ್ರತಿಕ್ರಿಯೆ ಕಳುಹಿಸುವುದು ಸಂಪೂರ್ಣವಾಗಿ ಐಚ್ಛಿಕವಾಗಿದೆ";
+"feedback.comment.section" = "ಟಿಪ್ಪಣಿ (ಐಚ್ಛಿಕ)";
+"feedback.comment.placeholder" = "ಏನನ್ನು ಸುಧಾರಿಸಬಹುದು ಅಥವಾ ಏನು ಚೆನ್ನಾಗಿ ಕೆಲಸ ಮಾಡಿತು ಎಂಬುದನ್ನು ನಮಗೆ ತಿಳಿಸಿ...";
+"feedback.remember.title" = "ಈ ಆಯ್ಕೆಯನ್ನು ನೆನಪಿಡಿ";
+"feedback.remember.description" = "ಮುಂದಿನ ಬಾರಿ ಕೇಳದೆ ಪ್ರತಿಕ್ರಿಯೆ ಸಲ್ಲಿಸಿ";
+
+// MARK: - Emergency Mode
+"emergency.sos.button" = "ತುರ್ತು ಮೋಡ್ (ಟಾಗಲ್ ಮಾಡಲು ದೀರ್ಘವಾಗಿ ಒತ್ತಿ)";
+"emergency.mode.active" = "ತುರ್ತು ಮೋಡ್ ಸಕ್ರಿಯ";
+"emergency.action.firstaid" = "ಪ್ರಾಥಮಿಕ ಚಿಕಿತ್ಸೆ";
+"emergency.action.firstaid.message" = "ದಯವಿಟ್ಟು ಪ್ರಾಥಮಿಕ ಚಿಕಿತ್ಸಾ ಸೂಚನೆಗಳನ್ನು ಒದಗಿಸಿ. ನಾನು ಗಾಯ ಅಥವಾ ರೋಗಲಕ್ಷಣಗಳನ್ನು ವಿವರಿಸುತ್ತೇನೆ: ";
+"emergency.action.disaster" = "ವಿಪತ್ತು";
+"emergency.action.disaster.message" = "ವಿಪತ್ತು ಸಂಭವಿಸಿದೆ. ದಯವಿಟ್ಟು ಪ್ರತಿಕ್ರಿಯೆ ಕಾರ್ಯವಿಧಾನಗಳನ್ನು ಒದಗಿಸಿ: ";
+"emergency.action.factcheck" = "ಸತ್ಯ ಪರಿಶೀಲನೆ";
+"emergency.action.factcheck.message" = "ದಯವಿಟ್ಟು ಈ ಮಾಹಿತಿಯ ವಿಶ್ವಾಸಾರ್ಹತೆಯನ್ನು ಪರಿಶೀಲಿಸಿ: ";
+"emergency.action.contacts" = "ತುರ್ತು";
+"emergency.action.contacts.message" = "ದಯವಿಟ್ಟು ನನಗೆ ತುರ್ತು ಸಂಪರ್ಕ ಸಂಖ್ಯೆಗಳ ಪಟ್ಟಿಯನ್ನು ತೋರಿಸಿ";
+"emergency.action.evacuation" = "ಸ್ಥಳಾಂತರ";
+"emergency.action.evacuation.message" = "ದಯವಿಟ್ಟು ಪ್ರಸ್ತುತ ಪರಿಸ್ಥಿತಿಗಾಗಿ ಸ್ಥಳಾಂತರ ಪರಿಶೀಲನಾಪಟ್ಟಿಯನ್ನು ರಚಿಸಿ: ";
+"mcp.emergency_kb" = "ತುರ್ತು KB";
+"mcp.emergency_kb.desc" = "ತುರ್ತು ಮತ್ತು ವಿಪತ್ತು ಮಾಹಿತಿ";
+
+// MARK: - Emergency Templates
+"template.firstaid.name" = "ಪ್ರಾಥಮಿಕ ಚಿಕಿತ್ಸಾ ಮಾರ್ಗದರ್ಶಿ";
+"template.firstaid.content" = "ದಯವಿಟ್ಟು ಇದಕ್ಕಾಗಿ ಪ್ರಾಥಮಿಕ ಚಿಕಿತ್ಸಾ ಸೂಚನೆಗಳನ್ನು ಒದಗಿಸಿ: ";
+"template.disaster.name" = "ವಿಪತ್ತು ಪ್ರತಿಕ್ರಿಯೆ";
+"template.disaster.content" = "ಕೆಳಗಿನ ವಿಪತ್ತು ಸಂಭವಿಸಿದೆ. ದಯವಿಟ್ಟು ಪ್ರತಿಕ್ರಿಯೆ ಕಾರ್ಯವಿಧಾನಗಳನ್ನು ಒದಗಿಸಿ: ";
+"template.factcheck.name" = "ಸತ್ಯ ಪರಿಶೀಲನೆ";
+"template.factcheck.content" = "ದಯವಿಟ್ಟು ಈ ಮಾಹಿತಿಯ ವಿಶ್ವಾಸಾರ್ಹತೆಯನ್ನು ಪರಿಶೀಲಿಸಿ ಮತ್ತು ಸತ್ಯ-ಪರಿಶೀಲನೆ ಸಲಹೆಗಳನ್ನು ಒದಗಿಸಿ: ";
+"template.evacuation.name" = "ಸ್ಥಳಾಂತರ ಪರಿಶೀಲನಾಪಟ್ಟಿ";
+"template.evacuation.content" = "ದಯವಿಟ್ಟು ಪ್ರಸ್ತುತ ಪರಿಸ್ಥಿತಿಗಾಗಿ ಸ್ಥಳಾಂತರ ಪರಿಶೀಲನಾಪಟ್ಟಿಯನ್ನು ರಚಿಸಿ: ";
+
+// MARK: - ChatWeb.ai Integration
+"chatweb.title" = "ChatWeb.ai";
+"chatweb.desc" = "ಕ್ಲೌಡ್ AI ಚಾಟ್";
+"chatweb.connect" = "ChatWeb.ai ಗೆ ಸಂಪರ್ಕಿಸಿ";
+"chatweb.qr.title" = "QR ಕೋಡ್ ಮೂಲಕ ಸಂಪರ್ಕಿಸಿ";
+"chatweb.qr.scan" = "QR ಕೋಡ್ ಸ್ಕ್ಯಾನ್ ಮಾಡಿ";
+"chatweb.open" = "ChatWeb.ai ತೆರೆಯಿರಿ";
+
+// MARK: - Peer Connection
+"peer.title" = "ಹತ್ತಿರದ ಸಾಧನಗಳು";
+"peer.desc" = "ಹತ್ತಿರದ Elio ಸಾಧನಗಳೊಂದಿಗೆ ಸಂಪರ್ಕಿಸಿ";
+"peer.connect" = "ಸಾಧನಕ್ಕೆ ಸಂಪರ್ಕಿಸಿ";
+"peer.code.title" = "ಸಂಪರ್ಕ ಕೋಡ್";
+"peer.code.enter" = "4-ಅಂಕೆಯ ಕೋಡ್ ನಮೂದಿಸಿ";
+"peer.code.your" = "ನಿಮ್ಮ ಕೋಡ್";
+"peer.connected" = "ಸಂಪರ್ಕಗೊಂಡಿದೆ";
+"peer.disconnected" = "ಸಂಪರ್ಕ ಕಡಿತಗೊಂಡಿದೆ";
+"peer.inference.offload" = "ಇನ್‌ಫರೆನ್ಸ್ ಹಂಚಿಕೊಳ್ಳುತ್ತಿದೆ";
+
+// MARK: - Web Search
+"chat.web.search" = "ವೆಬ್ ಸರ್ಚ್";
+"search.privacy.title" = "ಗೌಪ್ಯತೆ-ಸಂರಕ್ಷಿತ ಹುಡುಕಾಟ";
+"search.privacy.proceed" = "ಹುಡುಕಿ";
+"search.privacy.message" = "ElioChat ವೆಬ್ ಸರ್ಚ್ ನಿಮ್ಮ ಗೌಪ್ಯತೆಯನ್ನು ರಕ್ಷಿಸುತ್ತದೆ:\n\n🔒 DuckDuckGo ಮೂಲಕ ಹುಡುಕಾಟಗಳು\n🚫 ಟ್ರ್ಯಾಕಿಂಗ್ ಅಥವಾ ಪ್ರೊಫೈಲಿಂಗ್ ಇಲ್ಲ\n🔐 ಹುಡುಕಾಟ ಇತಿಹಾಸವನ್ನು ಸಂಗ್ರಹಿಸಲಾಗುವುದಿಲ್ಲ\n📱 ನಿಮ್ಮ ಸಾಧನದ ಹೊರಗೆ ಡೇಟಾ ಸಂಗ್ರಹಿಸಲಾಗುವುದಿಲ್ಲ\n\nನಿಮ್ಮ ಹುಡುಕಾಟ ಪ್ರಶ್ನೆಯನ್ನು ಮಾತ್ರ DuckDuckGo ಗೆ ಕಳುಹಿಸಲಾಗುತ್ತದೆ ಮತ್ತು ಫಲಿತಾಂಶಗಳನ್ನು ನಿಮ್ಮ ಸಾಧನದಲ್ಲಿ ಪ್ರಕ್ರಿಯೆಗೊಳಿಸಲಾಗುತ್ತದೆ.";
+"chat.web.analyzing" = "[ವೆಬ್ ಪುಟವನ್ನು ವಿಶ್ಲೇಷಿಸುತ್ತಿದೆ]";

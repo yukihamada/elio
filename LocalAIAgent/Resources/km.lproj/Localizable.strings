@@ -1,0 +1,635 @@
+/*
+  Localizable.strings (Khmer)
+  Elio
+*/
+
+// MARK: - App General
+"app.name" = "Elio";
+"app.tagline" = "ខួរក្បាលទីពីររបស់អ្នកដែលរក្សាអាថ៌កំបាំង។";
+
+// MARK: - Common Actions
+"common.done" = "រួចរាល់";
+"common.cancel" = "បោះបង់";
+"common.delete" = "លុប";
+"common.save" = "រក្សាទុក";
+"common.edit" = "កែសម្រួល";
+"common.share" = "ចែករំលែក";
+"common.copy" = "ចម្លង";
+"common.copied" = "បានចម្លង";
+"common.loading" = "កំពុងផ្ទុក...";
+"common.error" = "កំហុស";
+"common.retry" = "ព្យាយាមម្តងទៀត";
+"common.skip" = "រំលង";
+"common.next" = "បន្ទាប់";
+"common.start" = "ចាប់ផ្តើម";
+"common.add" = "បន្ថែម";
+"common.close" = "បិទ";
+"common.details" = "ព័ត៌មានលម្អិត";
+"common.yes" = "បាទ/ចាស";
+"common.no" = "ទេ";
+"common.unknown" = "មិនដឹង";
+
+// MARK: - Chat
+"chat.placeholder" = "សួរអ្វីក៏បាន";
+"chat.model.not.loaded" = "គ្មានគំរូដែលបានផ្ទុក";
+"chat.model.not.loaded.description" = "សូមទាញយកគំរូពីការកំណត់";
+"chat.go.to.settings" = "ទៅកាន់ការកំណត់";
+"chat.new.conversation" = "សន្ទនាថ្មី";
+"chat.stop.generation" = "បញ្ឈប់";
+"chat.generation.stopped" = "\n\n[ការបង្កើតបានបញ្ឈប់]";
+"chat.image.sent" = "[បានផ្ញើរូបភាព]";
+"chat.images.sent" = "[បានផ្ញើរូបភាព %d]";
+"chat.pdf.sent" = "[បានភ្ជាប់ PDF: %@]";
+"chat.pdf.sent.vision" = "[PDF ជាមួយរូបភាព: %@]";
+"chat.pdf.context" = "ខាងក្រោមនេះគឺជាខ្លឹមសារអត្ថបទដែលស្រង់ចេញពីឯកសារ PDF \"%@\":\n\n%@";
+"chat.pdf.context.vision" = "នេះគឺជាទំព័រ 1 នៃឯកសារ PDF \"%@\"។ ខ្លឹមសារអត្ថបទដែលស្រង់ចេញគឺ:\n\n%@\n\nសូមវិភាគទាំងខ្លឹមសារដែលមើលឃើញនិងអត្ថបទ។";
+"chat.pdf.analyze" = "សូមវិភាគទំព័រ PDF នេះពី \"%@\"។";
+"chat.url.sent" = "[ទំព័រវេប: %@]";
+"chat.url.context" = "ខាងក្រោមនេះគឺជាខ្លឹមសារដែលស្រង់ចេញពីទំព័រវេប \"%@\" (%@):\n\n%@";
+"chat.thinking" = "កំពុងគិត...";
+"chat.generating" = "កំពុងបង្កើតការឆ្លើយតប...";
+"chat.welcome" = "តើខ្ញុំអាចជួយអ្វីបាន?";
+"chat.suggestion.schedule" = "បង្ហាញកាលវិភាគថ្ងៃនេះ";
+"chat.suggestion.reminder" = "បង្កើតការរំលឹក";
+"chat.suggestion.weather" = "អាកាសធាតុថ្ងៃនេះយ៉ាងដូចម្តេច?";
+"chat.suggestion.help" = "របៀបប្រើកម្មវិធីនេះ";
+"chat.websearch.on" = "ការស្វែងរកតាមវេបបើក";
+"chat.websearch.off" = "ការស្វែងរកតាមវេបបិទ";
+"chat.thinking.on" = "ការគិតបើក";
+"chat.thinking.off" = "ការគិតបិទ";
+"chat.transcribing" = "កំពុងចម្លង...";
+"chat.offline" = "ក្រៅបណ្តាញ";
+
+// Voice Conversation Mode
+"voice.listening" = "កំពុងស្តាប់...";
+"voice.processing" = "កំពុងដំណើរការ...";
+"voice.thinking" = "កំពុងគិត...";
+"voice.speaking" = "កំពុងនិយាយ...";
+"voice.tap.to.send" = "ប៉ះដើម្បីផ្ញើ";
+"chat.templates" = "គំរូ";
+"chat.websearch.privacy.title" = "អំពីការស្វែងរកតាមវេប";
+"chat.websearch.privacy.message" = "ការបើកការស្វែងរកតាមវេបអនុញ្ញាតឱ្យ AI ស្វែងរកអ៊ីនធឺណិតតាមរយៈ DuckDuckGo សម្រាប់ព័ត៌មានថ្មីៗ។ សំណួរស្វែងរកត្រូវបានផ្ញើទៅ DuckDuckGo ប៉ុន្តែមិនត្រូវបានតាមដាននោះទេ។";
+"chat.websearch.privacy.enable" = "បើក";
+"chat.websearch.privacy.disable" = "បន្តបិទ";
+
+// MARK: - Settings
+"settings.title" = "ការកំណត់";
+"settings.model.section" = "គំរូ AI";
+"settings.model.recommended" = "បានណែនាំ: %@";
+"settings.model.local.execution" = "គំរូដំណើរការមូលដ្ឋាននៅលើឧបករណ៍របស់អ្នក";
+"settings.model.show.more" = "គំរូផ្សេងទៀត (%d)";
+"settings.model.show.less" = "បង្ហាញតិច";
+"settings.appearance.section" = "រូបរាង";
+"settings.tools.section" = "មុខងារឆ្លាតវៃ";
+"settings.mcp.servers" = "ការរួមបញ្ចូល";
+"settings.mcp.servers.description" = "ប្រតិទិន ឯកសារ ការរំលឹក និងច្រើនទៀត";
+"settings.mcp.enabled.count" = "បើក %d";
+"settings.mcp.enabled.count.suffix" = " បើក";
+"settings.about.section" = "អំពី";
+"settings.version" = "កំណែ";
+"settings.about.app" = "អំពីកម្មវិធីនេះ";
+"settings.about.mcp" = "អំពីការរួមបញ្ចូល";
+"settings.privacy.badge" = "ដំណើរការក្រៅបណ្តាញ";
+"settings.privacy.description" = "ដំណើរការក្នុងរបៀបយន្តហោះ";
+"settings.airplane.mode" = "ដំណើរការក្នុងរបៀបយន្តហោះ";
+"settings.offline.ready" = "ក្រៅបណ្តាញរួចរាល់";
+
+// MARK: - Model States
+"model.status.downloading" = "កំពុងទាញយក... %d%%";
+"model.status.loading" = "កំពុងផ្ទុក...";
+"model.status.in.use" = "កំពុងប្រើ";
+"model.status.recommended" = "បានណែនាំ";
+"model.status.heavy" = "ធ្ងន់";
+"model.action.download" = "ទាញយក";
+"model.action.load" = "ផ្ទុក";
+"model.action.delete" = "លុប";
+"model.action.use" = "ប្រើគំរូនេះ";
+"model.delete.confirm.title" = "លុបគំរូ";
+"model.delete.confirm.message" = "លុប %@? អ្នកនឹងត្រូវទាញយកវាម្តងទៀតដើម្បីប្រើ។";
+"model.select.title" = "ជ្រើសរើសគំរូ";
+"model.select.prompt" = "សូមជ្រើសរើសគំរូ";
+"model.downloaded" = "បានទាញយក";
+
+// MARK: - Inference Mode
+"inference.mode.title" = "ការបង្កើនល្បឿន";
+"inference.mode.auto" = "ស្វ័យប្រវត្តិ";
+"inference.mode.auto.desc" = "ប្រសិទ្ធភាពល្អបំផុតដោយស្វ័យប្រវត្តិ";
+"inference.mode.gpu" = "GPU (Metal)";
+"inference.mode.gpu.desc" = "ល្បឿនអតិបរមាជាមួយ Metal";
+"inference.mode.cpu" = "តែ CPU";
+"inference.mode.cpu.desc" = "របៀបសន្សំថ្ម";
+"inference.mode.hybrid" = "កូនកាត់";
+"inference.mode.hybrid.desc" = "តុល្យភាពល្បឿននិងថ្ម";
+
+// MARK: - Theme
+"theme.system" = "ប្រព័ន្ធ";
+"theme.light" = "ភ្លឺ";
+"theme.dark" = "ងងឹត";
+
+// MARK: - Onboarding
+"onboarding.welcome.title" = "សូមស្វាគមន៍មកកាន់ ElioChat";
+"onboarding.welcome.subtitle" = "ជំនួយការ AI ផ្ទាល់ខ្លួនរបស់អ្នក";
+"onboarding.features.title" = "AI ឯកជនពិតប្រាកដ";
+"onboarding.feature.offline" = "ដំណើរការក្នុងរបៀបយន្តហោះ";
+"onboarding.feature.offline.desc" = "ប្រើវានៅលើយន្តហោះឬក្រោមដី";
+"onboarding.feature.privacy" = "ការបញ្ជូនទិន្នន័យសូន្យ";
+"onboarding.feature.privacy.desc" = "សន្ទនារបស់អ្នកមិនចាកចេញពីទូរសព្ទរបស់អ្នកទេ";
+"onboarding.feature.vault" = "ការរួមបញ្ចូលឆ្លាតវៃ";
+"onboarding.feature.vault.desc" = "ភ្ជាប់ជាមួយប្រតិទិននិងឯកសារ";
+"onboarding.feature.secure" = "AI សុវត្ថិភាពសម្រាប់ការងារ";
+"onboarding.feature.secure.desc" = "សុវត្ថិភាពសម្រាប់ការប្រើប្រាស់សាជីវកម្ម";
+"onboarding.feature.thinking" = "ដំណើរការគិត";
+"onboarding.privacy.title" = "ទិន្នន័យរបស់អ្នកជារបស់អ្នក";
+"onboarding.privacy.item1" = "ការដំណើរការទាំងអស់កើតឡើងនៅលើ iPhone របស់អ្នក";
+"onboarding.privacy.item2" = "មិនផ្ញើទិន្នន័យទៅម៉ាស៊ីនមេពពកទេ";
+"onboarding.privacy.item3" = "មិនត្រូវបានប្រើសម្រាប់ការបណ្តុះបណ្តាល AI ទេ";
+"onboarding.getstarted.title" = "រួចរាល់ក្នុងមួយប៉ះ";
+"onboarding.getstarted.subtitle" = "ទាញយកគំរូ AI ដែលបានណែនាំ\nនិងចាប់ផ្តើមសន្ទនាភ្លាមៗ";
+"onboarding.step1" = "ទាញយកគំរូដែលបានណែនាំ";
+"onboarding.step2" = "រង់ចាំពីរបីនាទី";
+"onboarding.step3" = "អ្នករួចរាល់ហើយ!";
+
+// MARK: - About
+"about.title" = "អំពីកម្មវិធីនេះ";
+"about.rate.app" = "វាយតម្លៃកម្មវិធី";
+"about.share.app" = "ចែករំលែកជាមួយមិត្តភក្តិ";
+"about.privacy.policy" = "គោលការណ៍ឯកជនភាព";
+"about.terms" = "លក្ខខណ្ឌសេវាកម្ម";
+"about.tech.info" = "ព័ត៌មានបច្ចេកទេស";
+"about.tech.engine" = "ម៉ាស៊ីន AI";
+"about.tech.format" = "ទ្រង់ទ្រាយគាំទ្រ";
+"about.tech.inference" = "ការសន្និដ្ឋាន";
+"about.data.management" = "ការគ្រប់គ្រងទិន្នន័យ";
+"about.delete.all" = "លុបសន្ទនាទាំងអស់";
+"about.credits" = "កិត្តិយស";
+"about.credits.description" = "កម្មវិធីនេះប្រើបណ្ណាល័យប្រភពបើកចំហ";
+"about.privacy.section" = "ឯកជនភាព";
+"about.gguf.format" = "ទ្រង់ទ្រាយ GGUF";
+"about.metal.gpu" = "ការបង្កើនល្បឿន Metal GPU";
+
+// MARK: - Referral
+"referral.title" = "បញ្ជូនមិត្តភក្តិ";
+"referral.code.title" = "លេខកូដបញ្ជូនរបស់អ្នក";
+"referral.code.copy" = "ចម្លងលេខកូដ";
+"referral.code.copied" = "បានចម្លង";
+"referral.share.button" = "ចែករំលែកជាមួយមិត្តភក្តិ";
+"referral.share.description" = "ចែករំលែក Elio ជាមួយមិត្តភក្តិរបស់អ្នក!";
+"referral.count" = "បានបញ្ជូន %d នាក់";
+"referral.enter.title" = "បញ្ចូលលេខកូដបញ្ជូន";
+"referral.enter.placeholder" = "លេខកូដបញ្ជូន";
+"referral.enter.button" = "អនុវត្ត";
+"referral.enter.success" = "បានអនុវត្តលេខកូដបញ្ជូន";
+"referral.enter.error" = "លេខកូដបញ្ជូនមិនត្រឹមត្រូវ";
+
+// MARK: - Privacy Policy
+"privacy.title" = "គោលការណ៍ឯកជនភាព";
+"privacy.data.collection.title" = "ការប្រមូលទិន្នន័យ";
+"privacy.data.collection.content" = "កម្មវិធីនេះដំណើរការ AI មូលដ្ឋានពេញលេញក្រៅបណ្តាញ។\nមិនផ្ញើទិន្នន័យទៅម៉ាស៊ីនមេខាងក្រៅទេ។\nសន្ទនាទាំងអស់ត្រូវបានរក្សាទុកនៅលើឧបករណ៍របស់អ្នកតែប៉ុណ្ណោះ។";
+"privacy.stored.data.title" = "ទិន្នន័យដែលបានរក្សាទុក";
+"privacy.stored.data.content" = "ប្រវត្តិសន្ទនា (រក្សាទុកនៅលើឧបករណ៍តែប៉ុណ្ណោះ)\nឯកសារគំរូ AI (រក្សាទុកនៅលើឧបករណ៍តែប៉ុណ្ណោះ)\nការកំណត់កម្មវិធី (រក្សាទុកនៅលើឧបករណ៍តែប៉ុណ្ណោះ)\n\nទិន្នន័យនេះមិនត្រូវបានចែករំលែកខាងក្រៅទេ។";
+"privacy.data.deletion.title" = "ការលុបទិន្នន័យ";
+"privacy.data.deletion.content" = "អ្នកអាចលុបទិន្នន័យទាំងអស់បានគ្រប់ពេលពីការកំណត់ > ការគ្រប់គ្រងទិន្នន័យ។\nការលុបកម្មវិធីនឹងលុបទិន្នន័យទាំងអស់។";
+
+// MARK: - Terms of Service
+"terms.title" = "លក្ខខណ្ឌសេវាកម្ម";
+"terms.service.title" = "ការពិពណ៌នាសេវាកម្ម";
+"terms.service.content" = "កម្មវិធីនេះផ្តល់មុខងារជំនួយការ AI ដោយប្រើគំរូ AI ដែលដំណើរការមូលដ្ឋាន។";
+"terms.disclaimer.title" = "ការបដិសេធ";
+"terms.disclaimer.content" = "ការឆ្លើយតបរបស់ AI អាចមានកំហុស។\nការសម្រេចចិត្តសំខាន់ៗគួរតែត្រូវបានផ្ទៀងផ្ទាត់ដោយអ្នកជំនាញតែងតែ។\nយើងមិនទទួលខុសត្រូវចំពោះការខូចខាតណាមួយដែលកើតឡើងពីការប្រើប្រាស់កម្មវិធីនេះទេ។";
+"terms.prohibited.title" = "សកម្មភាពហាមឃាត់";
+"terms.prohibited.content" = "សកម្មភាពខុសច្បាប់\nសកម្មភាពរំលោភលើសិទ្ធិអ្នកដទៃ\nការវិសោធនវិស្វកម្មកម្មវិធីនេះ\nការថតចម្លងកម្មវិធីនេះដោយគ្មានការអនុញ្ញាត";
+"terms.ip.title" = "កម្មសិទ្ធិបញ្ញា";
+"terms.ip.content" = "សិទ្ធិកម្មសិទ្ធិបញ្ញានៃកម្មវិធីនេះជាកម្មសិទ្ធិរបស់អ្នកអភិវឌ្ឍន៍។\nការប្រើប្រាស់ដោយគ្មានការអនុញ្ញាតត្រូវបានហាមឃាត់។";
+
+// MARK: - Conversations
+"conversations.title" = "សន្ទនា";
+"conversations.new" = "សន្ទនាថ្មី";
+"conversations.empty" = "មិនទាន់មានសន្ទនានៅឡើយ";
+"conversations.delete" = "លុបសន្ទនា";
+"conversations.default.title" = "សន្ទនាថ្មី";
+"conversations.today" = "ថ្ងៃនេះ";
+"conversations.yesterday" = "ម្សិលមិញ";
+"conversations.past7days" = "រយៈពេល 7 ថ្ងៃមុន";
+"conversations.past30days" = "រយៈពេល 30 ថ្ងៃមុន";
+"conversations.older" = "ចាស់ជាង";
+"conversations.created" = "បានបង្កើត: %@";
+"conversations.user" = "អ្នកប្រើប្រាស់";
+"conversations.assistant" = "ជំនួយការ";
+"conversations.search.placeholder" = "ស្វែងរកសន្ទនា";
+"conversations.search.no_results" = "រកមិនឃើញលទ្ធផល";
+
+// MARK: - Message Actions
+"message.copy" = "ចម្លង";
+"message.speak" = "និយាយ";
+"message.stop.speaking" = "បញ្ឈប់និយាយ";
+"message.share" = "ចែករំលែក";
+"message.share.card" = "ចែករំលែកជាកាត";
+"message.like" = "ចូលចិត្ត";
+
+// MARK: - Share Card
+"share.card.title" = "ចែករំលែកកាត";
+"share.card.preview" = "មើលជាមុន";
+"share.card.button" = "ចែករំលែករូបភាព";
+"message.dislike" = "មិនចូលចិត្ត";
+"message.thinking.process" = "ដំណើរការគិត";
+"message.tool.running" = "កំពុងដំណើរការឧបករណ៍";
+"message.tool.error" = "កំហុស";
+"message.tool.completed" = "បានបញ្ចប់";
+
+// MARK: - Attachment
+"attachment.title" = "ភ្ជាប់";
+"attachment.photo.library" = "ជ្រើសរើសរូបថត";
+"attachment.camera" = "ថតរូប";
+"attachment.pdf" = "ជ្រើសរើស PDF";
+"attachment.pdf.chars" = "តួអក្សរ %d";
+"attachment.pdf.pages" = "ទំព័រ %d";
+"attachment.pdf.vision.enabled" = "ការវិភាគរូបភាពបានបើក";
+"attachment.pdf.text.only" = "របៀបតែអត្ថបទ";
+"attachment.url" = "អានទំព័រវេប";
+"attachment.url.title" = "បញ្ចូល URL";
+"attachment.url.placeholder" = "https://example.com";
+"attachment.url.message" = "បិទភ្ជាប់ URL ដើម្បីស្រង់ខ្លឹមសារ";
+"attachment.url.fetch" = "ទាញយក";
+"attachment.url.loading" = "កំពុងផ្ទុកទំព័រ...";
+
+// MARK: - Errors
+"error.model.not.found" = "រកមិនឃើញឯកសារគំរូ";
+"error.model.not.loaded" = "គំរូមិនបានផ្ទុក";
+"error.context.failed" = "បរាជ័យក្នុងការបង្កើតបរិបទ";
+"error.tokenization.failed" = "ការបង្កើតថូខឹនបរាជ័យ";
+"error.generation.failed" = "កំហុសការបង្កើត: %@";
+"error.occurred" = "កំហុសកើតឡើង: %@";
+"error.invalid.url" = "URL មិនត្រឹមត្រូវ";
+"error.download.failed" = "ការទាញយកបរាជ័យ";
+"error.extraction.failed" = "ការស្រង់ចេញបរាជ័យ";
+"error.config.not.found" = "រកមិនឃើញឯកសារកំណត់រចនាសម្ព័ន្ធ";
+
+// MARK: - Ghost Search
+"ghost.search.title" = "ការស្វែងរក Ghost";
+"ghost.search.description" = "ការស្វែងរកអនាមិកតាមរយៈ DuckDuckGo (មិនតាមដាន)";
+"ghost.search.connecting" = "កំពុងភ្ជាប់ទៅបណ្តាញអនាមិក...";
+"ghost.search.privacy.note" = "ប្រវត្តិការស្វែងរករបស់អ្នកមិនត្រូវបានតាមដានទេ";
+
+// MARK: - MCP Servers
+"mcp.filesystem" = "ប្រព័ន្ធឯកសារ";
+"mcp.filesystem.desc" = "អាននិងសរសេរឯកសារក្នុងកម្មវិធី";
+"mcp.calendar" = "ប្រតិទិន";
+"mcp.calendar.desc" = "អាននិងសរសេរព្រឹត្តិការណ៍";
+"mcp.reminders" = "ការរំលឹក";
+"mcp.reminders.desc" = "គ្រប់គ្រងការរំលឹក";
+"mcp.contacts" = "ទំនាក់ទំនង";
+"mcp.contacts.desc" = "ស្វែងរកនិងមើលទំនាក់ទំនង";
+"mcp.photos" = "រូបថត";
+"mcp.photos.desc" = "ចូលប្រើបណ្ណាល័យរូបថត";
+"mcp.location" = "ទីតាំង";
+"mcp.location.desc" = "ទទួលបានទីតាំងបច្ចុប្បន្ននិងស្វែងរកកន្លែង";
+"mcp.health" = "សុខភាព";
+"mcp.health.desc" = "ចូលប្រើទិន្នន័យសុខភាព";
+"mcp.shortcuts" = "ផ្លូវកាត់";
+"mcp.shortcuts.desc" = "ដំណើរការផ្លូវកាត់";
+"mcp.websearch" = "ការស្វែងរកតាមវេប";
+"mcp.websearch.desc" = "ការស្វែងរកតាមវេបអនាមិក";
+"mcp.custom" = "ការរួមបញ្ចូលផ្ទាល់ខ្លួន";
+"mcp.custom.add" = "បន្ថែមការរួមបញ្ចូល";
+"mcp.custom.setup" = "ដំឡើងការរួមបញ្ចូលសេវាកម្មខាងក្រៅ";
+"mcp.custom.title" = "ការរួមបញ្ចូលផ្ទាល់ខ្លួន";
+"mcp.settings.title" = "ការកំណត់ការរួមបញ្ចូល";
+"mcp.server.name" = "ឈ្មោះម៉ាស៊ីនមេ";
+"mcp.server.name.placeholder" = "ឧ. ម៉ាស៊ីនមេផ្ទាល់ខ្លួនរបស់ខ្ញុំ";
+"mcp.config.url" = "URL ឯកសារកំណត់រចនាសម្ព័ន្ធ";
+"mcp.import.file" = "នាំចូលពីឯកសារ";
+"mcp.config.example" = "ឧទាហរណ៍ឯកសារកំណត់រចនាសម្ព័ន្ធ";
+"mcp.permission.note" = "ការអនុញ្ញាតនឹងត្រូវបានស្នើសុំនៅពេលប្រើមុខងារនីមួយៗលើកដំបូង";
+
+// MARK: - MCP Tool Messages
+"mcp.tool.available" = "ឧបករណ៍ដែលមាន:";
+"mcp.tool.parameters" = "ប៉ារ៉ាម៉ែត្រ:";
+"mcp.prompt.available" = "សំណួរដែលមាន:";
+"mcp.prompt.arguments" = "អាគុយម៉ង់:";
+"mcp.tool.name" = "tool_name";
+"mcp.tool.arg.name" = "arg_name";
+"mcp.tool.arg.value" = "value";
+"mcp.tool.no.result" = "គ្មានលទ្ធផល";
+"mcp.tool.running" = "កំពុងដំណើរការឧបករណ៍: %@";
+"mcp.tool.error" = "កំហុសការដំណើរការឧបករណ៍: %@";
+
+// MARK: - MCP Error Messages
+"mcp.error.server.not.found" = "រកមិនឃើញម៉ាស៊ីនមេ: %@";
+"mcp.error.tool.not.found" = "រកមិនឃើញឧបករណ៍: %@";
+"mcp.error.invalid.args" = "អាគុយម៉ង់មិនត្រឹមត្រូវ: %@";
+"mcp.error.execution" = "កំហុសការដំណើរការ: %@";
+"mcp.error.permission" = "ការអនុញ្ញាតត្រូវបានបដិសេធ: %@";
+
+// MARK: - Calendar Messages
+"calendar.no.events" = "គ្មានព្រឹត្តិការណ៍";
+"calendar.event.created" = "បានបង្កើតព្រឹត្តិការណ៍: %@";
+"calendar.event.deleted" = "បានលុបព្រឹត្តិការណ៍: %@";
+"calendar.allday.created" = "បានបង្កើតព្រឹត្តិការណ៍ពេញមួយថ្ងៃ: %@";
+"calendar.access.denied" = "ការចូលប្រើប្រតិទិនត្រូវបានបដិសេធ";
+"calendar.today.none" = "គ្មានព្រឹត្តិការណ៍ថ្ងៃនេះ";
+"calendar.untitled" = "គ្មានចំណងជើង";
+
+// MARK: - Reminders Messages
+"reminders.none" = "គ្មានការរំលឹក";
+"reminders.created" = "បានបង្កើតការរំលឹក: %@";
+"reminders.completed" = "បានបញ្ចប់ការរំលឹក: %@";
+"reminders.deleted" = "បានលុបការរំលឹក: %@";
+"reminders.access.denied" = "ការចូលប្រើការរំលឹកត្រូវបានបដិសេធ";
+"reminders.untitled" = "គ្មានចំណងជើង";
+
+// MARK: - Photos Messages
+"photos.access.denied" = "ការចូលប្រើរូបថតត្រូវបានបដិសេធ";
+"photos.not.found" = "រកមិនឃើញរូបថត";
+"photos.untitled" = "គ្មានចំណងជើង";
+"photos.count" = "រូបថត: %d";
+"photos.videos.count" = "វីដេអូ: %d";
+"photos.albums.count" = "អាល់ប៊ុម: %d";
+"photos.favorites.count" = "សំណព្វ: %d";
+"photos.date" = "កាលបរិច្ឆេទ: %@";
+"photos.size" = "ទំហំ: %d x %d";
+"photos.location" = "ទីតាំង: %@, %@";
+"photos.media.type" = "ប្រភេទមេឌៀ: %@";
+"photos.duration" = "រយៈពេល: %dm %ds";
+"photos.favorite" = "សំណព្វ: %@";
+"photos.type.image" = "រូបថត";
+"photos.type.video" = "វីដេអូ";
+"photos.type.audio" = "អូឌីយ៉ូ";
+
+// MARK: - Contacts Messages
+"contacts.access.denied" = "ការចូលប្រើទំនាក់ទំនងត្រូវបានបដិសេធ";
+"contacts.not.found" = "រកមិនឃើញទំនាក់ទំនងដែលត្រូវគ្នា";
+"contacts.no.groups" = "គ្មានក្រុម";
+"contacts.no.card" = "គ្មានកាតទំនាក់ទំនងដែលបានកំណត់";
+"contacts.name" = "ឈ្មោះ: %@";
+"contacts.company" = "ក្រុមហ៊ុន: %@";
+"contacts.job" = "ចំណងជើងការងារ: %@";
+
+// MARK: - Location Messages
+"location.access.denied" = "ការចូលប្រើទីតាំងត្រូវបានបដិសេធ";
+"location.not.found" = "រកមិនឃើញអាសយដ្ឋាន";
+"location.latitude" = "រយៈទទឹង: %@";
+"location.longitude" = "រយៈបណ្តោយ: %@";
+"location.accuracy" = "ភាពត្រឹមត្រូវ: %dm";
+"location.altitude" = "រយៈកម្ពស់: %dm";
+"location.search" = "ស្វែងរក: %@";
+"location.address" = "អាសយដ្ឋាន: %@";
+"location.country" = "ប្រទេស: %@";
+"location.postal" = "លេខកូដប្រៃសណីយ៍: %@";
+"location.from" = "ពី: (%@, %@)";
+"location.to" = "ទៅ: (%@, %@)";
+"location.distance.km" = "ចម្ងាយ: %.2f km";
+"location.distance.m" = "ចម្ងាយ: %d m";
+
+// MARK: - Health Messages
+"health.not.available" = "សុខភាពមិនមាននៅលើឧបករណ៍នេះទេ";
+"health.date" = "កាលបរិច្ឆេទ: %@";
+"health.steps" = "ជំហាន: %@ ជំហាន";
+"health.goal.progress" = "ដំណើរការគោលដៅ: %d%% (គោលដៅ 10,000 ជំហាន)";
+"health.no.data" = "គ្មានទិន្នន័យ";
+"health.avg.bpm" = "មធ្យម: %d bpm";
+"health.min.bpm" = "អប្បបរមា: %d bpm";
+"health.max.bpm" = "អតិបរមា: %d bpm";
+"health.measurements" = "ការវាស់វែង: %d";
+"health.no.sleep" = "គ្មានទិន្នន័យការងេក";
+"health.sleep.total" = "ការងេកសរុប: %dh %dm";
+"health.bedtime" = "ពេលចូលគេង: %@";
+"health.waketime" = "ពេលភ្ញាក់: %@";
+"health.calories" = "កាឡូរី: %d kcal";
+
+// MARK: - File System Messages
+"filesystem.not.found" = "រកមិនឃើញឯកសារ: %@";
+"filesystem.written" = "បានសរសេរឯកសារ: %@";
+"filesystem.dir.created" = "បានបង្កើតថត: %@";
+"filesystem.deleted" = "បានលុប: %@";
+"filesystem.size" = "ទំហំ: %@";
+"filesystem.created" = "បានបង្កើត: %@";
+"filesystem.modified" = "បានកែប្រែ: %@";
+"filesystem.type" = "ប្រភេទ: %@";
+
+// MARK: - Shortcuts Messages
+"shortcuts.executed" = "ផ្លូវកាត់ '%@' ត្រូវបានដំណើរការ";
+"shortcuts.opened" = "កម្មវិធីផ្លូវកាត់ត្រូវបានបើក";
+"shortcuts.settings.opened" = "ការកំណត់ (%@) ត្រូវបានបើក";
+"shortcuts.mail.opened" = "សរសេរសំបុត្របើក";
+"shortcuts.calling" = "កំពុងហៅ: %@";
+"shortcuts.message.opened" = "សរសេរសារបើក";
+"shortcuts.failed" = "មិនអាចបើកផ្លូវកាត់បានទេ";
+
+// MARK: - Model Tiers
+"model.tier.entry" = "ចូល";
+"model.tier.standard" = "ស្តង់ដារ";
+"model.tier.pro" = "វិជ្ជាជីវៈ";
+
+// MARK: - Tool Parser
+"tool.arguments" = "អាគុយម៉ង់:";
+
+// MARK: - Model Settings
+"model.action.settings" = "ការកំណត់";
+"settings.model.parameters" = "ការកំណត់គំរូ";
+"settings.model.parameters.description" = "ប្តូរតាមតម្រូវការប៉ារ៉ាម៉ែត្រការបង្កើតសម្រាប់គំរូនេះ";
+"settings.preset.title" = "ការកំណត់ជាមុន";
+"settings.preset.custom" = "ផ្ទាល់ខ្លួន";
+"settings.preset.balanced" = "តុល្យភាព";
+"settings.preset.creative" = "គំនិតច្នៃប្រឌិត";
+"settings.preset.precise" = "ត្រឹមត្រូវ";
+"settings.preset.coding" = "សរសេរកូដ";
+"settings.preset.japanese" = "ជប៉ុន";
+"settings.parameters.title" = "ប៉ារ៉ាម៉ែត្រ";
+"settings.parameter.temperature" = "សីតុណ្ហភាព";
+"settings.parameter.temperature.description" = "ខ្ពស់ = គំនិតច្នៃប្រឌិតជាង, ទាប = ផ្តោតអារម្មណ៍ជាង";
+"settings.parameter.top.p" = "Top P";
+"settings.parameter.top.p.description" = "ប្រូបាប៊ីលីតេនៃការយកគំរូនុយក្លេអ៊ែរ";
+"settings.parameter.top.k" = "Top K";
+"settings.parameter.top.k.description" = "ចំនួនថូខឹនកំពូលដែលត្រូវពិចារណា";
+"settings.parameter.max.tokens" = "ថូខឹនអតិបរមា";
+"settings.parameter.max.tokens.description" = "ប្រវែងការឆ្លើយតបអតិបរមា";
+"settings.parameter.repeat.penalty" = "ការពិន័យការធ្វើឡើងវិញ";
+"settings.parameter.repeat.penalty.description" = "ខ្ពស់ = លទ្ធផលម្តងហើយម្តងទៀតតិច";
+"settings.parameter.thinking" = "របៀបគិត";
+"settings.parameter.thinking.description" = "បង្ហាញដំណើរការវែកញែករបស់ AI";
+"settings.system.prompt.title" = "សំណួរប្រព័ន្ធ";
+"settings.system.prompt.description" = "ការណែនាំផ្ទាល់ខ្លួនសម្រាប់ AI";
+"settings.reset.to.default" = "កំណត់ទៅលំនាំដើម";
+
+// MARK: - Vision Model
+"vision.model.required.title" = "ទាមទារគំរូមើលឃើញ";
+"vision.model.required.header" = "ទាមទារការស្គាល់រូបភាព";
+"vision.model.required.description" = "ដើម្បីវិភាគរូបភាព អ្នកត្រូវការគំរូ AI ដែលមានសមត្ថភាពមើលឃើញ";
+"vision.model.switch" = "ប្តូរគំរូ";
+"vision.model.switch.message %@" = "ប្តូរទៅ %@ ដើម្បីបើកការវិភាគរូបភាព?";
+"vision.model.download" = "ទាញយក";
+"vision.model.download.message %@ %@" = "ទាញយក %@ (%@) ដើម្បីវិភាគរូបភាព?";
+"vision.model.not.available" = "គ្មានគំរូមើលឃើញឆបគ្នាសម្រាប់ឧបករណ៍របស់អ្នក";
+"vision.model.switching" = "កំពុងប្តូរគំរូ...";
+"vision.model.download.title" = "គំរូមើលឃើញ";
+"vision.model.recommended" = "បានណែនាំសម្រាប់ឧបករណ៍របស់អ្នក";
+"vision.model.recommended.size %@" = "បានណែនាំ: %@";
+"vision.model.use.this" = "ប្រើគំរូនេះ";
+"vision.model.download.button %@" = "ទាញយក (%@)";
+"vision.model.other.options" = "គំរូមើលឃើញផ្សេងទៀត";
+"vision.model.download.complete" = "ការទាញយកបានបញ្ចប់";
+"vision.model.download.complete.message" = "រួចរាល់ដើម្បីវិភាគរូបភាព";
+
+// MARK: - Whisper Voice Input (Legacy)
+"whisper.download.title" = "ទាមទារការស្គាល់សំឡេង";
+"whisper.download.action" = "ទាញយក";
+"whisper.download.message" = "ដើម្បីប្រើការបញ្ចូលសំឡេង អ្នកត្រូវទាញយកគំរូការស្គាល់សុន្ទរកថា (~150MB)។";
+"whisper.downloading" = "កំពុងទាញយកគំរូការស្គាល់សុន្ទរកថា...";
+"whisper.download.error" = "កំហុសការទាញយក";
+"whisper.load.error" = "កំហុសការផ្ទុកគំរូ";
+"whisper.permission.denied" = "ការចូលប្រើមីក្រូហ្វូនមិនត្រូវបានអនុញ្ញាត";
+"whisper.transcribe.error" = "កំហុសការចម្លង";
+"whisper.error.permission" = "ទាមទារការអនុញ្ញាតមីក្រូហ្វូន";
+"whisper.error.not.recording" = "មិនកំពុងថតសំឡេងទេ";
+"whisper.error.no.recording" = "គ្មានទិន្នន័យថតសំឡេង";
+"whisper.error.model.not.loaded" = "គំរូការស្គាល់សុន្ទរកថាមិនបានផ្ទុក";
+"whisper.error.transcription" = "ការចម្លងបរាជ័យ";
+
+// MARK: - Speech Recognition (ReazonSpeech)
+"speech.download.title" = "ទាមទារការស្គាល់សំឡេង";
+"speech.download.action" = "ទាញយក";
+"speech.download.message" = "ដើម្បីប្រើការបញ្ចូលសំឡេង អ្នកត្រូវទាញយកគំរូការស្គាល់សុន្ទរកថាភាសាជប៉ុន (~155MB)។";
+"speech.downloading" = "កំពុងទាញយកគំរូការស្គាល់សុន្ទរកថា...";
+
+// MARK: - Language Settings
+"settings.language.section" = "ភាសា";
+"language.system" = "ប្រើភាសាប្រព័ន្ធ";
+"settings.language.restart.hint" = "ការផ្លាស់ប្តូរភាសានឹងមានប្រសិទ្ធភាពបន្ទាប់ពីចាប់ផ្តើមកម្មវិធីឡើងវិញ";
+"settings.language.changed.title" = "បានផ្លាស់ប្តូរភាសា";
+"settings.language.changed.message" = "សូមចាប់ផ្តើមកម្មវិធីឡើងវិញដើម្បីអនុវត្តការផ្លាស់ប្តូរ";
+"common.ok" = "យល់ព្រម";
+
+// MARK: - System Prompt Settings
+"settings.prompt.section" = "សំណួរប្រព័ន្ធ";
+"settings.prompt.edit" = "កែសម្រួលសំណួរ";
+"settings.prompt.default" = "កំពុងប្រើលំនាំដើម";
+"settings.prompt.custom" = "បានកំណត់សំណួរផ្ទាល់ខ្លួន";
+"settings.prompt.hint" = "ប្តូរតាមតម្រូវការអាកប្បកិរិយា AI";
+"settings.prompt.editor.title" = "កែសម្រួលសំណួរ";
+"settings.prompt.editor.instruction" = "បន្ថែមការណែនាំផ្ទាល់ខ្លួនសម្រាប់ AI។ ទុកទទេដើម្បីប្រើសំណួរលំនាំដើម។";
+"settings.prompt.default.preview" = "សំណួរលំនាំដើម (សង្ខេប):";
+"settings.prompt.reset" = "កំណត់ឡើងវិញ";
+"settings.prompt.reset.title" = "កំណត់សំណួរឡើងវិញ";
+"settings.prompt.reset.message" = "លុបសំណួរផ្ទាល់ខ្លួននិងស្តារទៅលំនាំដើម?";
+
+// MARK: - Prompt Templates
+"templates.title" = "គំរូសំណួរ";
+"templates.empty" = "មិនទាន់មានគំរូនៅឡើយ";
+"templates.add" = "បន្ថែមគំរូ";
+"template.add.title" = "បន្ថែមគំរូ";
+"template.edit.title" = "កែសម្រួលគំរូ";
+"template.name.header" = "ឈ្មោះ";
+"template.name.placeholder" = "ឈ្មោះគំរូ";
+"template.content.header" = "ខ្លឹមសារសំណួរ";
+"template.icon.header" = "រូបតំណាង";
+"template.translate.name" = "បកប្រែ";
+"template.translate.content" = "សូមបកប្រែខាងក្រោម: ";
+"template.summarize.name" = "សង្ខេប";
+"template.summarize.content" = "សូមសង្ខេបខាងក្រោម: ";
+"template.explain.name" = "ពន្យល់";
+"template.explain.content" = "សូមពន្យល់ខាងក្រោម: ";
+"template.code.name" = "កូដ";
+"template.code.content" = "សូមសរសេរកូដសម្រាប់: ";
+
+// MARK: - Export
+"export.title" = "នាំចេញសន្ទនា";
+"export.format.markdown" = "Markdown";
+"export.format.pdf" = "PDF";
+"export.format.text" = "អត្ថបទធម្មតា";
+"export.created" = "បានបង្កើត";
+"export.image.attached" = "បានភ្ជាប់រូបភាព";
+"export.generated.by" = "បានបង្កើតដោយ";
+
+// MARK: - Loading Phases
+"loading.phase.initializing" = "កំពុងចាប់ផ្តើម...";
+"loading.phase.loading" = "កំពុងផ្ទុកគំរូ...";
+"loading.phase.preparing" = "កំពុងរៀបចំម៉ាស៊ីនសន្និដ្ឋាន...";
+"loading.phase.almost" = "ជិតរួចរាល់ហើយ...";
+
+// MARK: - Welcome Screen
+"welcome.greeting" = "សួរអ្វីក៏បាន";
+"welcome.subtitle" = "ជំនួយការ AI ដែលផ្តោតលើឯកជនភាពរបស់អ្នក";
+"suggestion.idea" = "ជួយខ្ញុំដោះស្រាយគំនិត";
+"suggestion.write" = "ជួយខ្ញុំសរសេរអ្វីមួយ";
+"suggestion.question" = "ឆ្លើយសំណួររបស់ខ្ញុំ";
+
+// MARK: - Kokoro TTS
+"tts.download.title" = "សំឡេងគុណភាពខ្ពស់";
+"tts.download.action" = "ទាញយក";
+"tts.download.use_system" = "ប្រើសំឡេងប្រព័ន្ធ";
+"tts.download.message" = "ទាញយកគំរូ Kokoro TTS (~87MB) សម្រាប់អត្ថបទទៅសំឡេងភាសាជប៉ុនធម្មជាតិជាង។";
+"tts.downloading" = "កំពុងទាញយកគំរូ TTS...";
+
+// MARK: - Feedback
+"feedback.consent.title" = "ផ្ញើមតិកែលម្អ";
+"feedback.send" = "ផ្ញើ";
+"feedback.positive.title" = "តើការឆ្លើយតបនេះមានប្រយោជន៍ទេ?";
+"feedback.negative.title" = "តើនេះអាចត្រូវបានធ្វើឱ្យប្រសើរឡើងទេ?";
+"feedback.explanation" = "មតិកែលម្អរបស់អ្នកជួយកែលម្អគុណភាព AI។ សូមពិនិត្យមើលទិន្នន័យដែលនឹងត្រូវផ្ញើមុនពេលដាក់ស្នើ។";
+"feedback.data.section" = "ទិន្នន័យដែលត្រូវផ្ញើ";
+"feedback.data.conversation" = "សន្ទនា";
+"feedback.data.conversation.desc" = "ការឆ្លើយតប AI និងសារមុនរបស់អ្នក";
+"feedback.data.model" = "ព័ត៌មានគំរូ";
+"feedback.data.model.desc" = "ឈ្មោះគំរូ AI ដែលបានប្រើ";
+"feedback.data.timestamp" = "តែមប៉ាន់ពេលវេលា";
+"feedback.data.timestamp.desc" = "ពេលដែលមតិកែលម្អត្រូវបានដាក់ស្នើ";
+"feedback.privacy.section" = "ឯកជនភាព";
+"feedback.privacy.anonymous" = "គ្មានព័ត៌មានកំណត់អត្តសញ្ញាណផ្ទាល់ខ្លួនត្រូវបានផ្ញើទេ";
+"feedback.privacy.improvement" = "ប្រើតែដើម្បីកែលម្អគុណភាព AI";
+"feedback.privacy.optional" = "ការផ្ញើមតិកែលម្អគឺស្រេចចិត្តទាំងស្រុង";
+"feedback.comment.section" = "មតិយោបល់ (ស្រេចចិត្ត)";
+"feedback.comment.placeholder" = "ប្រាប់យើងថាអ្វីដែលអាចត្រូវបានធ្វើឱ្យប្រសើរឡើងឬដំណើរការល្អ...";
+"feedback.remember.title" = "ចងចាំជម្រើសនេះ";
+"feedback.remember.description" = "ដាក់ស្នើមតិកែលម្អដោយមិនសួរនៅពេលក្រោយ";
+
+// MARK: - Emergency Mode
+"emergency.sos.button" = "របៀបសង្គ្រោះបន្ទាន់ (ចុចយូរដើម្បីប្តូរ)";
+"emergency.mode.active" = "របៀបសង្គ្រោះបន្ទាន់សកម្ម";
+"emergency.action.firstaid" = "ជំនួយបឋម";
+"emergency.action.firstaid.message" = "សូមផ្តល់ការណែនាំជំនួយបឋម។ ខ្ញុំនឹងពិពណ៌នាអំពីរបួសឬរោគសញ្ញា: ";
+"emergency.action.disaster" = "គ្រោះមហន្តរាយ";
+"emergency.action.disaster.message" = "គ្រោះមហន្តរាយបានកើតឡើង។ សូមផ្តល់នីតិវិធីឆ្លើយតប: ";
+"emergency.action.factcheck" = "ពិនិត្យការពិត";
+"emergency.action.factcheck.message" = "សូមផ្ទៀងផ្ទាត់ភាពជឿជាក់នៃព័ត៌មាននេះ: ";
+"emergency.action.contacts" = "សង្គ្រោះបន្ទាន់";
+"emergency.action.contacts.message" = "សូមបង្ហាញបញ្ជីលេខទំនាក់ទំនងសង្គ្រោះបន្ទាន់";
+"emergency.action.evacuation" = "ជម្លៀសចេញ";
+"emergency.action.evacuation.message" = "សូមបង្កើតបញ្ជីពិនិត្យជម្លៀសចេញសម្រាប់ស្ថានការណ៍បច្ចុប្បន្ន: ";
+"mcp.emergency_kb" = "KB សង្គ្រោះបន្ទាន់";
+"mcp.emergency_kb.desc" = "ព័ត៌មានសង្គ្រោះបន្ទាន់និងគ្រោះមហន្តរាយ";
+
+// MARK: - Emergency Templates
+"template.firstaid.name" = "មគ្គុទេសក៍ជំនួយបឋម";
+"template.firstaid.content" = "សូមផ្តល់ការណែនាំជំនួយបឋមសម្រាប់: ";
+"template.disaster.name" = "ការឆ្លើយតបគ្រោះមហន្តរាយ";
+"template.disaster.content" = "គ្រោះមហន្តរាយខាងក្រោមបានកើតឡើង។ សូមផ្តល់នីតិវិធីឆ្លើយតប: ";
+"template.factcheck.name" = "ពិនិត្យការពិត";
+"template.factcheck.content" = "សូមផ្ទៀងផ្ទាត់ភាពជឿជាក់នៃព័ត៌មាននេះនិងផ្តល់ជំហានពិនិត្យការពិត: ";
+"template.evacuation.name" = "បញ្ជីពិនិត្យជម្លៀសចេញ";
+"template.evacuation.content" = "សូមបង្កើតបញ្ជីពិនិត្យជម្លៀសចេញសម្រាប់ស្ថានការណ៍បច្ចុប្បន្ន: ";
+
+// MARK: - ChatWeb.ai Integration
+"chatweb.title" = "ChatWeb.ai";
+"chatweb.desc" = "សន្ទនា AI ពពក";
+"chatweb.connect" = "ភ្ជាប់ទៅ ChatWeb.ai";
+"chatweb.qr.title" = "ភ្ជាប់តាមរយៈកូដ QR";
+"chatweb.qr.scan" = "ស្កេនកូដ QR";
+"chatweb.open" = "បើក ChatWeb.ai";
+
+// MARK: - Peer Connection
+"peer.title" = "ឧបករណ៍ក្បែរៗ";
+"peer.desc" = "ភ្ជាប់ជាមួយឧបករណ៍ Elio ក្បែរៗ";
+"peer.connect" = "ភ្ជាប់ទៅឧបករណ៍";
+"peer.code.title" = "កូដភ្ជាប់";
+"peer.code.enter" = "បញ្ចូលកូដ 4 ខ្ទង់";
+"peer.code.your" = "កូដរបស់អ្នក";
+"peer.connected" = "បានភ្ជាប់";
+"peer.disconnected" = "បានផ្តាច់";
+"peer.inference.offload" = "ការចែករំលែកការសន្និដ្ឋាន";
+
+// MARK: - Web Search
+"chat.web.search" = "ការស្វែងរកតាមវេប";
+"search.privacy.title" = "ការស្វែងរកការពារឯកជនភាព";
+"search.privacy.proceed" = "ស្វែងរក";
+"search.privacy.message" = "ការស្វែងរកតាមវេប ElioChat ការពារឯកជនភាពរបស់អ្នក:\n\n🔒 ស្វែងរកតាមរយៈ DuckDuckGo\n🚫 គ្មានការតាមដានឬការធ្វើប្រវត្តិរូប\n🔐 ប្រវត្តិការស្វែងរកមិនត្រូវបានរក្សាទុកទេ\n📱 គ្មានទិន្នន័យរក្សាទុកនៅខាងក្រៅឧបករណ៍របស់អ្នកទេ\n\nមានតែសំណួរស្វែងរករបស់អ្នកត្រូវបានផ្ញើទៅ DuckDuckGo ហើយលទ្ធផលត្រូវបានដំណើរការនៅលើឧបករណ៍របស់អ្នក។";
+"chat.web.analyzing" = "[កំពុងវិភាគទំព័រវេប]";

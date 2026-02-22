@@ -1,0 +1,635 @@
+/*
+  Localizable.strings (Latvian)
+  Elio
+*/
+
+// MARK: - App General
+"app.name" = "Elio";
+"app.tagline" = "Jūsu noslēpumu sargājošās otrās smadzenes.";
+
+// MARK: - Common Actions
+"common.done" = "Gatavs";
+"common.cancel" = "Atcelt";
+"common.delete" = "Dzēst";
+"common.save" = "Saglabāt";
+"common.edit" = "Rediģēt";
+"common.share" = "Dalīties";
+"common.copy" = "Kopēt";
+"common.copied" = "Nokopēts";
+"common.loading" = "Ielādē...";
+"common.error" = "Kļūda";
+"common.retry" = "Mēģināt vēlreiz";
+"common.skip" = "Izlaist";
+"common.next" = "Tālāk";
+"common.start" = "Sākt";
+"common.add" = "Pievienot";
+"common.close" = "Aizvērt";
+"common.details" = "Detaļas";
+"common.yes" = "Jā";
+"common.no" = "Nē";
+"common.unknown" = "Nezināms";
+
+// MARK: - Chat
+"chat.placeholder" = "Jautājiet jebko";
+"chat.model.not.loaded" = "Modelis nav ielādēts";
+"chat.model.not.loaded.description" = "Lūdzu, lejupielādējiet modeli no iestatījumiem";
+"chat.go.to.settings" = "Doties uz iestatījumiem";
+"chat.new.conversation" = "Jauna saruna";
+"chat.stop.generation" = "Apturēt";
+"chat.generation.stopped" = "\n\n[Ģenerēšana apturēta]";
+"chat.image.sent" = "[Attēls nosūtīts]";
+"chat.images.sent" = "[Nosūtīti %d attēli]";
+"chat.pdf.sent" = "[PDF pievienots: %@]";
+"chat.pdf.sent.vision" = "[PDF ar attēlu: %@]";
+"chat.pdf.context" = "Šis ir teksta saturs, kas izvilkts no PDF dokumenta \"%@\":\n\n%@";
+"chat.pdf.context.vision" = "Šī ir 1. lappuse no PDF dokumenta \"%@\". Izvilktais teksta saturs:\n\n%@\n\nLūdzu, analizējiet gan vizuālo saturu, gan tekstu.";
+"chat.pdf.analyze" = "Lūdzu, analizējiet šo PDF lappusi no \"%@\".";
+"chat.url.sent" = "[Tīmekļa lapa: %@]";
+"chat.url.context" = "Šis ir saturs, kas izvilkts no tīmekļa lapas \"%@\" (%@):\n\n%@";
+"chat.thinking" = "Domāju...";
+"chat.generating" = "Ģenerē atbildi...";
+"chat.welcome" = "Kā varu palīdzēt?";
+"chat.suggestion.schedule" = "Rādīt šodienas grafiku";
+"chat.suggestion.reminder" = "Izveidot atgādinājumu";
+"chat.suggestion.weather" = "Kāds šodien laiks?";
+"chat.suggestion.help" = "Kā lietot šo lietotni";
+"chat.websearch.on" = "Tīmekļa meklēšana ieslēgta";
+"chat.websearch.off" = "Tīmekļa meklēšana izslēgta";
+"chat.thinking.on" = "Domāšana ieslēgta";
+"chat.thinking.off" = "Domāšana izslēgta";
+"chat.transcribing" = "Transkripcija...";
+"chat.offline" = "Bezsaistē";
+
+// Voice Conversation Mode
+"voice.listening" = "Klausos...";
+"voice.processing" = "Apstrādā...";
+"voice.thinking" = "Domāju...";
+"voice.speaking" = "Runā...";
+"voice.tap.to.send" = "Pieskarieties, lai nosūtītu";
+"chat.templates" = "Veidnes";
+"chat.websearch.privacy.title" = "Par tīmekļa meklēšanu";
+"chat.websearch.privacy.message" = "Ieslēdzot tīmekļa meklēšanu, AI var meklēt informāciju internetā caur DuckDuckGo. Meklēšanas vaicājumi tiek nosūtīti DuckDuckGo, bet netiek izsekoti.";
+"chat.websearch.privacy.enable" = "Ieslēgt";
+"chat.websearch.privacy.disable" = "Atstāt izslēgtu";
+
+// MARK: - Settings
+"settings.title" = "Iestatījumi";
+"settings.model.section" = "AI modeļi";
+"settings.model.recommended" = "Ieteicams: %@";
+"settings.model.local.execution" = "Modeļi darbojas lokāli jūsu ierīcē";
+"settings.model.show.more" = "Citi modeļi (%d)";
+"settings.model.show.less" = "Rādīt mazāk";
+"settings.appearance.section" = "Izskats";
+"settings.tools.section" = "Viedās funkcijas";
+"settings.mcp.servers" = "Integrācijas";
+"settings.mcp.servers.description" = "Kalendārs, faili, atgādinājumi un citi";
+"settings.mcp.enabled.count" = "Ieslēgti: %d";
+"settings.mcp.enabled.count.suffix" = " ieslēgti";
+"settings.about.section" = "Par";
+"settings.version" = "Versija";
+"settings.about.app" = "Par šo lietotni";
+"settings.about.mcp" = "Par integrācijām";
+"settings.privacy.badge" = "Darbojas bezsaistē";
+"settings.privacy.description" = "Darbojas lidmašīnas režīmā";
+"settings.airplane.mode" = "Darbojas lidmašīnas režīmā";
+"settings.offline.ready" = "Gatavs darbam bezsaistē";
+
+// MARK: - Model States
+"model.status.downloading" = "Lejupielādē... %d%%";
+"model.status.loading" = "Ielādē...";
+"model.status.in.use" = "Izmantots";
+"model.status.recommended" = "Ieteicams";
+"model.status.heavy" = "Smags";
+"model.action.download" = "Lejupielādēt";
+"model.action.load" = "Ielādēt";
+"model.action.delete" = "Dzēst";
+"model.action.use" = "Izmantot šo modeli";
+"model.delete.confirm.title" = "Dzēst modeli";
+"model.delete.confirm.message" = "Dzēst %@? Lai atkal lietotu, būs jālejupielādē no jauna.";
+"model.select.title" = "Izvēlēties modeli";
+"model.select.prompt" = "Lūdzu, izvēlieties modeli";
+"model.downloaded" = "Lejupielādēts";
+
+// MARK: - Inference Mode
+"inference.mode.title" = "Paātrināšana";
+"inference.mode.auto" = "Automātisks";
+"inference.mode.auto.desc" = "Optimāls veiktspēja automātiski";
+"inference.mode.gpu" = "GPU (Metal)";
+"inference.mode.gpu.desc" = "Maksimāls ātrums ar Metal";
+"inference.mode.cpu" = "Tikai CPU";
+"inference.mode.cpu.desc" = "Akumulatora taupīšanas režīms";
+"inference.mode.hybrid" = "Hibrīds";
+"inference.mode.hybrid.desc" = "Ātruma un akumulatora līdzsvars";
+
+// MARK: - Theme
+"theme.system" = "Sistēmas";
+"theme.light" = "Gaišs";
+"theme.dark" = "Tumšs";
+
+// MARK: - Onboarding
+"onboarding.welcome.title" = "Laipni lūdzam ElioChat";
+"onboarding.welcome.subtitle" = "Jūsu privātais AI asistents";
+"onboarding.features.title" = "Patiesi privāts AI";
+"onboarding.feature.offline" = "Darbojas lidmašīnas režīmā";
+"onboarding.feature.offline.desc" = "Lietojiet lidojuma vai metro laikā";
+"onboarding.feature.privacy" = "Nulles datu pārsūtīšana";
+"onboarding.feature.privacy.desc" = "Sarunas nepamet jūsu tālruni";
+"onboarding.feature.vault" = "Viedās integrācijas";
+"onboarding.feature.vault.desc" = "Savienojieties ar kalendāru un failiem";
+"onboarding.feature.secure" = "Drošs darbam AI";
+"onboarding.feature.secure.desc" = "Drošs lietot uzņēmumā";
+"onboarding.feature.thinking" = "Domāšanas process";
+"onboarding.privacy.title" = "Jūsu dati paliek jūsu";
+"onboarding.privacy.item1" = "Viss tiek apstrādāts jūsu iPhone";
+"onboarding.privacy.item2" = "Dati netiek sūtīti mākonī";
+"onboarding.privacy.item3" = "Nekad netiek izmantoti AI apmācībai";
+"onboarding.getstarted.title" = "Gatavs vienā pieskārienā";
+"onboarding.getstarted.subtitle" = "Lejupielādējiet ieteicamo AI modeli\nun sāciet sarunu uzreiz";
+"onboarding.step1" = "Lejupielādēt ieteicamo modeli";
+"onboarding.step2" = "Gaidīt dažas minūtes";
+"onboarding.step3" = "Viss gatavs!";
+
+// MARK: - About
+"about.title" = "Par šo lietotni";
+"about.rate.app" = "Novērtēt lietotni";
+"about.share.app" = "Dalīties ar draugiem";
+"about.privacy.policy" = "Privātuma politika";
+"about.terms" = "Lietošanas noteikumi";
+"about.tech.info" = "Tehniskā informācija";
+"about.tech.engine" = "AI dzinējs";
+"about.tech.format" = "Atbalstītais formāts";
+"about.tech.inference" = "Secinājums";
+"about.data.management" = "Datu pārvaldība";
+"about.delete.all" = "Dzēst visas sarunas";
+"about.credits" = "Kredīti";
+"about.credits.description" = "Šī lietotne izmanto atvērtā koda bibliotēkas";
+"about.privacy.section" = "Privātums";
+"about.gguf.format" = "GGUF formāts";
+"about.metal.gpu" = "Metal GPU paātrināšana";
+
+// MARK: - Referral
+"referral.title" = "Ieteikt draugiem";
+"referral.code.title" = "Jūsu ieteikuma kods";
+"referral.code.copy" = "Kopēt kodu";
+"referral.code.copied" = "Nokopēts";
+"referral.share.button" = "Dalīties ar draugiem";
+"referral.share.description" = "Dalieties ar Elio ar saviem draugiem!";
+"referral.count" = "Ieteikuši %d cilvēkus";
+"referral.enter.title" = "Ievadīt ieteikuma kodu";
+"referral.enter.placeholder" = "Ieteikuma kods";
+"referral.enter.button" = "Lietot";
+"referral.enter.success" = "Ieteikuma kods lietots";
+"referral.enter.error" = "Nederīgs ieteikuma kods";
+
+// MARK: - Privacy Policy
+"privacy.title" = "Privātuma politika";
+"privacy.data.collection.title" = "Datu vākšana";
+"privacy.data.collection.content" = "Šī lietotne darbina lokālu AI pilnībā bezsaistē.\nNetiek sūtīti dati uz ārējiem serveriem.\nVisas sarunas tiek saglabātas tikai jūsu ierīcē.";
+"privacy.stored.data.title" = "Saglabātie dati";
+"privacy.stored.data.content" = "Sarunu vēsture (saglabāta tikai ierīcē)\nAI modeļa faili (saglabāti tikai ierīcē)\nLietotnes iestatījumi (saglabāti tikai ierīcē)\n\nŠie dati nekad netiek dalīti ārēji.";
+"privacy.data.deletion.title" = "Datu dzēšana";
+"privacy.data.deletion.content" = "Jūs varat jebkurā laikā dzēst visus datus no Iestatījumi > Datu pārvaldība.\nAtinstalējot lietotni, visi dati tiks dzēsti.";
+
+// MARK: - Terms of Service
+"terms.title" = "Lietošanas noteikumi";
+"terms.service.title" = "Pakalpojuma apraksts";
+"terms.service.content" = "Šī lietotne nodrošina AI asistenta funkcionalitāti, izmantojot lokālu AI modeli.";
+"terms.disclaimer.title" = "Atbildības ierobežojums";
+"terms.disclaimer.content" = "AI atbildes var saturēt kļūdas.\nSvarīgi lēmumi vienmēr jāpārbauda pie speciālista.\nMēs neatbildam par kaitējumu, kas radies, lietojot šo lietotni.";
+"terms.prohibited.title" = "Aizliegtā darbība";
+"terms.prohibited.content" = "Nelikumīga darbība\nDarbība, kas pārkāpj citu tiesības\nŠīs lietotnes reversā inženierija\nNeatļauta šīs lietotnes kopēšana";
+"terms.ip.title" = "Intelektuālais īpašums";
+"terms.ip.content" = "Šīs lietotnes intelektuālā īpašuma tiesības pieder izstrādātājam.\nNeatļauta izmantošana ir aizliegta.";
+
+// MARK: - Conversations
+"conversations.title" = "Sarunas";
+"conversations.new" = "Jauna saruna";
+"conversations.empty" = "Sarunu vēl nav";
+"conversations.delete" = "Dzēst sarunu";
+"conversations.default.title" = "Jauna saruna";
+"conversations.today" = "Šodien";
+"conversations.yesterday" = "Vakar";
+"conversations.past7days" = "Pēdējās 7 dienas";
+"conversations.past30days" = "Pēdējās 30 dienas";
+"conversations.older" = "Vecākas";
+"conversations.created" = "Izveidots: %@";
+"conversations.user" = "Lietotājs";
+"conversations.assistant" = "Asistents";
+"conversations.search.placeholder" = "Meklēt sarunas";
+"conversations.search.no_results" = "Rezultāti nav atrasti";
+
+// MARK: - Message Actions
+"message.copy" = "Kopēt";
+"message.speak" = "Izrunāt";
+"message.stop.speaking" = "Apturēt runāšanu";
+"message.share" = "Dalīties";
+"message.share.card" = "Dalīties kā kartīti";
+"message.like" = "Patīk";
+
+// MARK: - Share Card
+"share.card.title" = "Dalīties ar kartīti";
+"share.card.preview" = "Priekšskatījums";
+"share.card.button" = "Dalīties ar attēlu";
+"message.dislike" = "Nepatīk";
+"message.thinking.process" = "Domāšanas process";
+"message.tool.running" = "Rīks darbojas";
+"message.tool.error" = "Kļūda";
+"message.tool.completed" = "Pabeigts";
+
+// MARK: - Attachment
+"attachment.title" = "Pielikums";
+"attachment.photo.library" = "Izvēlēties fotoattēlu";
+"attachment.camera" = "Fotografēt";
+"attachment.pdf" = "Izvēlēties PDF";
+"attachment.pdf.chars" = "%d rakstzīmes";
+"attachment.pdf.pages" = "%d lappuses";
+"attachment.pdf.vision.enabled" = "Attēla analīze ieslēgta";
+"attachment.pdf.text.only" = "Tikai teksta režīms";
+"attachment.url" = "Lasīt tīmekļa lapu";
+"attachment.url.title" = "Ievadīt URL";
+"attachment.url.placeholder" = "https://example.com";
+"attachment.url.message" = "Ielīmējiet URL, lai izvilktu tā saturu";
+"attachment.url.fetch" = "Iegūt";
+"attachment.url.loading" = "Ielādē lapu...";
+
+// MARK: - Errors
+"error.model.not.found" = "Modeļa fails nav atrasts";
+"error.model.not.loaded" = "Modelis nav ielādēts";
+"error.context.failed" = "Neizdevās izveidot kontekstu";
+"error.tokenization.failed" = "Tokenizācija neizdevās";
+"error.generation.failed" = "Ģenerēšanas kļūda: %@";
+"error.occurred" = "Radās kļūda: %@";
+"error.invalid.url" = "Nederīgs URL";
+"error.download.failed" = "Lejupielāde neizdevās";
+"error.extraction.failed" = "Izvilkšana neizdevās";
+"error.config.not.found" = "Konfigurācijas fails nav atrasts";
+
+// MARK: - Ghost Search
+"ghost.search.title" = "Spoku meklēšana";
+"ghost.search.description" = "Anonīma meklēšana caur DuckDuckGo (bez izsekošanas)";
+"ghost.search.connecting" = "Savienojas ar anonīmo tīklu...";
+"ghost.search.privacy.note" = "Jūsu meklēšanas vēsture nekad netiek izsekota";
+
+// MARK: - MCP Servers
+"mcp.filesystem" = "Failu sistēma";
+"mcp.filesystem.desc" = "Lasīt un rakstīt failus lietotnē";
+"mcp.calendar" = "Kalendārs";
+"mcp.calendar.desc" = "Lasīt un rakstīt notikumus";
+"mcp.reminders" = "Atgādinājumi";
+"mcp.reminders.desc" = "Pārvaldīt atgādinājumus";
+"mcp.contacts" = "Kontakti";
+"mcp.contacts.desc" = "Meklēt un skatīt kontaktus";
+"mcp.photos" = "Fotoattēli";
+"mcp.photos.desc" = "Piekļūt fotoattēlu bibliotēkai";
+"mcp.location" = "Atrašanās vieta";
+"mcp.location.desc" = "Iegūt pašreizējo atrašanās vietu un meklēt vietas";
+"mcp.health" = "Veselība";
+"mcp.health.desc" = "Piekļūt veselības datiem";
+"mcp.shortcuts" = "Īsceļi";
+"mcp.shortcuts.desc" = "Palaist īsceļus";
+"mcp.websearch" = "Tīmekļa meklēšana";
+"mcp.websearch.desc" = "Anonīma tīmekļa meklēšana";
+"mcp.custom" = "Pielāgota integrācija";
+"mcp.custom.add" = "Pievienot integrāciju";
+"mcp.custom.setup" = "Iestatīt ārējā pakalpojuma integrāciju";
+"mcp.custom.title" = "Pielāgotas integrācijas";
+"mcp.settings.title" = "Integrācijas iestatījumi";
+"mcp.server.name" = "Servera nosaukums";
+"mcp.server.name.placeholder" = "piem., Mans pielāgotais serveris";
+"mcp.config.url" = "Konfigurācijas faila URL";
+"mcp.import.file" = "Importēt no faila";
+"mcp.config.example" = "Konfigurācijas faila piemērs";
+"mcp.permission.note" = "Atļaujas tiks pieprasītas, pirmoreiz izmantojot katru funkciju";
+
+// MARK: - MCP Tool Messages
+"mcp.tool.available" = "Pieejamie rīki:";
+"mcp.tool.parameters" = "Parametri:";
+"mcp.prompt.available" = "Pieejamie uzvednes:";
+"mcp.prompt.arguments" = "Argumenti:";
+"mcp.tool.name" = "rīka_nosaukums";
+"mcp.tool.arg.name" = "arg_nosaukums";
+"mcp.tool.arg.value" = "vērtība";
+"mcp.tool.no.result" = "Nav rezultātu";
+"mcp.tool.running" = "Darbojas rīks: %@";
+"mcp.tool.error" = "Rīka izpildes kļūda: %@";
+
+// MARK: - MCP Error Messages
+"mcp.error.server.not.found" = "Serveris nav atrasts: %@";
+"mcp.error.tool.not.found" = "Rīks nav atrasts: %@";
+"mcp.error.invalid.args" = "Nederīgi argumenti: %@";
+"mcp.error.execution" = "Izpildes kļūda: %@";
+"mcp.error.permission" = "Atļauja liegta: %@";
+
+// MARK: - Calendar Messages
+"calendar.no.events" = "Nav notikumu";
+"calendar.event.created" = "Notikums izveidots: %@";
+"calendar.event.deleted" = "Notikums dzēsts: %@";
+"calendar.allday.created" = "Visas dienas notikums izveidots: %@";
+"calendar.access.denied" = "Piekļuve kalendāram liegta";
+"calendar.today.none" = "Šodien nav notikumu";
+"calendar.untitled" = "Bez nosaukuma";
+
+// MARK: - Reminders Messages
+"reminders.none" = "Nav atgādinājumu";
+"reminders.created" = "Atgādinājums izveidots: %@";
+"reminders.completed" = "Atgādinājums pabeigts: %@";
+"reminders.deleted" = "Atgādinājums dzēsts: %@";
+"reminders.access.denied" = "Piekļuve atgādinājumiem liegta";
+"reminders.untitled" = "Bez nosaukuma";
+
+// MARK: - Photos Messages
+"photos.access.denied" = "Piekļuve fotoattēliem liegta";
+"photos.not.found" = "Fotoattēls nav atrasts";
+"photos.untitled" = "Bez nosaukuma";
+"photos.count" = "Fotoattēli: %d";
+"photos.videos.count" = "Video: %d";
+"photos.albums.count" = "Albumi: %d";
+"photos.favorites.count" = "Favorīti: %d";
+"photos.date" = "Datums: %@";
+"photos.size" = "Izmērs: %d x %d";
+"photos.location" = "Atrašanās vieta: %@, %@";
+"photos.media.type" = "Mediju tips: %@";
+"photos.duration" = "Ilgums: %dm %ds";
+"photos.favorite" = "Favorīts: %@";
+"photos.type.image" = "Fotoattēls";
+"photos.type.video" = "Video";
+"photos.type.audio" = "Audio";
+
+// MARK: - Contacts Messages
+"contacts.access.denied" = "Piekļuve kontaktiem liegta";
+"contacts.not.found" = "Atbilstošie kontakti nav atrasti";
+"contacts.no.groups" = "Nav grupu";
+"contacts.no.card" = "Kontakta kartīte nav iestatīta";
+"contacts.name" = "Vārds: %@";
+"contacts.company" = "Uzņēmums: %@";
+"contacts.job" = "Amats: %@";
+
+// MARK: - Location Messages
+"location.access.denied" = "Piekļuve atrašanās vietai liegta";
+"location.not.found" = "Adrese nav atrasta";
+"location.latitude" = "Platums: %@";
+"location.longitude" = "Garums: %@";
+"location.accuracy" = "Precizitāte: %dm";
+"location.altitude" = "Augstums: %dm";
+"location.search" = "Meklēšana: %@";
+"location.address" = "Adrese: %@";
+"location.country" = "Valsts: %@";
+"location.postal" = "Pasta indekss: %@";
+"location.from" = "No: (%@, %@)";
+"location.to" = "Uz: (%@, %@)";
+"location.distance.km" = "Attālums: %.2f km";
+"location.distance.m" = "Attālums: %d m";
+
+// MARK: - Health Messages
+"health.not.available" = "Veselība nav pieejama šajā ierīcē";
+"health.date" = "Datums: %@";
+"health.steps" = "Soļi: %@";
+"health.goal.progress" = "Mērķa progress: %d%% (10 000 soļu mērķis)";
+"health.no.data" = "Nav datu";
+"health.avg.bpm" = "Vidējais: %d bpm";
+"health.min.bpm" = "Minimālais: %d bpm";
+"health.max.bpm" = "Maksimālais: %d bpm";
+"health.measurements" = "Mērījumi: %d";
+"health.no.sleep" = "Nav miega datu";
+"health.sleep.total" = "Kopējais miegs: %dh %dm";
+"health.bedtime" = "Gulēšanas laiks: %@";
+"health.waketime" = "Pamošanās laiks: %@";
+"health.calories" = "Kalorijas: %d kcal";
+
+// MARK: - File System Messages
+"filesystem.not.found" = "Fails nav atrasts: %@";
+"filesystem.written" = "Fails ierakstīts: %@";
+"filesystem.dir.created" = "Direktorija izveidota: %@";
+"filesystem.deleted" = "Dzēsts: %@";
+"filesystem.size" = "Izmērs: %@";
+"filesystem.created" = "Izveidots: %@";
+"filesystem.modified" = "Modificēts: %@";
+"filesystem.type" = "Tips: %@";
+
+// MARK: - Shortcuts Messages
+"shortcuts.executed" = "Īsceļš '%@' izpildīts";
+"shortcuts.opened" = "Īsceļu lietotne atvērta";
+"shortcuts.settings.opened" = "Iestatījumi (%@) atvērti";
+"shortcuts.mail.opened" = "Pasta rakstīšana atvērta";
+"shortcuts.calling" = "Zvana: %@";
+"shortcuts.message.opened" = "Ziņas rakstīšana atvērta";
+"shortcuts.failed" = "Neizdevās atvērt īsceļu";
+
+// MARK: - Model Tiers
+"model.tier.entry" = "Ievads";
+"model.tier.standard" = "Standarta";
+"model.tier.pro" = "Pro";
+
+// MARK: - Tool Parser
+"tool.arguments" = "Argumenti:";
+
+// MARK: - Model Settings
+"model.action.settings" = "Iestatījumi";
+"settings.model.parameters" = "Modeļa iestatījumi";
+"settings.model.parameters.description" = "Pielāgot ģenerēšanas parametrus šim modelim";
+"settings.preset.title" = "Priekšiestatījumi";
+"settings.preset.custom" = "Pielāgots";
+"settings.preset.balanced" = "Līdzsvarots";
+"settings.preset.creative" = "Radošs";
+"settings.preset.precise" = "Precīzs";
+"settings.preset.coding" = "Programmēšana";
+"settings.preset.japanese" = "Japāņu";
+"settings.parameters.title" = "Parametri";
+"settings.parameter.temperature" = "Temperatūra";
+"settings.parameter.temperature.description" = "Augstāka = radošāka, zemāka = fokusētāka";
+"settings.parameter.top.p" = "Top P";
+"settings.parameter.top.p.description" = "Kodola izvēles varbūtība";
+"settings.parameter.top.k" = "Top K";
+"settings.parameter.top.k.description" = "Augšējo tokenu skaits apsvēršanai";
+"settings.parameter.max.tokens" = "Maks. tokeni";
+"settings.parameter.max.tokens.description" = "Maksimālais atbildes garums";
+"settings.parameter.repeat.penalty" = "Atkārtošanās sods";
+"settings.parameter.repeat.penalty.description" = "Augstāks = mazāk atkārtota izvade";
+"settings.parameter.thinking" = "Domāšanas režīms";
+"settings.parameter.thinking.description" = "Rādīt AI argumentācijas procesu";
+"settings.system.prompt.title" = "Sistēmas uzvedne";
+"settings.system.prompt.description" = "Pielāgotas instrukcijas AI";
+"settings.reset.to.default" = "Atiestatīt uz noklusējumu";
+
+// MARK: - Vision Model
+"vision.model.required.title" = "Nepieciešams redzes modelis";
+"vision.model.required.header" = "Nepieciešama attēlu atpazīšana";
+"vision.model.required.description" = "Lai analizētu attēlus, nepieciešams redzes spēju AI modelis";
+"vision.model.switch" = "Pārslēgt modeli";
+"vision.model.switch.message %@" = "Pārslēgt uz %@, lai iespējotu attēlu analīzi?";
+"vision.model.download" = "Lejupielādēt";
+"vision.model.download.message %@ %@" = "Lejupielādēt %@ (%@) attēlu analīzei?";
+"vision.model.not.available" = "Nav saderīgu redzes modeļu jūsu ierīcei";
+"vision.model.switching" = "Pārslēdz modeli...";
+"vision.model.download.title" = "Redzes modeļi";
+"vision.model.recommended" = "Ieteicams jūsu ierīcei";
+"vision.model.recommended.size %@" = "Ieteicams: %@";
+"vision.model.use.this" = "Izmantot šo modeli";
+"vision.model.download.button %@" = "Lejupielādēt (%@)";
+"vision.model.other.options" = "Citi redzes modeļi";
+"vision.model.download.complete" = "Lejupielāde pabeigta";
+"vision.model.download.complete.message" = "Gatavs analizēt attēlus";
+
+// MARK: - Whisper Voice Input (Legacy)
+"whisper.download.title" = "Nepieciešama balss atpazīšana";
+"whisper.download.action" = "Lejupielādēt";
+"whisper.download.message" = "Lai izmantotu balss ievadi, nepieciešams lejupielādēt runas atpazīšanas modeli (~150MB).";
+"whisper.downloading" = "Lejupielādē runas atpazīšanas modeli...";
+"whisper.download.error" = "Lejupielādes kļūda";
+"whisper.load.error" = "Modeļa ielādes kļūda";
+"whisper.permission.denied" = "Mikrofona piekļuve nav atļauta";
+"whisper.transcribe.error" = "Transkripcijas kļūda";
+"whisper.error.permission" = "Nepieciešama mikrofona atļauja";
+"whisper.error.not.recording" = "Pašlaik neieraksta";
+"whisper.error.no.recording" = "Nav ieraksta datu";
+"whisper.error.model.not.loaded" = "Runas atpazīšanas modelis nav ielādēts";
+"whisper.error.transcription" = "Transkripcija neizdevās";
+
+// MARK: - Speech Recognition (ReazonSpeech)
+"speech.download.title" = "Nepieciešama balss atpazīšana";
+"speech.download.action" = "Lejupielādēt";
+"speech.download.message" = "Lai izmantotu balss ievadi, nepieciešams lejupielādēt japāņu valodas runas atpazīšanas modeli (~155MB).";
+"speech.downloading" = "Lejupielādē runas atpazīšanas modeli...";
+
+// MARK: - Language Settings
+"settings.language.section" = "Valoda";
+"language.system" = "Izmantot sistēmas valodu";
+"settings.language.restart.hint" = "Valodas izmaiņas stāsies spēkā pēc lietotnes restartēšanas";
+"settings.language.changed.title" = "Valoda mainīta";
+"settings.language.changed.message" = "Lūdzu, restartējiet lietotni, lai izmaiņas stātos spēkā";
+"common.ok" = "Labi";
+
+// MARK: - System Prompt Settings
+"settings.prompt.section" = "Sistēmas uzvedne";
+"settings.prompt.edit" = "Rediģēt uzvedni";
+"settings.prompt.default" = "Izmanto noklusējumu";
+"settings.prompt.custom" = "Pielāgota uzvedne iestatīta";
+"settings.prompt.hint" = "Pielāgot AI uzvedību";
+"settings.prompt.editor.title" = "Rediģēt uzvedni";
+"settings.prompt.editor.instruction" = "Pievienojiet pielāgotas instrukcijas AI. Atstājiet tukšu, lai izmantotu noklusējuma uzvedni.";
+"settings.prompt.default.preview" = "Noklusējuma uzvedne (izvilkums):";
+"settings.prompt.reset" = "Atiestatīt";
+"settings.prompt.reset.title" = "Atiestatīt uzvedni";
+"settings.prompt.reset.message" = "Dzēst pielāgoto uzvedni un atjaunot noklusējumu?";
+
+// MARK: - Prompt Templates
+"templates.title" = "Uzvedņu veidnes";
+"templates.empty" = "Veidņu vēl nav";
+"templates.add" = "Pievienot veidni";
+"template.add.title" = "Pievienot veidni";
+"template.edit.title" = "Rediģēt veidni";
+"template.name.header" = "Nosaukums";
+"template.name.placeholder" = "Veidnes nosaukums";
+"template.content.header" = "Uzvednes saturs";
+"template.icon.header" = "Ikona";
+"template.translate.name" = "Tulkot";
+"template.translate.content" = "Lūdzu, tulkojiet šo:";
+"template.summarize.name" = "Apkopot";
+"template.summarize.content" = "Lūdzu, apkopojiet šo:";
+"template.explain.name" = "Izskaidrot";
+"template.explain.content" = "Lūdzu, izskaidrojiet šo:";
+"template.code.name" = "Kods";
+"template.code.content" = "Lūdzu, uzrakstiet kodu:";
+
+// MARK: - Export
+"export.title" = "Eksportēt sarunu";
+"export.format.markdown" = "Markdown";
+"export.format.pdf" = "PDF";
+"export.format.text" = "Vienkāršs teksts";
+"export.created" = "Izveidots";
+"export.image.attached" = "Attēls pievienots";
+"export.generated.by" = "Ģenerēja";
+
+// MARK: - Loading Phases
+"loading.phase.initializing" = "Inicializē...";
+"loading.phase.loading" = "Ielādē modeli...";
+"loading.phase.preparing" = "Sagatavo secinājumu dzinēju...";
+"loading.phase.almost" = "Gandrīz gatavs...";
+
+// MARK: - Welcome Screen
+"welcome.greeting" = "Jautājiet jebko";
+"welcome.subtitle" = "Jūsu privātumam pirmais AI asistents";
+"suggestion.idea" = "Palīdziet man radīt idejas";
+"suggestion.write" = "Palīdziet man ko uzrakstīt";
+"suggestion.question" = "Atbildiet uz jautājumiem";
+
+// MARK: - Kokoro TTS
+"tts.download.title" = "Augstas kvalitātes balss";
+"tts.download.action" = "Lejupielādēt";
+"tts.download.use_system" = "Izmantot sistēmas balsi";
+"tts.download.message" = "Lejupielādējiet Kokoro TTS modeli (~87MB) dabiskākai japāņu valodas sintēzei.";
+"tts.downloading" = "Lejupielādē TTS modeli...";
+
+// MARK: - Feedback
+"feedback.consent.title" = "Sūtīt atsauksmi";
+"feedback.send" = "Sūtīt";
+"feedback.positive.title" = "Vai šī atbilde bija noderīga?";
+"feedback.negative.title" = "Vai to varētu uzlabot?";
+"feedback.explanation" = "Jūsu atsauksmes palīdz uzlabot AI kvalitāti. Lūdzu, pārskatiet, kādi dati tiks nosūtīti pirms iesniegšanas.";
+"feedback.data.section" = "Nosūtāmie dati";
+"feedback.data.conversation" = "Saruna";
+"feedback.data.conversation.desc" = "AI atbilde un jūsu iepriekšējais ziņojums";
+"feedback.data.model" = "Modeļa informācija";
+"feedback.data.model.desc" = "Izmantotā AI modeļa nosaukums";
+"feedback.data.timestamp" = "Laika zīmogs";
+"feedback.data.timestamp.desc" = "Kad atsauksme tika iesniegta";
+"feedback.privacy.section" = "Privātums";
+"feedback.privacy.anonymous" = "Netiek nosūtīta personiski identificējama informācija";
+"feedback.privacy.improvement" = "Izmantots tikai AI kvalitātes uzlabošanai";
+"feedback.privacy.optional" = "Atsauksmju sūtīšana ir pilnībā neobligāta";
+"feedback.comment.section" = "Komentārs (neobligāts)";
+"feedback.comment.placeholder" = "Pastāstiet mums, ko varētu uzlabot vai kas darbojās labi...";
+"feedback.remember.title" = "Atcerēties šo izvēli";
+"feedback.remember.description" = "Iesniegt atsauksmi bez jautāšanas nākamreiz";
+
+// MARK: - Emergency Mode
+"emergency.sos.button" = "Ārkārtas režīms (ilgi nospiediet pārslēgšanai)";
+"emergency.mode.active" = "Ārkārtas režīms aktīvs";
+"emergency.action.firstaid" = "Pirmā palīdzība";
+"emergency.action.firstaid.message" = "Lūdzu, sniedziet pirmās palīdzības instrukcijas. Es aprakstīšu traumu vai simptomus:";
+"emergency.action.disaster" = "Katastrofa";
+"emergency.action.disaster.message" = "Ir notikusi katastrofa. Lūdzu, sniedziet reaģēšanas procedūras:";
+"emergency.action.factcheck" = "Faktu pārbaude";
+"emergency.action.factcheck.message" = "Lūdzu, pārbaudiet šīs informācijas uzticamību:";
+"emergency.action.contacts" = "Ārkārtas";
+"emergency.action.contacts.message" = "Lūdzu, parādiet man ārkārtas kontaktu sarakstu";
+"emergency.action.evacuation" = "Evakuēt";
+"emergency.action.evacuation.message" = "Lūdzu, izveidojiet evakuācijas kontrolsarakstu pašreizējai situācijai:";
+"mcp.emergency_kb" = "Ārkārtas zināšanu bāze";
+"mcp.emergency_kb.desc" = "Ārkārtas un katastrofas informācija";
+
+// MARK: - Emergency Templates
+"template.firstaid.name" = "Pirmās palīdzības ceļvedis";
+"template.firstaid.content" = "Lūdzu, sniedziet pirmās palīdzības instrukcijas:";
+"template.disaster.name" = "Katastrofas reakcija";
+"template.disaster.content" = "Ir notikusi šī katastrofa. Lūdzu, sniedziet reaģēšanas procedūras:";
+"template.factcheck.name" = "Faktu pārbaude";
+"template.factcheck.content" = "Lūdzu, pārbaudiet šīs informācijas uzticamību un sniedziet faktu pārbaudes padomus:";
+"template.evacuation.name" = "Evakuācijas kontrolsaraksts";
+"template.evacuation.content" = "Lūdzu, izveidojiet evakuācijas kontrolsarakstu pašreizējai situācijai:";
+
+// MARK: - ChatWeb.ai Integration
+"chatweb.title" = "ChatWeb.ai";
+"chatweb.desc" = "Mākoņa AI tērzēšana";
+"chatweb.connect" = "Savienoties ar ChatWeb.ai";
+"chatweb.qr.title" = "Savienoties caur QR kodu";
+"chatweb.qr.scan" = "Skenēt QR kodu";
+"chatweb.open" = "Atvērt ChatWeb.ai";
+
+// MARK: - Peer Connection
+"peer.title" = "Tuvumā esošās ierīces";
+"peer.desc" = "Savienoties ar tuvumā esošām Elio ierīcēm";
+"peer.connect" = "Savienoties ar ierīci";
+"peer.code.title" = "Savienojuma kods";
+"peer.code.enter" = "Ievadiet 4 ciparu kodu";
+"peer.code.your" = "Jūsu kods";
+"peer.connected" = "Savienots";
+"peer.disconnected" = "Atvienots";
+"peer.inference.offload" = "Secinājums tiek dalīts";
+
+// MARK: - Web Search
+"chat.web.search" = "Tīmekļa meklēšana";
+"search.privacy.title" = "Privātumu aizsargāta meklēšana";
+"search.privacy.proceed" = "Meklēt";
+"search.privacy.message" = "ElioChat tīmekļa meklēšana aizsargā jūsu privātumu:\n\n🔒 Meklēšana caur DuckDuckGo\n🚫 Bez izsekošanas vai profilēšanas\n🔐 Meklēšanas vēsture netiek saglabāta\n📱 Dati netiek saglabāti ārpus jūsu ierīces\n\nTikai jūsu meklēšanas vaicājums tiek nosūtīts DuckDuckGo, un rezultāti tiek apstrādāti jūsu ierīcē.";
+"chat.web.analyzing" = "[Analizē tīmekļa lapu]";

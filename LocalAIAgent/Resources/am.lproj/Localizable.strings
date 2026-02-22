@@ -1,0 +1,635 @@
+/*
+  Localizable.strings (Amharic)
+  Elio
+*/
+
+// MARK: - App General
+"app.name" = "Elio";
+"app.tagline" = "የእርስዎ ሚስጥር-አስቀባ ሁለተኛ አእምሮ።";
+
+// MARK: - Common Actions
+"common.done" = "ተጠናቋል";
+"common.cancel" = "ሰርዝ";
+"common.delete" = "ሰርዝ";
+"common.save" = "አስቀምጥ";
+"common.edit" = "አርትዕ";
+"common.share" = "አጋራ";
+"common.copy" = "ቅዳ";
+"common.copied" = "ተቀድቷል";
+"common.loading" = "በመጫን ላይ...";
+"common.error" = "ስህተት";
+"common.retry" = "እንደገና ሞክር";
+"common.skip" = "ዝለል";
+"common.next" = "ቀጣይ";
+"common.start" = "ጀምር";
+"common.add" = "አክል";
+"common.close" = "ዝጋ";
+"common.details" = "ዝርዝሮች";
+"common.yes" = "አዎ";
+"common.no" = "አይደለም";
+"common.unknown" = "ያልታወቀ";
+
+// MARK: - Chat
+"chat.placeholder" = "ማንኛውንም ነገር ጠይቀኝ";
+"chat.model.not.loaded" = "ምንም ሞዴል አልተጫነም";
+"chat.model.not.loaded.description" = "እባክዎ ከቅንብሮች ሞዴል ያውርዱ";
+"chat.go.to.settings" = "ወደ ቅንብሮች ሂድ";
+"chat.new.conversation" = "አዲስ ውይይት";
+"chat.stop.generation" = "አቁም";
+"chat.generation.stopped" = "\n\n[ማመንጨት ቆመ]";
+"chat.image.sent" = "[ምስል ተልኳል]";
+"chat.images.sent" = "[%d ምስሎች ተልከዋል]";
+"chat.pdf.sent" = "[PDF ተያይዟል: %@]";
+"chat.pdf.sent.vision" = "[PDF ከምስል ጋር: %@]";
+"chat.pdf.context" = "የሚከተለው ከPDF ሰነድ \"%@\" የተወጣ ጽሁፍ ይዘት ነው:\n\n%@";
+"chat.pdf.context.vision" = "ይህ የPDF ሰነድ \"%@\" ገጽ 1 ነው። የተወጣው ጽሁፍ ይዘት:\n\n%@\n\nእባክዎ ሁለቱንም የእይታ ይዘት እና ጽሁፉን ይተንትኑ።";
+"chat.pdf.analyze" = "እባክዎ ይህን PDF ገጽ ከ\"%@\" ይተንትኑ።";
+"chat.url.sent" = "[ድር ገጽ: %@]";
+"chat.url.context" = "የሚከተለው ከድር ገጽ \"%@\" (%@) የተወጣ ይዘት ነው:\n\n%@";
+"chat.thinking" = "በማሰብ ላይ...";
+"chat.generating" = "ምላሽ በማመንጨት ላይ...";
+"chat.welcome" = "እንዴት ልረዳዎት እችላለሁ?";
+"chat.suggestion.schedule" = "የዛሬን የጊዜ ሰሌዳ አሳይ";
+"chat.suggestion.reminder" = "ማስታወሻ ፍጠር";
+"chat.suggestion.weather" = "ዛሬ የአየር ሁኔታው ምንድን ነው?";
+"chat.suggestion.help" = "ይህን መተግበሪያ እንዴት እንደምጠቀም";
+"chat.websearch.on" = "ድር ፍለጋ በርቷል";
+"chat.websearch.off" = "ድር ፍለጋ ጠፍቷል";
+"chat.thinking.on" = "ማሰብ በርቷል";
+"chat.thinking.off" = "ማሰብ ጠፍቷል";
+"chat.transcribing" = "በመተርጎም ላይ...";
+"chat.offline" = "ከመስመር ውጭ";
+
+// Voice Conversation Mode
+"voice.listening" = "በማዳመጥ ላይ...";
+"voice.processing" = "በማካሄድ ላይ...";
+"voice.thinking" = "በማሰብ ላይ...";
+"voice.speaking" = "በመናገር ላይ...";
+"voice.tap.to.send" = "ለመላክ መታ ያድርጉ";
+"chat.templates" = "አብነቶች";
+"chat.websearch.privacy.title" = "ስለ ድር ፍለጋ";
+"chat.websearch.privacy.message" = "ድር ፍለጋን ማነቃቃት AI ኢንተርኔትን በDuckDuckGo በኩል ለዘመናዊ መረጃ እንዲፈልግ ያስችለዋል። የፍለጋ ጥያቄዎች ወደ DuckDuckGo ይላካሉ ግን አይከታተሉም።";
+"chat.websearch.privacy.enable" = "አንቃ";
+"chat.websearch.privacy.disable" = "የተሰናከለ አቆይ";
+
+// MARK: - Settings
+"settings.title" = "ቅንብሮች";
+"settings.model.section" = "AI ሞዴሎች";
+"settings.model.recommended" = "የሚመከር: %@";
+"settings.model.local.execution" = "ሞዴሎች በእርስዎ መሣሪያ ላይ በአካባቢያዊ ሁኔታ ይሰራሉ";
+"settings.model.show.more" = "ሌሎች ሞዴሎች (%d)";
+"settings.model.show.less" = "ያነሰ አሳይ";
+"settings.appearance.section" = "መልክ";
+"settings.tools.section" = "ብልጥ ባህሪያት";
+"settings.mcp.servers" = "ውህደቶች";
+"settings.mcp.servers.description" = "የቀን መቁጠሪያ፣ ፋይሎች፣ ማስታወሻዎች & ተጨማሪ";
+"settings.mcp.enabled.count" = "%d ነቅቷል";
+"settings.mcp.enabled.count.suffix" = " ነቅቷል";
+"settings.about.section" = "ስለ";
+"settings.version" = "ስሪት";
+"settings.about.app" = "ስለዚህ መተግበሪያ";
+"settings.about.mcp" = "ስለ ውህደቶች";
+"settings.privacy.badge" = "ከመስመር ውጭ ይሰራል";
+"settings.privacy.description" = "በአውሮፕላን ሁኔታ ይሰራል";
+"settings.airplane.mode" = "በአውሮፕላን ሁኔታ በመስራት ላይ";
+"settings.offline.ready" = "ከመስመር ውጭ ዝግጁ";
+
+// MARK: - Model States
+"model.status.downloading" = "በማውረድ ላይ... %d%%";
+"model.status.loading" = "በመጫን ላይ...";
+"model.status.in.use" = "በአጠቃቀም ላይ";
+"model.status.recommended" = "የሚመከር";
+"model.status.heavy" = "ከባድ";
+"model.action.download" = "አውርድ";
+"model.action.load" = "ጫን";
+"model.action.delete" = "ሰርዝ";
+"model.action.use" = "ይህን ሞዴል ተጠቀም";
+"model.delete.confirm.title" = "ሞዴል ሰርዝ";
+"model.delete.confirm.message" = "%@ ይሰረዝ? እንደገና ለመጠቀም እንደገና ማውረድ ያስፈልግዎታል።";
+"model.select.title" = "ሞዴል ምረጥ";
+"model.select.prompt" = "እባክዎ ሞዴል ይምረጡ";
+"model.downloaded" = "ወርዷል";
+
+// MARK: - Inference Mode
+"inference.mode.title" = "ማፋጠን";
+"inference.mode.auto" = "ራስ-ሰር";
+"inference.mode.auto.desc" = "ምርጡን አፈጻጸም በራስ-ሰር";
+"inference.mode.gpu" = "GPU (Metal)";
+"inference.mode.gpu.desc" = "ከMetal ጋር ከፍተኛ ፍጥነት";
+"inference.mode.cpu" = "CPU ብቻ";
+"inference.mode.cpu.desc" = "ባትሪ ቆጣቢ ሁኔታ";
+"inference.mode.hybrid" = "ድቅል";
+"inference.mode.hybrid.desc" = "የፍጥነት እና ባትሪ ሚዛን";
+
+// MARK: - Theme
+"theme.system" = "ስርዓት";
+"theme.light" = "ብርሃን";
+"theme.dark" = "ጨለማ";
+
+// MARK: - Onboarding
+"onboarding.welcome.title" = "ወደ ElioChat እንኳን ደህና መጡ";
+"onboarding.welcome.subtitle" = "የእርስዎ የግል AI ረዳት";
+"onboarding.features.title" = "በእውነት የግል AI";
+"onboarding.feature.offline" = "በአውሮፕላን ሁኔታ ይሰራል";
+"onboarding.feature.offline.desc" = "በበረራዎች ወይም በመሬት ስር ይጠቀሙበት";
+"onboarding.feature.privacy" = "ዜሮ የመረጃ ማስተላለፍ";
+"onboarding.feature.privacy.desc" = "የእርስዎ ውይይቶች ከስልክዎ በፈጻሚ አይወጡም";
+"onboarding.feature.vault" = "ብልጥ ውህደቶች";
+"onboarding.feature.vault.desc" = "ከቀን መቁጠሪያ & ፋይሎች ጋር ተገናኝ";
+"onboarding.feature.secure" = "ለስራ-ደህንነት AI";
+"onboarding.feature.secure.desc" = "ለድርጅታዊ አጠቃቀም ደህንነቱ የተጠበቀ";
+"onboarding.feature.thinking" = "የማሰብ ሂደት";
+"onboarding.privacy.title" = "የእርስዎ መረጃ የእርስዎ ይቆያል";
+"onboarding.privacy.item1" = "ሁሉም ማቀናበር በእርስዎ iPhone ላይ ይከናወናል";
+"onboarding.privacy.item2" = "ምንም መረጃ ወደ ደመና አገልጋዮች አይላክም";
+"onboarding.privacy.item3" = "ለAI ስልጠና በፈጻሚ ጥቅም ላይ አይውልም";
+"onboarding.getstarted.title" = "በአንድ መታ ዝግጁ";
+"onboarding.getstarted.subtitle" = "የሚመከረውን AI ሞዴል ያውርዱ\nእና ወዲያውኑ ውይይት ይጀምሩ";
+"onboarding.step1" = "የሚመከረውን ሞዴል አውርድ";
+"onboarding.step2" = "ጥቂት ደቂቃዎች ይጠብቁ";
+"onboarding.step3" = "ሁሉም ነገር ተዘጋጅቷል!";
+
+// MARK: - About
+"about.title" = "ስለዚህ መተግበሪያ";
+"about.rate.app" = "መተግበሪያን ደረጃ ስጥ";
+"about.share.app" = "ከጓደኞች ጋር አጋራ";
+"about.privacy.policy" = "የግላዊነት መመሪያ";
+"about.terms" = "የአገልግሎት ውሎች";
+"about.tech.info" = "ቴክኒካዊ መረጃ";
+"about.tech.engine" = "AI ሞተር";
+"about.tech.format" = "የሚደገፍ ቅርጸት";
+"about.tech.inference" = "ተናደድ";
+"about.data.management" = "የመረጃ አስተዳደር";
+"about.delete.all" = "ሁሉንም ውይይቶች ሰርዝ";
+"about.credits" = "ክሬዲቶች";
+"about.credits.description" = "ይህ መተግበሪያ ክፍት ምንጭ ቤተ-መጻሕፍትን ይጠቀማል";
+"about.privacy.section" = "ግላዊነት";
+"about.gguf.format" = "GGUF ቅርጸት";
+"about.metal.gpu" = "Metal GPU ማፋጠን";
+
+// MARK: - Referral
+"referral.title" = "ጓደኞችን ጠቅስ";
+"referral.code.title" = "የእርስዎ የማጣቀሻ ኮድ";
+"referral.code.copy" = "ኮድ ቅዳ";
+"referral.code.copied" = "ተቀድቷል";
+"referral.share.button" = "ከጓደኞች ጋር አጋራ";
+"referral.share.description" = "Elioን ከጓደኞችዎ ጋር ያጋሩ!";
+"referral.count" = "%d ሰዎች ተጠቅሰዋል";
+"referral.enter.title" = "የማጣቀሻ ኮድ አስገባ";
+"referral.enter.placeholder" = "የማጣቀሻ ኮድ";
+"referral.enter.button" = "ተግብር";
+"referral.enter.success" = "የማጣቀሻ ኮድ ተተግብሯል";
+"referral.enter.error" = "ልክ ያልሆነ የማጣቀሻ ኮድ";
+
+// MARK: - Privacy Policy
+"privacy.title" = "የግላዊነት መመሪያ";
+"privacy.data.collection.title" = "የመረጃ አሰባሰብ";
+"privacy.data.collection.content" = "ይህ መተግበሪያ አካባቢያዊ AI ሙሉ በሙሉ ከመስመር ውጭ ይሰራል።\nምንም መረጃ ወደ ውጫዊ አገልጋዮች አይላክም።\nሁሉም ውይይቶች በእርስዎ መሣሪያ ላይ ብቻ ይቀመጣሉ።";
+"privacy.stored.data.title" = "የተቀመጠ መረጃ";
+"privacy.stored.data.content" = "የውይይት ታሪክ (በመሣሪያ ላይ ብቻ የተቀመጠ)\nየAI ሞዴል ፋይሎች (በመሣሪያ ላይ ብቻ የተቀመጡ)\nየመተግበሪያ ቅንብሮች (በመሣሪያ ላይ ብቻ የተቀመጡ)\n\nይህ መረጃ በውጭ በፈጻሚ አይጋራም።";
+"privacy.data.deletion.title" = "የመረጃ መሰረዝ";
+"privacy.data.deletion.content" = "ሁሉንም መረጃ በማንኛውም ጊዜ ከቅንብሮች > የመረጃ አስተዳደር መሰረዝ ይችላሉ።\nመተግበሪያውን ማራገፍ ሁሉንም መረጃ ይሰርዛል።";
+
+// MARK: - Terms of Service
+"terms.title" = "የአገልግሎት ውሎች";
+"terms.service.title" = "የአገልግሎት መግለጫ";
+"terms.service.content" = "ይህ መተግበሪያ በአካባቢያዊ ሁኔታ በሚሰራ AI ሞዴል በመጠቀም የAI ረዳት ተግባርን ይሰጣል።";
+"terms.disclaimer.title" = "ማስተባበያ";
+"terms.disclaimer.content" = "የAI ምላሾች ስህተቶችን ሊይዙ ይችላሉ።\nአስፈላጊ ውሳኔዎች ሁልጊዜ በባለሙያ መረጋገጥ አለባቸው።\nከዚህ መተግበሪያ አጠቃቀም በተነሳ ለሚደርስ ማንኛውም ጉዳት ተጠያቂ አይደለንም።";
+"terms.prohibited.title" = "የተከለከሉ እንቅስቃሴዎች";
+"terms.prohibited.content" = "ሕገ-ወጥ እንቅስቃሴዎች\nየሌሎችን መብቶች የሚጥሱ እንቅስቃሴዎች\nየዚህን መተግበሪያ ተቃራኒ ምህንድስና\nያልተፈቀደ የዚህን መተግበሪያ ቅጂ";
+"terms.ip.title" = "የአእምሮ ንብረት";
+"terms.ip.content" = "የዚህ መተግበሪያ የአእምሮ ንብረት መብቶች የገንቢው ናቸው።\nያልተፈቀደ አጠቃቀም የተከለከለ ነው።";
+
+// MARK: - Conversations
+"conversations.title" = "ውይይቶች";
+"conversations.new" = "አዲስ ውይይት";
+"conversations.empty" = "ገና ምንም ውይይቶች የሉም";
+"conversations.delete" = "ውይይት ሰርዝ";
+"conversations.default.title" = "አዲስ ውይይት";
+"conversations.today" = "ዛሬ";
+"conversations.yesterday" = "ትናንት";
+"conversations.past7days" = "ያለፉት 7 ቀናት";
+"conversations.past30days" = "ያለፉት 30 ቀናት";
+"conversations.older" = "የቆየ";
+"conversations.created" = "ተፈጥሯል: %@";
+"conversations.user" = "ተጠቃሚ";
+"conversations.assistant" = "ረዳት";
+"conversations.search.placeholder" = "ውይይቶችን ፈልግ";
+"conversations.search.no_results" = "ምንም ውጤቶች አልተገኙም";
+
+// MARK: - Message Actions
+"message.copy" = "ቅዳ";
+"message.speak" = "ተናገር";
+"message.stop.speaking" = "ማውራት አቁም";
+"message.share" = "አጋራ";
+"message.share.card" = "እንደ ካርድ አጋራ";
+"message.like" = "አስተዋወቅ";
+
+// MARK: - Share Card
+"share.card.title" = "ካርድ አጋራ";
+"share.card.preview" = "ቅድመ እይታ";
+"share.card.button" = "ምስል አጋራ";
+"message.dislike" = "አትወድ";
+"message.thinking.process" = "የማሰብ ሂደት";
+"message.tool.running" = "መሳሪያ በማሄድ ላይ";
+"message.tool.error" = "ስህተት";
+"message.tool.completed" = "ተጠናቋል";
+
+// MARK: - Attachment
+"attachment.title" = "ተያያዥ";
+"attachment.photo.library" = "ፎቶ ምረጥ";
+"attachment.camera" = "ፎቶ ያንሱ";
+"attachment.pdf" = "PDF ምረጥ";
+"attachment.pdf.chars" = "%d ቁምፊዎች";
+"attachment.pdf.pages" = "%d ገጾች";
+"attachment.pdf.vision.enabled" = "የምስል ትንተና ነቅቷል";
+"attachment.pdf.text.only" = "ጽሁፍ ብቻ ሁኔታ";
+"attachment.url" = "ድር ገጽ አንብብ";
+"attachment.url.title" = "URL አስገባ";
+"attachment.url.placeholder" = "https://example.com";
+"attachment.url.message" = "ይዘቱን ለማውጣት URL ለጥፍ";
+"attachment.url.fetch" = "አምጣ";
+"attachment.url.loading" = "ገጽ በመጫን ላይ...";
+
+// MARK: - Errors
+"error.model.not.found" = "የሞዴል ፋይል አልተገኘም";
+"error.model.not.loaded" = "ሞዴል አልተጫነም";
+"error.context.failed" = "ሁኔታ መፍጠር አልተሳካም";
+"error.tokenization.failed" = "ቶከናይዜሽን አልተሳካም";
+"error.generation.failed" = "የማመንጨት ስህተት: %@";
+"error.occurred" = "ስህተት ተከስቷል: %@";
+"error.invalid.url" = "ልክ ያልሆነ URL";
+"error.download.failed" = "ማውረድ አልተሳካም";
+"error.extraction.failed" = "ማውጣት አልተሳካም";
+"error.config.not.found" = "የማዋቀሪያ ፋይል አልተገኘም";
+
+// MARK: - Ghost Search
+"ghost.search.title" = "መንፈስ ፍለጋ";
+"ghost.search.description" = "በማይታወቅ ሁኔታ በDuckDuckGo በኩል ይፈልጉ (ምንም መከታተያ የለም)";
+"ghost.search.connecting" = "ከማይታወቅ ኔትወርክ ጋር በመገናኘት ላይ...";
+"ghost.search.privacy.note" = "የእርስዎ የፍለጋ ታሪክ በፈጻሚ አይከታተልም";
+
+// MARK: - MCP Servers
+"mcp.filesystem" = "የፋይል ስርዓት";
+"mcp.filesystem.desc" = "በመተግበሪያ ውስጥ ፋይሎችን ያንብቡ እና ይጻፉ";
+"mcp.calendar" = "የቀን መቁጠሪያ";
+"mcp.calendar.desc" = "ክስተቶችን ያንብቡ እና ይጻፉ";
+"mcp.reminders" = "ማስታወሻዎች";
+"mcp.reminders.desc" = "ማስታወሻዎችን ያስተዳድሩ";
+"mcp.contacts" = "እውቂያዎች";
+"mcp.contacts.desc" = "እውቂያዎችን ይፈልጉ እና ይመልከቱ";
+"mcp.photos" = "ፎቶዎች";
+"mcp.photos.desc" = "የፎቶ ቤተ-መጻሕፍትን ይድረሱ";
+"mcp.location" = "አካባቢ";
+"mcp.location.desc" = "የአሁኑን አካባቢ ያግኙ እና ቦታዎችን ይፈልጉ";
+"mcp.health" = "ጤና";
+"mcp.health.desc" = "የጤና መረጃን ይድረሱ";
+"mcp.shortcuts" = "አቋራጮች";
+"mcp.shortcuts.desc" = "አቋራጮችን አሂድ";
+"mcp.websearch" = "ድር ፍለጋ";
+"mcp.websearch.desc" = "ማይታወቅ ድር ፍለጋ";
+"mcp.custom" = "ብጁ ውህደት";
+"mcp.custom.add" = "ውህደት አክል";
+"mcp.custom.setup" = "የውጭ አገልግሎት ውህደትን ያዋቅሩ";
+"mcp.custom.title" = "ብጁ ውህደቶች";
+"mcp.settings.title" = "የውህደት ቅንብሮች";
+"mcp.server.name" = "የአገልጋይ ስም";
+"mcp.server.name.placeholder" = "ለምሳሌ፣ የእኔ ብጁ አገልጋይ";
+"mcp.config.url" = "የማዋቀሪያ ፋይል URL";
+"mcp.import.file" = "ከፋይል አስመጣ";
+"mcp.config.example" = "የማዋቀሪያ ፋይል ምሳሌ";
+"mcp.permission.note" = "እያንዳንዱን ባህሪ ለመጀመሪያ ጊዜ በሚጠቀሙበት ጊዜ ፈቃዶች ይጠየቃሉ";
+
+// MARK: - MCP Tool Messages
+"mcp.tool.available" = "ተገኝ መሣሪያዎች:";
+"mcp.tool.parameters" = "መመዘኛዎች:";
+"mcp.prompt.available" = "ተገኝ ፕሮምፕቶች:";
+"mcp.prompt.arguments" = "ክርክሮች:";
+"mcp.tool.name" = "tool_name";
+"mcp.tool.arg.name" = "arg_name";
+"mcp.tool.arg.value" = "value";
+"mcp.tool.no.result" = "ምንም ውጤት የለም";
+"mcp.tool.running" = "መሣሪያ በማሄድ ላይ: %@";
+"mcp.tool.error" = "የመሣሪያ አፈጻጸም ስህተት: %@";
+
+// MARK: - MCP Error Messages
+"mcp.error.server.not.found" = "አገልጋይ አልተገኘም: %@";
+"mcp.error.tool.not.found" = "መሣሪያ አልተገኘም: %@";
+"mcp.error.invalid.args" = "ልክ ያልሆኑ ክርክሮች: %@";
+"mcp.error.execution" = "የአፈጻጸም ስህተት: %@";
+"mcp.error.permission" = "ፈቃድ ተከልክሏል: %@";
+
+// MARK: - Calendar Messages
+"calendar.no.events" = "ምንም ክስተቶች የሉም";
+"calendar.event.created" = "ክስተት ተፈጥሯል: %@";
+"calendar.event.deleted" = "ክስተት ተሰርዟል: %@";
+"calendar.allday.created" = "ሙሉ ቀን ክስተት ተፈጥሯል: %@";
+"calendar.access.denied" = "የቀን መቁጠሪያ መድረስ ተከልክሏል";
+"calendar.today.none" = "ዛሬ ምንም ክስተቶች የሉም";
+"calendar.untitled" = "ርዕስ የሌለው";
+
+// MARK: - Reminders Messages
+"reminders.none" = "ምንም ማስታወሻዎች የሉም";
+"reminders.created" = "ማስታወሻ ተፈጥሯል: %@";
+"reminders.completed" = "ማስታወሻ ተጠናቋል: %@";
+"reminders.deleted" = "ማስታወሻ ተሰርዟል: %@";
+"reminders.access.denied" = "ማስታወሻዎች መድረስ ተከልክሏል";
+"reminders.untitled" = "ርዕስ የሌለው";
+
+// MARK: - Photos Messages
+"photos.access.denied" = "ፎቶዎች መድረስ ተከልክሏል";
+"photos.not.found" = "ፎቶ አልተገኘም";
+"photos.untitled" = "ርዕስ የሌለው";
+"photos.count" = "ፎቶዎች: %d";
+"photos.videos.count" = "ቪዲዮዎች: %d";
+"photos.albums.count" = "አልበሞች: %d";
+"photos.favorites.count" = "ተወዳጆች: %d";
+"photos.date" = "ቀን: %@";
+"photos.size" = "መጠን: %d x %d";
+"photos.location" = "አካባቢ: %@, %@";
+"photos.media.type" = "የሚዲያ አይነት: %@";
+"photos.duration" = "ርዝመት: %dm %ds";
+"photos.favorite" = "ተወዳጅ: %@";
+"photos.type.image" = "ፎቶ";
+"photos.type.video" = "ቪዲዮ";
+"photos.type.audio" = "ኦዲዮ";
+
+// MARK: - Contacts Messages
+"contacts.access.denied" = "እውቂያዎች መድረስ ተከልክሏል";
+"contacts.not.found" = "ተመሳሳይ እውቂያዎች አልተገኙም";
+"contacts.no.groups" = "ምንም ቡድኖች የሉም";
+"contacts.no.card" = "ምንም የእውቂያ ካርድ አልተዘጋጀም";
+"contacts.name" = "ስም: %@";
+"contacts.company" = "ድርጅት: %@";
+"contacts.job" = "የስራ መጠርያ: %@";
+
+// MARK: - Location Messages
+"location.access.denied" = "አካባቢ መድረስ ተከልክሏል";
+"location.not.found" = "አድራሻ አልተገኘም";
+"location.latitude" = "ኬላሪ: %@";
+"location.longitude" = "ረዥመት: %@";
+"location.accuracy" = "ትክክለኛነት: %dm";
+"location.altitude" = "ከፍታ: %dm";
+"location.search" = "ፍለጋ: %@";
+"location.address" = "አድራሻ: %@";
+"location.country" = "ሀገር: %@";
+"location.postal" = "የፖስታ ኮድ: %@";
+"location.from" = "ከ: (%@, %@)";
+"location.to" = "ወደ: (%@, %@)";
+"location.distance.km" = "ርቀት: %.2f ኪ.ሜ";
+"location.distance.m" = "ርቀት: %d ሜ";
+
+// MARK: - Health Messages
+"health.not.available" = "ጤና በዚህ መሳሪያ ላይ የለም";
+"health.date" = "ቀን: %@";
+"health.steps" = "እርምጃዎች: %@ እርምጃዎች";
+"health.goal.progress" = "የግብ እድገት: %d%% (10,000 እርምጃዎች ግብ)";
+"health.no.data" = "ምንም መረጃ የለም";
+"health.avg.bpm" = "አማካይ: %d bpm";
+"health.min.bpm" = "ዝቅተኛ: %d bpm";
+"health.max.bpm" = "ከፍተኛ: %d bpm";
+"health.measurements" = "መለኪያዎች: %d";
+"health.no.sleep" = "ምንም የእንቅልፍ መረጃ የለም";
+"health.sleep.total" = "ጠቅላላ እንቅልፍ: %dሰ %dደ";
+"health.bedtime" = "የመኝታ ሰዓት: %@";
+"health.waketime" = "የመነቃት ሰዓት: %@";
+"health.calories" = "ካሎሪዎች: %d kcal";
+
+// MARK: - File System Messages
+"filesystem.not.found" = "ፋይል አልተገኘም: %@";
+"filesystem.written" = "ፋይል ተጽፏል: %@";
+"filesystem.dir.created" = "ዲレክተሪ ተፈጥሯል: %@";
+"filesystem.deleted" = "ተሰርዟል: %@";
+"filesystem.size" = "መጠን: %@";
+"filesystem.created" = "ተፈጥሯል: %@";
+"filesystem.modified" = "ተሻሽሏል: %@";
+"filesystem.type" = "አይነት: %@";
+
+// MARK: - Shortcuts Messages
+"shortcuts.executed" = "አቋራጭ '%@' ተከናውኗል";
+"shortcuts.opened" = "አቋራጮች መተግበሪያ ተከፍቷል";
+"shortcuts.settings.opened" = "ቅንብሮች (%@) ተከፍተዋል";
+"shortcuts.mail.opened" = "የፖስታ አጻጻፍ ተከፍቷል";
+"shortcuts.calling" = "በመደወል ላይ: %@";
+"shortcuts.message.opened" = "የመልዕክት አጻጻፍ ተከፍቷል";
+"shortcuts.failed" = "አቋራጭ መክፈት አልተቻለም";
+
+// MARK: - Model Tiers
+"model.tier.entry" = "መግቢያ";
+"model.tier.standard" = "መደበኛ";
+"model.tier.pro" = "ፕሮ";
+
+// MARK: - Tool Parser
+"tool.arguments" = "ክርክሮች:";
+
+// MARK: - Model Settings
+"model.action.settings" = "ቅንብሮች";
+"settings.model.parameters" = "የሞዴል ቅንብሮች";
+"settings.model.parameters.description" = "ለዚህ ሞዴል የማመንጨት መመዘኛዎችን ያብጁ";
+"settings.preset.title" = "ቅድመ-ስምሪቶች";
+"settings.preset.custom" = "ብጁ";
+"settings.preset.balanced" = "ሚዛናዊ";
+"settings.preset.creative" = "ፈጠራዊ";
+"settings.preset.precise" = "ትክክለኛ";
+"settings.preset.coding" = "ኮዲንግ";
+"settings.preset.japanese" = "ጃፓንኛ";
+"settings.parameters.title" = "መመዘኛዎች";
+"settings.parameter.temperature" = "ሙቀት";
+"settings.parameter.temperature.description" = "ከፍ ያለ = የበለጠ ፈጠራዊ፣ ዝቅ ያለ = የበለጠ ትኩረት ያለው";
+"settings.parameter.top.p" = "Top P";
+"settings.parameter.top.p.description" = "የኑክሌስ ናሙና ዕድል";
+"settings.parameter.top.k" = "Top K";
+"settings.parameter.top.k.description" = "ለማሰብ የላይኛ ቶከኖች ብዛት";
+"settings.parameter.max.tokens" = "ከፍተኛ ቶከኖች";
+"settings.parameter.max.tokens.description" = "ከፍተኛ የምላሽ ርዝመት";
+"settings.parameter.repeat.penalty" = "ድግግሞሽ ቅጣት";
+"settings.parameter.repeat.penalty.description" = "ከፍ ያለ = ያነሰ ድግግሞሽ ውጤት";
+"settings.parameter.thinking" = "የማሰብ ሁኔታ";
+"settings.parameter.thinking.description" = "የAI አመክንዮ ሂደትን አሳይ";
+"settings.system.prompt.title" = "የስርዓት ፕሮምፕት";
+"settings.system.prompt.description" = "ለAI ብጁ መመሪያዎች";
+"settings.reset.to.default" = "ወደ ነባሪ ዳግም አስጀምር";
+
+// MARK: - Vision Model
+"vision.model.required.title" = "የእይታ ሞዴል ያስፈልጋል";
+"vision.model.required.header" = "የምስል ማወቂያ ያስፈልጋል";
+"vision.model.required.description" = "ምስሎችን ለመተንተን የእይታ-ብቃት ያለው AI ሞዴል ያስፈልግዎታል";
+"vision.model.switch" = "ሞዴል ቀይር";
+"vision.model.switch.message %@" = "ወደ %@ ቀይር የምስል ትንተናን ለማንቃት?";
+"vision.model.download" = "አውርድ";
+"vision.model.download.message %@ %@" = "%@ (%@) አውርድ ምስሎችን ለመተንተን?";
+"vision.model.not.available" = "ለእርስዎ መሣሪያ ምንም ተኳሃኝ የእይታ ሞዴል የለም";
+"vision.model.switching" = "ሞዴል በመቀየር ላይ...";
+"vision.model.download.title" = "የእይታ ሞዴሎች";
+"vision.model.recommended" = "ለእርስዎ መሣሪያ የሚመከር";
+"vision.model.recommended.size %@" = "የሚመከር: %@";
+"vision.model.use.this" = "ይህን ሞዴል ተጠቀም";
+"vision.model.download.button %@" = "አውርድ (%@)";
+"vision.model.other.options" = "ሌሎች የእይታ ሞዴሎች";
+"vision.model.download.complete" = "ማውረድ ተጠናቋል";
+"vision.model.download.complete.message" = "ምስሎችን ለመተንተን ዝግጁ";
+
+// MARK: - Whisper Voice Input (Legacy)
+"whisper.download.title" = "የድምጽ ማወቂያ ያስፈልጋል";
+"whisper.download.action" = "አውርድ";
+"whisper.download.message" = "የድምጽ ግቤትን ለመጠቀም የንግግር ማወቂያ ሞዴልን ማውረድ አለብዎት (~150MB)።";
+"whisper.downloading" = "የንግግር ማወቂያ ሞዴል በማውረድ ላይ...";
+"whisper.download.error" = "የማውረድ ስህተት";
+"whisper.load.error" = "የሞዴል ጫኛ ስህተት";
+"whisper.permission.denied" = "የማይክሮፎን መድረስ አልተፈቀደም";
+"whisper.transcribe.error" = "የትርጉም ስህተት";
+"whisper.error.permission" = "የማይክሮፎን ፈቃድ ያስፈልጋል";
+"whisper.error.not.recording" = "በአሁኑ ጊዜ በመቅረጽ ላይ አይደለም";
+"whisper.error.no.recording" = "ምንም የቅጣ መረጃ የለም";
+"whisper.error.model.not.loaded" = "የንግግር ማወቂያ ሞዴል አልተጫነም";
+"whisper.error.transcription" = "ትርጉም አልተሳካም";
+
+// MARK: - Speech Recognition (ReazonSpeech)
+"speech.download.title" = "የድምጽ ማወቂያ ያስፈልጋል";
+"speech.download.action" = "አውርድ";
+"speech.download.message" = "የድምጽ ግቤትን ለመጠቀም የጃፓን የንግግር ማወቂያ ሞዴልን ማውረድ አለብዎት (~155MB)።";
+"speech.downloading" = "የንግግር ማወቂያ ሞዴል በማውረድ ላይ...";
+
+// MARK: - Language Settings
+"settings.language.section" = "ቋንቋ";
+"language.system" = "የስርዓት ቋንቋ ተጠቀም";
+"settings.language.restart.hint" = "የቋንቋ ለውጦች መተግበሪያውን ከዳግም ማስጀመር በኋላ ተግባራዊ ይሆናሉ";
+"settings.language.changed.title" = "ቋንቋ ተቀይሯል";
+"settings.language.changed.message" = "እባክዎ ለውጦቹን ለመተግበር መተግበሪያውን ዳግም ያስጀምሩ";
+"common.ok" = "እሺ";
+
+// MARK: - System Prompt Settings
+"settings.prompt.section" = "የስርዓት ፕሮምፕት";
+"settings.prompt.edit" = "ፕሮምፕት አርትዕ";
+"settings.prompt.default" = "ነባሪን በመጠቀም ላይ";
+"settings.prompt.custom" = "ብጁ ፕሮምፕት ተዘጋጅቷል";
+"settings.prompt.hint" = "የAI ባህሪን ያብጁ";
+"settings.prompt.editor.title" = "ፕሮምፕት አርትዕ";
+"settings.prompt.editor.instruction" = "ለAI ብጁ መመሪያዎችን ያክሉ። ነባሪውን ፕሮምፕት ለመጠቀም ባዶ ይተዉ።";
+"settings.prompt.default.preview" = "ነባሪ ፕሮምፕት (በከፊል):";
+"settings.prompt.reset" = "ዳግም ጀምር";
+"settings.prompt.reset.title" = "ፕሮምፕት ዳግም ጀምር";
+"settings.prompt.reset.message" = "ብጁ ፕሮምፕትን ሰርዝ እና ወደ ነባሪ መልስ?";
+
+// MARK: - Prompt Templates
+"templates.title" = "የፕሮምፕት አብነቶች";
+"templates.empty" = "ገና ምንም አብነቶች የሉም";
+"templates.add" = "አብነት አክል";
+"template.add.title" = "አብነት አክል";
+"template.edit.title" = "አብነት አርትዕ";
+"template.name.header" = "ስም";
+"template.name.placeholder" = "የአብነት ስም";
+"template.content.header" = "የፕሮምፕት ይዘት";
+"template.icon.header" = "አዶ";
+"template.translate.name" = "ተርጉም";
+"template.translate.content" = "እባክዎ የሚከተለውን ይተርጉሙ: ";
+"template.summarize.name" = "አጠቃለል";
+"template.summarize.content" = "እባክዎ የሚከተለውን ያጠቃልሉ: ";
+"template.explain.name" = "አብራራ";
+"template.explain.content" = "እባክዎ የሚከተለውን ያብራሩ: ";
+"template.code.name" = "ኮድ";
+"template.code.content" = "እባክዎ ኮድ ይጻፉ: ";
+
+// MARK: - Export
+"export.title" = "ውይይት ላክ";
+"export.format.markdown" = "Markdown";
+"export.format.pdf" = "PDF";
+"export.format.text" = "መደበኛ ጽሁፍ";
+"export.created" = "ተፈጥሯል";
+"export.image.attached" = "ምስል ተያይዟል";
+"export.generated.by" = "የተፈጠረ በ";
+
+// MARK: - Loading Phases
+"loading.phase.initializing" = "በማስጀመር ላይ...";
+"loading.phase.loading" = "ሞዴል በመጫን ላይ...";
+"loading.phase.preparing" = "የተናደድ ሞተርን በማዘጋጀት ላይ...";
+"loading.phase.almost" = "ሁሉም ነገር ዝግጁ ነው...";
+
+// MARK: - Welcome Screen
+"welcome.greeting" = "ማንኛውንም ነገር ጠይቀኝ";
+"welcome.subtitle" = "የእርስዎ ግላዊነት-መጀመሪያ AI ረዳት";
+"suggestion.idea" = "ሀሳቦችን በመረመር ውስጥ እርዱኝ";
+"suggestion.write" = "አንድ ነገር መጻፍ እርዱኝ";
+"suggestion.question" = "ጥያቄዎቼን መልስ";
+
+// MARK: - Kokoro TTS
+"tts.download.title" = "ከፍተኛ-ጥራት ድምጽ";
+"tts.download.action" = "አውርድ";
+"tts.download.use_system" = "የስርዓት ድምጽ ተጠቀም";
+"tts.download.message" = "Kokoro TTS ሞዴሉን ያውርዱ (~87MB) ለበለጠ የተፈጥሮ ጃፓንኛ ጽሁፍ-ወደ-ንግግር።";
+"tts.downloading" = "TTS ሞዴል በማውረድ ላይ...";
+
+// MARK: - Feedback
+"feedback.consent.title" = "አስተያየት ላክ";
+"feedback.send" = "ላክ";
+"feedback.positive.title" = "ይህ ምላሽ ጠቃሚ ነበር?";
+"feedback.negative.title" = "ይህ ሊሻሻል ይችላል?";
+"feedback.explanation" = "የእርስዎ አስተያየት የAI ጥራትን ለማሻሻል ይረዳል። ከማስገባትዎ በፊት ምን መረጃ እንደሚላክ እባክዎ ይመልከቱ።";
+"feedback.data.section" = "የሚላክ መረጃ";
+"feedback.data.conversation" = "ውይይት";
+"feedback.data.conversation.desc" = "የAI ምላሽ እና የእርስዎ የቀድሞ መልዕክት";
+"feedback.data.model" = "የሞዴል መረጃ";
+"feedback.data.model.desc" = "የተጠቀመው AI ሞዴል ስም";
+"feedback.data.timestamp" = "የጊዜ ማህተም";
+"feedback.data.timestamp.desc" = "አስተያየቱ መቼ እንደገባ";
+"feedback.privacy.section" = "ግላዊነት";
+"feedback.privacy.anonymous" = "ምንም ግላዊ መለያ መረጃ አይላክም";
+"feedback.privacy.improvement" = "የAI ጥራትን ለማሻሻል ብቻ ጥቅም ላይ ይውላል";
+"feedback.privacy.optional" = "አስተያየት መላክ ሙሉ በሙሉ አማራጭ ነው";
+"feedback.comment.section" = "አስተያየት (አማራጭ)";
+"feedback.comment.placeholder" = "ምን ሊሻሻል እንደሚችል ወይም ምን መልካም እንደሰራ ይንገሩን...";
+"feedback.remember.title" = "ይህን ምርጫ አስታውስ";
+"feedback.remember.description" = "ቀጣዩን ጊዜ ሳይጠየቅ አስተያየት አስገባ";
+
+// MARK: - Emergency Mode
+"emergency.sos.button" = "የድንገተኛ አደጋ ሁኔታ (ለመቀየር ረጅም ጊዜ ተጫን)";
+"emergency.mode.active" = "የድንገተኛ አደጋ ሁኔታ ንቁ";
+"emergency.action.firstaid" = "የመጀመሪያ እርዳታ";
+"emergency.action.firstaid.message" = "እባክዎ የመጀመሪያ እርዳታ መመሪያዎችን ያቅርቡ። ቁስሉን ወይም ምልክቶችን እገልጻለሁ: ";
+"emergency.action.disaster" = "አደጋ";
+"emergency.action.disaster.message" = "አደጋ ተከስቷል። እባክዎ የምላሽ አሰራሮችን ያቅርቡ: ";
+"emergency.action.factcheck" = "እውነታ ፍተሻ";
+"emergency.action.factcheck.message" = "እባክዎ የዚህን መረጃ ታማኝነት ያረጋግጡ: ";
+"emergency.action.contacts" = "አደጋ";
+"emergency.action.contacts.message" = "እባክዎ የድንገተኛ አደጋ የእውቂያ ቁጥሮች ዝርዝር ያሳዩኝ";
+"emergency.action.evacuation" = "ለቀው ይውጡ";
+"emergency.action.evacuation.message" = "እባክዎ ለአሁኑ ሁኔታ የመውጫ ቼክሊስት ይፍጠሩ: ";
+"mcp.emergency_kb" = "የድንገተኛ አደጋ KB";
+"mcp.emergency_kb.desc" = "የድንገተኛ አደጋ & አደጋ መረጃ";
+
+// MARK: - Emergency Templates
+"template.firstaid.name" = "የመጀመሪያ እርዳታ መመሪያ";
+"template.firstaid.content" = "እባክዎ የመጀመሪያ እርዳታ መመሪያዎችን ያቅርቡ ለ: ";
+"template.disaster.name" = "የአደጋ ምላሽ";
+"template.disaster.content" = "የሚከተለው አደጋ ተከስቷል። እባክዎ የምላሽ አሰራሮችን ያቅርቡ: ";
+"template.factcheck.name" = "እውነታ ፍተሻ";
+"template.factcheck.content" = "እባክዎ የዚህን መረጃ ታማኝነት ያረጋግጡ እና የእውነታ-ፍተሻ ምክሮችን ያቅርቡ: ";
+"template.evacuation.name" = "የመውጫ ቼክሊስት";
+"template.evacuation.content" = "እባክዎ ለአሁኑ ሁኔታ የመውጫ ቼክሊስት ይፍጠሩ: ";
+
+// MARK: - ChatWeb.ai Integration
+"chatweb.title" = "ChatWeb.ai";
+"chatweb.desc" = "ክላውድ AI ውይይት";
+"chatweb.connect" = "ከChatWeb.ai ጋር ተገናኝ";
+"chatweb.qr.title" = "በQR ኮድ በኩል ተገናኝ";
+"chatweb.qr.scan" = "QR ኮድ ስካን ያድርጉ";
+"chatweb.open" = "ChatWeb.ai ክፈት";
+
+// MARK: - Peer Connection
+"peer.title" = "በአቅራቢያ ያሉ መሣሪያዎች";
+"peer.desc" = "ከአቅራቢያ ባሉ Elio መሣሪያዎች ጋር ተገናኝ";
+"peer.connect" = "ከመሣሪያ ጋር ተገናኝ";
+"peer.code.title" = "የግንኙነት ኮድ";
+"peer.code.enter" = "4-አኃዝ ኮድ አስገባ";
+"peer.code.your" = "የእርስዎ ኮድ";
+"peer.connected" = "ተገናኝቷል";
+"peer.disconnected" = "ተቋርጧል";
+"peer.inference.offload" = "ተናደድ በማካፈል ላይ";
+
+// MARK: - Web Search
+"chat.web.search" = "ድር ፍለጋ";
+"search.privacy.title" = "ግላዊነት-የተጠበቀ ፍለጋ";
+"search.privacy.proceed" = "ፈልግ";
+"search.privacy.message" = "ElioChat ድር ፍለጋ ግላዊነትዎን ይጠብቃል:\n\n🔒 በDuckDuckGo በኩል ይፈልጋል\n🚫 ምንም መከታተያ ወይም መገለጫ የለም\n🔐 የፍለጋ ታሪክ አይቀመጥም\n📱 ከእርስዎ መሣሪያ ውጭ ምንም መረጃ አይቀመጥም\n\nየእርስዎ የፍለጋ ጥያቄ ብቻ ወደ DuckDuckGo ይላካል፣ እና ውጤቶች በእርስዎ መሣሪያ ላይ ይሰራሉ።";
+"chat.web.analyzing" = "[ድር ገጽ በመተንተን ላይ]";

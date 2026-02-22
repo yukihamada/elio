@@ -1,0 +1,635 @@
+/*
+  Localizable.strings (Greek)
+  Elio
+*/
+
+// MARK: - App General
+"app.name" = "Elio";
+"app.tagline" = "Ο δεύτερος εγκέφαλός σου που κρατάει μυστικά.";
+
+// MARK: - Common Actions
+"common.done" = "Τέλος";
+"common.cancel" = "Ακύρωση";
+"common.delete" = "Διαγραφή";
+"common.save" = "Αποθήκευση";
+"common.edit" = "Επεξεργασία";
+"common.share" = "Κοινοποίηση";
+"common.copy" = "Αντιγραφή";
+"common.copied" = "Αντιγράφηκε";
+"common.loading" = "Φόρτωση...";
+"common.error" = "Σφάλμα";
+"common.retry" = "Επανάληψη";
+"common.skip" = "Παράλειψη";
+"common.next" = "Επόμενο";
+"common.start" = "Ξεκινήστε";
+"common.add" = "Προσθήκη";
+"common.close" = "Κλείσιμο";
+"common.details" = "Λεπτομέρειες";
+"common.yes" = "Ναι";
+"common.no" = "Όχι";
+"common.unknown" = "Άγνωστο";
+
+// MARK: - Chat
+"chat.placeholder" = "Ρωτήστε με οτιδήποτε";
+"chat.model.not.loaded" = "Κανένα μοντέλο δεν φορτώθηκε";
+"chat.model.not.loaded.description" = "Παρακαλώ κατεβάστε ένα μοντέλο από τις Ρυθμίσεις";
+"chat.go.to.settings" = "Μεταβείτε στις Ρυθμίσεις";
+"chat.new.conversation" = "Νέα συνομιλία";
+"chat.stop.generation" = "Διακοπή";
+"chat.generation.stopped" = "\n\n[Η παραγωγή διακόπηκε]";
+"chat.image.sent" = "[Εικόνα στάλθηκε]";
+"chat.images.sent" = "[%d εικόνες στάλθηκαν]";
+"chat.pdf.sent" = "[PDF επισυνάφθηκε: %@]";
+"chat.pdf.sent.vision" = "[PDF με εικόνα: %@]";
+"chat.pdf.context" = "Το παρακάτω είναι περιεχόμενο κειμένου από το έγγραφο PDF \"%@\":\n\n%@";
+"chat.pdf.context.vision" = "Αυτή είναι η σελίδα 1 του εγγράφου PDF \"%@\". Το περιεχόμενο κειμένου είναι:\n\n%@\n\nΠαρακαλώ αναλύστε τόσο το οπτικό περιεχόμενο όσο και το κείμενο.";
+"chat.pdf.analyze" = "Παρακαλώ αναλύστε αυτήν τη σελίδα PDF από \"%@\".";
+"chat.url.sent" = "[Ιστοσελίδα: %@]";
+"chat.url.context" = "Το παρακάτω είναι περιεχόμενο από την ιστοσελίδα \"%@\" (%@):\n\n%@";
+"chat.thinking" = "Σκέφτομαι...";
+"chat.generating" = "Δημιουργία απάντησης...";
+"chat.welcome" = "Πώς μπορώ να σας βοηθήσω;";
+"chat.suggestion.schedule" = "Εμφάνιση του σημερινού προγράμματος";
+"chat.suggestion.reminder" = "Δημιουργία υπενθύμισης";
+"chat.suggestion.weather" = "Τι καιρό κάνει σήμερα;";
+"chat.suggestion.help" = "Πώς να χρησιμοποιήσετε αυτήν την εφαρμογή";
+"chat.websearch.on" = "Αναζήτηση Ιστού Ενεργή";
+"chat.websearch.off" = "Αναζήτηση Ιστού Ανενεργή";
+"chat.thinking.on" = "Σκέψη Ενεργή";
+"chat.thinking.off" = "Σκέψη Ανενεργή";
+"chat.transcribing" = "Μεταγραφή...";
+"chat.offline" = "Εκτός σύνδεσης";
+
+// Voice Conversation Mode
+"voice.listening" = "Ακούω...";
+"voice.processing" = "Επεξεργασία...";
+"voice.thinking" = "Σκέφτομαι...";
+"voice.speaking" = "Μιλάω...";
+"voice.tap.to.send" = "Πατήστε για αποστολή";
+"chat.templates" = "Πρότυπα";
+"chat.websearch.privacy.title" = "Σχετικά με την Αναζήτηση Ιστού";
+"chat.websearch.privacy.message" = "Η ενεργοποίηση της αναζήτησης ιστού επιτρέπει στην τεχνητή νοημοσύνη να αναζητά στο διαδίκτυο μέσω του DuckDuckGo για ενημερωμένες πληροφορίες. Τα ερωτήματα αναζήτησης αποστέλλονται στο DuckDuckGo αλλά δεν παρακολουθούνται.";
+"chat.websearch.privacy.enable" = "Ενεργοποίηση";
+"chat.websearch.privacy.disable" = "Διατήρηση Απενεργοποιημένης";
+
+// MARK: - Settings
+"settings.title" = "Ρυθμίσεις";
+"settings.model.section" = "Μοντέλα Τεχνητής Νοημοσύνης";
+"settings.model.recommended" = "Προτεινόμενο: %@";
+"settings.model.local.execution" = "Τα μοντέλα εκτελούνται τοπικά στη συσκευή σας";
+"settings.model.show.more" = "Άλλα μοντέλα (%d)";
+"settings.model.show.less" = "Εμφάνιση λιγότερων";
+"settings.appearance.section" = "Εμφάνιση";
+"settings.tools.section" = "Έξυπνες λειτουργίες";
+"settings.mcp.servers" = "Ενσωματώσεις";
+"settings.mcp.servers.description" = "Ημερολόγιο, Αρχεία, Υπενθυμίσεις και άλλα";
+"settings.mcp.enabled.count" = "%d ενεργοποιημένα";
+"settings.mcp.enabled.count.suffix" = " ενεργοποιημένα";
+"settings.about.section" = "Πληροφορίες";
+"settings.version" = "Έκδοση";
+"settings.about.app" = "Σχετικά με αυτήν την εφαρμογή";
+"settings.about.mcp" = "Σχετικά με τις ενσωματώσεις";
+"settings.privacy.badge" = "Λειτουργεί εκτός σύνδεσης";
+"settings.privacy.description" = "Λειτουργεί σε λειτουργία πτήσης";
+"settings.airplane.mode" = "Εκτέλεση σε λειτουργία πτήσης";
+"settings.offline.ready" = "Έτοιμο για χρήση εκτός σύνδεσης";
+
+// MARK: - Model States
+"model.status.downloading" = "Λήψη... %d%%";
+"model.status.loading" = "Φόρτωση...";
+"model.status.in.use" = "Σε χρήση";
+"model.status.recommended" = "Προτεινόμενο";
+"model.status.heavy" = "Βαρύ";
+"model.action.download" = "Λήψη";
+"model.action.load" = "Φόρτωση";
+"model.action.delete" = "Διαγραφή";
+"model.action.use" = "Χρήση αυτού του μοντέλου";
+"model.delete.confirm.title" = "Διαγραφή μοντέλου";
+"model.delete.confirm.message" = "Διαγραφή %@; Θα χρειαστεί να το κατεβάσετε ξανά για να το χρησιμοποιήσετε.";
+"model.select.title" = "Επιλογή μοντέλου";
+"model.select.prompt" = "Παρακαλώ επιλέξτε ένα μοντέλο";
+"model.downloaded" = "Λήψη ολοκληρώθηκε";
+
+// MARK: - Inference Mode
+"inference.mode.title" = "Επιτάχυνση";
+"inference.mode.auto" = "Αυτόματο";
+"inference.mode.auto.desc" = "Βέλτιστη απόδοση αυτόματα";
+"inference.mode.gpu" = "GPU (Metal)";
+"inference.mode.gpu.desc" = "Μέγιστη ταχύτητα με Metal";
+"inference.mode.cpu" = "Μόνο CPU";
+"inference.mode.cpu.desc" = "Λειτουργία εξοικονόμησης μπαταρίας";
+"inference.mode.hybrid" = "Υβριδική";
+"inference.mode.hybrid.desc" = "Ισορροπία ταχύτητας και μπαταρίας";
+
+// MARK: - Theme
+"theme.system" = "Σύστημα";
+"theme.light" = "Ανοιχτό";
+"theme.dark" = "Σκούρο";
+
+// MARK: - Onboarding
+"onboarding.welcome.title" = "Καλώς ήρθατε στο ElioChat";
+"onboarding.welcome.subtitle" = "Ο προσωπικός σας βοηθός τεχνητής νοημοσύνης";
+"onboarding.features.title" = "Πραγματικά Ιδιωτική Τεχνητή Νοημοσύνη";
+"onboarding.feature.offline" = "Λειτουργεί σε λειτουργία πτήσης";
+"onboarding.feature.offline.desc" = "Χρησιμοποιήστε το σε πτήσεις ή υπόγεια";
+"onboarding.feature.privacy" = "Μηδενική μεταφορά δεδομένων";
+"onboarding.feature.privacy.desc" = "Οι συνομιλίες σας δεν εγκαταλείπουν ποτέ το τηλέφωνό σας";
+"onboarding.feature.vault" = "Έξυπνες ενσωματώσεις";
+"onboarding.feature.vault.desc" = "Σύνδεση με Ημερολόγιο και Αρχεία";
+"onboarding.feature.secure" = "Ασφαλής Τεχνητή Νοημοσύνη για Εργασία";
+"onboarding.feature.secure.desc" = "Ασφαλές για εταιρική χρήση";
+"onboarding.feature.thinking" = "Διαδικασία σκέψης";
+"onboarding.privacy.title" = "Τα δεδομένα σας παραμένουν δικά σας";
+"onboarding.privacy.item1" = "Όλη η επεξεργασία γίνεται στο iPhone σας";
+"onboarding.privacy.item2" = "Δεν αποστέλλονται δεδομένα σε διακομιστές cloud";
+"onboarding.privacy.item3" = "Δεν χρησιμοποιούνται ποτέ για εκπαίδευση τεχνητής νοημοσύνης";
+"onboarding.getstarted.title" = "Έτοιμο με ένα πάτημα";
+"onboarding.getstarted.subtitle" = "Κατεβάστε το προτεινόμενο μοντέλο τεχνητής νοημοσύνης\nκαι ξεκινήστε τη συνομιλία αμέσως";
+"onboarding.step1" = "Λήψη προτεινόμενου μοντέλου";
+"onboarding.step2" = "Περιμένετε μερικά λεπτά";
+"onboarding.step3" = "Είστε έτοιμοι!";
+
+// MARK: - About
+"about.title" = "Σχετικά με αυτήν την εφαρμογή";
+"about.rate.app" = "Αξιολόγηση εφαρμογής";
+"about.share.app" = "Κοινοποίηση σε φίλους";
+"about.privacy.policy" = "Πολιτική απορρήτου";
+"about.terms" = "Όροι χρήσης";
+"about.tech.info" = "Τεχνικές πληροφορίες";
+"about.tech.engine" = "Μηχανή Τεχνητής Νοημοσύνης";
+"about.tech.format" = "Υποστηριζόμενη μορφή";
+"about.tech.inference" = "Συμπερασμός";
+"about.data.management" = "Διαχείριση δεδομένων";
+"about.delete.all" = "Διαγραφή όλων των συνομιλιών";
+"about.credits" = "Συντελεστές";
+"about.credits.description" = "Αυτή η εφαρμογή χρησιμοποιεί βιβλιοθήκες ανοιχτού κώδικα";
+"about.privacy.section" = "Απόρρητο";
+"about.gguf.format" = "Μορφή GGUF";
+"about.metal.gpu" = "Επιτάχυνση Metal GPU";
+
+// MARK: - Referral
+"referral.title" = "Προτείνετε σε φίλους";
+"referral.code.title" = "Ο κωδικός παραπομπής σας";
+"referral.code.copy" = "Αντιγραφή κωδικού";
+"referral.code.copied" = "Αντιγράφηκε";
+"referral.share.button" = "Κοινοποίηση σε φίλους";
+"referral.share.description" = "Μοιραστείτε το Elio με τους φίλους σας!";
+"referral.count" = "Προτείνατε %d άτομα";
+"referral.enter.title" = "Εισαγωγή κωδικού παραπομπής";
+"referral.enter.placeholder" = "Κωδικός παραπομπής";
+"referral.enter.button" = "Εφαρμογή";
+"referral.enter.success" = "Ο κωδικός παραπομπής εφαρμόστηκε";
+"referral.enter.error" = "Μη έγκυρος κωδικός παραπομπής";
+
+// MARK: - Privacy Policy
+"privacy.title" = "Πολιτική απορρήτου";
+"privacy.data.collection.title" = "Συλλογή δεδομένων";
+"privacy.data.collection.content" = "Αυτή η εφαρμογή εκτελεί τοπική τεχνητή νοημοσύνη εντελώς εκτός σύνδεσης.\nΔεν αποστέλλονται δεδομένα σε εξωτερικούς διακομιστές.\nΌλες οι συνομιλίες αποθηκεύονται μόνο στη συσκευή σας.";
+"privacy.stored.data.title" = "Αποθηκευμένα δεδομένα";
+"privacy.stored.data.content" = "Ιστορικό συνομιλιών (αποθηκευμένο μόνο στη συσκευή)\nΑρχεία μοντέλου τεχνητής νοημοσύνης (αποθηκευμένα μόνο στη συσκευή)\nΡυθμίσεις εφαρμογής (αποθηκευμένες μόνο στη συσκευή)\n\nΑυτά τα δεδομένα δεν κοινοποιούνται ποτέ εξωτερικά.";
+"privacy.data.deletion.title" = "Διαγραφή δεδομένων";
+"privacy.data.deletion.content" = "Μπορείτε να διαγράψετε όλα τα δεδομένα ανά πάσα στιγμή από Ρυθμίσεις > Διαχείριση δεδομένων.\nΗ απεγκατάσταση της εφαρμογής θα διαγράψει όλα τα δεδομένα.";
+
+// MARK: - Terms of Service
+"terms.title" = "Όροι χρήσης";
+"terms.service.title" = "Περιγραφή υπηρεσίας";
+"terms.service.content" = "Αυτή η εφαρμογή παρέχει λειτουργικότητα βοηθού τεχνητής νοημοσύνης χρησιμοποιώντας ένα μοντέλο τεχνητής νοημοσύνης που εκτελείται τοπικά.";
+"terms.disclaimer.title" = "Αποποίηση ευθύνης";
+"terms.disclaimer.content" = "Οι απαντήσεις τεχνητής νοημοσύνης μπορεί να περιέχουν σφάλματα.\nΟι σημαντικές αποφάσεις πρέπει πάντα να επιβεβαιώνονται από έναν επαγγελματία.\nΔεν ευθυνόμαστε για τυχόν ζημίες που προκύπτουν από τη χρήση αυτής της εφαρμογής.";
+"terms.prohibited.title" = "Απαγορευμένες δραστηριότητες";
+"terms.prohibited.content" = "Παράνομες δραστηριότητες\nΔραστηριότητες που παραβιάζουν δικαιώματα άλλων\nΑντιστρεπτή μηχανική αυτής της εφαρμογής\nΜη εξουσιοδοτημένη αντιγραφή αυτής της εφαρμογής";
+"terms.ip.title" = "Πνευματική ιδιοκτησία";
+"terms.ip.content" = "Τα δικαιώματα πνευματικής ιδιοκτησίας αυτής της εφαρμογής ανήκουν στον προγραμματιστή.\nΗ μη εξουσιοδοτημένη χρήση απαγορεύεται.";
+
+// MARK: - Conversations
+"conversations.title" = "Συνομιλίες";
+"conversations.new" = "Νέα συνομιλία";
+"conversations.empty" = "Δεν υπάρχουν ακόμη συνομιλίες";
+"conversations.delete" = "Διαγραφή συνομιλίας";
+"conversations.default.title" = "Νέα συνομιλία";
+"conversations.today" = "Σήμερα";
+"conversations.yesterday" = "Χθες";
+"conversations.past7days" = "Τελευταίες 7 ημέρες";
+"conversations.past30days" = "Τελευταίες 30 ημέρες";
+"conversations.older" = "Παλαιότερες";
+"conversations.created" = "Δημιουργήθηκε: %@";
+"conversations.user" = "Χρήστης";
+"conversations.assistant" = "Βοηθός";
+"conversations.search.placeholder" = "Αναζήτηση συνομιλιών";
+"conversations.search.no_results" = "Δεν βρέθηκαν αποτελέσματα";
+
+// MARK: - Message Actions
+"message.copy" = "Αντιγραφή";
+"message.speak" = "Ομιλία";
+"message.stop.speaking" = "Διακοπή ομιλίας";
+"message.share" = "Κοινοποίηση";
+"message.share.card" = "Κοινοποίηση ως κάρτα";
+"message.like" = "Μου αρέσει";
+
+// MARK: - Share Card
+"share.card.title" = "Κοινοποίηση κάρτας";
+"share.card.preview" = "Προεπισκόπηση";
+"share.card.button" = "Κοινοποίηση εικόνας";
+"message.dislike" = "Δεν μου αρέσει";
+"message.thinking.process" = "Διαδικασία σκέψης";
+"message.tool.running" = "Εκτέλεση εργαλείου";
+"message.tool.error" = "Σφάλμα";
+"message.tool.completed" = "Ολοκληρώθηκε";
+
+// MARK: - Attachment
+"attachment.title" = "Συνημμένο";
+"attachment.photo.library" = "Επιλογή φωτογραφίας";
+"attachment.camera" = "Λήψη φωτογραφίας";
+"attachment.pdf" = "Επιλογή PDF";
+"attachment.pdf.chars" = "%d χαρακτήρες";
+"attachment.pdf.pages" = "%d σελίδες";
+"attachment.pdf.vision.enabled" = "Ανάλυση εικόνας ενεργοποιημένη";
+"attachment.pdf.text.only" = "Λειτουργία μόνο κειμένου";
+"attachment.url" = "Ανάγνωση ιστοσελίδας";
+"attachment.url.title" = "Εισαγωγή URL";
+"attachment.url.placeholder" = "https://παράδειγμα.com";
+"attachment.url.message" = "Επικολλήστε ένα URL για να εξαγάγετε το περιεχόμενό του";
+"attachment.url.fetch" = "Λήψη";
+"attachment.url.loading" = "Φόρτωση σελίδας...";
+
+// MARK: - Errors
+"error.model.not.found" = "Το αρχείο μοντέλου δεν βρέθηκε";
+"error.model.not.loaded" = "Το μοντέλο δεν φορτώθηκε";
+"error.context.failed" = "Αποτυχία δημιουργίας πλαισίου";
+"error.tokenization.failed" = "Αποτυχία tokenization";
+"error.generation.failed" = "Σφάλμα παραγωγής: %@";
+"error.occurred" = "Προέκυψε σφάλμα: %@";
+"error.invalid.url" = "Μη έγκυρο URL";
+"error.download.failed" = "Αποτυχία λήψης";
+"error.extraction.failed" = "Αποτυχία εξαγωγής";
+"error.config.not.found" = "Το αρχείο ρυθμίσεων δεν βρέθηκε";
+
+// MARK: - Ghost Search
+"ghost.search.title" = "Αναζήτηση φαντάσματος";
+"ghost.search.description" = "Ανώνυμη αναζήτηση μέσω DuckDuckGo (χωρίς παρακολούθηση)";
+"ghost.search.connecting" = "Σύνδεση σε ανώνυμο δίκτυο...";
+"ghost.search.privacy.note" = "Το ιστορικό αναζητήσεών σας δεν παρακολουθείται ποτέ";
+
+// MARK: - MCP Servers
+"mcp.filesystem" = "Σύστημα αρχείων";
+"mcp.filesystem.desc" = "Ανάγνωση και εγγραφή αρχείων στην εφαρμογή";
+"mcp.calendar" = "Ημερολόγιο";
+"mcp.calendar.desc" = "Ανάγνωση και εγγραφή εκδηλώσεων";
+"mcp.reminders" = "Υπενθυμίσεις";
+"mcp.reminders.desc" = "Διαχείριση υπενθυμίσεων";
+"mcp.contacts" = "Επαφές";
+"mcp.contacts.desc" = "Αναζήτηση και προβολή επαφών";
+"mcp.photos" = "Φωτογραφίες";
+"mcp.photos.desc" = "Πρόσβαση στη βιβλιοθήκη φωτογραφιών";
+"mcp.location" = "Τοποθεσία";
+"mcp.location.desc" = "Λήψη τρέχουσας τοποθεσίας και αναζήτηση μέρων";
+"mcp.health" = "Υγεία";
+"mcp.health.desc" = "Πρόσβαση σε δεδομένα υγείας";
+"mcp.shortcuts" = "Συντομεύσεις";
+"mcp.shortcuts.desc" = "Εκτέλεση συντομεύσεων";
+"mcp.websearch" = "Αναζήτηση Ιστού";
+"mcp.websearch.desc" = "Ανώνυμη αναζήτηση ιστού";
+"mcp.custom" = "Προσαρμοσμένη ενσωμάτωση";
+"mcp.custom.add" = "Προσθήκη ενσωμάτωσης";
+"mcp.custom.setup" = "Ρύθμιση ενσωμάτωσης εξωτερικής υπηρεσίας";
+"mcp.custom.title" = "Προσαρμοσμένες ενσωματώσεις";
+"mcp.settings.title" = "Ρυθμίσεις ενσωμάτωσης";
+"mcp.server.name" = "Όνομα διακομιστή";
+"mcp.server.name.placeholder" = "π.χ., Ο προσαρμοσμένος μου διακομιστής";
+"mcp.config.url" = "URL αρχείου ρυθμίσεων";
+"mcp.import.file" = "Εισαγωγή από αρχείο";
+"mcp.config.example" = "Παράδειγμα αρχείου ρυθμίσεων";
+"mcp.permission.note" = "Θα ζητηθούν άδειες κατά την πρώτη χρήση κάθε λειτουργίας";
+
+// MARK: - MCP Tool Messages
+"mcp.tool.available" = "Διαθέσιμα εργαλεία:";
+"mcp.tool.parameters" = "Παράμετροι:";
+"mcp.prompt.available" = "Διαθέσιμες προτροπές:";
+"mcp.prompt.arguments" = "Επιχειρήματα:";
+"mcp.tool.name" = "όνομα_εργαλείου";
+"mcp.tool.arg.name" = "όνομα_επιχειρήματος";
+"mcp.tool.arg.value" = "τιμή";
+"mcp.tool.no.result" = "Κανένα αποτέλεσμα";
+"mcp.tool.running" = "Εκτέλεση εργαλείου: %@";
+"mcp.tool.error" = "Σφάλμα εκτέλεσης εργαλείου: %@";
+
+// MARK: - MCP Error Messages
+"mcp.error.server.not.found" = "Ο διακομιστής δεν βρέθηκε: %@";
+"mcp.error.tool.not.found" = "Το εργαλείο δεν βρέθηκε: %@";
+"mcp.error.invalid.args" = "Μη έγκυρα επιχειρήματα: %@";
+"mcp.error.execution" = "Σφάλμα εκτέλεσης: %@";
+"mcp.error.permission" = "Άρνηση άδειας: %@";
+
+// MARK: - Calendar Messages
+"calendar.no.events" = "Δεν υπάρχουν εκδηλώσεις";
+"calendar.event.created" = "Η εκδήλωση δημιουργήθηκε: %@";
+"calendar.event.deleted" = "Η εκδήλωση διαγράφηκε: %@";
+"calendar.allday.created" = "Εκδήλωση ολοήμερη δημιουργήθηκε: %@";
+"calendar.access.denied" = "Άρνηση πρόσβασης στο ημερολόγιο";
+"calendar.today.none" = "Δεν υπάρχουν εκδηλώσεις σήμερα";
+"calendar.untitled" = "Χωρίς τίτλο";
+
+// MARK: - Reminders Messages
+"reminders.none" = "Δεν υπάρχουν υπενθυμίσεις";
+"reminders.created" = "Η υπενθύμιση δημιουργήθηκε: %@";
+"reminders.completed" = "Η υπενθύμιση ολοκληρώθηκε: %@";
+"reminders.deleted" = "Η υπενθύμιση διαγράφηκε: %@";
+"reminders.access.denied" = "Άρνηση πρόσβασης στις υπενθυμίσεις";
+"reminders.untitled" = "Χωρίς τίτλο";
+
+// MARK: - Photos Messages
+"photos.access.denied" = "Άρνηση πρόσβασης στις φωτογραφίες";
+"photos.not.found" = "Η φωτογραφία δεν βρέθηκε";
+"photos.untitled" = "Χωρίς τίτλο";
+"photos.count" = "Φωτογραφίες: %d";
+"photos.videos.count" = "Βίντεο: %d";
+"photos.albums.count" = "Άλμπουμ: %d";
+"photos.favorites.count" = "Αγαπημένα: %d";
+"photos.date" = "Ημερομηνία: %@";
+"photos.size" = "Μέγεθος: %d x %d";
+"photos.location" = "Τοποθεσία: %@, %@";
+"photos.media.type" = "Τύπος πολυμέσων: %@";
+"photos.duration" = "Διάρκεια: %dm %ds";
+"photos.favorite" = "Αγαπημένο: %@";
+"photos.type.image" = "Φωτογραφία";
+"photos.type.video" = "Βίντεο";
+"photos.type.audio" = "Ήχος";
+
+// MARK: - Contacts Messages
+"contacts.access.denied" = "Άρνηση πρόσβασης στις επαφές";
+"contacts.not.found" = "Δεν βρέθηκαν αντίστοιχες επαφές";
+"contacts.no.groups" = "Δεν υπάρχουν ομάδες";
+"contacts.no.card" = "Δεν έχει οριστεί κάρτα επαφής";
+"contacts.name" = "Όνομα: %@";
+"contacts.company" = "Εταιρεία: %@";
+"contacts.job" = "Τίτλος εργασίας: %@";
+
+// MARK: - Location Messages
+"location.access.denied" = "Άρνηση πρόσβασης στην τοποθεσία";
+"location.not.found" = "Η διεύθυνση δεν βρέθηκε";
+"location.latitude" = "Γεωγραφικό πλάτος: %@";
+"location.longitude" = "Γεωγραφικό μήκος: %@";
+"location.accuracy" = "Ακρίβεια: %dm";
+"location.altitude" = "Υψόμετρο: %dm";
+"location.search" = "Αναζήτηση: %@";
+"location.address" = "Διεύθυνση: %@";
+"location.country" = "Χώρα: %@";
+"location.postal" = "Ταχυδρομικός κώδικας: %@";
+"location.from" = "Από: (%@, %@)";
+"location.to" = "Προς: (%@, %@)";
+"location.distance.km" = "Απόσταση: %.2f km";
+"location.distance.m" = "Απόσταση: %d m";
+
+// MARK: - Health Messages
+"health.not.available" = "Η υγεία δεν είναι διαθέσιμη σε αυτήν τη συσκευή";
+"health.date" = "Ημερομηνία: %@";
+"health.steps" = "Βήματα: %@ βήματα";
+"health.goal.progress" = "Πρόοδος στόχου: %d%% (στόχος 10.000 βήματα)";
+"health.no.data" = "Δεν υπάρχουν διαθέσιμα δεδομένα";
+"health.avg.bpm" = "Μέσος όρος: %d bpm";
+"health.min.bpm" = "Ελάχιστο: %d bpm";
+"health.max.bpm" = "Μέγιστο: %d bpm";
+"health.measurements" = "Μετρήσεις: %d";
+"health.no.sleep" = "Δεν υπάρχουν δεδομένα ύπνου";
+"health.sleep.total" = "Συνολικός ύπνος: %dω %dλ";
+"health.bedtime" = "Ώρα ύπνου: %@";
+"health.waketime" = "Ώρα αφύπνισης: %@";
+"health.calories" = "Θερμίδες: %d kcal";
+
+// MARK: - File System Messages
+"filesystem.not.found" = "Το αρχείο δεν βρέθηκε: %@";
+"filesystem.written" = "Το αρχείο γράφτηκε: %@";
+"filesystem.dir.created" = "Ο κατάλογος δημιουργήθηκε: %@";
+"filesystem.deleted" = "Διαγράφηκε: %@";
+"filesystem.size" = "Μέγεθος: %@";
+"filesystem.created" = "Δημιουργήθηκε: %@";
+"filesystem.modified" = "Τροποποιήθηκε: %@";
+"filesystem.type" = "Τύπος: %@";
+
+// MARK: - Shortcuts Messages
+"shortcuts.executed" = "Η συντόμευση '%@' εκτελέστηκε";
+"shortcuts.opened" = "Η εφαρμογή Συντομεύσεων άνοιξε";
+"shortcuts.settings.opened" = "Οι ρυθμίσεις (%@) άνοιξαν";
+"shortcuts.mail.opened" = "Η σύνταξη email άνοιξε";
+"shortcuts.calling" = "Κλήση: %@";
+"shortcuts.message.opened" = "Η σύνταξη μηνύματος άνοιξε";
+"shortcuts.failed" = "Δεν ήταν δυνατό το άνοιγμα της συντόμευσης";
+
+// MARK: - Model Tiers
+"model.tier.entry" = "Είσοδος";
+"model.tier.standard" = "Τυπικό";
+"model.tier.pro" = "Pro";
+
+// MARK: - Tool Parser
+"tool.arguments" = "Επιχειρήματα:";
+
+// MARK: - Model Settings
+"model.action.settings" = "Ρυθμίσεις";
+"settings.model.parameters" = "Ρυθμίσεις μοντέλου";
+"settings.model.parameters.description" = "Προσαρμογή παραμέτρων παραγωγής για αυτό το μοντέλο";
+"settings.preset.title" = "Προρυθμίσεις";
+"settings.preset.custom" = "Προσαρμοσμένο";
+"settings.preset.balanced" = "Ισορροπημένο";
+"settings.preset.creative" = "Δημιουργικό";
+"settings.preset.precise" = "Ακριβές";
+"settings.preset.coding" = "Κωδικοποίηση";
+"settings.preset.japanese" = "Ιαπωνικά";
+"settings.parameters.title" = "Παράμετροι";
+"settings.parameter.temperature" = "Θερμοκρασία";
+"settings.parameter.temperature.description" = "Υψηλότερη = πιο δημιουργική, χαμηλότερη = πιο εστιασμένη";
+"settings.parameter.top.p" = "Top P";
+"settings.parameter.top.p.description" = "Πιθανότητα δειγματοληψίας πυρήνα";
+"settings.parameter.top.k" = "Top K";
+"settings.parameter.top.k.description" = "Αριθμός κορυφαίων token προς εξέταση";
+"settings.parameter.max.tokens" = "Μέγιστα tokens";
+"settings.parameter.max.tokens.description" = "Μέγιστο μήκος απάντησης";
+"settings.parameter.repeat.penalty" = "Ποινή επανάληψης";
+"settings.parameter.repeat.penalty.description" = "Υψηλότερη = λιγότερο επαναληπτική έξοδος";
+"settings.parameter.thinking" = "Λειτουργία σκέψης";
+"settings.parameter.thinking.description" = "Εμφάνιση διαδικασίας συλλογισμού τεχνητής νοημοσύνης";
+"settings.system.prompt.title" = "Προτροπή συστήματος";
+"settings.system.prompt.description" = "Προσαρμοσμένες οδηγίες για την τεχνητή νοημοσύνη";
+"settings.reset.to.default" = "Επαναφορά στην προεπιλογή";
+
+// MARK: - Vision Model
+"vision.model.required.title" = "Απαιτείται μοντέλο όρασης";
+"vision.model.required.header" = "Απαιτείται αναγνώριση εικόνας";
+"vision.model.required.description" = "Για να αναλύσετε εικόνες, χρειάζεστε ένα μοντέλο τεχνητής νοημοσύνης με δυνατότητα όρασης";
+"vision.model.switch" = "Εναλλαγή μοντέλου";
+"vision.model.switch.message %@" = "Εναλλαγή σε %@ για ενεργοποίηση ανάλυσης εικόνας;";
+"vision.model.download" = "Λήψη";
+"vision.model.download.message %@ %@" = "Λήψη %@ (%@) για ανάλυση εικόνων;";
+"vision.model.not.available" = "Δεν υπάρχει διαθέσιμο συμβατό μοντέλο όρασης για τη συσκευή σας";
+"vision.model.switching" = "Εναλλαγή μοντέλου...";
+"vision.model.download.title" = "Μοντέλα όρασης";
+"vision.model.recommended" = "Προτεινόμενο για τη συσκευή σας";
+"vision.model.recommended.size %@" = "Προτεινόμενο: %@";
+"vision.model.use.this" = "Χρήση αυτού του μοντέλου";
+"vision.model.download.button %@" = "Λήψη (%@)";
+"vision.model.other.options" = "Άλλα μοντέλα όρασης";
+"vision.model.download.complete" = "Η λήψη ολοκληρώθηκε";
+"vision.model.download.complete.message" = "Έτοιμο για ανάλυση εικόνων";
+
+// MARK: - Whisper Voice Input (Legacy)
+"whisper.download.title" = "Απαιτείται αναγνώριση φωνής";
+"whisper.download.action" = "Λήψη";
+"whisper.download.message" = "Για να χρησιμοποιήσετε φωνητική εισαγωγή, πρέπει να κατεβάσετε το μοντέλο αναγνώρισης ομιλίας (~150MB).";
+"whisper.downloading" = "Λήψη μοντέλου αναγνώρισης ομιλίας...";
+"whisper.download.error" = "Σφάλμα λήψης";
+"whisper.load.error" = "Σφάλμα φόρτωσης μοντέλου";
+"whisper.permission.denied" = "Η πρόσβαση στο μικρόφωνο δεν επιτρέπεται";
+"whisper.transcribe.error" = "Σφάλμα μεταγραφής";
+"whisper.error.permission" = "Απαιτείται άδεια μικροφώνου";
+"whisper.error.not.recording" = "Δεν γίνεται εγγραφή αυτήν τη στιγμή";
+"whisper.error.no.recording" = "Δεν υπάρχουν δεδομένα εγγραφής";
+"whisper.error.model.not.loaded" = "Το μοντέλο αναγνώρισης ομιλίας δεν φορτώθηκε";
+"whisper.error.transcription" = "Η μεταγραφή απέτυχε";
+
+// MARK: - Speech Recognition (ReazonSpeech)
+"speech.download.title" = "Απαιτείται αναγνώριση φωνής";
+"speech.download.action" = "Λήψη";
+"speech.download.message" = "Για να χρησιμοποιήσετε φωνητική εισαγωγή, πρέπει να κατεβάσετε το ιαπωνικό μοντέλο αναγνώρισης ομιλίας (~155MB).";
+"speech.downloading" = "Λήψη μοντέλου αναγνώρισης ομιλίας...";
+
+// MARK: - Language Settings
+"settings.language.section" = "Γλώσσα";
+"language.system" = "Χρήση γλώσσας συστήματος";
+"settings.language.restart.hint" = "Οι αλλαγές γλώσσας θα τεθούν σε ισχύ μετά την επανεκκίνηση της εφαρμογής";
+"settings.language.changed.title" = "Η γλώσσα άλλαξε";
+"settings.language.changed.message" = "Παρακαλώ επανεκκινήστε την εφαρμογή για να εφαρμόσετε τις αλλαγές";
+"common.ok" = "OK";
+
+// MARK: - System Prompt Settings
+"settings.prompt.section" = "Προτροπή συστήματος";
+"settings.prompt.edit" = "Επεξεργασία προτροπής";
+"settings.prompt.default" = "Χρήση προεπιλογής";
+"settings.prompt.custom" = "Ορίστηκε προσαρμοσμένη προτροπή";
+"settings.prompt.hint" = "Προσαρμογή συμπεριφοράς τεχνητής νοημοσύνης";
+"settings.prompt.editor.title" = "Επεξεργασία προτροπής";
+"settings.prompt.editor.instruction" = "Προσθέστε προσαρμοσμένες οδηγίες για την τεχνητή νοημοσύνη. Αφήστε το κενό για χρήση της προεπιλεγμένης προτροπής.";
+"settings.prompt.default.preview" = "Προεπιλεγμένη προτροπή (απόσπασμα):";
+"settings.prompt.reset" = "Επαναφορά";
+"settings.prompt.reset.title" = "Επαναφορά προτροπής";
+"settings.prompt.reset.message" = "Διαγραφή προσαρμοσμένης προτροπής και επαναφορά στην προεπιλογή;";
+
+// MARK: - Prompt Templates
+"templates.title" = "Πρότυπα προτροπών";
+"templates.empty" = "Δεν υπάρχουν ακόμη πρότυπα";
+"templates.add" = "Προσθήκη προτύπου";
+"template.add.title" = "Προσθήκη προτύπου";
+"template.edit.title" = "Επεξεργασία προτύπου";
+"template.name.header" = "Όνομα";
+"template.name.placeholder" = "Όνομα προτύπου";
+"template.content.header" = "Περιεχόμενο προτροπής";
+"template.icon.header" = "Εικονίδιο";
+"template.translate.name" = "Μετάφραση";
+"template.translate.content" = "Παρακαλώ μεταφράστε το παρακάτω: ";
+"template.summarize.name" = "Σύνοψη";
+"template.summarize.content" = "Παρακαλώ συνοψίστε το παρακάτω: ";
+"template.explain.name" = "Εξήγηση";
+"template.explain.content" = "Παρακαλώ εξηγήστε το παρακάτω: ";
+"template.code.name" = "Κώδικας";
+"template.code.content" = "Παρακαλώ γράψτε κώδικα για: ";
+
+// MARK: - Export
+"export.title" = "Εξαγωγή συνομιλίας";
+"export.format.markdown" = "Markdown";
+"export.format.pdf" = "PDF";
+"export.format.text" = "Απλό κείμενο";
+"export.created" = "Δημιουργήθηκε";
+"export.image.attached" = "Εικόνα επισυνάφθηκε";
+"export.generated.by" = "Δημιουργήθηκε από";
+
+// MARK: - Loading Phases
+"loading.phase.initializing" = "Αρχικοποίηση...";
+"loading.phase.loading" = "Φόρτωση μοντέλου...";
+"loading.phase.preparing" = "Προετοιμασία μηχανής συμπερασμού...";
+"loading.phase.almost" = "Σχεδόν έτοιμο...";
+
+// MARK: - Welcome Screen
+"welcome.greeting" = "Ρωτήστε με οτιδήποτε";
+"welcome.subtitle" = "Ο βοηθός τεχνητής νοημοσύνης που δίνει προτεραιότητα στο απόρρητο";
+"suggestion.idea" = "Βοηθήστε με να σκεφτώ ιδέες";
+"suggestion.write" = "Βοηθήστε με να γράψω κάτι";
+"suggestion.question" = "Απαντήστε στις ερωτήσεις μου";
+
+// MARK: - Kokoro TTS
+"tts.download.title" = "Φωνή υψηλής ποιότητας";
+"tts.download.action" = "Λήψη";
+"tts.download.use_system" = "Χρήση φωνής συστήματος";
+"tts.download.message" = "Κατεβάστε το μοντέλο Kokoro TTS (~87MB) για πιο φυσική ιαπωνική μετατροπή κειμένου σε ομιλία.";
+"tts.downloading" = "Λήψη μοντέλου TTS...";
+
+// MARK: - Feedback
+"feedback.consent.title" = "Αποστολή σχολίων";
+"feedback.send" = "Αποστολή";
+"feedback.positive.title" = "Ήταν χρήσιμη αυτή η απάντηση;";
+"feedback.negative.title" = "Μπορεί αυτό να βελτιωθεί;";
+"feedback.explanation" = "Τα σχόλιά σας βοηθούν στη βελτίωση της ποιότητας της τεχνητής νοημοσύνης. Παρακαλώ ελέγξτε ποια δεδομένα θα σταλούν πριν την υποβολή.";
+"feedback.data.section" = "Δεδομένα προς αποστολή";
+"feedback.data.conversation" = "Συνομιλία";
+"feedback.data.conversation.desc" = "Η απάντηση της τεχνητής νοημοσύνης και το προηγούμενο μήνυμά σας";
+"feedback.data.model" = "Πληροφορίες μοντέλου";
+"feedback.data.model.desc" = "Όνομα του μοντέλου τεχνητής νοημοσύνης που χρησιμοποιήθηκε";
+"feedback.data.timestamp" = "Χρονική σήμανση";
+"feedback.data.timestamp.desc" = "Πότε υποβλήθηκαν τα σχόλια";
+"feedback.privacy.section" = "Απόρρητο";
+"feedback.privacy.anonymous" = "Δεν αποστέλλονται προσωπικά αναγνωρίσιμες πληροφορίες";
+"feedback.privacy.improvement" = "Χρησιμοποιείται μόνο για τη βελτίωση της ποιότητας της τεχνητής νοημοσύνης";
+"feedback.privacy.optional" = "Η αποστολή σχολίων είναι εντελώς προαιρετική";
+"feedback.comment.section" = "Σχόλιο (προαιρετικό)";
+"feedback.comment.placeholder" = "Πείτε μας τι θα μπορούσε να βελτιωθεί ή τι λειτούργησε καλά...";
+"feedback.remember.title" = "Απομνημόνευση αυτής της επιλογής";
+"feedback.remember.description" = "Υποβολή σχολίων χωρίς να ρωτάτε την επόμενη φορά";
+
+// MARK: - Emergency Mode
+"emergency.sos.button" = "Λειτουργία έκτακτης ανάγκης (παρατεταμένο πάτημα για εναλλαγή)";
+"emergency.mode.active" = "Λειτουργία έκτακτης ανάγκης ενεργή";
+"emergency.action.firstaid" = "Πρώτες βοήθειες";
+"emergency.action.firstaid.message" = "Παρακαλώ δώστε οδηγίες πρώτων βοηθειών. Θα περιγράψω τον τραυματισμό ή τα συμπτώματα: ";
+"emergency.action.disaster" = "Καταστροφή";
+"emergency.action.disaster.message" = "Έχει συμβεί καταστροφή. Παρακαλώ δώστε διαδικασίες αντίδρασης: ";
+"emergency.action.factcheck" = "Έλεγχος γεγονότων";
+"emergency.action.factcheck.message" = "Παρακαλώ επαληθεύστε την αξιοπιστία αυτών των πληροφοριών: ";
+"emergency.action.contacts" = "Έκτακτη ανάγκη";
+"emergency.action.contacts.message" = "Παρακαλώ δείξτε μου λίστα με τηλέφωνα έκτακτης ανάγκης";
+"emergency.action.evacuation" = "Εκκένωση";
+"emergency.action.evacuation.message" = "Παρακαλώ δημιουργήστε λίστα ελέγχου εκκένωσης για την τρέχουσα κατάσταση: ";
+"mcp.emergency_kb" = "Γνωσιακή βάση έκτακτης ανάγκης";
+"mcp.emergency_kb.desc" = "Πληροφορίες έκτακτης ανάγκης και καταστροφών";
+
+// MARK: - Emergency Templates
+"template.firstaid.name" = "Οδηγός πρώτων βοηθειών";
+"template.firstaid.content" = "Παρακαλώ δώστε οδηγίες πρώτων βοηθειών για: ";
+"template.disaster.name" = "Αντίδραση σε καταστροφή";
+"template.disaster.content" = "Έχει συμβεί η παρακάτω καταστροφή. Παρακαλώ δώστε διαδικασίες αντίδρασης: ";
+"template.factcheck.name" = "Έλεγχος γεγονότων";
+"template.factcheck.content" = "Παρακαλώ επαληθεύστε την αξιοπιστία αυτών των πληροφοριών και δώστε συμβουλές ελέγχου γεγονότων: ";
+"template.evacuation.name" = "Λίστα ελέγχου εκκένωσης";
+"template.evacuation.content" = "Παρακαλώ δημιουργήστε λίστα ελέγχου εκκένωσης για την τρέχουσα κατάσταση: ";
+
+// MARK: - ChatWeb.ai Integration
+"chatweb.title" = "ChatWeb.ai";
+"chatweb.desc" = "Συνομιλία τεχνητής νοημοσύνης cloud";
+"chatweb.connect" = "Σύνδεση στο ChatWeb.ai";
+"chatweb.qr.title" = "Σύνδεση μέσω κωδικού QR";
+"chatweb.qr.scan" = "Σάρωση κωδικού QR";
+"chatweb.open" = "Άνοιγμα ChatWeb.ai";
+
+// MARK: - Peer Connection
+"peer.title" = "Κοντινές συσκευές";
+"peer.desc" = "Σύνδεση με κοντινές συσκευές Elio";
+"peer.connect" = "Σύνδεση στη συσκευή";
+"peer.code.title" = "Κωδικός σύνδεσης";
+"peer.code.enter" = "Εισαγωγή 4ψήφιου κωδικού";
+"peer.code.your" = "Ο κωδικός σας";
+"peer.connected" = "Συνδεδεμένο";
+"peer.disconnected" = "Αποσυνδεδεμένο";
+"peer.inference.offload" = "Κοινή χρήση συμπερασμού";
+
+// MARK: - Web Search
+"chat.web.search" = "Αναζήτηση Ιστού";
+"search.privacy.title" = "Αναζήτηση με προστασία απορρήτου";
+"search.privacy.proceed" = "Αναζήτηση";
+"search.privacy.message" = "Η αναζήτηση ιστού ElioChat προστατεύει το απόρρητό σας:\n\n🔒 Αναζητήσεις μέσω DuckDuckGo\n🚫 Χωρίς παρακολούθηση ή προφίλ\n🔐 Το ιστορικό αναζήτησης δεν αποθηκεύεται\n📱 Δεν αποθηκεύονται δεδομένα εκτός της συσκευής σας\n\nΜόνο το ερώτημα αναζήτησής σας αποστέλλεται στο DuckDuckGo και τα αποτελέσματα επεξεργάζονται στη συσκευή σας.";
+"chat.web.analyzing" = "[Ανάλυση ιστοσελίδας]";

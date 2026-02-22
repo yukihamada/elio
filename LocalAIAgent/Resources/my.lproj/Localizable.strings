@@ -1,0 +1,635 @@
+/*
+  Localizable.strings (Burmese)
+  Elio
+*/
+
+// MARK: - App General
+"app.name" = "Elio";
+"app.tagline" = "သင့်လျှို့ဝှက်ချက်များကို သိမ်းဆည်းပေးသော ဒုတိယ ဦးနှောက်။";
+
+// MARK: - Common Actions
+"common.done" = "ပြီးပါပြီ";
+"common.cancel" = "ပယ်ဖျက်ရန်";
+"common.delete" = "ဖျက်ရန်";
+"common.save" = "သိမ်းဆည်းရန်";
+"common.edit" = "တည်းဖြတ်ရန်";
+"common.share" = "မျှဝေရန်";
+"common.copy" = "ကူးယူရန်";
+"common.copied" = "ကူးယူပြီး";
+"common.loading" = "တင်နေသည်...";
+"common.error" = "အမှားအယွင်း";
+"common.retry" = "ထပ်ကြိုးစားရန်";
+"common.skip" = "ကျော်ပစ်ရန်";
+"common.next" = "နောက်သို့";
+"common.start" = "စတင်ရန်";
+"common.add" = "ထည့်ရန်";
+"common.close" = "ပိတ်ရန်";
+"common.details" = "အသေးစိတ်";
+"common.yes" = "ဟုတ်ကဲ့";
+"common.no" = "မဟုတ်ပါ";
+"common.unknown" = "မသိပါ";
+
+// MARK: - Chat
+"chat.placeholder" = "ကျွန်ုပ်အား မည်သည့်အရာမဆို မေးနိုင်ပါသည်";
+"chat.model.not.loaded" = "မော်ဒယ်တင်ထားခြင်း မရှိပါ";
+"chat.model.not.loaded.description" = "ဆက်တင်များမှ မော်ဒယ်တစ်ခု ဒေါင်းလုဒ်လုပ်ပါ";
+"chat.go.to.settings" = "ဆက်တင်များသို့ သွားရန်";
+"chat.new.conversation" = "စကားစမြည့်အသစ်";
+"chat.stop.generation" = "ရပ်တန့်ရန်";
+"chat.generation.stopped" = "\n\n[ထုတ်လုပ်မှု ရပ်တန့်ပြီး]";
+"chat.image.sent" = "[ပုံပို့ပြီး]";
+"chat.images.sent" = "[ပုံ %d ပို့ပြီး]";
+"chat.pdf.sent" = "[PDF ပူးတွဲ: %@]";
+"chat.pdf.sent.vision" = "[ပုံပါသော PDF: %@]";
+"chat.pdf.context" = "အောက်ပါသည် PDF စာရွက်စာတမ်း \"%@\" မှ ထုတ်ယူထားသော စာသား အကြောင်းအရာဖြစ်သည်:\n\n%@";
+"chat.pdf.context.vision" = "ဤသည် PDF စာရွက်စာတမ်း \"%@\" ၏ စာမျက်နှာ 1 ဖြစ်သည်။ ထုတ်ယူထားသော စာသား အကြောင်းအရာမှာ:\n\n%@\n\nအမြင်အာရုံဆိုင်ရာ အကြောင်းအရာနှင့် စာသား နှစ်ခုစလုံးကို ပိုင်းခြားစိတ်ဖြာပါ။";
+"chat.pdf.analyze" = "\"%@\" မှ PDF စာမျက်နှာကို ပိုင်းခြားစိတ်ဖြာပါ။";
+"chat.url.sent" = "[ဝဘ်စာမျက်နှာ: %@]";
+"chat.url.context" = "အောက်ပါသည် ဝဘ်စာမျက်နှာ \"%@\" (%@) မှ ထုတ်ယူထားသော အကြောင်းအရာဖြစ်သည်:\n\n%@";
+"chat.thinking" = "တွေးတောနေသည်...";
+"chat.generating" = "တုံ့ပြန်မှု ထုတ်လုပ်နေသည်...";
+"chat.welcome" = "မည်သို့ ကူညီနိုင်ပါသလဲ?";
+"chat.suggestion.schedule" = "ယနေ့ အချိန်ဇယား ပြပါ";
+"chat.suggestion.reminder" = "သတိပေးချက် ဖန်တီးပါ";
+"chat.suggestion.weather" = "ယနေ့ ရာသီဥတု ဘယ်လိုရှိသလဲ?";
+"chat.suggestion.help" = "ဒီအက်ပ်ကို ဘယ်လို အသုံးပြုမလဲ";
+"chat.websearch.on" = "ဝဘ်ရှာဖွေမှု ဖွင့်ထားသည်";
+"chat.websearch.off" = "ဝဘ်ရှာဖွေမှု ပိတ်ထားသည်";
+"chat.thinking.on" = "တွေးတောမှု ဖွင့်ထားသည်";
+"chat.thinking.off" = "တွေးတောမှု ပိတ်ထားသည်";
+"chat.transcribing" = "စာသားပြောင်းနေသည်...";
+"chat.offline" = "အော့ဖ်လိုင်း";
+
+// Voice Conversation Mode
+"voice.listening" = "နားထောင်နေသည်...";
+"voice.processing" = "စီမံဆောင်ရွက်နေသည်...";
+"voice.thinking" = "တွေးတောနေသည်...";
+"voice.speaking" = "ပြောနေသည်...";
+"voice.tap.to.send" = "ပို့ရန် တို့ပါ";
+"chat.templates" = "နမူနာများ";
+"chat.websearch.privacy.title" = "ဝဘ်ရှာဖွေမှု အကြောင်း";
+"chat.websearch.privacy.message" = "ဝဘ်ရှာဖွေမှု ဖွင့်ခြင်းသည် AI အား DuckDuckGo မှတဆင့် နောက်ဆုံး အချက်အလက်များအတွက် အင်တာနက် ရှာဖွေခွင့် ပြုသည်။ ရှာဖွေမှု မေးခွန်းများကို DuckDuckGo သို့ ပို့သော်လည်း ခြေရာခံခြင်း မရှိပါ။";
+"chat.websearch.privacy.enable" = "ဖွင့်ရန်";
+"chat.websearch.privacy.disable" = "ပိတ်ထားရန်";
+
+// MARK: - Settings
+"settings.title" = "ဆက်တင်များ";
+"settings.model.section" = "AI မော်ဒယ်များ";
+"settings.model.recommended" = "အကြံပြုထားသော: %@";
+"settings.model.local.execution" = "မော်ဒယ်များ သင့်စက်တွင် ဒေသခံ လည်ပတ်သည်";
+"settings.model.show.more" = "အခြား မော်ဒယ်များ (%d)";
+"settings.model.show.less" = "နည်းပါးစွာ ပြပါ";
+"settings.appearance.section" = "အသွင်အပြင်";
+"settings.tools.section" = "စမတ် လုပ်ဆောင်ချက်များ";
+"settings.mcp.servers" = "ပေါင်းစည်းမှုများ";
+"settings.mcp.servers.description" = "ပြက္ခဒိန်၊ ဖိုင်များ၊ သတိပေးချက်များနှင့် နောက်ထပ်";
+"settings.mcp.enabled.count" = "%d ဖွင့်ထားသည်";
+"settings.mcp.enabled.count.suffix" = " ဖွင့်ထားသည်";
+"settings.about.section" = "အကြောင်း";
+"settings.version" = "ဗားရှင်း";
+"settings.about.app" = "ဤအက်ပ်အကြောင်း";
+"settings.about.mcp" = "ပေါင်းစည်းမှုများ အကြောင်း";
+"settings.privacy.badge" = "အော့ဖ်လိုင်း လုပ်ဆောင်နိုင်သည်";
+"settings.privacy.description" = "လေယာဉ်မုဒ်တွင် လုပ်ဆောင်နိုင်သည်";
+"settings.airplane.mode" = "လေယာဉ်မုဒ်တွင် လုပ်ဆောင်နေသည်";
+"settings.offline.ready" = "အော့ဖ်လိုင်း အဆင်သင့်";
+
+// MARK: - Model States
+"model.status.downloading" = "ဒေါင်းလုဒ်လုပ်နေသည်... %d%%";
+"model.status.loading" = "တင်နေသည်...";
+"model.status.in.use" = "အသုံးပြုနေသည်";
+"model.status.recommended" = "အကြံပြုထားသော";
+"model.status.heavy" = "လေးသည်";
+"model.action.download" = "ဒေါင်းလုဒ်";
+"model.action.load" = "တင်ရန်";
+"model.action.delete" = "ဖျက်ရန်";
+"model.action.use" = "ဤမော်ဒယ်ကို အသုံးပြုပါ";
+"model.delete.confirm.title" = "မော်ဒယ်ဖျက်ရန်";
+"model.delete.confirm.message" = "%@ ဖျက်မလား? ထပ်မံအသုံးပြုရန် ပြန်လည်ဒေါင်းလုဒ်လုပ်ရန် လိုအပ်ပါမည်။";
+"model.select.title" = "မော်ဒယ်ရွေးချယ်ရန်";
+"model.select.prompt" = "မော်ဒယ်တစ်ခု ရွေးချယ်ပါ";
+"model.downloaded" = "ဒေါင်းလုဒ်လုပ်ပြီး";
+
+// MARK: - Inference Mode
+"inference.mode.title" = "အရှိန်မြှင့်တင်မှု";
+"inference.mode.auto" = "အလိုအလျောက်";
+"inference.mode.auto.desc" = "အလိုအလျောက် အကောင်းဆုံး စွမ်းဆောင်ရည်";
+"inference.mode.gpu" = "GPU (Metal)";
+"inference.mode.gpu.desc" = "Metal ဖြင့် အမြင့်ဆုံး အမြန်နှုန်း";
+"inference.mode.cpu" = "CPU သာ";
+"inference.mode.cpu.desc" = "ဘက်ထရီ ချွေတာမှု မုဒ်";
+"inference.mode.hybrid" = "ဟိုက်ဘရစ်";
+"inference.mode.hybrid.desc" = "အမြန်နှုန်းနှင့် ဘက်ထရီ ဟန်ချက်ညီစေသည်";
+
+// MARK: - Theme
+"theme.system" = "စနစ်";
+"theme.light" = "အလင်း";
+"theme.dark" = "အမှောင်";
+
+// MARK: - Onboarding
+"onboarding.welcome.title" = "ElioChat သို့ ကြိုဆိုပါသည်";
+"onboarding.welcome.subtitle" = "သင့်ကိုယ်ပိုင် AI လက်ထောက်";
+"onboarding.features.title" = "အမှန်တကယ် ကိုယ်ပိုင် AI";
+"onboarding.feature.offline" = "လေယာဉ်မုဒ်တွင် လုပ်ဆောင်နိုင်သည်";
+"onboarding.feature.offline.desc" = "လေယာဉ်ပေါ် သို့မဟုတ် မြေအောက်တွင် အသုံးပြုပါ";
+"onboarding.feature.privacy" = "ဒေတာ ပြောင်းလဲမှု သုည";
+"onboarding.feature.privacy.desc" = "သင့်စကားစမြည့်များ သင့်ဖုန်းကို မစွန့်ခွာပါ";
+"onboarding.feature.vault" = "စမတ် ပေါင်းစည်းမှုများ";
+"onboarding.feature.vault.desc" = "ပြက္ခဒိန်နှင့် ဖိုင်များနှင့် ချိတ်ဆက်ပါ";
+"onboarding.feature.secure" = "အလုပ်-လုံခြုံသော AI";
+"onboarding.feature.secure.desc" = "ကော်ပိုရိတ် အသုံးပြုမှုအတွက် လုံခြုံသည်";
+"onboarding.feature.thinking" = "တွေးတောမှု လုပ်ငန်းစဉ်";
+"onboarding.privacy.title" = "သင့်ဒေတာ သင်ပိုင်သည်";
+"onboarding.privacy.item1" = "စီမံဆောင်ရွက်မှု အားလုံး သင့် iPhone တွင် ဖြစ်ပွားသည်";
+"onboarding.privacy.item2" = "ကလောက် ဆာဗာများသို့ ဒေတာ ပို့ခြင်း မရှိပါ";
+"onboarding.privacy.item3" = "AI လေ့ကျင့်မှုအတွက် အသုံးပြုခြင်း မရှိပါ";
+"onboarding.getstarted.title" = "တစ်ချက်တည်းနှင့် အဆင်သင့်";
+"onboarding.getstarted.subtitle" = "အကြံပြုထားသော AI မော်ဒယ်ကို ဒေါင်းလုဒ်လုပ်ပြီး\nချက်ချင်း စကားစမြည့် စတင်ပါ";
+"onboarding.step1" = "အကြံပြုထားသော မော်ဒယ် ဒေါင်းလုဒ်လုပ်ပါ";
+"onboarding.step2" = "မိနစ်အနည်းငယ် စောင့်ဆိုင်းပါ";
+"onboarding.step3" = "အဆင်သင့်ဖြစ်ပြီ!";
+
+// MARK: - About
+"about.title" = "ဤအက်ပ်အကြောင်း";
+"about.rate.app" = "အက်ပ်အဆင့်သတ်မှတ်ရန်";
+"about.share.app" = "သူငယ်ချင်းများနှင့် မျှဝေပါ";
+"about.privacy.policy" = "ကိုယ်ရေးကိုယ်တာ မူဝါဒ";
+"about.terms" = "ဝန်ဆောင်မှု စည်းမျဉ်းများ";
+"about.tech.info" = "နည်းပညာ အချက်အလက်";
+"about.tech.engine" = "AI အင်ဂျင်";
+"about.tech.format" = "ပံ့ပိုးထားသော ပုံစံ";
+"about.tech.inference" = "ကောက်ချက်ချမှု";
+"about.data.management" = "ဒေတာ စီမံခန့်ခွဲမှု";
+"about.delete.all" = "စကားစမြည့် အားလုံး ဖျက်ပါ";
+"about.credits" = "ဂုဏ်ပြုချီးမွမ်းမှု";
+"about.credits.description" = "ဤအက်ပ်သည် ပွင့်လင်းရင်းမြစ် စာကြည့်တိုက်များကို အသုံးပြုသည်";
+"about.privacy.section" = "ကိုယ်ရေးကိုယ်တာ";
+"about.gguf.format" = "GGUF ပုံစံ";
+"about.metal.gpu" = "Metal GPU အရှိန်မြှင့်တင်မှု";
+
+// MARK: - Referral
+"referral.title" = "သူငယ်ချင်းများ လွှဲပြောင်းပေးပါ";
+"referral.code.title" = "သင့် လွှဲပြောင်း ကုဒ်";
+"referral.code.copy" = "ကုဒ် ကူးယူပါ";
+"referral.code.copied" = "ကူးယူပြီး";
+"referral.share.button" = "သူငယ်ချင်းများနှင့် မျှဝေပါ";
+"referral.share.description" = "Elio ကို သင့်သူငယ်ချင်းများနှင့် မျှဝေပါ!";
+"referral.count" = "လူ %d ယောက် လွှဲပြောင်းပြီး";
+"referral.enter.title" = "လွှဲပြောင်း ကုဒ် ရိုက်ထည့်ပါ";
+"referral.enter.placeholder" = "လွှဲပြောင်း ကုဒ်";
+"referral.enter.button" = "လျှောက်ထားပါ";
+"referral.enter.success" = "လွှဲပြောင်း ကုဒ် လျှောက်ထားပြီး";
+"referral.enter.error" = "မမှန်ကန်သော လွှဲပြောင်း ကုဒ်";
+
+// MARK: - Privacy Policy
+"privacy.title" = "ကိုယ်ရေးကိုယ်တာ မူဝါဒ";
+"privacy.data.collection.title" = "ဒေတာ စုဆောင်းမှု";
+"privacy.data.collection.content" = "ဤအက်ပ်သည် ဒေသခံ AI ကို လုံးလုံး အော့ဖ်လိုင်းတွင် လည်ပတ်သည်။\nပြင်ပ ဆာဗာများသို့ ဒေတာ ပို့ခြင်း မရှိပါ။\nစကားစမြည့် အားလုံးကို သင့်စက်တွင်သာ သိမ်းဆည်းသည်။";
+"privacy.stored.data.title" = "သိမ်းဆည်းထားသော ဒေတာ";
+"privacy.stored.data.content" = "စကားစမြည့် မှတ်တမ်း (စက်တွင်သာ သိမ်းဆည်းထားသည်)\nAI မော်ဒယ် ဖိုင်များ (စက်တွင်သာ သိမ်းဆည်းထားသည်)\nအက်ပ် ဆက်တင်များ (စက်တွင်သာ သိမ်းဆည်းထားသည်)\n\nဤဒေတာကို ပြင်ပတွင် မျှဝေခြင်း မရှိပါ။";
+"privacy.data.deletion.title" = "ဒေတာ ဖျက်ပစ်မှု";
+"privacy.data.deletion.content" = "သင်သည် ဆက်တင်များ > ဒေတာ စီမံခန့်ခွဲမှု မှ မည်သည့်အချိန်မဆို ဒေတာ အားလုံးကို ဖျက်နိုင်သည်။\nအက်ပ် ဖယ်ရှားခြင်းသည် ဒေတာ အားလုံးကို ဖျက်ပစ်မည်။";
+
+// MARK: - Terms of Service
+"terms.title" = "ဝန်ဆောင်မှု စည်းမျဉ်းများ";
+"terms.service.title" = "ဝန်ဆောင်မှု ဖော်ပြချက်";
+"terms.service.content" = "ဤအက်ပ်သည် ဒေသခံ လည်ပတ်သော AI မော်ဒယ်ကို အသုံးပြု၍ AI လက်ထောက် လုပ်ဆောင်ချက် ပေးသည်။";
+"terms.disclaimer.title" = "ငြင်းပယ်ချက်";
+"terms.disclaimer.content" = "AI တုံ့ပြန်မှုများတွင် အမှားအယွင်းများ ပါဝင်နိုင်သည်။\nအရေးကြီးသော ဆုံးဖြတ်ချက်များကို အမြဲတမ်း ပညာရှင်ကသာ အတည်ပြုသင့်သည်။\nဤအက်ပ် အသုံးပြုမှုမှ ဖြစ်ပေါ်သော မည်သည့် ထိခိုက်မှုအတွက်မျှ ကျွန်ုပ်တို့ တာဝန်မယူပါ။";
+"terms.prohibited.title" = "တားမြစ်ထားသော လုပ်ဆောင်ချက်များ";
+"terms.prohibited.content" = "တရားမဝင် လုပ်ဆောင်ချက်များ\nအခြားသူများ၏ အခွင့်အရေးများကို ချိုးဖောက်သော လုပ်ဆောင်ချက်များ\nဤအက်ပ်ကို ပြောင်းပြန် အင်ဂျင်နီယာလုပ်ခြင်း\nဤအက်ပ်ကို ခွင့်ပြုချက်မရှိ ကူးယူခြင်း";
+"terms.ip.title" = "ဉာဏပစ္စည်း";
+"terms.ip.content" = "ဤအက်ပ်၏ ဉာဏပစ္စည်း အခွင့်အရေးများ တီထွင်သူပိုင်သည်။\nခွင့်ပြုချက်မရှိ အသုံးပြုခြင်းကို တားမြစ်သည်။";
+
+// MARK: - Conversations
+"conversations.title" = "စကားစမြည့်များ";
+"conversations.new" = "စကားစမြည့်အသစ်";
+"conversations.empty" = "စကားစမြည့် မရှိသေးပါ";
+"conversations.delete" = "စကားစမြည့် ဖျက်ရန်";
+"conversations.default.title" = "စကားစမြည့်အသစ်";
+"conversations.today" = "ယနေ့";
+"conversations.yesterday" = "မနေ့က";
+"conversations.past7days" = "လွန်ခဲ့သော ရက် 7";
+"conversations.past30days" = "လွန်ခဲ့သော ရက် 30";
+"conversations.older" = "အဟောင်း";
+"conversations.created" = "ဖန်တီးခဲ့သည်: %@";
+"conversations.user" = "အသုံးပြုသူ";
+"conversations.assistant" = "လက်ထောက်";
+"conversations.search.placeholder" = "စကားစမြည့်များ ရှာဖွေပါ";
+"conversations.search.no_results" = "ရလဒ် မတွေ့ပါ";
+
+// MARK: - Message Actions
+"message.copy" = "ကူးယူရန်";
+"message.speak" = "ပြောပါ";
+"message.stop.speaking" = "ပြောဆိုမှု ရပ်တန့်ပါ";
+"message.share" = "မျှဝေရန်";
+"message.share.card" = "ကတ်အဖြစ် မျှဝေပါ";
+"message.like" = "ကြိုက်သည်";
+
+// MARK: - Share Card
+"share.card.title" = "ကတ် မျှဝေပါ";
+"share.card.preview" = "အစမ်းကြည့်ရှုမှု";
+"share.card.button" = "ပုံ မျှဝေပါ";
+"message.dislike" = "မကြိုက်ပါ";
+"message.thinking.process" = "တွေးတောမှု လုပ်ငန်းစဉ်";
+"message.tool.running" = "ကိရိယာ လည်ပတ်နေသည်";
+"message.tool.error" = "အမှားအယွင်း";
+"message.tool.completed" = "ပြီးမြောက်ပြီ";
+
+// MARK: - Attachment
+"attachment.title" = "ပူးတွဲ";
+"attachment.photo.library" = "ဓာတ်ပုံ ရွေးချယ်ပါ";
+"attachment.camera" = "ဓာတ်ပုံ ရိုက်ပါ";
+"attachment.pdf" = "PDF ရွေးချယ်ပါ";
+"attachment.pdf.chars" = "စာလုံး %d";
+"attachment.pdf.pages" = "စာမျက်နှာ %d";
+"attachment.pdf.vision.enabled" = "ပုံ ပိုင်းခြားစိတ်ဖြာမှု ဖွင့်ထားသည်";
+"attachment.pdf.text.only" = "စာသားသာ မုဒ်";
+"attachment.url" = "ဝဘ်စာမျက်နှာ ဖတ်ပါ";
+"attachment.url.title" = "URL ရိုက်ထည့်ပါ";
+"attachment.url.placeholder" = "https://example.com";
+"attachment.url.message" = "အကြောင်းအရာ ထုတ်ယူရန် URL ကပ်ထည့်ပါ";
+"attachment.url.fetch" = "ယူပါ";
+"attachment.url.loading" = "စာမျက်နှာ တင်နေသည်...";
+
+// MARK: - Errors
+"error.model.not.found" = "မော်ဒယ် ဖိုင် မတွေ့ပါ";
+"error.model.not.loaded" = "မော်ဒယ် တင်ထားခြင်း မရှိပါ";
+"error.context.failed" = "အကြောင်းအရာ ဖန်တီးရန် မအောင်မြင်ပါ";
+"error.tokenization.failed" = "တိုကင်ထုတ်ခြင်း မအောင်မြင်ပါ";
+"error.generation.failed" = "ထုတ်လုပ်မှု အမှား: %@";
+"error.occurred" = "အမှားအယွင်း ဖြစ်ပေါ်ခဲ့သည်: %@";
+"error.invalid.url" = "မမှန်ကန်သော URL";
+"error.download.failed" = "ဒေါင်းလုဒ်လုပ်ခြင်း မအောင်မြင်ပါ";
+"error.extraction.failed" = "ထုတ်ယူခြင်း မအောင်မြင်ပါ";
+"error.config.not.found" = "ပုံစံပြင်ဆင်မှု ဖိုင် မတွေ့ပါ";
+
+// MARK: - Ghost Search
+"ghost.search.title" = "Ghost ရှာဖွေမှု";
+"ghost.search.description" = "DuckDuckGo မှတဆင့် အမည်မဖော် ရှာဖွေမှု (ခြေရာခံမှု မရှိ)";
+"ghost.search.connecting" = "အမည်မဖော် ကွန်ရက်သို့ ချိတ်ဆက်နေသည်...";
+"ghost.search.privacy.note" = "သင့် ရှာဖွေမှု မှတ်တမ်းကို ဘယ်တော့မှ ခြေရာခံခြင်း မရှိပါ";
+
+// MARK: - MCP Servers
+"mcp.filesystem" = "ဖိုင် စနစ်";
+"mcp.filesystem.desc" = "အက်ပ်တွင် ဖိုင်များ ဖတ်ခြင်းနှင့် ရေးခြင်း";
+"mcp.calendar" = "ပြက္ခဒိန်";
+"mcp.calendar.desc" = "အဖြစ်အပျက်များ ဖတ်ခြင်းနှင့် ရေးခြင်း";
+"mcp.reminders" = "သတိပေးချက်များ";
+"mcp.reminders.desc" = "သတိပေးချက်များ စီမံခန့်ခွဲပါ";
+"mcp.contacts" = "အဆက်အသွယ်များ";
+"mcp.contacts.desc" = "အဆက်အသွယ်များ ရှာဖွေခြင်းနှင့် ကြည့်ရှုခြင်း";
+"mcp.photos" = "ဓာတ်ပုံများ";
+"mcp.photos.desc" = "ဓာတ်ပုံ စာကြည့်တိုက်သို့ သုံးစွဲခွင့်";
+"mcp.location" = "တည်နေရာ";
+"mcp.location.desc" = "လက်ရှိ တည်နေရာ ရယူခြင်းနှင့် နေရာများ ရှာဖွေခြင်း";
+"mcp.health" = "ကျန်းမာရေး";
+"mcp.health.desc" = "ကျန်းမာရေး ဒေတာသို့ သုံးစွဲခွင့်";
+"mcp.shortcuts" = "ဖြတ်လမ်းများ";
+"mcp.shortcuts.desc" = "ဖြတ်လမ်းများ လည်ပတ်ပါ";
+"mcp.websearch" = "ဝဘ် ရှာဖွေမှု";
+"mcp.websearch.desc" = "အမည်မဖော် ဝဘ် ရှာဖွေမှု";
+"mcp.custom" = "စိတ်ကြိုက် ပေါင်းစည်းမှု";
+"mcp.custom.add" = "ပေါင်းစည်းမှု ထည့်ပါ";
+"mcp.custom.setup" = "ပြင်ပ ဝန်ဆောင်မှု ပေါင်းစည်းမှု တပ်ဆင်ပါ";
+"mcp.custom.title" = "စိတ်ကြိုက် ပေါင်းစည်းမှုများ";
+"mcp.settings.title" = "ပေါင်းစည်းမှု ဆက်တင်များ";
+"mcp.server.name" = "ဆာဗာ အမည်";
+"mcp.server.name.placeholder" = "ဥပမာ၊ ကျွန်ုပ်၏ စိတ်ကြိုက် ဆာဗာ";
+"mcp.config.url" = "ပုံစံပြင်ဆင်မှု ဖိုင် URL";
+"mcp.import.file" = "ဖိုင်မှ တင်သွင်းပါ";
+"mcp.config.example" = "ပုံစံပြင်ဆင်မှု ဖိုင် နမူနာ";
+"mcp.permission.note" = "လုပ်ဆောင်ချက် တစ်ခုချင်းစီကို ပထမဆုံး အသုံးပြုသည့်အခါ ခွင့်ပြုချက် တောင်းခံမည်";
+
+// MARK: - MCP Tool Messages
+"mcp.tool.available" = "ရနိုင်သော ကိရိယာများ:";
+"mcp.tool.parameters" = "ပါရာမီတာများ:";
+"mcp.prompt.available" = "ရနိုင်သော မေးခွန်းများ:";
+"mcp.prompt.arguments" = "ငြင်းခုံချက်များ:";
+"mcp.tool.name" = "tool_name";
+"mcp.tool.arg.name" = "arg_name";
+"mcp.tool.arg.value" = "value";
+"mcp.tool.no.result" = "ရလဒ် မရှိပါ";
+"mcp.tool.running" = "ကိရိယာ လည်ပတ်နေသည်: %@";
+"mcp.tool.error" = "ကိရိယာ လည်ပတ်မှု အမှား: %@";
+
+// MARK: - MCP Error Messages
+"mcp.error.server.not.found" = "ဆာဗာ မတွေ့ပါ: %@";
+"mcp.error.tool.not.found" = "ကိရိယာ မတွေ့ပါ: %@";
+"mcp.error.invalid.args" = "မမှန်ကန်သော ငြင်းခုံချက်များ: %@";
+"mcp.error.execution" = "လည်ပတ်မှု အမှား: %@";
+"mcp.error.permission" = "ခွင့်ပြုချက် ငြင်းပယ်ခံရသည်: %@";
+
+// MARK: - Calendar Messages
+"calendar.no.events" = "အဖြစ်အပျက်များ မရှိပါ";
+"calendar.event.created" = "အဖြစ်အပျက် ဖန်တီးပြီး: %@";
+"calendar.event.deleted" = "အဖြစ်အပျက် ဖျက်ပြီး: %@";
+"calendar.allday.created" = "တစ်နေကုန် အဖြစ်အပျက် ဖန်တီးပြီး: %@";
+"calendar.access.denied" = "ပြက္ခဒိန် သုံးစွဲခွင့် ငြင်းပယ်ခံရသည်";
+"calendar.today.none" = "ယနေ့ အဖြစ်အပျက်များ မရှိပါ";
+"calendar.untitled" = "ခေါင်းစဉ်မရှိ";
+
+// MARK: - Reminders Messages
+"reminders.none" = "သတိပေးချက်များ မရှိပါ";
+"reminders.created" = "သတိပေးချက် ဖန်တီးပြီး: %@";
+"reminders.completed" = "သတိပေးချက် ပြီးမြောက်ပြီး: %@";
+"reminders.deleted" = "သတိပေးချက် ဖျက်ပြီး: %@";
+"reminders.access.denied" = "သတိပေးချက်များ သုံးစွဲခွင့် ငြင်းပယ်ခံရသည်";
+"reminders.untitled" = "ခေါင်းစဉ်မရှိ";
+
+// MARK: - Photos Messages
+"photos.access.denied" = "ဓာတ်ပုံများ သုံးစွဲခွင့် ငြင်းပယ်ခံရသည်";
+"photos.not.found" = "ဓာတ်ပုံ မတွေ့ပါ";
+"photos.untitled" = "ခေါင်းစဉ်မရှိ";
+"photos.count" = "ဓာတ်ပုံများ: %d";
+"photos.videos.count" = "ဗီဒီယိုများ: %d";
+"photos.albums.count" = "အယ်လ်ဘမ်များ: %d";
+"photos.favorites.count" = "အကြိုက်ဆုံးများ: %d";
+"photos.date" = "ရက်စွဲ: %@";
+"photos.size" = "အရွယ်အစား: %d x %d";
+"photos.location" = "တည်နေရာ: %@, %@";
+"photos.media.type" = "မီဒီယာ အမျိုးအစား: %@";
+"photos.duration" = "ကြာချိန်: %dm %ds";
+"photos.favorite" = "အကြိုက်ဆုံး: %@";
+"photos.type.image" = "ဓာတ်ပုံ";
+"photos.type.video" = "ဗီဒီယို";
+"photos.type.audio" = "အသံ";
+
+// MARK: - Contacts Messages
+"contacts.access.denied" = "အဆက်အသွယ်များ သုံးစွဲခွင့် ငြင်းပယ်ခံရသည်";
+"contacts.not.found" = "ကိုက်ညီသော အဆက်အသွယ်များ မတွေ့ပါ";
+"contacts.no.groups" = "အုပ်စုများ မရှိပါ";
+"contacts.no.card" = "အဆက်အသွယ် ကတ် သတ်မှတ်ထားခြင်း မရှိပါ";
+"contacts.name" = "အမည်: %@";
+"contacts.company" = "ကုမ္ပဏီ: %@";
+"contacts.job" = "အလုပ် ရာထူး: %@";
+
+// MARK: - Location Messages
+"location.access.denied" = "တည်နေရာ သုံးစွဲခွင့် ငြင်းပယ်ခံရသည်";
+"location.not.found" = "လိပ်စာ မတွေ့ပါ";
+"location.latitude" = "လတ္တီတွဒ်: %@";
+"location.longitude" = "လောင်ဂျီတွဒ်: %@";
+"location.accuracy" = "တိကျမှု: %dm";
+"location.altitude" = "အမြင့်: %dm";
+"location.search" = "ရှာဖွေမှု: %@";
+"location.address" = "လိပ်စာ: %@";
+"location.country" = "နိုင်ငံ: %@";
+"location.postal" = "စာပို့သင်္ကေတ: %@";
+"location.from" = "မှ: (%@, %@)";
+"location.to" = "သို့: (%@, %@)";
+"location.distance.km" = "အကွာအဝေး: %.2f km";
+"location.distance.m" = "အကွာအဝေး: %d m";
+
+// MARK: - Health Messages
+"health.not.available" = "ဤစက်တွင် ကျန်းမာရေး မရနိုင်ပါ";
+"health.date" = "ရက်စွဲ: %@";
+"health.steps" = "လှမ်းခြင်း: %@ လှမ်း";
+"health.goal.progress" = "ပန်းတိုင် တိုးတက်မှု: %d%% (လှမ်း 10,000 ပန်းတိုင်)";
+"health.no.data" = "ဒေတာ မရနိုင်ပါ";
+"health.avg.bpm" = "ပျမ်းမျှ: %d bpm";
+"health.min.bpm" = "အနည်းဆုံး: %d bpm";
+"health.max.bpm" = "အများဆုံး: %d bpm";
+"health.measurements" = "တိုင်းတာမှုများ: %d";
+"health.no.sleep" = "အိပ် ဒေတာ မရှိပါ";
+"health.sleep.total" = "စုစုပေါင်း အိပ်ချိန်: %dh %dm";
+"health.bedtime" = "အိပ်ရာဝင်ချိန်: %@";
+"health.waketime" = "နိုးချိန်: %@";
+"health.calories" = "ကယ်လိုရီ: %d kcal";
+
+// MARK: - File System Messages
+"filesystem.not.found" = "ဖိုင် မတွေ့ပါ: %@";
+"filesystem.written" = "ဖိုင် ရေးပြီး: %@";
+"filesystem.dir.created" = "လမ်းညွှန် ဖန်တီးပြီး: %@";
+"filesystem.deleted" = "ဖျက်ပြီး: %@";
+"filesystem.size" = "အရွယ်အစား: %@";
+"filesystem.created" = "ဖန်တီးပြီး: %@";
+"filesystem.modified" = "ပြောင်းလဲပြီး: %@";
+"filesystem.type" = "အမျိုးအစား: %@";
+
+// MARK: - Shortcuts Messages
+"shortcuts.executed" = "ဖြတ်လမ်း '%@' လည်ပတ်ပြီး";
+"shortcuts.opened" = "ဖြတ်လမ်းများ အက်ပ် ဖွင့်ပြီး";
+"shortcuts.settings.opened" = "ဆက်တင်များ (%@) ဖွင့်ပြီး";
+"shortcuts.mail.opened" = "စာ ရေးသားမှု ဖွင့်ပြီး";
+"shortcuts.calling" = "ခေါ်ဆိုနေသည်: %@";
+"shortcuts.message.opened" = "မက်ဆေ့ချ် ရေးသားမှု ဖွင့်ပြီး";
+"shortcuts.failed" = "ဖြတ်လမ်း ဖွင့်၍ မရပါ";
+
+// MARK: - Model Tiers
+"model.tier.entry" = "အဝင်";
+"model.tier.standard" = "စံ";
+"model.tier.pro" = "ပရို";
+
+// MARK: - Tool Parser
+"tool.arguments" = "ငြင်းခုံချက်များ:";
+
+// MARK: - Model Settings
+"model.action.settings" = "ဆက်တင်များ";
+"settings.model.parameters" = "မော်ဒယ် ဆက်တင်များ";
+"settings.model.parameters.description" = "ဤမော်ဒယ်အတွက် ထုတ်လုပ်မှု ပါရာမီတာများ စိတ်ကြိုက်ပြင်ပါ";
+"settings.preset.title" = "ကြိုတင်သတ်မှတ်ချက်များ";
+"settings.preset.custom" = "စိတ်ကြိုက်";
+"settings.preset.balanced" = "ဟန်ချက်ညီသော";
+"settings.preset.creative" = "ဖန်တီးမှုရှိသော";
+"settings.preset.precise" = "တိကျသော";
+"settings.preset.coding" = "ကုဒ်ရေးခြင်း";
+"settings.preset.japanese" = "ဂျပန်";
+"settings.parameters.title" = "ပါရာမီတာများ";
+"settings.parameter.temperature" = "အပူချိန်";
+"settings.parameter.temperature.description" = "မြင့်သည် = ပို၍ ဖန်တီးမှုရှိသော၊ နည်းသည် = ပို၍ အာရုံစိုက်သော";
+"settings.parameter.top.p" = "Top P";
+"settings.parameter.top.p.description" = "နျူကလီးယား နမူနာယူမှု ဖြစ်နိုင်ခြေ";
+"settings.parameter.top.k" = "Top K";
+"settings.parameter.top.k.description" = "စဉ်းစားရမည့် ထိပ် တိုကင်များ အရေအတွက်";
+"settings.parameter.max.tokens" = "အများဆုံး တိုကင်များ";
+"settings.parameter.max.tokens.description" = "အများဆုံး တုံ့ပြန်မှု အရှည်";
+"settings.parameter.repeat.penalty" = "ထပ်ဆင့် ပြစ်ဒဏ်";
+"settings.parameter.repeat.penalty.description" = "မြင့်သည် = ထပ်တလဲလဲ ရလဒ် နည်းသည်";
+"settings.parameter.thinking" = "တွေးတောမှု မုဒ်";
+"settings.parameter.thinking.description" = "AI ၏ တွေးခေါ်မှု လုပ်ငန်းစဉ် ပြပါ";
+"settings.system.prompt.title" = "စနစ် မေးခွန်း";
+"settings.system.prompt.description" = "AI အတွက် စိတ်ကြိုက် ညွှန်ကြားချက်များ";
+"settings.reset.to.default" = "မူလအတိုင်း ပြန်လည်သတ်မှတ်ပါ";
+
+// MARK: - Vision Model
+"vision.model.required.title" = "အမြင်အာရုံ မော်ဒယ် လိုအပ်သည်";
+"vision.model.required.header" = "ပုံ အသိအမှတ်ပြုမှု လိုအပ်သည်";
+"vision.model.required.description" = "ပုံများ ပိုင်းခြားစိတ်ဖြာရန်၊ သင့်အနေဖြင့် အမြင်အာရုံ စွမ်းရည်ရှိသော AI မော်ဒယ် လိုအပ်သည်";
+"vision.model.switch" = "မော်ဒယ် ပြောင်းပါ";
+"vision.model.switch.message %@" = "ပုံ ပိုင်းခြားစိတ်ဖြာမှု ဖွင့်ရန် %@ သို့ ပြောင်းမလား?";
+"vision.model.download" = "ဒေါင်းလုဒ်";
+"vision.model.download.message %@ %@" = "ပုံများ ပိုင်းခြားစိတ်ဖြာရန် %@ (%@) ဒေါင်းလုဒ်လုပ်မလား?";
+"vision.model.not.available" = "သင့်စက်အတွက် သင့်လျော်သော အမြင်အာရုံ မော်ဒယ် မရှိပါ";
+"vision.model.switching" = "မော်ဒယ် ပြောင်းနေသည်...";
+"vision.model.download.title" = "အမြင်အာရုံ မော်ဒယ်များ";
+"vision.model.recommended" = "သင့်စက်အတွက် အကြံပြုထားသော";
+"vision.model.recommended.size %@" = "အကြံပြုထားသော: %@";
+"vision.model.use.this" = "ဤမော်ဒယ်ကို အသုံးပြုပါ";
+"vision.model.download.button %@" = "ဒေါင်းလုဒ် (%@)";
+"vision.model.other.options" = "အခြား အမြင်အာရုံ မော်ဒယ်များ";
+"vision.model.download.complete" = "ဒေါင်းလုဒ် ပြီးပါပြီ";
+"vision.model.download.complete.message" = "ပုံများ ပိုင်းခြားစိတ်ဖြာရန် အဆင်သင့်";
+
+// MARK: - Whisper Voice Input (Legacy)
+"whisper.download.title" = "အသံ အသိအမှတ်ပြုမှု လိုအပ်သည်";
+"whisper.download.action" = "ဒေါင်းလုဒ်";
+"whisper.download.message" = "အသံ ထည့်သွင်းမှု အသုံးပြုရန်၊ သင့်အနေဖြင့် စကားပြော အသိအမှတ်ပြုမှု မော်ဒယ် (~150MB) ဒေါင်းလုဒ်လုပ်ရန် လိုအပ်သည်။";
+"whisper.downloading" = "စကားပြော အသိအမှတ်ပြုမှု မော်ဒယ် ဒေါင်းလုဒ်လုပ်နေသည်...";
+"whisper.download.error" = "ဒေါင်းလုဒ် အမှား";
+"whisper.load.error" = "မော်ဒယ် တင်မှု အမှား";
+"whisper.permission.denied" = "မိုက်ခရိုဖုန်း သုံးစွဲခွင့် ခွင့်ပြုချက် မရပါ";
+"whisper.transcribe.error" = "စာသားပြောင်းမှု အမှား";
+"whisper.error.permission" = "မိုက်ခရိုဖုန်း ခွင့်ပြုချက် လိုအပ်သည်";
+"whisper.error.not.recording" = "လောလောဆယ် အသံသွင်းနေခြင်း မဟုတ်ပါ";
+"whisper.error.no.recording" = "အသံသွင်း ဒေတာ မရှိပါ";
+"whisper.error.model.not.loaded" = "စကားပြော အသိအမှတ်ပြုမှု မော်ဒယ် တင်ထားခြင်း မရှိပါ";
+"whisper.error.transcription" = "စာသားပြောင်းမှု မအောင်မြင်ပါ";
+
+// MARK: - Speech Recognition (ReazonSpeech)
+"speech.download.title" = "အသံ အသိအမှတ်ပြုမှု လိုအပ်သည်";
+"speech.download.action" = "ဒေါင်းလုဒ်";
+"speech.download.message" = "အသံ ထည့်သွင်းမှု အသုံးပြုရန်၊ သင့်အနေဖြင့် ဂျပန် စကားပြော အသိအမှတ်ပြုမှု မော်ဒယ် (~155MB) ဒေါင်းလုဒ်လုပ်ရန် လိုအပ်သည်။";
+"speech.downloading" = "စကားပြော အသိအမှတ်ပြုမှု မော်ဒယ် ဒေါင်းလုဒ်လုပ်နေသည်...";
+
+// MARK: - Language Settings
+"settings.language.section" = "ဘာသာစကား";
+"language.system" = "စနစ် ဘာသာစကား အသုံးပြုပါ";
+"settings.language.restart.hint" = "အက်ပ် ပြန်လည်စတင်ပြီးနောက် ဘာသာစကား ပြောင်းလဲမှုများ အာနိသင် ရလိမ့်မည်";
+"settings.language.changed.title" = "ဘာသာစကား ပြောင်းလဲပြီး";
+"settings.language.changed.message" = "ပြောင်းလဲမှုများ အသုံးချရန် အက်ပ်ကို ပြန်လည်စတင်ပါ";
+"common.ok" = "OK";
+
+// MARK: - System Prompt Settings
+"settings.prompt.section" = "စနစ် မေးခွန်း";
+"settings.prompt.edit" = "မေးခွန်း တည်းဖြတ်ပါ";
+"settings.prompt.default" = "မူလ အသုံးပြုနေသည်";
+"settings.prompt.custom" = "စိတ်ကြိုက် မေးခွန်း သတ်မှတ်ပြီး";
+"settings.prompt.hint" = "AI အပြုအမူ စိတ်ကြိုက်ပြင်ပါ";
+"settings.prompt.editor.title" = "မေးခွန်း တည်းဖြတ်ပါ";
+"settings.prompt.editor.instruction" = "AI အတွက် စိတ်ကြိုက် ညွှန်ကြားချက်များ ထည့်ပါ။ မူလ မေးခွန်း အသုံးပြုရန် အလွတ်ထားပါ။";
+"settings.prompt.default.preview" = "မူလ မေးခွန်း (ကောက်နှုတ်ချက်):";
+"settings.prompt.reset" = "ပြန်လည်သတ်မှတ်ပါ";
+"settings.prompt.reset.title" = "မေးခွန်း ပြန်လည်သတ်မှတ်ပါ";
+"settings.prompt.reset.message" = "စိတ်ကြိုက် မေးခွန်း ဖျက်ပြီး မူလအတိုင်း ပြန်လည်ထားရှိမလား?";
+
+// MARK: - Prompt Templates
+"templates.title" = "မေးခွန်း နမူနာများ";
+"templates.empty" = "နမူနာများ မရှိသေးပါ";
+"templates.add" = "နမူနာ ထည့်ပါ";
+"template.add.title" = "နမူနာ ထည့်ပါ";
+"template.edit.title" = "နမူနာ တည်းဖြတ်ပါ";
+"template.name.header" = "အမည်";
+"template.name.placeholder" = "နမူနာ အမည်";
+"template.content.header" = "မေးခွန်း အကြောင်းအရာ";
+"template.icon.header" = "အိုင်ကွန်";
+"template.translate.name" = "ဘာသာပြန်ပါ";
+"template.translate.content" = "အောက်ပါကို ဘာသာပြန်ပါ: ";
+"template.summarize.name" = "အကျဉ်းချုပ်ပါ";
+"template.summarize.content" = "အောက်ပါကို အကျဉ်းချုပ်ပါ: ";
+"template.explain.name" = "ရှင်းပြပါ";
+"template.explain.content" = "အောက်ပါကို ရှင်းပြပါ: ";
+"template.code.name" = "ကုဒ်";
+"template.code.content" = "အောက်ပါအတွက် ကုဒ် ရေးပါ: ";
+
+// MARK: - Export
+"export.title" = "စကားစမြည့် ထုတ်ယူပါ";
+"export.format.markdown" = "Markdown";
+"export.format.pdf" = "PDF";
+"export.format.text" = "စာသား သက်သက်";
+"export.created" = "ဖန်တီးပြီး";
+"export.image.attached" = "ပုံ ပူးတွဲ";
+"export.generated.by" = "ဖန်တီးသူ";
+
+// MARK: - Loading Phases
+"loading.phase.initializing" = "စတင်နေသည်...";
+"loading.phase.loading" = "မော်ဒယ် တင်နေသည်...";
+"loading.phase.preparing" = "ကောက်ချက်ချမှု အင်ဂျင် ပြင်ဆင်နေသည်...";
+"loading.phase.almost" = "အဆင်သင့် နီးပါးပြီ...";
+
+// MARK: - Welcome Screen
+"welcome.greeting" = "ကျွန်ုပ်အား မည်သည့်အရာမဆို မေးနိုင်ပါသည်";
+"welcome.subtitle" = "သင့်ကိုယ်ရေးကိုယ်တာ-ဦးစားပေးသော AI လက်ထောက်";
+"suggestion.idea" = "အိုင်ဒီယာများ တွေးဆရာတွက်ရန် ကူညီပါ";
+"suggestion.write" = "တစ်စုံတစ်ခု ရေးရန် ကူညီပါ";
+"suggestion.question" = "ကျွန်ုပ်၏ မေးခွန်းများကို ဖြေပါ";
+
+// MARK: - Kokoro TTS
+"tts.download.title" = "အရည်အသွေးမြင့် အသံ";
+"tts.download.action" = "ဒေါင်းလုဒ်";
+"tts.download.use_system" = "စနစ် အသံ အသုံးပြုပါ";
+"tts.download.message" = "ပို၍ သဘာဝကျသော ဂျပန် စာသား-မှ-စကားပြော အတွက် Kokoro TTS မော်ဒယ် (~87MB) ဒေါင်းလုဒ်လုပ်ပါ။";
+"tts.downloading" = "TTS မော်ဒယ် ဒေါင်းလုဒ်လုပ်နေသည်...";
+
+// MARK: - Feedback
+"feedback.consent.title" = "တုံ့ပြန်ချက် ပို့ပါ";
+"feedback.send" = "ပို့ပါ";
+"feedback.positive.title" = "ဤတုံ့ပြန်မှု အကူအညီဖြစ်သလား?";
+"feedback.negative.title" = "ဤအရာ တိုးတက်ကောင်းမွန်အောင် လုပ်နိုင်ပါသလား?";
+"feedback.explanation" = "သင့်တုံ့ပြန်ချက်သည် AI အရည်အသွေး တိုးတက်ရန် ကူညီသည်။ တင်သွင်းခြင်းမပြုမီ မည်သည့်ဒေတာ ပို့မည်ကို သုံးသပ်ပါ။";
+"feedback.data.section" = "ပို့မည့် ဒေတာ";
+"feedback.data.conversation" = "စကားစမြည့်";
+"feedback.data.conversation.desc" = "AI တုံ့ပြန်မှုနှင့် သင့် ယခင် မက်ဆေ့ခ်ျ";
+"feedback.data.model" = "မော်ဒယ် အချက်အလက်";
+"feedback.data.model.desc" = "အသုံးပြုထားသော AI မော်ဒယ်၏ အမည်";
+"feedback.data.timestamp" = "အချိန်တံဆိပ်";
+"feedback.data.timestamp.desc" = "တုံ့ပြန်ချက် တင်သွင်းသည့်အခါ";
+"feedback.privacy.section" = "ကိုယ်ရေးကိုယ်တာ";
+"feedback.privacy.anonymous" = "ကိုယ်ရေးကိုယ်တာ သိနိုင်သော အချက်အလက် ပို့ခြင်း မရှိပါ";
+"feedback.privacy.improvement" = "AI အရည်အသွေး တိုးတက်ရန်သာ အသုံးပြုသည်";
+"feedback.privacy.optional" = "တုံ့ပြန်ချက် ပို့ခြင်းသည် လုံးလုံး စိတ်ဆန္ဒအလျောက်";
+"feedback.comment.section" = "မှတ်ချက် (စိတ်ဆန္ဒအလျောက်)";
+"feedback.comment.placeholder" = "တိုးတက်ကောင်းမွန်စေနိုင်သော အရာ သို့မဟုတ် ကောင်းမွန်စွာ အလုပ်လုပ်သော အရာ ကျွန်ုပ်တို့အား ပြောပြပါ...";
+"feedback.remember.title" = "ဤရွေးချယ်မှု မှတ်ထားပါ";
+"feedback.remember.description" = "နောက်တစ်ကြိမ် မမေးတော့ဘဲ တုံ့ပြန်ချက် တင်သွင်းပါ";
+
+// MARK: - Emergency Mode
+"emergency.sos.button" = "အရေးပေါ် မုဒ် (ပြောင်းရန် ကြာကြာ နှိပ်ပါ)";
+"emergency.mode.active" = "အရေးပေါ် မုဒ် အသက်ဝင်နေသည်";
+"emergency.action.firstaid" = "ပထမအကူအညီ";
+"emergency.action.firstaid.message" = "ပထမအကူအညီ ညွှန်ကြားချက်များ ပေးပါ။ ကျွန်ုပ် ဒဏ်ရာ သို့မဟုတ် လက္ခဏာများကို ဖော်ပြပါမည်: ";
+"emergency.action.disaster" = "သဘာဝဘေး";
+"emergency.action.disaster.message" = "သဘာဝဘေး ဖြစ်ပွားခဲ့သည်။ တုံ့ပြန်မှု လုပ်ထုံးလုပ်နည်း ပေးပါ: ";
+"emergency.action.factcheck" = "အချက်အလက် စစ်ဆေးပါ";
+"emergency.action.factcheck.message" = "ဤအချက်အလက်၏ ယုံကြည်စိတ်ချရမှု အတည်ပြုပါ: ";
+"emergency.action.contacts" = "အရေးပေါ်";
+"emergency.action.contacts.message" = "အရေးပေါ် အဆက်အသွယ် နံပါတ်များ စာရင်း ပြပါ";
+"emergency.action.evacuation" = "ဘေးလွတ်ရာသို့ ပြောင်းရွှေ့ပါ";
+"emergency.action.evacuation.message" = "လက်ရှိ အခြေအနေအတွက် ဘေးလွတ်ရာသို့ ပြောင်းရွှေ့မှု စစ်ဆေးစာရင်း ပြုလုပ်ပါ: ";
+"mcp.emergency_kb" = "အရေးပေါ် KB";
+"mcp.emergency_kb.desc" = "အရေးပေါ်နှင့် သဘာဝဘေး အချက်အလက်";
+
+// MARK: - Emergency Templates
+"template.firstaid.name" = "ပထမအကူအညီ လမ်းညွှန်";
+"template.firstaid.content" = "ပထမအကူအညီ ညွှန်ကြားချက်များ ပေးပါ: ";
+"template.disaster.name" = "သဘာဝဘေး တုံ့ပြန်မှု";
+"template.disaster.content" = "အောက်ပါ သဘာဝဘေး ဖြစ်ပွားခဲ့သည်။ တုံ့ပြန်မှု လုပ်ထုံးလုပ်နည်း ပေးပါ: ";
+"template.factcheck.name" = "အချက်အလက် စစ်ဆေးပါ";
+"template.factcheck.content" = "ဤအချက်အလက်၏ ယုံကြည်စိတ်ချရမှု အတည်ပြုပြီး အချက်အလက် စစ်ဆေးမှု အကြံပြုချက်များ ပေးပါ: ";
+"template.evacuation.name" = "ဘေးလွတ်ရာသို့ ပြောင်းရွှေ့မှု စစ်ဆေးစာရင်း";
+"template.evacuation.content" = "လက်ရှိ အခြေအနေအတွက် ဘေးလွတ်ရာသို့ ပြောင်းရွှေ့မှု စစ်ဆေးစာရင်း ပြုလုပ်ပါ: ";
+
+// MARK: - ChatWeb.ai Integration
+"chatweb.title" = "ChatWeb.ai";
+"chatweb.desc" = "ကလောက် AI စကားစမြည့်";
+"chatweb.connect" = "ChatWeb.ai သို့ ချိတ်ဆက်ပါ";
+"chatweb.qr.title" = "QR ကုဒ် မှတဆင့် ချိတ်ဆက်ပါ";
+"chatweb.qr.scan" = "QR ကုဒ် စကန်ဖတ်ပါ";
+"chatweb.open" = "ChatWeb.ai ဖွင့်ပါ";
+
+// MARK: - Peer Connection
+"peer.title" = "အနီးနား စက်များ";
+"peer.desc" = "အနီးနား Elio စက်များနှင့် ချိတ်ဆက်ပါ";
+"peer.connect" = "စက်သို့ ချိတ်ဆက်ပါ";
+"peer.code.title" = "ချိတ်ဆက်မှု ကုဒ်";
+"peer.code.enter" = "ဂဏန်း 4 လုံး ကုဒ် ရိုက်ထည့်ပါ";
+"peer.code.your" = "သင့် ကုဒ်";
+"peer.connected" = "ချိတ်ဆက်ပြီး";
+"peer.disconnected" = "ချိတ်ဆက်မှု ပြတ်တောက်ပြီး";
+"peer.inference.offload" = "ကောက်ချက်ချမှု မျှဝေနေသည်";
+
+// MARK: - Web Search
+"chat.web.search" = "ဝဘ် ရှာဖွေမှု";
+"search.privacy.title" = "ကိုယ်ရေးကိုယ်တာ-ကာကွယ်ထားသော ရှာဖွေမှု";
+"search.privacy.proceed" = "ရှာဖွေပါ";
+"search.privacy.message" = "ElioChat ဝဘ် ရှာဖွေမှုသည် သင့်ကိုယ်ရေးကိုယ်တာကို ကာကွယ်သည်:\n\n🔒 DuckDuckGo မှတဆင့် ရှာဖွေမှုများ\n🚫 ခြေရာခံမှု သို့မဟုတ် ကိုယ်ရေးအချက်အလက် မရှိ\n🔐 ရှာဖွေမှု မှတ်တမ်း သိမ်းဆည်းခြင်း မရှိပါ\n📱 သင့်စက်ပြင်ပတွင် ဒေတာ သိမ်းဆည်းခြင်း မရှိပါ\n\nသင့် ရှာဖွေမှု မေးခွန်းကိုသာ DuckDuckGo သို့ ပို့ပြီး ရလဒ်များကို သင့်စက်တွင် စီမံဆောင်ရွက်သည်။";
+"chat.web.analyzing" = "[ဝဘ်စာမျက်နှာ ပိုင်းခြားစိတ်ဖြာနေသည်]";

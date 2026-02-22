@@ -1,0 +1,635 @@
+/*
+  Localizable.strings (Swahili)
+  Elio
+*/
+
+// MARK: - App General
+"app.name" = "Elio";
+"app.tagline" = "Ubongo wako wa pili unaoficha siri.";
+
+// MARK: - Common Actions
+"common.done" = "Imekamilika";
+"common.cancel" = "Ghairi";
+"common.delete" = "Futa";
+"common.save" = "Hifadhi";
+"common.edit" = "Hariri";
+"common.share" = "Shiriki";
+"common.copy" = "Nakili";
+"common.copied" = "Imenakiliwa";
+"common.loading" = "Inapakia...";
+"common.error" = "Hitilafu";
+"common.retry" = "Jaribu tena";
+"common.skip" = "Ruka";
+"common.next" = "Ifuatayo";
+"common.start" = "Anza";
+"common.add" = "Ongeza";
+"common.close" = "Funga";
+"common.details" = "Maelezo";
+"common.yes" = "Ndiyo";
+"common.no" = "Hapana";
+"common.unknown" = "Haijulikani";
+
+// MARK: - Chat
+"chat.placeholder" = "Niulize chochote";
+"chat.model.not.loaded" = "Modeli haijapakiwa";
+"chat.model.not.loaded.description" = "Tafadhali pakua modeli kutoka kwa Mipangilio";
+"chat.go.to.settings" = "Nenda kwa Mipangilio";
+"chat.new.conversation" = "Mazungumzo Mapya";
+"chat.stop.generation" = "Simamisha";
+"chat.generation.stopped" = "\n\n[Uzalishaji umesimamishwa]";
+"chat.image.sent" = "[Picha imetumwa]";
+"chat.images.sent" = "[Picha %d zimetumwa]";
+"chat.pdf.sent" = "[PDF imeambatanishwa: %@]";
+"chat.pdf.sent.vision" = "[PDF na picha: %@]";
+"chat.pdf.context" = "Ifuatayo ni maudhui ya maandishi yaliyochukuliwa kutoka kwa hati ya PDF \"%@\":\n\n%@";
+"chat.pdf.context.vision" = "Hii ni ukurasa wa 1 wa hati ya PDF \"%@\". Maudhui ya maandishi yaliyochukuliwa ni:\n\n%@\n\nTafadhali changanua maudhui ya kuona na maandishi.";
+"chat.pdf.analyze" = "Tafadhali changanua ukurasa huu wa PDF kutoka \"%@\".";
+"chat.url.sent" = "[Ukurasa wa wavuti: %@]";
+"chat.url.context" = "Ifuatayo ni maudhui yaliyochukuliwa kutoka kwa ukurasa wa wavuti \"%@\" (%@):\n\n%@";
+"chat.thinking" = "Ninafikiria...";
+"chat.generating" = "Ninazalisha jibu...";
+"chat.welcome" = "Ninaweza kukusaidia vipi?";
+"chat.suggestion.schedule" = "Onyesha ratiba ya leo";
+"chat.suggestion.reminder" = "Unda kikumbusho";
+"chat.suggestion.weather" = "Hali ya hewa ni vipi leo?";
+"chat.suggestion.help" = "Jinsi ya kutumia programu hii";
+"chat.websearch.on" = "Utaftaji wa Wavuti Umewashwa";
+"chat.websearch.off" = "Utaftaji wa Wavuti Umezimwa";
+"chat.thinking.on" = "Mawazo Yamewashwa";
+"chat.thinking.off" = "Mawazo Yamezimwa";
+"chat.transcribing" = "Inasaini...";
+"chat.offline" = "Nje ya mkondoni";
+
+// Voice Conversation Mode
+"voice.listening" = "Sikiliza...";
+"voice.processing" = "Inachakata...";
+"voice.thinking" = "Ninafikiria...";
+"voice.speaking" = "Ninazungumza...";
+"voice.tap.to.send" = "Gusa ili kutuma";
+"chat.templates" = "Violezo";
+"chat.websearch.privacy.title" = "Kuhusu Utaftaji wa Wavuti";
+"chat.websearch.privacy.message" = "Kuwezesha utaftaji wa wavuti huruhusu AI kutafuta mtandaoni kupitia DuckDuckGo kwa maelezo ya hivi sasa. Maombi ya utaftaji yanatumwa kwa DuckDuckGo lakini hayafuatilwi.";
+"chat.websearch.privacy.enable" = "Wezesha";
+"chat.websearch.privacy.disable" = "Acha Imezimwa";
+
+// MARK: - Settings
+"settings.title" = "Mipangilio";
+"settings.model.section" = "Miundo ya AI";
+"settings.model.recommended" = "Inashauriwa: %@";
+"settings.model.local.execution" = "Miundo inafanya kazi kienyeji kwenye kifaa chako";
+"settings.model.show.more" = "Miundo Mingine (%d)";
+"settings.model.show.less" = "Onyesha Kidogo";
+"settings.appearance.section" = "Muonekano";
+"settings.tools.section" = "Vipengele Mahiri";
+"settings.mcp.servers" = "Ujumuishaji";
+"settings.mcp.servers.description" = "Kalenda, Faili, Vikumbusho na zaidi";
+"settings.mcp.enabled.count" = "%d zimewezeshwa";
+"settings.mcp.enabled.count.suffix" = " zimewezeshwa";
+"settings.about.section" = "Kuhusu";
+"settings.version" = "Toleo";
+"settings.about.app" = "Kuhusu Programu Hii";
+"settings.about.mcp" = "Kuhusu Ujumuishaji";
+"settings.privacy.badge" = "Inafanya kazi Nje ya Mkondoni";
+"settings.privacy.description" = "Inafanya kazi katika Hali ya Ndege";
+"settings.airplane.mode" = "Inafanya kazi katika Hali ya Ndege";
+"settings.offline.ready" = "Tayari kwa Matumizi Nje ya Mkondoni";
+
+// MARK: - Model States
+"model.status.downloading" = "Inapakua... %d%%";
+"model.status.loading" = "Inapakia...";
+"model.status.in.use" = "Inatumika";
+"model.status.recommended" = "Inashauriwa";
+"model.status.heavy" = "Nzito";
+"model.action.download" = "Pakua";
+"model.action.load" = "Pakia";
+"model.action.delete" = "Futa";
+"model.action.use" = "Tumia Modeli Hii";
+"model.delete.confirm.title" = "Futa Modeli";
+"model.delete.confirm.message" = "Futa %@? Utahitaji kuipakua tena ili kuitumia tena.";
+"model.select.title" = "Chagua Modeli";
+"model.select.prompt" = "Tafadhali chagua modeli";
+"model.downloaded" = "Imepakuliwa";
+
+// MARK: - Inference Mode
+"inference.mode.title" = "Kuongeza Kasi";
+"inference.mode.auto" = "Kiotomatiki";
+"inference.mode.auto.desc" = "Utendaji bora kiotomatiki";
+"inference.mode.gpu" = "GPU (Metal)";
+"inference.mode.gpu.desc" = "Kasi ya juu zaidi na Metal";
+"inference.mode.cpu" = "CPU Pekee";
+"inference.mode.cpu.desc" = "Hali ya kuokoa betri";
+"inference.mode.hybrid" = "Mseto";
+"inference.mode.hybrid.desc" = "Usawa wa kasi na betri";
+
+// MARK: - Theme
+"theme.system" = "Mfumo";
+"theme.light" = "Mwanga";
+"theme.dark" = "Giza";
+
+// MARK: - Onboarding
+"onboarding.welcome.title" = "Karibu kwenye ElioChat";
+"onboarding.welcome.subtitle" = "Msaidizi wako binafsi wa AI";
+"onboarding.features.title" = "AI ya Faragha Halisi";
+"onboarding.feature.offline" = "Inafanya kazi katika Hali ya Ndege";
+"onboarding.feature.offline.desc" = "Itumie kwenye safari za anga au chini ya ardhi";
+"onboarding.feature.privacy" = "Hakuna Uhamishaji wa Data";
+"onboarding.feature.privacy.desc" = "Mazungumzo yako hayaondoki simu yako";
+"onboarding.feature.vault" = "Ujumuishaji Mahiri";
+"onboarding.feature.vault.desc" = "Unganisha na Kalenda na Faili";
+"onboarding.feature.secure" = "AI Salama kwa Kazi";
+"onboarding.feature.secure.desc" = "Salama kwa matumizi ya makampuni";
+"onboarding.feature.thinking" = "Mchakato wa Mawazo";
+"onboarding.privacy.title" = "Data Yako Inabaki Yako";
+"onboarding.privacy.item1" = "Uchakataji wote unafanyika kwenye iPhone yako";
+"onboarding.privacy.item2" = "Hakuna data inayotumwa kwa seva za wingu";
+"onboarding.privacy.item3" = "Haitumiwi kamwe kwa mafunzo ya AI";
+"onboarding.getstarted.title" = "Tayari kwa Mguso Mmoja";
+"onboarding.getstarted.subtitle" = "Pakua modeli ya AI inayopendekezwa\nna uanze kuzungumza mara moja";
+"onboarding.step1" = "Pakua modeli inayopendekezwa";
+"onboarding.step2" = "Subiri dakika chache";
+"onboarding.step3" = "Uko tayari!";
+
+// MARK: - About
+"about.title" = "Kuhusu Programu Hii";
+"about.rate.app" = "Kadiria Programu";
+"about.share.app" = "Shiriki na Marafiki";
+"about.privacy.policy" = "Sera ya Faragha";
+"about.terms" = "Masharti ya Huduma";
+"about.tech.info" = "Maelezo ya Kiufundi";
+"about.tech.engine" = "Injini ya AI";
+"about.tech.format" = "Muundo Unaotumika";
+"about.tech.inference" = "Uamuzi";
+"about.data.management" = "Usimamizi wa Data";
+"about.delete.all" = "Futa Mazungumzo Yote";
+"about.credits" = "Sifa";
+"about.credits.description" = "Programu hii inatumia maktaba za chanzo wazi";
+"about.privacy.section" = "Faragha";
+"about.gguf.format" = "Muundo wa GGUF";
+"about.metal.gpu" = "Kuongeza Kasi kwa Metal GPU";
+
+// MARK: - Referral
+"referral.title" = "Pendekeza Marafiki";
+"referral.code.title" = "Msimbo Wako wa Kuelekeza";
+"referral.code.copy" = "Nakili Msimbo";
+"referral.code.copied" = "Imenakiliwa";
+"referral.share.button" = "Shiriki na Marafiki";
+"referral.share.description" = "Shiriki Elio na marafiki zako!";
+"referral.count" = "Wameelekezwa watu %d";
+"referral.enter.title" = "Ingiza Msimbo wa Kuelekeza";
+"referral.enter.placeholder" = "Msimbo wa Kuelekeza";
+"referral.enter.button" = "Tumia";
+"referral.enter.success" = "Msimbo wa kuelekeza umetumika";
+"referral.enter.error" = "Msimbo wa kuelekeza si sahihi";
+
+// MARK: - Privacy Policy
+"privacy.title" = "Sera ya Faragha";
+"privacy.data.collection.title" = "Ukusanyaji wa Data";
+"privacy.data.collection.content" = "Programu hii inaendeshwa AI ya ndani kabisa nje ya mkondoni.\nHakuna data inayotumwa kwa seva za nje.\nMazungumzo yote yamehifadhiwa tu kwenye kifaa chako.";
+"privacy.stored.data.title" = "Data Iliyohifadhiwa";
+"privacy.stored.data.content" = "Historia ya mazungumzo (imehifadhiwa tu kwenye kifaa)\nFaili za modeli ya AI (zimehifadhiwa tu kwenye kifaa)\nMipangilio ya programu (imehifadhiwa tu kwenye kifaa)\n\nData hii haishirikiwi kamwe nje.";
+"privacy.data.deletion.title" = "Kufuta Data";
+"privacy.data.deletion.content" = "Unaweza kufuta data yote wakati wowote kutoka Mipangilio > Usimamizi wa Data.\nKuondoa programu kutafuta data yote.";
+
+// MARK: - Terms of Service
+"terms.title" = "Masharti ya Huduma";
+"terms.service.title" = "Maelezo ya Huduma";
+"terms.service.content" = "Programu hii inatoa utendaji wa msaidizi wa AI kwa kutumia modeli ya AI inayoendesha kienyeji.";
+"terms.disclaimer.title" = "Kanusho";
+"terms.disclaimer.content" = "Majibu ya AI yanaweza kuwa na makosa.\nMaamuzi muhimu yanapaswa kuthibitishwa na mtaalam daima.\nHatuwajibiki kwa uharibifu wowote unaotokana na matumizi ya programu hii.";
+"terms.prohibited.title" = "Shughuli Zilizozuiwa";
+"terms.prohibited.content" = "Shughuli haramu\nShughuli zinazokiuka haki za wengine\nUhandisi wa reverse wa programu hii\nKunakili programu hii bila ruhusa";
+"terms.ip.title" = "Mali ya Akili";
+"terms.ip.content" = "Haki za mali ya akili ya programu hii ni za mtengenezaji.\nMatumizi yasiyo na ruhusa yamezuiwa.";
+
+// MARK: - Conversations
+"conversations.title" = "Mazungumzo";
+"conversations.new" = "Mazungumzo Mapya";
+"conversations.empty" = "Bado hakuna mazungumzo";
+"conversations.delete" = "Futa Mazungumzo";
+"conversations.default.title" = "Mazungumzo Mapya";
+"conversations.today" = "Leo";
+"conversations.yesterday" = "Jana";
+"conversations.past7days" = "Siku 7 Zilizopita";
+"conversations.past30days" = "Siku 30 Zilizopita";
+"conversations.older" = "Zamani Zaidi";
+"conversations.created" = "Iliundwa: %@";
+"conversations.user" = "Mtumiaji";
+"conversations.assistant" = "Msaidizi";
+"conversations.search.placeholder" = "Tafuta mazungumzo";
+"conversations.search.no_results" = "Hakuna matokeo yaliyopatikana";
+
+// MARK: - Message Actions
+"message.copy" = "Nakili";
+"message.speak" = "Sema";
+"message.stop.speaking" = "Acha Kusema";
+"message.share" = "Shiriki";
+"message.share.card" = "Shiriki kama Kadi";
+"message.like" = "Penda";
+
+// MARK: - Share Card
+"share.card.title" = "Shiriki Kadi";
+"share.card.preview" = "Hakiki";
+"share.card.button" = "Shiriki Picha";
+"message.dislike" = "Sipendi";
+"message.thinking.process" = "Mchakato wa Mawazo";
+"message.tool.running" = "Inaendesha Chombo";
+"message.tool.error" = "Hitilafu";
+"message.tool.completed" = "Imekamilika";
+
+// MARK: - Attachment
+"attachment.title" = "Kiambatisho";
+"attachment.photo.library" = "Chagua Picha";
+"attachment.camera" = "Piga Picha";
+"attachment.pdf" = "Chagua PDF";
+"attachment.pdf.chars" = "herufi %d";
+"attachment.pdf.pages" = "kurasa %d";
+"attachment.pdf.vision.enabled" = "Uchambuzi wa picha umewezeshwa";
+"attachment.pdf.text.only" = "Hali ya maandishi pekee";
+"attachment.url" = "Soma Ukurasa wa Wavuti";
+"attachment.url.title" = "Ingiza URL";
+"attachment.url.placeholder" = "https://example.com";
+"attachment.url.message" = "Bandika URL ili kutoa maudhui yake";
+"attachment.url.fetch" = "Leta";
+"attachment.url.loading" = "Inapakia ukurasa...";
+
+// MARK: - Errors
+"error.model.not.found" = "Faili ya modeli haijapatikana";
+"error.model.not.loaded" = "Modeli haijapakiwa";
+"error.context.failed" = "Kushindwa kuunda muktadha";
+"error.tokenization.failed" = "Tokenization imeshindwa";
+"error.generation.failed" = "Hitilafu ya uzalishaji: %@";
+"error.occurred" = "Hitilafu imetokea: %@";
+"error.invalid.url" = "URL si sahihi";
+"error.download.failed" = "Upakuaji umeshindwa";
+"error.extraction.failed" = "Utoaji umeshindwa";
+"error.config.not.found" = "Faili ya usanidi haijapatikana";
+
+// MARK: - Ghost Search
+"ghost.search.title" = "Utaftaji wa Ghost";
+"ghost.search.description" = "Utaftaji wa faragha kupitia DuckDuckGo (bila kufuatilia)";
+"ghost.search.connecting" = "Inaunganisha na mtandao wa faragha...";
+"ghost.search.privacy.note" = "Historia yako ya utaftaji haifuatilwi kamwe";
+
+// MARK: - MCP Servers
+"mcp.filesystem" = "Mfumo wa Faili";
+"mcp.filesystem.desc" = "Soma na andika faili katika programu";
+"mcp.calendar" = "Kalenda";
+"mcp.calendar.desc" = "Soma na andika matukio";
+"mcp.reminders" = "Vikumbusho";
+"mcp.reminders.desc" = "Simamia vikumbusho";
+"mcp.contacts" = "Anwani";
+"mcp.contacts.desc" = "Tafuta na tazama anwani";
+"mcp.photos" = "Picha";
+"mcp.photos.desc" = "Fikia maktaba ya picha";
+"mcp.location" = "Mahali";
+"mcp.location.desc" = "Pata mahali pa sasa na tafuta maeneo";
+"mcp.health" = "Afya";
+"mcp.health.desc" = "Fikia data ya afya";
+"mcp.shortcuts" = "Njia za Mkato";
+"mcp.shortcuts.desc" = "Endesha njia za mkato";
+"mcp.websearch" = "Utaftaji wa Wavuti";
+"mcp.websearch.desc" = "Utaftaji wa faragha wa wavuti";
+"mcp.custom" = "Ujumuishaji Maalum";
+"mcp.custom.add" = "Ongeza Ujumuishaji";
+"mcp.custom.setup" = "Weka ujumuishaji wa huduma ya nje";
+"mcp.custom.title" = "Ujumuishaji Maalum";
+"mcp.settings.title" = "Mipangilio ya Ujumuishaji";
+"mcp.server.name" = "Jina la Seva";
+"mcp.server.name.placeholder" = "k.m., Seva Yangu Maalum";
+"mcp.config.url" = "URL ya Faili ya Usanidi";
+"mcp.import.file" = "Leta kutoka kwa Faili";
+"mcp.config.example" = "Mfano wa Faili ya Usanidi";
+"mcp.permission.note" = "Ruhusa zitaombwa wakati wa kwanza kutumia kila kipengele";
+
+// MARK: - MCP Tool Messages
+"mcp.tool.available" = "Zana Zinazopatikana:";
+"mcp.tool.parameters" = "Vigezo:";
+"mcp.prompt.available" = "Vidokezo Vinavyopatikana:";
+"mcp.prompt.arguments" = "Hoja:";
+"mcp.tool.name" = "jina_la_chombo";
+"mcp.tool.arg.name" = "jina_la_hoja";
+"mcp.tool.arg.value" = "thamani";
+"mcp.tool.no.result" = "Hakuna matokeo";
+"mcp.tool.running" = "Inaendesha chombo: %@";
+"mcp.tool.error" = "Hitilafu ya utekelezaji wa chombo: %@";
+
+// MARK: - MCP Error Messages
+"mcp.error.server.not.found" = "Seva haijapatikana: %@";
+"mcp.error.tool.not.found" = "Chombo hakijapatikana: %@";
+"mcp.error.invalid.args" = "Hoja zisizo sahihi: %@";
+"mcp.error.execution" = "Hitilafu ya utekelezaji: %@";
+"mcp.error.permission" = "Ruhusa imekataliwa: %@";
+
+// MARK: - Calendar Messages
+"calendar.no.events" = "Hakuna matukio";
+"calendar.event.created" = "Tukio limeundwa: %@";
+"calendar.event.deleted" = "Tukio limefutwa: %@";
+"calendar.allday.created" = "Tukio la siku nzima limeundwa: %@";
+"calendar.access.denied" = "Ufikiaji wa kalenda umekataliwa";
+"calendar.today.none" = "Hakuna matukio leo";
+"calendar.untitled" = "Bila Kichwa";
+
+// MARK: - Reminders Messages
+"reminders.none" = "Hakuna vikumbusho";
+"reminders.created" = "Kikumbusho kimeundwa: %@";
+"reminders.completed" = "Kikumbusho kimekamilika: %@";
+"reminders.deleted" = "Kikumbusho kimefutwa: %@";
+"reminders.access.denied" = "Ufikiaji wa vikumbusho umekataliwa";
+"reminders.untitled" = "Bila Kichwa";
+
+// MARK: - Photos Messages
+"photos.access.denied" = "Ufikiaji wa picha umekataliwa";
+"photos.not.found" = "Picha haijapatikana";
+"photos.untitled" = "Bila Kichwa";
+"photos.count" = "Picha: %d";
+"photos.videos.count" = "Video: %d";
+"photos.albums.count" = "Albamu: %d";
+"photos.favorites.count" = "Pendwa: %d";
+"photos.date" = "Tarehe: %@";
+"photos.size" = "Ukubwa: %d x %d";
+"photos.location" = "Mahali: %@, %@";
+"photos.media.type" = "Aina ya Vyombo: %@";
+"photos.duration" = "Muda: %dm %ds";
+"photos.favorite" = "Pendwa: %@";
+"photos.type.image" = "Picha";
+"photos.type.video" = "Video";
+"photos.type.audio" = "Sauti";
+
+// MARK: - Contacts Messages
+"contacts.access.denied" = "Ufikiaji wa anwani umekataliwa";
+"contacts.not.found" = "Hakuna anwani zinazofanana";
+"contacts.no.groups" = "Hakuna vikundi";
+"contacts.no.card" = "Hakuna kadi ya mawasiliano iliyowekwa";
+"contacts.name" = "Jina: %@";
+"contacts.company" = "Kampuni: %@";
+"contacts.job" = "Cheo cha Kazi: %@";
+
+// MARK: - Location Messages
+"location.access.denied" = "Ufikiaji wa mahali umekataliwa";
+"location.not.found" = "Anwani haijapatikana";
+"location.latitude" = "Latitudo: %@";
+"location.longitude" = "Longitudo: %@";
+"location.accuracy" = "Usahihi: %dm";
+"location.altitude" = "Urefu: %dm";
+"location.search" = "Tafuta: %@";
+"location.address" = "Anwani: %@";
+"location.country" = "Nchi: %@";
+"location.postal" = "Msimbo wa Posta: %@";
+"location.from" = "Kutoka: (%@, %@)";
+"location.to" = "Hadi: (%@, %@)";
+"location.distance.km" = "Umbali: %.2f km";
+"location.distance.m" = "Umbali: %d m";
+
+// MARK: - Health Messages
+"health.not.available" = "Afya haipatikani kwenye kifaa hiki";
+"health.date" = "Tarehe: %@";
+"health.steps" = "Hatua: %@ hatua";
+"health.goal.progress" = "Maendeleo ya lengo: %d%% (lengo la hatua 10,000)";
+"health.no.data" = "Hakuna data inayopatikana";
+"health.avg.bpm" = "Wastani: %d bpm";
+"health.min.bpm" = "Chini: %d bpm";
+"health.max.bpm" = "Juu: %d bpm";
+"health.measurements" = "Vipimo: %d";
+"health.no.sleep" = "Hakuna data ya usingizi";
+"health.sleep.total" = "Jumla ya usingizi: %dh %dm";
+"health.bedtime" = "Muda wa kulala: %@";
+"health.waketime" = "Muda wa kuamka: %@";
+"health.calories" = "Kalori: %d kcal";
+
+// MARK: - File System Messages
+"filesystem.not.found" = "Faili haijapatikana: %@";
+"filesystem.written" = "Faili imeandikwa: %@";
+"filesystem.dir.created" = "Saraka imeundwa: %@";
+"filesystem.deleted" = "Imefutwa: %@";
+"filesystem.size" = "Ukubwa: %@";
+"filesystem.created" = "Imeundwa: %@";
+"filesystem.modified" = "Imebadilishwa: %@";
+"filesystem.type" = "Aina: %@";
+
+// MARK: - Shortcuts Messages
+"shortcuts.executed" = "Njia ya mkato '%@' imetekelezwa";
+"shortcuts.opened" = "Programu ya njia za mkato imefunguliwa";
+"shortcuts.settings.opened" = "Mipangilio (%@) imefunguliwa";
+"shortcuts.mail.opened" = "Utunga wa barua pepe umefunguliwa";
+"shortcuts.calling" = "Inapiga simu: %@";
+"shortcuts.message.opened" = "Utunga wa ujumbe umefunguliwa";
+"shortcuts.failed" = "Haikuweza kufungua njia ya mkato";
+
+// MARK: - Model Tiers
+"model.tier.entry" = "Kuingia";
+"model.tier.standard" = "Kawaida";
+"model.tier.pro" = "Mtaalam";
+
+// MARK: - Tool Parser
+"tool.arguments" = "Hoja:";
+
+// MARK: - Model Settings
+"model.action.settings" = "Mipangilio";
+"settings.model.parameters" = "Mipangilio ya Modeli";
+"settings.model.parameters.description" = "Badilisha vigezo vya uzalishaji kwa modeli hii";
+"settings.preset.title" = "Mipangilio Iliyotanguliwa";
+"settings.preset.custom" = "Maalum";
+"settings.preset.balanced" = "Iliyosawazishwa";
+"settings.preset.creative" = "Ya Ubunifu";
+"settings.preset.precise" = "Sahihi";
+"settings.preset.coding" = "Uwezeshaji wa Programu";
+"settings.preset.japanese" = "Kijapani";
+"settings.parameters.title" = "Vigezo";
+"settings.parameter.temperature" = "Joto";
+"settings.parameter.temperature.description" = "Juu zaidi = ya ubunifu zaidi, chini zaidi = iliyozingatia zaidi";
+"settings.parameter.top.p" = "Top P";
+"settings.parameter.top.p.description" = "Uwezekano wa sampuli ya kiini";
+"settings.parameter.top.k" = "Top K";
+"settings.parameter.top.k.description" = "Idadi ya tokeni za juu za kuzingatia";
+"settings.parameter.max.tokens" = "Tokeni za Juu Zaidi";
+"settings.parameter.max.tokens.description" = "Urefu wa juu zaidi wa jibu";
+"settings.parameter.repeat.penalty" = "Adhabu ya Kurudia";
+"settings.parameter.repeat.penalty.description" = "Juu zaidi = matokeo yasiyo na kurudia";
+"settings.parameter.thinking" = "Hali ya Mawazo";
+"settings.parameter.thinking.description" = "Onyesha mchakato wa mantiki wa AI";
+"settings.system.prompt.title" = "Kidokezo cha Mfumo";
+"settings.system.prompt.description" = "Maelekezo maalum kwa AI";
+"settings.reset.to.default" = "Rudisha kwa Chaguo-msingi";
+
+// MARK: - Vision Model
+"vision.model.required.title" = "Modeli ya Maono Inahitajika";
+"vision.model.required.header" = "Utambuzi wa Picha Unahitajika";
+"vision.model.required.description" = "Ili kuchambua picha, unahitaji modeli ya AI yenye uwezo wa maono";
+"vision.model.switch" = "Badilisha Modeli";
+"vision.model.switch.message %@" = "Badilisha kwenda %@ ili kuwezesha uchambuzi wa picha?";
+"vision.model.download" = "Pakua";
+"vision.model.download.message %@ %@" = "Pakua %@ (%@) ili kuchambua picha?";
+"vision.model.not.available" = "Hakuna modeli inayofaa ya maono inayopatikana kwa kifaa chako";
+"vision.model.switching" = "Inabadilisha modeli...";
+"vision.model.download.title" = "Miundo ya Maono";
+"vision.model.recommended" = "Inashauriwa kwa kifaa chako";
+"vision.model.recommended.size %@" = "Inashauriwa: %@";
+"vision.model.use.this" = "Tumia Modeli Hii";
+"vision.model.download.button %@" = "Pakua (%@)";
+"vision.model.other.options" = "Miundo Mingine ya Maono";
+"vision.model.download.complete" = "Upakuaji Umekamilika";
+"vision.model.download.complete.message" = "Tayari kuchambua picha";
+
+// MARK: - Whisper Voice Input (Legacy)
+"whisper.download.title" = "Utambuzi wa Sauti Unahitajika";
+"whisper.download.action" = "Pakua";
+"whisper.download.message" = "Ili kutumia ingizo la sauti, unahitaji kupakua modeli ya utambuzi wa hotuba (~150MB).";
+"whisper.downloading" = "Inapakua modeli ya utambuzi wa hotuba...";
+"whisper.download.error" = "Hitilafu ya Upakuaji";
+"whisper.load.error" = "Hitilafu ya Kupakia Modeli";
+"whisper.permission.denied" = "Ufikiaji wa kipaza sauti haujaruhusiwa";
+"whisper.transcribe.error" = "Hitilafu ya Utumbuzi";
+"whisper.error.permission" = "Ruhusa ya kipaza sauti inahitajika";
+"whisper.error.not.recording" = "Sasa hivi hairekodi";
+"whisper.error.no.recording" = "Hakuna data ya kurekodi";
+"whisper.error.model.not.loaded" = "Modeli ya utambuzi wa hotuba haijapakiwa";
+"whisper.error.transcription" = "Utumbuzi umeshindwa";
+
+// MARK: - Speech Recognition (ReazonSpeech)
+"speech.download.title" = "Utambuzi wa Sauti Unahitajika";
+"speech.download.action" = "Pakua";
+"speech.download.message" = "Ili kutumia ingizo la sauti, unahitaji kupakua modeli ya utambuzi wa hotuba ya Kijapani (~155MB).";
+"speech.downloading" = "Inapakua modeli ya utambuzi wa hotuba...";
+
+// MARK: - Language Settings
+"settings.language.section" = "Lugha";
+"language.system" = "Tumia Lugha ya Mfumo";
+"settings.language.restart.hint" = "Mabadiliko ya lugha yatatekelezwa baada ya kuanzisha upya programu";
+"settings.language.changed.title" = "Lugha Imebadilishwa";
+"settings.language.changed.message" = "Tafadhali anzisha upya programu ili kutumia mabadiliko";
+"common.ok" = "Sawa";
+
+// MARK: - System Prompt Settings
+"settings.prompt.section" = "Kidokezo cha Mfumo";
+"settings.prompt.edit" = "Hariri Kidokezo";
+"settings.prompt.default" = "Kutumia chaguo-msingi";
+"settings.prompt.custom" = "Kidokezo maalum kimewekwa";
+"settings.prompt.hint" = "Badilisha tabia ya AI";
+"settings.prompt.editor.title" = "Hariri Kidokezo";
+"settings.prompt.editor.instruction" = "Ongeza maelekezo maalum kwa AI. Acha wazi ili kutumia kidokezo cha chaguo-msingi.";
+"settings.prompt.default.preview" = "Kidokezo cha chaguo-msingi (kifungu):";
+"settings.prompt.reset" = "Rudisha";
+"settings.prompt.reset.title" = "Rudisha Kidokezo";
+"settings.prompt.reset.message" = "Futa kidokezo maalum na urejeshe kwenye chaguo-msingi?";
+
+// MARK: - Prompt Templates
+"templates.title" = "Violezo vya Vidokezo";
+"templates.empty" = "Bado hakuna violezo";
+"templates.add" = "Ongeza Kiolezo";
+"template.add.title" = "Ongeza Kiolezo";
+"template.edit.title" = "Hariri Kiolezo";
+"template.name.header" = "Jina";
+"template.name.placeholder" = "Jina la kiolezo";
+"template.content.header" = "Maudhui ya Kidokezo";
+"template.icon.header" = "Ikoni";
+"template.translate.name" = "Tafsiri";
+"template.translate.content" = "Tafadhali tafsiri yafuatayo: ";
+"template.summarize.name" = "Fupisha";
+"template.summarize.content" = "Tafadhali fupisha yafuatayo: ";
+"template.explain.name" = "Eleza";
+"template.explain.content" = "Tafadhali eleza yafuatayo: ";
+"template.code.name" = "Msimbo";
+"template.code.content" = "Tafadhali andika msimbo kwa: ";
+
+// MARK: - Export
+"export.title" = "Hamisha Mazungumzo";
+"export.format.markdown" = "Markdown";
+"export.format.pdf" = "PDF";
+"export.format.text" = "Maandishi Safi";
+"export.created" = "Iliundwa";
+"export.image.attached" = "Picha imeambatanishwa";
+"export.generated.by" = "Imetolewa na";
+
+// MARK: - Loading Phases
+"loading.phase.initializing" = "Inaanzisha...";
+"loading.phase.loading" = "Inapakia modeli...";
+"loading.phase.preparing" = "Inaandaa injini ya uamuzi...";
+"loading.phase.almost" = "Karibu tayari...";
+
+// MARK: - Welcome Screen
+"welcome.greeting" = "Niulize chochote";
+"welcome.subtitle" = "Msaidizi wako wa AI anayetunza faragha";
+"suggestion.idea" = "Nisaidie kutafakari wazo";
+"suggestion.write" = "Nisaidie kuandika kitu";
+"suggestion.question" = "Jibu maswali yangu";
+
+// MARK: - Kokoro TTS
+"tts.download.title" = "Sauti ya Ubora wa Juu";
+"tts.download.action" = "Pakua";
+"tts.download.use_system" = "Tumia Sauti ya Mfumo";
+"tts.download.message" = "Pakua modeli ya Kokoro TTS (~87MB) kwa maandishi-kwa-hotuba ya asili zaidi ya Kijapani.";
+"tts.downloading" = "Inapakua modeli ya TTS...";
+
+// MARK: - Feedback
+"feedback.consent.title" = "Tuma Maoni";
+"feedback.send" = "Tuma";
+"feedback.positive.title" = "Je, jibu hili lilikuwa la kusaidia?";
+"feedback.negative.title" = "Je, hili linaweza kuboreshwa?";
+"feedback.explanation" = "Maoni yako yanasaidia kuboresha ubora wa AI. Tafadhali hakiki data itakayotumwa kabla ya kuwasilisha.";
+"feedback.data.section" = "Data itakayotumwa";
+"feedback.data.conversation" = "Mazungumzo";
+"feedback.data.conversation.desc" = "Jibu la AI na ujumbe wako wa awali";
+"feedback.data.model" = "Maelezo ya modeli";
+"feedback.data.model.desc" = "Jina la modeli ya AI iliyotumika";
+"feedback.data.timestamp" = "Muhuri wa wakati";
+"feedback.data.timestamp.desc" = "Wakati maoni yalipowasilishwa";
+"feedback.privacy.section" = "Faragha";
+"feedback.privacy.anonymous" = "Hakuna maelezo ya kibinafsi yanayotumwa";
+"feedback.privacy.improvement" = "Inatumika tu kuboresha ubora wa AI";
+"feedback.privacy.optional" = "Kutuma maoni ni hiari kabisa";
+"feedback.comment.section" = "Maoni (si lazima)";
+"feedback.comment.placeholder" = "Tuambie ninyi linaweza kuboreshwa au nini kilifanya kazi vizuri...";
+"feedback.remember.title" = "Kumbuka chaguo hili";
+"feedback.remember.description" = "Wasilisha maoni bila kuuliza mara ijayo";
+
+// MARK: - Emergency Mode
+"emergency.sos.button" = "Hali ya Dharura (bonyeza kwa muda mrefu ili kubadilisha)";
+"emergency.mode.active" = "Hali ya Dharura Hai";
+"emergency.action.firstaid" = "Huduma ya Kwanza";
+"emergency.action.firstaid.message" = "Tafadhali toa maelekezo ya huduma ya kwanza. Nitaelezea jeraha au dalili: ";
+"emergency.action.disaster" = "Janga";
+"emergency.action.disaster.message" = "Janga limetokea. Tafadhali toa taratibu za majibu: ";
+"emergency.action.factcheck" = "Ukaguzi wa Ukweli";
+"emergency.action.factcheck.message" = "Tafadhali thibitisha uaminifu wa maelezo haya: ";
+"emergency.action.contacts" = "Dharura";
+"emergency.action.contacts.message" = "Tafadhali nionyeshe orodha ya nambari za dharura";
+"emergency.action.evacuation" = "Uhamishaji";
+"emergency.action.evacuation.message" = "Tafadhali unda orodha ya ukaguzi wa uhamishaji kwa hali ya sasa: ";
+"mcp.emergency_kb" = "Maarifa ya Dharura";
+"mcp.emergency_kb.desc" = "Maelezo ya dharura na majanga";
+
+// MARK: - Emergency Templates
+"template.firstaid.name" = "Mwongozo wa Huduma ya Kwanza";
+"template.firstaid.content" = "Tafadhali toa maelekezo ya huduma ya kwanza kwa: ";
+"template.disaster.name" = "Majibu ya Janga";
+"template.disaster.content" = "Janga lifuatalo limetokea. Tafadhali toa taratibu za majibu: ";
+"template.factcheck.name" = "Ukaguzi wa Ukweli";
+"template.factcheck.content" = "Tafadhali thibitisha uaminifu wa maelezo haya na utoe vidokezo vya ukaguzi wa ukweli: ";
+"template.evacuation.name" = "Orodha ya Ukaguzi wa Uhamishaji";
+"template.evacuation.content" = "Tafadhali unda orodha ya ukaguzi wa uhamishaji kwa hali ya sasa: ";
+
+// MARK: - ChatWeb.ai Integration
+"chatweb.title" = "ChatWeb.ai";
+"chatweb.desc" = "Mazungumzo ya AI ya Wingu";
+"chatweb.connect" = "Unganisha na ChatWeb.ai";
+"chatweb.qr.title" = "Unganisha kupitia Msimbo wa QR";
+"chatweb.qr.scan" = "Changanua Msimbo wa QR";
+"chatweb.open" = "Fungua ChatWeb.ai";
+
+// MARK: - Peer Connection
+"peer.title" = "Vifaa Vilivyo Karibu";
+"peer.desc" = "Unganisha na vifaa vya Elio vilivyo karibu";
+"peer.connect" = "Unganisha na Kifaa";
+"peer.code.title" = "Msimbo wa Muunganisho";
+"peer.code.enter" = "Ingiza msimbo wa tarakimu 4";
+"peer.code.your" = "Msimbo Wako";
+"peer.connected" = "Imeunganishwa";
+"peer.disconnected" = "Haijaunganishwa";
+"peer.inference.offload" = "Kushiriki uamuzi";
+
+// MARK: - Web Search
+"chat.web.search" = "Utaftaji wa Wavuti";
+"search.privacy.title" = "Utaftaji Unaolindwa na Faragha";
+"search.privacy.proceed" = "Tafuta";
+"search.privacy.message" = "Utaftaji wa Wavuti wa ElioChat unalinda faragha yako:\n\n🔒 Utaftaji kupitia DuckDuckGo\n🚫 Hakuna kufuatilia au kutengeneza wasifu\n🔐 Historia ya utaftaji haihifadhiwi\n📱 Hakuna data inayohifadhiwa nje ya kifaa chako\n\nTu ombi lako la utaftaji linatumwa kwa DuckDuckGo, na matokeo yanachakatwa kwenye kifaa chako.";
+"chat.web.analyzing" = "[Inachambua ukurasa wa wavuti]";

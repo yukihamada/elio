@@ -1,0 +1,635 @@
+/*
+  Localizable.strings (Igbo)
+  Elio
+*/
+
+// MARK: - App General
+"app.name" = "Elio";
+"app.tagline" = "Ụbụrụ gị nke abụọ na-echekwa ihe nzuzo.";
+
+// MARK: - Common Actions
+"common.done" = "Emechara";
+"common.cancel" = "Kagbuo";
+"common.delete" = "Hichapụ";
+"common.save" = "Chekwaa";
+"common.edit" = "Dezie";
+"common.share" = "Kesaa";
+"common.copy" = "Depụta";
+"common.copied" = "Edepụtala";
+"common.loading" = "Na-ebu...";
+"common.error" = "Njehie";
+"common.retry" = "Nwagharia";
+"common.skip" = "Wụfuo";
+"common.next" = "Nke ọzọ";
+"common.start" = "Malite";
+"common.add" = "Tinye";
+"common.close" = "Mechie";
+"common.details" = "Nkọwa";
+"common.yes" = "Ee";
+"common.no" = "Mba";
+"common.unknown" = "Amaghị";
+
+// MARK: - Chat
+"chat.placeholder" = "Jụọ m ihe ọ bụla";
+"chat.model.not.loaded" = "Enweghị Ụdị Ebubata";
+"chat.model.not.loaded.description" = "Biko budata ụdị site na Ntọala";
+"chat.go.to.settings" = "Gaa na Ntọala";
+"chat.new.conversation" = "Mkparịta Ụka Ọhụrụ";
+"chat.stop.generation" = "Kwụsị";
+"chat.generation.stopped" = "\n\n[Akwụsịrị mmepụta]";
+"chat.image.sent" = "[Ezigara foto]";
+"chat.images.sent" = "[Ezigara foto %d]";
+"chat.pdf.sent" = "[Etinyere PDF: %@]";
+"chat.pdf.sent.vision" = "[PDF nwere foto: %@]";
+"chat.pdf.context" = "Nke a bụ ọdịnaya ederede ewepụtara site na akwụkwọ PDF \"%@\":\n\n%@";
+"chat.pdf.context.vision" = "Nke a bụ peeji 1 nke akwụkwọ PDF \"%@\". Ọdịnaya ederede ewepụtara bụ:\n\n%@\n\nBiko nyochaa ma ihe a na-ahụ anya na ederede.";
+"chat.pdf.analyze" = "Biko nyochaa peeji PDF a site na \"%@\".";
+"chat.url.sent" = "[Peeji weebụ: %@]";
+"chat.url.context" = "Nke a bụ ọdịnaya ewepụtara site na peeji weebụ \"%@\" (%@):\n\n%@";
+"chat.thinking" = "Na-eche...";
+"chat.generating" = "Na-emepụta azịza...";
+"chat.welcome" = "Kedu ka m ga-esi nyere gị aka?";
+"chat.suggestion.schedule" = "Gosi usoro ihe omume taa";
+"chat.suggestion.reminder" = "Mepụta ncheta";
+"chat.suggestion.weather" = "Kedu ihu igwe taa?";
+"chat.suggestion.help" = "Otu esi eji app a";
+"chat.websearch.on" = "Nchọcha Weebụ Gbara";
+"chat.websearch.off" = "Nchọcha Weebụ Gbanyụọ";
+"chat.thinking.on" = "Echiche Gbara";
+"chat.thinking.off" = "Echiche Gbanyụọ";
+"chat.transcribing" = "Na-edepụta...";
+"chat.offline" = "Ọ dịghị na intanetị";
+
+// Voice Conversation Mode
+"voice.listening" = "Na-ege ntị...";
+"voice.processing" = "Na-ahazi...";
+"voice.thinking" = "Na-eche...";
+"voice.speaking" = "Na-ekwu okwu...";
+"voice.tap.to.send" = "Pịa iji zipu";
+"chat.templates" = "Ụdị";
+"chat.websearch.privacy.title" = "Banyere Nchọcha Weebụ";
+"chat.websearch.privacy.message" = "Ịgbanye nchọcha weebụ na-enye AI ohere ịchọ ịntanetị site na DuckDuckGo maka ozi ọhụrụ. A na-eziga ajụjụ nchọcha na DuckDuckGo mana anaghị esochi ha.";
+"chat.websearch.privacy.enable" = "Gbanye";
+"chat.websearch.privacy.disable" = "Hụ na ọ gbanyụrụ";
+
+// MARK: - Settings
+"settings.title" = "Ntọala";
+"settings.model.section" = "Ụdị AI";
+"settings.model.recommended" = "A tụrụ anya: %@";
+"settings.model.local.execution" = "Ụdị na-arụ ọrụ na ngwaọrụ gị";
+"settings.model.show.more" = "Ụdị Ndị Ọzọ (%d)";
+"settings.model.show.less" = "Gosi Obere";
+"settings.appearance.section" = "Ọdịdị";
+"settings.tools.section" = "Njirimara Ọgụgụ Isi";
+"settings.mcp.servers" = "Njikọ";
+"settings.mcp.servers.description" = "Kalenda, Faịlụ, Ncheta & ndị ọzọ";
+"settings.mcp.enabled.count" = "%d gbaara";
+"settings.mcp.enabled.count.suffix" = " gbaara";
+"settings.about.section" = "Banyere";
+"settings.version" = "Ụdị";
+"settings.about.app" = "Banyere App A";
+"settings.about.mcp" = "Banyere Njikọ";
+"settings.privacy.badge" = "Na-arụ ọrụ na-enweghị ịntanetị";
+"settings.privacy.description" = "Na-arụ ọrụ na Mode Ụgbọ Elu";
+"settings.airplane.mode" = "Na-agba ọsọ na Mode Ụgbọ Elu";
+"settings.offline.ready" = "Njikere Maka Ịntanetị";
+
+// MARK: - Model States
+"model.status.downloading" = "Na-ebudata... %d%%";
+"model.status.loading" = "Na-ebu...";
+"model.status.in.use" = "Na-eji";
+"model.status.recommended" = "A tụrụ anya";
+"model.status.heavy" = "Dị arọ";
+"model.action.download" = "Budata";
+"model.action.load" = "Buo";
+"model.action.delete" = "Hichapụ";
+"model.action.use" = "Jiri Ụdị A";
+"model.delete.confirm.title" = "Hichapụ Ụdị";
+"model.delete.confirm.message" = "Hichapụ %@? Ị ga-achọ ibudata ya ọzọ iji jiri ya ọzọ.";
+"model.select.title" = "Họrọ Ụdị";
+"model.select.prompt" = "Biko họrọ ụdị";
+"model.downloaded" = "Ebudatala";
+
+// MARK: - Inference Mode
+"inference.mode.title" = "Ngwa Ngwa";
+"inference.mode.auto" = "Akpaghị aka";
+"inference.mode.auto.desc" = "Arụmọrụ kacha mma na-akpaghị aka";
+"inference.mode.gpu" = "GPU (Metal)";
+"inference.mode.gpu.desc" = "Ọsọ kacha elu na Metal";
+"inference.mode.cpu" = "Naanị CPU";
+"inference.mode.cpu.desc" = "Mode nchekwa batrị";
+"inference.mode.hybrid" = "Ngwakọta";
+"inference.mode.hybrid.desc" = "Nhazi ọsọ na batrị";
+
+// MARK: - Theme
+"theme.system" = "Sistemu";
+"theme.light" = "Ìhè";
+"theme.dark" = "Ọchịchịrị";
+
+// MARK: - Onboarding
+"onboarding.welcome.title" = "Nnọọ na ElioChat";
+"onboarding.welcome.subtitle" = "Onye enyemaka AI nke gị";
+"onboarding.features.title" = "AI Nzuzo N'ezie";
+"onboarding.feature.offline" = "Na-arụ ọrụ na Mode Ụgbọ Elu";
+"onboarding.feature.offline.desc" = "Jiri ya n'ụgbọ elu ma ọ bụ n'okpuru ala";
+"onboarding.feature.privacy" = "Enweghị Nnyefe Data";
+"onboarding.feature.privacy.desc" = "Mkparịta ụka gị anaghị ahapụ ekwentị gị";
+"onboarding.feature.vault" = "Njikọ Ọgụgụ Isi";
+"onboarding.feature.vault.desc" = "Jikọọ na Kalenda & Faịlụ";
+"onboarding.feature.secure" = "AI Nchekwa Maka Ọrụ";
+"onboarding.feature.secure.desc" = "Nchekwa maka ojiji ụlọ ọrụ";
+"onboarding.feature.thinking" = "Usoro Echiche";
+"onboarding.privacy.title" = "Data Gị Bụ Nke Gị";
+"onboarding.privacy.item1" = "Nhazi niile na-eme na iPhone gị";
+"onboarding.privacy.item2" = "Anaghị eziga data na sava igwe ojii";
+"onboarding.privacy.item3" = "Ejighị ya maka nkuzi AI ma ọlị";
+"onboarding.getstarted.title" = "Njikere na Otu Pịa";
+"onboarding.getstarted.subtitle" = "Budata ụdị AI a tụrụ anya ya\nwee malite mkparịta ụka ozugbo";
+"onboarding.step1" = "Budata ụdị a tụrụ anya ya";
+"onboarding.step2" = "Chere nkeji ole na ole";
+"onboarding.step3" = "Ị dịla njikere!";
+
+// MARK: - About
+"about.title" = "Banyere App A";
+"about.rate.app" = "Tụlee App";
+"about.share.app" = "Kesaa na Ndị Enyi";
+"about.privacy.policy" = "Iwu Nzuzo";
+"about.terms" = "Usoro Ọrụ";
+"about.tech.info" = "Ozi Nka";
+"about.tech.engine" = "Injin AI";
+"about.tech.format" = "Usoro Akwadoro";
+"about.tech.inference" = "Ntụgharị";
+"about.data.management" = "Njikwa Data";
+"about.delete.all" = "Hichapụ Mkparịta Ụka Niile";
+"about.credits" = "Aha";
+"about.credits.description" = "App a na-eji ọba akwụkwọ mepere emepe";
+"about.privacy.section" = "Nzuzo";
+"about.gguf.format" = "Usoro GGUF";
+"about.metal.gpu" = "Ngwa Ngwa GPU Metal";
+
+// MARK: - Referral
+"referral.title" = "Kpọga Ndị Enyi";
+"referral.code.title" = "Koodu Nkwado Gị";
+"referral.code.copy" = "Depụta Koodu";
+"referral.code.copied" = "Edepụtala";
+"referral.share.button" = "Kesaa na Ndị Enyi";
+"referral.share.description" = "Kesaa Elio na ndị enyi gị!";
+"referral.count" = "Kpọgara ndị mmadụ %d";
+"referral.enter.title" = "Tinye Koodu Nkwado";
+"referral.enter.placeholder" = "Koodu Nkwado";
+"referral.enter.button" = "Tinye";
+"referral.enter.success" = "Etinyela koodu nkwado";
+"referral.enter.error" = "Koodu nkwado na-ezighị ezi";
+
+// MARK: - Privacy Policy
+"privacy.title" = "Iwu Nzuzo";
+"privacy.data.collection.title" = "Nchịkọta Data";
+"privacy.data.collection.content" = "App a na-agba AI mpaghara ọsọ n'ụzọ zuru ezu na-enweghị ịntanetị.\nAnaghị eziga data na sava dị n'èzí.\nA na-echekwa mkparịta ụka niile naanị na ngwaọrụ gị.";
+"privacy.stored.data.title" = "Data Echekwara";
+"privacy.stored.data.content" = "Akụkọ mkparịta ụka (echekwara naanị na ngwaọrụ)\nFaịlụ ụdị AI (echekwara naanị na ngwaọrụ)\nNtọala app (echekwara naanị na ngwaọrụ)\n\nAnaghị ekesa data a n'èzí ma ọlị.";
+"privacy.data.deletion.title" = "Ihichapụ Data";
+"privacy.data.deletion.content" = "Ị nwere ike ihichapụ data niile mgbe ọ bụla site na Ntọala > Njikwa Data.\nIwepụ app a ga-ehichapụ data niile.";
+
+// MARK: - Terms of Service
+"terms.title" = "Usoro Ọrụ";
+"terms.service.title" = "Nkọwa Ọrụ";
+"terms.service.content" = "App a na-enye ọrụ onye enyemaka AI site n'iji ụdị AI na-agba ọsọ na mpaghara.";
+"terms.disclaimer.title" = "Nkwupụta";
+"terms.disclaimer.content" = "Azịza AI nwere ike inwe njehie.\nEkwesịrị ịnwapụta mkpebi dị mkpa site n'aka ọkachamara.\nAnyị anaghị ahụ maka mmebi ọ bụla sitere n'iji app a.";
+"terms.prohibited.title" = "Ihe Amachibidoro";
+"terms.prohibited.content" = "Omume iwu na-akwadoghị\nOmume na-emebi ikike ndị ọzọ\nImegharia app a\nIṅomi app a n'enweghị ikike";
+"terms.ip.title" = "Ihe Onwunwe Ọgụgụ Isi";
+"terms.ip.content" = "Ikike ihe onwunwe ọgụgụ isi nke app a bụ nke onye mmepe.\nAmachibidoro iji ya n'enweghị ikike.";
+
+// MARK: - Conversations
+"conversations.title" = "Mkparịta Ụka";
+"conversations.new" = "Mkparịta Ụka Ọhụrụ";
+"conversations.empty" = "Enwebeghị mkparịta ụka";
+"conversations.delete" = "Hichapụ Mkparịta Ụka";
+"conversations.default.title" = "Mkparịta Ụka Ọhụrụ";
+"conversations.today" = "Taa";
+"conversations.yesterday" = "Ụnyaahụ";
+"conversations.past7days" = "Ụbọchị 7 Gara Aga";
+"conversations.past30days" = "Ụbọchị 30 Gara Aga";
+"conversations.older" = "Ochie";
+"conversations.created" = "Ekere: %@";
+"conversations.user" = "Onye Ọrụ";
+"conversations.assistant" = "Onye Enyemaka";
+"conversations.search.placeholder" = "Chọọ mkparịta ụka";
+"conversations.search.no_results" = "Enweghị nsonaazụ";
+
+// MARK: - Message Actions
+"message.copy" = "Depụta";
+"message.speak" = "Kwuo";
+"message.stop.speaking" = "Kwụsị Ikwu";
+"message.share" = "Kesaa";
+"message.share.card" = "Kesaa Dịka Kaadị";
+"message.like" = "Masị";
+
+// MARK: - Share Card
+"share.card.title" = "Kesaa Kaadị";
+"share.card.preview" = "Nlele";
+"share.card.button" = "Kesaa Foto";
+"message.dislike" = "Amasịghị";
+"message.thinking.process" = "Usoro Echiche";
+"message.tool.running" = "Na-agba Ngwá Ọrụ";
+"message.tool.error" = "Njehie";
+"message.tool.completed" = "Emechara";
+
+// MARK: - Attachment
+"attachment.title" = "Mgbakwunye";
+"attachment.photo.library" = "Họrọ Foto";
+"attachment.camera" = "Were Foto";
+"attachment.pdf" = "Họrọ PDF";
+"attachment.pdf.chars" = "mkpụrụedemede %d";
+"attachment.pdf.pages" = "peeji %d";
+"attachment.pdf.vision.enabled" = "Gbaara nyocha foto";
+"attachment.pdf.text.only" = "Mode ederede naanị";
+"attachment.url" = "Gụọ Peeji Weebụ";
+"attachment.url.title" = "Tinye URL";
+"attachment.url.placeholder" = "https://ọmụmaatụ.com";
+"attachment.url.message" = "Rapara URL iji wepụta ọdịnaya ya";
+"attachment.url.fetch" = "Weta";
+"attachment.url.loading" = "Na-ebu peeji...";
+
+// MARK: - Errors
+"error.model.not.found" = "Ahụghị faịlụ ụdị";
+"error.model.not.loaded" = "Ebubeghị ụdị";
+"error.context.failed" = "Emeghị ike ịmepụta ọnọdụ";
+"error.tokenization.failed" = "Ime akara dara";
+"error.generation.failed" = "Njehie mmepụta: %@";
+"error.occurred" = "Njehie mere: %@";
+"error.invalid.url" = "URL na-ezighị ezi";
+"error.download.failed" = "Nbudata dara";
+"error.extraction.failed" = "Mwepụ dara";
+"error.config.not.found" = "Ahụghị faịlụ nhazi";
+
+// MARK: - Ghost Search
+"ghost.search.title" = "Nchọcha Mmụọ";
+"ghost.search.description" = "Nchọcha na-enweghị aha site na DuckDuckGo (enweghị nsochi)";
+"ghost.search.connecting" = "Na-ejikọ na netwọk na-enweghị aha...";
+"ghost.search.privacy.note" = "Anaghị esochi akụkọ nchọcha gị ma ọlị";
+
+// MARK: - MCP Servers
+"mcp.filesystem" = "Usoro Faịlụ";
+"mcp.filesystem.desc" = "Gụọ ma dee faịlụ n'ime app";
+"mcp.calendar" = "Kalenda";
+"mcp.calendar.desc" = "Gụọ ma dee ihe omume";
+"mcp.reminders" = "Ncheta";
+"mcp.reminders.desc" = "Jikwaa ncheta";
+"mcp.contacts" = "Ndị Ozi";
+"mcp.contacts.desc" = "Chọọ ma lelee ndị ozi";
+"mcp.photos" = "Foto";
+"mcp.photos.desc" = "Nweta ebe nchekwa foto";
+"mcp.location" = "Ọnọdụ";
+"mcp.location.desc" = "Nweta ọnọdụ ugbu a ma chọọ ebe";
+"mcp.health" = "Ahụ Ike";
+"mcp.health.desc" = "Nweta data ahụ ike";
+"mcp.shortcuts" = "Mkpirisi";
+"mcp.shortcuts.desc" = "Gbaa mkpirisi";
+"mcp.websearch" = "Nchọcha Weebụ";
+"mcp.websearch.desc" = "Nchọcha weebụ na-enweghị aha";
+"mcp.custom" = "Njikọ Omenala";
+"mcp.custom.add" = "Tinye Njikọ";
+"mcp.custom.setup" = "Hazie njikọ ọrụ mpụga";
+"mcp.custom.title" = "Njikọ Omenala";
+"mcp.settings.title" = "Ntọala Njikọ";
+"mcp.server.name" = "Aha Sava";
+"mcp.server.name.placeholder" = "dịka, Sava M Omenala";
+"mcp.config.url" = "URL Faịlụ Nhazi";
+"mcp.import.file" = "Bubata Site na Faịlụ";
+"mcp.config.example" = "Ọmụmaatụ Faịlụ Nhazi";
+"mcp.permission.note" = "A ga-arịọ ikike mgbe mbụ iji njirimara ọ bụla";
+
+// MARK: - MCP Tool Messages
+"mcp.tool.available" = "Ngwá Ọrụ Dị:";
+"mcp.tool.parameters" = "Paramita:";
+"mcp.prompt.available" = "Nkwado Dị:";
+"mcp.prompt.arguments" = "Arụmụka:";
+"mcp.tool.name" = "aha_ngwá_ọrụ";
+"mcp.tool.arg.name" = "aha_arụmụka";
+"mcp.tool.arg.value" = "uru";
+"mcp.tool.no.result" = "Enweghị nsonaazụ";
+"mcp.tool.running" = "Na-agba ngwá ọrụ: %@";
+"mcp.tool.error" = "Njehie mmezu ngwá ọrụ: %@";
+
+// MARK: - MCP Error Messages
+"mcp.error.server.not.found" = "Ahụghị sava: %@";
+"mcp.error.tool.not.found" = "Ahụghị ngwá ọrụ: %@";
+"mcp.error.invalid.args" = "Arụmụka na-ezighị ezi: %@";
+"mcp.error.execution" = "Njehie mmezu: %@";
+"mcp.error.permission" = "Ajụrụ ikike: %@";
+
+// MARK: - Calendar Messages
+"calendar.no.events" = "Enweghị ihe omume";
+"calendar.event.created" = "Ekere ihe omume: %@";
+"calendar.event.deleted" = "Ehichapụla ihe omume: %@";
+"calendar.allday.created" = "Ekere ihe omume ụbọchị dum: %@";
+"calendar.access.denied" = "Ajụrụ ịnweta kalenda";
+"calendar.today.none" = "Enweghị ihe omume taa";
+"calendar.untitled" = "Enweghị aha";
+
+// MARK: - Reminders Messages
+"reminders.none" = "Enweghị ncheta";
+"reminders.created" = "Ekere ncheta: %@";
+"reminders.completed" = "Emechara ncheta: %@";
+"reminders.deleted" = "Ehichapụla ncheta: %@";
+"reminders.access.denied" = "Ajụrụ ịnweta ncheta";
+"reminders.untitled" = "Enweghị aha";
+
+// MARK: - Photos Messages
+"photos.access.denied" = "Ajụrụ ịnweta foto";
+"photos.not.found" = "Ahụghị foto";
+"photos.untitled" = "Enweghị aha";
+"photos.count" = "Foto: %d";
+"photos.videos.count" = "Vidiyo: %d";
+"photos.albums.count" = "Ọba: %d";
+"photos.favorites.count" = "Ọkacha mmasị: %d";
+"photos.date" = "Ụbọchị: %@";
+"photos.size" = "Nha: %d x %d";
+"photos.location" = "Ọnọdụ: %@, %@";
+"photos.media.type" = "Ụdị Mgbasa Ozi: %@";
+"photos.duration" = "Ogologo: %dm %ds";
+"photos.favorite" = "Ọkacha mmasị: %@";
+"photos.type.image" = "Foto";
+"photos.type.video" = "Vidiyo";
+"photos.type.audio" = "Ụda";
+
+// MARK: - Contacts Messages
+"contacts.access.denied" = "Ajụrụ ịnweta ndị ozi";
+"contacts.not.found" = "Ahụghị ndị ozi dakọtara";
+"contacts.no.groups" = "Enweghị otu";
+"contacts.no.card" = "Enweghị kaadị ozi edoziri";
+"contacts.name" = "Aha: %@";
+"contacts.company" = "Ụlọ Ọrụ: %@";
+"contacts.job" = "Aha Ọrụ: %@";
+
+// MARK: - Location Messages
+"location.access.denied" = "Ajụrụ ịnweta ọnọdụ";
+"location.not.found" = "Ahụghị adreesị";
+"location.latitude" = "Latitude: %@";
+"location.longitude" = "Longitude: %@";
+"location.accuracy" = "Izi ezi: %dm";
+"location.altitude" = "Elu: %dm";
+"location.search" = "Chọọ: %@";
+"location.address" = "Adreesị: %@";
+"location.country" = "Obodo: %@";
+"location.postal" = "Koodu Ozi: %@";
+"location.from" = "Site: (%@, %@)";
+"location.to" = "Gaa: (%@, %@)";
+"location.distance.km" = "Anya: %.2f km";
+"location.distance.m" = "Anya: %d m";
+
+// MARK: - Health Messages
+"health.not.available" = "Ahụ ike adịghị na ngwaọrụ a";
+"health.date" = "Ụbọchị: %@";
+"health.steps" = "Nzọụkwụ: %@ nzọụkwụ";
+"health.goal.progress" = "Ọganihu ebumnuche: %d%% (ebumnuche nzọụkwụ 10,000)";
+"health.no.data" = "Enweghị data dị";
+"health.avg.bpm" = "Nkezi: %d bpm";
+"health.min.bpm" = "Opekempe: %d bpm";
+"health.max.bpm" = "Kacha: %d bpm";
+"health.measurements" = "Ntụtụ: %d";
+"health.no.sleep" = "Enweghị data ụra";
+"health.sleep.total" = "Mkpokọta ụra: %dh %dm";
+"health.bedtime" = "Oge ihe ndina: %@";
+"health.waketime" = "Oge itetụ: %@";
+"health.calories" = "Kalori: %d kcal";
+
+// MARK: - File System Messages
+"filesystem.not.found" = "Ahụghị faịlụ: %@";
+"filesystem.written" = "Edere faịlụ: %@";
+"filesystem.dir.created" = "Ekere nchịkọta: %@";
+"filesystem.deleted" = "Ehichapụla: %@";
+"filesystem.size" = "Nha: %@";
+"filesystem.created" = "Ekere: %@";
+"filesystem.modified" = "Edegharịrị: %@";
+"filesystem.type" = "Ụdị: %@";
+
+// MARK: - Shortcuts Messages
+"shortcuts.executed" = "Emezuru mkpirisi '%@'";
+"shortcuts.opened" = "Emepela app mkpirisi";
+"shortcuts.settings.opened" = "Emepela ntọala (%@)";
+"shortcuts.mail.opened" = "Emepela ide email";
+"shortcuts.calling" = "Na-akpọ: %@";
+"shortcuts.message.opened" = "Emepela ide ozi";
+"shortcuts.failed" = "Enweghị ike imepe mkpirisi";
+
+// MARK: - Model Tiers
+"model.tier.entry" = "Mbanye";
+"model.tier.standard" = "Ọkọlọtọ";
+"model.tier.pro" = "Ọkachamara";
+
+// MARK: - Tool Parser
+"tool.arguments" = "Arụmụka:";
+
+// MARK: - Model Settings
+"model.action.settings" = "Ntọala";
+"settings.model.parameters" = "Ntọala Ụdị";
+"settings.model.parameters.description" = "Hazie paramita mmepụta maka ụdị a";
+"settings.preset.title" = "Ntọala";
+"settings.preset.custom" = "Omenala";
+"settings.preset.balanced" = "Nha Nha";
+"settings.preset.creative" = "Okike";
+"settings.preset.precise" = "Kpọmkwem";
+"settings.preset.coding" = "Koodu";
+"settings.preset.japanese" = "Japanese";
+"settings.parameters.title" = "Paramita";
+"settings.parameter.temperature" = "Okpomọkụ";
+"settings.parameter.temperature.description" = "Elu = karịa okike, ala = karịa elekwasị anya";
+"settings.parameter.top.p" = "Elu P";
+"settings.parameter.top.p.description" = "Puru omume nlele nucleus";
+"settings.parameter.top.k" = "Elu K";
+"settings.parameter.top.k.description" = "Ọnụọgụ akara kachasị mma ị ga-atụle";
+"settings.parameter.max.tokens" = "Akara Kacha";
+"settings.parameter.max.tokens.description" = "Ogologo azịza kacha";
+"settings.parameter.repeat.penalty" = "Ntaramahụhụ Mmegharị";
+"settings.parameter.repeat.penalty.description" = "Elu = mmepụta mmegharị dị obere";
+"settings.parameter.thinking" = "Mode Echiche";
+"settings.parameter.thinking.description" = "Gosi usoro echiche AI";
+"settings.system.prompt.title" = "Nkwado Sistemu";
+"settings.system.prompt.description" = "Ntuziaka omenala maka AI";
+"settings.reset.to.default" = "Weghachi na Ndabara";
+
+// MARK: - Vision Model
+"vision.model.required.title" = "Achọrọ Ụdị Ọhụụ";
+"vision.model.required.header" = "Achọrọ Nchọpụta Foto";
+"vision.model.required.description" = "Iji nyochaa foto, ị chọrọ ụdị AI nwere ike ịhụ ihe";
+"vision.model.switch" = "Gbanwee Ụdị";
+"vision.model.switch.message %@" = "Gbanwee na %@ iji gbaa nyocha foto?";
+"vision.model.download" = "Budata";
+"vision.model.download.message %@ %@" = "Budata %@ (%@) iji nyochaa foto?";
+"vision.model.not.available" = "Enweghị ụdị ọhụụ dabara adaba maka ngwaọrụ gị";
+"vision.model.switching" = "Na-agbanwe ụdị...";
+"vision.model.download.title" = "Ụdị Ọhụụ";
+"vision.model.recommended" = "A tụrụ anya maka ngwaọrụ gị";
+"vision.model.recommended.size %@" = "A tụrụ anya: %@";
+"vision.model.use.this" = "Jiri Ụdị A";
+"vision.model.download.button %@" = "Budata (%@)";
+"vision.model.other.options" = "Ụdị Ọhụụ Ndị Ọzọ";
+"vision.model.download.complete" = "Ebudatala";
+"vision.model.download.complete.message" = "Njikere inyocha foto";
+
+// MARK: - Whisper Voice Input (Legacy)
+"whisper.download.title" = "Achọrọ Nchọpụta Olu";
+"whisper.download.action" = "Budata";
+"whisper.download.message" = "Iji jiri ntinye olu, ị chọrọ ibudata ụdị nchọpụta okwu (~150MB).";
+"whisper.downloading" = "Na-ebudata ụdị nchọpụta okwu...";
+"whisper.download.error" = "Njehie Nbudata";
+"whisper.load.error" = "Njehie Ebu Ụdị";
+"whisper.permission.denied" = "Anabataghị ịnweta igwe okwu";
+"whisper.transcribe.error" = "Njehie Ndepụta";
+"whisper.error.permission" = "Achọrọ ikike igwe okwu";
+"whisper.error.not.recording" = "Anaghị edekọ ugbu a";
+"whisper.error.no.recording" = "Enweghị data ndekọ";
+"whisper.error.model.not.loaded" = "Ebubeghị ụdị nchọpụta okwu";
+"whisper.error.transcription" = "Ndepụta dara";
+
+// MARK: - Speech Recognition (ReazonSpeech)
+"speech.download.title" = "Achọrọ Nchọpụta Olu";
+"speech.download.action" = "Budata";
+"speech.download.message" = "Iji jiri ntinye olu, ị chọrọ ibudata ụdị nchọpụta okwu Japanese (~155MB).";
+"speech.downloading" = "Na-ebudata ụdị nchọpụta okwu...";
+
+// MARK: - Language Settings
+"settings.language.section" = "Asụsụ";
+"language.system" = "Jiri Asụsụ Sistemu";
+"settings.language.restart.hint" = "Mgbanwe asụsụ ga-amalite mgbe ịmaliteghachiri app";
+"settings.language.changed.title" = "Agbanwela Asụsụ";
+"settings.language.changed.message" = "Biko maliteghachi app iji tinye mgbanwe";
+"common.ok" = "Ọ dị mma";
+
+// MARK: - System Prompt Settings
+"settings.prompt.section" = "Nkwado Sistemu";
+"settings.prompt.edit" = "Dezie Nkwado";
+"settings.prompt.default" = "Iji ndabara";
+"settings.prompt.custom" = "Edoziri nkwado omenala";
+"settings.prompt.hint" = "Hazie omume AI";
+"settings.prompt.editor.title" = "Dezie Nkwado";
+"settings.prompt.editor.instruction" = "Tinye ntuziaka omenala maka AI. Hapụ ka o bụrụ ihe efu iji jiri nkwado ndabara.";
+"settings.prompt.default.preview" = "Nkwado ndabara (mpempe):";
+"settings.prompt.reset" = "Weghachi";
+"settings.prompt.reset.title" = "Weghachi Nkwado";
+"settings.prompt.reset.message" = "Hichapụ nkwado omenala ma weghachi na ndabara?";
+
+// MARK: - Prompt Templates
+"templates.title" = "Ụdị Nkwado";
+"templates.empty" = "Enwebeghị ụdị";
+"templates.add" = "Tinye Ụdị";
+"template.add.title" = "Tinye Ụdị";
+"template.edit.title" = "Dezie Ụdị";
+"template.name.header" = "Aha";
+"template.name.placeholder" = "Aha ụdị";
+"template.content.header" = "Ọdịnaya Nkwado";
+"template.icon.header" = "Akara";
+"template.translate.name" = "Sụgharịa";
+"template.translate.content" = "Biko sụgharịa nke a: ";
+"template.summarize.name" = "Chịkọta";
+"template.summarize.content" = "Biko chịkọtaa nke a: ";
+"template.explain.name" = "Kọwaa";
+"template.explain.content" = "Biko kọwaa nke a: ";
+"template.code.name" = "Koodu";
+"template.code.content" = "Biko dee koodu maka: ";
+
+// MARK: - Export
+"export.title" = "Bubupụ Mkparịta Ụka";
+"export.format.markdown" = "Markdown";
+"export.format.pdf" = "PDF";
+"export.format.text" = "Ederede Doro Anya";
+"export.created" = "Ekere";
+"export.image.attached" = "Etinyere foto";
+"export.generated.by" = "Mepụtara site";
+
+// MARK: - Loading Phases
+"loading.phase.initializing" = "Na-amalite...";
+"loading.phase.loading" = "Na-ebu ụdị...";
+"loading.phase.preparing" = "Na-akwado injin ntụgharị...";
+"loading.phase.almost" = "Ọ fọrọ nke nta ka ọ dị njikere...";
+
+// MARK: - Welcome Screen
+"welcome.greeting" = "Jụọ m ihe ọ bụla";
+"welcome.subtitle" = "Onye enyemaka AI gị na-ebu ụzọ nzuzo";
+"suggestion.idea" = "Nyere m aka chepụta echiche";
+"suggestion.write" = "Nyere m aka dee ihe";
+"suggestion.question" = "Za ajụjụ m";
+
+// MARK: - Kokoro TTS
+"tts.download.title" = "Olu Dị Elu";
+"tts.download.action" = "Budata";
+"tts.download.use_system" = "Jiri Olu Sistemu";
+"tts.download.message" = "Budata ụdị Kokoro TTS (~87MB) maka okwu-ruo-okwu Japanese dị mma karịa.";
+"tts.downloading" = "Na-ebudata ụdị TTS...";
+
+// MARK: - Feedback
+"feedback.consent.title" = "Zipu Nzaghachi";
+"feedback.send" = "Zipu";
+"feedback.positive.title" = "Azịza a enyerela aka?";
+"feedback.negative.title" = "Ọ nwere ike imeziwanye nke a?";
+"feedback.explanation" = "Nzaghachi gị na-enyere aka melite ogo AI. Biko lelee data a ga-eziga tupu itinye.";
+"feedback.data.section" = "Data a ga-eziga";
+"feedback.data.conversation" = "Mkparịta ụka";
+"feedback.data.conversation.desc" = "Azịza AI na ozi gị gara aga";
+"feedback.data.model" = "Ozi ụdị";
+"feedback.data.model.desc" = "Aha ụdị AI ejiri";
+"feedback.data.timestamp" = "Oge";
+"feedback.data.timestamp.desc" = "Mgbe ezigara nzaghachi";
+"feedback.privacy.section" = "Nzuzo";
+"feedback.privacy.anonymous" = "Anaghị eziga ozi njirimara onwe";
+"feedback.privacy.improvement" = "Ejiri naanị iji melite ogo AI";
+"feedback.privacy.optional" = "Iziga nzaghachi bụ nhọrọ kpamkpam";
+"feedback.comment.section" = "Okwu (nhọrọ)";
+"feedback.comment.placeholder" = "Gwa anyị ihe nwere ike imeziwanye ma ọ bụ ihe rụrụ ọrụ nke ọma...";
+"feedback.remember.title" = "Cheta nhọrọ a";
+"feedback.remember.description" = "Tinye nzaghachi n'ajụjụghị oge ọzọ";
+
+// MARK: - Emergency Mode
+"emergency.sos.button" = "Mode Mberede (pịa ogologo iji gbanwee)";
+"emergency.mode.active" = "Mode Mberede Na-arụ Ọrụ";
+"emergency.action.firstaid" = "Enyemaka Mbụ";
+"emergency.action.firstaid.message" = "Biko nye ntuziaka enyemaka mbụ. Aga m akọwa mmerụ ahụ ma ọ bụ ihe ịrịba ama: ";
+"emergency.action.disaster" = "Ọdachi";
+"emergency.action.disaster.message" = "Ọdachi emela. Biko nye usoro nzaghachi: ";
+"emergency.action.factcheck" = "Lelee Eziokwu";
+"emergency.action.factcheck.message" = "Biko kwenye ntụkwasị obi ozi a: ";
+"emergency.action.contacts" = "Mberede";
+"emergency.action.contacts.message" = "Biko gosi m ndepụta nọmba kọntaktị mberede";
+"emergency.action.evacuation" = "Pụọ";
+"emergency.action.evacuation.message" = "Biko mepụta ndepụta nlele mpụpụ maka ọnọdụ ugbu a: ";
+"mcp.emergency_kb" = "KB Mberede";
+"mcp.emergency_kb.desc" = "Ozi mberede & ọdachi";
+
+// MARK: - Emergency Templates
+"template.firstaid.name" = "Ntuziaka Enyemaka Mbụ";
+"template.firstaid.content" = "Biko nye ntuziaka enyemaka mbụ maka: ";
+"template.disaster.name" = "Nzaghachi Ọdachi";
+"template.disaster.content" = "Ọdachi a emela. Biko nye usoro nzaghachi: ";
+"template.factcheck.name" = "Lelee Eziokwu";
+"template.factcheck.content" = "Biko kwenye ntụkwasị obi ozi a ma nye ndụmọdụ nlele eziokwu: ";
+"template.evacuation.name" = "Ndepụta Nlele Mpụpụ";
+"template.evacuation.content" = "Biko mepụta ndepụta nlele mpụpụ maka ọnọdụ ugbu a: ";
+
+// MARK: - ChatWeb.ai Integration
+"chatweb.title" = "ChatWeb.ai";
+"chatweb.desc" = "Nkata AI Igwe Ojii";
+"chatweb.connect" = "Jikọọ na ChatWeb.ai";
+"chatweb.qr.title" = "Jikọọ Site na Koodu QR";
+"chatweb.qr.scan" = "Nyochaa Koodu QR";
+"chatweb.open" = "Mepe ChatWeb.ai";
+
+// MARK: - Peer Connection
+"peer.title" = "Ngwaọrụ Dị Nso";
+"peer.desc" = "Jikọọ na ngwaọrụ Elio dị nso";
+"peer.connect" = "Jikọọ na Ngwaọrụ";
+"peer.code.title" = "Koodu Njikọ";
+"peer.code.enter" = "Tinye koodu nọmba 4";
+"peer.code.your" = "Koodu Gị";
+"peer.connected" = "Ejikọla";
+"peer.disconnected" = "Ekewapụla";
+"peer.inference.offload" = "Na-ekesa ntụgharị";
+
+// MARK: - Web Search
+"chat.web.search" = "Nchọcha Weebụ";
+"search.privacy.title" = "Nchọcha Echekwara Nzuzo";
+"search.privacy.proceed" = "Chọọ";
+"search.privacy.message" = "Nchọcha Weebụ ElioChat na-echebe nzuzo gị:\n\n🔒 Nchọcha site na DuckDuckGo\n🚫 Enweghị nsochi ma ọ bụ profaịlụ\n🔐 Anaghị echekwa akụkọ nchọcha\n📱 Enweghị data echekwara na mpụga ngwaọrụ gị\n\nNaanị ajụjụ nchọcha gị ka a na-eziga na DuckDuckGo, a na-ahazi nsonaazụ na ngwaọrụ gị.";
+"chat.web.analyzing" = "[Na-enyocha peeji weebụ]";

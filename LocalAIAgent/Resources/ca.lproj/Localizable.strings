@@ -1,0 +1,635 @@
+/*
+  Localizable.strings (Catalan)
+  Elio
+*/
+
+// MARK: - App General
+"app.name" = "Elio";
+"app.tagline" = "El teu segon cervell que guarda secrets.";
+
+// MARK: - Common Actions
+"common.done" = "Fet";
+"common.cancel" = "Cancel·la";
+"common.delete" = "Elimina";
+"common.save" = "Desa";
+"common.edit" = "Edita";
+"common.share" = "Comparteix";
+"common.copy" = "Copia";
+"common.copied" = "Copiat";
+"common.loading" = "Carregant...";
+"common.error" = "Error";
+"common.retry" = "Torna-ho a provar";
+"common.skip" = "Omet";
+"common.next" = "Següent";
+"common.start" = "Comença";
+"common.add" = "Afegeix";
+"common.close" = "Tanca";
+"common.details" = "Detalls";
+"common.yes" = "Sí";
+"common.no" = "No";
+"common.unknown" = "Desconegut";
+
+// MARK: - Chat
+"chat.placeholder" = "Pregunta'm el que vulguis";
+"chat.model.not.loaded" = "Cap model carregat";
+"chat.model.not.loaded.description" = "Si us plau, descarrega un model des de la configuració";
+"chat.go.to.settings" = "Anar a la configuració";
+"chat.new.conversation" = "Xat nou";
+"chat.stop.generation" = "Atura";
+"chat.generation.stopped" = "\n\n[Generació aturada]";
+"chat.image.sent" = "[Imatge enviada]";
+"chat.images.sent" = "[%d imatges enviades]";
+"chat.pdf.sent" = "[PDF adjunt: %@]";
+"chat.pdf.sent.vision" = "[PDF amb imatge: %@]";
+"chat.pdf.context" = "El següent és el contingut de text extret del document PDF \"%@\":\n\n%@";
+"chat.pdf.context.vision" = "Aquesta és la pàgina 1 del document PDF \"%@\". El contingut de text extret és:\n\n%@\n\nSi us plau, analitza tant el contingut visual com el text.";
+"chat.pdf.analyze" = "Si us plau, analitza aquesta pàgina del PDF \"%@\".";
+"chat.url.sent" = "[Pàgina web: %@]";
+"chat.url.context" = "El següent és el contingut extret de la pàgina web \"%@\" (%@):\n\n%@";
+"chat.thinking" = "Pensant...";
+"chat.generating" = "Generant resposta...";
+"chat.welcome" = "Com et puc ajudar?";
+"chat.suggestion.schedule" = "Mostra l'agenda d'avui";
+"chat.suggestion.reminder" = "Crea un recordatori";
+"chat.suggestion.weather" = "Quin temps fa avui?";
+"chat.suggestion.help" = "Com utilitzar aquesta app";
+"chat.websearch.on" = "Cerca web activada";
+"chat.websearch.off" = "Cerca web desactivada";
+"chat.thinking.on" = "Pensament activat";
+"chat.thinking.off" = "Pensament desactivat";
+"chat.transcribing" = "Transcrivint...";
+"chat.offline" = "Fora de línia";
+
+// Voice Conversation Mode
+"voice.listening" = "Escoltant...";
+"voice.processing" = "Processant...";
+"voice.thinking" = "Pensant...";
+"voice.speaking" = "Parlant...";
+"voice.tap.to.send" = "Toca per enviar";
+"chat.templates" = "Plantilles";
+"chat.websearch.privacy.title" = "Sobre la cerca web";
+"chat.websearch.privacy.message" = "Activar la cerca web permet que la IA cerqui a Internet a través de DuckDuckGo per obtenir informació actualitzada. Les consultes de cerca s'envien a DuckDuckGo però no es fan seguiment.";
+"chat.websearch.privacy.enable" = "Activa";
+"chat.websearch.privacy.disable" = "Mantenir desactivat";
+
+// MARK: - Settings
+"settings.title" = "Configuració";
+"settings.model.section" = "Models d'IA";
+"settings.model.recommended" = "Recomanat: %@";
+"settings.model.local.execution" = "Els models s'executen localment al dispositiu";
+"settings.model.show.more" = "Altres models (%d)";
+"settings.model.show.less" = "Mostra menys";
+"settings.appearance.section" = "Aparença";
+"settings.tools.section" = "Funcions intel·ligents";
+"settings.mcp.servers" = "Integracions";
+"settings.mcp.servers.description" = "Calendari, fitxers, recordatoris i més";
+"settings.mcp.enabled.count" = "%d activades";
+"settings.mcp.enabled.count.suffix" = " activades";
+"settings.about.section" = "Sobre";
+"settings.version" = "Versió";
+"settings.about.app" = "Sobre aquesta app";
+"settings.about.mcp" = "Sobre les integracions";
+"settings.privacy.badge" = "Funciona fora de línia";
+"settings.privacy.description" = "Funciona en mode avió";
+"settings.airplane.mode" = "Executant-se en mode avió";
+"settings.offline.ready" = "Preparat per fora de línia";
+
+// MARK: - Model States
+"model.status.downloading" = "Descarregant... %d%%";
+"model.status.loading" = "Carregant...";
+"model.status.in.use" = "En ús";
+"model.status.recommended" = "Recomanat";
+"model.status.heavy" = "Pesat";
+"model.action.download" = "Descarrega";
+"model.action.load" = "Carrega";
+"model.action.delete" = "Elimina";
+"model.action.use" = "Usa aquest model";
+"model.delete.confirm.title" = "Eliminar model";
+"model.delete.confirm.message" = "Eliminar %@? Hauràs de tornar-lo a descarregar per utilitzar-lo de nou.";
+"model.select.title" = "Selecciona model";
+"model.select.prompt" = "Si us plau, selecciona un model";
+"model.downloaded" = "Descarregat";
+
+// MARK: - Inference Mode
+"inference.mode.title" = "Acceleració";
+"inference.mode.auto" = "Automàtic";
+"inference.mode.auto.desc" = "Rendiment òptim automàticament";
+"inference.mode.gpu" = "GPU (Metal)";
+"inference.mode.gpu.desc" = "Màxima velocitat amb Metal";
+"inference.mode.cpu" = "Només CPU";
+"inference.mode.cpu.desc" = "Mode d'estalvi de bateria";
+"inference.mode.hybrid" = "Híbrid";
+"inference.mode.hybrid.desc" = "Equilibri entre velocitat i bateria";
+
+// MARK: - Theme
+"theme.system" = "Sistema";
+"theme.light" = "Clar";
+"theme.dark" = "Fosc";
+
+// MARK: - Onboarding
+"onboarding.welcome.title" = "Benvingut a ElioChat";
+"onboarding.welcome.subtitle" = "El teu assistent d'IA privat";
+"onboarding.features.title" = "IA realment privada";
+"onboarding.feature.offline" = "Funciona en mode avió";
+"onboarding.feature.offline.desc" = "Utilitza'l en vols o sota terra";
+"onboarding.feature.privacy" = "Zero transmissió de dades";
+"onboarding.feature.privacy.desc" = "Les teves converses no surten mai del telèfon";
+"onboarding.feature.vault" = "Integracions intel·ligents";
+"onboarding.feature.vault.desc" = "Connecta amb el calendari i els fitxers";
+"onboarding.feature.secure" = "IA segura per a la feina";
+"onboarding.feature.secure.desc" = "Segura per a ús corporatiu";
+"onboarding.feature.thinking" = "Procés de pensament";
+"onboarding.privacy.title" = "Les teves dades són teves";
+"onboarding.privacy.item1" = "Tot el processament passa al teu iPhone";
+"onboarding.privacy.item2" = "No s'envien dades als servidors al núvol";
+"onboarding.privacy.item3" = "Mai s'usen per entrenar IA";
+"onboarding.getstarted.title" = "Preparat amb un toc";
+"onboarding.getstarted.subtitle" = "Descarrega el model d'IA recomanat\ni comença a xatejar de seguida";
+"onboarding.step1" = "Descarregar model recomanat";
+"onboarding.step2" = "Esperar uns minuts";
+"onboarding.step3" = "Tot llest!";
+
+// MARK: - About
+"about.title" = "Sobre aquesta app";
+"about.rate.app" = "Puntua l'app";
+"about.share.app" = "Comparteix amb amics";
+"about.privacy.policy" = "Política de privadesa";
+"about.terms" = "Condicions del servei";
+"about.tech.info" = "Informació tècnica";
+"about.tech.engine" = "Motor d'IA";
+"about.tech.format" = "Format suportat";
+"about.tech.inference" = "Inferència";
+"about.data.management" = "Gestió de dades";
+"about.delete.all" = "Eliminar totes les converses";
+"about.credits" = "Crèdits";
+"about.credits.description" = "Aquesta app utilitza biblioteques de codi obert";
+"about.privacy.section" = "Privadesa";
+"about.gguf.format" = "Format GGUF";
+"about.metal.gpu" = "Acceleració GPU Metal";
+
+// MARK: - Referral
+"referral.title" = "Recomana amics";
+"referral.code.title" = "El teu codi de recomanació";
+"referral.code.copy" = "Copia el codi";
+"referral.code.copied" = "Copiat";
+"referral.share.button" = "Comparteix amb amics";
+"referral.share.description" = "Comparteix Elio amb els teus amics!";
+"referral.count" = "Has recomanat a %d persones";
+"referral.enter.title" = "Introdueix el codi de recomanació";
+"referral.enter.placeholder" = "Codi de recomanació";
+"referral.enter.button" = "Aplica";
+"referral.enter.success" = "Codi de recomanació aplicat";
+"referral.enter.error" = "Codi de recomanació invàlid";
+
+// MARK: - Privacy Policy
+"privacy.title" = "Política de privadesa";
+"privacy.data.collection.title" = "Recollida de dades";
+"privacy.data.collection.content" = "Aquesta app executa una IA local completament fora de línia.\nNo s'envien dades a servidors externs.\nTotes les converses s'emmagatzemen només al dispositiu.";
+"privacy.stored.data.title" = "Dades emmagatzemades";
+"privacy.stored.data.content" = "Historial de converses (emmagatzemat només al dispositiu)\nFitxers del model d'IA (emmagatzemats només al dispositiu)\nConfiguració de l'app (emmagatzemada només al dispositiu)\n\nAquestes dades mai es comparteixen externament.";
+"privacy.data.deletion.title" = "Eliminació de dades";
+"privacy.data.deletion.content" = "Pots eliminar totes les dades en qualsevol moment des de Configuració > Gestió de dades.\nDesinstal·lar l'app eliminarà totes les dades.";
+
+// MARK: - Terms of Service
+"terms.title" = "Condicions del servei";
+"terms.service.title" = "Descripció del servei";
+"terms.service.content" = "Aquesta app proporciona funcionalitat d'assistent d'IA utilitzant un model d'IA que s'executa localment.";
+"terms.disclaimer.title" = "Exclusió de responsabilitat";
+"terms.disclaimer.content" = "Les respostes de la IA poden contenir errors.\nLes decisions importants sempre han de ser verificades per un professional.\nNo ens fem responsables de cap dany derivat de l'ús d'aquesta app.";
+"terms.prohibited.title" = "Activitats prohibides";
+"terms.prohibited.content" = "Activitats il·legals\nActivitats que infringeixin els drets d'altres\nEnginyeria inversa d'aquesta app\nCòpia no autoritzada d'aquesta app";
+"terms.ip.title" = "Propietat intel·lectual";
+"terms.ip.content" = "Els drets de propietat intel·lectual d'aquesta app pertanyen al desenvolupador.\nL'ús no autoritzat està prohibit.";
+
+// MARK: - Conversations
+"conversations.title" = "Converses";
+"conversations.new" = "Nova conversa";
+"conversations.empty" = "Encara no hi ha converses";
+"conversations.delete" = "Elimina conversa";
+"conversations.default.title" = "Nova conversa";
+"conversations.today" = "Avui";
+"conversations.yesterday" = "Ahir";
+"conversations.past7days" = "Últims 7 dies";
+"conversations.past30days" = "Últims 30 dies";
+"conversations.older" = "Més antic";
+"conversations.created" = "Creat: %@";
+"conversations.user" = "Usuari";
+"conversations.assistant" = "Assistent";
+"conversations.search.placeholder" = "Cerca converses";
+"conversations.search.no_results" = "No s'han trobat resultats";
+
+// MARK: - Message Actions
+"message.copy" = "Copia";
+"message.speak" = "Parla";
+"message.stop.speaking" = "Atura el discurs";
+"message.share" = "Comparteix";
+"message.share.card" = "Comparteix com a targeta";
+"message.like" = "M'agrada";
+
+// MARK: - Share Card
+"share.card.title" = "Comparteix targeta";
+"share.card.preview" = "Vista prèvia";
+"share.card.button" = "Comparteix imatge";
+"message.dislike" = "No m'agrada";
+"message.thinking.process" = "Procés de pensament";
+"message.tool.running" = "Executant eina";
+"message.tool.error" = "Error";
+"message.tool.completed" = "Completat";
+
+// MARK: - Attachment
+"attachment.title" = "Adjunt";
+"attachment.photo.library" = "Tria foto";
+"attachment.camera" = "Fes una foto";
+"attachment.pdf" = "Selecciona PDF";
+"attachment.pdf.chars" = "%d caràcters";
+"attachment.pdf.pages" = "%d pàgines";
+"attachment.pdf.vision.enabled" = "Anàlisi d'imatge activada";
+"attachment.pdf.text.only" = "Mode només text";
+"attachment.url" = "Llegir pàgina web";
+"attachment.url.title" = "Introdueix URL";
+"attachment.url.placeholder" = "https://example.com";
+"attachment.url.message" = "Enganxa un URL per extreure el seu contingut";
+"attachment.url.fetch" = "Obtenir";
+"attachment.url.loading" = "Carregant pàgina...";
+
+// MARK: - Errors
+"error.model.not.found" = "Fitxer del model no trobat";
+"error.model.not.loaded" = "Model no carregat";
+"error.context.failed" = "No s'ha pogut crear el context";
+"error.tokenization.failed" = "Tokenització fallida";
+"error.generation.failed" = "Error de generació: %@";
+"error.occurred" = "S'ha produït un error: %@";
+"error.invalid.url" = "URL invàlid";
+"error.download.failed" = "Descàrrega fallida";
+"error.extraction.failed" = "Extracció fallida";
+"error.config.not.found" = "Fitxer de configuració no trobat";
+
+// MARK: - Ghost Search
+"ghost.search.title" = "Cerca fantasma";
+"ghost.search.description" = "Cerca anònima via DuckDuckGo (sense seguiment)";
+"ghost.search.connecting" = "Connectant a la xarxa anònima...";
+"ghost.search.privacy.note" = "El teu historial de cerca mai es fa seguiment";
+
+// MARK: - MCP Servers
+"mcp.filesystem" = "Sistema de fitxers";
+"mcp.filesystem.desc" = "Llegir i escriure fitxers a l'app";
+"mcp.calendar" = "Calendari";
+"mcp.calendar.desc" = "Llegir i escriure esdeveniments";
+"mcp.reminders" = "Recordatoris";
+"mcp.reminders.desc" = "Gestionar recordatoris";
+"mcp.contacts" = "Contactes";
+"mcp.contacts.desc" = "Cercar i veure contactes";
+"mcp.photos" = "Fotos";
+"mcp.photos.desc" = "Accedir a la biblioteca de fotos";
+"mcp.location" = "Ubicació";
+"mcp.location.desc" = "Obtenir la ubicació actual i cercar llocs";
+"mcp.health" = "Salut";
+"mcp.health.desc" = "Accedir a dades de salut";
+"mcp.shortcuts" = "Dreceres";
+"mcp.shortcuts.desc" = "Executar dreceres";
+"mcp.websearch" = "Cerca web";
+"mcp.websearch.desc" = "Cerca web anònima";
+"mcp.custom" = "Integració personalitzada";
+"mcp.custom.add" = "Afegir integració";
+"mcp.custom.setup" = "Configurar integració de servei extern";
+"mcp.custom.title" = "Integracions personalitzades";
+"mcp.settings.title" = "Configuració d'integracions";
+"mcp.server.name" = "Nom del servidor";
+"mcp.server.name.placeholder" = "p. ex., El meu servidor personalitzat";
+"mcp.config.url" = "URL del fitxer de configuració";
+"mcp.import.file" = "Importar des d'un fitxer";
+"mcp.config.example" = "Exemple de fitxer de configuració";
+"mcp.permission.note" = "Els permisos se sol·licitaran quan s'utilitzi cada funció per primera vegada";
+
+// MARK: - MCP Tool Messages
+"mcp.tool.available" = "Eines disponibles:";
+"mcp.tool.parameters" = "Paràmetres:";
+"mcp.prompt.available" = "Missatges disponibles:";
+"mcp.prompt.arguments" = "Arguments:";
+"mcp.tool.name" = "tool_name";
+"mcp.tool.arg.name" = "arg_name";
+"mcp.tool.arg.value" = "value";
+"mcp.tool.no.result" = "Cap resultat";
+"mcp.tool.running" = "Executant eina: %@";
+"mcp.tool.error" = "Error d'execució de l'eina: %@";
+
+// MARK: - MCP Error Messages
+"mcp.error.server.not.found" = "Servidor no trobat: %@";
+"mcp.error.tool.not.found" = "Eina no trobada: %@";
+"mcp.error.invalid.args" = "Arguments invàlids: %@";
+"mcp.error.execution" = "Error d'execució: %@";
+"mcp.error.permission" = "Permís denegat: %@";
+
+// MARK: - Calendar Messages
+"calendar.no.events" = "Cap esdeveniment";
+"calendar.event.created" = "Esdeveniment creat: %@";
+"calendar.event.deleted" = "Esdeveniment eliminat: %@";
+"calendar.allday.created" = "Esdeveniment de tot el dia creat: %@";
+"calendar.access.denied" = "Accés al calendari denegat";
+"calendar.today.none" = "Cap esdeveniment avui";
+"calendar.untitled" = "Sense títol";
+
+// MARK: - Reminders Messages
+"reminders.none" = "Cap recordatori";
+"reminders.created" = "Recordatori creat: %@";
+"reminders.completed" = "Recordatori completat: %@";
+"reminders.deleted" = "Recordatori eliminat: %@";
+"reminders.access.denied" = "Accés als recordatoris denegat";
+"reminders.untitled" = "Sense títol";
+
+// MARK: - Photos Messages
+"photos.access.denied" = "Accés a les fotos denegat";
+"photos.not.found" = "Foto no trobada";
+"photos.untitled" = "Sense títol";
+"photos.count" = "Fotos: %d";
+"photos.videos.count" = "Vídeos: %d";
+"photos.albums.count" = "Àlbums: %d";
+"photos.favorites.count" = "Favorits: %d";
+"photos.date" = "Data: %@";
+"photos.size" = "Mida: %d x %d";
+"photos.location" = "Ubicació: %@, %@";
+"photos.media.type" = "Tipus de mitjà: %@";
+"photos.duration" = "Durada: %dm %ds";
+"photos.favorite" = "Favorit: %@";
+"photos.type.image" = "Foto";
+"photos.type.video" = "Vídeo";
+"photos.type.audio" = "Àudio";
+
+// MARK: - Contacts Messages
+"contacts.access.denied" = "Accés als contactes denegat";
+"contacts.not.found" = "No s'han trobat contactes coincidents";
+"contacts.no.groups" = "Cap grup";
+"contacts.no.card" = "No hi ha cap targeta de contacte configurada";
+"contacts.name" = "Nom: %@";
+"contacts.company" = "Empresa: %@";
+"contacts.job" = "Títol de feina: %@";
+
+// MARK: - Location Messages
+"location.access.denied" = "Accés a la ubicació denegat";
+"location.not.found" = "Adreça no trobada";
+"location.latitude" = "Latitud: %@";
+"location.longitude" = "Longitud: %@";
+"location.accuracy" = "Precisió: %dm";
+"location.altitude" = "Altitud: %dm";
+"location.search" = "Cerca: %@";
+"location.address" = "Adreça: %@";
+"location.country" = "País: %@";
+"location.postal" = "Codi postal: %@";
+"location.from" = "Des de: (%@, %@)";
+"location.to" = "A: (%@, %@)";
+"location.distance.km" = "Distància: %.2f km";
+"location.distance.m" = "Distància: %d m";
+
+// MARK: - Health Messages
+"health.not.available" = "La salut no està disponible en aquest dispositiu";
+"health.date" = "Data: %@";
+"health.steps" = "Passes: %@ passes";
+"health.goal.progress" = "Progrés de l'objectiu: %d%% (objectiu de 10.000 passes)";
+"health.no.data" = "No hi ha dades disponibles";
+"health.avg.bpm" = "Mitjana: %d bpm";
+"health.min.bpm" = "Mínim: %d bpm";
+"health.max.bpm" = "Màxim: %d bpm";
+"health.measurements" = "Mesures: %d";
+"health.no.sleep" = "No hi ha dades de son";
+"health.sleep.total" = "Son total: %dh %dm";
+"health.bedtime" = "Hora de dormir: %@";
+"health.waketime" = "Hora de despertar: %@";
+"health.calories" = "Calories: %d kcal";
+
+// MARK: - File System Messages
+"filesystem.not.found" = "Fitxer no trobat: %@";
+"filesystem.written" = "Fitxer escrit: %@";
+"filesystem.dir.created" = "Directori creat: %@";
+"filesystem.deleted" = "Eliminat: %@";
+"filesystem.size" = "Mida: %@";
+"filesystem.created" = "Creat: %@";
+"filesystem.modified" = "Modificat: %@";
+"filesystem.type" = "Tipus: %@";
+
+// MARK: - Shortcuts Messages
+"shortcuts.executed" = "Drecera '%@' executada";
+"shortcuts.opened" = "App de dreceres oberta";
+"shortcuts.settings.opened" = "Configuració (%@) oberta";
+"shortcuts.mail.opened" = "Composició de correu oberta";
+"shortcuts.calling" = "Trucant: %@";
+"shortcuts.message.opened" = "Composició de missatge oberta";
+"shortcuts.failed" = "No s'ha pogut obrir la drecera";
+
+// MARK: - Model Tiers
+"model.tier.entry" = "Entrada";
+"model.tier.standard" = "Estàndard";
+"model.tier.pro" = "Professional";
+
+// MARK: - Tool Parser
+"tool.arguments" = "Arguments:";
+
+// MARK: - Model Settings
+"model.action.settings" = "Configuració";
+"settings.model.parameters" = "Configuració del model";
+"settings.model.parameters.description" = "Personalitza els paràmetres de generació per a aquest model";
+"settings.preset.title" = "Preajustos";
+"settings.preset.custom" = "Personalitzat";
+"settings.preset.balanced" = "Equilibrat";
+"settings.preset.creative" = "Creatiu";
+"settings.preset.precise" = "Precís";
+"settings.preset.coding" = "Programació";
+"settings.preset.japanese" = "Japonès";
+"settings.parameters.title" = "Paràmetres";
+"settings.parameter.temperature" = "Temperatura";
+"settings.parameter.temperature.description" = "Més alt = més creatiu, més baix = més centrat";
+"settings.parameter.top.p" = "Top P";
+"settings.parameter.top.p.description" = "Probabilitat de mostreig de nucli";
+"settings.parameter.top.k" = "Top K";
+"settings.parameter.top.k.description" = "Nombre de tokens principals a considerar";
+"settings.parameter.max.tokens" = "Tokens màxims";
+"settings.parameter.max.tokens.description" = "Longitud màxima de resposta";
+"settings.parameter.repeat.penalty" = "Penalització de repetició";
+"settings.parameter.repeat.penalty.description" = "Més alt = menys sortida repetitiva";
+"settings.parameter.thinking" = "Mode de pensament";
+"settings.parameter.thinking.description" = "Mostra el procés de raonament de la IA";
+"settings.system.prompt.title" = "Missatge del sistema";
+"settings.system.prompt.description" = "Instruccions personalitzades per a la IA";
+"settings.reset.to.default" = "Restablir per defecte";
+
+// MARK: - Vision Model
+"vision.model.required.title" = "Model de visió necessari";
+"vision.model.required.header" = "Reconeixement d'imatge necessari";
+"vision.model.required.description" = "Per analitzar imatges, necessites un model d'IA amb capacitat de visió";
+"vision.model.switch" = "Canviar model";
+"vision.model.switch.message %@" = "Canviar a %@ per activar l'anàlisi d'imatge?";
+"vision.model.download" = "Descarregar";
+"vision.model.download.message %@ %@" = "Descarregar %@ (%@) per analitzar imatges?";
+"vision.model.not.available" = "No hi ha cap model de visió compatible disponible per al teu dispositiu";
+"vision.model.switching" = "Canviant de model...";
+"vision.model.download.title" = "Models de visió";
+"vision.model.recommended" = "Recomanat per al teu dispositiu";
+"vision.model.recommended.size %@" = "Recomanat: %@";
+"vision.model.use.this" = "Usa aquest model";
+"vision.model.download.button %@" = "Descarregar (%@)";
+"vision.model.other.options" = "Altres models de visió";
+"vision.model.download.complete" = "Descàrrega completada";
+"vision.model.download.complete.message" = "Preparat per analitzar imatges";
+
+// MARK: - Whisper Voice Input (Legacy)
+"whisper.download.title" = "Reconeixement de veu necessari";
+"whisper.download.action" = "Descarregar";
+"whisper.download.message" = "Per utilitzar l'entrada de veu, necessites descarregar el model de reconeixement de parla (~150MB).";
+"whisper.downloading" = "Descarregant model de reconeixement de parla...";
+"whisper.download.error" = "Error de descàrrega";
+"whisper.load.error" = "Error de càrrega del model";
+"whisper.permission.denied" = "Accés al micròfon no permès";
+"whisper.transcribe.error" = "Error de transcripció";
+"whisper.error.permission" = "Permís de micròfon necessari";
+"whisper.error.not.recording" = "Actualment no s'està gravant";
+"whisper.error.no.recording" = "No hi ha dades de gravació";
+"whisper.error.model.not.loaded" = "Model de reconeixement de parla no carregat";
+"whisper.error.transcription" = "Transcripció fallida";
+
+// MARK: - Speech Recognition (ReazonSpeech)
+"speech.download.title" = "Reconeixement de veu necessari";
+"speech.download.action" = "Descarregar";
+"speech.download.message" = "Per utilitzar l'entrada de veu, necessites descarregar el model japonès de reconeixement de parla (~155MB).";
+"speech.downloading" = "Descarregant model de reconeixement de parla...";
+
+// MARK: - Language Settings
+"settings.language.section" = "Idioma";
+"language.system" = "Usar idioma del sistema";
+"settings.language.restart.hint" = "Els canvis d'idioma s'aplicaran després de reiniciar l'app";
+"settings.language.changed.title" = "Idioma canviat";
+"settings.language.changed.message" = "Si us plau, reinicia l'app per aplicar els canvis";
+"common.ok" = "D'acord";
+
+// MARK: - System Prompt Settings
+"settings.prompt.section" = "Missatge del sistema";
+"settings.prompt.edit" = "Editar missatge";
+"settings.prompt.default" = "Usant per defecte";
+"settings.prompt.custom" = "Missatge personalitzat configurat";
+"settings.prompt.hint" = "Personalitza el comportament de la IA";
+"settings.prompt.editor.title" = "Editar missatge";
+"settings.prompt.editor.instruction" = "Afegeix instruccions personalitzades per a la IA. Deixa-ho buit per utilitzar el missatge per defecte.";
+"settings.prompt.default.preview" = "Missatge per defecte (fragment):";
+"settings.prompt.reset" = "Restablir";
+"settings.prompt.reset.title" = "Restablir missatge";
+"settings.prompt.reset.message" = "Eliminar el missatge personalitzat i restaurar al per defecte?";
+
+// MARK: - Prompt Templates
+"templates.title" = "Plantilles de missatge";
+"templates.empty" = "Encara no hi ha plantilles";
+"templates.add" = "Afegir plantilla";
+"template.add.title" = "Afegir plantilla";
+"template.edit.title" = "Editar plantilla";
+"template.name.header" = "Nom";
+"template.name.placeholder" = "Nom de la plantilla";
+"template.content.header" = "Contingut del missatge";
+"template.icon.header" = "Icona";
+"template.translate.name" = "Traduir";
+"template.translate.content" = "Si us plau, tradueix el següent: ";
+"template.summarize.name" = "Resumir";
+"template.summarize.content" = "Si us plau, resumeix el següent: ";
+"template.explain.name" = "Explicar";
+"template.explain.content" = "Si us plau, explica el següent: ";
+"template.code.name" = "Codi";
+"template.code.content" = "Si us plau, escriu codi per a: ";
+
+// MARK: - Export
+"export.title" = "Exportar conversa";
+"export.format.markdown" = "Markdown";
+"export.format.pdf" = "PDF";
+"export.format.text" = "Text pla";
+"export.created" = "Creat";
+"export.image.attached" = "Imatge adjunta";
+"export.generated.by" = "Generat per";
+
+// MARK: - Loading Phases
+"loading.phase.initializing" = "Inicialitzant...";
+"loading.phase.loading" = "Carregant model...";
+"loading.phase.preparing" = "Preparant motor d'inferència...";
+"loading.phase.almost" = "Gairebé preparat...";
+
+// MARK: - Welcome Screen
+"welcome.greeting" = "Pregunta'm el que vulguis";
+"welcome.subtitle" = "El teu assistent d'IA que respecta la privadesa";
+"suggestion.idea" = "Ajuda'm a generar idees";
+"suggestion.write" = "Ajuda'm a escriure alguna cosa";
+"suggestion.question" = "Respon les meves preguntes";
+
+// MARK: - Kokoro TTS
+"tts.download.title" = "Veu d'alta qualitat";
+"tts.download.action" = "Descarregar";
+"tts.download.use_system" = "Usar veu del sistema";
+"tts.download.message" = "Descarrega el model Kokoro TTS (~87MB) per a síntesi de veu japonesa més natural.";
+"tts.downloading" = "Descarregant model TTS...";
+
+// MARK: - Feedback
+"feedback.consent.title" = "Enviar comentaris";
+"feedback.send" = "Enviar";
+"feedback.positive.title" = "Aquesta resposta ha estat útil?";
+"feedback.negative.title" = "Això es podria millorar?";
+"feedback.explanation" = "Els teus comentaris ajuden a millorar la qualitat de la IA. Si us plau, revisa quines dades s'enviaran abans d'enviar.";
+"feedback.data.section" = "Dades que s'enviaran";
+"feedback.data.conversation" = "Conversa";
+"feedback.data.conversation.desc" = "La resposta de la IA i el teu missatge anterior";
+"feedback.data.model" = "Informació del model";
+"feedback.data.model.desc" = "Nom del model d'IA utilitzat";
+"feedback.data.timestamp" = "Marca de temps";
+"feedback.data.timestamp.desc" = "Quan s'ha enviat el comentari";
+"feedback.privacy.section" = "Privadesa";
+"feedback.privacy.anonymous" = "No s'envia cap informació d'identificació personal";
+"feedback.privacy.improvement" = "S'utilitza només per millorar la qualitat de la IA";
+"feedback.privacy.optional" = "Enviar comentaris és completament opcional";
+"feedback.comment.section" = "Comentari (opcional)";
+"feedback.comment.placeholder" = "Explica'ns què es podria millorar o què ha funcionat bé...";
+"feedback.remember.title" = "Recordar aquesta elecció";
+"feedback.remember.description" = "Enviar comentaris sense preguntar la propera vegada";
+
+// MARK: - Emergency Mode
+"emergency.sos.button" = "Mode d'emergència (mantenir premut per alternar)";
+"emergency.mode.active" = "Mode d'emergència actiu";
+"emergency.action.firstaid" = "Primers auxilis";
+"emergency.action.firstaid.message" = "Si us plau, proporciona instruccions de primers auxilis. Descriuré la lesió o els símptomes: ";
+"emergency.action.disaster" = "Desastre";
+"emergency.action.disaster.message" = "S'ha produït un desastre. Si us plau, proporciona procediments de resposta: ";
+"emergency.action.factcheck" = "Verificació de fets";
+"emergency.action.factcheck.message" = "Si us plau, verifica la fiabilitat d'aquesta informació: ";
+"emergency.action.contacts" = "Emergència";
+"emergency.action.contacts.message" = "Si us plau, mostra'm una llista de números de contacte d'emergència";
+"emergency.action.evacuation" = "Evacuar";
+"emergency.action.evacuation.message" = "Si us plau, crea una llista de verificació d'evacuació per a la situació actual: ";
+"mcp.emergency_kb" = "Base de coneixements d'emergència";
+"mcp.emergency_kb.desc" = "Informació d'emergència i desastres";
+
+// MARK: - Emergency Templates
+"template.firstaid.name" = "Guia de primers auxilis";
+"template.firstaid.content" = "Si us plau, proporciona instruccions de primers auxilis per a: ";
+"template.disaster.name" = "Resposta a desastres";
+"template.disaster.content" = "S'ha produït el següent desastre. Si us plau, proporciona procediments de resposta: ";
+"template.factcheck.name" = "Verificació de fets";
+"template.factcheck.content" = "Si us plau, verifica la fiabilitat d'aquesta informació i proporciona consells de verificació de fets: ";
+"template.evacuation.name" = "Llista de verificació d'evacuació";
+"template.evacuation.content" = "Si us plau, crea una llista de verificació d'evacuació per a la situació actual: ";
+
+// MARK: - ChatWeb.ai Integration
+"chatweb.title" = "ChatWeb.ai";
+"chatweb.desc" = "Xat d'IA al núvol";
+"chatweb.connect" = "Connectar a ChatWeb.ai";
+"chatweb.qr.title" = "Connectar via codi QR";
+"chatweb.qr.scan" = "Escanejar codi QR";
+"chatweb.open" = "Obrir ChatWeb.ai";
+
+// MARK: - Peer Connection
+"peer.title" = "Dispositius propers";
+"peer.desc" = "Connectar amb dispositius Elio propers";
+"peer.connect" = "Connectar al dispositiu";
+"peer.code.title" = "Codi de connexió";
+"peer.code.enter" = "Introdueix el codi de 4 dígits";
+"peer.code.your" = "El teu codi";
+"peer.connected" = "Connectat";
+"peer.disconnected" = "Desconnectat";
+"peer.inference.offload" = "Compartint inferència";
+
+// MARK: - Web Search
+"chat.web.search" = "Cerca web";
+"search.privacy.title" = "Cerca protegida per privadesa";
+"search.privacy.proceed" = "Cercar";
+"search.privacy.message" = "La cerca web d'ElioChat protegeix la teva privadesa:\n\n🔒 Cerques via DuckDuckGo\n🚫 Sense seguiment ni perfilat\n🔐 L'historial de cerca no s'emmagatzema\n📱 No s'emmagatzemen dades fora del dispositiu\n\nNomés la teva consulta de cerca s'envia a DuckDuckGo i els resultats es processen al teu dispositiu.";
+"chat.web.analyzing" = "[Analitzant pàgina web]";
