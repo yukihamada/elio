@@ -135,6 +135,23 @@ final class P2PBackend: InferenceBackend, ObservableObject {
         selectedServer = nil
     }
 
+    /// Send a typed P2P envelope to the connected server
+    func sendEnvelope(type: P2PMessageType, payload: Data) throws {
+        guard let connection = connection, connection.state == .ready else {
+            throw InferenceError.networkError("Not connected to P2P server")
+        }
+        let envelope = P2PEnvelope(type: type, payload: payload)
+        guard var data = try? JSONEncoder().encode(envelope) else {
+            throw InferenceError.invalidResponse
+        }
+        data.append(contentsOf: [0x0A]) // newline delimiter
+        connection.send(content: data, completion: .contentProcessed { error in
+            if let error = error {
+                print("[P2P Client] Send error: \(error)")
+            }
+        })
+    }
+
     // MARK: - InferenceBackend
 
     func generate(
@@ -156,7 +173,7 @@ final class P2PBackend: InferenceBackend, ObservableObject {
             systemPrompt: systemPrompt,
             settings: settings,
             clientId: getClientId(),
-            signature: nil // TODO: Add signing
+            signature: DeviceIdentityManager.shared.signMessage(messages.last?.content ?? "")
         )
 
         guard let requestData = try? JSONEncoder().encode(request) else {

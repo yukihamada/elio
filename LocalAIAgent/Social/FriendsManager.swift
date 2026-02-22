@@ -28,10 +28,12 @@ final class FriendsManager: ObservableObject {
 
     /// Add a friend by pairing code
     func addFriend(pairingCode: String, name: String? = nil) async throws -> Friend {
-        // TODO: Discover device by pairing code
-        // For now, create a friend with the pairing code as ID
-        let deviceId = "device_\(pairingCode)"
-        let friendName = name ?? "Friend \(pairingCode)"
+        // Try to find device by pairing code from discovered P2P servers
+        let matchedServer = ChatModeManager.shared.p2p?.availableServers.first {
+            $0.pairingCode == pairingCode
+        }
+        let deviceId = matchedServer?.id ?? "device_\(pairingCode)"
+        let friendName = name ?? matchedServer?.name ?? "Friend \(pairingCode)"
 
         let friend = Friend(
             id: UUID().uuidString,
@@ -97,7 +99,10 @@ final class FriendsManager: ObservableObject {
         friendRequests.append(request)
         saveFriendRequests()
 
-        // TODO: Send via P2P
+        // Send via P2P connection
+        if let payload = try? JSONEncoder().encode(request) {
+            try ChatModeManager.shared.p2p?.sendEnvelope(type: .friendRequest, payload: payload)
+        }
     }
 
     /// Accept friend request
@@ -122,7 +127,12 @@ final class FriendsManager: ObservableObject {
             saveFriendRequests()
         }
 
-        // TODO: Send acceptance via P2P
+        // Send acceptance via P2P
+        var acceptance = request
+        acceptance.status = .accepted
+        if let payload = try? JSONEncoder().encode(acceptance) {
+            try ChatModeManager.shared.p2p?.sendEnvelope(type: .friendAcceptance, payload: payload)
+        }
     }
 
     /// Reject friend request
@@ -131,6 +141,43 @@ final class FriendsManager: ObservableObject {
             friendRequests[index].status = .rejected
             saveFriendRequests()
         }
+    }
+
+    // MARK: - P2P Receive Handlers
+
+    /// Handle incoming friend request from P2P
+    @MainActor
+    func receiveFriendRequest(_ request: FriendRequest) {
+        // Avoid duplicates
+        guard !friendRequests.contains(where: { $0.id == request.id }) else { return }
+        friendRequests.append(request)
+        saveFriendRequests()
+        print("[Friends] Received friend request from \(request.fromName)")
+    }
+
+    /// Handle acceptance of a friend request we sent
+    @MainActor
+    func handleAcceptance(_ request: FriendRequest) {
+        // Mark our outgoing request as accepted
+        if let index = friendRequests.firstIndex(where: { $0.id == request.id }) {
+            friendRequests[index].status = .accepted
+            saveFriendRequests()
+        }
+
+        // Add as friend if not already
+        guard !friends.contains(where: { $0.deviceId == request.fromDeviceId }) else { return }
+        let friend = Friend(
+            id: UUID().uuidString,
+            deviceId: request.fromDeviceId,
+            name: request.fromName,
+            pairingCode: nil,
+            addedAt: Date(),
+            lastSeen: Date(),
+            isOnline: true
+        )
+        friends.append(friend)
+        saveFriends()
+        print("[Friends] Friend request accepted by \(request.fromName)")
     }
 
     // MARK: - Helpers

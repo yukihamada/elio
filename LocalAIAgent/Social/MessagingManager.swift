@@ -70,8 +70,9 @@ final class MessagingManager: ObservableObject {
         if friend.isOnline {
             try await sendViaP2P(message: message, to: friend)
         } else {
-            // TODO: Queue for later delivery or send via internet
-            print("[Messaging] Friend offline, message queued")
+            // Queue for delivery when friend comes back online
+            queueMessage(message, for: friend)
+            print("[Messaging] Friend offline, message queued for later delivery")
         }
     }
 
@@ -151,6 +152,23 @@ final class MessagingManager: ObservableObject {
            let msgIndex = conversations[convIndex].messages.firstIndex(where: { $0.id == message.id }) {
             conversations[convIndex].messages[msgIndex].deliveredAt = Date()
             saveConversations()
+        }
+    }
+
+    // MARK: - Message Queue
+
+    private var pendingMessages: [(DirectMessage, Friend)] = []
+
+    private func queueMessage(_ message: DirectMessage, for friend: Friend) {
+        pendingMessages.append((message, friend))
+    }
+
+    /// Flush queued messages when a friend comes online
+    func flushQueue(for friend: Friend) async {
+        let queued = pendingMessages.filter { $0.1.id == friend.id }
+        pendingMessages.removeAll { $0.1.id == friend.id }
+        for (message, friend) in queued {
+            try? await sendViaP2P(message: message, to: friend)
         }
     }
 

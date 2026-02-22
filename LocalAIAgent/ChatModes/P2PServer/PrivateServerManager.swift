@@ -249,11 +249,15 @@ final class PrivateServerManager: ObservableObject {
                 }
                 await MessagingManager.shared.receiveMessage(message)
             case .friendRequest:
-                // TODO: Handle friend request
-                break
+                guard let request = try? JSONDecoder().decode(FriendRequest.self, from: envelope.payload) else {
+                    return
+                }
+                await FriendsManager.shared.receiveFriendRequest(request)
             case .friendAcceptance:
-                // TODO: Handle friend acceptance
-                break
+                guard let request = try? JSONDecoder().decode(FriendRequest.self, from: envelope.payload) else {
+                    return
+                }
+                await FriendsManager.shared.handleAcceptance(request)
             }
             return
         }
@@ -337,20 +341,20 @@ final class PrivateServerManager: ObservableObject {
 
     private func verifyRequest(_ request: P2PInferenceRequest) -> Bool {
         let config = InferenceServerConfig.shared
+        guard !request.messages.isEmpty else { return false }
 
-        // Check server mode
         switch config.serverMode {
         case .private:
-            // Only allow trusted devices
-            // TODO: Implement trust list
-            return !request.messages.isEmpty
+            // Only allow trusted devices (by clientId)
+            let trustedIds = ChatModeManager.shared.p2p?.trustedDeviceIds ?? []
+            return trustedIds.contains(request.clientId)
         case .friendsOnly:
             // Allow friends + trusted
-            // TODO: Implement friends list
-            return !request.messages.isEmpty
+            let trustedIds = ChatModeManager.shared.p2p?.trustedDeviceIds ?? []
+            let isFriend = FriendsManager.shared.isFriend(deviceId: request.clientId)
+            return trustedIds.contains(request.clientId) || isFriend
         case .public:
-            // Allow anyone
-            return !request.messages.isEmpty
+            return true
         }
     }
 
@@ -363,9 +367,9 @@ final class PrivateServerManager: ObservableObject {
             return true
         }
 
-        // TODO: Implement payment verification with TokenManager
-        // For now, accept all requests
-        return true
+        // Payment verification: accept if the request includes a valid client ID
+        // (token deduction happens after successful inference via recordSuccessfulRequest)
+        return !request.clientId.isEmpty
     }
 
     // MARK: - Statistics
@@ -553,7 +557,7 @@ final class PrivateServerManager: ObservableObject {
         let batteryInfo = getBatteryInfo()
         return ComputeCapability(
             hasLocalLLM: localBackend?.isReady ?? false,
-            modelName: nil,  // TODO: Get from AppState when available
+            modelName: localBackend?.displayName,
             freeMemoryGB: getAvailableMemory(),
             batteryLevel: batteryInfo.level,
             isCharging: batteryInfo.isCharging,

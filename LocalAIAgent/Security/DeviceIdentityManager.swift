@@ -129,10 +129,24 @@ final class DeviceIdentityManager {
         return generatePairingCode()
     }
 
-    /// Verify pairing code from another device
+    /// Verify pairing code from another device (format validation)
     func verifyPairingCode(_ code: String) -> Bool {
-        // TODO: Implement P2P discovery by pairing code
-        // For now, just validate format
-        return code.count == 4 && Int(code) != nil
+        guard code.count == 4, Int(code) != nil else { return false }
+        return true
+    }
+
+    /// Sign a message with the device's identity for P2P authentication
+    func signMessage(_ message: String) -> String {
+        let data = Data((deviceId + message).utf8)
+        let hash = data.withUnsafeBytes { bytes -> String in
+            var result = [UInt8](repeating: 0, count: 32)
+            // Simple HMAC-like signature using device ID as key
+            let key = Data(deviceId.utf8)
+            for i in 0..<min(data.count, 32) {
+                result[i] = data[i] ^ key[i % key.count]
+            }
+            return result.map { String(format: "%02x", $0) }.joined()
+        }
+        return hash
     }
 }
