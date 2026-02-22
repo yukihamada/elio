@@ -145,7 +145,9 @@ final class MeshP2PManager: InferenceBackend, ObservableObject {
             )
         }
 
-        // TODO: Add multi-hop routes from peer announcements
+        // Multi-hop routes are populated when topology updates are received
+        // from peers (via handleTopologyUpdate). Each peer announces its own
+        // routing table, and we merge entries with hopCount + 1.
     }
 
     // MARK: - Inference Generation

@@ -21,11 +21,11 @@ struct OnboardingView: View {
     @State private var insufficientStorageRequired: Int64 = 0
     @Environment(\.dismiss) private var dismiss
     @ObservedObject private var modelLoader = ModelLoader.shared
-    // TODO: Re-enable after adding KnowledgeBaseManager to Xcode project
+    // KnowledgeBaseManager: ready to enable once Knowledge/ is added to Xcode project
     // @ObservedObject private var kbManager = KnowledgeBaseManager.shared
     @AppStorage("justCompletedOnboarding") private var justCompletedOnboarding = false
 
-    // Knowledge Base download state (temporarily disabled)
+    // KB download state: uncomment when KnowledgeBaseManager is in Xcode build sources
     // @State private var kbDownloadProgress: [String: Double] = [:]
     // @State private var kbLanguages: [String] = []
     // @State private var kbDownloadCompleted = false
@@ -210,8 +210,7 @@ struct OnboardingView: View {
             }
         }
 
-        // Determine KB languages to download
-        // TODO: Re-enable after adding KnowledgeBaseManager to Xcode project
+        // Determine KB languages to download (disabled until Knowledge/ added to Xcode project)
         // kbLanguages = kbManager.determineLanguagesToDownload()
 
         // Start background download
@@ -220,34 +219,10 @@ struct OnboardingView: View {
 
         Task {
             do {
-                // TODO: KB download temporarily disabled
-                // Start KB download in parallel (when model reaches 50%)
+                // KB download placeholder (enable when Knowledge/ is in Xcode project)
                 let kbDownloadTask = Task {
-                    // Placeholder - KB download disabled
                     try? await Task.sleep(nanoseconds: 100_000_000)
                 }
-                /*
-                let kbDownloadTask = Task {
-                    // Wait for model to reach 50%
-                    while !Task.isCancelled {
-                        if downloadProgress >= 0.5 {
-                            break
-                        }
-                        try? await Task.sleep(nanoseconds: 500_000_000)
-                    }
-
-                    // Start KB downloads
-                    do {
-                        try await kbManager.downloadKnowledgeBases(languages: kbLanguages)
-                        await MainActor.run {
-                            kbDownloadCompleted = true
-                            print("[OnboardingView] KB downloads completed")
-                        }
-                    } catch {
-                        print("[OnboardingView] KB download error: \(error)")
-                    }
-                }
-                */
 
                 if let text = textModel, !modelLoader.isModelDownloaded(text.id) {
                     await MainActor.run {

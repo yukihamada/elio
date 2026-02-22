@@ -445,12 +445,23 @@ struct CustomMCPServerView: View {
     """
 
     private func addServer() {
-        // TODO: Implement server addition
+        guard !serverName.isEmpty, !serverURL.isEmpty else { return }
+        // Save custom server config to UserDefaults
+        var customServers = UserDefaults.standard.array(forKey: "custom_mcp_servers") as? [[String: String]] ?? []
+        customServers.append(["name": serverName, "url": serverURL])
+        UserDefaults.standard.set(customServers, forKey: "custom_mcp_servers")
         dismiss()
     }
 
     private func importFromFile(_ url: URL) {
-        // TODO: Implement file import
+        guard url.startAccessingSecurityScopedResource() else { return }
+        defer { url.stopAccessingSecurityScopedResource() }
+        if let data = try? Data(contentsOf: url),
+           let json = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
+           let name = json["name"] as? String {
+            serverName = name
+            serverURL = (json["url"] as? String) ?? ""
+        }
     }
 }
 

@@ -209,8 +209,10 @@ final class BarterBoardManager: ObservableObject {
     // MARK: - P2P Mesh Sync
 
     private func broadcastListing(_ listing: BarterListing) async {
-        // TODO: Implement mesh network broadcast
-        // For now, just add to local listings
+        // Broadcast to connected P2P peers via mesh network
+        if let data = try? JSONEncoder().encode(listing) {
+            try? ChatModeManager.shared.p2p?.sendEnvelope(type: .directMessage, payload: data)
+        }
         print("[Barter] Broadcasting listing: \(listing.have) → \(listing.want)")
     }
 

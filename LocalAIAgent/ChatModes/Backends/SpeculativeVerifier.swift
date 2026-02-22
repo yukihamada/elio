@@ -97,10 +97,8 @@ extension SpeculativeVerifier {
         settings: ModelSettings,
         threshold: Float = 0.8
     ) async throws -> SpeculativeVerificationResult {
-        // TODO: Implement probability-based verification
-        // Requires extending LlamaInference to return token probabilities
-
-        // For now, fallback to exact token matching
+        // Probability-based verification requires llama.cpp token probability API
+        // which is not yet exposed in LlamaInference. Falls back to exact token matching.
         return try await verify(
             context: context,
             draftTokens: draftTokens,

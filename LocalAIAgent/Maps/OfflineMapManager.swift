@@ -203,9 +203,44 @@ final class OfflineMapManager: NSObject, ObservableObject {
     /// Download map tiles for offline use
     /// Note: This is a placeholder. Real implementation requires MapLibre or Mapbox SDK
     func downloadMapTiles(region: MapRegion) async throws {
-        // TODO: Implement with MapLibre or Mapbox
-        print("[OfflineMapManager] Map tile download not yet implemented")
+        // Downloads OpenStreetMap tiles for offline use via standard tile server
+        let tileServerURL = "https://tile.openstreetmap.org"
+        let zoomLevels = 10...14 // Moderate detail for offline navigation
+        var tileCount = 0
+
+        for z in zoomLevels {
+            let xRange = longitudeToTileX(region.centerLongitude - region.spanLongitude/2, zoom: z)...longitudeToTileX(region.centerLongitude + region.spanLongitude/2, zoom: z)
+            let yRange = latitudeToTileY(region.centerLatitude + region.spanLatitude/2, zoom: z)...latitudeToTileY(region.centerLatitude - region.spanLatitude/2, zoom: z)
+
+            for x in xRange {
+                for y in yRange {
+                    let url = URL(string: "\(tileServerURL)/\(z)/\(x)/\(y).png")!
+                    let (data, _) = try await URLSession.shared.data(from: url)
+                    let tilePath = getTilePath(z: z, x: x, y: y)
+                    try data.write(to: tilePath)
+                    tileCount += 1
+                }
+            }
+        }
+
+        print("[OfflineMapManager] Downloaded \(tileCount) tiles for \(region.name)")
         downloadedRegions.append(region)
+    }
+
+    private func longitudeToTileX(_ lon: Double, zoom: Int) -> Int {
+        return Int(floor((lon + 180.0) / 360.0 * pow(2.0, Double(zoom))))
+    }
+
+    private func latitudeToTileY(_ lat: Double, zoom: Int) -> Int {
+        let latRad = lat * .pi / 180.0
+        return Int(floor((1.0 - log(tan(latRad) + 1.0 / cos(latRad)) / .pi) / 2.0 * pow(2.0, Double(zoom))))
+    }
+
+    private func getTilePath(z: Int, x: Int, y: Int) -> URL {
+        let cacheDir = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first!
+        let tileDir = cacheDir.appendingPathComponent("map_tiles/\(z)/\(x)")
+        try? FileManager.default.createDirectory(at: tileDir, withIntermediateDirectories: true)
+        return tileDir.appendingPathComponent("\(y).png")
     }
 
     /// Check if map tiles are available for region

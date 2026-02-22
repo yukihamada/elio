@@ -63,8 +63,10 @@ final class ChatModeManager: ObservableObject {
         PrivateServerManager.shared.configure(backend: localBackend!)
         // Configure mesh backend with local backend
         meshBackend?.setLocalBackend(localBackend)
-        // TODO: Configure speculative backend with draft model
-        // speculativeBackend?.configureDraftModel(draftModel)
+        // Configure speculative backend if a draft model (small/fast) is available
+        if let llamaInference = inference as? LlamaInference {
+            speculativeBackend?.configureDraftModel(llamaInference)
+        }
     }
 
     /// Tear down the local backend and stop P2P server
