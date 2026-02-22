@@ -395,6 +395,638 @@
             ]
           }
         }
+      },
+      "survival": {
+        "title": "サバイバル基礎",
+        "items": {
+          "water_purification": {
+            "title": "水の浄化",
+            "steps": [
+              "1. 煮沸法: 沸騰させて1分以上（高地では3分以上）",
+              "2. 布やコーヒーフィルターで大きな不純物を濾す",
+              "3. 浄水剤（次亜塩素酸ナトリウム）: 1Lに2滴、30分待つ",
+              "4. 太陽光消毒（SODIS）: 透明なペットボトルに入れ6時間日光に当てる",
+              "5. 砂・炭・小石の層を重ねた簡易濾過器を作る",
+              "6. 泥水は最低2時間沈殿させてから上澄みを使う",
+              "7. 雨水は比較的安全だが、屋根の汚れに注意",
+              "注意: 海水は飲まない（脱水症状を悪化させる）"
+            ]
+          },
+          "fire_starting": {
+            "title": "火の起こし方",
+            "steps": [
+              "1. 準備: 火口（枯れ草）、焚き付け（小枝）、燃料（太い枝）を集める",
+              "2. マッチ・ライター: 最も確実な方法",
+              "3. 火打ち石とナイフ: ナイフの背で火打ち石を叩き火花を火口に飛ばす",
+              "4. 虫眼鏡: 日光を火口に集中させる（晴天時のみ）",
+              "5. 電池とスチールウール: 電池の両極にスチールウールを当てる",
+              "6. 摩擦法（弓錐式）: 木の棒を回転させ摩擦熱で発火",
+              "7. 風よけを作り、火が育つまで優しく息を吹きかける",
+              "注意: 火の管理を怠らない、完全に消火してから離れる"
+            ]
+          },
+          "shelter_building": {
+            "title": "シェルター作り",
+            "steps": [
+              "1. 場所選び: 高台で水はけがよく、風を避けられる場所",
+              "2. 簡易シェルター: 大きな枝を壁に立てかけて屋根を作る",
+              "3. Aフレーム型: 2本の枝を立て、横木を渡し、小枝で覆う",
+              "4. 断熱: 地面に枯れ葉や草を厚く敷く（体温保持）",
+              "5. 防水: ビニールシート、大きな葉、樹皮で屋根を覆う",
+              "6. 入口は風下に、小さめに作る（熱が逃げにくい）",
+              "7. 雪洞（雪がある場合）: 雪を掘って中に入る、通気口を確保",
+              "注意: 川の近くは避ける（増水リスク）"
+            ]
+          },
+          "edible_plants": {
+            "title": "食べられる植物の見分け方",
+            "steps": [
+              "注意: 植物の同定は危険を伴います。不確かな場合は食べない。",
+              "1. 一般的な安全な植物: タンポポ（全部位）、クローバー、ヨモギ",
+              "2. 避けるべき特徴: 白い汁が出る、傘状の花、3枚の葉",
+              "3. ユニバーサル食用テスト（最終手段）:",
+              "  - 皮膚にこすりつけ15分待つ（かぶれがなければ次へ）",
+              "  - 少量を唇に触れさせ3分待つ",
+              "  - 少量を舌に乗せ15分待つ",
+              "  - 少量を噛んで飲み込み8時間待つ",
+              "  - 問題なければ少量ずつ食べる",
+              "4. 鳥が食べている植物は比較的安全な傾向",
+              "5. きのこは専門知識がない限り絶対に食べない"
+            ]
+          },
+          "knots": {
+            "title": "ロープワーク",
+            "items": {
+              "bowline": {
+                "title": "もやい結び（ボウライン）",
+                "use": "救助、テント設営、荷物の固定",
+                "steps": [
+                  "1. ロープの端で小さな輪を作る（ウサギの穴）",
+                  "2. ロープの先端を輪の下から通す（ウサギが穴から出る）",
+                  "3. 先端を本線の後ろを回す（木の周りを回る）",
+                  "4. 再び輪に戻して通す（穴に戻る）",
+                  "5. 両端を引っ張って締める",
+                  "特徴: 絶対にほどけない、荷重後も簡単にほどける"
+                ]
+              },
+              "clove_hitch": {
+                "title": "巻き結び（クローブヒッチ）",
+                "use": "ポールや木に固定、テント設営",
+                "steps": [
+                  "1. ポールにロープを1周巻く",
+                  "2. 最初の巻きの上で交差させる",
+                  "3. もう1周巻く",
+                  "4. 2本のロープの間に端を通す",
+                  "5. 引っ張って締める",
+                  "特徴: 素早く結べる、調整が容易"
+                ]
+              },
+              "square_knot": {
+                "title": "本結び（スクエアノット）",
+                "use": "同じ太さのロープを繋ぐ、包帯の固定",
+                "steps": [
+                  "1. 右のロープを左のロープの上に交差させる",
+                  "2. 下から通して1回結ぶ",
+                  "3. 今度は左を右の上に交差させる",
+                  "4. 下から通して結ぶ",
+                  "5. 両端を引っ張って締める",
+                  "注意: 荷重がかかるとほどけにくくなる、命綱には使わない"
+                ]
+              },
+              "taut_line": {
+                "title": "自在結び（トートラインヒッチ）",
+                "use": "テントロープの張り調整",
+                "steps": [
+                  "1. ペグにロープを通す",
+                  "2. 本線に3回巻きつける（テント側）",
+                  "3. 少し離れた位置でもう1回巻く",
+                  "4. 最後の巻きの内側に通す",
+                  "5. 引っ張ると締まる、結び目を動かすと調整可能",
+                  "特徴: 張力調整が自在にできる"
+                ]
+              },
+              "sheet_bend": {
+                "title": "シートベンド",
+                "use": "太さが違うロープを繋ぐ",
+                "steps": [
+                  "1. 太いロープで輪を作る",
+                  "2. 細いロープを下から輪に通す",
+                  "3. 太いロープの2本を一緒に巻く",
+                  "4. 細いロープを自分の本線の下に通す",
+                  "5. 両端を引っ張って締める",
+                  "特徴: 太さが違っても確実に固定できる"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "agriculture": {
+        "title": "農業・栽培",
+        "items": {
+          "seed_saving": {
+            "title": "種の保存",
+            "steps": [
+              "1. 種を採る植物: トマト、ピーマン、豆類、カボチャ、レタス",
+              "2. 完熟した実から種を取り出す",
+              "3. 水で洗い、ぬめりを取る",
+              "4. 新聞紙やザルの上で1〜2週間乾燥させる",
+              "5. 乾燥剤と一緒に密閉容器に入れる",
+              "6. 冷暗所で保管（冷蔵庫の野菜室が最適）",
+              "7. ラベルに植物名と採取日を記入",
+              "注意: F1品種（一代交配種）は次世代で形質が変わる可能性"
+            ]
+          },
+          "composting": {
+            "title": "堆肥作り",
+            "steps": [
+              "1. 材料: 緑色（野菜くず、草）と茶色（落ち葉、紙）を1:2で混ぜる",
+              "2. 容器: 木箱、プラスチック製コンポスター、地面に直接穴",
+              "3. 細かく切ると分解が早い",
+              "4. 水分は絞って水が垂れない程度（湿らせたスポンジ程度）",
+              "5. 週1回かき混ぜて空気を入れる",
+              "6. 2〜6ヶ月で黒く土のようになれば完成",
+              "7. 使用: 土に3割ほど混ぜる",
+              "注意: 肉・魚・油は入れない（害虫・悪臭の原因）"
+            ]
+          },
+          "crop_rotation": {
+            "title": "輪作（連作障害防止）",
+            "steps": [
+              "1. 同じ科の野菜を同じ場所で続けて作らない",
+              "2. 基本サイクル: 葉菜類 → 根菜類 → 実菜類 → マメ科",
+              "3. マメ科（エンドウ、大豆）: 土に窒素を供給する",
+              "4. 葉菜類（キャベツ、レタス）: 窒素を多く吸収",
+              "5. 根菜類（ニンジン、大根）: 土を深く耕す",
+              "6. 実菜類（トマト、ナス）: リン酸・カリを吸収",
+              "7. 最低2〜3年は同じ場所で同じ科の作物を作らない",
+              "8. 記録をつけて計画的に栽培する"
+            ]
+          }
+        }
+      },
+      "medicine": {
+        "title": "民間療法・薬草",
+        "items": {
+          "herbal_remedies": {
+            "title": "基本的な薬草",
+            "steps": [
+              "注意: 薬草は医薬品の代替ではありません。重症の場合は医療機関へ。",
+              "1. ドクダミ: 煎じて飲む（解毒、抗菌作用）",
+              "2. ヨモギ: お茶として飲む（胃腸の調子を整える）",
+              "3. アロエ: 葉の中身を火傷や傷に塗る",
+              "4. 生姜: すりおろして湯に入れる（風邪、吐き気）",
+              "5. ニンニク: 抗菌作用（生で食べるか潰してガーゼに包む）",
+              "6. ミント: お茶として飲む（消化促進、頭痛緩和）",
+              "7. カモミール: お茶として飲む（鎮静、不眠改善）",
+              "注意: アレルギーや副作用の可能性があるため少量から試す"
+            ]
+          },
+          "wound_care": {
+            "title": "傷の手当て（長期）",
+            "steps": [
+              "1. 清潔な水で傷口を洗う（石鹸水が望ましい）",
+              "2. 止血: 清潔な布で圧迫",
+              "3. 消毒: ヨウ素液、アルコール、煮沸した塩水",
+              "4. 蜂蜜を塗る（抗菌作用、傷の治癒促進）",
+              "5. 清潔な布やガーゼで覆う",
+              "6. 毎日ガーゼを交換し、傷の状態を確認",
+              "7. 赤く腫れる、膿が出る場合は感染の兆候",
+              "8. 感染予防: 傷を清潔に保ち、乾燥させる",
+              "注意: 深い傷、感染の兆候がある場合は専門的な医療が必要"
+            ]
+          },
+          "fever_management": {
+            "title": "発熱時の対処",
+            "steps": [
+              "1. 水分補給: 経口補水液、薄めたスポーツドリンク",
+              "2. 冷却: 額・脇の下・太ももの付け根を冷やす",
+              "3. 衣服: 薄着にし、室温を調整",
+              "4. 柳の樹皮を煎じて飲む（アスピリンの原料サリチル酸含有）",
+              "5. ショウガ湯を飲む（体を温める）",
+              "6. 十分な休息を取る",
+              "7. 高熱（39度以上）が3日以上続く場合は危険",
+              "注意: 子供・高齢者は脱水症状に特に注意"
+            ]
+          }
+        }
+      },
+      "construction": {
+        "title": "建設・修理",
+        "items": {
+          "basic_carpentry": {
+            "title": "基本的な大工作業",
+            "steps": [
+              "1. 必要な工具: のこぎり、ハンマー、釘、ひも",
+              "2. 木材の選び方: 乾燥した木、節が少ないもの",
+              "3. 直角を出す: 3:4:5の法則（ピタゴラスの定理）",
+              "4. 釘の打ち方: 斜めに打つと強度が増す",
+              "5. 木材の接合: 相欠き継ぎ、蟻継ぎ",
+              "6. ほぞ穴: 釘を使わずに木材を接合する伝統技法",
+              "7. 簡易作業台の作り方: 4本の脚と天板を釘で固定",
+              "8. 測定: 体を使った測定（手のひら、腕の長さ）"
+            ]
+          },
+          "rope_knots": {
+            "title": "ロープワーク",
+            "steps": [
+              "1. もやい結び: ループを作る、救助・固定に使用",
+              "2. 巻き結び: ポールや木に固定、簡単にほどける",
+              "3. 本結び: 2本のロープを繋ぐ、同じ太さのロープ用",
+              "4. トラック結び: 荷物の固定、テンションをかけられる",
+              "5. 自在結び: 長さ調整可能、テント設営に最適",
+              "6. エイトノット: ロープの端に作る止め結び",
+              "7. クリートヒッチ: 船を係留する",
+              "注意: 結び目は定期的に確認し、緩んでいたら結び直す"
+            ]
+          },
+          "water_well": {
+            "title": "井戸の掘り方",
+            "steps": [
+              "1. 場所選定: 汚染源（トイレ、ゴミ）から30m以上離す",
+              "2. 地下水位を予測: 低地、植物が豊富な場所",
+              "3. 道具: シャベル、バケツ、ロープ",
+              "4. 掘削: 直径1〜1.5mの円を深さ3〜10m掘る",
+              "5. 壁の補強: 石やコンクリートブロックで崩れを防ぐ",
+              "6. 底に砂利を敷く（濾過効果）",
+              "7. 蓋をして汚染を防ぐ",
+              "8. 最初の水は汲み上げて捨てる（濁りがあるため）",
+              "注意: 崩落の危険があるため単独作業は避ける"
+            ]
+          }
+        }
+      },
+      "energy": {
+        "title": "エネルギー確保",
+        "items": {
+          "solar_cooking": {
+            "title": "太陽熱調理",
+            "steps": [
+              "1. ボックス型ソーラークッカー: 段ボール箱に反射材を貼る",
+              "2. 内側をアルミホイルで覆う（熱を反射）",
+              "3. 黒い鍋を使用（熱を吸収しやすい）",
+              "4. ガラス板かビニールで蓋をする（温室効果）",
+              "5. 太陽に向けて角度を調整",
+              "6. 晴天時、60〜120℃に到達可能",
+              "7. 調理時間: 通常の2〜3倍（ゆっくり加熱）",
+              "8. パラボラ型: 傘にアルミホイルを貼り、焦点で調理"
+            ]
+          },
+          "battery_maintenance": {
+            "title": "バッテリー管理",
+            "steps": [
+              "1. 充電式電池（エネループ等）を常備",
+              "2. 使用後は完全に放電させず、20〜80%で保管",
+              "3. 高温・低温を避ける（室温保管）",
+              "4. 車のバッテリー: 端子を清掃、緩みをチェック",
+              "5. ソーラーチャージャーを用意（スマホ、電池充電用）",
+              "6. 電池の液漏れに注意、定期的に確認",
+              "7. 使い捨て電池: アルカリ > マンガン（長期保存）",
+              "8. 並列接続で容量増加、直列接続で電圧増加"
+            ]
+          },
+          "wood_gasifier": {
+            "title": "木炭・薪の効率利用",
+            "steps": [
+              "1. ロケットストーブ: L字型の燃焼室、少ない薪で高熱",
+              "2. 作り方: 缶を2つ組み合わせ、空気の流れを作る",
+              "3. 煙突効果で燃焼効率アップ",
+              "4. 二次燃焼: 煙も燃やして熱効率を上げる",
+              "5. 木炭の作り方: 缶に木を詰めて蓋をし、加熱",
+              "6. 木炭は薪より長時間燃焼、煙が少ない",
+              "7. 灰は肥料として再利用可能",
+              "8. 薪の乾燥: 6ヶ月以上天日で乾燥させる"
+            ]
+          }
+        }
+      },
+      "sanitation": {
+        "title": "衛生・清潔",
+        "items": {
+          "waste_disposal": {
+            "title": "排泄物の処理",
+            "steps": [
+              "1. 簡易トイレ: バケツ+ビニール袋+凝固剤",
+              "2. 猫砂や新聞紙で水分を吸収",
+              "3. 密閉して保管、自治体の指示に従い廃棄",
+              "4. 長期の場合: 野外にトイレを作る",
+              "5. 場所: 水源から30m以上離れた下流側",
+              "6. 穴を掘る: 深さ50cm以上、使用後は土をかぶせる",
+              "7. 手洗い場を必ず設置（石鹸、水）",
+              "8. ハエ対策: 蓋をする、灰をかける",
+              "注意: 排泄物は感染症の原因、必ず手を洗う"
+            ]
+          },
+          "water_storage": {
+            "title": "水の保管",
+            "steps": [
+              "1. 容器の洗浄: 洗剤で洗い、塩素系漂白剤で消毒",
+              "2. 煮沸した水を冷ましてから保管",
+              "3. 密閉容器を使用（ペットボトル、ポリタンク）",
+              "4. 直射日光を避ける、冷暗所で保管",
+              "5. 3日ごとに入れ替える（長期保存の場合）",
+              "6. 保管水の消毒: 1Lに2滴の漂白剤",
+              "7. ラベルに保管日を記入",
+              "8. 飲用・調理用と生活用を分ける"
+            ]
+          },
+          "hand_washing": {
+            "title": "手洗い・消毒",
+            "steps": [
+              "1. 流水+石鹸で30秒以上",
+              "2. 手のひら、手の甲、指の間、爪の間、手首まで洗う",
+              "3. 水が使えない場合: アルコール消毒液（60%以上）",
+              "4. 石鹸がない場合: 灰+水で代用可能",
+              "5. 自作消毒液: 漂白剤を薄める（500mlの水に小さじ1杯）",
+              "6. 食事前、トイレ後、調理前は必ず手を洗う",
+              "7. タオルは共用しない、使い捨てペーパーが望ましい",
+              "8. 手洗い場がない場合: ペットボトルに穴を開けて簡易手洗い"
+            ]
+          }
+        }
+      },
+      "community": {
+        "title": "コミュニティ・組織",
+        "items": {
+          "leadership": {
+            "title": "リーダーシップ",
+            "steps": [
+              "1. 冷静さを保ち、パニックを防ぐ",
+              "2. 明確な目標を設定する",
+              "3. 役割分担: 各自の強みを活かす",
+              "4. 定期的なミーティングで情報共有",
+              "5. 意思決定は透明性を持って行う",
+              "6. 弱者（子供、高齢者、病人）を優先",
+              "7. 対立を調整し、合意形成を図る",
+              "8. 希望を持ち続ける、小さな成功を祝う"
+            ]
+          },
+          "conflict_resolution": {
+            "title": "対立の解決",
+            "steps": [
+              "1. 両者の話を公平に聞く",
+              "2. 感情ではなく、事実に焦点を当てる",
+              "3. 共通の目標を確認する",
+              "4. Win-Winの解決策を探す",
+              "5. 第三者を仲介者として入れる",
+              "6. ルールを明確にし、全員で守る",
+              "7. 暴力は絶対に許さない",
+              "8. 必要に応じて距離を置く"
+            ]
+          },
+          "education": {
+            "title": "教育の維持",
+            "steps": [
+              "1. 子供の日常を保つ（心の安定）",
+              "2. 簡単な読み書き、計算を教える",
+              "3. 歌、ゲーム、物語で楽しく学ぶ",
+              "4. サバイバルスキルを実践的に教える",
+              "5. 大人も学び続ける（技能の共有）",
+              "6. 本、紙、筆記用具を大切にする",
+              "7. 歴史や文化を口頭で伝承する",
+              "8. 希望を持たせ、将来の夢を語る"
+            ]
+          }
+        }
+      },
+      "rescue_protocols": {
+        "title": "救助プロトコル",
+        "items": {
+          "search_rescue": {
+            "title": "捜索救助の基本",
+            "steps": [
+              "1. 安全第一: 二次災害を防ぐ",
+              "2. 呼びかけ・音を聞く（生存者の位置特定）",
+              "3. 笛を吹いて助けを呼ぶ（声より遠くまで届く）",
+              "4. チームで行動（最低2人）",
+              "5. 目印を残す（捜索済みの場所にマーキング）",
+              "6. 重機が必要な場合は専門家を待つ",
+              "7. 瓦礫の下: 慎重に取り除く（崩落に注意）",
+              "8. 救出後: 保温、水分補給、医療手当"
+            ]
+          },
+          "triage": {
+            "title": "トリアージ（優先順位決定）",
+            "steps": [
+              "1. 赤タグ（最優先）: 重症だが処置で救命可能",
+              "2. 黄タグ（待機可能）: 中等症、搬送延期可能",
+              "3. 緑タグ（軽症）: 歩行可能、自力で移動できる",
+              "4. 黒タグ: 心肺停止、または明らかに死亡",
+              "5. 判断基準: 呼吸・循環・意識レベル",
+              "6. 30秒以内に判断し、次の人へ",
+              "7. 状況は変化するため定期的に再評価",
+              "8. 記録を取る（氏名、症状、時刻）"
+            ]
+          },
+          "stretcher_making": {
+            "title": "応急担架の作り方",
+            "steps": [
+              "1. 毛布担架: 毛布に2本の棒を通す",
+              "2. 上着担架: 上着を裏返し、袖に棒を通す",
+              "3. 即席担架: ドア、板、梯子を使用",
+              "4. 二人搬送: 腕を組んで座席を作る",
+              "5. 一人搬送: おんぶ、ファイアマンズキャリー",
+              "6. 頭部・頸部損傷の疑い: 動かさず専門家を待つ",
+              "7. 搬送中は常に声をかけて状態確認",
+              "8. 平らに保ち、揺らさないようにする"
+            ]
+          }
+        }
+      },
+      "food_preservation": {
+        "title": "食料保存",
+        "items": {
+          "drying": {
+            "title": "乾燥保存",
+            "steps": [
+              "1. 天日干し: 薄切りにして日光で3〜7日",
+              "2. 適した食材: 果物、野菜、魚、肉",
+              "3. ネットや網の上に並べる（風通し良く）",
+              "4. 夜間は室内に入れる（湿気・虫対策）",
+              "5. カリカリになるまで乾燥させる",
+              "6. 密閉容器で保管（乾燥剤と一緒に）",
+              "7. 燻製: 煙で乾燥+防腐効果",
+              "8. 復元: 水に浸して戻す"
+            ]
+          },
+          "salt_curing": {
+            "title": "塩漬け",
+            "steps": [
+              "1. 粗塩を食材にまぶす（魚・肉の重量の20〜30%）",
+              "2. 重石を乗せて水分を抜く",
+              "3. 冷暗所で保管（冷蔵庫が望ましい）",
+              "4. 魚: 3〜7日で完成",
+              "5. 肉: 1〜2週間",
+              "6. 使用前に水で塩抜きする（半日〜1日）",
+              "7. 塩辛: 魚の内臓+塩で発酵保存",
+              "8. 梅干し: 梅+塩+赤紫蘇"
+            ]
+          },
+          "fermentation": {
+            "title": "発酵保存",
+            "steps": [
+              "1. 漬物: 野菜+塩で乳酸発酵",
+              "2. 基本の塩分濃度: 2〜5%",
+              "3. 重石をして空気を抜く",
+              "4. 常温で数日〜数週間発酵",
+              "5. 味噌: 大豆+麹+塩、6ヶ月〜1年熟成",
+              "6. 醤油: 大豆+小麦+麹+塩、1〜2年熟成",
+              "7. カビが生えたら表面を取り除く",
+              "8. 発酵中は毎日状態をチェック"
+            ]
+          },
+          "canning": {
+            "title": "瓶詰め（缶詰）",
+            "steps": [
+              "1. 瓶を煮沸消毒（10分）",
+              "2. 食材を加熱調理する",
+              "3. 熱いうちに瓶に詰める（頭空間1〜2cm）",
+              "4. 蓋をしっかり閉める",
+              "5. 瓶ごと煮沸（脱気・殺菌）",
+              "6. 低酸性食品（肉・野菜）: 100℃以上で長時間",
+              "7. 高酸性食品（果物・ピクルス）: 100℃で短時間",
+              "8. 冷暗所で保管、1年以内に消費",
+              "注意: 蓋が膨らんでいる、異臭がする場合は廃棄"
+            ]
+          }
+        }
+      },
+      "tools_crafting": {
+        "title": "道具作り",
+        "items": {
+          "knife_sharpening": {
+            "title": "刃物の研ぎ方",
+            "steps": [
+              "1. 砥石を水に10分浸す",
+              "2. 刃を15〜20度の角度で当てる",
+              "3. 手前に引くように研ぐ（10回程度）",
+              "4. 裏側も同様に研ぐ",
+              "5. 仕上げ砥石で仕上げる",
+              "6. 水で洗い流し、乾かす",
+              "7. 代用砥石: 川の平らな石（細かい砂岩）",
+              "8. 切れ味確認: 紙がスッと切れればOK"
+            ]
+          },
+          "rope_making": {
+            "title": "ロープ作り",
+            "steps": [
+              "1. 材料: 植物繊維（葛、藤、麻、イラクサ）",
+              "2. 繊維を水に浸して柔らかくする",
+              "3. 叩いて繊維をほぐす",
+              "4. 3本の繊維を束ねる",
+              "5. 編み方: 右→中、左→中を繰り返す（三つ編み）",
+              "6. 撚り合わせ: 2本のロープをZ方向に撚る",
+              "7. 動物の腱や皮も使用可能",
+              "8. 乾燥させて保管"
+            ]
+          },
+          "pottery": {
+            "title": "土器作り",
+            "steps": [
+              "1. 粘土を採取（川岸、崖）",
+              "2. 不純物を取り除き、よく練る",
+              "3. 成形: 紐状にして積み上げる",
+              "4. 表面を滑らかにする",
+              "5. 日陰で1〜2週間乾燥",
+              "6. 焼成: 焚き火で徐々に加熱（6〜8時間）",
+              "7. 高温（800℃以上）で焼くと強度が増す",
+              "8. 冷ましてから使用",
+              "注意: 急激な温度変化で割れる"
+            ]
+          }
+        }
+      },
+      "navigation": {
+        "title": "ナビゲーション",
+        "items": {
+          "sun_navigation": {
+            "title": "太陽による方位確認",
+            "steps": [
+              "1. 影による方法:",
+              "  - 棒を地面に立てる",
+              "  - 影の先端に印をつける（西）",
+              "  - 15分後、再び影の先端に印（西→東）",
+              "  - 2つの印を結ぶ線が東西",
+              "2. 時計による方法（北半球）:",
+              "  - 短針を太陽に向ける",
+              "  - 短針と12時の中間が南",
+              "3. 日の出・日の入り:",
+              "  - 日の出は東、日の入りは西（おおよそ）",
+              "4. 正午の太陽は南（北半球）"
+            ]
+          },
+          "star_navigation": {
+            "title": "星による方位確認",
+            "steps": [
+              "1. 北極星（北半球）:",
+              "  - 北斗七星の先端2つの星を5倍延長",
+              "  - 北極星がほぼ真北",
+              "2. 南十字星（南半球）:",
+              "  - 十字の長軸を4.5倍延長した先が南",
+              "3. オリオン座:",
+              "  - 東から昇り、西に沈む",
+              "  - ベルトの3つ星はほぼ東西",
+              "4. 月の満ち欠けでも方位がわかる"
+            ]
+          },
+          "natural_signs": {
+            "title": "自然のサイン",
+            "steps": [
+              "1. 木の年輪: 間隔が広い方が南（北半球）",
+              "2. 苔: 北側に多く生える（湿気が多い）",
+              "3. アリの巣: 南向きの斜面に多い",
+              "4. 風: 卓越風向を覚えておく",
+              "5. 川の流れ: 下流に向かって進む",
+              "6. 鳥の飛行: 朝は水場へ、夕方は巣へ",
+              "7. 地形: 尾根を歩く（谷より安全）",
+              "8. 目印: 分岐点に石を積む"
+            ]
+          }
+        }
+      },
+      "textile": {
+        "title": "繊維・衣服",
+        "items": {
+          "spinning": {
+            "title": "糸紡ぎ",
+            "steps": [
+              "1. 原料: 羊毛、綿、麻、イラクサ、葛",
+              "2. 繊維をほぐし、まっすぐに整える",
+              "3. スピンドル（紡錘）を作る: 棒+重り",
+              "4. 少量の繊維をスピンドルに結ぶ",
+              "5. 繊維を引き出しながらスピンドルを回す",
+              "6. 撚りをかけて糸にする",
+              "7. 糸を巻き取る",
+              "8. 均一な太さになるまで練習"
+            ]
+          },
+          "weaving": {
+            "title": "織り",
+            "steps": [
+              "1. 簡易織機: 枠に縦糸を張る",
+              "2. 縦糸の間に横糸を通す",
+              "3. 上下交互に織る（平織り）",
+              "4. 杼（ひ）: 横糸を通す道具",
+              "5. 筬（おさ）: 横糸を詰める",
+              "6. 織り上がったら縦糸を切って端を処理",
+              "7. バスケット編み: 同じ原理で籠を作る",
+              "8. 布の強度は縦糸の密度で決まる"
+            ]
+          },
+          "sewing": {
+            "title": "縫製",
+            "steps": [
+              "1. 針: 骨、木、金属で作る",
+              "2. 糸: 撚り合わせた繊維、腱",
+              "3. 基本の縫い方: 並縫い、返し縫い",
+              "4. ボタン: 木、骨、貝で作る",
+              "5. 破れた服の繕い: 当て布をして縫う",
+              "6. 防寒着: 複数枚重ねる、間に空気層",
+              "7. 防水: 油や脂を塗り込む",
+              "8. 靴: 皮を足型に合わせて縫う"
+            ]
+          }
+        }
       }
     },
     "en": {
@@ -787,6 +1419,573 @@
               {"number": "119", "description": "Fire & Ambulance (Japan)"},
               {"number": "171", "description": "Disaster Message Dial (Japan)"},
               {"number": "988", "description": "Suicide & Crisis Lifeline (US)"}
+            ]
+          }
+        }
+      },
+      "survival": {
+        "title": "Survival Basics",
+        "items": {
+          "water_purification": {
+            "title": "Water Purification",
+            "steps": [
+              "1. Boiling: Bring to a rolling boil for 1 minute (3 minutes at high altitude)",
+              "2. Filter large particles with cloth or coffee filter",
+              "3. Water purification tablets: 2 drops per liter, wait 30 minutes",
+              "4. Solar disinfection (SODIS): Clear plastic bottle in sunlight for 6 hours",
+              "5. Make a simple filter: layers of sand, charcoal, and pebbles",
+              "6. Muddy water: Let settle for at least 2 hours, use top layer",
+              "7. Rainwater is relatively safe but watch for roof contamination",
+              "Note: Never drink seawater (worsens dehydration)"
+            ]
+          },
+          "fire_starting": {
+            "title": "Starting a Fire",
+            "steps": [
+              "1. Prepare: tinder (dry grass), kindling (small twigs), fuel (large branches)",
+              "2. Matches/lighter: Most reliable method",
+              "3. Flint and steel: Strike steel against flint to create sparks on tinder",
+              "4. Magnifying glass: Focus sunlight onto tinder (sunny days only)",
+              "5. Battery and steel wool: Touch battery terminals to steel wool",
+              "6. Friction method (bow drill): Spin wooden stick to create friction heat",
+              "7. Build a windbreak and gently blow to help fire grow",
+              "Note: Always fully extinguish fires before leaving"
+            ]
+          },
+          "shelter_building": {
+            "title": "Building a Shelter",
+            "steps": [
+              "1. Location: High ground with good drainage, protected from wind",
+              "2. Lean-to: Large branch propped against a tree or wall",
+              "3. A-frame: Two upright branches with crossbar, covered with smaller branches",
+              "4. Insulation: Thick layer of leaves or grass on ground (retains body heat)",
+              "5. Waterproofing: Cover roof with plastic sheet, large leaves, or bark",
+              "6. Entrance: Face away from wind, keep small (retains heat)",
+              "7. Snow cave (if snow available): Dig into snow, ensure ventilation hole",
+              "Note: Avoid low areas near rivers (flooding risk)"
+            ]
+          },
+          "edible_plants": {
+            "title": "Identifying Edible Plants",
+            "steps": [
+              "CAUTION: Plant identification can be dangerous. When in doubt, don't eat it.",
+              "1. Generally safe plants: Dandelion (all parts), clover, plantain",
+              "2. Avoid: White sap, umbrella-shaped flowers, three-leafed plants",
+              "3. Universal Edibility Test (last resort):",
+              "  - Rub on skin, wait 15 minutes (no rash → next step)",
+              "  - Touch to lips for 3 minutes",
+              "  - Place on tongue for 15 minutes",
+              "  - Chew and swallow a small amount, wait 8 hours",
+              "  - If no problems, eat small amounts gradually",
+              "4. Plants eaten by birds are generally safer",
+              "5. NEVER eat mushrooms unless you're an expert"
+            ]
+          }
+        }
+      },
+      "agriculture": {
+        "title": "Agriculture & Cultivation",
+        "items": {
+          "seed_saving": {
+            "title": "Saving Seeds",
+            "steps": [
+              "1. Best plants for seeds: tomatoes, peppers, beans, squash, lettuce",
+              "2. Extract seeds from fully ripe fruit",
+              "3. Rinse in water to remove pulp",
+              "4. Dry on newspaper or screen for 1-2 weeks",
+              "5. Store with desiccant in airtight container",
+              "6. Keep in cool, dark place (refrigerator vegetable drawer is ideal)",
+              "7. Label with plant name and harvest date",
+              "Note: F1 hybrids may not breed true in next generation"
+            ]
+          },
+          "composting": {
+            "title": "Making Compost",
+            "steps": [
+              "1. Materials: Mix green (vegetable scraps, grass) and brown (leaves, paper) 1:2",
+              "2. Container: Wooden box, plastic composter, or hole in ground",
+              "3. Chop materials finely for faster decomposition",
+              "4. Moisture: Like a wrung-out sponge (moist but not dripping)",
+              "5. Turn weekly to aerate",
+              "6. Ready in 2-6 months when dark and soil-like",
+              "7. Use: Mix 30% into soil",
+              "Note: Don't add meat, fish, or oil (attracts pests, bad odor)"
+            ]
+          },
+          "crop_rotation": {
+            "title": "Crop Rotation (Preventing Soil Depletion)",
+            "steps": [
+              "1. Don't grow same plant family in same spot consecutively",
+              "2. Basic cycle: Leaf crops → Root crops → Fruit crops → Legumes",
+              "3. Legumes (peas, beans): Add nitrogen to soil",
+              "4. Leaf crops (cabbage, lettuce): Consume lots of nitrogen",
+              "5. Root crops (carrots, radishes): Deep cultivation",
+              "6. Fruit crops (tomatoes, eggplant): Consume phosphorus & potassium",
+              "7. Wait 2-3 years before planting same family in same spot",
+              "8. Keep records and plan systematically"
+            ]
+          }
+        }
+      },
+      "medicine": {
+        "title": "Folk Medicine & Herbal Remedies",
+        "items": {
+          "herbal_remedies": {
+            "title": "Basic Medicinal Herbs",
+            "steps": [
+              "CAUTION: Herbs are not a substitute for medical treatment. Seek professional help for serious conditions.",
+              "1. Plantain: Poultice for insect bites and minor wounds",
+              "2. Willow bark tea: Pain relief (contains salicylic acid, aspirin's precursor)",
+              "3. Ginger: Grate and add to hot water (colds, nausea)",
+              "4. Garlic: Antibacterial (eat raw or crush and wrap in gauze)",
+              "5. Mint: Tea for digestion, headache relief",
+              "6. Chamomile: Tea for calming, better sleep",
+              "7. Aloe vera: Apply gel to burns and wounds",
+              "Note: Start with small amounts to test for allergies or side effects"
+            ]
+          },
+          "wound_care": {
+            "title": "Wound Care (Long-term)",
+            "steps": [
+              "1. Clean wound with clean water (soapy water if available)",
+              "2. Stop bleeding: Apply pressure with clean cloth",
+              "3. Disinfect: Iodine solution, alcohol, or boiled saltwater",
+              "4. Apply honey (antibacterial, promotes healing)",
+              "5. Cover with clean cloth or gauze",
+              "6. Change dressing daily and check wound condition",
+              "7. Signs of infection: Redness, swelling, pus",
+              "8. Infection prevention: Keep wound clean and dry",
+              "Note: Deep wounds or signs of infection require professional medical care"
+            ]
+          },
+          "fever_management": {
+            "title": "Managing Fever",
+            "steps": [
+              "1. Hydration: Oral rehydration solution, diluted sports drinks",
+              "2. Cooling: Apply cool cloths to forehead, armpits, groin",
+              "3. Clothing: Light clothing, adjust room temperature",
+              "4. Willow bark tea (contains salicylic acid, aspirin-like)",
+              "5. Ginger tea (warms the body)",
+              "6. Get plenty of rest",
+              "7. High fever (>102.5°F / 39°C) lasting 3+ days is dangerous",
+              "Note: Children and elderly are especially prone to dehydration"
+            ]
+          }
+        }
+      },
+      "construction": {
+        "title": "Construction & Repair",
+        "items": {
+          "basic_carpentry": {
+            "title": "Basic Carpentry",
+            "steps": [
+              "1. Essential tools: saw, hammer, nails, rope",
+              "2. Selecting wood: Dry wood, few knots",
+              "3. Making right angles: Use 3:4:5 ratio (Pythagorean theorem)",
+              "4. Nailing: Angled nails increase strength",
+              "5. Wood joints: Half-lap joint, dovetail joint",
+              "6. Mortise and tenon: Traditional joint without nails",
+              "7. Simple workbench: Four legs + flat top secured with nails",
+              "8. Measuring: Use body parts (hand span, arm length)"
+            ]
+          },
+          "rope_knots": {
+            "title": "Rope Work",
+            "steps": [
+              "1. Bowline: Creates loop, rescue/fixing",
+              "2. Clove hitch: Secure to pole or tree, easily untied",
+              "3. Square knot: Join two ropes, same diameter ropes",
+              "4. Trucker's hitch: Secure cargo, apply tension",
+              "5. Taut-line hitch: Adjustable length, ideal for tent setup",
+              "6. Figure-eight knot: Stopper knot at rope end",
+              "7. Cleat hitch: Mooring boats",
+              "Note: Check knots regularly, retie if loose"
+            ]
+          },
+          "water_well": {
+            "title": "Digging a Well",
+            "steps": [
+              "1. Site selection: 30m+ away from contamination sources (toilets, waste)",
+              "2. Predict water table: Low ground, lush vegetation",
+              "3. Tools: Shovel, bucket, rope",
+              "4. Excavation: Dig 1-1.5m diameter circle, 3-10m deep",
+              "5. Reinforce walls: Stone or concrete blocks to prevent collapse",
+              "6. Add gravel to bottom (filtering effect)",
+              "7. Cover to prevent contamination",
+              "8. Pump and discard first water (turbid)",
+              "Note: Avoid working alone due to collapse risk"
+            ]
+          }
+        }
+      },
+      "energy": {
+        "title": "Energy Sources",
+        "items": {
+          "solar_cooking": {
+            "title": "Solar Cooking",
+            "steps": [
+              "1. Box-type solar cooker: Cardboard box lined with reflective material",
+              "2. Line inside with aluminum foil (reflects heat)",
+              "3. Use black pot (absorbs heat better)",
+              "4. Cover with glass or plastic (greenhouse effect)",
+              "5. Angle toward the sun",
+              "6. In sunny weather, reaches 60-120°C",
+              "7. Cooking time: 2-3x normal (slow heating)",
+              "8. Parabolic type: Line umbrella with foil, cook at focal point"
+            ]
+          },
+          "battery_maintenance": {
+            "title": "Battery Management",
+            "steps": [
+              "1. Keep rechargeable batteries (NiMH, etc.) on hand",
+              "2. Store at 20-80% charge, not fully discharged",
+              "3. Avoid extreme temperatures (store at room temperature)",
+              "4. Car battery: Clean terminals, check for loose connections",
+              "5. Have solar charger (for phones, batteries)",
+              "6. Watch for battery leakage, check regularly",
+              "7. Disposable batteries: Alkaline > Carbon (long-term storage)",
+              "8. Parallel connection increases capacity, series increases voltage"
+            ]
+          },
+          "wood_gasifier": {
+            "title": "Efficient Wood/Charcoal Use",
+            "steps": [
+              "1. Rocket stove: L-shaped combustion chamber, high heat with little wood",
+              "2. How to make: Combine two cans to create airflow",
+              "3. Chimney effect increases combustion efficiency",
+              "4. Secondary combustion: Burns smoke for better efficiency",
+              "5. Making charcoal: Fill can with wood, seal, heat",
+              "6. Charcoal burns longer than wood, produces less smoke",
+              "7. Ash can be reused as fertilizer",
+              "8. Wood drying: Air-dry for 6+ months in sunlight"
+            ]
+          }
+        }
+      },
+      "sanitation": {
+        "title": "Sanitation & Hygiene",
+        "items": {
+          "waste_disposal": {
+            "title": "Waste Disposal",
+            "steps": [
+              "1. Emergency toilet: Bucket + plastic bag + solidifying agent",
+              "2. Absorb moisture with cat litter or newspaper",
+              "3. Seal and store, dispose per local guidelines",
+              "4. Long-term: Build outdoor toilet",
+              "5. Location: 30m+ from water source, downstream",
+              "6. Dig hole: 50cm+ deep, cover with soil after use",
+              "7. Always set up handwashing station (soap, water)",
+              "8. Fly control: Cover, apply ash",
+              "Note: Waste causes disease, always wash hands"
+            ]
+          },
+          "water_storage": {
+            "title": "Water Storage",
+            "steps": [
+              "1. Clean container: Wash with detergent, disinfect with bleach",
+              "2. Boil water, let cool before storing",
+              "3. Use airtight containers (plastic bottles, water jugs)",
+              "4. Avoid direct sunlight, store in cool, dark place",
+              "5. Replace every 3 days (for long-term storage)",
+              "6. Disinfect stored water: 2 drops bleach per liter",
+              "7. Label with storage date",
+              "8. Separate drinking/cooking water from utility water"
+            ]
+          },
+          "hand_washing": {
+            "title": "Handwashing & Disinfection",
+            "steps": [
+              "1. Running water + soap for 30+ seconds",
+              "2. Wash palms, backs, between fingers, under nails, wrists",
+              "3. No water: Alcohol-based hand sanitizer (60%+ alcohol)",
+              "4. No soap: Use ash + water as substitute",
+              "5. DIY disinfectant: Dilute bleach (1 tsp per 500ml water)",
+              "6. Always wash: Before meals, after toilet, before cooking",
+              "7. Don't share towels, disposable paper is best",
+              "8. No sink: Poke hole in water bottle for improvised sink"
+            ]
+          }
+        }
+      },
+      "community": {
+        "title": "Community & Organization",
+        "items": {
+          "leadership": {
+            "title": "Leadership",
+            "steps": [
+              "1. Stay calm, prevent panic",
+              "2. Set clear goals",
+              "3. Assign roles: Leverage each person's strengths",
+              "4. Regular meetings for information sharing",
+              "5. Make decisions transparently",
+              "6. Prioritize vulnerable (children, elderly, sick)",
+              "7. Mediate conflicts, build consensus",
+              "8. Maintain hope, celebrate small victories"
+            ]
+          },
+          "conflict_resolution": {
+            "title": "Conflict Resolution",
+            "steps": [
+              "1. Listen to both sides fairly",
+              "2. Focus on facts, not emotions",
+              "3. Confirm common goals",
+              "4. Seek win-win solutions",
+              "5. Bring in third party as mediator",
+              "6. Establish clear rules, everyone follows them",
+              "7. Absolutely no violence",
+              "8. Create distance if necessary"
+            ]
+          },
+          "education": {
+            "title": "Maintaining Education",
+            "steps": [
+              "1. Keep children's routine (emotional stability)",
+              "2. Teach basic reading, writing, arithmetic",
+              "3. Make learning fun: songs, games, stories",
+              "4. Teach survival skills practically",
+              "5. Adults should keep learning too (share skills)",
+              "6. Value books, paper, writing tools",
+              "7. Preserve history and culture through oral tradition",
+              "8. Give hope, talk about future dreams"
+            ]
+          }
+        }
+      },
+      "rescue_protocols": {
+        "title": "Rescue Protocols",
+        "items": {
+          "search_rescue": {
+            "title": "Search & Rescue Basics",
+            "steps": [
+              "1. Safety first: Prevent secondary disasters",
+              "2. Call out, listen for sounds (locate survivors)",
+              "3. Blow whistle for help (carries farther than voice)",
+              "4. Work in teams (minimum 2 people)",
+              "5. Leave markers (mark searched areas)",
+              "6. If heavy equipment needed, wait for experts",
+              "7. Under rubble: Carefully remove (watch for collapse)",
+              "8. After rescue: Warm up, hydrate, provide medical care"
+            ]
+          },
+          "triage": {
+            "title": "Triage (Priority Assessment)",
+            "steps": [
+              "1. Red tag (Immediate): Severe but salvageable with treatment",
+              "2. Yellow tag (Delayed): Moderate injury, transport can wait",
+              "3. Green tag (Minor): Walking wounded, can move on own",
+              "4. Black tag: Cardiac arrest or clearly deceased",
+              "5. Assessment criteria: Breathing, circulation, consciousness",
+              "6. Decide within 30 seconds, move to next person",
+              "7. Situations change, regularly reassess",
+              "8. Keep records (name, symptoms, time)"
+            ]
+          },
+          "stretcher_making": {
+            "title": "Making an Emergency Stretcher",
+            "steps": [
+              "1. Blanket stretcher: Thread two poles through blanket",
+              "2. Jacket stretcher: Turn jackets inside-out, thread poles through sleeves",
+              "3. Improvised stretcher: Use door, board, ladder",
+              "4. Two-person carry: Link arms to create seat",
+              "5. One-person carry: Piggyback, fireman's carry",
+              "6. Suspected head/neck injury: Don't move, wait for experts",
+              "7. During transport, constantly talk to patient and check status",
+              "8. Keep flat, avoid shaking"
+            ]
+          }
+        }
+      },
+      "food_preservation": {
+        "title": "Food Preservation",
+        "items": {
+          "drying": {
+            "title": "Drying/Dehydration",
+            "steps": [
+              "1. Sun drying: Slice thinly, dry in sunlight for 3-7 days",
+              "2. Suitable foods: Fruit, vegetables, fish, meat",
+              "3. Place on net or rack (good airflow)",
+              "4. Bring inside at night (prevent moisture/insects)",
+              "5. Dry until crispy",
+              "6. Store in airtight container (with desiccant)",
+              "7. Smoking: Drying + preservation via smoke",
+              "8. Rehydrate: Soak in water to restore"
+            ]
+          },
+          "salt_curing": {
+            "title": "Salt Curing",
+            "steps": [
+              "1. Coat food with coarse salt (20-30% of fish/meat weight)",
+              "2. Place weight on top to extract moisture",
+              "3. Store in cool, dark place (refrigerator if available)",
+              "4. Fish: Ready in 3-7 days",
+              "5. Meat: 1-2 weeks",
+              "6. Before use, soak in water to remove salt (half day to 1 day)",
+              "7. Salted fish guts: Fish entrails + salt = fermented preservation",
+              "8. Umeboshi: Plums + salt + red perilla"
+            ]
+          },
+          "fermentation": {
+            "title": "Fermentation",
+            "steps": [
+              "1. Pickles: Vegetables + salt = lactic acid fermentation",
+              "2. Basic salt concentration: 2-5%",
+              "3. Place weight to remove air",
+              "4. Ferment at room temperature for several days to weeks",
+              "5. Miso: Soybeans + koji + salt, age 6 months to 1 year",
+              "6. Soy sauce: Soybeans + wheat + koji + salt, age 1-2 years",
+              "7. If mold appears, remove surface layer",
+              "8. Check condition daily during fermentation"
+            ]
+          },
+          "canning": {
+            "title": "Canning (Bottling)",
+            "steps": [
+              "1. Sterilize jars by boiling (10 minutes)",
+              "2. Cook food thoroughly",
+              "3. Fill jars while hot (leave 1-2cm headspace)",
+              "4. Close lids tightly",
+              "5. Boil jars (for degassing and sterilization)",
+              "6. Low-acid foods (meat, vegetables): 100°C+ for extended time",
+              "7. High-acid foods (fruit, pickles): 100°C for shorter time",
+              "8. Store in cool, dark place, consume within 1 year",
+              "Note: Discard if lid is bulging or there's a bad smell"
+            ]
+          }
+        }
+      },
+      "tools_crafting": {
+        "title": "Tool Making",
+        "items": {
+          "knife_sharpening": {
+            "title": "Sharpening Blades",
+            "steps": [
+              "1. Soak whetstone in water for 10 minutes",
+              "2. Hold blade at 15-20 degree angle",
+              "3. Sharpen by pulling toward you (about 10 times)",
+              "4. Flip and sharpen other side",
+              "5. Finish with fine-grit stone",
+              "6. Rinse with water and dry",
+              "7. Substitute stone: Flat river rock (fine sandstone)",
+              "8. Test sharpness: Should easily cut paper"
+            ]
+          },
+          "rope_making": {
+            "title": "Making Rope",
+            "steps": [
+              "1. Materials: Plant fibers (kudzu, wisteria, hemp, nettle)",
+              "2. Soak fibers in water to soften",
+              "3. Beat to separate fibers",
+              "4. Bundle three strands",
+              "5. Braiding: Right → center, left → center, repeat",
+              "6. Twisting: Twist two ropes in Z-direction",
+              "7. Animal sinew or hide also usable",
+              "8. Dry and store"
+            ]
+          },
+          "pottery": {
+            "title": "Making Pottery",
+            "steps": [
+              "1. Collect clay (riverbanks, cliffs)",
+              "2. Remove impurities, knead well",
+              "3. Form: Coil method (stack rope-shaped clay)",
+              "4. Smooth surface",
+              "5. Dry in shade for 1-2 weeks",
+              "6. Firing: Gradually heat in fire (6-8 hours)",
+              "7. High temperature (800°C+) increases strength",
+              "8. Let cool before use",
+              "Note: Rapid temperature changes cause cracking"
+            ]
+          }
+        }
+      },
+      "navigation": {
+        "title": "Navigation",
+        "items": {
+          "sun_navigation": {
+            "title": "Sun Navigation",
+            "steps": [
+              "1. Shadow method:",
+              "  - Place stick upright in ground",
+              "  - Mark tip of shadow (West)",
+              "  - After 15 minutes, mark new shadow tip (West → East)",
+              "  - Line between marks is East-West",
+              "2. Watch method (Northern Hemisphere):",
+              "  - Point hour hand at sun",
+              "  - Midpoint between hour hand and 12 is South",
+              "3. Sunrise/sunset:",
+              "  - Sun rises in East, sets in West (approximately)",
+              "4. Noon sun is South (Northern Hemisphere)"
+            ]
+          },
+          "star_navigation": {
+            "title": "Star Navigation",
+            "steps": [
+              "1. North Star (Northern Hemisphere):",
+              "  - Extend line from last 2 stars of Big Dipper 5x",
+              "  - North Star is almost true North",
+              "2. Southern Cross (Southern Hemisphere):",
+              "  - Extend long axis of cross 4.5x toward South",
+              "3. Orion:",
+              "  - Rises in East, sets in West",
+              "  - Belt's 3 stars are roughly East-West",
+              "4. Moon phases also indicate direction"
+            ]
+          },
+          "natural_signs": {
+            "title": "Natural Signs",
+            "steps": [
+              "1. Tree rings: Wider spacing indicates South (Northern Hemisphere)",
+              "2. Moss: Grows more on North side (more moisture)",
+              "3. Ant hills: More common on South-facing slopes",
+              "4. Wind: Remember prevailing wind direction",
+              "5. River flow: Heads downstream",
+              "6. Bird flight: Morning toward water, evening toward nests",
+              "7. Terrain: Walk ridges (safer than valleys)",
+              "8. Markers: Stack rocks at trail junctions"
+            ]
+          }
+        }
+      },
+      "textile": {
+        "title": "Textiles & Clothing",
+        "items": {
+          "spinning": {
+            "title": "Spinning Thread",
+            "steps": [
+              "1. Raw materials: Wool, cotton, hemp, nettle, kudzu",
+              "2. Tease apart fibers, straighten them",
+              "3. Make spindle: Stick + weight",
+              "4. Tie small amount of fiber to spindle",
+              "5. Draw out fiber while spinning spindle",
+              "6. Twist to create thread",
+              "7. Wind up thread",
+              "8. Practice until consistent thickness"
+            ]
+          },
+          "weaving": {
+            "title": "Weaving",
+            "steps": [
+              "1. Simple loom: Stretch warp threads on frame",
+              "2. Pass weft thread between warp threads",
+              "3. Weave alternating over/under (plain weave)",
+              "4. Shuttle: Tool for passing weft thread",
+              "5. Beater: Tool for compacting weft",
+              "6. When finished, cut warp threads and finish ends",
+              "7. Basket weaving: Same principle for baskets",
+              "8. Fabric strength depends on warp thread density"
+            ]
+          },
+          "sewing": {
+            "title": "Sewing",
+            "steps": [
+              "1. Needle: Make from bone, wood, metal",
+              "2. Thread: Twisted fibers, sinew",
+              "3. Basic stitches: Running stitch, backstitch",
+              "4. Buttons: Make from wood, bone, shell",
+              "5. Mending tears: Apply patch and sew",
+              "6. Insulation: Layer multiple garments, air gaps between",
+              "7. Waterproofing: Rub in oil or fat",
+              "8. Shoes: Sew leather to fit foot shape"
             ]
           }
         }

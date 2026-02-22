@@ -1,0 +1,166 @@
+{
+  "version": "1.0.0",
+  "updated_at": "2025-02-15",
+  "disclaimer": "この避難所情報は参考です。災害時は自治体の最新情報を確認してください。",
+  "regions": {
+    "tokyo": {
+      "prefecture": "東京都",
+      "municipalities": {
+        "setagaya": {
+          "name": "世田谷区",
+          "shelters": [
+            {
+              "id": "tokyo-setagaya-001",
+              "name": "世田谷区立三軒茶屋小学校",
+              "address": "東京都世田谷区太子堂2-30-1",
+              "lat": 35.6436,
+              "lon": 139.6702,
+              "capacity": 500,
+              "type": ["earthquake", "typhoon", "flood"],
+              "facilities": ["water", "food", "toilet", "generator", "medical"],
+              "barrier_free": true,
+              "pet_allowed": false,
+              "contact": "03-3411-xxxx"
+            },
+            {
+              "id": "tokyo-setagaya-002",
+              "name": "世田谷区民会館",
+              "address": "東京都世田谷区世田谷4-21-27",
+              "lat": 35.6456,
+              "lon": 139.6531,
+              "capacity": 800,
+              "type": ["earthquake", "typhoon", "flood", "fire"],
+              "facilities": ["water", "food", "toilet", "generator", "medical", "cooling", "heating"],
+              "barrier_free": true,
+              "pet_allowed": true,
+              "contact": "03-5432-xxxx"
+            },
+            {
+              "id": "tokyo-setagaya-003",
+              "name": "駒沢オリンピック公園体育館",
+              "address": "東京都世田谷区駒沢公園1-1",
+              "lat": 35.6301,
+              "lon": 139.6638,
+              "capacity": 2000,
+              "type": ["earthquake", "typhoon", "flood"],
+              "facilities": ["water", "food", "toilet", "generator", "medical", "shower"],
+              "barrier_free": true,
+              "pet_allowed": true,
+              "contact": "03-3421-xxxx",
+              "notes": "広域避難場所。大規模災害時の拠点"
+            }
+          ]
+        },
+        "shibuya": {
+          "name": "渋谷区",
+          "shelters": [
+            {
+              "id": "tokyo-shibuya-001",
+              "name": "渋谷区立本町小学校",
+              "address": "東京都渋谷区本町4-3-1",
+              "lat": 35.6795,
+              "lon": 139.6856,
+              "capacity": 400,
+              "type": ["earthquake", "typhoon"],
+              "facilities": ["water", "food", "toilet", "generator"],
+              "barrier_free": true,
+              "pet_allowed": false,
+              "contact": "03-3373-xxxx"
+            },
+            {
+              "id": "tokyo-shibuya-002",
+              "name": "代々木公園",
+              "address": "東京都渋谷区代々木神園町2-1",
+              "lat": 35.6716,
+              "lon": 139.6954,
+              "capacity": 10000,
+              "type": ["earthquake", "fire"],
+              "facilities": ["water", "toilet"],
+              "barrier_free": false,
+              "pet_allowed": true,
+              "contact": "03-3469-xxxx",
+              "notes": "広域避難場所。火災からの避難用"
+            }
+          ]
+        }
+      }
+    },
+    "osaka": {
+      "prefecture": "大阪府",
+      "municipalities": {
+        "osaka-city": {
+          "name": "大阪市",
+          "shelters": [
+            {
+              "id": "osaka-city-001",
+              "name": "大阪城公園",
+              "address": "大阪府大阪市中央区大阪城1",
+              "lat": 34.6873,
+              "lon": 135.5262,
+              "capacity": 15000,
+              "type": ["earthquake", "fire"],
+              "facilities": ["water", "toilet"],
+              "barrier_free": false,
+              "pet_allowed": true,
+              "contact": "06-6941-xxxx",
+              "notes": "広域避難場所"
+            },
+            {
+              "id": "osaka-city-002",
+              "name": "大阪市中央体育館",
+              "address": "大阪府大阪市港区田中3-1-40",
+              "lat": 34.6648,
+              "lon": 135.4602,
+              "capacity": 3000,
+              "type": ["earthquake", "typhoon", "flood"],
+              "facilities": ["water", "food", "toilet", "generator", "medical", "shower"],
+              "barrier_free": true,
+              "pet_allowed": true,
+              "contact": "06-6576-xxxx"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "facility_types": {
+    "water": "飲料水",
+    "food": "食料備蓄",
+    "toilet": "トイレ",
+    "generator": "発電機",
+    "medical": "医療救護",
+    "cooling": "冷房",
+    "heating": "暖房",
+    "shower": "シャワー",
+    "wifi": "Wi-Fi",
+    "phone_charger": "充電設備"
+  },
+  "disaster_types": {
+    "earthquake": "地震",
+    "tsunami": "津波",
+    "typhoon": "台風",
+    "flood": "洪水",
+    "fire": "火災",
+    "landslide": "土砂災害"
+  },
+  "usage_guide": {
+    "when_to_evacuate": [
+      "自宅が倒壊の危険がある場合",
+      "火災が近づいている場合",
+      "自治体から避難指示が出た場合",
+      "津波警報が出た場合（高台へ）",
+      "洪水の危険がある場合（高い場所へ）"
+    ],
+    "what_to_bring": [
+      "貴重品（現金、身分証明書、通帳、印鑑）",
+      "非常食と水（最低3日分）",
+      "常備薬、お薬手帳",
+      "携帯ラジオ、懐中電灯、電池",
+      "携帯電話と充電器",
+      "着替え、タオル、ティッシュ",
+      "マスク、消毒液",
+      "家族の写真（はぐれた時の確認用）"
+    ],
+    "registration": "避難所に到着したら、必ず受付で氏名・連絡先を登録してください。家族の安否確認に必要です。"
+  }
+}

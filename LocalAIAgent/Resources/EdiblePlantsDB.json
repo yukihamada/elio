@@ -1,0 +1,334 @@
+{
+  "version": "1.0.0",
+  "updated_at": "2025-02-15",
+  "disclaimer": "この情報は教育目的です。植物の同定には専門知識が必要です。不確かな場合は絶対に食べないでください。誤食は重篤な健康被害や死亡の原因となります。",
+  "categories": {
+    "edible_plants": {
+      "title": "食用可能な野草",
+      "items": {
+        "dandelion": {
+          "name_ja": "タンポポ",
+          "name_en": "Dandelion",
+          "name_scientific": "Taraxacum officinale",
+          "season": "春〜秋",
+          "habitat": "野原、道端、庭",
+          "edible_parts": ["葉", "根", "花"],
+          "identification": [
+            "黄色い花（多数の小花が集まったもの）",
+            "ギザギザした葉（ライオンの歯に似ている）",
+            "白い乳液が茎から出る",
+            "綿毛の種子"
+          ],
+          "preparation": {
+            "leaves": "若葉をサラダ、おひたし、炒め物に。苦味がある",
+            "roots": "掘り出して洗い、炒ってコーヒー代用に",
+            "flowers": "天ぷら、ワイン醸造に利用"
+          },
+          "nutrition": "ビタミンA、C、カリウム豊富",
+          "caution": "都市部は農薬・除草剤汚染の可能性。犬の散歩道は避ける",
+          "toxicity_level": "無毒",
+          "confidence_score": 95
+        },
+        "dokudami": {
+          "name_ja": "ドクダミ",
+          "name_en": "Houttuynia",
+          "name_scientific": "Houttuynia cordata",
+          "season": "春〜夏",
+          "habitat": "湿った日陰、庭",
+          "edible_parts": ["葉"],
+          "identification": [
+            "ハート形の葉",
+            "独特の強い匂い",
+            "白い花（実は苞、中央の黄色い部分が花）",
+            "地下茎で広がる"
+          ],
+          "preparation": {
+            "leaves": "天ぷら、お茶（乾燥させて）",
+            "raw": "生はクセが強い、加熱すると匂いが弱まる"
+          },
+          "nutrition": "解毒作用、利尿作用、抗菌作用",
+          "caution": "独特の匂いあり。過剰摂取は避ける",
+          "medicinal": "民間薬として広く利用。肌荒れ、便秘、むくみに",
+          "toxicity_level": "無毒",
+          "confidence_score": 90
+        },
+        "warabi": {
+          "name_ja": "ワラビ",
+          "name_en": "Bracken fern",
+          "name_scientific": "Pteridium aquilinum",
+          "season": "春（4-5月）",
+          "habitat": "山野、草原",
+          "edible_parts": ["若芽（新芽）"],
+          "identification": [
+            "渦巻き状の新芽（フィドルヘッド）",
+            "茎は緑色、表面に細かい毛",
+            "成長すると大きなシダ植物になる"
+          ],
+          "preparation": {
+            "young_shoots": "必ずアク抜きが必要",
+            "ak_nuki": "重曹または木灰を加えた湯で茹でる→一晩水にさらす"
+          },
+          "nutrition": "食物繊維、ミネラル",
+          "caution": "生食厳禁！発がん性物質（プタキロシド）を含む。必ずアク抜きすること",
+          "toxicity_level": "要処理（生は有毒）",
+          "confidence_score": 70
+        },
+        "yomogi": {
+          "name_ja": "ヨモギ",
+          "name_en": "Mugwort",
+          "name_scientific": "Artemisia princeps",
+          "season": "春〜秋",
+          "habitat": "野原、道端、河川敷",
+          "edible_parts": ["若葉"],
+          "identification": [
+            "葉の裏が白い綿毛で覆われている",
+            "香りが良い（よもぎ餅の匂い）",
+            "葉は深く切れ込んでいる",
+            "茎は白っぽい"
+          ],
+          "preparation": {
+            "young_leaves": "草餅、天ぷら、おひたし、茶",
+            "tip": "柔らかい新芽を摘む"
+          },
+          "nutrition": "ビタミン、ミネラル、食物繊維",
+          "caution": "妊娠中は大量摂取を避ける",
+          "medicinal": "止血、健胃、冷え性改善",
+          "toxicity_level": "無毒",
+          "confidence_score": 90
+        },
+        "tsukushi": {
+          "name_ja": "ツクシ",
+          "name_en": "Field horsetail (spore-bearing shoot)",
+          "name_scientific": "Equisetum arvense",
+          "season": "早春（3-4月）",
+          "habitat": "土手、畑の周辺",
+          "edible_parts": ["若い胞子茎"],
+          "identification": [
+            "節のある茎（竹のよう）",
+            "茶色の鱗片状の葉",
+            "頭部に胞子嚢",
+            "スギナの胞子茎"
+          ],
+          "preparation": {
+            "cleaning": "袴（節の鱗片）を取り除く",
+            "cooking": "茹でてアク抜き→卵とじ、佃煮"
+          },
+          "nutrition": "ミネラル",
+          "caution": "大量摂取は避ける。腎臓疾患のある人は注意",
+          "toxicity_level": "やや注意",
+          "confidence_score": 85
+        },
+        "fuki": {
+          "name_ja": "フキ",
+          "name_en": "Butterbur",
+          "name_scientific": "Petasites japonicus",
+          "season": "春",
+          "habitat": "湿地、山の斜面",
+          "edible_parts": ["葉柄", "花芽（ふきのとう）"],
+          "identification": [
+            "大きな丸い葉（フキの葉）",
+            "葉柄は長く、太い",
+            "早春にふきのとう（花芽）が地面から出る"
+          ],
+          "preparation": {
+            "petiole": "皮をむいて茹でる→アク抜き→煮物、炒め物",
+            "bud": "ふきのとうは天ぷら、味噌和え"
+          },
+          "nutrition": "食物繊維、ポリフェノール",
+          "caution": "アク抜き必須（ピロリジジンアルカロイド含む）",
+          "toxicity_level": "要処理",
+          "confidence_score": 80
+        },
+        "nasubi": {
+          "name_ja": "クレソン",
+          "name_en": "Watercress",
+          "name_scientific": "Nasturtium officinale",
+          "season": "春〜秋",
+          "habitat": "清流、湧水の小川",
+          "edible_parts": ["葉", "茎"],
+          "identification": [
+            "水中または水辺に生える",
+            "丸い小さな葉が対生",
+            "茎は中空、水に浮く",
+            "白い小さな花"
+          ],
+          "preparation": {
+            "raw": "サラダ、サンドイッチ",
+            "cooked": "スープ、炒め物"
+          },
+          "nutrition": "ビタミンC、鉄分、カルシウム",
+          "caution": "野生のものは肝蛭（寄生虫）のリスクあり。必ず加熱調理",
+          "toxicity_level": "無毒（ただし寄生虫注意）",
+          "confidence_score": 75
+        }
+      }
+    },
+    "poisonous_plants": {
+      "title": "毒草（絶対に食べてはいけない）",
+      "items": {
+        "torikabu": {
+          "name_ja": "トリカブト",
+          "name_en": "Monkshood",
+          "name_scientific": "Aconitum spp.",
+          "danger_level": "致死性",
+          "habitat": "山地、森林",
+          "identification": [
+            "紫色の兜形の花（特徴的）",
+            "葉は深く切れ込んでいる（ヤマブキに似る）",
+            "根は太く、塊根"
+          ],
+          "symptoms": "嘔吐、しびれ、呼吸困難、心停止",
+          "confusion_with": "ニリンソウ（食用）と葉が似ている。花が咲く前は特に注意",
+          "first_aid": "直ちに119番通報。吐かせない（症状悪化）",
+          "toxicity_level": "猛毒",
+          "fatal_dose": "数グラムで致死"
+        },
+        "suzuran": {
+          "name_ja": "スズラン",
+          "name_en": "Lily of the valley",
+          "name_scientific": "Convallaria majalis",
+          "danger_level": "有毒",
+          "habitat": "庭、山地",
+          "identification": [
+            "白い鈴形の花",
+            "楕円形の葉が2枚",
+            "赤い実（秋）"
+          ],
+          "symptoms": "嘔吐、下痢、不整脈、視覚障害",
+          "confusion_with": "ギョウジャニンニク（食用）と葉が似る",
+          "first_aid": "直ちに医療機関へ",
+          "toxicity_level": "有毒",
+          "fatal_dose": "全草有毒、花瓶の水も危険"
+        },
+        "baikeiso": {
+          "name_ja": "バイケイソウ",
+          "name_en": "False hellebore",
+          "name_scientific": "Veratrum album",
+          "danger_level": "有毒",
+          "habitat": "山地の湿地",
+          "identification": [
+            "大きな楕円形の葉（縦に葉脈が目立つ）",
+            "白または緑の花",
+            "草丈1m以上"
+          ],
+          "symptoms": "嘔吐、下痢、血圧低下、意識障害",
+          "confusion_with": "ギョウジャニンニク、オオバギボウシ（食用）",
+          "first_aid": "直ちに119番通報",
+          "toxicity_level": "有毒",
+          "fatal_dose": "少量でも中毒"
+        },
+        "dokuzeri": {
+          "name_ja": "ドクゼリ",
+          "name_en": "Water hemlock",
+          "name_scientific": "Cicuta virosa",
+          "danger_level": "致死性",
+          "habitat": "湿地、水辺",
+          "identification": [
+            "白い小花が傘状に集まる（セリ科）",
+            "葉はセリに似ている",
+            "根茎は太く、竹のような節がある",
+            "根を切ると黄色い汁が出る"
+          ],
+          "symptoms": "痙攣、呼吸困難、意識障害、死亡",
+          "confusion_with": "セリ（食用）と非常に似ている",
+          "first_aid": "直ちに119番通報。猛毒",
+          "toxicity_level": "猛毒",
+          "fatal_dose": "根茎数グラムで致死"
+        }
+      }
+    },
+    "mushrooms": {
+      "title": "キノコ（注意）",
+      "warning": "キノコの同定は極めて困難です。専門知識がない限り、野生のキノコは絶対に食べないでください。毎年、誤食による死亡事故が発生しています。",
+      "safe_mushrooms": {
+        "shiitake": {
+          "name_ja": "シイタケ（栽培品）",
+          "note": "野生のシイタケは同定が難しい。栽培品のみ食用推奨"
+        },
+        "nameko": {
+          "name_ja": "ナメコ（栽培品）",
+          "note": "栽培品のみ推奨"
+        }
+      },
+      "deadly_mushrooms": {
+        "tamago_tengutake": {
+          "name_ja": "タマゴテングタケ",
+          "name_en": "Death cap",
+          "name_scientific": "Amanita phalloides",
+          "danger_level": "致死性",
+          "identification": [
+            "白〜淡緑色の傘",
+            "柄に白いつばとつぼがある",
+            "マッシュルームに似ている"
+          ],
+          "symptoms": "6-24時間後に嘔吐、下痢→一時的回復→肝不全、腎不全、死亡",
+          "fatal_dose": "1本で致死",
+          "antidote": "なし"
+        },
+        "dokutsurutake": {
+          "name_ja": "ドクツルタケ",
+          "name_en": "Destroying angel",
+          "name_scientific": "Amanita virosa",
+          "danger_level": "致死性",
+          "identification": [
+            "全体が純白",
+            "柄につばとつぼ",
+            "美しい外観"
+          ],
+          "symptoms": "タマゴテングタケと同様。肝不全で死亡",
+          "fatal_dose": "1本で致死",
+          "antidote": "なし"
+        },
+        "kaentake": {
+          "name_ja": "カエンタケ",
+          "name_en": "Poison fire coral",
+          "name_scientific": "Podostroma cornu-damae",
+          "danger_level": "猛毒",
+          "identification": [
+            "赤〜オレンジ色",
+            "棒状、指状に伸びる",
+            "触るだけでも危険"
+          ],
+          "symptoms": "触れると皮膚炎。食べると多臓器不全、死亡",
+          "fatal_dose": "数グラムで致死。触るだけでも炎症",
+          "antidote": "なし",
+          "special_warning": "見つけたら絶対に触らない"
+        }
+      }
+    }
+  },
+  "identification_guidelines": {
+    "golden_rules": [
+      "不確かなものは絶対に食べない（確信がなければ餓死を選ぶ）",
+      "「毒草は少数」という誤解を捨てる（多数の有毒植物が存在）",
+      "食用に似た毒草が多数存在する（トリカブト、ドクゼリなど）",
+      "キノコは専門家でも誤同定する。素人判断は厳禁",
+      "白い汁、傘状の花、3枚葉は要注意（必ずしも毒ではないが慎重に）",
+      "複数の図鑑で確認し、100%確信を持てるもののみ食べる"
+    ],
+    "universal_edibility_test": {
+      "warning": "最終手段です。飢餓状態でのみ使用。時間がかかり、危険が伴います。",
+      "steps": [
+        "1. 植物を4つの部位に分ける（根、茎、葉、花/実）",
+        "2. 一つの部位のみをテストする（部位ごとに毒性が異なる）",
+        "3. 8時間絶食する",
+        "4. 皮膚テスト: 植物を手首の内側にこすりつけ15分待つ",
+        "5. かぶれや赤みが出たら中止",
+        "6. 唇テスト: 少量を唇に触れさせ3分待つ",
+        "7. ヒリヒリ感があれば中止",
+        "8. 舌テスト: 少量を舌に乗せ15分待つ（飲み込まない）",
+        "9. 異常があれば吐き出す",
+        "10. 咀嚼テスト: 少量を噛んで飲み込み8時間待つ",
+        "11. 異常がなければ、少量（1/4カップ）を食べて8時間待つ",
+        "12. 問題なければ安全と判断（ただし確実ではない）"
+      ],
+      "caution": "このテストでも判別できない毒草が存在します（遅効性毒など）"
+    }
+  },
+  "seasonal_guide": {
+    "spring": ["タンポポ", "ヨモギ", "ツクシ", "フキ", "ワラビ", "ゼンマイ"],
+    "summer": ["ドクダミ", "ミョウガ", "シソ", "ツユクサ"],
+    "autumn": ["クリ", "ドングリ（アク抜き必要）", "アケビ", "ムカゴ"],
+    "winter": ["野草は少ない。常緑のヨモギなど"]
+  }
+}

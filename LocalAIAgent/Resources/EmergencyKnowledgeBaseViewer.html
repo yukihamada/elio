@@ -1,0 +1,1248 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🚨 緊急ナレッジベース - 完全オフライン対応</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", sans-serif;
+            line-height: 1.7;
+            color: #1a1a1a;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 25px 70px rgba(0,0,0,0.35);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+            position: relative;
+        }
+
+        .header h1 {
+            font-size: 2.8em;
+            margin-bottom: 12px;
+            text-shadow: 0 3px 6px rgba(0,0,0,0.3);
+            font-weight: 800;
+        }
+
+        .header p {
+            font-size: 1.15em;
+            opacity: 0.95;
+            font-weight: 500;
+        }
+
+        .language-switcher {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 8px;
+        }
+
+        .lang-btn {
+            background: rgba(255,255,255,0.2);
+            border: 2px solid rgba(255,255,255,0.4);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            font-size: 14px;
+        }
+
+        .lang-btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+        }
+
+        .lang-btn.active {
+            background: white;
+            color: #667eea;
+            border-color: white;
+        }
+
+        .search-box {
+            padding: 25px;
+            background: linear-gradient(to bottom, #f8f9fa, #ffffff);
+            border-bottom: 2px solid #e0e0e0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 18px 24px;
+            font-size: 17px;
+            border: 2px solid #ddd;
+            border-radius: 16px;
+            outline: none;
+            transition: all 0.3s;
+            font-family: inherit;
+        }
+
+        .search-input:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.12);
+        }
+
+        .tabs {
+            display: flex;
+            background: #f8f9fa;
+            border-bottom: 2px solid #e0e0e0;
+            padding: 15px 20px;
+            gap: 10px;
+            overflow-x: auto;
+            scrollbar-width: thin;
+        }
+
+        .tabs::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        .tabs::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        .tabs::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 3px;
+        }
+
+        .tab {
+            padding: 14px 26px;
+            background: white;
+            border: 2px solid #ddd;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+            white-space: nowrap;
+            font-weight: 600;
+            font-size: 15px;
+        }
+
+        .tab:hover {
+            background: #f5f5f5;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .tab.active {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+            box-shadow: 0 4px 16px rgba(102, 126, 234, 0.4);
+        }
+
+        .content {
+            padding: 35px;
+            min-height: 500px;
+            max-height: calc(100vh - 400px);
+            overflow-y: auto;
+        }
+
+        .category {
+            margin-bottom: 50px;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .category-title {
+            font-size: 2.2em;
+            color: #667eea;
+            margin-bottom: 25px;
+            padding-bottom: 12px;
+            border-bottom: 4px solid #667eea;
+            font-weight: 800;
+        }
+
+        .item {
+            background: linear-gradient(to right, #f8f9fa, #ffffff);
+            padding: 24px;
+            border-radius: 18px;
+            margin-bottom: 22px;
+            border-left: 6px solid #667eea;
+            transition: all 0.3s;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .item:hover {
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+            transform: translateX(6px);
+            background: linear-gradient(to right, #ffffff, #f9f9ff);
+        }
+
+        .item-title {
+            font-size: 1.6em;
+            color: #1a1a1a;
+            margin-bottom: 16px;
+            font-weight: 700;
+        }
+
+        .item-content {
+            font-size: 1.08em;
+            line-height: 1.9;
+            color: #333;
+        }
+
+        .item-content ol {
+            padding-left: 24px;
+        }
+
+        .item-content li {
+            margin-bottom: 12px;
+            padding-left: 8px;
+        }
+
+        .emergency-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #ff4444, #cc0000);
+            color: white;
+            padding: 6px 18px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            margin-bottom: 12px;
+            font-weight: 700;
+            box-shadow: 0 4px 12px rgba(255, 68, 68, 0.3);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 60px;
+            color: #999;
+            font-size: 1.3em;
+        }
+
+        .offline-badge {
+            position: fixed;
+            bottom: 25px;
+            left: 25px;
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-weight: 700;
+            box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 1000;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .header h1 {
+                font-size: 2em;
+            }
+
+            .header p {
+                font-size: 1em;
+            }
+
+            .language-switcher {
+                position: static;
+                justify-content: center;
+                margin-top: 15px;
+            }
+
+            .content {
+                padding: 20px;
+                max-height: calc(100vh - 350px);
+            }
+
+            .category-title {
+                font-size: 1.6em;
+            }
+
+            .item-title {
+                font-size: 1.3em;
+            }
+
+            .offline-badge {
+                bottom: 15px;
+                left: 15px;
+                font-size: 0.9em;
+            }
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+
+            .header {
+                background: none;
+                color: black;
+                border-bottom: 2px solid black;
+            }
+
+            .tabs, .search-box, .language-switcher, .offline-badge {
+                display: none !important;
+            }
+
+            .container {
+                box-shadow: none;
+                border-radius: 0;
+            }
+
+            .item {
+                page-break-inside: avoid;
+                border: 1px solid #ddd;
+                background: white;
+            }
+
+            .content {
+                max-height: none;
+                overflow: visible;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="language-switcher">
+                <button class="lang-btn active" data-lang="ja">🇯🇵 日本語</button>
+                <button class="lang-btn" data-lang="en">🇬🇧 English</button>
+            </div>
+            <h1>🚨 緊急ナレッジベース</h1>
+            <p>災害時・緊急時・文明再建のための完全オフライン知識ベース</p>
+        </div>
+
+        <div class="search-box">
+            <input type="text" class="search-input" placeholder="🔍 検索... (例: CPR, 水の浄化, 火の起こし方)">
+        </div>
+
+        <div class="tabs" id="tabs"></div>
+
+        <div class="content" id="content"></div>
+    </div>
+
+    <div class="offline-badge">
+        ✈️ 完全オフライン動作
+    </div>
+
+    <script>
+        const kbData = 
+{
+  "version": "1.0.0",
+  "updated_at": "2025-01-01",
+  "locales": {
+    "ja": {
+      "first_aid": {
+        "title": "応急処置",
+        "items": {
+          "cpr": {
+            "title": "心肺蘇生法 (CPR)",
+            "steps": [
+              "1. 安全を確認し、意識を確認する（肩を叩いて呼びかける）",
+              "2. 反応がなければ、119番通報とAEDの手配を依頼する",
+              "3. 呼吸を確認する（10秒以内で胸の動きを見る）",
+              "4. 正常な呼吸がなければ、胸骨圧迫を開始する",
+              "5. 胸の真ん中（乳頭の間）に手のひらの付け根を置く",
+              "6. 5〜6cmの深さで、1分間に100〜120回のテンポで強く速く押す",
+              "7. 30回の圧迫ごとに2回の人工呼吸（できる場合）",
+              "8. AEDが届いたらすぐに使用する",
+              "9. 救急隊が到着するまで絶対に中断しない"
+            ]
+          },
+          "bleeding": {
+            "title": "止血",
+            "steps": [
+              "1. 清潔な布やガーゼで傷口を強く押さえる（直接圧迫止血法）",
+              "2. 圧迫したまま10分以上持続する",
+              "3. 出血部位を心臓より高い位置に上げる",
+              "4. 止血帯が必要な場合は、傷口より心臓に近い側で縛る",
+              "5. 止血帯を使用した時刻を記録する",
+              "6. 大量出血の場合は119番通報する",
+              "注意: 異物が刺さっている場合は抜かない"
+            ]
+          },
+          "burns": {
+            "title": "やけど",
+            "steps": [
+              "1. すぐに流水で20分以上冷やす",
+              "2. 衣服の上からやけどした場合、無理に脱がさず上から冷やす",
+              "3. 水ぶくれは潰さない",
+              "4. 清潔なガーゼで軽く覆う",
+              "5. 広範囲のやけどは119番通報する",
+              "注意: 氷を直接当てない、バターや油を塗らない"
+            ]
+          },
+          "fracture": {
+            "title": "骨折",
+            "steps": [
+              "1. 患部を動かさない",
+              "2. 添え木（段ボール、雑誌、傘など）で固定する",
+              "3. 固定は骨折部位の上下の関節を含めて行う",
+              "4. きつく縛りすぎない（血流を確認）",
+              "5. 患部を冷やす（氷嚢をタオルで包んで当てる）",
+              "6. 開放骨折（骨が皮膚を突き破っている）の場合は119番通報",
+              "注意: 自分で骨を元に戻そうとしない"
+            ]
+          },
+          "aed": {
+            "title": "AED使用法",
+            "steps": [
+              "1. AEDの電源を入れる（蓋を開けると自動で起動する機種もある）",
+              "2. 音声ガイダンスに従う",
+              "3. 電極パッドを素肌に貼る（右鎖骨の下と左脇腹）",
+              "4. パッドを貼ったら、心電図解析が始まる",
+              "5. 「ショックが必要です」のアナウンスが出たら、全員が離れる",
+              "6. ショックボタンを押す",
+              "7. ショック後すぐに胸骨圧迫を再開する",
+              "注意: 体が濡れている場合はタオルで拭いてからパッドを貼る"
+            ]
+          },
+          "heatstroke": {
+            "title": "熱中症",
+            "steps": [
+              "1. 涼しい場所（日陰やクーラーの効いた室内）に移動する",
+              "2. 衣服をゆるめ、体を冷やす",
+              "3. 首・脇の下・太ももの付け根を重点的に冷やす",
+              "4. 意識がはっきりしていれば、水分と塩分を補給する",
+              "5. 経口補水液やスポーツドリンクが望ましい",
+              "6. 意識がもうろうとしている場合は119番通報する",
+              "注意: 意識が不明瞭な場合は無理に飲ませない（誤嚥の危険）"
+            ]
+          },
+          "choking": {
+            "title": "窒息（異物除去）",
+            "steps": [
+              "1. 「喉に何か詰まりましたか？」と確認する",
+              "2. 咳ができる場合は、咳を続けさせる",
+              "3. 咳ができない場合は、背部叩打法を行う",
+              "4. 背部叩打法: 背中の肩甲骨の間を手のひらの付け根で5回強く叩く",
+              "5. 効果がなければ腹部突き上げ法（ハイムリック法）を行う",
+              "6. ハイムリック法: 後ろから抱きかかえ、みぞおちの上を上方に突き上げる",
+              "7. 意識がなくなったら119番通報し、CPRを開始する",
+              "注意: 乳児には腹部突き上げ法を行わない（胸部突き上げ法を使う）"
+            ]
+          }
+        }
+      },
+      "disaster": {
+        "title": "災害対応",
+        "items": {
+          "earthquake": {
+            "title": "地震",
+            "steps": [
+              "【発生時】",
+              "1. テーブルの下に隠れ、頭を守る（Drop, Cover, Hold On）",
+              "2. 揺れが収まるまで動かない",
+              "3. 火を使っていたら揺れが収まってから消火する",
+              "4. ドアを開けて避難経路を確保する",
+              "5. エレベーターは使わない",
+              "【揺れが収まった後】",
+              "6. 靴を履いて足を守る（ガラスの破片に注意）",
+              "7. ガスの元栓を閉める",
+              "8. ブレーカーを落とす（通電火災防止）",
+              "9. 建物の損傷を確認し、危険なら外に出る",
+              "10. 海岸近くでは津波警報を確認し、高台に避難する"
+            ]
+          },
+          "tsunami": {
+            "title": "津波",
+            "steps": [
+              "1. 強い揺れまたは長い揺れを感じたら、すぐに高台に避難する",
+              "2. 警報を待たず、自分の判断で避難を開始する",
+              "3. できるだけ高い場所（標高30m以上）を目指す",
+              "4. 近くに高台がなければ、鉄筋コンクリートの3階以上に避難する",
+              "5. 海や川に近づかない",
+              "6. 第一波の後も繰り返し来るため、警報解除まで戻らない",
+              "7. 車での避難は渋滞リスクがあり、原則徒歩で避難する",
+              "注意: 津波は時速数百kmで到達することがある"
+            ]
+          },
+          "typhoon": {
+            "title": "台風・暴風雨",
+            "steps": [
+              "【事前準備】",
+              "1. 気象情報を確認し、進路を把握する",
+              "2. 窓に養生テープを貼る、雨戸を閉める",
+              "3. ベランダの物を室内に入れる",
+              "4. 懐中電灯、水、食料を準備する",
+              "5. 浴槽に水を貯める（断水対策）",
+              "【接近時】",
+              "6. 不要な外出を控える",
+              "7. 2階以上の部屋で過ごす（浸水対策）",
+              "8. 河川や用水路に近づかない",
+              "9. 停電に備えてモバイルバッテリーを充電する"
+            ]
+          },
+          "flood": {
+            "title": "洪水",
+            "steps": [
+              "1. 浸水する前に2階以上に垂直避難する",
+              "2. 膝上まで浸水したら、無理に移動しない",
+              "3. 水の流れが速い場所には入らない（水深30cmで歩行困難）",
+              "4. マンホールや側溝に注意（蓋が外れている場合がある）",
+              "5. 車が浸水したらすぐに脱出する（水圧でドアが開かなくなる）",
+              "6. 感電の危険があるため、冠水した場所で電気設備に触れない",
+              "7. 避難時は長い棒で地面を確認しながら歩く"
+            ]
+          },
+          "fire": {
+            "title": "火災",
+            "steps": [
+              "1. 「火事だ！」と大声で周囲に知らせる",
+              "2. 119番通報する",
+              "3. 初期消火を試みる（消火器使用）",
+              "4. 天井まで火が達したら消火を諦め、避難する",
+              "5. 煙の中では姿勢を低くし、ハンカチで口と鼻を覆う",
+              "6. ドアを閉めて延焼を遅らせる",
+              "7. エレベーターは絶対に使わない、階段を使う",
+              "8. 一度避難したら絶対に戻らない"
+            ]
+          },
+          "landslide": {
+            "title": "土砂災害",
+            "steps": [
+              "1. 前兆に注意: 小石が落ちてくる、地鳴り、崖からの水が止まる/濁る",
+              "2. 前兆を感じたらすぐに避難する",
+              "3. 崖や急斜面から離れる方向に逃げる",
+              "4. 土石流からは横方向に逃げる（流れに対して直角に）",
+              "5. 谷筋や沢筋を避ける",
+              "6. 避難が間に合わない場合は2階の崖から遠い部屋に移動する",
+              "7. 大雨警報・土砂災害警戒情報が出たら早めに避難する"
+            ]
+          },
+          "volcano": {
+            "title": "火山噴火",
+            "steps": [
+              "1. 噴火警戒レベルを確認する",
+              "2. 規制範囲から速やかに離れる",
+              "3. 噴石から身を守る（ヘルメット、防災頭巾）",
+              "4. 火山灰から目・鼻・口を守る（マスク、ゴーグル）",
+              "5. 火砕流が発生したら流れに対して直角方向に逃げる",
+              "6. 火山灰が積もったら屋根の雪下ろしのように除去する",
+              "7. コンタクトレンズは外してメガネを使用する",
+              "8. 車の運転は視界不良になるため控える"
+            ]
+          }
+        }
+      },
+      "survival": {
+        "title": "サバイバル基礎",
+        "items": {
+          "water_purification": {
+            "title": "水の浄化",
+            "steps": [
+              "1. 煮沸法: 沸騰させて1分以上（高地では3分以上）",
+              "2. 布やコーヒーフィルターで大きな不純物を濾す",
+              "3. 浄水剤（次亜塩素酸ナトリウム）: 1Lに2滴、30分待つ",
+              "4. 太陽光消毒（SODIS）: 透明なペットボトルに入れ6時間日光に当てる",
+              "5. 砂・炭・小石の層を重ねた簡易濾過器を作る",
+              "6. 泥水は最低2時間沈殿させてから上澄みを使う",
+              "7. 雨水は比較的安全だが、屋根の汚れに注意",
+              "注意: 海水は飲まない（脱水症状を悪化させる）"
+            ]
+          },
+          "fire_starting": {
+            "title": "火の起こし方",
+            "steps": [
+              "1. 準備: 火口（枯れ草）、焚き付け（小枝）、燃料（太い枝）を集める",
+              "2. マッチ・ライター: 最も確実な方法",
+              "3. 火打ち石とナイフ: ナイフの背で火打ち石を叩き火花を火口に飛ばす",
+              "4. 虫眼鏡: 日光を火口に集中させる（晴天時のみ）",
+              "5. 電池とスチールウール: 電池の両極にスチールウールを当てる",
+              "6. 摩擦法（弓錐式）: 木の棒を回転させ摩擦熱で発火",
+              "7. 風よけを作り、火が育つまで優しく息を吹きかける",
+              "注意: 火の管理を怠らない、完全に消火してから離れる"
+            ]
+          },
+          "shelter_building": {
+            "title": "シェルター作り",
+            "steps": [
+              "1. 場所選び: 高台で水はけがよく、風を避けられる場所",
+              "2. 簡易シェルター: 大きな枝を壁に立てかけて屋根を作る",
+              "3. Aフレーム型: 2本の枝を立て、横木を渡し、小枝で覆う",
+              "4. 断熱: 地面に枯れ葉や草を厚く敷く（体温保持）",
+              "5. 防水: ビニールシート、大きな葉、樹皮で屋根を覆う",
+              "6. 入口は風下に、小さめに作る（熱が逃げにくい）",
+              "7. 雪洞（雪がある場合）: 雪を掘って中に入る、通気口を確保",
+              "注意: 川の近くは避ける（増水リスク）"
+            ]
+          },
+          "edible_plants": {
+            "title": "食べられる植物の見分け方",
+            "steps": [
+              "注意: 植物の同定は危険を伴います。不確かな場合は食べない。",
+              "1. 一般的な安全な植物: タンポポ（全部位）、クローバー、ヨモギ",
+              "2. 避けるべき特徴: 白い汁が出る、傘状の花、3枚の葉",
+              "3. ユニバーサル食用テスト（最終手段）:",
+              "  - 皮膚にこすりつけ15分待つ（かぶれがなければ次へ）",
+              "  - 少量を唇に触れさせ3分待つ",
+              "  - 少量を舌に乗せ15分待つ",
+              "  - 少量を噛んで飲み込み8時間待つ",
+              "  - 問題なければ少量ずつ食べる",
+              "4. 鳥が食べている植物は比較的安全な傾向",
+              "5. きのこは専門知識がない限り絶対に食べない"
+            ]
+          }
+        }
+      },
+      "food_preservation": {
+        "title": "食料保存",
+        "items": {
+          "drying": {
+            "title": "乾燥保存",
+            "steps": [
+              "1. 天日干し: 薄切りにして日光で3〜7日",
+              "2. 適した食材: 果物、野菜、魚、肉",
+              "3. ネットや網の上に並べる（風通し良く）",
+              "4. 夜間は室内に入れる（湿気・虫対策）",
+              "5. カリカリになるまで乾燥させる",
+              "6. 密閉容器で保管（乾燥剤と一緒に）",
+              "7. 燻製: 煙で乾燥+防腐効果",
+              "8. 復元: 水に浸して戻す"
+            ]
+          },
+          "salt_curing": {
+            "title": "塩漬け",
+            "steps": [
+              "1. 粗塩を食材にまぶす（魚・肉の重量の20〜30%）",
+              "2. 重石を乗せて水分を抜く",
+              "3. 冷暗所で保管（冷蔵庫が望ましい）",
+              "4. 魚: 3〜7日で完成",
+              "5. 肉: 1〜2週間",
+              "6. 使用前に水で塩抜きする（半日〜1日）",
+              "7. 塩辛: 魚の内臓+塩で発酵保存",
+              "8. 梅干し: 梅+塩+赤紫蘇"
+            ]
+          },
+          "fermentation": {
+            "title": "発酵保存",
+            "steps": [
+              "1. 漬物: 野菜+塩で乳酸発酵",
+              "2. 基本の塩分濃度: 2〜5%",
+              "3. 重石をして空気を抜く",
+              "4. 常温で数日〜数週間発酵",
+              "5. 味噌: 大豆+麹+塩、6ヶ月〜1年熟成",
+              "6. 醤油: 大豆+小麦+麹+塩、1〜2年熟成",
+              "7. カビが生えたら表面を取り除く",
+              "8. 発酵中は毎日状態をチェック"
+            ]
+          },
+          "canning": {
+            "title": "瓶詰め（缶詰）",
+            "steps": [
+              "1. 瓶を煮沸消毒（10分）",
+              "2. 食材を加熱調理する",
+              "3. 熱いうちに瓶に詰める（頭空間1〜2cm）",
+              "4. 蓋をしっかり閉める",
+              "5. 瓶ごと煮沸（脱気・殺菌）",
+              "6. 低酸性食品（肉・野菜）: 100℃以上で長時間",
+              "7. 高酸性食品（果物・ピクルス）: 100℃で短時間",
+              "8. 冷暗所で保管、1年以内に消費",
+              "注意: 蓋が膨らんでいる、異臭がする場合は廃棄"
+            ]
+          }
+        }
+      },
+      "medicine": {
+        "title": "民間療法・薬草",
+        "items": {
+          "herbal_remedies": {
+            "title": "基本的な薬草",
+            "steps": [
+              "注意: 薬草は医薬品の代替ではありません。重症の場合は医療機関へ。",
+              "1. ドクダミ: 煎じて飲む（解毒、抗菌作用）",
+              "2. ヨモギ: お茶として飲む（胃腸の調子を整える）",
+              "3. アロエ: 葉の中身を火傷や傷に塗る",
+              "4. 生姜: すりおろして湯に入れる（風邪、吐き気）",
+              "5. ニンニク: 抗菌作用（生で食べるか潰してガーゼに包む）",
+              "6. ミント: お茶として飲む（消化促進、頭痛緩和）",
+              "7. カモミール: お茶として飲む（鎮静、不眠改善）",
+              "注意: アレルギーや副作用の可能性があるため少量から試す"
+            ]
+          },
+          "wound_care": {
+            "title": "傷の手当て（長期）",
+            "steps": [
+              "1. 清潔な水で傷口を洗う（石鹸水が望ましい）",
+              "2. 止血: 清潔な布で圧迫",
+              "3. 消毒: ヨウ素液、アルコール、煮沸した塩水",
+              "4. 蜂蜜を塗る（抗菌作用、傷の治癒促進）",
+              "5. 清潔な布やガーゼで覆う",
+              "6. 毎日ガーゼを交換し、傷の状態を確認",
+              "7. 赤く腫れる、膿が出る場合は感染の兆候",
+              "8. 感染予防: 傷を清潔に保ち、乾燥させる",
+              "注意: 深い傷、感染の兆候がある場合は専門的な医療が必要"
+            ]
+          },
+          "fever_management": {
+            "title": "発熱時の対処",
+            "steps": [
+              "1. 水分補給: 経口補水液、薄めたスポーツドリンク",
+              "2. 冷却: 額・脇の下・太ももの付け根を冷やす",
+              "3. 衣服: 薄着にし、室温を調整",
+              "4. 柳の樹皮を煎じて飲む（アスピリンの原料サリチル酸含有）",
+              "5. ショウガ湯を飲む（体を温める）",
+              "6. 十分な休息を取る",
+              "7. 高熱（39度以上）が3日以上続く場合は危険",
+              "注意: 子供・高齢者は脱水症状に特に注意"
+            ]
+          }
+        }
+      }
+    },
+    "en": {
+      "first_aid": {
+        "title": "First Aid",
+        "items": {
+          "cpr": {
+            "title": "CPR (Cardiopulmonary Resuscitation)",
+            "steps": [
+              "1. Check the scene for safety, then check for responsiveness (tap shoulder, shout)",
+              "2. If no response, call 911 (or local emergency number) and ask for an AED",
+              "3. Check for breathing (look for chest movement for no more than 10 seconds)",
+              "4. If no normal breathing, begin chest compressions",
+              "5. Place the heel of your hand on the center of the chest (between the nipples)",
+              "6. Push hard and fast: 5-6cm deep, 100-120 compressions per minute",
+              "7. Give 2 rescue breaths after every 30 compressions (if trained)",
+              "8. Use AED as soon as it arrives",
+              "9. Do NOT stop until emergency services arrive"
+            ]
+          },
+          "bleeding": {
+            "title": "Bleeding Control",
+            "steps": [
+              "1. Apply firm direct pressure with a clean cloth or gauze",
+              "2. Maintain pressure for at least 10 minutes without lifting",
+              "3. Elevate the injured area above the heart if possible",
+              "4. If a tourniquet is needed, apply it between the wound and the heart",
+              "5. Note the time the tourniquet was applied",
+              "6. Call emergency services for severe bleeding",
+              "Note: Do NOT remove objects embedded in the wound"
+            ]
+          },
+          "burns": {
+            "title": "Burns",
+            "steps": [
+              "1. Cool the burn under cool running water for at least 20 minutes",
+              "2. If clothing is stuck to the burn, cool over the clothing",
+              "3. Do NOT burst blisters",
+              "4. Cover loosely with a clean, non-stick dressing",
+              "5. Call emergency services for large or deep burns",
+              "Note: Do NOT apply ice directly, butter, or oil"
+            ]
+          },
+          "fracture": {
+            "title": "Fractures",
+            "steps": [
+              "1. Do not move the injured area",
+              "2. Immobilize with a splint (cardboard, magazine, umbrella)",
+              "3. Splint should extend beyond the joints above and below the fracture",
+              "4. Do not tie too tightly (check circulation)",
+              "5. Apply ice wrapped in a towel",
+              "6. Call emergency services for open fractures (bone through skin)",
+              "Note: Do NOT try to realign the bone"
+            ]
+          },
+          "aed": {
+            "title": "AED Usage",
+            "steps": [
+              "1. Turn on the AED (some activate when the lid is opened)",
+              "2. Follow the voice prompts",
+              "3. Attach pads to bare chest (right below collarbone, left side of chest)",
+              "4. Once pads are attached, the AED will analyze the heart rhythm",
+              "5. If 'Shock advised,' make sure everyone is clear of the person",
+              "6. Press the shock button",
+              "7. Immediately resume chest compressions after the shock",
+              "Note: If the person is wet, dry the chest before attaching pads"
+            ]
+          },
+          "heatstroke": {
+            "title": "Heat Stroke",
+            "steps": [
+              "1. Move the person to a cool, shaded area or air-conditioned room",
+              "2. Loosen clothing and cool the body",
+              "3. Apply ice or cold packs to neck, armpits, and groin",
+              "4. If conscious and alert, give water with electrolytes",
+              "5. Sports drinks or oral rehydration solution are preferred",
+              "6. Call emergency services if the person is confused or unconscious",
+              "Note: Do NOT force fluids if the person is not fully conscious"
+            ]
+          },
+          "choking": {
+            "title": "Choking (Foreign Body Removal)",
+            "steps": [
+              "1. Ask 'Are you choking?' — look for the universal choking sign",
+              "2. If the person can cough, encourage them to keep coughing",
+              "3. If they cannot cough, give 5 back blows between the shoulder blades",
+              "4. If back blows fail, perform 5 abdominal thrusts (Heimlich maneuver)",
+              "5. Heimlich: Stand behind, place fist above navel, thrust inward and upward",
+              "6. Alternate between 5 back blows and 5 abdominal thrusts",
+              "7. If the person becomes unconscious, call emergency services and begin CPR",
+              "Note: For infants, use chest thrusts instead of abdominal thrusts"
+            ]
+          }
+        }
+      },
+      "disaster": {
+        "title": "Disaster Response",
+        "items": {
+          "earthquake": {
+            "title": "Earthquake",
+            "steps": [
+              "[During the earthquake]",
+              "1. Drop, Cover, and Hold On — get under a sturdy table",
+              "2. Stay put until the shaking stops",
+              "3. If cooking, turn off the stove after the shaking stops",
+              "4. Open doors to secure exit routes",
+              "5. Do NOT use elevators",
+              "[After the shaking stops]",
+              "6. Put on shoes to protect feet from broken glass",
+              "7. Shut off the gas supply",
+              "8. Turn off the main breaker (to prevent electrical fires)",
+              "9. Check for building damage; if unsafe, evacuate",
+              "10. If near the coast, check for tsunami warnings and move to high ground"
+            ]
+          },
+          "tsunami": {
+            "title": "Tsunami",
+            "steps": [
+              "1. If you feel strong or prolonged shaking, evacuate to high ground immediately",
+              "2. Do NOT wait for an official warning — act on your own judgment",
+              "3. Head to the highest ground possible (30m+ elevation)",
+              "4. If no high ground is available, go to the 3rd floor or higher of a reinforced concrete building",
+              "5. Stay away from the ocean and rivers",
+              "6. Multiple waves will follow — do NOT return until the all-clear is given",
+              "7. Evacuate on foot if possible (driving risks traffic jams)",
+              "Note: Tsunamis can travel at hundreds of km/h"
+            ]
+          },
+          "typhoon": {
+            "title": "Typhoon / Hurricane",
+            "steps": [
+              "[Preparation]",
+              "1. Monitor weather forecasts and track the storm's path",
+              "2. Tape windows and close storm shutters",
+              "3. Bring outdoor items inside (balcony, yard)",
+              "4. Prepare flashlights, water, and food",
+              "5. Fill the bathtub with water (in case of water outage)",
+              "[During the storm]",
+              "6. Avoid going outside unnecessarily",
+              "7. Stay on upper floors (flood protection)",
+              "8. Stay away from rivers and streams",
+              "9. Charge mobile batteries in case of power outage"
+            ]
+          },
+          "flood": {
+            "title": "Flooding",
+            "steps": [
+              "1. Move to upper floors (vertical evacuation) before flooding reaches you",
+              "2. If water is above knee level, do NOT attempt to walk through it",
+              "3. Avoid areas with fast-moving water (30cm depth can knock you down)",
+              "4. Watch out for manholes and ditches (covers may be displaced)",
+              "5. If your car is flooding, exit immediately (water pressure can trap doors)",
+              "6. Avoid touching electrical equipment in flooded areas (electrocution risk)",
+              "7. Use a long stick to probe the ground ahead when wading"
+            ]
+          },
+          "fire": {
+            "title": "Fire",
+            "steps": [
+              "1. Shout 'FIRE!' to alert everyone nearby",
+              "2. Call emergency services (911 / local number)",
+              "3. Attempt to extinguish only if the fire is small (use a fire extinguisher)",
+              "4. If fire reaches the ceiling, stop fighting and evacuate immediately",
+              "5. Stay low in smoke — cover nose and mouth with a damp cloth",
+              "6. Close doors behind you to slow the spread of fire",
+              "7. Never use elevators — use stairs",
+              "8. Once out, NEVER go back inside"
+            ]
+          },
+          "landslide": {
+            "title": "Landslide",
+            "steps": [
+              "1. Watch for warning signs: falling pebbles, rumbling sounds, changes in water flow",
+              "2. If you notice warning signs, evacuate immediately",
+              "3. Move away from slopes and cliffs",
+              "4. Run perpendicular to the flow direction (not away from it)",
+              "5. Avoid valleys and streams",
+              "6. If you can't evacuate, move to the 2nd floor of a room away from the hillside",
+              "7. Evacuate early when heavy rain warnings are issued"
+            ]
+          },
+          "volcano": {
+            "title": "Volcanic Eruption",
+            "steps": [
+              "1. Check the volcanic alert level",
+              "2. Leave the restricted zone immediately",
+              "3. Protect yourself from falling rocks (helmet, protective headgear)",
+              "4. Protect eyes, nose, and mouth from volcanic ash (mask, goggles)",
+              "5. If pyroclastic flow occurs, run perpendicular to its direction",
+              "6. Remove accumulated ash from rooftops to prevent collapse",
+              "7. Remove contact lenses and use glasses instead",
+              "8. Avoid driving — visibility will be severely reduced"
+            ]
+          }
+        }
+      },
+      "survival": {
+        "title": "Survival Basics",
+        "items": {
+          "water_purification": {
+            "title": "Water Purification",
+            "steps": [
+              "1. Boiling: Bring to a rolling boil for 1 minute (3 minutes at high altitude)",
+              "2. Filter large particles with cloth or coffee filter",
+              "3. Water purification tablets: 2 drops per liter, wait 30 minutes",
+              "4. Solar disinfection (SODIS): Clear plastic bottle in sunlight for 6 hours",
+              "5. Make a simple filter: layers of sand, charcoal, and pebbles",
+              "6. Muddy water: Let settle for at least 2 hours, use top layer",
+              "7. Rainwater is relatively safe but watch for roof contamination",
+              "Note: Never drink seawater (worsens dehydration)"
+            ]
+          },
+          "fire_starting": {
+            "title": "Starting a Fire",
+            "steps": [
+              "1. Prepare: tinder (dry grass), kindling (small twigs), fuel (large branches)",
+              "2. Matches/lighter: Most reliable method",
+              "3. Flint and steel: Strike steel against flint to create sparks on tinder",
+              "4. Magnifying glass: Focus sunlight onto tinder (sunny days only)",
+              "5. Battery and steel wool: Touch battery terminals to steel wool",
+              "6. Friction method (bow drill): Spin wooden stick to create friction heat",
+              "7. Build a windbreak and gently blow to help fire grow",
+              "Note: Always fully extinguish fires before leaving"
+            ]
+          },
+          "shelter_building": {
+            "title": "Building a Shelter",
+            "steps": [
+              "1. Location: High ground with good drainage, protected from wind",
+              "2. Lean-to: Large branch propped against a tree or wall",
+              "3. A-frame: Two upright branches with crossbar, covered with smaller branches",
+              "4. Insulation: Thick layer of leaves or grass on ground (retains body heat)",
+              "5. Waterproofing: Cover roof with plastic sheet, large leaves, or bark",
+              "6. Entrance: Face away from wind, keep small (retains heat)",
+              "7. Snow cave (if snow available): Dig into snow, ensure ventilation hole",
+              "Note: Avoid low areas near rivers (flooding risk)"
+            ]
+          },
+          "edible_plants": {
+            "title": "Identifying Edible Plants",
+            "steps": [
+              "CAUTION: Plant identification can be dangerous. When in doubt, don't eat it.",
+              "1. Generally safe plants: Dandelion (all parts), clover, plantain",
+              "2. Avoid: White sap, umbrella-shaped flowers, three-leafed plants",
+              "3. Universal Edibility Test (last resort):",
+              "  - Rub on skin, wait 15 minutes (no rash → next step)",
+              "  - Touch to lips for 3 minutes",
+              "  - Place on tongue for 15 minutes",
+              "  - Chew and swallow a small amount, wait 8 hours",
+              "  - If no problems, eat small amounts gradually",
+              "4. Plants eaten by birds are generally safer",
+              "5. NEVER eat mushrooms unless you're an expert"
+            ]
+          }
+        }
+      },
+      "food_preservation": {
+        "title": "Food Preservation",
+        "items": {
+          "drying": {
+            "title": "Drying/Dehydration",
+            "steps": [
+              "1. Sun drying: Slice thinly, dry in sunlight for 3-7 days",
+              "2. Suitable foods: Fruit, vegetables, fish, meat",
+              "3. Place on net or rack (good airflow)",
+              "4. Bring inside at night (prevent moisture/insects)",
+              "5. Dry until crispy",
+              "6. Store in airtight container (with desiccant)",
+              "7. Smoking: Drying + preservation via smoke",
+              "8. Rehydrate: Soak in water to restore"
+            ]
+          },
+          "salt_curing": {
+            "title": "Salt Curing",
+            "steps": [
+              "1. Coat food with coarse salt (20-30% of fish/meat weight)",
+              "2. Place weight on top to extract moisture",
+              "3. Store in cool, dark place (refrigerator if available)",
+              "4. Fish: Ready in 3-7 days",
+              "5. Meat: 1-2 weeks",
+              "6. Before use, soak in water to remove salt (half day to 1 day)",
+              "7. Salted fish guts: Fish entrails + salt = fermented preservation",
+              "8. Umeboshi: Plums + salt + red perilla"
+            ]
+          },
+          "fermentation": {
+            "title": "Fermentation",
+            "steps": [
+              "1. Pickles: Vegetables + salt = lactic acid fermentation",
+              "2. Basic salt concentration: 2-5%",
+              "3. Place weight to remove air",
+              "4. Ferment at room temperature for several days to weeks",
+              "5. Miso: Soybeans + koji + salt, age 6 months to 1 year",
+              "6. Soy sauce: Soybeans + wheat + koji + salt, age 1-2 years",
+              "7. If mold appears, remove surface layer",
+              "8. Check condition daily during fermentation"
+            ]
+          },
+          "canning": {
+            "title": "Canning (Bottling)",
+            "steps": [
+              "1. Sterilize jars by boiling (10 minutes)",
+              "2. Cook food thoroughly",
+              "3. Fill jars while hot (leave 1-2cm headspace)",
+              "4. Close lids tightly",
+              "5. Boil jars (for degassing and sterilization)",
+              "6. Low-acid foods (meat, vegetables): 100°C+ for extended time",
+              "7. High-acid foods (fruit, pickles): 100°C for shorter time",
+              "8. Store in cool, dark place, consume within 1 year",
+              "Note: Discard if lid is bulging or there's a bad smell"
+            ]
+          }
+        }
+      },
+      "medicine": {
+        "title": "Folk Medicine & Herbal Remedies",
+        "items": {
+          "herbal_remedies": {
+            "title": "Basic Medicinal Herbs",
+            "steps": [
+              "CAUTION: Herbs are not a substitute for medical treatment. Seek professional help for serious conditions.",
+              "1. Plantain: Poultice for insect bites and minor wounds",
+              "2. Willow bark tea: Pain relief (contains salicylic acid, aspirin's precursor)",
+              "3. Ginger: Grate and add to hot water (colds, nausea)",
+              "4. Garlic: Antibacterial (eat raw or crush and wrap in gauze)",
+              "5. Mint: Tea for digestion, headache relief",
+              "6. Chamomile: Tea for calming, better sleep",
+              "7. Aloe vera: Apply gel to burns and wounds",
+              "Note: Start with small amounts to test for allergies or side effects"
+            ]
+          },
+          "wound_care": {
+            "title": "Wound Care (Long-term)",
+            "steps": [
+              "1. Clean wound with clean water (soapy water if available)",
+              "2. Stop bleeding: Apply pressure with clean cloth",
+              "3. Disinfect: Iodine solution, alcohol, or boiled saltwater",
+              "4. Apply honey (antibacterial, promotes healing)",
+              "5. Cover with clean cloth or gauze",
+              "6. Change dressing daily and check wound condition",
+              "7. Signs of infection: Redness, swelling, pus",
+              "8. Infection prevention: Keep wound clean and dry",
+              "Note: Deep wounds or signs of infection require professional medical care"
+            ]
+          },
+          "fever_management": {
+            "title": "Managing Fever",
+            "steps": [
+              "1. Hydration: Oral rehydration solution, diluted sports drinks",
+              "2. Cooling: Apply cool cloths to forehead, armpits, groin",
+              "3. Clothing: Light clothing, adjust room temperature",
+              "4. Willow bark tea (contains salicylic acid, aspirin-like)",
+              "5. Ginger tea (warms the body)",
+              "6. Get plenty of rest",
+              "7. High fever (>102.5°F / 39°C) lasting 3+ days is dangerous",
+              "Note: Children and elderly are especially prone to dehydration"
+            ]
+          }
+        }
+      }
+    }
+  }
+};
+
+        let currentLang = 'ja';
+        let currentCategory = 'all';
+
+        function initializeApp() {
+            if (!kbData || !kbData.locales) {
+                document.getElementById('content').innerHTML = '<div class="no-results">⚠️ データの読み込みに失敗しました</div>';
+                return;
+            }
+
+            renderTabs();
+            renderContent();
+
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    currentLang = btn.dataset.lang;
+                    renderTabs();
+                    renderContent();
+                    updatePlaceholder();
+                });
+            });
+
+            document.querySelector('.search-input').addEventListener('input', (e) => {
+                renderContent(e.target.value);
+            });
+
+            updatePlaceholder();
+        }
+
+        function updatePlaceholder() {
+            const input = document.querySelector('.search-input');
+            if (currentLang === 'ja') {
+                input.placeholder = '🔍 検索... (例: CPR, 水の浄化, 火の起こし方)';
+            } else {
+                input.placeholder = '🔍 Search... (e.g., CPR, water purification, fire starting)';
+            }
+        }
+
+        function renderTabs() {
+            const locale = kbData.locales[currentLang];
+            if (!locale) return;
+
+            const tabs = document.getElementById('tabs');
+            tabs.innerHTML = '';
+
+            const allTab = document.createElement('div');
+            allTab.className = 'tab' + (currentCategory === 'all' ? ' active' : '');
+            allTab.textContent = currentLang === 'ja' ? '📚 すべて' : '📚 All';
+            allTab.onclick = () => {
+                currentCategory = 'all';
+                renderTabs();
+                renderContent();
+            };
+            tabs.appendChild(allTab);
+
+            Object.keys(locale).forEach(categoryKey => {
+                const category = locale[categoryKey];
+                const tab = document.createElement('div');
+                tab.className = 'tab' + (currentCategory === categoryKey ? ' active' : '');
+                tab.textContent = getCategoryIcon(categoryKey) + ' ' + category.title;
+                tab.onclick = () => {
+                    currentCategory = categoryKey;
+                    renderTabs();
+                    renderContent();
+                    document.getElementById('content').scrollTop = 0;
+                };
+                tabs.appendChild(tab);
+            });
+        }
+
+        function getCategoryIcon(categoryKey) {
+            const icons = {
+                first_aid: '🏥',
+                disaster: '🌪️',
+                survival: '🏕️',
+                food_preservation: '🥫',
+                medicine: '💊'
+            };
+            return icons[categoryKey] || '📖';
+        }
+
+        function renderContent(searchQuery = '') {
+            const locale = kbData.locales[currentLang];
+            if (!locale) return;
+
+            const content = document.getElementById('content');
+            content.innerHTML = '';
+
+            let hasResults = false;
+
+            Object.keys(locale).forEach(categoryKey => {
+                if (currentCategory !== 'all' && currentCategory !== categoryKey) return;
+
+                const category = locale[categoryKey];
+                const categoryDiv = document.createElement('div');
+                categoryDiv.className = 'category';
+
+                const categoryTitle = document.createElement('h2');
+                categoryTitle.className = 'category-title';
+                categoryTitle.textContent = getCategoryIcon(categoryKey) + ' ' + category.title;
+                categoryDiv.appendChild(categoryTitle);
+
+                if (category.items) {
+                    Object.keys(category.items).forEach(itemKey => {
+                        const item = category.items[itemKey];
+
+                        if (searchQuery) {
+                            const searchLower = searchQuery.toLowerCase();
+                            const titleMatch = item.title.toLowerCase().includes(searchLower);
+                            const contentMatch = JSON.stringify(item).toLowerCase().includes(searchLower);
+                            if (!titleMatch && !contentMatch) return;
+                        }
+
+                        const itemDiv = document.createElement('div');
+                        itemDiv.className = 'item';
+
+                        if (categoryKey === 'first_aid' || categoryKey === 'disaster') {
+                            const badge = document.createElement('span');
+                            badge.className = 'emergency-badge';
+                            badge.textContent = currentLang === 'ja' ? '⚠️ 緊急' : '⚠️ EMERGENCY';
+                            itemDiv.appendChild(badge);
+                        }
+
+                        const title = document.createElement('h3');
+                        title.className = 'item-title';
+                        title.textContent = item.title;
+                        itemDiv.appendChild(title);
+
+                        const contentDiv = document.createElement('div');
+                        contentDiv.className = 'item-content';
+
+                        if (item.steps) {
+                            const ol = document.createElement('ol');
+                            item.steps.forEach(step => {
+                                const li = document.createElement('li');
+                                li.textContent = step;
+                                ol.appendChild(li);
+                            });
+                            contentDiv.appendChild(ol);
+                        }
+
+                        itemDiv.appendChild(contentDiv);
+                        categoryDiv.appendChild(itemDiv);
+                        hasResults = true;
+                    });
+                }
+
+                if (categoryDiv.children.length > 1) {
+                    content.appendChild(categoryDiv);
+                }
+            });
+
+            if (!hasResults) {
+                const msg = currentLang === 'ja' ? '🔍 検索結果が見つかりませんでした' : '🔍 No results found';
+                content.innerHTML = `<div class="no-results">${msg}</div>`;
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', initializeApp);
+    </script>
+</body>
+</html>
