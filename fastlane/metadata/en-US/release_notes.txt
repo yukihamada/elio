@@ -1,7 +1,7 @@
-- Cloud AI auto-fallback: chatweb.ai → teai.io → local AI
-- Model switcher: tap top-left to switch between chatweb.ai and downloaded local models
-- Unified QR scanner: P2P pairing, ChatWeb connect, and friend requests in one camera
-- Direct message UI redesign: iMessage-style bubbles, date headers, encryption badge
-- Anonymous messaging: fully anonymous P2P communication via SHA256 hashes
+- Cloud AI auto-fallback: automatically switches to the best available AI
+- Model switcher: tap top-left to switch between cloud AI and downloaded local models
+- Unified QR scanner: device connection and friend requests in one camera
+- Direct message UI redesign: modern bubble design, date headers, encryption badge
+- Enhanced privacy: anonymous messaging support
 - Security info display: clear privacy level for each chat mode
 - Bug fixes and performance improvements
