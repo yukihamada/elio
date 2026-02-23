@@ -12,9 +12,13 @@
 
 <p align="center">
   <a href="https://apps.apple.com/app/elio-chat/id6757635481">
-    <img src="https://img.shields.io/badge/App_Store-無料ダウンロード-0D96F6?style=for-the-badge&logo=apple&logoColor=white" alt="App Store">
+    <img src="https://img.shields.io/badge/iPhone_%2F_iPad-App_Store-0D96F6?style=for-the-badge&logo=apple&logoColor=white" alt="iOS App Store">
   </a>
-  &nbsp;&nbsp;
+  &nbsp;
+  <a href="https://apps.apple.com/app/elio-chat/id6757635481">
+    <img src="https://img.shields.io/badge/Mac-App_Store-000000?style=for-the-badge&logo=apple&logoColor=white" alt="Mac App Store">
+  </a>
+  &nbsp;
   <a href="https://elio.love">
     <img src="https://img.shields.io/badge/公式サイト-elio.love-7C3AED?style=for-the-badge" alt="Website">
   </a>
@@ -24,6 +28,8 @@
 
 <p align="center">
   <img src="https://img.shields.io/badge/iOS_17+-000000?style=flat-square&logo=apple&logoColor=white" alt="iOS">
+  &nbsp;
+  <img src="https://img.shields.io/badge/macOS_14+-000000?style=flat-square&logo=apple&logoColor=white" alt="macOS">
   &nbsp;
   <img src="https://img.shields.io/badge/Swift_5.9-F05138?style=flat-square&logo=swift&logoColor=white" alt="Swift">
   &nbsp;
@@ -137,6 +143,157 @@ WhisperKit によるオンデバイス音声認識。
 
 <br>
 
+## &#127775; もっとできること
+
+<br>
+
+<table>
+<tr>
+<td width="33%" valign="top">
+
+### &#127760; リアルタイム通訳
+
+**19言語対応のAI同時通訳。**
+
+話しかけるだけで自動翻訳・自動読み上げ。
+海外旅行・ビジネス・外国人との会話に。
+
+> 日本語 &#8644; 英語 / 中国語 / 韓国語 / フランス語 / スペイン語 / ドイツ語 / アラビア語 / ヒンディー語 / タイ語 / ベトナム語 / トルコ語 / ポルトガル語 / ロシア語 / イタリア語 ...
+
+&#128172; 話す → &#128221; 文字起こし → &#128301; 翻訳 → &#128266; 読み上げ
+
+</td>
+<td width="33%" valign="top">
+
+### &#128274; デジタル金庫
+
+**AES-256暗号化 + 生体認証。**
+
+パスポート・保険証・銀行カード・重要書類を
+軍事レベルの暗号化で端末内に安全に保管。
+
+- Face ID / Touch ID でロック解除
+- 5分で自動ロック
+- 写真のOCRテキスト抽出
+- PDFエクスポート対応
+- マスターキーはKeychain保管
+
+</td>
+<td width="33%" valign="top">
+
+### &#128506; オフライン防災マップ
+
+**避難所データベース内蔵。**
+
+地震・津波・台風・洪水・火災・土砂災害に対応した
+避難所をオフラインで検索。
+
+- 現在地から最寄りの避難所を表示
+- 徒歩ルート案内
+- 収容人数・設備情報
+- バリアフリー・ペット可フィルター
+- オフライン地図タイル対応
+
+</td>
+</tr>
+<tr>
+<td width="33%" valign="top">
+
+### &#128172; P2Pメッセージング
+
+**サーバーを経由しないDM。**
+
+友達とローカルネットワークで直接メッセージ。
+既読・配信確認付き。
+
+- ペアリングコードで友達追加
+- オンライン/オフライン状態表示
+- オフライン時のメッセージキュー
+- 友達リスト管理
+
+</td>
+<td width="33%" valign="top">
+
+### &#128218; 緊急時ナレッジベース
+
+**オフライン百科事典。**
+
+12言語の緊急情報をAES暗号化で端末にキャッシュ。
+圏外でも全文検索（FTS5）で瞬時に情報取得。
+
+- 応急処置
+- 災害対応マニュアル
+- サバイバルガイド
+- 自動更新検知
+
+</td>
+<td width="33%" valign="top">
+
+### &#127918; ミニゲーム
+
+**AIと遊べるオフラインゲーム。**
+
+気分転換にどうぞ。
+
+- &#9824;&#65039; ソリティア - 本格カードゲーム
+- &#129504; 神経衰弱 - 8ペアマッチング
+- &#128290; 15パズル - スライドパズル
+- &#10060; 三目並べ - AI対戦
+
+</td>
+</tr>
+<tr>
+<td width="33%" valign="top">
+
+### &#128176; トークンエコノミー
+
+**P2P推論を提供してトークン獲得。**
+
+Macでモデルを動かし、他のユーザーの推論リクエストを
+処理するとトークンが貯まります。
+
+- 初期: 100トークン無料
+- 推論1回提供で1トークン獲得
+- 週間統計・取引履歴
+
+</td>
+<td width="33%" valign="top">
+
+### &#128722; スキルマーケット
+
+**カスタムスキルのダウンロード＆公開。**
+
+コミュニティが作ったスキルをインストールして
+AIの能力を拡張。自分のスキルも公開可能。
+
+- カテゴリ・人気・評価でフィルター
+- キュレーターランク制度
+- OGファウンダー認証
+
+</td>
+<td width="33%" valign="top">
+
+### &#128257; 物々交換ボード
+
+**AIマッチングの交換掲示板。**
+
+「持っているもの」「欲しいもの」を投稿すると
+AIが最適なマッチングを提案。
+
+- 信頼スコアシステム
+- P2Pメッシュで自動ブロードキャスト
+- 取引履歴・評価
+
+</td>
+</tr>
+</table>
+
+<br>
+
+---
+
+<br>
+
 ## &#128640; ChatGPTとの比較
 
 <table>
@@ -155,6 +312,9 @@ WhisperKit によるオンデバイス音声認識。
 <tr><td><strong>&#128190; 会話の保存先</strong></td><td align="center">端末内のみ</td><td align="center">サーバーに保存</td></tr>
 <tr><td><strong>&#128279; MCP連携</strong></td><td align="center">13種類</td><td align="center">非対応</td></tr>
 <tr><td><strong>&#128421; P2P推論</strong></td><td align="center">Mac連携可能</td><td align="center">非対応</td></tr>
+<tr><td><strong>&#127760; リアルタイム通訳</strong></td><td align="center">19言語</td><td align="center">非対応</td></tr>
+<tr><td><strong>&#128274; 暗号化金庫</strong></td><td align="center">AES-256 + Face ID</td><td align="center">非対応</td></tr>
+<tr><td><strong>&#128506; 防災マップ</strong></td><td align="center">オフライン避難所検索</td><td align="center">非対応</td></tr>
 <tr><td><strong>&#128176; 料金</strong></td><td align="center"><strong>完全無料</strong></td><td align="center">月額 $20</td></tr>
 </tbody>
 </table>
@@ -220,7 +380,7 @@ WhisperKit によるオンデバイス音声認識。
 iPhone 12 / 13        →  Qwen3 0.6B - 1.7B （軽量・高速）
 iPhone 14 Pro 以降     →  Qwen3 4B, Gemma 3 4B （高性能）
 iPhone 15/16 Pro Max  →  Qwen3 8B, ELYZA 8B （最高品質）
-iPad (M1以降)          →  全モデル対応
+Mac (Apple Silicon)   →  全モデル対応 + P2P推論サーバー
 ```
 
 <br>
@@ -277,9 +437,9 @@ iPad (M1以降)          →  全モデル対応
 
 <br>
 
-## &#128421; P2P推論 ― iPhoneとMacが連携
+## &#128421; P2P推論 ― iPhone + Mac が連携
 
-重い推論処理をローカルネットワーク経由でMacにオフロード。データはLAN内のみで完結。
+重い推論をMacにオフロード。データはLAN内のみで完結。
 
 ```mermaid
 graph LR
@@ -304,7 +464,7 @@ graph LR
 
 **&#128268; 接続方法**
 
-1. Macでモデルをロード
+1. Macでモデルをロード（サーバーダッシュボードで管理）
 2. Mac が `_eliochat._tcp` でアドバタイズ開始
 3. iPhoneがBonjourでMacを自動発見
 4. 4桁コードでセキュアにペアリング
@@ -326,6 +486,8 @@ graph LR
 </td>
 </tr>
 </table>
+
+> **Mac版の特別機能**: サーバーダッシュボードで接続クライアント数・リクエスト処理数・トークン収益をリアルタイム監視
 
 <br>
 
@@ -366,20 +528,20 @@ graph LR
 </td>
 <td align="center" width="20%">
 <br>
-<strong>&#127471;&#127477;</strong>
+<strong>&#127760;</strong>
 <br><br>
-<strong>日本語で<br>AIを使いたい人</strong>
+<strong>海外旅行で<br>通訳が必要な人</strong>
 <br>
-<sub>日本語特化モデル<br>多数搭載</sub>
+<sub>19言語リアルタイム<br>通訳機能</sub>
 <br><br>
 </td>
 <td align="center" width="20%">
 <br>
-<strong>&#128197;</strong>
+<strong>&#128506;</strong>
 <br><br>
-<strong>AIとカレンダーを<br>連携させたい人</strong>
+<strong>災害への備えを<br>したい人</strong>
 <br>
-<sub>MCP対応<br>13種類の連携</sub>
+<sub>オフライン避難所<br>防災ナレッジ</sub>
 <br><br>
 </td>
 </tr>
@@ -391,8 +553,24 @@ graph LR
 
 <br>
 
+## &#128241; 動作環境
+
+| プラットフォーム | 要件 | 推奨モデル |
+|:---|:---|:---|
+| **iPhone** | iOS 17.0+ | Qwen3 0.6B - 8B |
+| **iPad** | iPadOS 17.0+ | 全モデル対応 |
+| **Mac** | macOS 14.0+ (Apple Silicon) | 全モデル + P2Pサーバー |
+
+<br>
+
+---
+
+<br>
+
 <details>
 <summary><h2>&#128736;&#65039; 開発者向け情報</h2></summary>
+
+<br>
 
 ### ビルド
 
@@ -421,6 +599,7 @@ graph TB
         V1[ChatView]
         V2[SettingsView]
         V3[PeerConnectionView]
+        V4[ServerDashboardView &#128187;]
     end
 
     subgraph App["&#128241; App Layer"]
@@ -443,27 +622,38 @@ graph TB
     end
 
     subgraph LLM["&#9881;&#65039; LLM Engine"]
-        L1["ModelLoader<br>(30+ GGUF models)"]
-        L2["CoreMLInference<br>(llama.cpp)"]
-        L3["WhisperManager<br>(WhisperKit)"]
+        L1["ModelLoader (30+ GGUF)"]
+        L2["CoreMLInference (llama.cpp)"]
+        L3["WhisperManager"]
     end
 
-    subgraph MCP["&#128279; MCP Servers"]
+    subgraph MCP["&#128279; MCP (13 Servers)"]
         M1["Calendar / Reminders"]
         M2["Contacts / Photos"]
         M3["Location / Web Search"]
     end
 
+    subgraph Features["&#127775; Features"]
+        F1["&#127760; Interpreter (19 lang)"]
+        F2["&#128274; Vault (AES-256)"]
+        F3["&#128506; Maps (Shelters)"]
+        F4["&#128218; Knowledge (RAG)"]
+        F5["&#128172; Social (DM)"]
+        F6["&#128257; Barter (P2P)"]
+        F7["&#127918; Games"]
+    end
+
     subgraph P2P["&#128421; P2P Server"]
         P1[PrivateServerManager]
         P2[MeshP2PManager]
-        P3["ProximityDiscovery<br>(Bonjour)"]
+        P3[ProximityDiscovery]
     end
 
     Views --> App --> Agent --> ChatModes
     ChatModes --> LLM
     Agent --> MCP
     ChatModes --> P2P
+    App --> Features
 ```
 
 ### ディレクトリ構造
@@ -473,13 +663,20 @@ LocalAIAgent/
 ├── App/            AppState, Siri Shortcuts
 ├── Agent/          AgentOrchestrator, ToolParser
 ├── LLM/            ModelLoader, CoreMLInference, WhisperKit
-├── ChatModes/      ChatModeManager
+├── ChatModes/
 │   ├── Backends/   Local, Cloud, P2P, Speculative
 │   └── P2PServer/  PrivateServer, MeshP2P
-├── Discovery/      Bonjour / QR Code
 ├── MCP/            13 MCP Servers
+├── Interpreter/    19言語リアルタイム通訳
+├── Vault/          AES-256暗号化金庫
+├── Maps/           オフライン防災マップ
+├── Knowledge/      緊急時ナレッジベース (RAG)
+├── Social/         フレンド・DM
+├── Barter/         物々交換ボード
+├── Games/          ミニゲーム4種
+├── Discovery/      Bonjour / BLE / QR Code
 ├── Security/       DeviceIdentity, Keychain
-├── TokenEconomy/   Subscriptions, Tokens
+├── TokenEconomy/   トークン・スキルマーケット
 ├── Views/          SwiftUI
 └── Resources/      Assets, Localization
 ```
@@ -502,7 +699,11 @@ LocalAIAgent/
 
 <p align="center">
   <a href="https://apps.apple.com/app/elio-chat/id6757635481">
-    <img src="https://img.shields.io/badge/App_Store-無料ダウンロード-0D96F6?style=for-the-badge&logo=apple&logoColor=white" alt="App Store">
+    <img src="https://img.shields.io/badge/iPhone_%2F_iPad-App_Store-0D96F6?style=for-the-badge&logo=apple&logoColor=white" alt="iOS">
+  </a>
+  &nbsp;
+  <a href="https://apps.apple.com/app/elio-chat/id6757635481">
+    <img src="https://img.shields.io/badge/Mac-App_Store-000000?style=for-the-badge&logo=apple&logoColor=white" alt="Mac">
   </a>
 </p>
 
@@ -517,7 +718,7 @@ LocalAIAgent/
 
 <p align="center">
 
-**謝辞**: [llama.cpp](https://github.com/ggerganov/llama.cpp) ・ [Model Context Protocol](https://modelcontextprotocol.io/) ・ [WhisperKit](https://github.com/argmaxinc/WhisperKit)
+**謝辞**: [llama.cpp](https://github.com/ggerganov/llama.cpp) ・ [MCP](https://modelcontextprotocol.io/) ・ [WhisperKit](https://github.com/argmaxinc/WhisperKit)
 
 </p>
 
