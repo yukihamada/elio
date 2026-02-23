@@ -148,16 +148,40 @@ final class ChatModeTests: XCTestCase {
     }
 
     func testCloudProviderCaseIterable() {
-        XCTAssertEqual(CloudProvider.allCases.count, 3)
+        XCTAssertEqual(CloudProvider.allCases.count, 4)
         XCTAssertTrue(CloudProvider.allCases.contains(.openai))
         XCTAssertTrue(CloudProvider.allCases.contains(.anthropic))
         XCTAssertTrue(CloudProvider.allCases.contains(.google))
+        XCTAssertTrue(CloudProvider.allCases.contains(.openrouter))
     }
 
     func testCloudProviderIdentifiable() {
         XCTAssertEqual(CloudProvider.openai.id, "openai")
         XCTAssertEqual(CloudProvider.anthropic.id, "anthropic")
         XCTAssertEqual(CloudProvider.google.id, "google")
+        XCTAssertEqual(CloudProvider.openrouter.id, "openrouter")
+    }
+
+    func testOpenRouterProvider() {
+        let provider = CloudProvider.openrouter
+        XCTAssertEqual(provider.rawValue, "openrouter")
+        XCTAssertFalse(provider.displayName.isEmpty)
+        XCTAssertFalse(provider.defaultModel.isEmpty)
+        XCTAssertTrue(provider.baseURL.hasPrefix("https://"))
+    }
+
+    // MARK: - Security Info Tests
+
+    func testChatModeSecurityInfo() {
+        for mode in ChatMode.allCases {
+            XCTAssertFalse(mode.securityInfo.isEmpty, "\(mode) should have security info")
+        }
+        // ChatWeb should mention encryption
+        XCTAssertTrue(ChatMode.chatweb.securityInfo.contains("暗号化"))
+        // Local should mention private
+        XCTAssertTrue(ChatMode.local.securityInfo.contains("プライベート"))
+        // Public P2P should not guarantee full protection
+        XCTAssertTrue(ChatMode.publicP2P.securityInfo.contains("保証されません"))
     }
 
     // MARK: - InferenceError Tests

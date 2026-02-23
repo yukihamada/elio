@@ -130,6 +130,7 @@
 		DITST001 /* DeviceIdentityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DITST002 /* DeviceIdentityTests.swift */; };
 		FMTST001 /* FriendsManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FMTST002 /* FriendsManagerTests.swift */; };
 		ISTST001 /* InferenceServerConfigTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ISTST002 /* InferenceServerConfigTests.swift */; };
+		C1D2E3F4A5B6C7D8E9F0A1B2 /* AnonymousMessagingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C2D3E4F5A6B7C8D9E0F1A2 /* AnonymousMessagingTests.swift */; };
 		MMTST001 /* MessagingManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = MMTST002 /* MessagingManagerTests.swift */; };
 		MLTST001 /* ModelLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = MLTST002 /* ModelLoaderTests.swift */; };
 		P2TST001 /* P2PBackendTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = P2TST002 /* P2PBackendTests.swift */; };
@@ -367,6 +368,7 @@
 		DITST002 /* DeviceIdentityTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceIdentityTests.swift; sourceTree = "<group>"; };
 		FMTST002 /* FriendsManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsManagerTests.swift; sourceTree = "<group>"; };
 		ISTST002 /* InferenceServerConfigTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InferenceServerConfigTests.swift; sourceTree = "<group>"; };
+		B1C2D3E4F5A6B7C8D9E0F1A2 /* AnonymousMessagingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnonymousMessagingTests.swift; sourceTree = "<group>"; };
 		MMTST002 /* MessagingManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagingManagerTests.swift; sourceTree = "<group>"; };
 		MLTST002 /* ModelLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelLoaderTests.swift; sourceTree = "<group>"; };
 		P2TST002 /* P2PBackendTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = P2PBackendTests.swift; sourceTree = "<group>"; };
@@ -842,6 +844,7 @@
 			isa = PBXGroup;
 			children = (
 				TEST001 /* LocalAIAgentTests.swift */,
+				B1C2D3E4F5A6B7C8D9E0F1A2 /* AnonymousMessagingTests.swift */,
 				BKTST002 /* BackendTests.swift */,
 				CHTST002 /* ChatModeTests.swift */,
 				CMTST002 /* ChatModeManagerTests.swift */,
@@ -1206,6 +1209,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				TEST004 /* LocalAIAgentTests.swift in Sources */,
+				C1D2E3F4A5B6C7D8E9F0A1B2 /* AnonymousMessagingTests.swift in Sources */,
 				BKTST001 /* BackendTests.swift in Sources */,
 				CHTST001 /* ChatModeTests.swift in Sources */,
 				CMTST001 /* ChatModeManagerTests.swift in Sources */,

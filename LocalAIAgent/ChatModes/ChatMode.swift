@@ -41,21 +41,43 @@ enum ChatMode: String, CaseIterable, Codable, Identifiable {
     var description: String {
         switch self {
         case .local:
-            return String(localized: "chatmode.local.desc", defaultValue: "On-device • Free • Private")
+            return String(localized: "chatmode.local.desc", defaultValue: "完全無料 • 完全プライベート • オフライン対応")
         case .chatweb:
-            return String(localized: "chatmode.chatweb.desc", defaultValue: "クラウドを使って色々なLLMを最速で比較できます")
+            return String(localized: "chatmode.chatweb.desc", defaultValue: "無料 • 通信完全暗号化 • Pro: 学習拒否モード対応")
         case .privateP2P:
-            return String(localized: "chatmode.private.desc", defaultValue: "Trusted devices • Your network")
+            return String(localized: "chatmode.private.desc", defaultValue: "無料 • 信頼済みデバイスのみ • LAN内暗号化")
         case .fast:
-            return String(localized: "chatmode.fast.desc", defaultValue: "Groq API • Super fast")
+            return String(localized: "chatmode.fast.desc", defaultValue: "1トークン • Groq超高速推論")
         case .genius:
-            return String(localized: "chatmode.genius.desc", defaultValue: "GPT-5/Claude • Best quality")
+            return String(localized: "chatmode.genius.desc", defaultValue: "5トークン • GPT-4o/Claude/Gemini最高品質")
         case .publicP2P:
-            return String(localized: "chatmode.public.desc", defaultValue: "Community • Shared computing")
+            return String(localized: "chatmode.public.desc", defaultValue: "無料〜2トークン • 一般的に安全 • コミュニティ共有")
         case .p2pMesh:
-            return String(localized: "chatmode.mesh.desc", defaultValue: "Offline Grid • Community mesh network")
+            return String(localized: "chatmode.mesh.desc", defaultValue: "無料 • オフライン対応 • メッシュネットワーク")
         case .speculative:
-            return String(localized: "chatmode.speculative.desc", defaultValue: "Ultra-fast • Draft + P2P Verification")
+            return String(localized: "chatmode.speculative.desc", defaultValue: "2トークン • ローカル下書き+P2P検証で超高速")
+        }
+    }
+
+    /// Security level description
+    var securityInfo: String {
+        switch self {
+        case .local:
+            return "完全プライベート — データは一切外部に送信されません"
+        case .chatweb:
+            return "通信は完全に暗号化されます。Proプラン以上で学習拒否モードをONにできます"
+        case .privateP2P:
+            return "信頼済みデバイス間のLAN内通信。暗号化されています"
+        case .fast:
+            return "Groq APIへ暗号化通信。Groqのプライバシーポリシーに準拠"
+        case .genius:
+            return "各プロバイダへ暗号化通信。プロバイダのプライバシーポリシーに準拠"
+        case .publicP2P:
+            return "一般的に安全ですが、完全なプライバシー保護は保証されません"
+        case .p2pMesh:
+            return "ローカルメッシュネットワーク内。一般的に安全です"
+        case .speculative:
+            return "ローカル下書き（プライベート）+ P2P検証（一般的に安全）"
         }
     }
 
