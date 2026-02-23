@@ -78,6 +78,7 @@ final class KeychainManager {
 
 enum APIKeyProvider: String, CaseIterable, Identifiable {
     case chatweb = "chatweb"
+    case teai = "teai"
     case groq = "groq"
     case openai = "openai"
     case anthropic = "anthropic"
@@ -88,7 +89,8 @@ enum APIKeyProvider: String, CaseIterable, Identifiable {
 
     var displayName: String {
         switch self {
-        case .chatweb: return "ChatWeb Device"
+        case .chatweb: return "chatweb.ai"
+        case .teai: return "teai.io"
         case .groq: return "Groq"
         case .openai: return "OpenAI"
         case .anthropic: return "Anthropic"
@@ -104,6 +106,7 @@ enum APIKeyProvider: String, CaseIterable, Identifiable {
     var placeholder: String {
         switch self {
         case .chatweb: return "cw_elio_..."
+        case .teai: return "te_..."
         case .groq: return "gsk_..."
         case .openai: return "sk-..."
         case .anthropic: return "sk-ant-..."
@@ -115,6 +118,7 @@ enum APIKeyProvider: String, CaseIterable, Identifiable {
     var helpURL: URL? {
         switch self {
         case .chatweb: return URL(string: "https://chatweb.ai")
+        case .teai: return URL(string: "https://teai.io")
         case .groq: return URL(string: "https://console.groq.com/keys")
         case .openai: return URL(string: "https://platform.openai.com/api-keys")
         case .anthropic: return URL(string: "https://console.anthropic.com/settings/keys")
@@ -125,11 +129,12 @@ enum APIKeyProvider: String, CaseIterable, Identifiable {
 
     var description: String {
         switch self {
-        case .chatweb: return "Device-specific ChatWeb API key"
+        case .chatweb: return "Elio公式 - Rust製超高速API"
+        case .teai: return "Elio公式 - プライバシー重視AI"
         case .groq: return "超高速推論 (Llama, Mixtral)"
         case .openai: return "GPT-4o, GPT-4o-mini, o1"
-        case .anthropic: return "Claude 3.5 Sonnet, Claude 3 Opus"
-        case .google: return "Gemini 1.5 Pro, Gemini 1.5 Flash"
+        case .anthropic: return "Claude Sonnet 4.5, Claude 3.5"
+        case .google: return "Gemini 2.0 Flash, Gemini 1.5 Pro"
         case .openrouter: return "200+ models (Claude, GPT, Llama, etc.)"
         }
     }
@@ -140,7 +145,8 @@ enum APIKeyProvider: String, CaseIterable, Identifiable {
         case .openai: return .openai
         case .anthropic: return .anthropic
         case .google: return .google
-        case .chatweb, .groq, .openrouter: return nil
+        case .openrouter: return .openrouter
+        case .chatweb, .teai, .groq: return nil
         }
     }
 }

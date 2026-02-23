@@ -143,6 +143,37 @@ struct ModelSelectorView: View {
                     outputCost: 0.3
                 ),
             ]
+        case .openrouter:
+            return [
+                ModelInfo(
+                    id: "anthropic/claude-3.5-sonnet",
+                    name: "Claude 3.5 Sonnet",
+                    description: "Anthropic経由（200K context）",
+                    inputCost: 3,
+                    outputCost: 15
+                ),
+                ModelInfo(
+                    id: "openai/gpt-4o",
+                    name: "GPT-4o",
+                    description: "OpenAI経由（128K context）",
+                    inputCost: 2.5,
+                    outputCost: 10
+                ),
+                ModelInfo(
+                    id: "meta-llama/llama-3.3-70b-instruct",
+                    name: "Llama 3.3 70B",
+                    description: "Meta製オープンモデル",
+                    inputCost: 0.4,
+                    outputCost: 0.4
+                ),
+                ModelInfo(
+                    id: "google/gemini-2.0-flash-001",
+                    name: "Gemini 2.0 Flash",
+                    description: "Google経由・高速",
+                    inputCost: 0.1,
+                    outputCost: 0.4
+                ),
+            ]
         }
     }
 }

@@ -325,6 +325,50 @@ AIが最適なマッチングを提案。
 
 <br>
 
+## &#9729;&#65039; クラウドプロバイダー ― オフライン以外も最強
+
+ローカル推論に加えて、7つのクラウドプロバイダーに対応。APIキーを設定するだけで即座に利用可能。
+
+<table>
+<tr>
+<td width="50%" valign="top">
+
+#### &#11088; Elio公式（おすすめ）
+
+| プロバイダー | 特徴 |
+|:---|:---|
+| **[chatweb.ai](https://chatweb.ai)** | Rust製超高速バックエンド。APIキー不要で即利用可能。Claude / GPT-4o / 自動選択。プライバシー重視設計。 |
+| **[teai.io](https://teai.io)** | Rust製超高速バックエンド。プライバシー最優先。Elio公式インフラ。 |
+
+> chatweb.ai と teai.io は [nanobot](https://github.com/yukihamada/nanobot)（Rust製）で稼働。
+> 超低レイテンシ・プライバシー重視・Elio公式推奨。
+
+</td>
+<td width="50%" valign="top">
+
+#### &#128268; サードパーティ
+
+| プロバイダー | モデル |
+|:---|:---|
+| **OpenAI** | GPT-4o, GPT-4o Mini, o1 |
+| **Anthropic** | Claude Sonnet 4.5, Claude 3.5 |
+| **Google** | Gemini 2.0 Flash, Gemini 1.5 Pro |
+| **Groq** | Llama 3.3 70B（超高速推論） |
+| **OpenRouter** | 200以上のモデル（Claude, GPT, Llama, Mistral 等） |
+
+> 設定画面からAPIキーを入力するだけで利用可能。
+> 複数プロバイダーを切り替えて比較できます。
+
+</td>
+</tr>
+</table>
+
+<br>
+
+---
+
+<br>
+
 ## &#129302; 30以上のAIモデルから選択
 
 <table>

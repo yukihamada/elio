@@ -52,8 +52,30 @@ final class ChatWebBackend: InferenceBackend, ObservableObject {
     /// Last model used (from `done` event)
     @Published private(set) var lastModelUsed: String?
 
-    // ChatWeb.ai API settings
-    private let streamURL = "https://api.chatweb.ai/api/v1/chat/stream"
+    // API endpoint - supports chatweb.ai and teai.io
+    enum APIEndpoint: String {
+        case chatweb = "chatweb"
+        case teai = "teai"
+
+        var streamURL: String {
+            switch self {
+            case .chatweb: return "https://api.chatweb.ai/api/v1/chat/stream"
+            case .teai: return "https://api.teai.io/api/v1/chat/stream"
+            }
+        }
+
+        var registerURL: String {
+            switch self {
+            case .chatweb: return "https://api.chatweb.ai/api/v1/devices/register"
+            case .teai: return "https://api.teai.io/api/v1/devices/register"
+            }
+        }
+    }
+
+    /// Current API endpoint (default: chatweb.ai)
+    var endpoint: APIEndpoint = .chatweb
+
+    private var streamURL: String { endpoint.streamURL }
 
     /// 超高速接続用のURLSession（HTTP/2、接続プール、Keep-Alive有効）
     private lazy var fastSession: URLSession = {

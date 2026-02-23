@@ -293,6 +293,8 @@ final class ChatModeManager: ObservableObject {
                 return keychain.hasAPIKey(for: .anthropic)
             case .google:
                 return keychain.hasAPIKey(for: .google)
+            case .openrouter:
+                return keychain.hasAPIKey(for: .openrouter)
             }
         }
     }

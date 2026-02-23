@@ -23,6 +23,8 @@ final class CloudBackend: InferenceBackend, ObservableObject {
             return keychain.hasAPIKey(for: .anthropic)
         case .google:
             return keychain.hasAPIKey(for: .google)
+        case .openrouter:
+            return keychain.hasAPIKey(for: .openrouter)
         }
     }
 
@@ -46,6 +48,8 @@ final class CloudBackend: InferenceBackend, ObservableObject {
             return try await generateAnthropic(messages: messages, systemPrompt: systemPrompt, settings: settings, onToken: onToken)
         case .google:
             return try await generateGoogle(messages: messages, systemPrompt: systemPrompt, settings: settings, onToken: onToken)
+        case .openrouter:
+            return try await generateOpenRouter(messages: messages, systemPrompt: systemPrompt, settings: settings, onToken: onToken)
         }
     }
 
@@ -268,6 +272,46 @@ final class CloudBackend: InferenceBackend, ObservableObject {
         request.httpBody = try JSONSerialization.data(withJSONObject: body)
 
         return try await streamGoogleResponse(request: request, onToken: onToken)
+    }
+
+    // MARK: - OpenRouter (OpenAI-compatible)
+
+    private func generateOpenRouter(
+        messages: [Message],
+        systemPrompt: String,
+        settings: ModelSettings,
+        onToken: @escaping (String) -> Void
+    ) async throws -> String {
+        guard let apiKey = keychain.getAPIKey(for: .openrouter) else {
+            throw InferenceError.apiKeyMissing
+        }
+
+        var request = URLRequest(url: URL(string: "https://openrouter.ai/api/v1/chat/completions")!)
+        request.httpMethod = "POST"
+        request.setValue("Bearer \(apiKey)", forHTTPHeaderField: "Authorization")
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue("ElioChat", forHTTPHeaderField: "X-Title")
+
+        var apiMessages: [[String: Any]] = [
+            ["role": "system", "content": systemPrompt]
+        ]
+        for message in messages {
+            let role = message.role == .user ? "user" : "assistant"
+            apiMessages.append(["role": role, "content": message.content])
+        }
+
+        let body: [String: Any] = [
+            "model": selectedModel,
+            "messages": apiMessages,
+            "temperature": Double(settings.temperature),
+            "max_tokens": settings.maxTokens,
+            "stream": true
+        ]
+
+        request.httpBody = try JSONSerialization.data(withJSONObject: body)
+
+        // OpenRouter uses OpenAI-compatible streaming format
+        return try await streamOpenAIResponse(request: request, onToken: onToken)
     }
 
     private func streamGoogleResponse(request: URLRequest, onToken: @escaping (String) -> Void) async throws -> String {

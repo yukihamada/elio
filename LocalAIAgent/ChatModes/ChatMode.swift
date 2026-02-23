@@ -132,6 +132,7 @@ enum CloudProvider: String, CaseIterable, Codable, Identifiable {
     case openai = "openai"
     case anthropic = "anthropic"
     case google = "google"
+    case openrouter = "openrouter"
 
     var id: String { rawValue }
 
@@ -140,6 +141,7 @@ enum CloudProvider: String, CaseIterable, Codable, Identifiable {
         case .openai: return "OpenAI (GPT-4o)"
         case .anthropic: return "Anthropic (Claude 3.5)"
         case .google: return "Google (Gemini 1.5)"
+        case .openrouter: return "OpenRouter (200+ models)"
         }
     }
 
@@ -148,6 +150,7 @@ enum CloudProvider: String, CaseIterable, Codable, Identifiable {
         case .openai: return "brain"
         case .anthropic: return "sparkles"
         case .google: return "globe"
+        case .openrouter: return "arrow.triangle.branch"
         }
     }
 
@@ -157,6 +160,7 @@ enum CloudProvider: String, CaseIterable, Codable, Identifiable {
         case .openai: return "gpt-4o"
         case .anthropic: return "claude-3-5-sonnet-20241022"
         case .google: return "gemini-1.5-pro"
+        case .openrouter: return "anthropic/claude-3.5-sonnet"
         }
     }
 
@@ -166,6 +170,7 @@ enum CloudProvider: String, CaseIterable, Codable, Identifiable {
         case .openai: return "https://api.openai.com/v1"
         case .anthropic: return "https://api.anthropic.com/v1"
         case .google: return "https://generativelanguage.googleapis.com/v1beta"
+        case .openrouter: return "https://openrouter.ai/api/v1"
         }
     }
 
@@ -175,6 +180,7 @@ enum CloudProvider: String, CaseIterable, Codable, Identifiable {
         case .openai: return .openai
         case .anthropic: return .anthropic
         case .google: return .google
+        case .openrouter: return .openrouter
         }
     }
 }
