@@ -1,272 +1,233 @@
 <p align="center">
-  <img src="LocalAIAgent/Resources/Assets.xcassets/AppIcon.appiconset/AppIcon.png" width="128" height="128" alt="ElioChat App Icon">
+  <img src="LocalAIAgent/Resources/Assets.xcassets/AppIcon.appiconset/AppIcon.png" width="120" height="120" alt="ElioChat">
 </p>
 
 <h1 align="center">ElioChat</h1>
 
 <p align="center">
-  <strong>Your secret-keeping second brain</strong>
+  <strong>あなたの秘密を守る、第2の脳。</strong><br>
+  完全無料・広告なし・オフライン対応のプライベートAIチャット
 </p>
 
 <p align="center">
   <a href="https://apps.apple.com/app/elio-chat/id6757635481">
-    <img src="https://img.shields.io/badge/App_Store-Download-blue?logo=apple&logoColor=white" alt="App Store">
+    <img src="https://img.shields.io/badge/App_Store-無料ダウンロード-0D96F6?style=for-the-badge&logo=apple&logoColor=white" alt="App Store">
   </a>
-  <a href="https://elio.love">
-    <img src="https://img.shields.io/badge/website-elio.love-purple" alt="Website">
-  </a>
-  <img src="https://img.shields.io/badge/platform-iOS%2017%2B-blue" alt="Platform">
-  <img src="https://img.shields.io/badge/swift-5.9-orange" alt="Swift">
-  <img src="https://img.shields.io/badge/license-MIT-green" alt="License">
 </p>
 
 <p align="center">
-  <a href="README.ja.md">日本語</a> | <strong>English</strong>
+  <img src="https://img.shields.io/badge/iOS-17.0+-000000?style=flat-square&logo=apple" alt="iOS 17+">
+  <img src="https://img.shields.io/badge/Swift-5.9-F05138?style=flat-square&logo=swift&logoColor=white" alt="Swift 5.9">
+  <img src="https://img.shields.io/badge/License-MIT-green?style=flat-square" alt="MIT License">
+  <img src="https://img.shields.io/badge/Models-30%2B-blue?style=flat-square" alt="30+ Models">
+  <img src="https://img.shields.io/badge/MCP-13_servers-purple?style=flat-square" alt="MCP">
+</p>
+
+<p align="center">
+  <strong>日本語</strong> | <a href="README.en.md">English</a>
 </p>
 
 ---
 
-## Overview
+## アプリの様子
 
-**ElioChat** is a fully local AI assistant app that runs entirely on your iPhone or iPad. It works without an internet connection, completely protects your privacy, and integrates with iOS features like Calendar, Reminders, Contacts, and Photos.
-
-### Why ElioChat? - Safer than ChatGPT
-
-| | ElioChat | ChatGPT |
-|-----|------|---------|
-| **Offline** | Works in Airplane Mode | Requires Internet |
-| **Data Transmission** | Zero (fully local) | Sent to cloud |
-| **Used for AI Training** | Never | May be used |
-| **Enterprise Use** | OK even if ChatGPT is banned | Depends on policy |
-| **Privacy** | Stays on device only | Stored on servers |
-| **MCP Support** | 13 integrations | Not supported |
-| **P2P Inference** | iPhone-Mac collaboration | Not supported |
+<p align="center">
+  <img src="fastlane/screenshots_final/ja/iPhone 16 Pro Max-01_WelcomeScreen.png" width="19%" alt="ウェルカム">
+  <img src="fastlane/screenshots_final/ja/iPhone 16 Pro Max-02_ChatSchedule.png" width="19%" alt="予定管理">
+  <img src="fastlane/screenshots_final/ja/iPhone 16 Pro Max-03_ChatCode.png" width="19%" alt="コード支援">
+  <img src="fastlane/screenshots_final/ja/iPhone 16 Pro Max-05_ChatPrivacy.png" width="19%" alt="プライバシー">
+  <img src="fastlane/screenshots_final/ja/iPhone 16 Pro Max-08_Settings.png" width="19%" alt="モデル選択">
+</p>
 
 ---
 
-## Features
+## ElioChatでできること
 
-### Local LLM Inference
+### 1. 機内モードでもAIと会話
 
-| Category | Models | Size Range |
-|----------|--------|------------|
-| **Recommended** | Qwen3 (0.6B-8B), Gemma 3 (1B-4B), Phi-4 Mini | 500MB-5GB |
-| **Japanese** | TinySwallow 1.5B, ELYZA Llama 3 8B, Swallow 8B | 1GB-5.2GB |
-| **Vision** | Qwen3-VL (2B-8B), SmolVLM 2B | 1.1GB-5GB |
-| **Efficient** | LFM2 (350M-1.2B), Jan Nano (128K/1M context) | 350MB-731MB |
+```
+あなた: 今日の会議の議事録をまとめて
 
-- Fast inference with llama.cpp (GGUF format)
-- Real-time download progress with speed & ETA
-- Device-optimized model recommendations
+ElioChat: 承知しました。以下の形式でまとめます：
+  日時: 2月23日 14:00-15:00
+  参加者: 田中、佐藤、山田
+  議題: Q1売上報告...
+```
 
-### MCP (Model Context Protocol) Integration
+インターネット不要。飛行機の中でも、地下鉄でも、山の中でも動きます。
+すべての処理がiPhone上で完結するため、データが外部に漏れることはありません。
 
-ElioChat is the **first iOS app** to support Anthropic's [Model Context Protocol](https://modelcontextprotocol.io/), connecting AI with iOS system features:
+### 2. カレンダー・リマインダーをAIで操作
 
-| Server | Function |
-|--------|----------|
-| Calendar | View, create, delete events |
-| Reminders | Manage reminders |
-| Contacts | Search and view contacts |
-| Location | Get current location |
-| Photos | Access photo library |
-| FileSystem | Read and write documents |
-| Web Search | Anonymous DuckDuckGo search |
+```
+あなた: 今日の予定を教えて
 
-### P2P Inference (iPhone-Mac)
+ElioChat: カレンダーを確認しました。本日の予定：
+  10:00 - チーム定例
+  12:00 - 佐藤さんとランチ
+  14:00 - プロジェクトレビュー
+  16:00 - クライアント電話
+```
 
-Offload heavy AI inference to your Mac over local network:
+```
+あなた: 明日10時にゴミ出しのリマインダー作って
 
-- **Bonjour Discovery** - Automatic Mac detection on the same network
-- **Secure Pairing** - 4-digit code verification for trusted connections
-- **Auto-reconnect** - Trusted devices reconnect automatically on app launch
-- **Speculative Decoding** - Run small model locally + large model on Mac for faster output
-- **Private Server** - Mac runs as a private inference server via `_eliochat._tcp`
-- **Mesh Networking** - Multiple devices can form a P2P inference mesh
+ElioChat: リマインダーを作成しました：
+  ゴミ出し - 明日 10:00
+```
 
-### Chat Modes
+iOS標準のカレンダー・リマインダー・連絡先・写真と直接連携。
+[MCP（Model Context Protocol）](https://modelcontextprotocol.io/) 対応の世界初iOSアプリです。
 
-| Mode | Description |
-|------|-------------|
-| **Local** | On-device inference only (fully offline) |
-| **Cloud** | ChatWeb API / Groq cloud backends |
-| **Private P2P** | Connect to your Mac for powerful inference |
-| **P2P Mesh** | Multi-device collaborative inference |
-| **Speculative** | Local draft + remote verify for speed |
+### 3. 30以上のAIモデルから選べる
 
-### Vision (Image Recognition)
+| おすすめ | 日本語特化 | 画像認識 |
+|:--------:|:----------:|:--------:|
+| Qwen3 (0.6B-8B) | TinySwallow 1.5B | Qwen3-VL (2B-8B) |
+| Gemma 3 (1B-4B) | ELYZA Llama 3 8B | SmolVLM 2B |
+| Phi-4 Mini | Swallow 8B | |
 
-- Attach images and ask AI questions about them
-- Analyze photos taken with your camera
-- Supports Qwen3-VL (2B/4B/8B) and SmolVLM models
-- Automatic vision model download suggestions
+デバイスに合わせて最適なモデルを自動推奨。GGUF形式対応で高速推論。
 
-### Voice Input
+### 4. 写真をAIに見せて質問
 
-- On-device speech recognition with WhisperKit
-- Japanese & English support
-- Models cached locally after first download
+```
+あなた: [写真を添付] これは何の花？
 
-### UI/UX
+ElioChat: これはソメイヨシノ（桜）です。
+  開花時期は3月下旬〜4月上旬で...
+```
 
-- Dark/Light mode support
-- Real-time streaming display
-- Conversation history management
-- **Conversation search** - Find past conversations instantly
-- **Share cards** - Create beautiful images to share on social media
-- **Export conversations** - Save as text or JSON
-- **Siri Shortcuts** - "Hey Siri, ask ElioChat"
+カメラで撮影した写真やライブラリの画像をその場で分析。
+Qwen3-VL / SmolVLM による画像認識AIを搭載。
+
+### 5. 音声で入力
+
+WhisperKit によるオンデバイス音声認識。
+日本語・英語対応。音声データも外部送信なし。
+
+### 6. Macの推論パワーを借りる（P2P推論）
+
+```
+┌──────────┐     WiFi / LAN      ┌──────────┐
+│  iPhone  │ ◄──────────────────► │   Mac    │
+│ 小型モデル │   Bonjour自動検出    │ 大型モデル │
+│  で下書き  │   暗号化P2P接続     │  で検証   │
+└──────────┘                     └──────────┘
+```
+
+- 同一ネットワーク上のMacを自動発見
+- 4桁コードでセキュアにペアリング
+- 次回以降は自動接続
+- 投機的デコードで高速化（ローカル下書き + Mac検証）
 
 ---
 
-## Installation
+## ChatGPTとの比較
 
-### From App Store
+|  | ElioChat | ChatGPT |
+|:---|:---:|:---:|
+| オフライン動作 | 機内モードOK | ネット必須 |
+| データ送信 | ゼロ | クラウドに送信 |
+| AI学習に使用 | されない | される可能性あり |
+| 企業利用 | ChatGPT禁止企業でもOK | 規定による |
+| 会話の保存先 | 端末内のみ | サーバーに保存 |
+| MCP連携 | 13種類 | 非対応 |
+| P2P推論 | Mac連携可能 | 非対応 |
+| 料金 | 完全無料 | 月額$20 |
 
-Download from the [App Store](https://apps.apple.com/app/elio-chat/id6757635481) (free, no ads).
+---
 
-### Build from Source
+## こんな人におすすめ
 
-**Requirements**: iOS 17.0+, Xcode 15.0+
+- **会社の機密情報を扱う人** - ChatGPT禁止の企業でも安心
+- **飛行機・地下鉄でAIを使いたい人** - 圏外でも動作
+- **プライバシーを重視する人** - データ送信ゼロ
+- **日本語でAIを使いたい人** - 日本語特化モデル搭載
+- **AIとカレンダーを連携させたい人** - MCP対応
+
+---
+
+## 動作環境
+
+| デバイス | 推奨モデル |
+|----------|-----------|
+| iPhone 12 以降 | Qwen3 0.6B - 1.7B |
+| iPhone 14 Pro 以降 | Qwen3 4B, Gemma 3 4B |
+| iPhone 15 Pro Max | Qwen3 8B, ELYZA 8B |
+| iPad (M1以降) | 全モデル対応 |
+
+---
+
+## 開発者向け
+
+### ビルド
 
 ```bash
-git clone https://github.com/yukihamada/LocalAIAgent.git
-cd LocalAIAgent
+git clone https://github.com/yukihamada/elio.git
+cd elio
 open ElioChat.xcodeproj
 ```
 
-1. Configure Signing & Capabilities in Xcode
-2. Connect your device and Run (Cmd+R)
+1. Xcode で Signing & Capabilities を設定
+2. 実機を接続して Cmd+R
 
-### Running Tests
+### テスト
 
 ```bash
-# Unit tests (135 tests)
+# 135件のユニットテスト
 xcodebuild test -project ElioChat.xcodeproj -scheme ElioChat \
   -testPlan UnitTests -destination 'platform=iOS Simulator,name=iPhone 16'
 ```
 
----
-
-## Supported Models
-
-30+ GGUF format models organized by category:
-
-### Recommended
-| Model | Size | Best For |
-|-------|------|----------|
-| Qwen3 0.6B | ~500MB | All devices, ultra-fast |
-| Qwen3 1.7B | ~1.2GB | All devices, balanced |
-| Qwen3 4B | ~2.7GB | Pro devices, high performance |
-| Qwen3 8B | ~5GB | Pro Max, best quality |
-| Gemma 3 1B | ~700MB | All devices, Google's latest |
-| Gemma 3 4B | ~2.5GB | Pro devices, excellent |
-| Phi-4 Mini | ~2.4GB | Pro devices, best at reasoning |
-
-### Japanese Optimized
-| Model | Size | Notes |
-|-------|------|-------|
-| TinySwallow 1.5B | ~986MB | Sakana AI, high quality |
-| ELYZA Llama 3 8B | ~5.2GB | UTokyo Matsuo Lab, top tier |
-| Swallow 8B | ~5.2GB | Tokyo Tech, business docs |
-
-### Vision Models
-| Model | Size | Notes |
-|-------|------|-------|
-| Qwen3-VL 2B | ~1.1GB | All devices |
-| Qwen3-VL 4B | ~2.5GB | Pro devices |
-| Qwen3-VL 8B | ~5GB | Pro Max, best quality |
-
----
-
-## Architecture
+### アーキテクチャ
 
 ```
 LocalAIAgent/
-├── App/                    # Application layer
-│   ├── LocalAIAgentApp.swift
-│   ├── AppState.swift      # Global state management
-│   └── AppIntents.swift    # Siri Shortcuts
-├── Agent/                  # AI Agent orchestration
-│   ├── AgentOrchestrator.swift
-│   ├── ConversationManager.swift
-│   └── ToolParser.swift
-├── LLM/                    # Inference engine
-│   ├── ModelLoader.swift   # Model management & download
-│   ├── CoreMLInference.swift
-│   ├── WhisperManager.swift
-│   └── Tokenizer.swift
-├── ChatModes/              # Multi-backend chat system
-│   ├── ChatModeManager.swift
-│   ├── Backends/           # Local, Cloud, P2P, Speculative
-│   └── P2PServer/          # Private server & mesh networking
-├── Discovery/              # Device discovery (Bonjour/QR)
-├── MCP/                    # Model Context Protocol
-│   ├── MCPClient.swift
-│   └── Servers/            # Calendar, Reminders, Contacts, etc.
-├── Security/               # Device identity & keychain
-├── TokenEconomy/           # Subscriptions & token management
-├── Views/                  # SwiftUI views
-└── Resources/              # Assets & localization
+├── App/            アプリケーション層（AppState, Siri Shortcuts）
+├── Agent/          AIエージェント（Orchestrator, ToolParser）
+├── LLM/            推論エンジン（llama.cpp, WhisperKit）
+├── ChatModes/      マルチバックエンド（Local, Cloud, P2P, Speculative）
+│   ├── Backends/   各バックエンド実装
+│   └── P2PServer/  プライベートサーバー・メッシュ
+├── Discovery/      デバイス検出（Bonjour / QR）
+├── MCP/            Model Context Protocol（13サーバー）
+├── Security/       デバイスID・キーチェーン
+├── TokenEconomy/   サブスクリプション・トークン
+├── Views/          SwiftUI画面
+└── Resources/      アセット・ローカライズ
 ```
 
----
+### チャットモード
 
-## Privacy
-
-ElioChat is designed with privacy first.
-
-- **All processing happens on device**
-- **No data sent to external servers**
-- **Conversation history stored only on device**
-- **P2P connections stay on local network**
-- **Open source** - verify the code yourself
-
-### Required Permissions
-
-| Permission | Purpose |
-|------------|---------|
-| Calendar | Read/write events |
-| Reminders | Manage reminders |
-| Contacts | Search contacts |
-| Location | Get current location |
-| Photos | Load/save images |
-| Microphone | Voice input |
-| Local Network | P2P device discovery |
-
-All permissions are requested only when needed.
+| モード | 説明 |
+|--------|------|
+| Local | 端末上のみで推論（完全オフライン） |
+| Cloud | ChatWeb API / Groq |
+| Private P2P | Macの推論パワーを活用 |
+| P2P Mesh | 複数デバイスで協調推論 |
+| Speculative | ローカル下書き + リモート検証 |
 
 ---
 
-## Contributing
+## リンク
 
-Pull requests are welcome!
+|  |  |
+|:--|:--|
+| 公式サイト | [elio.love](https://elio.love) |
+| App Store | [ダウンロード](https://apps.apple.com/app/elio-chat/id6757635481) |
+| プライバシーポリシー | [elio.love/privacy](https://elio.love/privacy) |
+| 利用規約 | [elio.love/terms](https://elio.love/terms) |
 
-1. Fork this repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+## 謝辞
 
----
+- [llama.cpp](https://github.com/ggerganov/llama.cpp) - GGUF推論エンジン
+- [Model Context Protocol](https://modelcontextprotocol.io/) - AI連携プロトコル
+- [WhisperKit](https://github.com/argmaxinc/WhisperKit) - オンデバイス音声認識
 
-## License
+## ライセンス
 
-MIT License - See [LICENSE](LICENSE) for details.
-
----
-
-## Links
-
-- [Website](https://elio.love)
-- [Privacy Policy](https://elio.love/privacy)
-- [Terms of Service](https://elio.love/terms)
-
-## Acknowledgments
-
-- [llama.cpp](https://github.com/ggerganov/llama.cpp) - GGUF inference engine
-- [Model Context Protocol](https://modelcontextprotocol.io/) - AI integration protocol
-- [WhisperKit](https://github.com/argmaxinc/WhisperKit) - On-device speech recognition
+MIT License - [LICENSE](LICENSE)
 
 ---
 
