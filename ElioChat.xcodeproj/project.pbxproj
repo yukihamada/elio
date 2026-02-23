@@ -76,6 +76,7 @@
 		E8FEAD3110B72464A21351F5 /* DeveloperThanksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9FD5E3BB7666D07F90B6FE /* DeveloperThanksView.swift */; };
 		EMERKB001 /* EmergencyKnowledgeBaseServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EMERKB002 /* EmergencyKnowledgeBaseServer.swift */; };
 		EMERQV001 /* EmergencyQuickActionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EMERQV002 /* EmergencyQuickActionsView.swift */; };
+		A1B2C3D4E5F6A7B8C9D0E1F2 /* ModelSwitcherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6E7F8A9B0C1D2E3F4A5B6C7 /* ModelSwitcherView.swift */; };
 		F9B5BA92A297C87B4C263A10 /* ModelSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08FCD261ECDF172B6D58D847 /* ModelSelectorView.swift */; };
 		FC0C7203D357908E50F1A581 /* InferenceServerConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898DD0FF4816A2F2288E27CD /* InferenceServerConfig.swift */; };
 		FEEDCON01 /* FeedbackConsentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEEDCON02 /* FeedbackConsentView.swift */; };
@@ -149,6 +150,7 @@
 		WEBEXT001 /* WebContentExtractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = WEBEXT002 /* WebContentExtractor.swift */; };
 		WHISPER001 /* WhisperKit in Frameworks */ = {isa = PBXBuildFile; productRef = WHISPER002 /* WhisperKit */; };
 		WHISPER003 /* WhisperManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = WHISPER004 /* WhisperManager.swift */; };
+		E1F2A3B4C5D6E7F8A9B0C1D2 /* UnifiedConnectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A2B3C4D5E6F7A8B9C0D1E2 /* UnifiedConnectView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -187,6 +189,7 @@
 		02C88DD1647B3FE7CD3BF6D5 /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = lv.lproj/Localizable.strings; sourceTree = "<group>"; };
 		03381B1A3E027ECC9D1FEE76 /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = my.lproj/Localizable.strings; sourceTree = "<group>"; };
 		08FCD261ECDF172B6D58D847 /* ModelSelectorView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ModelSelectorView.swift; path = ModelSelectorView.swift; sourceTree = "<group>"; };
+		D6E7F8A9B0C1D2E3F4A5B6C7 /* ModelSwitcherView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ModelSwitcherView.swift; path = ModelSwitcherView.swift; sourceTree = "<group>"; };
 		0C9FD5E3BB7666D07F90B6FE /* DeveloperThanksView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DeveloperThanksView.swift; sourceTree = "<group>"; };
 		0E46A3EE6581F4478C52E995 /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = et.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0E95A5FF764597D92E800362 /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = ro.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -385,6 +388,7 @@
 		WEATHER002 /* WeatherServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherServer.swift; sourceTree = "<group>"; };
 		WEBEXT002 /* WebContentExtractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebContentExtractor.swift; sourceTree = "<group>"; };
 		WHISPER004 /* WhisperManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhisperManager.swift; sourceTree = "<group>"; };
+		F1A2B3C4D5E6F7A8B9C0D1E2 /* UnifiedConnectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnifiedConnectView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -551,10 +555,12 @@
 				0C9FD5E3BB7666D07F90B6FE /* DeveloperThanksView.swift */,
 				A9A3EC8083CC21D29D2DA7BA /* ChatWebQuickToggle.swift */,
 				08FCD261ECDF172B6D58D847 /* ModelSelectorView.swift */,
+				D6E7F8A9B0C1D2E3F4A5B6C7 /* ModelSwitcherView.swift */,
 				B105EDF08C8690D3B8739D45 /* MessagesView.swift */,
 				1CFBAD2E97F48CFE480561BF /* DirectChatView.swift */,
 				EAF9F48FF6CEC6C9BA8BE74B /* InferenceServerSettingsView.swift */,
 				NEWSFEED002 /* NewsFeedView.swift */,
+				F1A2B3C4D5E6F7A8B9C0D1E2 /* UnifiedConnectView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1182,6 +1188,7 @@
 				DF3D9B5843EBF999962CB910 /* ChatWebQuickToggle.swift in Sources */,
 				81532C268A329161B26DBE93 /* SystemPromptLocalizations.swift in Sources */,
 				F9B5BA92A297C87B4C263A10 /* ModelSelectorView.swift in Sources */,
+				A1B2C3D4E5F6A7B8C9D0E1F2 /* ModelSwitcherView.swift in Sources */,
 				94C05C178CA153A1939D6A74 /* FriendsManager.swift in Sources */,
 				AD18E45C310E417CD140100C /* MessagingManager.swift in Sources */,
 				3F2AD87B83A871ECF3AEE72B /* MessagesView.swift in Sources */,
@@ -1190,6 +1197,7 @@
 				32F957E1072AE040998CB503 /* SpeculativeBackend.swift in Sources */,
 				CC9E1A43AC5028EF1CD3CC12 /* SpeculativeVerifier.swift in Sources */,
 				FC0C7203D357908E50F1A581 /* InferenceServerConfig.swift in Sources */,
+				E1F2A3B4C5D6E7F8A9B0C1D2 /* UnifiedConnectView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

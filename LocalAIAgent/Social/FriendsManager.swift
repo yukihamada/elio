@@ -84,13 +84,13 @@ final class FriendsManager: ObservableObject {
 
     // MARK: - Friend Requests
 
-    /// Send friend request
+    /// Send friend request (anonymous: uses random alias, not real device name)
     func sendFriendRequest(to deviceId: String, name: String) async throws {
         let request = FriendRequest(
             id: UUID().uuidString,
             fromDeviceId: DeviceIdentityManager.shared.deviceId,
             toDeviceId: deviceId,
-            fromName: UIDevice.current.name,
+            fromName: anonymousDisplayName(),
             toName: name,
             sentAt: Date(),
             status: .pending
@@ -178,6 +178,21 @@ final class FriendsManager: ObservableObject {
         friends.append(friend)
         saveFriends()
         print("[Friends] Friend request accepted by \(request.fromName)")
+    }
+
+    // MARK: - Anonymity
+
+    /// Anonymous display name for P2P communication (never exposes real device name)
+    private func anonymousDisplayName() -> String {
+        let key = "anonymous_display_name"
+        if let stored = UserDefaults.standard.string(forKey: key) {
+            return stored
+        }
+        let adjectives = ["Swift", "Quiet", "Bright", "Cool", "Kind", "Bold", "Calm", "Zen"]
+        let nouns = ["Fox", "Owl", "Bear", "Cat", "Star", "Moon", "Wave", "Wind"]
+        let name = "\(adjectives.randomElement()!) \(nouns.randomElement()!) \(Int.random(in: 10...99))"
+        UserDefaults.standard.set(name, forKey: key)
+        return name
     }
 
     // MARK: - Helpers

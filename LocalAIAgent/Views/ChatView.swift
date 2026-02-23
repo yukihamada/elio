@@ -88,6 +88,8 @@ struct ChatView: View {
     @State private var showingNewsFeed = false
     // API Key onboarding
     @State private var showingAPIKeyOnboarding: ChatMode?
+    // Model switcher (top-left)
+    @State private var showingModelSwitcher = false
 
     // Calculate number of lines in input text
     private var inputLineCount: Int {
@@ -401,16 +403,9 @@ struct ChatView: View {
                 isInputFocused = true
             })
         }
-        // ChatWeb.ai quick connect
+        // Unified connect (ChatWeb + P2P + Friends + QR Scanner)
         .sheet(isPresented: $showingChatWebConnect) {
-            ChatWebConnectView(
-                chatModeManager: ChatModeManager.shared,
-                syncManager: nil
-            )
-        }
-        // Peer device connection
-        .sheet(isPresented: $showingPeerConnect) {
-            PeerConnectionView(chatModeManager: ChatModeManager.shared)
+            UnifiedConnectView()
         }
         // Easter egg: Developer thanks
         .sheet(isPresented: $showingDeveloperThanks) {
@@ -944,14 +939,39 @@ struct ChatView: View {
                     .foregroundStyle(.orange)
             }
 
-            if ChatModeManager.shared.isChatWebMode {
-                HStack(spacing: 2) {
-                    Image(systemName: "cloud.fill")
-                        .font(.system(size: 10, weight: .bold))
-                    Text("chatweb.ai")
-                        .font(.system(size: 10, weight: .bold))
+            // Model/backend switcher button
+            Button(action: { showingModelSwitcher = true }) {
+                HStack(spacing: 3) {
+                    if ChatModeManager.shared.isChatWebMode {
+                        Image(systemName: "cloud.fill")
+                            .font(.system(size: 10, weight: .bold))
+                        Text("chatweb.ai")
+                            .font(.system(size: 11, weight: .bold))
+                    } else if appState.isModelLoaded {
+                        Image(systemName: "cpu.fill")
+                            .font(.system(size: 10, weight: .bold))
+                        Text(truncatedModelName)
+                            .font(.system(size: 11, weight: .bold))
+                    } else {
+                        Image(systemName: "arrow.down.circle")
+                            .font(.system(size: 10, weight: .bold))
+                        Text("モデル未選択")
+                            .font(.system(size: 11, weight: .bold))
+                    }
+                    Image(systemName: "chevron.down")
+                        .font(.system(size: 8, weight: .bold))
                 }
-                .foregroundStyle(.indigo)
+                .foregroundStyle(ChatModeManager.shared.isChatWebMode ? .indigo : appState.isModelLoaded ? .green : .secondary)
+                .padding(.horizontal, 8)
+                .padding(.vertical, 4)
+                .background(
+                    Capsule()
+                        .fill((ChatModeManager.shared.isChatWebMode ? Color.indigo : appState.isModelLoaded ? Color.green : Color.secondary).opacity(0.12))
+                )
+            }
+            .sheet(isPresented: $showingModelSwitcher) {
+                ModelSwitcherView()
+                    .environmentObject(appState)
             }
 
             if appState.isEmergencyMode {
@@ -980,14 +1000,9 @@ struct ChatView: View {
                 )
             }
 
-            // ChatWeb connect
+            // Unified connect (ChatWeb + P2P + Friends)
             Button(action: { showingChatWebConnect = true }) {
-                Label("ChatWeb", systemImage: chatWebAPIKeyManager.keyStatus == .valid ? "cloud.fill" : "cloud")
-            }
-
-            // Peer connect
-            Button(action: { showingPeerConnect = true }) {
-                Label(String(localized: "Peer Connect"), systemImage: "antenna.radiowaves.left.and.right")
+                Label("Connect", systemImage: "qrcode.viewfinder")
             }
 
             // News feed

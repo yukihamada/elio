@@ -14,6 +14,7 @@ final class ChatModeManager: ObservableObject {
     @Published private(set) var isGenerating = false
     @Published var error: Error?
     @Published var pendingOnboarding: ChatMode?  // Non-nil when onboarding needs to be shown
+    @Published private(set) var didFallbackToLocal = false  // True when chatweb failed and fell back to local
 
     // MARK: - Dependencies
 
@@ -197,6 +198,7 @@ final class ChatModeManager: ObservableObject {
     // MARK: - Generation
 
     /// Generate a response using the current mode
+    /// For ChatWeb mode: chatweb.ai → teai.io → local AI fallback chain
     func generate(
         messages: [Message],
         systemPrompt: String,
@@ -217,6 +219,7 @@ final class ChatModeManager: ObservableObject {
 
         isGenerating = true
         defer { isGenerating = false }
+        didFallbackToLocal = false
 
         do {
             let response = try await backend.generate(
@@ -241,6 +244,25 @@ final class ChatModeManager: ObservableObject {
 
             return response
         } catch {
+            // ChatWeb mode: fallback to local AI if both chatweb.ai and teai.io failed
+            if currentMode == .chatweb, let local = localBackend, local.isReady {
+                logError("ChatWeb", "Cloud endpoints failed, falling back to local AI: \(error.localizedDescription)")
+                didFallbackToLocal = true
+                onToken("⚠️ クラウドAIに接続できません。ローカルAIで処理します。\n\n")
+                do {
+                    let localResponse = try await local.generate(
+                        messages: messages,
+                        systemPrompt: systemPrompt,
+                        settings: settings,
+                        onToken: onToken
+                    )
+                    return "⚠️ クラウドAIに接続できません。ローカルAIで処理します。\n\n" + localResponse
+                } catch {
+                    self.error = error
+                    throw error
+                }
+            }
+
             self.error = error
             throw error
         }

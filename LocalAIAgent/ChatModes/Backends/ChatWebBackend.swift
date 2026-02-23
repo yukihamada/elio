@@ -112,6 +112,9 @@ final class ChatWebBackend: InferenceBackend, ObservableObject {
         return newId
     }
 
+    /// The endpoint that was actually used for the last successful request
+    @Published private(set) var activeEndpoint: APIEndpoint = .chatweb
+
     func generate(
         messages: [Message],
         systemPrompt: String,
@@ -136,13 +139,31 @@ final class ChatWebBackend: InferenceBackend, ObservableObject {
                 ]
             }
 
-        let request = try buildRequest(
-            message: lastUserMessage.content,
-            history: history,
-            systemPrompt: systemPrompt
-        )
-        let result = try await streamSSE(request: request, onToken: onToken)
-        return result
+        // Try primary endpoint (chatweb.ai), then fallback to teai.io
+        let endpoints: [APIEndpoint] = [.chatweb, .teai]
+        var lastError: Error?
+
+        for ep in endpoints {
+            endpoint = ep
+            do {
+                let request = try buildRequest(
+                    message: lastUserMessage.content,
+                    history: history,
+                    systemPrompt: systemPrompt
+                )
+                let result = try await streamSSE(request: request, onToken: onToken)
+                activeEndpoint = ep
+                return result
+            } catch {
+                lastError = error
+                logError("ChatWeb", "\(ep.rawValue) failed: \(error.localizedDescription), trying next endpoint...")
+                continue
+            }
+        }
+
+        // Both endpoints failed - reset to primary
+        endpoint = .chatweb
+        throw lastError ?? InferenceError.serverError(0, "All cloud endpoints failed")
     }
 
     func stopGeneration() {
