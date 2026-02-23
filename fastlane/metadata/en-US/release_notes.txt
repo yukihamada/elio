@@ -1,2 +1,7 @@
-- Added support for 12 languages: English, Japanese, Spanish, French, German, Italian, Portuguese (Brazil), Chinese (Simplified), Chinese (Traditional), Korean, Arabic, and Hindi
+- Cloud AI auto-fallback: chatweb.ai → teai.io → local AI
+- Model switcher: tap top-left to switch between chatweb.ai and downloaded local models
+- Unified QR scanner: P2P pairing, ChatWeb connect, and friend requests in one camera
+- Direct message UI redesign: iMessage-style bubbles, date headers, encryption badge
+- Anonymous messaging: fully anonymous P2P communication via SHA256 hashes
+- Security info display: clear privacy level for each chat mode
 - Bug fixes and performance improvements
