@@ -9,20 +9,15 @@
 </p>
 
 <p align="center">
-  <a href="https://elio.love">ウェブサイト</a> •
-  <a href="#features">機能</a> •
-  <a href="#installation">インストール</a> •
-  <a href="#supported-models">モデル</a> •
-  <a href="#mcp-integration">MCP</a> •
-  <a href="#privacy">プライバシー</a> •
-  <a href="#license">ライセンス</a>
-</p>
-
-<p align="center">
+  <a href="https://apps.apple.com/app/elio-chat/id6757635481">
+    <img src="https://img.shields.io/badge/App_Store-ダウンロード-blue?logo=apple&logoColor=white" alt="App Store">
+  </a>
+  <a href="https://elio.love">
+    <img src="https://img.shields.io/badge/website-elio.love-purple" alt="Website">
+  </a>
   <img src="https://img.shields.io/badge/platform-iOS%2017%2B-blue" alt="Platform">
   <img src="https://img.shields.io/badge/swift-5.9-orange" alt="Swift">
   <img src="https://img.shields.io/badge/license-MIT-green" alt="License">
-  <img src="https://img.shields.io/badge/website-elio.love-purple" alt="Website">
 </p>
 
 <p align="center">
@@ -33,7 +28,7 @@
 
 ## 概要
 
-**ElioChat**は、iPhone上で完全にローカル動作するAIアシスタントアプリです。インターネット接続不要で、プライバシーを完全に保護しながら、カレンダー、リマインダー、連絡先、写真などiOSの機能と連携できます。
+**ElioChat**は、iPhone/iPad上で完全にローカル動作するAIアシスタントアプリです。インターネット接続不要で、プライバシーを完全に保護しながら、カレンダー、リマインダー、連絡先、写真などiOSの機能と連携できます。
 
 ### なぜElioChat？ - ChatGPTより安心
 
@@ -44,12 +39,8 @@
 | **AI学習への使用** | 使用されない | 学習に使用される可能性 |
 | **企業での利用** | 社内規定でChatGPT禁止でもOK | 利用規定による |
 | **プライバシー** | 会話は端末内のみ | サーバーに保存 |
-
-- **MCP対応** - Model Context Protocolでシステム機能と連携
-- **30以上のモデル** - Qwen3、Gemma 3、Phi-4、Llama 3.2など
-- **Vision AI** - Qwen3-VLによる画像認識
-- **音声入力** - WhisperKitによるオンデバイス音声認識
-- **日本語対応** - UIとAI応答の両方で日本語をサポート
+| **MCP対応** | 13種類の連携 | 非対応 |
+| **P2P推論** | iPhone-Mac連携 | 非対応 |
 
 ---
 
@@ -70,7 +61,7 @@
 
 ### MCP (Model Context Protocol) 連携
 
-ElioChatは以下のiOS機能とAIを連携させます：
+ElioChatはAnthropicの[Model Context Protocol](https://modelcontextprotocol.io/)に対応した**初のiOSアプリ**です。AIとiOSシステム機能をシームレスに連携させます：
 
 | サーバー | 機能 |
 |----------|------|
@@ -81,6 +72,27 @@ ElioChatは以下のiOS機能とAIを連携させます：
 | 写真 | 写真ライブラリへのアクセス |
 | ファイル | ドキュメントの読み書き |
 | Web検索 | DuckDuckGo匿名検索 |
+
+### P2P推論（iPhone-Mac連携）
+
+重い推論処理をローカルネットワーク経由でMacにオフロード：
+
+- **Bonjour自動検出** - 同一ネットワーク上のMacを自動発見
+- **セキュアペアリング** - 4桁コードによる信頼デバイス認証
+- **自動再接続** - 信頼済みデバイスはアプリ起動時に自動接続
+- **投機的デコード** - 小型モデルをローカル + 大型モデルをMacで実行し高速化
+- **プライベートサーバー** - Macが `_eliochat._tcp` で推論サーバーとして動作
+- **メッシュネットワーク** - 複数デバイスでP2P推論メッシュを構成
+
+### チャットモード
+
+| モード | 説明 |
+|--------|------|
+| **ローカル** | 端末上のみで推論（完全オフライン） |
+| **クラウド** | ChatWeb API / Groq クラウドバックエンド |
+| **プライベートP2P** | Macの推論パワーを活用 |
+| **P2Pメッシュ** | 複数デバイスで協調推論 |
+| **投機的** | ローカル下書き + リモート検証で高速化 |
 
 ### Vision（画像認識）
 
@@ -93,70 +105,52 @@ ElioChatは以下のiOS機能とAIを連携させます：
 
 - WhisperKitによるオンデバイス音声認識
 - 日本語・英語対応
-- ダウンロード進捗表示
 - 一度ダウンロードしたモデルはキャッシュ保存
 
 ### UI/UX
 
 - ダーク/ライトモード対応
-- スワイプで操作できるオンボーディング
 - リアルタイムストリーミング表示
 - 会話履歴の保存・管理
 - **会話検索機能** - 過去の会話をすぐに見つける
 - **シェアカード** - SNS用の美しい会話画像を作成
 - **会話エクスポート** - テキストやJSON形式で保存
-
-### Siriショートカット
-
-音声でElioChatを操作：
-- 「Hey Siri、ElioChatに聞いて」- 会話を開始
-- 「Hey Siri、ElioChatで予定を確認」- カレンダーを見る
-- 「Hey Siri、ElioChatでリマインダー作成」- リマインダー追加
-
-### 紹介プログラム
-
-友達にElioChatをシェア：
-- あなた専用の紹介コードを生成
-- ワンタップでシェア
-- 紹介した人数を確認
+- **Siriショートカット** - 「Hey Siri、ElioChatに聞いて」
 
 ---
 
 ## インストール
 
-### 必要要件
+### App Storeからダウンロード
 
-- iOS 17.0以上
-- iPhone または iPad（arm64）
-- Xcode 15.0以上
+[App Store](https://apps.apple.com/app/elio-chat/id6757635481)から無料でダウンロード（広告なし）。
 
-### ビルド手順
+### ソースからビルド
+
+**必要要件**: iOS 17.0以上、Xcode 15.0以上
 
 ```bash
-# リポジトリをクローン
 git clone https://github.com/yukihamada/LocalAIAgent.git
 cd LocalAIAgent
-
-# Xcodeで開く
 open ElioChat.xcodeproj
 ```
 
 1. Xcode で Signing & Capabilities を設定
 2. 実機を接続して Run (Cmd+R)
 
-### モデルのダウンロード
+### テストの実行
 
-初回起動時に以下のダウンロードガイドが表示されます：
-- **テキストモデル** - Qwen3 1.7B（ほとんどのデバイスに推奨）
-- **画像認識モデル** - Qwen3-VL 2B（オプション）
-
-追加モデルは設定画面からダウンロードできます。
+```bash
+# ユニットテスト（135テスト）
+xcodebuild test -project ElioChat.xcodeproj -scheme ElioChat \
+  -testPlan UnitTests -destination 'platform=iOS Simulator,name=iPhone 16'
+```
 
 ---
 
 ## 対応モデル
 
-ElioChatは30以上のGGUF形式モデルに対応しています。
+30以上のGGUF形式モデルに対応：
 
 ### おすすめ
 | モデル | サイズ | 特徴 |
@@ -183,37 +177,37 @@ ElioChatは30以上のGGUF形式モデルに対応しています。
 | Qwen3-VL 4B | ~2.5GB | Pro以上 |
 | Qwen3-VL 8B | ~5GB | Pro Max、最高品質 |
 
-### 高効率・長コンテキスト
-| モデル | サイズ | コンテキスト |
-|--------|--------|--------------|
-| LFM2 350M | ~350MB | 32K |
-| LFM2 1.2B | ~731MB | 32K |
-| Jan Nano 128K | ~500MB | 128Kトークン |
-| Jan Nano 1M | ~500MB | 1Mトークン |
-
 ---
 
-## MCP連携
-
-ElioChatはAnthropicの[Model Context Protocol](https://modelcontextprotocol.io/)を採用し、AIとiOSシステム機能をシームレスに連携させます。
-
-### 使用例
+## アーキテクチャ
 
 ```
-ユーザー: 今日の予定を教えて
-
-ElioChat: カレンダーを確認しました。今日の予定は以下の通りです：
-• 10:00 - 11:30 週次デザイン定例
-• 13:00 - 14:00 ランチミーティング w/ 佐藤さん
-• 16:00 - 17:30 プロジェクトX 進捗報告会
-```
-
-```
-ユーザー: 明日の午前10時に「歯医者」のリマインダーを作成して
-
-ElioChat: リマインダーを作成しました：
-  歯医者
-  明日 10:00
+LocalAIAgent/
+├── App/                    # アプリケーション層
+│   ├── LocalAIAgentApp.swift
+│   ├── AppState.swift      # グローバル状態管理
+│   └── AppIntents.swift    # Siriショートカット
+├── Agent/                  # AIエージェント
+│   ├── AgentOrchestrator.swift
+│   ├── ConversationManager.swift
+│   └── ToolParser.swift
+├── LLM/                    # 推論エンジン
+│   ├── ModelLoader.swift   # モデル管理・ダウンロード
+│   ├── CoreMLInference.swift
+│   ├── WhisperManager.swift
+│   └── Tokenizer.swift
+├── ChatModes/              # マルチバックエンドチャットシステム
+│   ├── ChatModeManager.swift
+│   ├── Backends/           # Local, Cloud, P2P, Speculative
+│   └── P2PServer/          # プライベートサーバー・メッシュ
+├── Discovery/              # デバイス検出（Bonjour/QR）
+├── MCP/                    # Model Context Protocol
+│   ├── MCPClient.swift
+│   └── Servers/            # カレンダー、リマインダー等
+├── Security/               # デバイスID・キーチェーン
+├── TokenEconomy/           # サブスクリプション・トークン管理
+├── Views/                  # SwiftUI画面
+└── Resources/              # アセット・ローカライズ
 ```
 
 ---
@@ -225,6 +219,7 @@ ElioChatはプライバシーファーストで設計されています。
 - **すべての処理が端末上で完結**
 - **外部サーバーへのデータ送信なし**
 - **会話履歴は端末内にのみ保存**
+- **P2P接続はローカルネットワーク内のみ**
 - **オープンソース** - コードを確認可能
 
 ### 必要な権限
@@ -237,38 +232,9 @@ ElioChatはプライバシーファーストで設計されています。
 | 位置情報 | 現在地の取得 |
 | 写真 | 画像の読み込み・保存 |
 | マイク | 音声入力 |
+| ローカルネットワーク | P2Pデバイス検出 |
 
 すべての権限は必要に応じてユーザーに許可を求めます。
-
----
-
-## アーキテクチャ
-
-```
-LocalAIAgent/
-├── App/                    # アプリケーション層
-│   ├── LocalAIAgentApp.swift
-│   ├── AppState.swift      # 状態管理
-│   └── AppIntents.swift    # Siriショートカット
-├── Agent/                  # AIエージェント
-│   ├── AgentOrchestrator.swift
-│   ├── ConversationManager.swift
-│   └── ToolParser.swift
-├── LLM/                    # 推論エンジン
-│   ├── ModelLoader.swift   # モデル管理・ダウンロード
-│   ├── CoreMLInference.swift
-│   ├── WhisperManager.swift # 音声認識
-│   └── Tokenizer.swift
-├── MCP/                    # MCPプロトコル
-│   ├── MCPClient.swift
-│   ├── MCPProtocol.swift
-│   └── Servers/           # MCPサーバー実装
-├── Services/              # ビジネスロジック
-│   ├── ConversationExporter.swift
-│   └── ReferralManager.swift
-├── Views/                  # SwiftUI画面
-└── Resources/              # アセット・ローカライズ
-```
 
 ---
 
@@ -289,6 +255,12 @@ LocalAIAgent/
 MIT License - 詳細は [LICENSE](LICENSE) を参照してください。
 
 ---
+
+## リンク
+
+- [ウェブサイト](https://elio.love)
+- [プライバシーポリシー](https://elio.love/privacy)
+- [利用規約](https://elio.love/terms)
 
 ## 謝辞
 

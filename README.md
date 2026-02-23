@@ -9,20 +9,15 @@
 </p>
 
 <p align="center">
-  <a href="https://elio.love">Website</a> •
-  <a href="#features">Features</a> •
-  <a href="#installation">Installation</a> •
-  <a href="#supported-models">Models</a> •
-  <a href="#mcp-integration">MCP</a> •
-  <a href="#privacy">Privacy</a> •
-  <a href="#license">License</a>
-</p>
-
-<p align="center">
+  <a href="https://apps.apple.com/app/elio-chat/id6757635481">
+    <img src="https://img.shields.io/badge/App_Store-Download-blue?logo=apple&logoColor=white" alt="App Store">
+  </a>
+  <a href="https://elio.love">
+    <img src="https://img.shields.io/badge/website-elio.love-purple" alt="Website">
+  </a>
   <img src="https://img.shields.io/badge/platform-iOS%2017%2B-blue" alt="Platform">
   <img src="https://img.shields.io/badge/swift-5.9-orange" alt="Swift">
   <img src="https://img.shields.io/badge/license-MIT-green" alt="License">
-  <img src="https://img.shields.io/badge/website-elio.love-purple" alt="Website">
 </p>
 
 <p align="center">
@@ -33,7 +28,7 @@
 
 ## Overview
 
-**ElioChat** is a fully local AI assistant app that runs entirely on your iPhone. It works without an internet connection, completely protects your privacy, and integrates with iOS features like Calendar, Reminders, Contacts, and Photos.
+**ElioChat** is a fully local AI assistant app that runs entirely on your iPhone or iPad. It works without an internet connection, completely protects your privacy, and integrates with iOS features like Calendar, Reminders, Contacts, and Photos.
 
 ### Why ElioChat? - Safer than ChatGPT
 
@@ -44,12 +39,8 @@
 | **Used for AI Training** | Never | May be used |
 | **Enterprise Use** | OK even if ChatGPT is banned | Depends on policy |
 | **Privacy** | Stays on device only | Stored on servers |
-
-- **MCP Support** - Integrates with system features via Model Context Protocol
-- **30+ Models** - Choose from Qwen3, Gemma 3, Phi-4, Llama 3.2, and more
-- **Vision AI** - Image recognition with Qwen3-VL models
-- **Voice Input** - On-device speech recognition with WhisperKit
-- **Japanese Support** - Full Japanese UI and AI responses
+| **MCP Support** | 13 integrations | Not supported |
+| **P2P Inference** | iPhone-Mac collaboration | Not supported |
 
 ---
 
@@ -70,7 +61,7 @@
 
 ### MCP (Model Context Protocol) Integration
 
-ElioChat connects AI with iOS system features:
+ElioChat is the **first iOS app** to support Anthropic's [Model Context Protocol](https://modelcontextprotocol.io/), connecting AI with iOS system features:
 
 | Server | Function |
 |--------|----------|
@@ -81,6 +72,27 @@ ElioChat connects AI with iOS system features:
 | Photos | Access photo library |
 | FileSystem | Read and write documents |
 | Web Search | Anonymous DuckDuckGo search |
+
+### P2P Inference (iPhone-Mac)
+
+Offload heavy AI inference to your Mac over local network:
+
+- **Bonjour Discovery** - Automatic Mac detection on the same network
+- **Secure Pairing** - 4-digit code verification for trusted connections
+- **Auto-reconnect** - Trusted devices reconnect automatically on app launch
+- **Speculative Decoding** - Run small model locally + large model on Mac for faster output
+- **Private Server** - Mac runs as a private inference server via `_eliochat._tcp`
+- **Mesh Networking** - Multiple devices can form a P2P inference mesh
+
+### Chat Modes
+
+| Mode | Description |
+|------|-------------|
+| **Local** | On-device inference only (fully offline) |
+| **Cloud** | ChatWeb API / Groq cloud backends |
+| **Private P2P** | Connect to your Mac for powerful inference |
+| **P2P Mesh** | Multi-device collaborative inference |
+| **Speculative** | Local draft + remote verify for speed |
 
 ### Vision (Image Recognition)
 
@@ -93,70 +105,52 @@ ElioChat connects AI with iOS system features:
 
 - On-device speech recognition with WhisperKit
 - Japanese & English support
-- Download progress indicator
 - Models cached locally after first download
 
 ### UI/UX
 
 - Dark/Light mode support
-- Swipe-based onboarding
 - Real-time streaming display
 - Conversation history management
 - **Conversation search** - Find past conversations instantly
 - **Share cards** - Create beautiful images to share on social media
 - **Export conversations** - Save as text or JSON
-
-### Siri Shortcuts
-
-Control ElioChat with your voice:
-- "Hey Siri, ask ElioChat" - Start a conversation
-- "Hey Siri, check my schedule with ElioChat" - View calendar
-- "Hey Siri, create reminder with ElioChat" - Add a reminder
-
-### Referral Program
-
-Share ElioChat with friends:
-- Generate your unique referral code
-- Share with one tap
-- Track how many friends joined
+- **Siri Shortcuts** - "Hey Siri, ask ElioChat"
 
 ---
 
 ## Installation
 
-### Requirements
+### From App Store
 
-- iOS 17.0 or later
-- iPhone or iPad (arm64)
-- Xcode 15.0 or later
+Download from the [App Store](https://apps.apple.com/app/elio-chat/id6757635481) (free, no ads).
 
-### Build Steps
+### Build from Source
+
+**Requirements**: iOS 17.0+, Xcode 15.0+
 
 ```bash
-# Clone the repository
 git clone https://github.com/yukihamada/LocalAIAgent.git
 cd LocalAIAgent
-
-# Open in Xcode
 open ElioChat.xcodeproj
 ```
 
 1. Configure Signing & Capabilities in Xcode
 2. Connect your device and Run (Cmd+R)
 
-### Downloading Models
+### Running Tests
 
-On first launch, you'll be guided through downloading:
-- **Text model** - Qwen3 1.7B (recommended for most devices)
-- **Vision model** - Qwen3-VL 2B (optional, for image recognition)
-
-Additional models can be downloaded from Settings.
+```bash
+# Unit tests (135 tests)
+xcodebuild test -project ElioChat.xcodeproj -scheme ElioChat \
+  -testPlan UnitTests -destination 'platform=iOS Simulator,name=iPhone 16'
+```
 
 ---
 
 ## Supported Models
 
-ElioChat supports 30+ GGUF format models organized by category:
+30+ GGUF format models organized by category:
 
 ### Recommended
 | Model | Size | Best For |
@@ -183,37 +177,37 @@ ElioChat supports 30+ GGUF format models organized by category:
 | Qwen3-VL 4B | ~2.5GB | Pro devices |
 | Qwen3-VL 8B | ~5GB | Pro Max, best quality |
 
-### Efficient / Long Context
-| Model | Size | Context |
-|-------|------|---------|
-| LFM2 350M | ~350MB | 32K |
-| LFM2 1.2B | ~731MB | 32K |
-| Jan Nano 128K | ~500MB | 128K tokens |
-| Jan Nano 1M | ~500MB | 1M tokens |
-
 ---
 
-## MCP Integration
-
-ElioChat uses Anthropic's [Model Context Protocol](https://modelcontextprotocol.io/) to seamlessly connect AI with iOS system features.
-
-### Examples
+## Architecture
 
 ```
-User: Show me today's schedule
-
-ElioChat: I checked your calendar. Here are today's events:
-• 10:00 - 11:30 Weekly Design Meeting
-• 13:00 - 14:00 Lunch with Sato-san
-• 16:00 - 17:30 Project X Progress Review
-```
-
-```
-User: Create a reminder for "Dentist" tomorrow at 10am
-
-ElioChat: Reminder created:
-  Dentist
-  Tomorrow 10:00
+LocalAIAgent/
+├── App/                    # Application layer
+│   ├── LocalAIAgentApp.swift
+│   ├── AppState.swift      # Global state management
+│   └── AppIntents.swift    # Siri Shortcuts
+├── Agent/                  # AI Agent orchestration
+│   ├── AgentOrchestrator.swift
+│   ├── ConversationManager.swift
+│   └── ToolParser.swift
+├── LLM/                    # Inference engine
+│   ├── ModelLoader.swift   # Model management & download
+│   ├── CoreMLInference.swift
+│   ├── WhisperManager.swift
+│   └── Tokenizer.swift
+├── ChatModes/              # Multi-backend chat system
+│   ├── ChatModeManager.swift
+│   ├── Backends/           # Local, Cloud, P2P, Speculative
+│   └── P2PServer/          # Private server & mesh networking
+├── Discovery/              # Device discovery (Bonjour/QR)
+├── MCP/                    # Model Context Protocol
+│   ├── MCPClient.swift
+│   └── Servers/            # Calendar, Reminders, Contacts, etc.
+├── Security/               # Device identity & keychain
+├── TokenEconomy/           # Subscriptions & token management
+├── Views/                  # SwiftUI views
+└── Resources/              # Assets & localization
 ```
 
 ---
@@ -225,6 +219,7 @@ ElioChat is designed with privacy first.
 - **All processing happens on device**
 - **No data sent to external servers**
 - **Conversation history stored only on device**
+- **P2P connections stay on local network**
 - **Open source** - verify the code yourself
 
 ### Required Permissions
@@ -237,38 +232,9 @@ ElioChat is designed with privacy first.
 | Location | Get current location |
 | Photos | Load/save images |
 | Microphone | Voice input |
+| Local Network | P2P device discovery |
 
 All permissions are requested only when needed.
-
----
-
-## Architecture
-
-```
-LocalAIAgent/
-├── App/                    # Application layer
-│   ├── LocalAIAgentApp.swift
-│   ├── AppState.swift      # State management
-│   └── AppIntents.swift    # Siri Shortcuts
-├── Agent/                  # AI Agent
-│   ├── AgentOrchestrator.swift
-│   ├── ConversationManager.swift
-│   └── ToolParser.swift
-├── LLM/                    # Inference engine
-│   ├── ModelLoader.swift   # Model management & download
-│   ├── CoreMLInference.swift
-│   ├── WhisperManager.swift # Voice recognition
-│   └── Tokenizer.swift
-├── MCP/                    # MCP Protocol
-│   ├── MCPClient.swift
-│   ├── MCPProtocol.swift
-│   └── Servers/           # MCP server implementations
-├── Services/              # Business logic
-│   ├── ConversationExporter.swift
-│   └── ReferralManager.swift
-├── Views/                  # SwiftUI views
-└── Resources/              # Assets & localization
-```
 
 ---
 
@@ -289,6 +255,12 @@ Pull requests are welcome!
 MIT License - See [LICENSE](LICENSE) for details.
 
 ---
+
+## Links
+
+- [Website](https://elio.love)
+- [Privacy Policy](https://elio.love/privacy)
+- [Terms of Service](https://elio.love/terms)
 
 ## Acknowledgments
 

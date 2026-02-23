@@ -1,160 +1,77 @@
-【Completely Free - No Ads】
+Completely Free - No Ads
 Privacy-First AI Chat That Works Offline
 Safe for confidential business data. OK even if your company bans ChatGPT.
 
-━━━━━━━━━━━━━━━━━━━━
-◆ 3 Revolutionary Features
-━━━━━━━━━━━━━━━━━━━━
+--- 3 Revolutionary Features ---
 
-✅ Fully Offline & Private
-  → Works without internet (even in Airplane Mode)
-  → Conversations stay on device only, zero server transmission
-  → Safe for companies that prohibit ChatGPT
+* Fully Offline & Private
+Works without internet (even in Airplane Mode). Conversations stay on device only, zero server transmission. Safe for companies that prohibit ChatGPT.
 
-✅ 30+ AI Models to choose from
-  → Qwen3, Gemma 3, Phi-4, Llama 3.2 in GGUF format
-  → Vision AI for images, Voice input with WhisperKit
-  → Japanese-optimized models included
+* 30+ AI Models to choose from
+Qwen3, Gemma 3, Phi-4, Llama 3.2 in GGUF format. Vision AI for images, Voice input with WhisperKit. Japanese-optimized models included.
 
-✅ First iOS app with MCP (Model Context Protocol) support
-  → Seamlessly integrates with Calendar, Reminders, Contacts, Photos
-  → Apple iOS 26 will officially support MCP (we're ahead!)
+* First iOS app with MCP (Model Context Protocol) support
+Seamlessly integrates with Calendar, Reminders, Contacts, Photos. Apple iOS 26 will officially support MCP - we're ahead!
 
-━━━━━━━━━━━━━━━━━━━━
-◆ What Can MCP Do?
-━━━━━━━━━━━━━━━━━━━━
+--- What Can MCP Do? ---
 
-📅 Calendar
-"Show me today's schedule" → Auto-displays events
-"Schedule dentist tomorrow at 2pm" → Instant creation
+Calendar: "Show me today's schedule" - Auto-displays events
+Reminders: "Remind me to take out trash at 10am" - Auto-creates
+Contacts: "What's Suzuki's phone number?" - Searches contacts
+Location: "Where am I?" - Gets current location
+Photos: Attach image and ask "What is this?" - AI analyzes
+Web Search: "Find latest iPhone prices" - Anonymous DuckDuckGo search
 
-✅ Reminders
-"Remind me to take out trash at 10am tomorrow" → Auto-creates
+--- Supported AI Models (30+) ---
 
-👤 Contacts
-"What's Suzuki's phone number?" → Searches contacts
+Recommended:
+- Qwen3 (0.6B-8B) - All devices, ultra-fast
+- Gemma 3 (1B-4B) - Google's latest
+- Phi-4 Mini - Microsoft's best at reasoning
 
-📍 Location
-"Where am I?" → Gets current location
+Japanese Optimized:
+- TinySwallow 1.5B - Sakana AI, high quality
+- ELYZA Llama 3 8B - UTokyo Matsuo Lab
+- Swallow 8B - Tokyo Tech, business docs
 
-📷 Photos
-Attach image and ask "What is this?" → AI analyzes
+Vision Models:
+- Qwen3-VL (2B-8B) - Image recognition AI
+- SmolVLM 2B - Lightweight Vision AI
 
-📂 Filesystem
-"Show me files in Documents" → Lists files
+--- Key Features ---
 
-🔍 Web Search
-"Find latest iPhone prices" → Anonymous DuckDuckGo search
+- Voice Input: On-device speech recognition with WhisperKit
+- Vision AI: Attach photos and ask AI
+- Conversation Search: Find past chats with keyword search
+- Share Cards: Convert conversations to images for social media
+- Export: Save as text or JSON format
+- Siri Shortcuts: "Hey Siri, ask ElioChat"
+- Dark/Light Mode: Auto-switches
 
-━━━━━━━━━━━━━━━━━━━━
-◆ Supported AI Models (30+)
-━━━━━━━━━━━━━━━━━━━━
+--- ElioChat vs ChatGPT ---
 
-【Recommended】
-• Qwen3 (0.6B-8B) - All devices, ultra-fast
-• Gemma 3 (1B-4B) - Google's latest
-• Phi-4 Mini - Microsoft's best at reasoning
+Offline: ElioChat works in Airplane Mode / ChatGPT requires internet
+Data: ElioChat zero transmission / ChatGPT sent to cloud
+Privacy: ElioChat device only / ChatGPT stored on servers
+MCP: ElioChat 13 types / ChatGPT not supported
 
-【Japanese Optimized】
-• TinySwallow 1.5B - Sakana AI, high quality
-• ELYZA Llama 3 8B - UTokyo Matsuo Lab, top tier
-• Swallow 8B - Tokyo Tech, business docs
+--- Perfect For ---
 
-【Vision Models】
-• Qwen3-VL (2B-8B) - Image recognition AI
-• SmolVLM 2B - Lightweight Vision AI
+- People handling confidential info
+- Users in offline environments (planes, subways)
+- Privacy-conscious individuals
+- Japanese language users
+- People wanting AI + Calendar/Reminders integration
 
-━━━━━━━━━━━━━━━━━━━━
-◆ Key Features
-━━━━━━━━━━━━━━━━━━━━
+--- Requirements ---
 
-🎤 Voice Input
-On-device speech recognition with WhisperKit (Japanese & English)
+- iOS 17.0 or later
+- iPhone or iPad (arm64)
+- Recommended: iPhone 12+ (Qwen3 1.7B)
+- Recommended: iPhone 14 Pro+ (Qwen3 8B)
 
-📸 Vision AI
-Attach photos and ask AI. Camera shots analyzed instantly
-
-💬 Conversation Search
-Find past conversations with keyword search
-
-🎨 Share Cards
-Convert conversations to beautiful images for social media
-
-📤 Export Conversations
-Save as text or JSON format
-
-🗣 Siri Shortcuts
-"Hey Siri, ask ElioChat" for voice activation
-
-🌓 Dark/Light Mode
-Auto-switches based on system settings
-
-━━━━━━━━━━━━━━━━━━━━
-◆ ElioChat vs ChatGPT
-━━━━━━━━━━━━━━━━━━━━
-
-| Feature | ElioChat | ChatGPT |
-|---------|----------|---------|
-| Offline | ✅ Works in Airplane Mode | ❌ Internet required |
-| Data transmission | ✅ Zero | ❌ Sent to cloud |
-| AI training use | ✅ Never used | ❌ May be used |
-| Enterprise use | ✅ OK even if ChatGPT banned | ⚠️ Depends on policy |
-| Privacy | ✅ Device only | ❌ Stored on servers |
-| MCP integration | ✅ 13 types | ❌ Not supported |
-
-━━━━━━━━━━━━━━━━━━━━
-◆ Perfect For
-━━━━━━━━━━━━━━━━━━━━
-
-✔ People handling confidential info (OK even if ChatGPT banned)
-✔ Users in offline environments (planes, subways)
-✔ Privacy-conscious individuals
-✔ Japanese language users
-✔ People wanting AI + Calendar/Reminders integration
-
-━━━━━━━━━━━━━━━━━━━━
-◆ Referral Program
-━━━━━━━━━━━━━━━━━━━━
-
-Share with friends and get rewards:
-• Generate your unique referral code
-• One-tap sharing
-• Track referral count
-
-━━━━━━━━━━━━━━━━━━━━
-◆ Required Permissions
-━━━━━━━━━━━━━━━━━━━━
-
-• Calendar: Read/write events
-• Reminders: Manage reminders
-• Contacts: Search contacts
-• Location: Get current location
-• Photos: Load/save images
-• Microphone: Voice input
-
-All permissions requested only when needed.
-
-━━━━━━━━━━━━━━━━━━━━
-◆ Requirements
-━━━━━━━━━━━━━━━━━━━━
-
-• iOS 17.0 or later
-• iPhone or iPad (arm64)
-• Recommended: iPhone 12+ (Qwen3 1.7B)
-• Recommended: iPhone 14 Pro+ (Qwen3 8B)
-
-━━━━━━━━━━━━━━━━━━━━
-◆ Open Source
-━━━━━━━━━━━━━━━━━━━━
-
-GitHub: github.com/yukihamada/LocalAIAgent
-License: MIT License
-Anyone can verify, modify, and redistribute code
-
-━━━━━━━━━━━━━━━━━━━━
+Open Source: github.com/yukihamada/LocalAIAgent (MIT License)
 
 Privacy Policy: https://elio.love/privacy
 Terms of Service: https://elio.love/terms
 Website: https://elio.love
-
-Made with ❤️ by The Elio Project
