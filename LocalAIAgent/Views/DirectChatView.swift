@@ -71,9 +71,21 @@ struct DirectChatView: View {
                     scrollProxy = proxy
                     scrollToBottom(animated: false)
                     markAsRead()
+                    // Restore per-conversation draft
+                    if messageText.isEmpty, let saved = UserDefaults.standard.string(forKey: "direct_chat_draft_\(conversation.id)"), !saved.isEmpty {
+                        messageText = saved
+                    }
                 }
                 .onChange(of: messages.count) { _, _ in
                     scrollToBottom(animated: true)
+                }
+                .onChange(of: messageText) { _, newValue in
+                    let key = "direct_chat_draft_\(conversation.id)"
+                    if newValue.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+                        UserDefaults.standard.removeObject(forKey: key)
+                    } else {
+                        UserDefaults.standard.set(newValue, forKey: key)
+                    }
                 }
             }
 
@@ -171,6 +183,7 @@ struct DirectChatView: View {
         generator.impactOccurred()
 
         messageText = ""
+        UserDefaults.standard.removeObject(forKey: "direct_chat_draft_\(conversation.id)")
 
         Task {
             do {

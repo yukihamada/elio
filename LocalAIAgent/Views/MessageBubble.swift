@@ -273,10 +273,16 @@ struct MessageBubble: View {
         .padding(.horizontal, 4)
     }
 
-    private func formatTime(_ date: Date) -> String {
+    /// Cached date formatter to avoid re-creating on every render.
+    /// DateFormatter is expensive to allocate (~50us per instance).
+    private static let timeFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "HH:mm"
-        return formatter.string(from: date)
+        return formatter
+    }()
+
+    private func formatTime(_ date: Date) -> String {
+        Self.timeFormatter.string(from: date)
     }
 
     private func networkMetadataView(_ metadata: NetworkMetadata) -> some View {
