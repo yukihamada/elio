@@ -97,7 +97,7 @@
 		OGVERIFY001 /* OGVerificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = OGVERIFY002 /* OGVerificationView.swift */; };
 		ONBCHAT001 /* OnboardingChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ONBCHAT002 /* OnboardingChatView.swift */; };
 		ONBMCP001 /* OnboardingMCPView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ONBMCP002 /* OnboardingMCPView.swift */; };
-		ONNXFW001 /* onnxruntime.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = ONNXFW002 /* onnxruntime.xcframework */; };
+		ONNXFW001 /* onnxruntime.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = ONNXFW002 /* onnxruntime.xcframework */; platformFilter = ios; };
 		P2PBACK001 /* P2PBackend.swift in Sources */ = {isa = PBXBuildFile; fileRef = P2PBACK002 /* P2PBackend.swift */; };
 		PEERV001 /* PeerConnectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = PEERV002 /* PeerConnectionView.swift */; };
 		PRIV001 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = PRIV002 /* PrivacyInfo.xcprivacy */; };
@@ -112,7 +112,7 @@
 		SHARECARD001 /* ShareCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = SHARECARD002 /* ShareCardView.swift */; };
 		SHAREDDATAMGR001 /* SharedDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = SHAREDDATAMGR002 /* SharedDataManager.swift */; };
 		SHERPA001 /* SherpaOnnx.swift in Sources */ = {isa = PBXBuildFile; fileRef = SHERPA002 /* SherpaOnnx.swift */; };
-		SHERPAFW001 /* sherpa-onnx.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = SHERPAFW002 /* sherpa-onnx.xcframework */; };
+		SHERPAFW001 /* sherpa-onnx.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = SHERPAFW002 /* sherpa-onnx.xcframework */; platformFilter = ios; };
 		SKILL001 /* Skill.swift in Sources */ = {isa = PBXBuildFile; fileRef = SKILL002 /* Skill.swift */; };
 		SKILLDTL001 /* SkillDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = SKILLDTL002 /* SkillDetailView.swift */; };
 		SKILLMGR001 /* SkillMarketplaceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = SKILLMGR002 /* SkillMarketplaceManager.swift */; };
@@ -1035,8 +1035,8 @@
 			);
 			mainGroup = 300;
 			packageReferences = (
-				B63B0EBE2F121377006BCDD0 /* XCRemoteSwiftPackageReference "llama.swift" */,
-				MDVIEW001 /* XCRemoteSwiftPackageReference "MarkdownView" */,
+				B63B0EBE2F121377006BCDD0 /* XCLocalSwiftPackageReference "Packages/llama-local" */,
+				MDVIEW001 /* XCLocalSwiftPackageReference "Packages/MarkdownView" */,
 				WHISPER005 /* XCRemoteSwiftPackageReference "WhisperKit" */,
 			);
 			productRefGroup = 302 /* Products */;
@@ -1849,8 +1849,8 @@
 				CODE_SIGN_ENTITLEMENTS = LocalAIAgent/LocalAIAgent.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 47;
-				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
+				CURRENT_PROJECT_VERSION = 49;
+				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = NO;
 				DEVELOPMENT_TEAM = 5BV85JW8US;
 				ENABLE_PREVIEWS = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1860,6 +1860,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = LocalAIAgent/Resources/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = ElioChat;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -1892,8 +1893,8 @@
 				CODE_SIGN_ENTITLEMENTS = LocalAIAgent/LocalAIAgent.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 47;
-				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
+				CURRENT_PROJECT_VERSION = 49;
+				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = NO;
 				DEVELOPMENT_TEAM = 5BV85JW8US;
 				ENABLE_PREVIEWS = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1903,6 +1904,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = LocalAIAgent/Resources/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = ElioChat;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -1932,7 +1934,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 47;
+				CURRENT_PROJECT_VERSION = 49;
 				DEVELOPMENT_TEAM = 5BV85JW8US;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
@@ -1951,7 +1953,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 47;
+				CURRENT_PROJECT_VERSION = 49;
 				DEVELOPMENT_TEAM = 5BV85JW8US;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
@@ -1969,7 +1971,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 47;
+				CURRENT_PROJECT_VERSION = 49;
 				DEVELOPMENT_TEAM = 5BV85JW8US;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
@@ -1987,7 +1989,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 47;
+				CURRENT_PROJECT_VERSION = 49;
 				DEVELOPMENT_TEAM = 5BV85JW8US;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
@@ -2042,23 +2044,18 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCLocalSwiftPackageReference section */
+		B63B0EBE2F121377006BCDD0 /* XCLocalSwiftPackageReference "Packages/llama-local" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = "Packages/llama-local";
+		};
+		MDVIEW001 /* XCLocalSwiftPackageReference "Packages/MarkdownView" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = "Packages/MarkdownView";
+		};
+/* End XCLocalSwiftPackageReference section */
+
 /* Begin XCRemoteSwiftPackageReference section */
-		B63B0EBE2F121377006BCDD0 /* XCRemoteSwiftPackageReference "llama.swift" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/mattt/llama.swift.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.0.0;
-			};
-		};
-		MDVIEW001 /* XCRemoteSwiftPackageReference "MarkdownView" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/LiYanan2004/MarkdownView.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
-			};
-		};
 		WHISPER005 /* XCRemoteSwiftPackageReference "WhisperKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/argmaxinc/WhisperKit.git";
@@ -2072,12 +2069,12 @@
 /* Begin XCSwiftPackageProductDependency section */
 		B63B0EBF2F121377006BCDD0 /* LlamaSwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = B63B0EBE2F121377006BCDD0 /* XCRemoteSwiftPackageReference "llama.swift" */;
+			package = B63B0EBE2F121377006BCDD0 /* XCLocalSwiftPackageReference "Packages/llama-local" */;
 			productName = LlamaSwift;
 		};
 		MDVIEW002 /* MarkdownView */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = MDVIEW001 /* XCRemoteSwiftPackageReference "MarkdownView" */;
+			package = MDVIEW001 /* XCLocalSwiftPackageReference "Packages/MarkdownView" */;
 			productName = MarkdownView;
 		};
 		WHISPER002 /* WhisperKit */ = {

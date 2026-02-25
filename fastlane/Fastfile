@@ -29,6 +29,7 @@ platform :mac do
     increment_build_number(
       build_number: latest_testflight_build_number(
         api_key: api_key,
+        app_identifier: "love.elio.app",
         platform: "osx"
       ) + 1
     )
@@ -43,7 +44,8 @@ platform :mac do
       export_options: {
         signingStyle: "automatic",
         teamID: "5BV85JW8US"
-      }
+      },
+      xcargs: "-authenticationKeyPath #{File.expand_path('~/.appstoreconnect/private_keys/AuthKey_5KT46G9Y29.p8')} -authenticationKeyID 5KT46G9Y29 -authenticationKeyIssuerID e0d22675-afb3-45f0-a821-06b477f44da0 -allowProvisioningUpdates"
     )
 
     upload_to_testflight(
@@ -67,6 +69,7 @@ platform :mac do
     increment_build_number(
       build_number: latest_testflight_build_number(
         api_key: api_key,
+        app_identifier: "love.elio.app",
         platform: "osx"
       ) + 1
     )
