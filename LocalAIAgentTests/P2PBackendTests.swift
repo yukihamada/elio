@@ -28,19 +28,22 @@ final class P2PBackendTests: XCTestCase {
             id: "device-1",
             name: "Mac-1",
             endpoint: .hostPort(host: .ipv4(.loopback), port: 8080),
-            pairingCode: "1234"
+            pairingCode: "1234",
+            elioId: nil
         )
         let server2 = P2PServer(
             id: "device-1",
             name: "Mac-Different",
             endpoint: .hostPort(host: .ipv4(.loopback), port: 9090),
-            pairingCode: "5678"
+            pairingCode: "5678",
+            elioId: nil
         )
         let server3 = P2PServer(
             id: "device-2",
             name: "Mac-1",
             endpoint: .hostPort(host: .ipv4(.loopback), port: 8080),
-            pairingCode: "1234"
+            pairingCode: "1234",
+            elioId: nil
         )
 
         XCTAssertEqual(server1, server2, "Servers with same ID should be equal")
@@ -56,7 +59,8 @@ final class P2PBackendTests: XCTestCase {
             id: "test-device",
             name: "Test Mac",
             endpoint: .hostPort(host: .ipv4(.loopback), port: 8080),
-            pairingCode: nil
+            pairingCode: nil,
+            elioId: nil
         )
 
         XCTAssertFalse(backend.isDeviceTrusted(server))

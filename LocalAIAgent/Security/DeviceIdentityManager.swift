@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import CryptoKit
 
 final class DeviceIdentityManager {
     static let shared = DeviceIdentityManager()
@@ -52,6 +53,29 @@ final class DeviceIdentityManager {
             locale: Locale.current.identifier,
             appVersion: Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "1.0.0"
         )
+    }
+
+    // MARK: - Elio ID (shareable short identifier)
+
+    /// Human-friendly Elio ID in `XXXX-XXXX` format (8 hex chars)
+    /// Derived from deviceId so it's stable across sessions
+    var elioId: String {
+        let hash = SHA256.hash(data: Data((deviceId + "elio-id-salt-v1").utf8))
+        let hex = hash.prefix(4).map { String(format: "%02x", $0) }.joined()
+        return "\(hex.prefix(4))-\(hex.suffix(4))"
+    }
+
+    /// Anonymous hash for internal use (MessagingManager compatible, 16 hex chars)
+    var anonymousHash: String {
+        let hash = SHA256.hash(data: Data((deviceId + "elio-anon-salt-v1").utf8))
+        return hash.prefix(8).map { String(format: "%02x", $0) }.joined()
+    }
+
+    /// Match an Elio ID with or without hyphen
+    func matchesElioId(_ candidate: String) -> Bool {
+        let normalized = candidate.replacingOccurrences(of: "-", with: "").lowercased()
+        let mine = elioId.replacingOccurrences(of: "-", with: "").lowercased()
+        return normalized == mine
     }
 
     private init() {}

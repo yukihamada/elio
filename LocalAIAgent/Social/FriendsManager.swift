@@ -27,19 +27,21 @@ final class FriendsManager: ObservableObject {
     // MARK: - Friend Management
 
     /// Add a friend by pairing code
-    func addFriend(pairingCode: String, name: String? = nil) async throws -> Friend {
+    func addFriend(pairingCode: String, name: String? = nil, elioId: String? = nil) async throws -> Friend {
         // Try to find device by pairing code from discovered P2P servers
         let matchedServer = ChatModeManager.shared.p2p?.availableServers.first {
             $0.pairingCode == pairingCode
         }
         let deviceId = matchedServer?.id ?? "device_\(pairingCode)"
         let friendName = name ?? matchedServer?.name ?? "Friend \(pairingCode)"
+        let resolvedElioId = elioId ?? matchedServer?.elioId
 
         let friend = Friend(
             id: UUID().uuidString,
             deviceId: deviceId,
             name: friendName,
             pairingCode: pairingCode,
+            elioId: resolvedElioId,
             addedAt: Date(),
             lastSeen: nil,
             isOnline: false
@@ -80,6 +82,33 @@ final class FriendsManager: ObservableObject {
             friends[index].name = name
             saveFriends()
         }
+    }
+
+    /// Add a friend by Elio ID (searches Bonjour-discovered devices)
+    func addFriend(byElioId eid: String, name: String? = nil) async throws -> Friend {
+        guard let server = ChatModeManager.shared.p2p?.findServer(byElioId: eid) else {
+            throw FriendError.notFoundNearby
+        }
+
+        // Avoid duplicates
+        if let existing = friends.first(where: { $0.elioId == eid || $0.deviceId == server.id }) {
+            return existing
+        }
+
+        let friend = Friend(
+            id: UUID().uuidString,
+            deviceId: server.id,
+            name: name ?? server.name,
+            pairingCode: server.pairingCode,
+            elioId: eid,
+            addedAt: Date(),
+            lastSeen: nil,
+            isOnline: false
+        )
+
+        friends.append(friend)
+        saveFriends()
+        return friend
     }
 
     // MARK: - Friend Requests
@@ -246,9 +275,34 @@ struct Friend: Identifiable, Codable {
     let deviceId: String
     var name: String
     let pairingCode: String?
+    let elioId: String?
     let addedAt: Date
     var lastSeen: Date?
     var isOnline: Bool
+
+    // Backward-compatible decoding (elioId may be absent in older data)
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        id = try container.decode(String.self, forKey: .id)
+        deviceId = try container.decode(String.self, forKey: .deviceId)
+        name = try container.decode(String.self, forKey: .name)
+        pairingCode = try container.decodeIfPresent(String.self, forKey: .pairingCode)
+        elioId = try container.decodeIfPresent(String.self, forKey: .elioId)
+        addedAt = try container.decode(Date.self, forKey: .addedAt)
+        lastSeen = try container.decodeIfPresent(Date.self, forKey: .lastSeen)
+        isOnline = try container.decode(Bool.self, forKey: .isOnline)
+    }
+
+    init(id: String, deviceId: String, name: String, pairingCode: String?, elioId: String? = nil, addedAt: Date, lastSeen: Date?, isOnline: Bool) {
+        self.id = id
+        self.deviceId = deviceId
+        self.name = name
+        self.pairingCode = pairingCode
+        self.elioId = elioId
+        self.addedAt = addedAt
+        self.lastSeen = lastSeen
+        self.isOnline = isOnline
+    }
 
     var displayName: String {
         return name
@@ -282,4 +336,15 @@ enum FriendRequestStatus: String, Codable {
     case pending
     case accepted
     case rejected
+}
+
+enum FriendError: Error, LocalizedError {
+    case notFoundNearby
+
+    var errorDescription: String? {
+        switch self {
+        case .notFoundNearby:
+            return "近くにこのElio IDのデバイスが見つかりません。同じネットワークに接続してください。"
+        }
+    }
 }

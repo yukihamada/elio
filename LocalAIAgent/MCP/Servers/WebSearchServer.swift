@@ -1,5 +1,4 @@
 import Foundation
-import Network
 
 /// MCP Server for Web Search - Privacy-focused web search via DuckDuckGo
 final class WebSearchServer: MCPServer {
@@ -8,25 +7,9 @@ final class WebSearchServer: MCPServer {
     let serverDescription = "DuckDuckGoでWeb検索"
     let icon = "magnifyingglass"
 
-    /// Check network connectivity
-    private var isOnline: Bool {
-        // Quick sync check using NWPathMonitor cached state
-        let monitor = NWPathMonitor()
-        let queue = DispatchQueue(label: "NetworkCheck")
-        var isConnected = false
-        let semaphore = DispatchSemaphore(value: 0)
-
-        monitor.pathUpdateHandler = { path in
-            isConnected = path.status == .satisfied
-            semaphore.signal()
-        }
-        monitor.start(queue: queue)
-
-        // Wait briefly for network status
-        _ = semaphore.wait(timeout: .now() + 0.5)
-        monitor.cancel()
-
-        return isConnected
+    /// Check network connectivity using the shared monitor (no semaphore blocking)
+    private func isOnline() async -> Bool {
+        await MainActor.run { NetworkMonitor.shared.isConnected }
     }
 
     func listPrompts() -> [MCPPrompt] {
@@ -105,7 +88,7 @@ final class WebSearchServer: MCPServer {
         }
 
         // Check network connectivity first
-        guard isOnline else {
+        guard await isOnline() else {
             let offlineResult = """
             【オフラインモード】
 

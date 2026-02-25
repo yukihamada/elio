@@ -75,17 +75,20 @@ final class P2PBackend: InferenceBackend, ObservableObject {
                 return nil
             }
 
-            // Extract pairing code from TXT record
+            // Extract pairing code and Elio ID from TXT record
             var code: String?
+            var eid: String?
             if case .bonjour(let txtRecord) = result.metadata {
                 code = txtRecord["code"]
+                eid = txtRecord["eid"]
             }
 
             return P2PServer(
                 id: "\(name).\(type).\(domain)",
                 name: name,
                 endpoint: result.endpoint,
-                pairingCode: code
+                pairingCode: code,
+                elioId: eid
             )
         }
         // Also update the trusted servers list
@@ -95,6 +98,15 @@ final class P2PBackend: InferenceBackend, ObservableObject {
     /// Find a server by its 4-digit pairing code
     func findServer(byPairingCode code: String) -> P2PServer? {
         availableServers.first { $0.pairingCode == code }
+    }
+
+    /// Find a server by Elio ID (hyphen-insensitive match)
+    func findServer(byElioId eid: String) -> P2PServer? {
+        let normalized = eid.replacingOccurrences(of: "-", with: "").lowercased()
+        return availableServers.first {
+            guard let serverEid = $0.elioId else { return false }
+            return serverEid.replacingOccurrences(of: "-", with: "").lowercased() == normalized
+        }
     }
 
     // MARK: - Connection
@@ -427,6 +439,7 @@ struct P2PServer: Identifiable, Equatable {
     let name: String
     let endpoint: NWEndpoint
     let pairingCode: String?
+    let elioId: String?
 
     static func == (lhs: P2PServer, rhs: P2PServer) -> Bool {
         lhs.id == rhs.id

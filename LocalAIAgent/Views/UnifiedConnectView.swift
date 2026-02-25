@@ -4,7 +4,7 @@ import CoreImage.CIFilterBuiltins
 import CryptoKit
 
 /// Unified connect view: QR scanner, my codes, friends & messages
-/// Handles chatweb.ai, P2P peer pairing, and friend codes all in one camera
+/// Handles chatweb.ai, P2P peer pairing, Elio ID, and friend codes all in one camera
 struct UnifiedConnectView: View {
     @Environment(\.dismiss) private var dismiss
     @ObservedObject private var chatModeManager = ChatModeManager.shared
@@ -16,6 +16,8 @@ struct UnifiedConnectView: View {
     @State private var scannedResult: QRScanResult?
     @State private var showingResult = false
     @State private var showingBonusAlert = false
+    @State private var manualInput = ""
+    @State private var isConnecting = false
 
     enum ConnectTab: String, CaseIterable {
         case scan = "scan"
@@ -117,36 +119,82 @@ struct UnifiedConnectView: View {
     // MARK: - Scan Tab
 
     private var scanTab: some View {
-        ZStack {
-            QRScannerRepresentable { code in
-                handleScannedCode(code)
-            }
-
-            // Overlay frame
-            VStack {
-                Spacer()
-
-                RoundedRectangle(cornerRadius: 20)
-                    .stroke(style: StrokeStyle(lineWidth: 3, dash: [10, 5]))
-                    .foregroundStyle(.white.opacity(0.6))
-                    .frame(width: 250, height: 250)
-
-                Spacer()
-
-                // Hint
-                VStack(spacing: 8) {
-                    Text("QRコードをスキャン")
-                        .font(.headline)
-                        .foregroundStyle(.white)
-                    Text("ChatWeb.ai・P2Pペア・フレンドコード対応")
-                        .font(.caption)
-                        .foregroundStyle(.white.opacity(0.7))
+        VStack(spacing: 0) {
+            #if !targetEnvironment(macCatalyst)
+            // Camera QR scanner (iPhone only)
+            ZStack {
+                QRScannerRepresentable { code in
+                    handleScannedCode(code)
                 }
-                .padding(.vertical, 20)
-                .frame(maxWidth: .infinity)
-                .background(.ultraThinMaterial)
+
+                // Overlay frame
+                VStack {
+                    Spacer()
+
+                    RoundedRectangle(cornerRadius: 20)
+                        .stroke(style: StrokeStyle(lineWidth: 3, dash: [10, 5]))
+                        .foregroundStyle(.white.opacity(0.6))
+                        .frame(width: 250, height: 250)
+
+                    Spacer()
+                }
             }
+            #else
+            // Mac: no camera, show placeholder
+            VStack(spacing: 16) {
+                Spacer()
+                Image(systemName: "keyboard")
+                    .font(.system(size: 48))
+                    .foregroundStyle(.secondary)
+                Text("コードを下の入力欄に入力してください")
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
+                Spacer()
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background(Color(.secondarySystemBackground))
+            #endif
+
+            // Manual input bar (always visible on both platforms)
+            manualInputBar
         }
+    }
+
+    /// Manual code input: auto-detects 4-digit pairing code vs 8-hex Elio ID
+    private var manualInputBar: some View {
+        VStack(spacing: 8) {
+            HStack(spacing: 10) {
+                TextField("コード入力（4桁 or Elio ID）", text: $manualInput)
+                    .textFieldStyle(.roundedBorder)
+                    .textInputAutocapitalization(.never)
+                    .autocorrectionDisabled()
+                    .font(.system(size: 16, design: .monospaced))
+                    .onSubmit { handleManualInput() }
+
+                Button(action: handleManualInput) {
+                    if isConnecting {
+                        ProgressView()
+                            .frame(width: 20, height: 20)
+                    } else {
+                        Text("接続")
+                            .font(.system(size: 14, weight: .semibold))
+                    }
+                }
+                .disabled(manualInput.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty || isConnecting)
+                .padding(.horizontal, 14)
+                .padding(.vertical, 8)
+                .background(Color.indigo.opacity(0.15))
+                .foregroundStyle(.indigo)
+                .clipShape(Capsule())
+            }
+
+            Text("4桁数字＝P2Pペアリング / 8桁hex (XXXX-XXXX)＝Elio ID")
+                .font(.system(size: 11))
+                .foregroundStyle(.tertiary)
+        }
+        .padding(.horizontal, 16)
+        .padding(.vertical, 12)
+        .background(.bar)
     }
 
     // MARK: - My Code Tab
@@ -154,6 +202,9 @@ struct UnifiedConnectView: View {
     private var myCodeTab: some View {
         ScrollView {
             VStack(spacing: 24) {
+                // Elio ID section (top, most prominent)
+                elioIdSection
+
                 // P2P pairing code + QR
                 myPeerCodeSection
 
@@ -166,6 +217,61 @@ struct UnifiedConnectView: View {
             .padding(.vertical, 16)
         }
         .background(Color(.systemGroupedBackground))
+    }
+
+    // MARK: - Elio ID Section
+
+    private var elioIdSection: some View {
+        VStack(spacing: 16) {
+            Label("Elio ID", systemImage: "person.crop.circle.badge.checkmark")
+                .font(.system(size: 15, weight: .semibold))
+                .foregroundStyle(.blue)
+
+            let eid = DeviceIdentityManager.shared.elioId
+
+            Text(eid)
+                .font(.system(size: 36, weight: .bold, design: .monospaced))
+                .tracking(4)
+
+            Text("このIDを共有して友達と接続")
+                .font(.caption)
+                .foregroundStyle(.secondary)
+
+            HStack(spacing: 12) {
+                // Copy button
+                Button(action: {
+                    UIPasteboard.general.string = eid
+                    let generator = UINotificationFeedbackGenerator()
+                    generator.notificationOccurred(.success)
+                }) {
+                    Label("コピー", systemImage: "doc.on.doc")
+                        .font(.system(size: 14, weight: .semibold))
+                        .padding(.horizontal, 16)
+                        .padding(.vertical, 8)
+                        .background(Color.blue.opacity(0.15))
+                        .foregroundStyle(.blue)
+                        .clipShape(Capsule())
+                }
+
+                // Share button
+                ShareLink(item: "elio://connect?eid=\(eid)") {
+                    Label("共有", systemImage: "square.and.arrow.up")
+                        .font(.system(size: 14, weight: .semibold))
+                        .padding(.horizontal, 16)
+                        .padding(.vertical, 8)
+                        .background(Color.blue.opacity(0.15))
+                        .foregroundStyle(.blue)
+                        .clipShape(Capsule())
+                }
+            }
+        }
+        .frame(maxWidth: .infinity)
+        .padding(.vertical, 20)
+        .background(
+            RoundedRectangle(cornerRadius: 16)
+                .fill(Color(.tertiarySystemBackground))
+        )
+        .padding(.horizontal, 16)
     }
 
     private var myPeerCodeSection: some View {
@@ -212,11 +318,8 @@ struct UnifiedConnectView: View {
                 .foregroundStyle(.purple)
 
             let code = PrivateServerManager.shared.pairingCode
-            // Use anonymous hash instead of real device ID
-            let anonId = Data((DeviceIdentityManager.shared.deviceId + "elio-anon-salt-v1").utf8)
-                .withUnsafeBytes { Array(SHA256.hash(data: $0).prefix(8)) }
-                .map { String(format: "%02x", $0) }.joined()
-            let qrString = "elio://friend?code=\(code)&name=\("Elio%20User")&id=\(anonId)"
+            let eid = DeviceIdentityManager.shared.elioId
+            let qrString = "elio://friend?code=\(code)&name=\("Elio%20User")&eid=\(eid)"
 
             if let qr = generateQRCode(from: qrString) {
                 Image(uiImage: qr)
@@ -418,6 +521,16 @@ struct UnifiedConnectView: View {
         .padding(.vertical, 8)
     }
 
+    // MARK: - Input Handling
+
+    /// Handle manual code input - auto-detects format
+    private func handleManualInput() {
+        let cleaned = manualInput.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !cleaned.isEmpty else { return }
+        handleScannedCode(cleaned)
+        manualInput = ""
+    }
+
     // MARK: - QR Code Handling
 
     private func handleScannedCode(_ code: String) {
@@ -428,15 +541,58 @@ struct UnifiedConnectView: View {
             handlePeerCode(code)
         } else if code.hasPrefix("elio://friend") {
             handleFriendCode(code)
+        } else if code.hasPrefix("elio://connect") {
+            handleElioConnectURL(code)
         } else if code.contains("chatweb.ai") || code.contains("teai.io") {
             handleChatWebCode(code)
         } else {
-            // Try as 4-digit pairing code
+            // Auto-detect: 4-digit number → pairing, 8-9 hex chars → Elio ID
             let cleaned = code.trimmingCharacters(in: .whitespacesAndNewlines)
             if cleaned.count == 4 && cleaned.allSatisfy({ $0.isNumber }) {
                 handlePeerCode("elio://peer?code=\(cleaned)")
+            } else if isElioIdFormat(cleaned) {
+                handleElioIdConnect(cleaned)
             } else {
-                scannedResult = QRScanResult(success: false, message: "不明なQRコードです: \(code.prefix(50))")
+                scannedResult = QRScanResult(success: false, message: "不明なコードです: \(code.prefix(50))")
+                showingResult = true
+            }
+        }
+    }
+
+    /// Check if string looks like an Elio ID (8 hex chars, optionally with hyphen)
+    private func isElioIdFormat(_ str: String) -> Bool {
+        let stripped = str.replacingOccurrences(of: "-", with: "").lowercased()
+        return stripped.count == 8 && stripped.allSatisfy({ $0.isHexDigit })
+    }
+
+    /// Handle elio://connect?eid=XXXX-XXXX URL scheme
+    private func handleElioConnectURL(_ code: String) {
+        guard let components = URLComponents(string: code),
+              let eid = components.queryItems?.first(where: { $0.name == "eid" })?.value else {
+            scannedResult = QRScanResult(success: false, message: "無効なElio ID URLです")
+            showingResult = true
+            return
+        }
+        handleElioIdConnect(eid)
+    }
+
+    /// Connect via Elio ID: search Bonjour, add as friend
+    private func handleElioIdConnect(_ eid: String) {
+        isConnecting = true
+        Task {
+            defer { isConnecting = false }
+
+            // Ensure browsing
+            chatModeManager.p2p?.startBrowsing()
+            try? await Task.sleep(nanoseconds: 1_500_000_000) // 1.5s for discovery
+
+            do {
+                let friend = try await friendsManager.addFriend(byElioId: eid)
+                scannedResult = QRScanResult(success: true, message: "\(friend.name) をフレンドに追加しました！")
+                showingResult = true
+                selectedTab = .friends
+            } catch {
+                scannedResult = QRScanResult(success: false, message: error.localizedDescription)
                 showingResult = true
             }
         }
@@ -450,7 +606,10 @@ struct UnifiedConnectView: View {
             return
         }
 
+        isConnecting = true
         Task {
+            defer { isConnecting = false }
+
             chatModeManager.p2p?.startBrowsing()
             try? await Task.sleep(nanoseconds: 1_000_000_000)
 
@@ -481,10 +640,11 @@ struct UnifiedConnectView: View {
         }
 
         let name = components.queryItems?.first(where: { $0.name == "name" })?.value?.removingPercentEncoding
+        let eid = components.queryItems?.first(where: { $0.name == "eid" })?.value
 
         Task {
             do {
-                let friend = try await friendsManager.addFriend(pairingCode: pairingCode, name: name)
+                let friend = try await friendsManager.addFriend(pairingCode: pairingCode, name: name, elioId: eid)
                 scannedResult = QRScanResult(success: true, message: "\(friend.name) をフレンドに追加しました！")
                 showingResult = true
                 selectedTab = .friends

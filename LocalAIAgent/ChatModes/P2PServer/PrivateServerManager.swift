@@ -70,9 +70,10 @@ final class PrivateServerManager: ObservableObject {
 
             listener = try NWListener(using: parameters, on: NWEndpoint.Port(rawValue: defaultPort)!)
 
-            // Set up Bonjour advertising with pairing code in TXT record
+            // Set up Bonjour advertising with pairing code and Elio ID in TXT record
             var txtRecord = NWTXTRecord()
             txtRecord["code"] = pairingCode
+            txtRecord["eid"] = DeviceIdentityManager.shared.elioId
             txtRecord["version"] = "1"
             listener?.service = NWListener.Service(
                 name: getDeviceName(),
