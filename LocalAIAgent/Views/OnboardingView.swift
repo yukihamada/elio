@@ -65,18 +65,6 @@ struct OnboardingView: View {
 
     var body: some View {
         ZStack {
-            // Animated gradient background
-            LinearGradient(
-                colors: [
-                    Color.purple.opacity(0.1),
-                    Color.blue.opacity(0.05),
-                    Color.chatBackgroundDynamic
-                ],
-                startPoint: .topLeading,
-                endPoint: .bottomTrailing
-            )
-            .ignoresSafeArea()
-
             if !isViewReady {
                 // Beautiful loading state with Goro mascot
                 VStack(spacing: 24) {
@@ -148,6 +136,19 @@ struct OnboardingView: View {
                 .opacity(showContent ? 1 : 0)
             }
         }
+        // Background fills edge-to-edge behind safe area content
+        .background(
+            LinearGradient(
+                colors: [
+                    Color.purple.opacity(0.1),
+                    Color.blue.opacity(0.05),
+                    Color.chatBackgroundDynamic
+                ],
+                startPoint: .topLeading,
+                endPoint: .bottomTrailing
+            )
+            .ignoresSafeArea()
+        )
         .onAppear {
             // Skip download mode for UI testing - immediately complete onboarding
             if isSkipDownloadMode {
