@@ -373,4 +373,25 @@ enum ReazonSpeechError: Error, LocalizedError {
         }
     }
 }
+#else
+// Mac Catalyst stub — on-device STT not available, use cloud APIs
+import Foundation
+
+@MainActor
+final class ReazonSpeechManager: ObservableObject {
+    static let shared = ReazonSpeechManager()
+    @Published var isModelDownloaded = false
+    @Published var isDownloading = false
+    @Published var downloadProgress: Double = 0
+    @Published var isRecording = false
+    @Published var isTranscribing = false
+    @Published var transcribedText = ""
+    @Published var errorMessage: String?
+    @Published var audioLevel: Float = 0
+    private init() {}
+    func downloadModelIfNeeded() async throws {}
+    func startRecording() async throws {}
+    func stopRecording() async throws -> String { "" }
+    func cancelRecording() {}
+}
 #endif  // !targetEnvironment(macCatalyst)

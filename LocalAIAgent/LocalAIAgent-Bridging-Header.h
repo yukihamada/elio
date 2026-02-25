@@ -8,6 +8,7 @@
 #ifndef LocalAIAgent_Bridging_Header_h
 #define LocalAIAgent_Bridging_Header_h
 
+#include <TargetConditionals.h>
 #if !TARGET_OS_MACCATALYST
 #import <sherpa-onnx/c-api/c-api.h>
 // BitNet integration (WIP)

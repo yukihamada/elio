@@ -1060,4 +1060,23 @@ enum KokoroTTSError: LocalizedError {
         }
     }
 }
+#else
+// Mac Catalyst stub — on-device TTS not available, use system TTS
+import Foundation
+
+@MainActor
+final class KokoroTTSManager: NSObject, ObservableObject {
+    static let shared = KokoroTTSManager()
+    @Published var isModelDownloaded = false
+    @Published var isDownloading = false
+    @Published var downloadProgress: Double = 0
+    @Published var isSpeaking = false
+    @Published var currentMessageId: UUID?
+    @Published var errorMessage: String?
+    private override init() { super.init() }
+    func downloadModelIfNeeded() async throws {}
+    func speak(_ text: String, messageId: UUID? = nil, speakerId: Int? = nil, speed: Float = 1.0) async {}
+    func stop() {}
+    func resetModel() {}
+}
 #endif  // !targetEnvironment(macCatalyst)
