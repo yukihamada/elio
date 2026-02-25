@@ -68,10 +68,13 @@ final class ConversationManager: ObservableObject {
         return Array(conversation.messages.suffix(limit))
     }
 
+    /// Get recent messages that fit within token budget.
+    /// Optimized: collects in reverse then reverses once (O(n) vs O(n^2) insert-at-0).
     func getContextMessages(maxTokens: Int = 4000) -> [Message] {
         guard let conversation = currentConversation else { return [] }
 
-        var messages: [Message] = []
+        var reversed: [Message] = []
+        reversed.reserveCapacity(min(conversation.messages.count, 40))
         var estimatedTokens = 0
 
         for message in conversation.messages.reversed() {
@@ -81,11 +84,11 @@ final class ConversationManager: ObservableObject {
                 break
             }
 
-            messages.insert(message, at: 0)
+            reversed.append(message)
             estimatedTokens += messageTokens
         }
 
-        return messages
+        return reversed.reversed()
     }
 
     private func estimateTokenCount(_ text: String) -> Int {
@@ -136,12 +139,17 @@ final class ConversationManager: ObservableObject {
         return export
     }
 
-    private func formatDate(_ date: Date) -> String {
+    /// Cached date formatter for export (avoid repeated allocation)
+    private static let exportDateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: "ja_JP")
         formatter.dateStyle = .long
         formatter.timeStyle = .short
-        return formatter.string(from: date)
+        return formatter
+    }()
+
+    private func formatDate(_ date: Date) -> String {
+        Self.exportDateFormatter.string(from: date)
     }
 }
 

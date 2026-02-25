@@ -1,12 +1,15 @@
 import Foundation
 
+/// StreamingDecoder: converts a stream of token strings into valid UTF-8 characters.
+/// Optimized to minimize String allocations by working with byte buffers directly.
 actor StreamingDecoder {
-    private var buffer: String = ""
+    private var byteBuffer: [UInt8] = []
     private var isDecoding = false
     private var continuation: AsyncStream<String>.Continuation?
 
     func startDecoding() -> AsyncStream<String> {
-        AsyncStream { continuation in
+        byteBuffer.reserveCapacity(64)
+        return AsyncStream { continuation in
             self.continuation = continuation
 
             continuation.onTermination = { @Sendable _ in
@@ -18,27 +21,30 @@ actor StreamingDecoder {
     }
 
     func decode(token: String) {
-        buffer += token
+        // Append bytes directly instead of String concatenation
+        byteBuffer.append(contentsOf: token.utf8)
 
-        if let continuation = continuation {
-            var outputBuffer = ""
+        guard let continuation = continuation else { return }
 
-            while let (char, remaining) = extractNextChar() {
-                outputBuffer += char
-                buffer = remaining
-            }
+        // Find the longest valid UTF-8 prefix in the byte buffer
+        let validEnd = findValidUTF8End(byteBuffer)
 
-            if !outputBuffer.isEmpty {
-                continuation.yield(outputBuffer)
+        if validEnd > 0 {
+            let validBytes = Array(byteBuffer.prefix(validEnd))
+            if let output = String(bytes: validBytes, encoding: .utf8), !output.isEmpty {
+                byteBuffer.removeFirst(validEnd)
+                continuation.yield(output)
             }
         }
     }
 
     func finishDecoding() {
         if let continuation = continuation {
-            if !buffer.isEmpty {
-                continuation.yield(buffer)
-                buffer = ""
+            if !byteBuffer.isEmpty {
+                if let remaining = String(bytes: byteBuffer, encoding: .utf8), !remaining.isEmpty {
+                    continuation.yield(remaining)
+                }
+                byteBuffer.removeAll(keepingCapacity: true)
             }
             continuation.finish()
         }
@@ -49,31 +55,39 @@ actor StreamingDecoder {
     func stopDecoding() {
         continuation?.finish()
         isDecoding = false
-        buffer = ""
+        byteBuffer.removeAll(keepingCapacity: true)
         self.continuation = nil
     }
 
-    private func extractNextChar() -> (String, String)? {
-        guard !buffer.isEmpty else { return nil }
+    /// Find the end index of the longest valid UTF-8 sequence in the byte buffer.
+    /// Handles incomplete multi-byte sequences at the end by excluding them.
+    private func findValidUTF8End(_ bytes: [UInt8]) -> Int {
+        guard !bytes.isEmpty else { return 0 }
 
-        let data = buffer.data(using: .utf8)!
-        var validEnd = 0
+        var validEnd = bytes.count
 
-        for i in 1...min(4, data.count) {
-            let prefix = data.prefix(i)
-            if String(data: prefix, encoding: .utf8) != nil {
-                validEnd = i
+        // Check if the last few bytes form an incomplete multi-byte sequence
+        for i in stride(from: bytes.count - 1, through: max(0, bytes.count - 4), by: -1) {
+            let byte = bytes[i]
+            if byte & 0x80 == 0 {
+                // ASCII byte - valid boundary
+                break
+            } else if byte & 0xC0 == 0xC0 {
+                // Start of multi-byte sequence
+                let expectedLength: Int
+                if byte & 0xF8 == 0xF0 { expectedLength = 4 }
+                else if byte & 0xF0 == 0xE0 { expectedLength = 3 }
+                else if byte & 0xE0 == 0xC0 { expectedLength = 2 }
+                else { break }
+
+                if bytes.count - i < expectedLength {
+                    validEnd = i  // Incomplete sequence, exclude it
+                }
                 break
             }
         }
 
-        guard validEnd > 0 else { return nil }
-
-        let charData = data.prefix(validEnd)
-        guard let char = String(data: charData, encoding: .utf8) else { return nil }
-
-        let remaining = String(buffer.dropFirst(validEnd))
-        return (char, remaining)
+        return validEnd
     }
 }
 

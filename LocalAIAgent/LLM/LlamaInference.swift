@@ -87,6 +87,9 @@ final class LlamaInference: ObservableObject {
     private var context: OpaquePointer?
     private var modelPath: URL?
 
+    // Background queue for llama_decode to prevent blocking MainActor/UI thread
+    private static let inferenceQueue = DispatchQueue(label: "love.elio.app.llama.inference", qos: .userInitiated)
+
     // Reusable buffer for token-to-bytes conversion (avoids allocation per token)
     private var tokenBuffer = [CChar](repeating: 0, count: 256)
 
@@ -356,8 +359,8 @@ final class LlamaInference: ObservableObject {
             throw LlamaError.tokenizationFailed
         }
 
-        // Tokenize the prompt
-        var promptTokens = tokenize(prompt, vocab: vocab, addSpecial: true)
+        // Tokenize the prompt (lightweight, OK on main actor)
+        let promptTokens = tokenize(prompt, vocab: vocab, addSpecial: true)
 
         guard !promptTokens.isEmpty else {
             throw LlamaError.tokenizationFailed
@@ -373,36 +376,80 @@ final class LlamaInference: ObservableObject {
             throw LlamaError.contextOverflow(tokenCount: promptTokens.count, maxContext: maxContextWithBuffer)
         }
 
+        // Capture all values needed by the background queue
+        let capturedContext = context
+        let capturedVocab = vocab
+        let capturedEosTokenId = currentConfig.eosTokenId
+        let capturedTokenBuffer = tokenBuffer  // copy of reusable buffer
+
+        // Run ENTIRE inference (prompt processing + token generation) on background queue.
+        // This keeps the main thread completely free for UI during inference.
+        let generatedText: String = try await withCheckedThrowingContinuation { continuation in
+            Self.inferenceQueue.async {
+                do {
+                    let result = try Self.inferenceLoop(
+                        context: capturedContext,
+                        vocab: capturedVocab,
+                        promptTokens: promptTokens,
+                        maxTokens: maxTokens,
+                        temperature: temperature,
+                        topP: topP,
+                        topK: topK,
+                        repeatPenalty: repeatPenalty,
+                        stopSequences: stopSequences,
+                        eosTokenId: capturedEosTokenId,
+                        tokenBufferSize: capturedTokenBuffer.count,
+                        onToken: onToken
+                    )
+                    continuation.resume(returning: result)
+                } catch {
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+
+        return generatedText
+    }
+
+    /// Runs the entire inference loop on a background queue (NOT on MainActor).
+    /// Only touches MainActor via onToken callback dispatched to main queue.
+    /// Optimized: batched UI dispatch, suffix-only stop sequence check, reduced allocations.
+    private static func inferenceLoop(
+        context: OpaquePointer,
+        vocab: OpaquePointer,
+        promptTokens: [llama_token],
+        maxTokens: Int,
+        temperature: Float,
+        topP: Float,
+        topK: Int32,
+        repeatPenalty: Float,
+        stopSequences: [String],
+        eosTokenId: llama_token,
+        tokenBufferSize: Int,
+        onToken: @escaping @MainActor (String) -> Void
+    ) throws -> String {
         // Clear memory
         let memory = llama_get_memory(context)
         llama_memory_clear(memory, true)
 
-        // Process prompt in chunks to avoid exceeding n_batch limit
-        // n_batch is set to min(512, contextSize), so we process in chunks of 512
+        // Process prompt in chunks
         let batchSize = 512
         let totalTokens = promptTokens.count
         var processedTokens = 0
 
         while processedTokens < totalTokens {
-            let remainingTokens = totalTokens - processedTokens
-            let chunkSize = min(batchSize, remainingTokens)
+            let chunkSize = min(batchSize, totalTokens - processedTokens)
+            var chunkTokens = Array(promptTokens[processedTokens..<processedTokens + chunkSize])
 
-            let decodeResult: Int32 = promptTokens.withUnsafeMutableBufferPointer { bufferPtr in
-                let chunkPtr = bufferPtr.baseAddress! + processedTokens
-                let batch = llama_batch_get_one(chunkPtr, Int32(chunkSize))
+            let decodeResult = chunkTokens.withUnsafeMutableBufferPointer { bufferPtr in
+                let batch = llama_batch_get_one(bufferPtr.baseAddress!, Int32(chunkSize))
                 return llama_decode(context, batch)
             }
 
             if decodeResult != 0 {
                 throw LlamaError.generationFailed("Failed to process prompt chunk at offset \(processedTokens): \(decodeResult)")
             }
-
             processedTokens += chunkSize
-
-            // Yield to allow UI updates during long prompt processing
-            if processedTokens < totalTokens {
-                await Task.yield()
-            }
         }
 
         // Create sampler chain
@@ -412,99 +459,159 @@ final class LlamaInference: ObservableObject {
         }
         defer { llama_sampler_free(sampler) }
 
-        // Faster sampling: use greedy for low temperatures
         if temperature < 0.1 {
-            // Greedy decoding - fastest
             llama_sampler_chain_add(sampler, llama_sampler_init_greedy())
         } else {
-            // Add repeat penalty first
             if repeatPenalty > 1.0 {
                 llama_sampler_chain_add(sampler, llama_sampler_init_penalties(64, repeatPenalty, 0.0, 0.0))
             }
-            // Add samplers to chain with user-specified values
             llama_sampler_chain_add(sampler, llama_sampler_init_top_k(topK))
             llama_sampler_chain_add(sampler, llama_sampler_init_top_p(topP, 1))
             llama_sampler_chain_add(sampler, llama_sampler_init_temp(temperature))
             llama_sampler_chain_add(sampler, llama_sampler_init_dist(UInt32.random(in: 0..<UInt32.max)))
         }
 
-        // Pre-allocate buffer for generated text
         var generatedText = ""
-        generatedText.reserveCapacity(maxTokens * 4)  // Estimate ~4 chars per token
-
-        // Reusable token buffer for decode
-        var nextTokenArray: [llama_token] = [0]
-
-        // UTF-8 byte buffer for handling incomplete sequences
+        generatedText.reserveCapacity(maxTokens * 4)
         var pendingBytes: [UInt8] = []
+        pendingBytes.reserveCapacity(16)
+        var tokenBuffer = [CChar](repeating: 0, count: tokenBufferSize)
 
-        // Generate tokens
-        for tokenIndex in 0..<maxTokens {
-            // Check for cancellation
-            try Task.checkCancellation()
+        // Pre-compute maximum stop sequence length for efficient suffix checking
+        let maxStopSeqLen = stopSequences.map(\.count).max() ?? 0
+        let hasStopSequences = !stopSequences.isEmpty
 
-            // Yield periodically for cancellation responsiveness (less frequent = faster throughput)
-            if tokenIndex % 64 == 0 {
-                await Task.yield()
-            }
+        // Batched UI dispatch: accumulate tokens and dispatch at intervals
+        // to reduce main queue dispatch overhead (reduces context switches)
+        var pendingUIText = ""
+        var tokensSinceLastDispatch = 0
+        let dispatchInterval = 4  // Dispatch to UI every N tokens
 
-            // Sample next token using the sampler chain
+        for _ in 0..<maxTokens {
+            // Check cancellation every 8 tokens to reduce overhead
+            if tokensSinceLastDispatch % 8 == 0 && Task.isCancelled { break }
+
+            // Sample next token
             let newToken = llama_sampler_sample(sampler, context, -1)
 
             // Check for EOS
-            if llama_vocab_is_eog(vocab, newToken) || newToken == currentConfig.eosTokenId {
+            if llama_vocab_is_eog(vocab, newToken) || newToken == eosTokenId {
                 break
             }
 
-            // Convert token to bytes and accumulate
-            let tokenBytes = tokenToBytes(newToken, vocab: vocab)
-            pendingBytes.append(contentsOf: tokenBytes)
+            // Convert token to bytes using pre-allocated buffer
+            let length = llama_token_to_piece(vocab, newToken, &tokenBuffer, Int32(tokenBuffer.count), 0, true)
+            if length > 0 {
+                // Append bytes directly without intermediate Array allocation
+                for i in 0..<Int(length) {
+                    pendingBytes.append(UInt8(bitPattern: tokenBuffer[i]))
+                }
+            }
 
-            // Try to convert accumulated bytes to string
-            let (validText, remaining) = bytesToString(pendingBytes)
+            // Try to convert accumulated bytes to valid UTF-8
+            let (validText, remaining) = bytesToStringStatic(pendingBytes)
             pendingBytes = remaining
 
             if !validText.isEmpty {
                 generatedText += validText
-                // Call callback with valid UTF-8 text
-                onToken(validText)
+                pendingUIText += validText
+                tokensSinceLastDispatch += 1
+
+                // Batch UI dispatches: send accumulated text every N tokens
+                // or immediately if it contains a newline (for visual line breaks)
+                if tokensSinceLastDispatch >= dispatchInterval || validText.contains("\n") {
+                    let textToSend = pendingUIText
+                    pendingUIText = ""
+                    tokensSinceLastDispatch = 0
+                    DispatchQueue.main.async {
+                        onToken(textToSend)
+                    }
+                }
             }
 
-            // Check stop sequences only if we have any
-            if !stopSequences.isEmpty {
+            // Check stop sequences efficiently: only check suffix of generated text
+            // instead of scanning the entire string each time
+            if hasStopSequences {
+                let suffixStart = generatedText.index(generatedText.endIndex, offsetBy: -min(maxStopSeqLen + 4, generatedText.count))
+                let suffix = generatedText[suffixStart...]
                 for stopSeq in stopSequences {
-                    if generatedText.hasSuffix(stopSeq) {
+                    if suffix.hasSuffix(stopSeq) {
+                        // Flush any pending UI text before returning
+                        if !pendingUIText.isEmpty {
+                            let textToSend = pendingUIText
+                            DispatchQueue.main.async {
+                                onToken(textToSend)
+                            }
+                        }
                         return generatedText
                     }
                 }
             }
 
-            // Decode next token - reuse array
-            nextTokenArray[0] = newToken
-            let result: Int32 = nextTokenArray.withUnsafeMutableBufferPointer { bufferPtr in
+            // Decode next token (same background queue, no context switch needed)
+            var tokens: [llama_token] = [newToken]
+            let result = tokens.withUnsafeMutableBufferPointer { bufferPtr in
                 let batch = llama_batch_get_one(bufferPtr.baseAddress!, 1)
                 return llama_decode(context, batch)
             }
 
-            if result != 0 {
-                break
-            }
+            if result != 0 { break }
+        }
 
-            // Yield to allow UI updates every 2 tokens for better responsiveness
-            if tokenIndex % 2 == 0 {
-                await Task.yield()
+        // Flush any remaining pending UI text
+        if !pendingUIText.isEmpty {
+            let textToSend = pendingUIText
+            DispatchQueue.main.async {
+                onToken(textToSend)
             }
         }
 
-        // Flush any remaining bytes at the end
+        // Flush remaining bytes
         if !pendingBytes.isEmpty {
             if let finalText = String(bytes: pendingBytes, encoding: .utf8), !finalText.isEmpty {
                 generatedText += finalText
-                onToken(finalText)
+                let text = finalText
+                DispatchQueue.main.async {
+                    onToken(text)
+                }
             }
         }
 
         return generatedText
+    }
+
+    /// Static version of bytesToString for use in background queue (no self reference needed)
+    private static func bytesToStringStatic(_ bytes: [UInt8]) -> (String, [UInt8]) {
+        guard !bytes.isEmpty else { return ("", []) }
+
+        var validEnd = bytes.count
+
+        for i in stride(from: bytes.count - 1, through: max(0, bytes.count - 4), by: -1) {
+            let byte = bytes[i]
+            if byte & 0x80 == 0 {
+                break
+            } else if byte & 0xC0 == 0xC0 {
+                let expectedLength: Int
+                if byte & 0xF8 == 0xF0 { expectedLength = 4 }
+                else if byte & 0xF0 == 0xE0 { expectedLength = 3 }
+                else if byte & 0xE0 == 0xC0 { expectedLength = 2 }
+                else { break }
+
+                let available = bytes.count - i
+                if available < expectedLength {
+                    validEnd = i
+                }
+                break
+            }
+        }
+
+        let validBytes = Array(bytes.prefix(validEnd))
+        let remaining = Array(bytes.suffix(from: validEnd))
+
+        if let str = String(bytes: validBytes, encoding: .utf8) {
+            return (str, remaining)
+        }
+        return ("", bytes)
     }
 
     private func tokenize(_ text: String, vocab: OpaquePointer, addSpecial: Bool) -> [llama_token] {

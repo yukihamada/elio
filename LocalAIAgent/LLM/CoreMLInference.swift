@@ -1,5 +1,6 @@
 import Foundation
 import CoreML
+import Accelerate
 
 @MainActor
 final class CoreMLInference: ObservableObject {
@@ -233,61 +234,83 @@ final class CoreMLInference: ObservableObject {
         return nextTokenId
     }
 
+    /// Optimized sampling using Accelerate framework for vectorized math operations.
+    /// Avoids per-element loops for temperature scaling, softmax, and sorting.
     private func sampleFromLogits(_ logits: MLMultiArray, temperature: Float, topP: Float) -> Int {
         guard let vocabSizeNumber = logits.shape.last else {
             logError("CoreMLInference", "Invalid logits shape - no last dimension")
-            return 0  // Return EOS token on error
+            return 0
         }
         let vocabSize = vocabSizeNumber.intValue
         let lastPosition = logits.shape[1].intValue - 1
 
+        // Extract logits for the last position using pointer access (much faster than NSNumber subscript)
         var logitsArray = [Float](repeating: 0, count: vocabSize)
-        for i in 0..<vocabSize {
-            logitsArray[i] = logits[[0, lastPosition, i] as [NSNumber]].floatValue
+        let dataPointer = logits.dataPointer.assumingMemoryBound(to: Float.self)
+        let offset = lastPosition * vocabSize
+        logitsArray.withUnsafeMutableBufferPointer { destPtr in
+            destPtr.baseAddress!.initialize(from: dataPointer.advanced(by: offset), count: vocabSize)
         }
 
+        // Greedy sampling (argmax) - use vDSP for vectorized max finding
         if temperature <= 0.01 {
-            return logitsArray.enumerated().max(by: { $0.element < $1.element })?.offset ?? 0
+            var maxVal: Float = 0
+            var maxIdx: vDSP_Length = 0
+            vDSP_maxvi(logitsArray, 1, &maxVal, &maxIdx, vDSP_Length(vocabSize))
+            return Int(maxIdx)
         }
 
-        for i in 0..<vocabSize {
-            logitsArray[i] /= temperature
-        }
+        // Temperature scaling using vDSP (vectorized divide)
+        var temp = temperature
+        vDSP_vsdiv(logitsArray, 1, &temp, &logitsArray, 1, vDSP_Length(vocabSize))
 
-        let maxLogit = logitsArray.max() ?? 0
-        var probs = logitsArray.map { exp($0 - maxLogit) }
-        let sumProbs = probs.reduce(0, +)
-        probs = probs.map { $0 / sumProbs }
+        // Softmax: subtract max for numerical stability, then exp, then normalize
+        var maxLogit: Float = 0
+        vDSP_maxv(logitsArray, 1, &maxLogit, vDSP_Length(vocabSize))
+        var negMax = -maxLogit
+        vDSP_vsadd(logitsArray, 1, &negMax, &logitsArray, 1, vDSP_Length(vocabSize))
 
-        let sortedIndices = probs.enumerated().sorted { $0.element > $1.element }.map { $0.offset }
+        // Vectorized exp
+        var count = Int32(vocabSize)
+        vvexpf(&logitsArray, logitsArray, &count)
+
+        // Normalize (sum and divide)
+        var sumProbs: Float = 0
+        vDSP_sve(logitsArray, 1, &sumProbs, vDSP_Length(vocabSize))
+        vDSP_vsdiv(logitsArray, 1, &sumProbs, &logitsArray, 1, vDSP_Length(vocabSize))
+
+        // Top-P (nucleus) sampling: sort indices by probability descending
+        // Use vDSP_vsorti for efficient sorting
+        var indices = [vDSP_Length](0..<vDSP_Length(vocabSize))
+        vDSP_vsorti(logitsArray, &indices, nil, vDSP_Length(vocabSize), -1)  // -1 = descending
+
+        // Accumulate probabilities until we reach topP
         var cumSum: Float = 0
-        var topPIndices: [Int] = []
-
-        for idx in sortedIndices {
-            cumSum += probs[idx]
-            topPIndices.append(idx)
+        var topPCount = 0
+        for i in 0..<vocabSize {
+            cumSum += logitsArray[Int(indices[i])]
+            topPCount += 1
             if cumSum >= topP {
                 break
             }
         }
 
-        var filteredProbs = [Float](repeating: 0, count: vocabSize)
-        for idx in topPIndices {
-            filteredProbs[idx] = probs[idx]
+        // Renormalize the top-P subset and sample
+        var filteredSum: Float = 0
+        for i in 0..<topPCount {
+            filteredSum += logitsArray[Int(indices[i])]
         }
-        let filteredSum = filteredProbs.reduce(0, +)
-        filteredProbs = filteredProbs.map { $0 / filteredSum }
 
-        let random = Float.random(in: 0..<1)
+        let random = Float.random(in: 0..<filteredSum)
         var cumulative: Float = 0
-        for (idx, prob) in filteredProbs.enumerated() {
-            cumulative += prob
+        for i in 0..<topPCount {
+            cumulative += logitsArray[Int(indices[i])]
             if cumulative >= random {
-                return idx
+                return Int(indices[i])
             }
         }
 
-        return topPIndices.first ?? 0
+        return Int(indices[0])
     }
 
     // MARK: - GGUF Model Inference

@@ -112,27 +112,34 @@ final class AppState: ObservableObject {
 
     // MARK: - Token Context Management
 
-    /// Estimate token count for a string (conservative estimate to prevent overflow)
-    /// Japanese: ~2 tokens per character (conservative), English: ~0.3 tokens per character
+    /// Estimate token count for a string (conservative estimate to prevent overflow).
+    /// Uses Unicode scalar ranges for O(1) per-character classification without Character overhead.
+    /// Japanese: ~2 tokens per character (conservative), English: ~0.3 tokens per character.
     private func estimateTokens(_ text: String) -> Int {
         var japaneseCount = 0
-        var otherCount = 0
+        var totalScalars = 0
 
-        for char in text {
-            if char.isJapanese {
+        // Iterate over Unicode scalars directly (faster than Character iteration
+        // since it avoids grapheme cluster boundary detection)
+        for scalar in text.unicodeScalars {
+            totalScalars += 1
+            let value = scalar.value
+            // Hiragana (3040-309F), Katakana (30A0-30FF), CJK (4E00-9FFF, 3400-4DBF)
+            if (value >= 0x3040 && value <= 0x30FF) ||
+               (value >= 0x4E00 && value <= 0x9FFF) ||
+               (value >= 0x3400 && value <= 0x4DBF) {
                 japaneseCount += 1
-            } else {
-                otherCount += 1
             }
         }
 
+        let otherCount = totalScalars - japaneseCount
         // Conservative: Japanese ~2 tokens/char, English ~0.3 tokens/char, plus overhead
-        // Better to underestimate context size than overflow
         return japaneseCount * 2 + Int(Double(otherCount) * 0.3) + 20
     }
 
-    /// Trim conversation history to fit within context window
-    /// Uses LLM-generated summary for older messages when available
+    /// Trim conversation history to fit within context window.
+    /// Uses LLM-generated summary for older messages when available.
+    /// Optimized: collects messages in reverse then reverses once (O(n) vs O(n^2) insert-at-0).
     private func trimHistoryToFitContext(_ messages: [Message]) -> [Message] {
         guard !messages.isEmpty else { return [] }
 
@@ -155,7 +162,9 @@ final class AppState: ObservableObject {
             ? maxContextTokens - estimateTokens(summaryContent)
             : maxContextTokens
 
-        var result: [Message] = []
+        // Collect messages newest-first then reverse at the end (avoids O(n^2) insert-at-0)
+        var reversed: [Message] = []
+        reversed.reserveCapacity(min(messages.count, 50))
         var estimatedTokens = 0
         var trimStartIndex: Int? = nil
 
@@ -175,9 +184,11 @@ final class AppState: ObservableObject {
                 break
             }
 
-            result.insert(message, at: 0)
+            reversed.append(message)
             estimatedTokens += totalMessageTokens
         }
+
+        var result = reversed.reversed() as [Message]
 
         // If we had to trim messages, queue summarization
         if let trimIdx = trimStartIndex, trimIdx > summarizedIndex {
