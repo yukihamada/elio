@@ -641,8 +641,15 @@ struct SettingsView: View {
                         Picker("", selection: Binding(
                             get: { syncManager.selectedChatWebModel ?? "auto" },
                             set: { newValue in
-                                syncManager.selectedChatWebModel = newValue == "auto" ? nil : newValue
-                                ChatModeManager.shared.setChatWebModel(newValue)
+                                // Check if selected model requires Pro subscription
+                                let selectedModel = ChatWebBackend.availableModels.first { $0.id == newValue }
+                                if selectedModel?.requiresPro == true && subscriptionManager.subscriptionStatus != .elioPro {
+                                    // Redirect to upgrade instead of selecting
+                                    showingUpgradeElioProView = true
+                                } else {
+                                    syncManager.selectedChatWebModel = newValue == "auto" ? nil : newValue
+                                    ChatModeManager.shared.setChatWebModel(newValue)
+                                }
                             }
                         )) {
                             ForEach(ChatWebBackend.availableModels, id: \.id) { model in

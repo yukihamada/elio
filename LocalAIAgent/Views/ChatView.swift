@@ -54,10 +54,7 @@ struct ChatView: View {
     @AppStorage("justCompletedOnboarding") private var justCompletedOnboarding = false
     @AppStorage("hasCompletedOnboarding") private var hasCompletedOnboarding = false
     // Web search
-    @State private var showingSearchPrivacyAlert = false
-    @State private var pendingSearchQuery: String = ""
-    @AppStorage("hasShownSearchPrivacyInfo") private var hasShownSearchPrivacyInfo = false
-    @AppStorage("webSearchEnabled") private var webSearchEnabled = true  // Default ON
+    @AppStorage("webSearchEnabled") private var webSearchEnabled = true  // Default ON (always auto)
     @State private var showingPlusMenu = false  // For + button menu
     // Thinking mode
     @AppStorage("thinkingEnabled") private var thinkingEnabled = false  // Default OFF
@@ -465,26 +462,6 @@ struct ChatView: View {
                     sendMessage()
                 }
             })
-        }
-        // Web search privacy explanation alert
-        .alert(String(localized: "search.privacy.title", defaultValue: "プライバシー保護検索"), isPresented: $showingSearchPrivacyAlert) {
-            Button(String(localized: "search.privacy.proceed", defaultValue: "検索する")) {
-                executeWebSearch(query: pendingSearchQuery)
-            }
-            Button(String(localized: "common.cancel"), role: .cancel) {
-                pendingSearchQuery = ""
-            }
-        } message: {
-            Text(String(localized: "search.privacy.message", defaultValue: """
-            ElioChat の Web 検索はプライバシーを保護します：
-
-            🔒 DuckDuckGo 経由で検索
-            🚫 追跡・トラッキングなし
-            🔐 検索履歴は保存されません
-            📱 デバイス外にデータを保存しません
-
-            検索クエリのみがDuckDuckGoに送信され、結果はデバイス上で処理されます。
-            """))
         }
     }
 
@@ -1697,18 +1674,6 @@ struct ChatView: View {
             .padding(.vertical, 12)
         }
         .animation(nil, value: isInputFocused)
-        .alert(String(localized: "chat.websearch.privacy.title"), isPresented: $showingSearchPrivacyAlert) {
-            Button(String(localized: "chat.websearch.privacy.enable")) {
-                hasShownSearchPrivacyInfo = true
-                webSearchEnabled = true
-            }
-            Button(String(localized: "chat.websearch.privacy.disable")) {
-                hasShownSearchPrivacyInfo = true
-                webSearchEnabled = false
-            }
-        } message: {
-            Text(String(localized: "chat.websearch.privacy.message"))
-        }
         // .sheet(item: $showingAPIKeyOnboarding) { mode in
         //     APIKeyOnboardingView(mode: mode)
         // }
@@ -2078,10 +2043,6 @@ struct ChatView: View {
 
     /// Execute web search and send as new message
     private func executeWebSearch(query: String) {
-        hasShownSearchPrivacyInfo = true
-        pendingSearchQuery = ""
-
-        // Send a search request message
         let searchMessage = "「\(query)」を検索して"
         inputText = searchMessage
         sendMessage()
