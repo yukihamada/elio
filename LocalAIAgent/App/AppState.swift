@@ -689,9 +689,10 @@ final class AppState: ObservableObject {
         // Build recent conversation titles
         let recentConversations = conversations.prefix(5).map { $0.title }
 
-        // Use localized system prompt
+        // Use localized system prompt with model-specific addendum
         return SystemPromptLocalizations.getPrompt(
             for: languageCode,
+            modelId: currentModelId,
             currentDateTime: currentDateTime,
             recentConversations: Array(recentConversations),
             isEmergencyMode: isEmergencyMode

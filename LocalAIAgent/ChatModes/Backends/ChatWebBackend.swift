@@ -18,6 +18,9 @@ extension Notification.Name {
     /// Posted when a ChatWeb SSE `thinking` event arrives.
     /// `userInfo` keys: "text" (String)
     static let chatWebThinking = Notification.Name("chatWebThinking")
+
+    /// Posted when the server returns HTTP 402 (insufficient credits).
+    static let chatWebInsufficientCredits = Notification.Name("chatWebInsufficientCredits")
 }
 
 /// ChatWeb.ai cloud API backend
@@ -93,12 +96,13 @@ final class ChatWebBackend: InferenceBackend, ObservableObject {
     }()
 
     /// Available models that can be selected (populated externally)
-    static let availableModels: [(id: String, name: String)] = [
-        ("auto", "Auto (server default)"),
-        ("claude-sonnet-4-5", "Claude Sonnet 4.5"),
-        ("claude-haiku-3-5", "Claude Haiku 3.5"),
-        ("gpt-4o", "GPT-4o"),
-        ("gpt-4o-mini", "GPT-4o Mini"),
+    static let availableModels: [(id: String, name: String, requiresPro: Bool)] = [
+        ("auto", "Auto (server default)", false),
+        ("nvidia/NVIDIA-Nemotron-Nano-9B-v2-Japanese", "Nemotron 9B Japanese ✦ Pro", true),
+        ("claude-sonnet-4-5", "Claude Sonnet 4.5", false),
+        ("claude-haiku-3-5", "Claude Haiku 3.5", false),
+        ("gpt-4o", "GPT-4o", false),
+        ("gpt-4o-mini", "GPT-4o Mini", false),
     ]
 
     /// Persistent session ID for conversation continuity
@@ -154,6 +158,9 @@ final class ChatWebBackend: InferenceBackend, ObservableObject {
                 let result = try await streamSSE(request: request, onToken: onToken)
                 activeEndpoint = ep
                 return result
+            } catch InferenceError.insufficientCredits {
+                // Don't retry other endpoints — propagate immediately so the upgrade prompt shows
+                throw InferenceError.insufficientCredits
             } catch {
                 lastError = error
                 logError("ChatWeb", "\(ep.rawValue) failed: \(error.localizedDescription), trying next endpoint...")
@@ -243,6 +250,11 @@ final class ChatWebBackend: InferenceBackend, ObservableObject {
 
         if httpResponse.statusCode == 429 {
             throw InferenceError.rateLimited
+        }
+
+        if httpResponse.statusCode == 402 {
+            NotificationCenter.default.post(name: .chatWebInsufficientCredits, object: nil)
+            throw InferenceError.insufficientCredits
         }
 
         guard httpResponse.statusCode == 200 else {

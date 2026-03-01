@@ -217,6 +217,7 @@ struct LocalAIAgentApp: App {
 struct ContentView: View {
     @EnvironmentObject var appState: AppState
     @EnvironmentObject var themeManager: ThemeManager
+    @EnvironmentObject var syncManager: SyncManager
     @Binding var hasCompletedOnboarding: Bool
     @State private var showingOnboarding = false
 
@@ -230,6 +231,10 @@ struct ContentView: View {
             .fullScreenCover(isPresented: $showingOnboarding) {
                 OnboardingView(hasCompletedOnboarding: $hasCompletedOnboarding)
                     .environmentObject(appState)
+            }
+            .sheet(isPresented: $syncManager.showUpgradePrompt) {
+                UpgradeElioProView()
+                    .environmentObject(syncManager)
             }
     }
 }

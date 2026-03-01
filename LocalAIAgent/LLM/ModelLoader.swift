@@ -351,8 +351,8 @@ final class ModelLoader: ObservableObject {
             ModelInfo(
                 id: "nemotron-nano-9b-jp-q4km",
                 name: "NVIDIA Nemotron-Nano 9B Japanese",
-                description: "NVIDIA製。日本語特化チューニング。Nejumiリーダーボード9B以下1位。Pro Max推奨。",
-                descriptionEn: "By NVIDIA. Japanese-tuned. #1 on Nejumi Leaderboard (under 9B). Pro Max recommended.",
+                description: "🏆 日本語会話・要約・文書作成に最強。Nejumi日本語ランキング9B以下1位。",
+                descriptionEn: "🏆 Best for Japanese chat, summarization & writing. #1 on Nejumi Leaderboard (under 9B).",
                 size: "約6.5GB",
                 sizeBytes: 6_530_000_000,
                 downloadURL: "https://huggingface.co/mmnga-o/NVIDIA-Nemotron-Nano-9B-v2-Japanese-gguf/resolve/main/NVIDIA-Nemotron-Nano-9B-v2-Japanese-Q4_K_M.gguf",
@@ -364,13 +364,13 @@ final class ModelLoader: ObservableObject {
                 ),
                 tier: .xlarge,
                 category: .recommended,
-                defaultSystemPrompt: "あなたは日本語に特化した高性能AIアシスタントです。自然で丁寧な日本語で回答してください。"
+                defaultSystemPrompt: "NVIDIAが開発した日本語特化モデルです。Nejumiリーダーボード9B以下で1位の実績があります。高品質で自然な日本語で回答してください。"
             ),
             ModelInfo(
                 id: "nemotron-nano-9b-jp-q3km",
                 name: "NVIDIA Nemotron-Nano 9B Japanese (軽量版)",
-                description: "NVIDIA製。日本語特化の省メモリ版。Pro Max推奨。",
-                descriptionEn: "By NVIDIA. Japanese-tuned, memory-efficient. Pro Max recommended.",
+                description: "🏆 Nemotron省メモリ版。日本語の会話・要約・メール作成に強い。",
+                descriptionEn: "🏆 Nemotron lite. Strong at Japanese chat, summarization & email drafting.",
                 size: "約5.4GB",
                 sizeBytes: 5_380_000_000,
                 downloadURL: "https://huggingface.co/mmnga-o/NVIDIA-Nemotron-Nano-9B-v2-Japanese-gguf/resolve/main/NVIDIA-Nemotron-Nano-9B-v2-Japanese-Q3_K_M.gguf",
@@ -382,13 +382,13 @@ final class ModelLoader: ObservableObject {
                 ),
                 tier: .xlarge,
                 category: .recommended,
-                defaultSystemPrompt: "あなたは日本語に特化した高性能AIアシスタントです。自然で丁寧な日本語で回答してください。"
+                defaultSystemPrompt: "NVIDIAが開発した日本語特化モデルの省メモリ版です。高品質で自然な日本語で回答してください。"
             ),
             ModelInfo(
                 id: "qwen3-0.6b",
                 name: "Qwen3 0.6B",
-                description: "超軽量・高速。全デバイス対応。",
-                descriptionEn: "Ultra-light and fast. Works on all devices.",
+                description: "⚡ 超高速起動。シンプルな質問・単語変換・短い要約向け。複雑な推論は苦手。",
+                descriptionEn: "⚡ Fastest startup. Best for simple Q&A, word lookup & short summaries. Not for complex tasks.",
                 size: "約500MB",
                 sizeBytes: 500_000_000,
                 downloadURL: "https://huggingface.co/unsloth/Qwen3-0.6B-GGUF/resolve/main/Qwen3-0.6B-Q4_K_M.gguf",
@@ -404,8 +404,8 @@ final class ModelLoader: ObservableObject {
             ModelInfo(
                 id: "qwen3-1.7b",
                 name: "Qwen3 1.7B",
-                description: "軽量でバランスの良い性能。",
-                descriptionEn: "Lightweight with balanced performance.",
+                description: "日常会話・要約・翻訳・簡単なコード生成が得意。軽量で使いやすい入門モデル。",
+                descriptionEn: "Great for daily chat, summarization, translation & basic coding. Lightweight and easy to use.",
                 size: "約1.2GB",
                 sizeBytes: 1_200_000_000,
                 downloadURL: "https://huggingface.co/unsloth/Qwen3-1.7B-GGUF/resolve/main/Qwen3-1.7B-Q4_K_M.gguf",
@@ -421,8 +421,8 @@ final class ModelLoader: ObservableObject {
             ModelInfo(
                 id: "qwen3-4b",
                 name: "Qwen3 4B",
-                description: "高性能モデル。Pro以上推奨。",
-                descriptionEn: "High performance. Pro or higher recommended.",
+                description: "複雑な質問・多段階推論・コード生成・多言語対応に強い。日常からプロ用途まで幅広く対応。",
+                descriptionEn: "Strong at complex Q&A, multi-step reasoning, code & multilingual tasks. Versatile from daily use to professional tasks.",
                 size: "約2.7GB",
                 sizeBytes: 2_700_000_000,
                 downloadURL: "https://huggingface.co/unsloth/Qwen3-4B-GGUF/resolve/main/Qwen3-4B-Q4_K_M.gguf",
@@ -438,8 +438,8 @@ final class ModelLoader: ObservableObject {
             ModelInfo(
                 id: "qwen3-8b",
                 name: "Qwen3 8B",
-                description: "最高性能。Pro Max推奨。",
-                descriptionEn: "Best performance. Pro Max recommended.",
+                description: "全方位高性能。長文生成・高度な推論・コード・創作・学術まで何でも対応。",
+                descriptionEn: "All-round high performance. Handles long text, advanced reasoning, code, creative & academic tasks.",
                 size: "約5GB",
                 sizeBytes: 5_000_000_000,
                 downloadURL: "https://huggingface.co/unsloth/Qwen3-8B-GGUF/resolve/main/Qwen3-8B-Q4_K_M.gguf",
@@ -458,8 +458,8 @@ final class ModelLoader: ObservableObject {
             ModelInfo(
                 id: "qwen3-1.7b-iq3xxs",
                 name: "Qwen3 1.7B IQ3_XXS",
-                description: "🔋 省メモリ版。iPhone 13/14/15向け。",
-                descriptionEn: "🔋 Memory-efficient. For iPhone 13/14/15.",
+                description: "🔋 省メモリ版。iPhone 13/14/15向け。日常会話・翻訳・短い要約が得意。",
+                descriptionEn: "🔋 Memory-efficient for iPhone 13/14/15. Great for daily chat, translation & short summaries.",
                 size: "約730MB",
                 sizeBytes: 730_000_000,
                 downloadURL: "https://huggingface.co/unsloth/Qwen3-1.7B-GGUF/resolve/main/Qwen3-1.7B-UD-IQ3_XXS.gguf",
@@ -475,8 +475,8 @@ final class ModelLoader: ObservableObject {
             ModelInfo(
                 id: "qwen3-1.7b-iq2xxs",
                 name: "Qwen3 1.7B IQ2_XXS",
-                description: "🔋 超省メモリ版。バッテリー優先。",
-                descriptionEn: "🔋 Ultra memory-efficient. Battery priority.",
+                description: "🔋 超省メモリ版。バッテリー・メモリ最優先。シンプルな質問向け。",
+                descriptionEn: "🔋 Ultra memory-efficient. Minimal RAM & battery use. Best for simple questions.",
                 size: "約580MB",
                 sizeBytes: 580_000_000,
                 downloadURL: "https://huggingface.co/unsloth/Qwen3-1.7B-GGUF/resolve/main/Qwen3-1.7B-UD-IQ2_XXS.gguf",
@@ -492,8 +492,8 @@ final class ModelLoader: ObservableObject {
             ModelInfo(
                 id: "qwen3-4b-iq3xxs",
                 name: "Qwen3 4B IQ3_XXS",
-                description: "🔋 省メモリ高性能版。iPhone 13/14/15向け。",
-                descriptionEn: "🔋 Memory-efficient high-perf. For iPhone 13/14/15.",
+                description: "🔋 省メモリ高性能版。iPhone 13/14/15向け。コード・分析・複雑な質問が得意。",
+                descriptionEn: "🔋 Memory-efficient 4B for iPhone 13/14/15. Good at code, analysis & complex questions.",
                 size: "約1.7GB",
                 sizeBytes: 1_670_000_000,
                 downloadURL: "https://huggingface.co/unsloth/Qwen3-4B-GGUF/resolve/main/Qwen3-4B-UD-IQ3_XXS.gguf",
@@ -509,8 +509,8 @@ final class ModelLoader: ObservableObject {
             ModelInfo(
                 id: "qwen3-4b-iq2xxs",
                 name: "Qwen3 4B IQ2_XXS",
-                description: "🔋 4B超省メモリ版。バッテリー優先。",
-                descriptionEn: "🔋 4B ultra memory-efficient. Battery priority.",
+                description: "🔋 4B超省メモリ版。メモリ6GB以下の端末でも4Bの思考力を活用。",
+                descriptionEn: "🔋 4B ultra memory-efficient. Brings 4B thinking power even to 6GB RAM devices.",
                 size: "約1.3GB",
                 sizeBytes: 1_260_000_000,
                 downloadURL: "https://huggingface.co/unsloth/Qwen3-4B-GGUF/resolve/main/Qwen3-4B-UD-IQ2_XXS.gguf",
@@ -527,8 +527,8 @@ final class ModelLoader: ObservableObject {
             ModelInfo(
                 id: "gemma-3-1b",
                 name: "Gemma 3 1B",
-                description: "Google最新。超軽量で高速。",
-                descriptionEn: "Latest Google. Ultra-light and fast.",
+                description: "Google最新。超軽量・高速起動。手軽な質問応答・翻訳向け。リアルタイム情報は不得意。",
+                descriptionEn: "Latest Google. Ultra-light & fast. Good for quick Q&A & translation. Not for real-time data.",
                 size: "約700MB",
                 sizeBytes: 700_000_000,
                 downloadURL: "https://huggingface.co/unsloth/gemma-3-1b-it-GGUF/resolve/main/gemma-3-1b-it-Q4_K_M.gguf",
@@ -544,8 +544,8 @@ final class ModelLoader: ObservableObject {
             ModelInfo(
                 id: "gemma-3-4b",
                 name: "Gemma 3 4B",
-                description: "Google最新。バランス良好。Pro推奨。",
-                descriptionEn: "Latest Google. Well balanced. Pro recommended.",
+                description: "Google最新。長文対応（128K）・マルチタスク・要約・翻訳に強い。Pro推奨。",
+                descriptionEn: "Latest Google. Long context (128K), multi-task, summarization & translation. Pro recommended.",
                 size: "約2.5GB",
                 sizeBytes: 2_500_000_000,
                 downloadURL: "https://huggingface.co/unsloth/gemma-3-4b-it-GGUF/resolve/main/gemma-3-4b-it-Q4_K_M.gguf",
@@ -580,8 +580,8 @@ final class ModelLoader: ObservableObject {
             ModelInfo(
                 id: "eliochat-1.7b-v3",
                 name: "ElioChat 1.7B v3",
-                description: "🇯🇵 日本語特化の最新モデル。高品質な日本語応答。",
-                descriptionEn: "🇯🇵 Latest Japanese-optimized model. High-quality Japanese responses.",
+                description: "🇯🇵 ElioChat専用ファインチューニング済み。日常会話・雑談が得意。軽量で省メモリ。",
+                descriptionEn: "🇯🇵 Fine-tuned for ElioChat. Best at daily conversation & casual chat. Lightweight.",
                 size: "約1.3GB",
                 sizeBytes: 1_260_000_000,
                 downloadURL: "https://huggingface.co/yukihamada/ElioChat-1.7B-Instruct-v3/resolve/main/ElioChat-1.7B-Instruct-v3-Q5_K_M.gguf",
@@ -593,13 +593,13 @@ final class ModelLoader: ObservableObject {
                 ),
                 tier: .small,
                 category: .japanese,
-                defaultSystemPrompt: "あなたは日本語に特化したAIアシスタントです。自然で丁寧な日本語で回答してください。"
+                defaultSystemPrompt: "ElioChat専用にファインチューニングされた日本語特化モデルです。不確かな数値や事実には「確かではありませんが、」を必ず付けてください。"
             ),
             ModelInfo(
                 id: "tinyswallow-1.5b",
                 name: "TinySwallow 1.5B",
-                description: "🇯🇵 Sakana AI製。日本語特化の高品質モデル。",
-                descriptionEn: "🇯🇵 By Sakana AI. High-quality Japanese-optimized model.",
+                description: "🇯🇵 Sakana AI製。軽量ながら自然な日本語会話・要約・メール文章作成が得意。",
+                descriptionEn: "🇯🇵 By Sakana AI. Natural Japanese chat, summarization & email drafting despite small size.",
                 size: "約986MB",
                 sizeBytes: 986_000_000,
                 downloadURL: "https://huggingface.co/bartowski/TinySwallow-1.5B-Instruct-GGUF/resolve/main/TinySwallow-1.5B-Instruct-Q4_K_M.gguf",
@@ -611,13 +611,13 @@ final class ModelLoader: ObservableObject {
                 ),
                 tier: .small,
                 category: .japanese,
-                defaultSystemPrompt: "あなたは日本語に特化したAIアシスタントです。自然で丁寧な日本語で回答してください。"
+                defaultSystemPrompt: "Sakana AIが開発した日本語特化モデルです。自然で高品質な日本語で回答してください。"
             ),
             ModelInfo(
                 id: "elyza-llama3-8b",
                 name: "ELYZA Llama 3 8B",
-                description: "🇯🇵 東大松尾研発。日本語チャット最高峰。Pro Max推奨。",
-                descriptionEn: "🇯🇵 By UTokyo Matsuo Lab. Top Japanese chat. Pro Max recommended.",
+                description: "🇯🇵 東大松尾研発。複雑な日本語質問・長文読解・ビジネス文書・要約に最強クラス。",
+                descriptionEn: "🇯🇵 By UTokyo Matsuo Lab. Exceptional at complex Japanese Q&A, long-form reading & business docs.",
                 size: "約5.2GB",
                 sizeBytes: 5_200_000_000,
                 downloadURL: "https://huggingface.co/elyza/Llama-3-ELYZA-JP-8B-GGUF/resolve/main/Llama-3-ELYZA-JP-8B-q4_k_m.gguf",
@@ -629,13 +629,13 @@ final class ModelLoader: ObservableObject {
                 ),
                 tier: .xlarge,
                 category: .japanese,
-                defaultSystemPrompt: "あなたは日本語に特化したAIアシスタントです。自然で丁寧な日本語で回答してください。"
+                defaultSystemPrompt: "東大松尾研が開発した日本語特化モデルです。日本語の複雑な質問や長文処理を得意とします。自然で高品質な日本語で回答してください。"
             ),
             ModelInfo(
                 id: "swallow-8b",
                 name: "Llama 3.1 Swallow 8B",
-                description: "🇯🇵 東工大など製。日本知識豊富。ビジネス文書に強い。Pro Max推奨。",
-                descriptionEn: "🇯🇵 By Tokyo Tech. Rich Japanese knowledge. Pro Max recommended.",
+                description: "🇯🇵 東工大など製。日本の時事・文化・法律知識が豊富。ビジネス文書・報告書作成に強い。",
+                descriptionEn: "🇯🇵 By Tokyo Tech. Rich Japanese cultural & legal knowledge. Strong at business & report writing.",
                 size: "約5.2GB",
                 sizeBytes: 5_200_000_000,
                 downloadURL: "https://huggingface.co/mradermacher/Llama-3.1-Swallow-8B-Instruct-v0.3-GGUF/resolve/main/Llama-3.1-Swallow-8B-Instruct-v0.3.Q4_K_M.gguf",
@@ -647,15 +647,15 @@ final class ModelLoader: ObservableObject {
                 ),
                 tier: .xlarge,
                 category: .japanese,
-                defaultSystemPrompt: "あなたは日本語に特化したAIアシスタントです。自然で丁寧な日本語で回答してください。ビジネス文書の作成も得意です。"
+                defaultSystemPrompt: "東工大等が開発した日本語特化モデルです。日本語の知識が豊富でビジネス文書作成も得意です。自然で高品質な日本語で回答してください。"
             ),
 
             // ==================== EFFICIENT (Small but powerful) ====================
             ModelInfo(
                 id: "lfm2-1.2b",
                 name: "LFM2 1.2B",
-                description: "⚡ Liquid AI製。Gemma超え性能。超高効率。",
-                descriptionEn: "⚡ By Liquid AI. Outperforms Gemma. Ultra-efficient.",
+                description: "⚡ Liquid AI製。1.2Bながら同サイズ最高クラスの性能。日常会話・要約・翻訳向け。",
+                descriptionEn: "⚡ By Liquid AI. Top performance at 1.2B size. Great for daily chat, summarization & translation.",
                 size: "約731MB",
                 sizeBytes: 731_000_000,
                 downloadURL: "https://huggingface.co/LiquidAI/LFM2-1.2B-GGUF/resolve/main/LFM2-1.2B-Q4_K_M.gguf",
@@ -671,8 +671,8 @@ final class ModelLoader: ObservableObject {
             ModelInfo(
                 id: "lfm2-350m",
                 name: "LFM2 350M",
-                description: "⚡ 超軽量ながらQwen3-0.6B並みの性能。",
-                descriptionEn: "⚡ Ultra-light but rivals Qwen3-0.6B performance.",
+                description: "⚡ 350MBの超軽量。Qwen3-0.6B並みの性能。即答・単語変換・最速レスポンス向け。",
+                descriptionEn: "⚡ Only 350MB. Rivals Qwen3-0.6B. Best for instant answers & word lookups with minimal wait.",
                 size: "約350MB",
                 sizeBytes: 350_000_000,
                 downloadURL: "https://huggingface.co/LiquidAI/LFM2-350M-GGUF/resolve/main/LFM2-350M-Q4_K_M.gguf",
@@ -690,8 +690,8 @@ final class ModelLoader: ObservableObject {
             ModelInfo(
                 id: "qwen3-vl-2b",
                 name: "Qwen3-VL 2B",
-                description: "📷 最新Qwen3ベースの画像認識。軽量で全デバイス対応。",
-                descriptionEn: "📷 Latest Qwen3-based vision. Light, works on all devices.",
+                description: "📷 最新Qwen3ベースの画像認識。写真内のテキスト読取・物体識別・図表説明が得意。",
+                descriptionEn: "📷 Qwen3-based vision. Good at reading text in images, object identification & chart explanation.",
                 size: "約1.1GB",
                 sizeBytes: 1_100_000_000,
                 downloadURL: "https://huggingface.co/Qwen/Qwen3-VL-2B-Instruct-GGUF/resolve/main/Qwen3VL-2B-Instruct-Q4_K_M.gguf",
@@ -708,8 +708,8 @@ final class ModelLoader: ObservableObject {
             ModelInfo(
                 id: "qwen3-vl-4b",
                 name: "Qwen3-VL 4B",
-                description: "📷 バランス良好な画像認識。Pro以上推奨。",
-                descriptionEn: "📷 Well-balanced vision model. Pro or higher recommended.",
+                description: "📷 高精度な画像認識。複雑なシーン理解・日本語OCR・手書き文字読取が得意。Pro以上推奨。",
+                descriptionEn: "📷 High-accuracy vision. Great at complex scene understanding, Japanese OCR & handwriting. Pro+.",
                 size: "約2.5GB",
                 sizeBytes: 2_500_000_000,
                 downloadURL: "https://huggingface.co/Qwen/Qwen3-VL-4B-Instruct-GGUF/resolve/main/Qwen3VL-4B-Instruct-Q4_K_M.gguf",
@@ -726,8 +726,8 @@ final class ModelLoader: ObservableObject {
             ModelInfo(
                 id: "qwen3-vl-8b",
                 name: "Qwen3-VL 8B",
-                description: "📷 最高性能の画像認識。Pro Max推奨。",
-                descriptionEn: "📷 Best vision performance. Pro Max recommended.",
+                description: "📷 最高性能の画像認識。図面・レシート・複雑な表・多言語OCRまで高精度対応。",
+                descriptionEn: "📷 Best vision performance. Handles blueprints, receipts, complex tables & multilingual OCR.",
                 size: "約5GB",
                 sizeBytes: 5_000_000_000,
                 downloadURL: "https://huggingface.co/Qwen/Qwen3-VL-8B-Instruct-GGUF/resolve/main/Qwen3VL-8B-Instruct-Q4_K_M.gguf",
@@ -746,8 +746,8 @@ final class ModelLoader: ObservableObject {
             ModelInfo(
                 id: "smolvlm-instruct",
                 name: "SmolVLM 2B",
-                description: "📷 軽量画像認識モデル。",
-                descriptionEn: "📷 Lightweight vision model.",
+                description: "📷 HuggingFace製の軽量画像認識。写真の簡単な説明・物体識別向け。",
+                descriptionEn: "📷 Lightweight vision by HuggingFace. Good for simple image descriptions & object detection.",
                 size: "約1.5GB",
                 sizeBytes: 1_500_000_000,
                 downloadURL: "https://huggingface.co/mradermacher/SmolVLM-Instruct-GGUF/resolve/main/SmolVLM-Instruct.Q4_K_M.gguf",
@@ -764,8 +764,8 @@ final class ModelLoader: ObservableObject {
             ModelInfo(
                 id: "llama-3.2-3b",
                 name: "Llama 3.2 3B",
-                description: "Meta製。バランス良好。",
-                descriptionEn: "By Meta. Well balanced.",
+                description: "Meta製。英語・多言語タスク・指示への忠実な応答が得意。汎用モデル。",
+                descriptionEn: "By Meta. Strong at English, multilingual tasks & instruction following. Versatile all-rounder.",
                 size: "約2GB",
                 sizeBytes: 2_000_000_000,
                 downloadURL: "https://huggingface.co/bartowski/Llama-3.2-3B-Instruct-GGUF/resolve/main/Llama-3.2-3B-Instruct-Q4_K_M.gguf",
@@ -781,8 +781,8 @@ final class ModelLoader: ObservableObject {
             ModelInfo(
                 id: "deepseek-r1-distill-qwen-1.5b",
                 name: "DeepSeek-R1 1.5B",
-                description: "高度な推論能力。軽量版。",
-                descriptionEn: "Advanced reasoning. Lightweight.",
+                description: "🧮 数学・論理パズル・ステップ別問題解決に特化。Think機能で推論過程を表示。軽量版。",
+                descriptionEn: "🧮 Specialized in math, logic puzzles & step-by-step problem solving. Shows reasoning with Think mode.",
                 size: "約1.1GB",
                 sizeBytes: 1_100_000_000,
                 downloadURL: "https://huggingface.co/unsloth/DeepSeek-R1-Distill-Qwen-1.5B-GGUF/resolve/main/DeepSeek-R1-Distill-Qwen-1.5B-Q4_K_M.gguf",
@@ -798,8 +798,8 @@ final class ModelLoader: ObservableObject {
             ModelInfo(
                 id: "deepseek-r1-distill-qwen-7b",
                 name: "DeepSeek-R1 7B",
-                description: "高い推論性能。Pro推奨。",
-                descriptionEn: "High reasoning performance. Pro recommended.",
+                description: "🧮 高度な数学・科学・コード推論に最適。複雑な論理問題を段階的に解く。Pro推奨。",
+                descriptionEn: "🧮 Ideal for advanced math, science & code reasoning. Solves complex logic step-by-step. Pro+.",
                 size: "約4.7GB",
                 sizeBytes: 4_700_000_000,
                 downloadURL: "https://huggingface.co/unsloth/DeepSeek-R1-Distill-Qwen-7B-GGUF/resolve/main/DeepSeek-R1-Distill-Qwen-7B-Q4_K_M.gguf",
@@ -815,8 +815,8 @@ final class ModelLoader: ObservableObject {
             ModelInfo(
                 id: "deepseek-r1-distill-llama-8b",
                 name: "DeepSeek-R1 8B",
-                description: "最高の推論性能。Pro Max推奨。",
-                descriptionEn: "Best reasoning performance. Pro Max recommended.",
+                description: "🧮 最高クラスの推論性能。数学・プログラミング・複雑な論証に最強。Pro Max推奨。",
+                descriptionEn: "🧮 Top-tier reasoning. Best for math, programming & complex argumentation. Pro Max recommended.",
                 size: "約5GB",
                 sizeBytes: 5_000_000_000,
                 downloadURL: "https://huggingface.co/unsloth/DeepSeek-R1-Distill-Llama-8B-GGUF/resolve/main/DeepSeek-R1-Distill-Llama-8B-Q4_K_M.gguf",
@@ -868,8 +868,8 @@ final class ModelLoader: ObservableObject {
             ModelInfo(
                 id: "h2o-danube3-4b",
                 name: "H2O Danube3 4B",
-                description: "モバイル特化。自然な応答。",
-                descriptionEn: "Mobile optimized. Natural responses.",
+                description: "H2O.ai製のモバイル特化モデル。自然な会話応答・FAQ応答・カスタマーサポート向け。",
+                descriptionEn: "Mobile-optimized by H2O.ai. Great for natural conversation, FAQ responses & customer support.",
                 size: "約2.6GB",
                 sizeBytes: 2_600_000_000,
                 downloadURL: "https://huggingface.co/bartowski/h2o-danube3-4b-chat-GGUF/resolve/main/h2o-danube3-4b-chat-Q4_K_M.gguf",
@@ -885,8 +885,8 @@ final class ModelLoader: ObservableObject {
             ModelInfo(
                 id: "ministral-8b",
                 name: "Ministral 8B",
-                description: "Mistral社のエッジ向けモデル。Pro Max推奨。",
-                descriptionEn: "Mistral's edge-optimized model. Pro Max recommended.",
+                description: "Mistral社製エッジ特化。英語・多言語・長文生成・構造化応答（JSON等）が得意。Pro Max推奨。",
+                descriptionEn: "Mistral's edge model. Strong at English, multilingual, long-form & structured output (JSON). Pro Max.",
                 size: "約5GB",
                 sizeBytes: 5_000_000_000,
                 downloadURL: "https://huggingface.co/bartowski/Ministral-8B-Instruct-2410-GGUF/resolve/main/Ministral-8B-Instruct-2410-Q4_K_M.gguf",
@@ -902,8 +902,8 @@ final class ModelLoader: ObservableObject {
             ModelInfo(
                 id: "yi-1.5-6b",
                 name: "Yi 1.5 6B",
-                description: "01.AI製。6Bサイズで高性能。",
-                descriptionEn: "By 01.AI. High performance at 6B size.",
+                description: "01.AI製。英語・中国語・日本語の多言語対応。会話・要約・コードが得意。Pro推奨。",
+                descriptionEn: "By 01.AI. Multilingual (EN/ZH/JA). Good at conversation, summarization & code. Pro recommended.",
                 size: "約4GB",
                 sizeBytes: 4_000_000_000,
                 downloadURL: "https://huggingface.co/bartowski/Yi-1.5-6B-Chat-GGUF/resolve/main/Yi-1.5-6B-Chat-Q4_K_M.gguf",

@@ -45,7 +45,7 @@ struct ModelSettings: Codable, Equatable {
         topK: 40,
         maxTokens: 1024,
         repeatPenalty: 1.1,
-        enableThinking: true,
+        enableThinking: false,
         systemPrompt: "",
         kvCacheTypeK: .q8_0,
         kvCacheTypeV: .q8_0
@@ -58,7 +58,7 @@ struct ModelSettings: Codable, Equatable {
         topK: 50,
         maxTokens: 2048,
         repeatPenalty: 1.05,
-        enableThinking: true,
+        enableThinking: false,
         systemPrompt: "",
         kvCacheTypeK: .q8_0,
         kvCacheTypeV: .q8_0
@@ -97,7 +97,7 @@ struct ModelSettings: Codable, Equatable {
         topK: 40,
         maxTokens: 1024,
         repeatPenalty: 1.1,
-        enableThinking: true,
+        enableThinking: false,
         systemPrompt: "あなたは日本語に特化したAIアシスタントです。自然で丁寧な日本語で回答してください。",
         kvCacheTypeK: .q8_0,
         kvCacheTypeV: .q8_0
@@ -211,7 +211,7 @@ final class ModelSettingsManager: ObservableObject {
             topK: 40,
             maxTokens: recommendedMaxTokens,
             repeatPenalty: 1.1,
-            enableThinking: true,
+            enableThinking: false,
             systemPrompt: defaultSystemPrompt,
             kvCacheTypeK: .q8_0,
             kvCacheTypeV: .q8_0

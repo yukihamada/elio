@@ -101,6 +101,7 @@ class SyncManager: ObservableObject {
     @Published var plan = "free"
     @Published var lastSyncDate: Date?
     @Published var syncError: String?
+    @Published var showUpgradePrompt = false
 
     /// Selected ChatWeb model ID (persisted). nil or "auto" = server default.
     @Published var selectedChatWebModel: String? {
@@ -152,6 +153,17 @@ class SyncManager: ObservableObject {
                     self.lastModelUsed = model
                 }
             }
+
+        // Listen for insufficient credits events to trigger upgrade prompt
+        NotificationCenter.default.addObserver(
+            forName: .chatWebInsufficientCredits,
+            object: nil,
+            queue: nil
+        ) { [weak self] _ in
+            Task { @MainActor [weak self] in
+                self?.showUpgradePrompt = true
+            }
+        }
     }
 
     // MARK: - Real-time Credit Update

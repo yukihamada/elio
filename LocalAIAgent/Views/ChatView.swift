@@ -60,7 +60,7 @@ struct ChatView: View {
     @AppStorage("webSearchEnabled") private var webSearchEnabled = true  // Default ON
     @State private var showingPlusMenu = false  // For + button menu
     // Thinking mode
-    @AppStorage("thinkingEnabled") private var thinkingEnabled = true  // Default ON
+    @AppStorage("thinkingEnabled") private var thinkingEnabled = false  // Default OFF
     @StateObject private var settingsManager = ModelSettingsManager.shared
     // TTS Manager (separate from voice recognition speechManager)
     @StateObject private var ttsManager = SpeechManager.shared
@@ -93,6 +93,7 @@ struct ChatView: View {
     @State private var konamiSequence: [String] = []  // Track swipe directions for Konami code
     // News feed
     @State private var showingNewsFeed = false
+    @State private var showingDistributedQuery = false
     // API Key onboarding
     @State private var showingAPIKeyOnboarding: ChatMode?
     // Model switcher (top-left)
@@ -444,6 +445,10 @@ struct ChatView: View {
         .sheet(isPresented: $showingNewsFeed) {
             NewsFeedView()
         }
+        // Distributed Query
+        .sheet(isPresented: $showingDistributedQuery) {
+            DistributedQueryView()
+        }
         // Survival Dashboard
         // .sheet(isPresented: $showingSurvivalDashboard) {
         //     SurvivalDashboardView()
@@ -580,8 +585,9 @@ struct ChatView: View {
             }
         }
         .onAppear {
-            // Sync web search toggle state with MCP servers on appear
-            webSearchEnabled = appState.enabledMCPServers.contains("websearch")
+            // Web search always auto-enabled
+            webSearchEnabled = true
+            appState.enabledMCPServers.insert("websearch")
             // Sync thinking toggle with model settings on appear
             if let modelId = appState.currentModelId {
                 let settings = settingsManager.settings(for: modelId)
@@ -1065,6 +1071,11 @@ struct ChatView: View {
                 Label(String(localized: "ニュース"), systemImage: "newspaper")
             }
 
+            // Distributed Query
+            Button(action: { showingDistributedQuery = true }) {
+                Label("Distributed Query", systemImage: "network")
+            }
+
             Divider()
 
             // Emergency mode toggle
@@ -1453,29 +1464,7 @@ struct ChatView: View {
                     )
                 }
 
-                // Web search toggle
-                Button(action: {
-                    if !hasShownSearchPrivacyInfo {
-                        showingSearchPrivacyAlert = true
-                    } else {
-                        webSearchEnabled.toggle()
-                    }
-                }) {
-                    HStack(spacing: 4) {
-                        Image(systemName: webSearchEnabled && networkMonitor.isConnected ? "globe" : "globe.badge.chevron.backward")
-                            .font(.system(size: 12))
-                        Text(webSearchEnabled ? String(localized: "chat.websearch.on") : String(localized: "chat.websearch.off"))
-                            .font(.caption)
-                    }
-                    .foregroundStyle(webSearchEnabled && networkMonitor.isConnected ? Color.blue : .secondary)
-                    .padding(.horizontal, 10)
-                    .padding(.vertical, 5)
-                    .background(
-                        Capsule()
-                            .fill(webSearchEnabled && networkMonitor.isConnected ? Color.blue.opacity(0.15) : Color.secondary.opacity(0.1))
-                    )
-                }
-                .disabled(!networkMonitor.isConnected)
+                // Web search is always auto-enabled (toggle hidden)
 
                 if !networkMonitor.isConnected {
                     Text(String(localized: "chat.offline"))
@@ -2110,7 +2099,8 @@ struct ChatMessageRow: View {
     var messageIndex: Int? = nil
     var modelName: String? = nil
 
-    @State private var isThinkingExpanded = true  // Default expanded so thinking doesn't "disappear"
+    @AppStorage("thinkingEnabled") private var thinkingEnabled = false
+    @State private var isThinkingExpanded = false
     @State private var showCopiedFeedback = false
     @State private var feedbackGiven: FeedbackType? = nil
     @State private var showingFeedbackConsent = false
@@ -2156,8 +2146,8 @@ struct ChatMessageRow: View {
             } else {
                 // Assistant message - left aligned, no bubble
                 VStack(alignment: .leading, spacing: 12) {
-                    // Thinking section
-                    if let thinking = message.thinkingContent, !thinking.isEmpty {
+                    // Thinking section (only shown when think mode is explicitly enabled)
+                    if let thinking = message.thinkingContent, !thinking.isEmpty, thinkingEnabled {
                         thinkingSection(thinking)
                     }
 
@@ -2434,7 +2424,8 @@ struct ChatMessageRow: View {
 
 struct StreamingMessageRow: View {
     let text: String
-    @State private var isThinkingExpanded = true
+    @AppStorage("thinkingEnabled") private var thinkingEnabled = false
+    @State private var isThinkingExpanded = false
 
     /// Cache key to avoid re-parsing when text hasn't changed length.
     /// Full parsing is only needed when </think> boundary is crossed.
@@ -2467,13 +2458,13 @@ struct StreamingMessageRow: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
-            // Thinking in progress
-            if parsedContent.isThinking {
+            // Thinking in progress (only shown when think mode is enabled)
+            if parsedContent.isThinking && thinkingEnabled {
                 thinkingInProgress
             }
 
-            // Completed thinking
-            if let thinking = parsedContent.thinking, !thinking.isEmpty, !parsedContent.isThinking {
+            // Completed thinking (only shown when think mode is enabled)
+            if let thinking = parsedContent.thinking, !thinking.isEmpty, !parsedContent.isThinking, thinkingEnabled {
                 completedThinking(thinking)
             }
 
@@ -2491,8 +2482,8 @@ struct StreamingMessageRow: View {
 
                     Spacer()
                 }
-            } else if !parsedContent.isThinking {
-                // Show cursor when waiting for content
+            } else if !parsedContent.isThinking || !thinkingEnabled {
+                // Show cursor when waiting for content (also when thinking is hidden)
                 HStack {
                     Rectangle()
                         .fill(Color.primary)

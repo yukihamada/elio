@@ -70,6 +70,7 @@
 		CWBACK001 /* ChatWebBackend.swift in Sources */ = {isa = PBXBuildFile; fileRef = CWBACK002 /* ChatWebBackend.swift */; };
 		CWCONV001 /* ChatWebConnectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CWCONV002 /* ChatWebConnectView.swift */; };
 		CWLOGV001 /* ChatWebLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CWLOGV002 /* ChatWebLoginView.swift */; };
+		UPGELIOPRO001 /* UpgradeElioProView.swift in Sources */ = {isa = PBXBuildFile; fileRef = UPGELIOPRO002 /* UpgradeElioProView.swift */; };
 		DEVID001 /* DeviceIdentityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEVID002 /* DeviceIdentityManager.swift */; };
 		DF3D9B5843EBF999962CB910 /* ChatWebQuickToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A3EC8083CC21D29D2DA7BA /* ChatWebQuickToggle.swift */; };
 		DOCPICKER001 /* DocumentPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = DOCPICKER002 /* DocumentPicker.swift */; };
@@ -152,6 +153,12 @@
 		WHISPER001 /* WhisperKit in Frameworks */ = {isa = PBXBuildFile; productRef = WHISPER002 /* WhisperKit */; };
 		WHISPER003 /* WhisperManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = WHISPER004 /* WhisperManager.swift */; };
 		E1F2A3B4C5D6E7F8A9B0C1D2 /* UnifiedConnectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A2B3C4D5E6F7A8B9C0D1E2 /* UnifiedConnectView.swift */; };
+		EBRGATE001 /* EBRTokenGate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBRGATE002 /* EBRTokenGate.swift */; };
+		PIIFLT001 /* PIIFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = PIIFLT002 /* PIIFilter.swift */; };
+		DQMGR001 /* DistributedQueryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DQMGR002 /* DistributedQueryManager.swift */; };
+		RSPAGG001 /* ResponseAggregator.swift in Sources */ = {isa = PBXBuildFile; fileRef = RSPAGG002 /* ResponseAggregator.swift */; };
+		LDGSRV001 /* LedgerServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = LDGSRV002 /* LedgerServer.swift */; };
+		DQVIEW001 /* DistributedQueryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DQVIEW002 /* DistributedQueryView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -305,6 +312,7 @@
 		CWBACK002 /* ChatWebBackend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatWebBackend.swift; sourceTree = "<group>"; };
 		CWCONV002 /* ChatWebConnectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatWebConnectView.swift; sourceTree = "<group>"; };
 		CWLOGV002 /* ChatWebLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatWebLoginView.swift; sourceTree = "<group>"; };
+		UPGELIOPRO002 /* UpgradeElioProView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpgradeElioProView.swift; sourceTree = "<group>"; };
 		D1BDD3EC9F8220E0B71087A3 /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = pl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D5364FA639C7CEC7FBCE629F /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = yo.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D655A6B9516B5885047F78E7 /* ModelSettingsView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ModelSettingsView.swift; sourceTree = "<group>"; };
@@ -391,6 +399,12 @@
 		WEBEXT002 /* WebContentExtractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebContentExtractor.swift; sourceTree = "<group>"; };
 		WHISPER004 /* WhisperManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhisperManager.swift; sourceTree = "<group>"; };
 		F1A2B3C4D5E6F7A8B9C0D1E2 /* UnifiedConnectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnifiedConnectView.swift; sourceTree = "<group>"; };
+		EBRGATE002 /* EBRTokenGate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EBRTokenGate.swift; sourceTree = "<group>"; };
+		PIIFLT002 /* PIIFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PIIFilter.swift; sourceTree = "<group>"; };
+		DQMGR002 /* DistributedQueryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistributedQueryManager.swift; sourceTree = "<group>"; };
+		RSPAGG002 /* ResponseAggregator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseAggregator.swift; sourceTree = "<group>"; };
+		LDGSRV002 /* LedgerServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LedgerServer.swift; sourceTree = "<group>"; };
+		DQVIEW002 /* DistributedQueryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistributedQueryView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -486,6 +500,7 @@
 				2666305672F9DB222C979528 /* Localization */,
 				D950D22C47D063DCA9587DCB /* Interpreter */,
 				245259A867038CCDF960DD21 /* Social */,
+				P2PINF001 /* P2PInference */,
 			);
 			path = LocalAIAgent;
 			sourceTree = "<group>";
@@ -542,6 +557,7 @@
 				CMSELV002 /* ChatModeSelectorView.swift */,
 				CWCONV002 /* ChatWebConnectView.swift */,
 				CWLOGV002 /* ChatWebLoginView.swift */,
+				UPGELIOPRO002 /* UpgradeElioProView.swift */,
 				EMERQV002 /* EmergencyQuickActionsView.swift */,
 				PEERV002 /* PeerConnectionView.swift */,
 				VOICESEL02 /* VoiceSelectionView.swift */,
@@ -563,6 +579,7 @@
 				EAF9F48FF6CEC6C9BA8BE74B /* InferenceServerSettingsView.swift */,
 				NEWSFEED002 /* NewsFeedView.swift */,
 				F1A2B3C4D5E6F7A8B9C0D1E2 /* UnifiedConnectView.swift */,
+				DQVIEW002 /* DistributedQueryView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -829,6 +846,18 @@
 				898DD0FF4816A2F2288E27CD /* InferenceServerConfig.swift */,
 			);
 			path = P2PServer;
+			sourceTree = "<group>";
+		};
+		P2PINF001 /* P2PInference */ = {
+			isa = PBXGroup;
+			children = (
+				EBRGATE002 /* EBRTokenGate.swift */,
+				PIIFLT002 /* PIIFilter.swift */,
+				DQMGR002 /* DistributedQueryManager.swift */,
+				RSPAGG002 /* ResponseAggregator.swift */,
+				LDGSRV002 /* LedgerServer.swift */,
+			);
+			path = P2PInference;
 			sourceTree = "<group>";
 		};
 		SECURITY_GRP /* Security */ = {
@@ -1170,6 +1199,7 @@
 				CMSELV001 /* ChatModeSelectorView.swift in Sources */,
 				CWCONV001 /* ChatWebConnectView.swift in Sources */,
 				CWLOGV001 /* ChatWebLoginView.swift in Sources */,
+				UPGELIOPRO001 /* UpgradeElioProView.swift in Sources */,
 				EMERQV001 /* EmergencyQuickActionsView.swift in Sources */,
 				PEERV001 /* PeerConnectionView.swift in Sources */,
 				SRVDASH001 /* ServerDashboardView.swift in Sources */,
@@ -1201,6 +1231,12 @@
 				CC9E1A43AC5028EF1CD3CC12 /* SpeculativeVerifier.swift in Sources */,
 				FC0C7203D357908E50F1A581 /* InferenceServerConfig.swift in Sources */,
 				E1F2A3B4C5D6E7F8A9B0C1D2 /* UnifiedConnectView.swift in Sources */,
+				EBRGATE001 /* EBRTokenGate.swift in Sources */,
+				PIIFLT001 /* PIIFilter.swift in Sources */,
+				DQMGR001 /* DistributedQueryManager.swift in Sources */,
+				RSPAGG001 /* ResponseAggregator.swift in Sources */,
+				LDGSRV001 /* LedgerServer.swift in Sources */,
+				DQVIEW001 /* DistributedQueryView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1849,7 +1885,7 @@
 				CODE_SIGN_ENTITLEMENTS = LocalAIAgent/LocalAIAgent.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 49;
+				CURRENT_PROJECT_VERSION = 52;
 				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = NO;
 				DEVELOPMENT_TEAM = 5BV85JW8US;
 				ENABLE_PREVIEWS = YES;
@@ -1893,7 +1929,7 @@
 				CODE_SIGN_ENTITLEMENTS = LocalAIAgent/LocalAIAgent.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 49;
+				CURRENT_PROJECT_VERSION = 52;
 				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = NO;
 				DEVELOPMENT_TEAM = 5BV85JW8US;
 				ENABLE_PREVIEWS = YES;
@@ -1934,7 +1970,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 49;
+				CURRENT_PROJECT_VERSION = 52;
 				DEVELOPMENT_TEAM = 5BV85JW8US;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
@@ -1953,7 +1989,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 49;
+				CURRENT_PROJECT_VERSION = 52;
 				DEVELOPMENT_TEAM = 5BV85JW8US;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
@@ -1971,7 +2007,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 49;
+				CURRENT_PROJECT_VERSION = 52;
 				DEVELOPMENT_TEAM = 5BV85JW8US;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
@@ -1989,7 +2025,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 49;
+				CURRENT_PROJECT_VERSION = 52;
 				DEVELOPMENT_TEAM = 5BV85JW8US;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;

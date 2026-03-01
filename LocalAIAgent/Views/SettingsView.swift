@@ -16,6 +16,8 @@ struct SettingsView: View {
     @AppStorage("chatwebModeEnabled") private var chatwebModeEnabled: Bool = false
     @State private var showDeveloperDashboard = UserDefaults.standard.bool(forKey: "showDeveloperDashboard")
     @State private var showingTokenEconomyDashboard = false
+    @State private var showingUpgradeElioProView = false
+    @StateObject private var subscriptionManager = SubscriptionManager.shared
 
     // Models grouped by category (ElioChat always first)
     private func modelsForCategory(_ category: ModelCategory) -> [ModelLoader.ModelInfo] {
@@ -652,6 +654,47 @@ struct SettingsView: View {
                     }
                     .padding(.horizontal, 16)
                     .padding(.vertical, 10)
+
+                    // Upgrade to ElioChat Pro (shown when not subscribed)
+                    if subscriptionManager.subscriptionStatus != .elioPro {
+                        Divider()
+                            .padding(.leading, 56)
+
+                        Button(action: { showingUpgradeElioProView = true }) {
+                            HStack(spacing: 12) {
+                                ZStack {
+                                    Circle()
+                                        .fill(LinearGradient(colors: [.green, .teal], startPoint: .topLeading, endPoint: .bottomTrailing))
+                                        .frame(width: 28, height: 28)
+                                    Image(systemName: "sparkles")
+                                        .font(.system(size: 13, weight: .semibold))
+                                        .foregroundStyle(.black)
+                                }
+
+                                VStack(alignment: .leading, spacing: 1) {
+                                    Text("ElioChat Pro にアップグレード")
+                                        .font(.system(size: 15, weight: .medium))
+                                        .foregroundStyle(.primary)
+                                    Text("Nemotron 9B 使い放題 ¥2,900/月")
+                                        .font(.system(size: 12))
+                                        .foregroundStyle(.secondary)
+                                }
+
+                                Spacer()
+
+                                Image(systemName: "chevron.right")
+                                    .font(.system(size: 12, weight: .semibold))
+                                    .foregroundStyle(.tertiary)
+                            }
+                        }
+                        .buttonStyle(.plain)
+                        .padding(.horizontal, 16)
+                        .padding(.vertical, 12)
+                        .sheet(isPresented: $showingUpgradeElioProView) {
+                            UpgradeElioProView()
+                                .environmentObject(syncManager)
+                        }
+                    }
 
                     // Credits remaining
                     Divider()

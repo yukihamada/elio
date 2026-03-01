@@ -155,8 +155,8 @@ final class LlamaInference: ObservableObject {
             Config(
                 name: "Nemotron",
                 contextSize: deviceContextSize,
-                eosTokenId: 2,
-                bosTokenId: 1
+                eosTokenId: 12,  // <SPECIAL_12> = turn end token in Nemotron tokenizer
+                bosTokenId: 1    // <s>
             )
         }
     }
@@ -727,16 +727,24 @@ final class LlamaInference: ObservableObject {
             }
             prompt += "<|start_header_id|>assistant<|end_header_id|>\n\n<think>\n"
         } else if isNemotron {
-            // NVIDIA Nemotron-Nano (Mamba-2 + Transformer hybrid) - ChatML with thinking mode
-            prompt = "<|im_start|>system\n\(systemPrompt)<|im_end|>\n"
+            // NVIDIA Nemotron-Nano (Mamba-2 hybrid, Tekken tokenizer)
+            // Format (from official chat template):
+            //   <SPECIAL_10>System\n{system}\n<SPECIAL_11>User\n{user}\n<SPECIAL_11>Assistant\n{answer}<SPECIAL_12>\n...
+            // EOS = <SPECIAL_12> (token 12)
+            if !systemPrompt.isEmpty {
+                prompt = "<SPECIAL_10>System\n\(systemPrompt)\n"
+            }
             for message in messages {
-                let role = message.role == .user ? "user" : "assistant"
-                prompt += "<|im_start|>\(role)\n\(message.content)<|im_end|>\n"
+                if message.role == .user {
+                    prompt += "<SPECIAL_11>User\n\(message.content)\n"
+                } else {
+                    prompt += "<SPECIAL_11>Assistant\n\(message.content)\n<SPECIAL_12>\n"
+                }
             }
             if enableThinking {
-                prompt += "<|im_start|>assistant\n<think>\n"
+                prompt += "<SPECIAL_11>Assistant\n<think>\n"
             } else {
-                prompt += "<|im_start|>assistant\n"
+                prompt += "<SPECIAL_11>Assistant\n<think></think>"
             }
         } else if isElioChat || isQwen {
             // ElioChat / Qwen3 (Qwen-based) with thinking mode support

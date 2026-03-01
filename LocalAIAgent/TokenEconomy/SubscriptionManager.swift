@@ -12,10 +12,12 @@ final class SubscriptionManager: ObservableObject {
 
     static let basicProductId = "love.elio.subscription.basic"
     static let proProductId = "love.elio.subscription.pro"
+    static let elioproProductId = "love.elio.subscription.eliopro"
 
     private let productIds: Set<String> = [
         basicProductId,
-        proProductId
+        proProductId,
+        elioproProductId
     ]
 
     // MARK: - Published Properties
@@ -37,13 +39,14 @@ final class SubscriptionManager: ObservableObject {
         case none
         case basic
         case pro
+        case elioPro
         case expired
 
         var tier: SubscriptionTier {
             switch self {
             case .none, .expired: return .free
             case .basic: return .basic
-            case .pro: return .pro
+            case .pro, .elioPro: return .pro
             }
         }
 
@@ -52,6 +55,7 @@ final class SubscriptionManager: ObservableObject {
             case .none: return String(localized: "subscription.status.none", defaultValue: "No Subscription")
             case .basic: return String(localized: "subscription.status.basic", defaultValue: "Basic")
             case .pro: return String(localized: "subscription.status.pro", defaultValue: "Pro")
+            case .elioPro: return "ElioChat Pro"
             case .expired: return String(localized: "subscription.status.expired", defaultValue: "Expired")
             }
         }
@@ -144,10 +148,12 @@ final class SubscriptionManager: ObservableObject {
         for await result in Transaction.currentEntitlements {
             guard case .verified(let transaction) = result else { continue }
 
-            if transaction.productID == Self.proProductId {
+            if transaction.productID == Self.elioproProductId {
+                newStatus = .elioPro
+                break // ElioChat Pro takes precedence
+            } else if transaction.productID == Self.proProductId {
                 newStatus = .pro
-                break // Pro takes precedence
-            } else if transaction.productID == Self.basicProductId {
+            } else if transaction.productID == Self.basicProductId && newStatus == .none {
                 newStatus = .basic
             }
         }
@@ -225,6 +231,8 @@ final class SubscriptionManager: ObservableObject {
             tier = .basic
         } else if productId == Self.proProductId {
             tier = .pro
+        } else if productId == Self.elioproProductId {
+            tier = .pro  // Pro相当のローカルトークン
         } else {
             return
         }
@@ -341,6 +349,8 @@ extension Product {
             return TokenManager.basicMonthlyTokens
         } else if id == SubscriptionManager.proProductId {
             return TokenManager.proMonthlyTokens
+        } else if id == SubscriptionManager.elioproProductId {
+            return TokenManager.proMonthlyTokens
         }
         return 0
     }
@@ -350,6 +360,8 @@ extension Product {
         if id == SubscriptionManager.basicProductId {
             return .basic
         } else if id == SubscriptionManager.proProductId {
+            return .pro
+        } else if id == SubscriptionManager.elioproProductId {
             return .pro
         }
         return .free

@@ -43,6 +43,7 @@ enum InferenceError: Error, LocalizedError {
     case networkError(String)
     case rateLimited
     case insufficientTokens
+    case insufficientCredits
     case cancelled
     case invalidResponse
     case serverError(Int, String)
@@ -59,6 +60,8 @@ enum InferenceError: Error, LocalizedError {
             return String(localized: "error.rate.limited", defaultValue: "Rate limited. Please try again later.")
         case .insufficientTokens:
             return String(localized: "error.insufficient.tokens", defaultValue: "Insufficient tokens")
+        case .insufficientCredits:
+            return String(localized: "error.insufficient.credits", defaultValue: "クレジット残高が不足しています。ElioChat Pro にアップグレードしてください。")
         case .cancelled:
             return String(localized: "error.cancelled", defaultValue: "Generation cancelled")
         case .invalidResponse:

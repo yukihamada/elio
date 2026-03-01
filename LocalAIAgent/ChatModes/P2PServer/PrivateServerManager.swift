@@ -259,6 +259,19 @@ final class PrivateServerManager: ObservableObject {
                     return
                 }
                 await FriendsManager.shared.handleAcceptance(request)
+            case .distributedQuery:
+                guard let query = try? JSONDecoder().decode(DistributedQuery.self, from: envelope.payload) else {
+                    sendError(to: connection, message: "Invalid distributed query")
+                    return
+                }
+                if let response = await DistributedQueryManager.shared.handleIncomingQuery(query) {
+                    await DistributedQueryManager.shared.sendDistributedResponse(response, via: connection)
+                }
+            case .distributedResponse:
+                guard let response = try? JSONDecoder().decode(DistributedResponse.self, from: envelope.payload) else {
+                    return
+                }
+                DistributedQueryManager.shared.handleIncomingResponse(response)
             }
             return
         }
@@ -950,6 +963,8 @@ enum P2PMessageType: String, Codable {
     case directMessage       // Direct message to friend
     case friendRequest       // Friend request
     case friendAcceptance    // Friend request acceptance
+    case distributedQuery       // Distributed P2P query request
+    case distributedResponse    // Distributed P2P query response
 }
 
 struct P2PEnvelope: Codable {
