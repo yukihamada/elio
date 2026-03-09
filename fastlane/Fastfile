@@ -5,6 +5,25 @@ default_platform(:ios)
 # ============================================
 
 platform :mac do
+  desc "Create macOS app on App Store Connect"
+  lane :create_app do
+    api_key = app_store_connect_api_key(
+      key_id: "5KT46G9Y29",
+      issuer_id: "e0d22675-afb3-45f0-a821-06b477f44da0",
+      key_filepath: File.expand_path("~/.appstoreconnect/private_keys/AuthKey_5KT46G9Y29.p8"),
+      in_house: false
+    )
+    produce(
+      app_identifier: "maccatalyst.love.elio.app",
+      app_name: "Elio",
+      platform: "osx",
+      team_id: "5BV85JW8US",
+      api_key: api_key,
+      skip_devcenter: false,
+      skip_itc: false
+    )
+  end
+
   desc "Build macOS app (Mac Catalyst)"
   lane :build do
     build_app(
@@ -48,11 +67,8 @@ platform :mac do
       xcargs: "-authenticationKeyPath #{File.expand_path('~/.appstoreconnect/private_keys/AuthKey_5KT46G9Y29.p8')} -authenticationKeyID 5KT46G9Y29 -authenticationKeyIssuerID e0d22675-afb3-45f0-a821-06b477f44da0 -allowProvisioningUpdates"
     )
 
-    upload_to_testflight(
-      api_key: api_key,
-      app_platform: "osx",
-      skip_waiting_for_build_processing: true
-    )
+    # upload_to_testflight doesn't find maccatalyst bundle ID; use altool directly
+    sh "xcrun altool --upload-app -f '#{lane_context[SharedValues::IPA_OUTPUT_PATH]}' -t osx --apiKey 5KT46G9Y29 --apiIssuer e0d22675-afb3-45f0-a821-06b477f44da0 -k #{File.expand_path('~/.appstoreconnect/private_keys/AuthKey_5KT46G9Y29.p8')}"
 
     clean_build_artifacts
   end
@@ -206,11 +222,6 @@ platform :ios do
       in_house: false
     )
 
-    # Increment build number (disabled - manually set with agvtool)
-    # increment_build_number(
-    #   build_number: 37
-    # )
-
     # Get latest provisioning profile from App Store Connect
     get_provisioning_profile(
       api_key: api_key,
@@ -245,6 +256,31 @@ platform :ios do
 
     # Clean up
     clean_build_artifacts
+  end
+
+  desc "Submit already-uploaded build for App Store review"
+  lane :submit_review do
+    # Clear conflicting env vars so deliver doesn't pick up both api_key and api_key_path
+    ENV.delete("APP_STORE_CONNECT_API_KEY_PATH")
+    ENV.delete("APP_STORE_CONNECT_API_KEY_JSON")
+
+    api_key = app_store_connect_api_key(
+      key_id: "5KT46G9Y29",
+      issuer_id: "e0d22675-afb3-45f0-a821-06b477f44da0",
+      key_filepath: File.expand_path("~/.appstoreconnect/private_keys/AuthKey_5KT46G9Y29.p8"),
+      in_house: false
+    )
+
+    upload_to_app_store(
+      api_key: api_key,
+      skip_binary_upload: true,
+      submit_for_review: true,
+      automatic_release: false,
+      skip_screenshots: true,
+      skip_metadata: true,
+      precheck_include_in_app_purchases: false,
+      force: true
+    )
   end
 
   desc "Sync certificates (Match)"

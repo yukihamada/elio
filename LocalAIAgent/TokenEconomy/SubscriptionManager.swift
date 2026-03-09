@@ -253,9 +253,9 @@ final class SubscriptionManager: ObservableObject {
     /// Credits are granted server-side with idempotency protection.
     private func forwardSubscriptionToChatWeb(productId: String) async {
         // Read MainActor-isolated properties
-        let (authToken, isLoggedIn, currentCredits) = await MainActor.run {
+        let (authToken, isLoggedIn, currentCredits, userId) = await MainActor.run {
             let sm = SyncManager.shared
-            return (sm.authToken, sm.isLoggedIn, sm.creditsRemaining)
+            return (sm.authToken, sm.isLoggedIn, sm.creditsRemaining, sm.userId)
         }
 
         // Only forward if user is logged in to ChatWeb
@@ -274,11 +274,14 @@ final class SubscriptionManager: ObservableObject {
 
         guard let txId = transactionId, let origTxId = originalTransactionId else { return }
 
-        let body: [String: Any] = [
+        var body: [String: Any] = [
             "product_id": productId,
             "transaction_id": String(txId),
             "original_transaction_id": String(origTxId)
         ]
+        if let uid = userId {
+            body["user_id"] = uid
+        }
 
         guard let url = URL(string: "https://api.chatweb.ai/api/v1/partner/verify-subscription"),
               let httpBody = try? JSONSerialization.data(withJSONObject: body) else { return }

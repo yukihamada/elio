@@ -122,6 +122,31 @@
           "referenceName" : "Pro Monthly",
           "subscriptionGroupID" : "20986543",
           "type" : "RecurringSubscription"
+        },
+        {
+          "adHocOffers" : [
+
+          ],
+          "codeOffers" : [
+
+          ],
+          "displayPrice" : "2900",
+          "familyShareable" : false,
+          "groupNumber" : 3,
+          "internalID" : "1234567893",
+          "introductoryOffer" : null,
+          "localizations" : [
+            {
+              "description" : "Nemotron 9B Japanese使い放題・毎月30,000クレジット",
+              "displayName" : "ElioChat Pro",
+              "locale" : "ja"
+            }
+          ],
+          "productID" : "love.elio.subscription.eliopro",
+          "recurringSubscriptionPeriod" : "P1M",
+          "referenceName" : "ElioChat Pro Monthly",
+          "subscriptionGroupID" : "20986543",
+          "type" : "RecurringSubscription"
         }
       ]
     }
