@@ -5,6 +5,8 @@ struct OnboardingChatView: View {
     @Binding var downloadProgress: Double
     @Binding var isDownloadComplete: Bool
     var downloadProgressInfo: DownloadProgressInfo?
+    var downloadError: String?
+    var onRetry: (() -> Void)?
     let onComplete: () -> Void
 
     @State private var messages: [OnboardingMessage] = []
@@ -204,14 +206,48 @@ struct OnboardingChatView: View {
 
             // Show loading indicator if chat finished but download still in progress
             if isChatFinished && !isDownloadComplete {
-                HStack(spacing: 12) {
-                    ProgressView()
-                        .scaleEffect(0.9)
-                    Text("ダウンロード完了を待っています...")
-                        .font(.subheadline)
-                        .foregroundStyle(.secondary)
+                if let error = downloadError {
+                    VStack(spacing: 12) {
+                        HStack(spacing: 8) {
+                            Image(systemName: "exclamationmark.triangle.fill")
+                                .foregroundStyle(.orange)
+                            Text(error)
+                                .font(.subheadline)
+                                .foregroundStyle(.secondary)
+                                .multilineTextAlignment(.center)
+                        }
+                        if let onRetry = onRetry {
+                            Button(action: onRetry) {
+                                HStack {
+                                    Image(systemName: "arrow.clockwise")
+                                    Text("再試行")
+                                }
+                                .font(.subheadline.weight(.semibold))
+                                .padding(.horizontal, 24)
+                                .padding(.vertical, 10)
+                                .background(
+                                    LinearGradient(
+                                        colors: [.purple, .blue],
+                                        startPoint: .leading,
+                                        endPoint: .trailing
+                                    )
+                                )
+                                .foregroundStyle(.white)
+                                .clipShape(RoundedRectangle(cornerRadius: 12))
+                            }
+                        }
+                    }
+                    .padding(.bottom, 20)
+                } else {
+                    HStack(spacing: 12) {
+                        ProgressView()
+                            .scaleEffect(0.9)
+                        Text("ダウンロード完了を待っています...")
+                            .font(.subheadline)
+                            .foregroundStyle(.secondary)
+                    }
+                    .padding(.bottom, 20)
                 }
-                .padding(.bottom, 20)
             }
         }
         .onAppear {
@@ -455,6 +491,8 @@ struct TypingIndicator: View {
             speed: 10_000_000,
             estimatedTimeRemaining: 76
         ),
+        downloadError: nil,
+        onRetry: nil,
         onComplete: {}
     )
 }

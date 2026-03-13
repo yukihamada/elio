@@ -49,8 +49,9 @@ struct OnboardingView: View {
             // Use smallest model for testing
             return modelLoader.availableModels.first { $0.id == "qwen3-0.6b" }
         }
-        // Prefer ElioChat v3 > Qwen3 1.7B as fallback
-        return modelLoader.availableModels.first { $0.id == "eliochat-1.7b-v3" }
+        // Prefer Futa 2B v1 > ElioChat v3 > Qwen3 1.7B as fallback
+        return modelLoader.availableModels.first { $0.id == "futa-2b-v1" }
+            ?? modelLoader.availableModels.first { $0.id == "eliochat-1.7b-v3" }
             ?? modelLoader.availableModels.first { $0.id == "qwen3-1.7b" }
     }
 
@@ -437,6 +438,11 @@ struct OnboardingView: View {
                     downloadProgress: $downloadProgress,
                     isDownloadComplete: $downloadCompleted,
                     downloadProgressInfo: downloadProgressInfo,
+                    downloadError: downloadError,
+                    onRetry: {
+                        downloadError = nil
+                        startBackgroundDownload()
+                    },
                     onComplete: {
                         completeOnboarding()
                     }

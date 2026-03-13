@@ -38,8 +38,8 @@ enum DeviceTier: Int, Comparable {
         // iPad Pro M4 / M2 / M1
         case let id where id.hasPrefix("iPad16"), let id where id.hasPrefix("iPad14"), let id where id.hasPrefix("iPad13"):
             return .ultra
-        // iPad Air M2 / M1
-        case let id where id.hasPrefix("iPad15"):
+        // iPad Air M3 / M2 / M1
+        case let id where id.hasPrefix("iPad17"), let id where id.hasPrefix("iPad15"):
             return .high
         // iPad mini 6, iPad 10th gen
         case let id where id.hasPrefix("iPad11"), let id where id.hasPrefix("iPad12"):
@@ -383,6 +383,24 @@ final class ModelLoader: ObservableObject {
                 tier: .xlarge,
                 category: .recommended,
                 defaultSystemPrompt: "NVIDIAが開発した日本語特化モデルの省メモリ版です。高品質で自然な日本語で回答してください。"
+            ),
+            ModelInfo(
+                id: "futa-2b-v1",
+                name: "Futa 2B v1 (日本語特化)",
+                description: "🇯🇵 日本語思考+ツール呼び出し対応。Qwen3.5-2Bベースのファインチューンモデル。",
+                descriptionEn: "🇯🇵 Japanese thinking + tool calling. Fine-tuned from Qwen3.5-2B.",
+                size: "約1.5GB",
+                sizeBytes: 1_500_000_000,
+                downloadURL: "https://huggingface.co/yukihamada/futa-2b-v1-GGUF/resolve/main/futa-2b-v1-Q4_K_M.gguf",
+                config: ModelInfo.ModelConfigData(
+                    maxContextLength: 4096,
+                    vocabularySize: 151936,
+                    eosTokenId: 151645,
+                    bosTokenId: 151643
+                ),
+                tier: .medium,
+                category: .recommended,
+                defaultSystemPrompt: "あなたはElioのAIアシスタントです。日本語で思考し、丁寧に回答してください。ツールが必要な場合は<tool_call>タグを使ってください。"
             ),
             ModelInfo(
                 id: "qwen3-0.6b",
@@ -1310,8 +1328,30 @@ final class ModelLoader: ObservableObject {
         return nil
     }
 
-    /// Download model using URL Session (direct HTTP download)
+    /// Download model using URL Session (direct HTTP download) with retry
     private func downloadModelViaURLSession(_ model: ModelInfo) async throws {
+        let maxRetries = 3
+        var lastError: Error?
+
+        for attempt in 1...maxRetries {
+            do {
+                try await downloadModelViaURLSessionOnce(model)
+                return  // Success
+            } catch {
+                lastError = error
+                print("[ModelLoader] Download attempt \(attempt)/\(maxRetries) failed: \(error.localizedDescription)")
+                if attempt < maxRetries {
+                    let delay = UInt64(pow(2.0, Double(attempt))) * 1_000_000_000  // Exponential backoff
+                    print("[ModelLoader] Retrying in \(Int(pow(2.0, Double(attempt)))) seconds...")
+                    try? await Task.sleep(nanoseconds: delay)
+                }
+            }
+        }
+        throw lastError ?? ModelLoaderError.downloadFailed
+    }
+
+    /// Single download attempt
+    private func downloadModelViaURLSessionOnce(_ model: ModelInfo) async throws {
         guard let url = URL(string: model.downloadURL) else {
             throw ModelLoaderError.invalidURL
         }
@@ -1445,7 +1485,11 @@ final class ModelLoader: ObservableObject {
             )
 
             print("[ModelLoader] Starting URLSession download task (delegate-based)...")
-            let session = URLSession(configuration: .default, delegate: delegate, delegateQueue: nil)
+            let config = URLSessionConfiguration.default
+            config.timeoutIntervalForResource = 600  // 10 minutes for large model files
+            config.timeoutIntervalForRequest = 120   // 2 minutes per request
+            config.waitsForConnectivity = true        // Wait for network instead of failing immediately
+            let session = URLSession(configuration: config, delegate: delegate, delegateQueue: nil)
             downloadSession = session
 
             // Use delegate-based download task (NO completion handler)
@@ -1590,6 +1634,7 @@ private final class DownloadDelegate: NSObject, URLSessionDownloadDelegate {
     private let progressHandler: (Double, Int64, Int64, Double, TimeInterval?) -> Void
     private let completionHandler: (Result<URL, Error>) -> Void
     private let expectedSize: Int64
+    private var actualTotalSize: Int64?  // Server-provided size (updated on first callback)
     private var startTime: Date?
     private var lastUpdateTime: Date?
     private var lastBytesWritten: Int64 = 0
@@ -1612,11 +1657,17 @@ private final class DownloadDelegate: NSObject, URLSessionDownloadDelegate {
             lastUpdateTime = now
             // Log first callback with size info
             print("[Download] First callback - serverSize: \(totalBytesExpectedToWrite), expectedSize: \(expectedSize)")
+            // Lock in server-provided size on first callback for accurate progress
+            if totalBytesExpectedToWrite > 0 {
+                actualTotalSize = totalBytesExpectedToWrite
+            }
         }
 
-        // Use server-provided size if available, otherwise use expected size from model info
+        // Use server-provided size (most accurate), then expected size from model info
         let totalSize: Int64
-        if totalBytesExpectedToWrite > 0 {
+        if let actual = actualTotalSize, actual > 0 {
+            totalSize = actual
+        } else if totalBytesExpectedToWrite > 0 {
             totalSize = totalBytesExpectedToWrite
         } else if expectedSize > 0 {
             totalSize = expectedSize
