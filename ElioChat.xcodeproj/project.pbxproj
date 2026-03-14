@@ -43,6 +43,7 @@
 		035 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136 /* AboutView.swift */; };
 		036 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 140 /* Localizable.strings */; };
 		037 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 137 /* NetworkMonitor.swift */; };
+		2BB9F1F219DC53CD365E057B /* MacAboutBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7545764FC314BC41BDCFD6 /* MacAboutBridge.swift */; };
 		32F957E1072AE040998CB503 /* SpeculativeBackend.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3425F549F53E154683E4DB9 /* SpeculativeBackend.swift */; };
 		3F2AD87B83A871ECF3AEE72B /* MessagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B105EDF08C8690D3B8739D45 /* MessagesView.swift */; };
 		60B47A4DC9139314BB0DC2C9 /* ModelSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F274E62F73576596B9AD3FA /* ModelSettings.swift */; };
@@ -51,6 +52,7 @@
 		81532C268A329161B26DBE93 /* SystemPromptLocalizations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BDE308F3DED07B71816FFD /* SystemPromptLocalizations.swift */; };
 		94C05C178CA153A1939D6A74 /* FriendsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D41BE8854F717C4639B435 /* FriendsManager.swift */; };
 		A1B2C3D4E5F6A7B8C9D0E1F2 /* ModelSwitcherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6E7F8A9B0C1D2E3F4A5B6C7 /* ModelSwitcherView.swift */; };
+		A9628879BDB8049211EFE389 /* ElioCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70786D242F8A6246D5B14A7 /* ElioCommands.swift */; };
 		AD18E45C310E417CD140100C /* MessagingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A512831715040998464FBFC7 /* MessagingManager.swift */; };
 		APPINTENT001 /* AppIntents.swift in Sources */ = {isa = PBXBuildFile; fileRef = APPINTENT002 /* AppIntents.swift */; };
 		B63B0EBF2F1214F5006BCDD0 /* LlamaSwift in Frameworks */ = {isa = PBXBuildFile; productRef = B63B0EBF2F121377006BCDD0 /* LlamaSwift */; };
@@ -60,6 +62,7 @@
 		BKTST001 /* BackendTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BKTST002 /* BackendTests.swift */; };
 		C071F3E0693DCB31C15C6052 /* InferenceServerSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF9F48FF6CEC6C9BA8BE74B /* InferenceServerSettingsView.swift */; };
 		C1D2E3F4A5B6C7D8E9F0A1B2 /* AnonymousMessagingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C2D3E4F5A6B7C8D9E0F1A2 /* AnonymousMessagingTests.swift */; };
+		C544459FE815E0F64608424A /* ElioFocusedValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 472DEFE070C3C9FAE5F7987C /* ElioFocusedValues.swift */; };
 		C60A36CCF98A62B5906FE569 /* VisionModelDownloadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED5CCB34FA4BFAD3E5BEBD2 /* VisionModelDownloadView.swift */; };
 		CC9E1A43AC5028EF1CD3CC12 /* SpeculativeVerifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37364513C5FBFB4564633833 /* SpeculativeVerifier.swift */; };
 		CHATMODE001 /* ChatMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CHATMODE002 /* ChatMode.swift */; };
@@ -247,6 +250,7 @@
 		142 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		15DE1364A66E372968BE4AF1 /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = uk.lproj/Localizable.strings; sourceTree = "<group>"; };
 		18D41BE8854F717C4639B435 /* FriendsManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FriendsManager.swift; path = Social/FriendsManager.swift; sourceTree = "<group>"; };
+		1B7545764FC314BC41BDCFD6 /* MacAboutBridge.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MacAboutBridge.swift; path = MacAboutBridge.swift; sourceTree = "<group>"; };
 		1CA3493F8ED1E8131EB8787A /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = ha.lproj/Localizable.strings; sourceTree = "<group>"; };
 		1CB25DB289CD9ACDBBD133BF /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = lo.lproj/Localizable.strings; sourceTree = "<group>"; };
 		1CFBAD2E97F48CFE480561BF /* DirectChatView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DirectChatView.swift; path = DirectChatView.swift; sourceTree = "<group>"; };
@@ -263,6 +267,7 @@
 		432F93226283198E28932302 /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = pa.lproj/Localizable.strings; sourceTree = "<group>"; };
 		43548E0F735CECA133933CD1 /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = th.lproj/Localizable.strings; sourceTree = "<group>"; };
 		4595A2F46F423B517FDBF8E0 /* MeshP2PManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MeshP2PManager.swift; sourceTree = "<group>"; };
+		472DEFE070C3C9FAE5F7987C /* ElioFocusedValues.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ElioFocusedValues.swift; path = ElioFocusedValues.swift; sourceTree = "<group>"; };
 		4AEB6572005768A34D05E7FA /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = mr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		4C1810A84FA4FEB1DF86B9C4 /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = fi.lproj/Localizable.strings; sourceTree = "<group>"; };
 		5253B2DE3BC147765D91BC4C /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = fil.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -291,6 +296,7 @@
 		A033E850E0A7075A3D2E40F8 /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = eu.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A506FF68BD35B600440F7BF1 /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = so.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A512831715040998464FBFC7 /* MessagingManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MessagingManager.swift; path = Social/MessagingManager.swift; sourceTree = "<group>"; };
+		A70786D242F8A6246D5B14A7 /* ElioCommands.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ElioCommands.swift; path = ElioCommands.swift; sourceTree = "<group>"; };
 		A9A3EC8083CC21D29D2DA7BA /* ChatWebQuickToggle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ChatWebQuickToggle.swift; sourceTree = "<group>"; };
 		APPINTENT002 /* AppIntents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIntents.swift; sourceTree = "<group>"; };
 		B105EDF08C8690D3B8739D45 /* MessagesView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MessagesView.swift; path = MessagesView.swift; sourceTree = "<group>"; };
@@ -543,6 +549,7 @@
 				SHAREDDATAMGR002 /* SharedDataManager.swift */,
 				FEEDSVC02 /* FeedbackService.swift */,
 				SYNC002 /* SyncManager.swift */,
+				A7F5A8D316A63DAB0AEFFF2C /* Mac */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -772,6 +779,17 @@
 			);
 			name = Maps;
 			path = LocalAIAgent/Maps;
+			sourceTree = "<group>";
+		};
+		A7F5A8D316A63DAB0AEFFF2C /* Mac */ = {
+			isa = PBXGroup;
+			children = (
+				472DEFE070C3C9FAE5F7987C /* ElioFocusedValues.swift */,
+				A70786D242F8A6246D5B14A7 /* ElioCommands.swift */,
+				1B7545764FC314BC41BDCFD6 /* MacAboutBridge.swift */,
+			);
+			name = Mac;
+			path = Mac;
 			sourceTree = "<group>";
 		};
 		B71C3BC657B01719DBAE08A7 /* Discovery */ = {
@@ -1260,6 +1278,9 @@
 				ONCHAIN001 /* OnChainRewards.swift in Sources */,
 				DEPINDASH001 /* DePINDashboardView.swift in Sources */,
 				01493DAAA4BED367EC3B22A9 /* CloudAIConsentView.swift in Sources */,
+				C544459FE815E0F64608424A /* ElioFocusedValues.swift in Sources */,
+				A9628879BDB8049211EFE389 /* ElioCommands.swift in Sources */,
+				2BB9F1F219DC53CD365E057B /* MacAboutBridge.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1909,7 +1930,7 @@
 				CODE_SIGN_ENTITLEMENTS = LocalAIAgent/LocalAIAgent.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 52;
+				CURRENT_PROJECT_VERSION = 53;
 				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = NO;
 				DEVELOPMENT_TEAM = 5BV85JW8US;
 				ENABLE_PREVIEWS = YES;
@@ -1954,7 +1975,7 @@
 				CODE_SIGN_ENTITLEMENTS = LocalAIAgent/LocalAIAgent.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 52;
+				CURRENT_PROJECT_VERSION = 53;
 				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = NO;
 				DEVELOPMENT_TEAM = 5BV85JW8US;
 				ENABLE_PREVIEWS = YES;
@@ -1996,7 +2017,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 52;
+				CURRENT_PROJECT_VERSION = 53;
 				DEVELOPMENT_TEAM = 5BV85JW8US;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
@@ -2015,7 +2036,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 52;
+				CURRENT_PROJECT_VERSION = 53;
 				DEVELOPMENT_TEAM = 5BV85JW8US;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
@@ -2033,7 +2054,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 52;
+				CURRENT_PROJECT_VERSION = 53;
 				DEVELOPMENT_TEAM = 5BV85JW8US;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
@@ -2051,7 +2072,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 52;
+				CURRENT_PROJECT_VERSION = 53;
 				DEVELOPMENT_TEAM = 5BV85JW8US;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;

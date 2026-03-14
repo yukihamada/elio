@@ -3,8 +3,23 @@ import SwiftUI
 import WidgetKit
 #endif
 
+// MARK: - App Delegate (macCatalyst state restoration fix)
+
+class ElioAppDelegate: NSObject, UIApplicationDelegate {
+    /// Prevent macCatalyst from restoring saved scene state,
+    /// which can cause EnvironmentObject crashes on launch.
+    func application(_ application: UIApplication, shouldRestoreSecureApplicationState coder: NSCoder) -> Bool {
+        return false
+    }
+
+    func application(_ application: UIApplication, shouldSaveSecureApplicationState coder: NSCoder) -> Bool {
+        return false
+    }
+}
+
 @main
 struct LocalAIAgentApp: App {
+    @UIApplicationDelegateAdaptor(ElioAppDelegate.self) var appDelegate
     @StateObject private var appState = AppState()
     @StateObject private var themeManager = ThemeManager()
     @StateObject private var syncManager = SyncManager.shared
@@ -40,12 +55,29 @@ struct LocalAIAgentApp: App {
                     // iPhone: start Bonjour browsing to discover Mac peers
                     ChatModeManager.shared.p2p?.startBrowsing()
                     #endif
+
+                    #if targetEnvironment(macCatalyst)
+                    // Mac: Keep app running when last window is closed (DePIN node stays active in Dock)
+                    configureMacWindowBehavior()
+                    #endif
                 }
         }
         #if targetEnvironment(macCatalyst)
         .defaultSize(width: 900, height: 700)
+        .commands { ElioCommands() }
         #endif
     }
+
+    #if targetEnvironment(macCatalyst)
+    /// Configure Mac Catalyst to keep app running in Dock when window is closed.
+    private func configureMacWindowBehavior() {
+        // UIKit bridge: applicationShouldTerminateAfterLastWindowClosed = false
+        // On macCatalyst, this keeps the DePIN node running even when the window is closed.
+        if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
+            windowScene.sizeRestrictions?.minimumSize = CGSize(width: 600, height: 500)
+        }
+    }
+    #endif
 
     /// Handle deep links from widget
     private func handleDeepLink(_ url: URL) {
@@ -112,21 +144,24 @@ struct LocalAIAgentApp: App {
             // App went to background
             logInfo("App", "App entered background")
 
-            // Stop any ongoing generation
+            #if targetEnvironment(macCatalyst)
+            // Mac: Keep P2P/DePIN server running in background (Dock mode)
+            // Only save conversations, don't stop generation or networking
+            Task {
+                await appState.saveConversations()
+            }
+            #else
+            // iOS: Stop generation but keep model loaded
             if appState.isGenerating {
                 appState.shouldStopGeneration = true
             }
 
-            // Save conversations before going to background
             Task {
                 await appState.saveConversations()
             }
 
             // Note: We intentionally DON'T unload the model here
             // iOS will automatically purge memory if needed
-            // Unloading proactively causes poor UX when switching between apps
-
-            #if !targetEnvironment(macCatalyst)
             ChatModeManager.shared.p2p?.stopBrowsing()
             #endif
 

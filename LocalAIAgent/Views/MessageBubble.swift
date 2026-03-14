@@ -190,6 +190,24 @@ struct MessageBubble: View {
                     Button(action: copyMessage) {
                         Label(String(localized: "common.copy"), systemImage: "doc.on.doc")
                     }
+                    #if targetEnvironment(macCatalyst)
+                    Button {
+                        let text = message.content
+                        let av = UIActivityViewController(activityItems: [text], applicationActivities: nil)
+                        if let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+                           let root = scene.windows.first?.rootViewController {
+                            root.present(av, animated: true)
+                        }
+                    } label: {
+                        Label("Share…", systemImage: "square.and.arrow.up")
+                    }
+                    Divider()
+                    Button {
+                        UIPasteboard.general.string = "```\n\(message.content)\n```"
+                    } label: {
+                        Label("Copy as Markdown", systemImage: "doc.text")
+                    }
+                    #endif
                 }
             } else if message.content == String(localized: "chat.image.sent") && message.image == nil {
                 // Show placeholder if image data couldn't be loaded

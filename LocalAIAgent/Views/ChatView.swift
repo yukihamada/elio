@@ -82,7 +82,9 @@ struct ChatView: View {
     // @State private var showingMeshTopology = false
     // chatweb.ai onboarding
     @State private var showChatWebOnboarding = !UserDefaults.standard.bool(forKey: "hasShownChatWebOnboarding")
+    @State private var showCloudAIConsent = false
     @AppStorage("chatwebModeEnabled") private var chatwebModeAppStorage: Bool = false
+    @AppStorage("cloudAIConsentGiven") private var cloudAIConsentGiven: Bool = false
     // Easter egg: Developer thanks
     @State private var showingDeveloperThanks = false
     @State private var tapCount = 0
@@ -110,6 +112,139 @@ struct ChatView: View {
         bodyWithLifecycle
     }
 
+    // MARK: - Mac Sidebar Layout
+
+    #if targetEnvironment(macCatalyst)
+    private var macBodyWithSidebar: some View {
+        HStack(spacing: 0) {
+            // Slide-over sidebar
+            if showingConversationList {
+                macSidebarView
+                    .frame(width: 280)
+                    .transition(.move(edge: .leading))
+
+                Divider()
+            }
+
+            // Main chat area
+            mainContent
+        }
+        .animation(.spring(response: 0.3, dampingFraction: 0.9), value: showingConversationList)
+    }
+
+    private var macSidebarView: some View {
+        VStack(spacing: 0) {
+            // Sidebar header
+            HStack {
+                Text("Conversations")
+                    .font(.system(size: 13, weight: .semibold))
+                    .foregroundStyle(.secondary)
+                    .textCase(.uppercase)
+                    .tracking(0.5)
+
+                Spacer()
+
+                Button(action: { appState.newConversation() }) {
+                    Image(systemName: "square.and.pencil")
+                        .font(.system(size: 14, weight: .medium))
+                        .foregroundStyle(.secondary)
+                }
+                .buttonStyle(.plain)
+            }
+            .padding(.horizontal, 16)
+            .padding(.vertical, 12)
+
+            Divider()
+
+            // Conversation list
+            if appState.conversations.isEmpty {
+                VStack(spacing: 12) {
+                    Spacer()
+                    Image(systemName: "bubble.left.and.bubble.right")
+                        .font(.system(size: 28))
+                        .foregroundStyle(.tertiary)
+                    Text("No conversations")
+                        .font(.system(size: 13))
+                        .foregroundStyle(.tertiary)
+                    Spacer()
+                }
+            } else {
+                ScrollView {
+                    LazyVStack(spacing: 2) {
+                        ForEach(appState.conversations) { conversation in
+                            macConversationRow(conversation)
+                        }
+                    }
+                    .padding(.vertical, 4)
+                    .padding(.horizontal, 8)
+                }
+            }
+        }
+        .background(Color.cardBackground)
+    }
+
+    private func macConversationRow(_ conversation: Conversation) -> some View {
+        let isSelected = appState.currentConversation?.id == conversation.id
+        return Button(action: {
+            appState.currentConversation = conversation
+        }) {
+            HStack(spacing: 10) {
+                VStack(alignment: .leading, spacing: 3) {
+                    Text(conversation.title)
+                        .font(.system(size: 13, weight: isSelected ? .semibold : .regular))
+                        .lineLimit(1)
+                        .foregroundStyle(isSelected ? .primary : .primary)
+
+                    Text(formatSidebarDate(conversation.updatedAt))
+                        .font(.system(size: 11))
+                        .foregroundStyle(.tertiary)
+                }
+
+                Spacer()
+            }
+            .padding(.horizontal, 12)
+            .padding(.vertical, 8)
+            .background(
+                RoundedRectangle(cornerRadius: 8)
+                    .fill(isSelected ? Color.blue.opacity(0.12) : Color.clear)
+            )
+            .contentShape(RoundedRectangle(cornerRadius: 8))
+        }
+        .buttonStyle(.plain)
+        .contextMenu {
+            Button(action: {
+                UIPasteboard.general.string = conversation.title
+            }) {
+                Label("タイトルをコピー", systemImage: "doc.on.doc")
+            }
+            Divider()
+            Button(role: .destructive, action: {
+                if appState.currentConversation?.id == conversation.id {
+                    appState.currentConversation = nil
+                }
+                appState.conversations.removeAll { $0.id == conversation.id }
+            }) {
+                Label("削除", systemImage: "trash")
+            }
+        }
+    }
+
+    private func formatSidebarDate(_ date: Date) -> String {
+        let calendar = Calendar.current
+        if calendar.isDateInToday(date) {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "HH:mm"
+            return formatter.string(from: date)
+        } else if calendar.isDateInYesterday(date) {
+            return "昨日"
+        } else {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "M/d"
+            return formatter.string(from: date)
+        }
+    }
+    #endif
+
     // MARK: - Body Breakdown (split for Swift type-checker performance)
 
     private var mainContent: some View {
@@ -117,6 +252,9 @@ struct ChatView: View {
             VStack(spacing: 0) {
                 // Header
                 headerView
+                #if targetEnvironment(macCatalyst)
+                    .background(.ultraThinMaterial)
+                #endif
 
                 // Emergency mode banner and quick actions
                 if appState.isEmergencyMode {
@@ -138,7 +276,14 @@ struct ChatView: View {
                 // Model loading happens in background
                 chatContent
 
+                #if targetEnvironment(macCatalyst)
+                // Mac: centered input with max width for readability
                 inputBar
+                    .frame(maxWidth: 780)
+                    .frame(maxWidth: .infinity) // center within parent
+                #else
+                inputBar
+                #endif
             }
 
             // Processing overlay - prevents white screen during CPU-heavy operations
@@ -179,8 +324,12 @@ struct ChatView: View {
                         withAnimation(.spring(response: 0.4)) {
                             showChatWebOnboarding = false
                             UserDefaults.standard.set(true, forKey: "hasShownChatWebOnboarding")
+                        }
+                        if cloudAIConsentGiven {
                             chatwebModeAppStorage = true
                             ChatModeManager.shared.setMode(.chatweb)
+                        } else {
+                            showCloudAIConsent = true
                         }
                     },
                     onDismiss: {
@@ -198,32 +347,74 @@ struct ChatView: View {
         .background(Color.chatBackgroundDynamic.ignoresSafeArea())
     }
 
-    private var bodyWithSheets: some View {
-        mainContent
-        .sheet(isPresented: $showingConversationList) {
-            ConversationListView()
-        }
-        .sheet(isPresented: $showingSettings) {
-            SettingsView()
-        }
-        .sheet(isPresented: $showingMessages) {
-            MessagesView()
-        }
+    @ViewBuilder
+    private var bodyWithSheetsBase: some View {
         #if targetEnvironment(macCatalyst)
-        .keyboardShortcut(.return, modifiers: .command) // Cmd+Enter: send
-        .onAppear {
-            // Cmd+N: new chat, Cmd+,: settings
-        }
-        .background {
-            Button("") { appState.newConversation() }
-                .keyboardShortcut("n", modifiers: .command)
-                .hidden()
-            Button("") { showingSettings = true }
-                .keyboardShortcut(",", modifiers: .command)
-                .hidden()
-            Button("") { showingChatWebConnect = true }
-                .keyboardShortcut("k", modifiers: .command)
-                .hidden()
+        macBodyWithSidebar
+            .sheet(isPresented: $showingSettings) {
+                SettingsView()
+            }
+            .sheet(isPresented: $showingMessages) {
+                MessagesView()
+            }
+        #else
+        mainContent
+            .sheet(isPresented: $showingConversationList) {
+                ConversationListView()
+            }
+            .sheet(isPresented: $showingSettings) {
+                SettingsView()
+            }
+            .sheet(isPresented: $showingMessages) {
+                MessagesView()
+            }
+        #endif
+    }
+
+    private var bodyWithSheets: some View {
+        bodyWithSheetsBase
+        #if targetEnvironment(macCatalyst)
+        .toolbar {
+            ToolbarItemGroup(placement: .primaryAction) {
+                Button {
+                    withAnimation(.spring(response: 0.3)) { showingConversationList.toggle() }
+                } label: {
+                    Image(systemName: "sidebar.left")
+                }
+                .help("Show/Hide Conversations (⌘L)")
+
+                Button {
+                    appState.newConversation()
+                } label: {
+                    Image(systemName: "square.and.pencil")
+                }
+                .help("New Conversation (⌘N)")
+
+                if isGenerating {
+                    Button {
+                        appState.shouldStopGeneration = true
+                        generationTask?.cancel()
+                    } label: {
+                        Image(systemName: "stop.circle")
+                    }
+                    .help("Stop Generation (⌘.)")
+                }
+            }
+            ToolbarItemGroup(placement: .secondaryAction) {
+                Button {
+                    showingChatWebConnect = true
+                } label: {
+                    Image(systemName: "cloud")
+                }
+                .help("Connect to ChatWeb (⌘K)")
+
+                Button {
+                    showingSettings = true
+                } label: {
+                    Image(systemName: "gearshape")
+                }
+                .help("Settings (⌘,)")
+            }
         }
         #endif
         .confirmationDialog(String(localized: "attachment.title"), isPresented: $showingAttachmentOptions) {
@@ -430,6 +621,22 @@ struct ChatView: View {
                 isInputFocused = true
             })
         }
+        // Cloud AI consent dialog
+        .sheet(isPresented: $showCloudAIConsent) {
+            CloudAIConsentView(
+                onAgree: {
+                    cloudAIConsentGiven = true
+                    chatwebModeAppStorage = true
+                    ChatModeManager.shared.setMode(.chatweb)
+                    showCloudAIConsent = false
+                },
+                onCancel: {
+                    showCloudAIConsent = false
+                }
+            )
+            .presentationDetents([.medium, .large])
+            .presentationDragIndicator(.hidden)
+        }
         // Unified connect (ChatWeb + P2P + Friends + QR Scanner)
         .sheet(isPresented: $showingChatWebConnect) {
             UnifiedConnectView()
@@ -597,6 +804,20 @@ struct ChatView: View {
         .onReceive(NotificationCenter.default.publisher(for: .voiceConversationTapToSend)) { _ in
             stopVoiceConversationListeningAndSend()
         }
+        #if targetEnvironment(macCatalyst)
+        // Expose actions to Mac menu bar via FocusedValues
+        .focusedSceneValue(\.newConversation, { appState.newConversation() })
+        .focusedSceneValue(\.showSettings, { showingSettings = true })
+        .focusedSceneValue(\.showConversationList, {
+            withAnimation(.spring(response: 0.3)) { showingConversationList.toggle() }
+        })
+        .focusedSceneValue(\.showChatWebConnect, { showingChatWebConnect = true })
+        .focusedSceneValue(\.stopGeneration, {
+            appState.shouldStopGeneration = true
+            generationTask?.cancel()
+        })
+        .focusedSceneValue(\.isGenerating, isGenerating)
+        #endif
     }
 
     private func handleAttachmentTap() {
@@ -922,13 +1143,16 @@ struct ChatView: View {
 
     private var headerView: some View {
         HStack(spacing: 12) {
-            // Menu
+            // Menu / Sidebar
             Button(action: { showingConversationList = true }) {
-                Image(systemName: "line.3.horizontal")
-                    .font(.system(size: 20, weight: .medium))
-                    .foregroundStyle(.primary)
+                Image(systemName: "sidebar.left")
+                    .font(.system(size: 18, weight: .medium))
+                    .foregroundStyle(.secondary)
             }
             .accessibilityIdentifier("menuButton")
+            #if targetEnvironment(macCatalyst)
+            .buttonStyle(.plain)
+            #endif
 
             // Contextual status indicators (only shown when relevant)
             headerStatusIndicators
@@ -957,15 +1181,18 @@ struct ChatView: View {
             // New conversation
             Button(action: { appState.newConversation() }) {
                 Image(systemName: "square.and.pencil")
-                    .font(.system(size: 20, weight: .medium))
-                    .foregroundStyle(.primary)
+                    .font(.system(size: 18, weight: .medium))
+                    .foregroundStyle(.secondary)
             }
+            #if targetEnvironment(macCatalyst)
+            .buttonStyle(.plain)
+            #endif
 
             // Overflow menu
             headerOverflowMenu
         }
-        .padding(.horizontal, 16)
-        .padding(.vertical, 12)
+        .padding(.horizontal, 20)
+        .padding(.vertical, 14)
     }
 
     @ViewBuilder
@@ -979,34 +1206,42 @@ struct ChatView: View {
 
             // Model/backend switcher button
             Button(action: { showingModelSwitcher = true }) {
-                HStack(spacing: 3) {
+                HStack(spacing: 5) {
                     if ChatModeManager.shared.isChatWebMode {
                         Image(systemName: "cloud.fill")
-                            .font(.system(size: 10, weight: .bold))
+                            .font(.system(size: 10, weight: .semibold))
                         Text("chatweb.ai")
-                            .font(.system(size: 11, weight: .bold))
+                            .font(.system(size: 12, weight: .semibold))
                     } else if appState.isModelLoaded {
-                        Image(systemName: "cpu.fill")
-                            .font(.system(size: 10, weight: .bold))
+                        Circle()
+                            .fill(.green)
+                            .frame(width: 6, height: 6)
                         Text(truncatedModelName)
-                            .font(.system(size: 11, weight: .bold))
+                            .font(.system(size: 12, weight: .semibold))
                     } else {
                         Image(systemName: "arrow.down.circle")
-                            .font(.system(size: 10, weight: .bold))
+                            .font(.system(size: 10, weight: .semibold))
                         Text("モデル未選択")
-                            .font(.system(size: 11, weight: .bold))
+                            .font(.system(size: 12, weight: .semibold))
                     }
                     Image(systemName: "chevron.down")
-                        .font(.system(size: 8, weight: .bold))
+                        .font(.system(size: 8, weight: .semibold))
                 }
-                .foregroundStyle(ChatModeManager.shared.isChatWebMode ? .indigo : appState.isModelLoaded ? .green : .secondary)
-                .padding(.horizontal, 8)
-                .padding(.vertical, 4)
+                .foregroundStyle(ChatModeManager.shared.isChatWebMode ? .indigo : appState.isModelLoaded ? .primary : .secondary)
+                .padding(.horizontal, 10)
+                .padding(.vertical, 5)
                 .background(
                     Capsule()
-                        .fill((ChatModeManager.shared.isChatWebMode ? Color.indigo : appState.isModelLoaded ? Color.green : Color.secondary).opacity(0.12))
+                        .fill(Color.cardBackground)
+                )
+                .overlay(
+                    Capsule()
+                        .stroke(Color.subtleSeparator, lineWidth: 0.5)
                 )
             }
+            #if targetEnvironment(macCatalyst)
+            .buttonStyle(.plain)
+            #endif
             .sheet(isPresented: $showingModelSwitcher) {
                 ModelSwitcherView()
                     .environmentObject(appState)
@@ -1076,9 +1311,9 @@ struct ChatView: View {
                 Label(String(localized: "Settings"), systemImage: "gear")
             }
         } label: {
-            Image(systemName: "ellipsis")
-                .font(.system(size: 20, weight: .medium))
-                .foregroundStyle(.primary)
+            Image(systemName: "ellipsis.circle")
+                .font(.system(size: 18, weight: .medium))
+                .foregroundStyle(.secondary)
                 .frame(width: 28, height: 28)
         }
     }
@@ -1179,6 +1414,7 @@ struct ChatView: View {
                         if !displayedResponse.isEmpty {
                             StreamingMessageRow(text: displayedResponse)
                                 .id("streaming")
+                                .animation(.none, value: displayedResponse)
                         } else {
                             TypingIndicatorRow(
                                 statusText: ChatModeManager.shared.isChatWebMode
@@ -1190,25 +1426,36 @@ struct ChatView: View {
                     }
                 }
                 .padding(.vertical, 16)
+                #if targetEnvironment(macCatalyst)
+                // Mac: constrain message width for comfortable reading
+                .frame(maxWidth: 780)
+                .frame(maxWidth: .infinity) // center within scroll
+                #endif
             }
             .scrollDismissesKeyboard(.immediately)
             .scrollIndicators(.hidden)
             .onChange(of: appState.currentConversation?.messages.count) { _, _ in
-                // Scroll immediately to new message - no animation for instant feedback
-                proxy.scrollTo(appState.currentConversation?.messages.last?.id, anchor: .bottom)
+                // Scroll immediately to new message — no animation to avoid iOS 26 scroll freeze.
+                withAnimation(nil) {
+                    proxy.scrollTo(appState.currentConversation?.messages.last?.id, anchor: .bottom)
+                }
             }
             .onChange(of: isGenerating) { _, newValue in
                 // Scroll to typing indicator immediately when generation starts
                 if newValue {
-                    proxy.scrollTo("typing", anchor: .bottom)
+                    withAnimation(nil) {
+                        proxy.scrollTo("typing", anchor: .bottom)
+                    }
                 }
             }
             .onChange(of: displayedResponse) { _, newValue in
                 // Scroll every 80 characters or on newline for smooth streaming.
-                // Using count % 80 reduces scroll calls by ~40% vs count % 50,
-                // improving frame rate during fast token generation.
+                // withAnimation(nil) prevents iOS 26's physics-based scroll from
+                // stacking animations and freezing the UI during token streaming.
                 if newValue.count % 80 == 0 || newValue.hasSuffix("\n") {
-                    proxy.scrollTo("streaming", anchor: .bottom)
+                    withAnimation(nil) {
+                        proxy.scrollTo("streaming", anchor: .bottom)
+                    }
                 }
             }
         }
@@ -1420,39 +1667,17 @@ struct ChatView: View {
                 .padding(.bottom, 8)
             }
 
-            // Web search and thinking toggle row
-            HStack(spacing: 8) {
-                // Thinking toggle (settings updated via onChange handler)
-                Button(action: {
-                    thinkingEnabled.toggle()
-                }) {
-                    HStack(spacing: 4) {
-                        Image(systemName: thinkingEnabled ? "brain.head.profile.fill" : "brain.head.profile")
-                            .font(.system(size: 12))
-                        Text(thinkingEnabled ? String(localized: "chat.thinking.on") : String(localized: "chat.thinking.off"))
-                            .font(.caption)
-                    }
-                    .foregroundStyle(thinkingEnabled ? Color.purple : .secondary)
-                    .padding(.horizontal, 10)
-                    .padding(.vertical, 5)
-                    .background(
-                        Capsule()
-                            .fill(thinkingEnabled ? Color.purple.opacity(0.15) : Color.secondary.opacity(0.1))
-                    )
-                }
-
-                // Web search is always auto-enabled (toggle hidden)
-
-                if !networkMonitor.isConnected {
+            // Status row (offline indicator only; thinking toggle hidden)
+            if !networkMonitor.isConnected {
+                HStack(spacing: 8) {
                     Text(String(localized: "chat.offline"))
                         .font(.caption2)
                         .foregroundStyle(.secondary)
+                    Spacer()
                 }
-
-                Spacer()
+                .padding(.horizontal, 16)
+                .padding(.bottom, 4)
             }
-            .padding(.horizontal, 16)
-            .padding(.bottom, 4)
 
             HStack(alignment: .bottom, spacing: 12) {
                 // Plus menu button - hidden during voice recording/transcribing
@@ -1480,10 +1705,21 @@ struct ChatView: View {
                     } label: {
                         Image(systemName: "plus")
                             .font(.system(size: 20, weight: .medium))
-                            .foregroundStyle(Color.primary)
+                            .foregroundStyle(.secondary)
+                            #if targetEnvironment(macCatalyst)
+                            .frame(width: 38, height: 38)
+                            .background(Color.surfaceElevated)
+                            .clipShape(RoundedRectangle(cornerRadius: 10))
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 10)
+                                    .stroke(Color.subtleSeparator, lineWidth: 0.5)
+                            )
+                            #else
                             .frame(width: 36, height: 36)
                             .background(Color.chatInputBackgroundDynamic)
                             .clipShape(Circle())
+                            #endif
+                            #if !targetEnvironment(macCatalyst)
                             .overlay(
                                 // Show camera badge - blue if vision ready, gray otherwise
                                 Image(systemName: "camera.fill")
@@ -1494,6 +1730,7 @@ struct ChatView: View {
                                     .clipShape(Circle())
                                     .offset(x: 10, y: -10)
                             )
+                            #endif
                     }
                     .disabled(isGenerating)
                 }
@@ -1576,11 +1813,17 @@ struct ChatView: View {
                         HStack(alignment: .bottom, spacing: 8) {
                             TextField(String(localized: "chat.placeholder"), text: $inputText, axis: .vertical)
                                 .textFieldStyle(.plain)
+                                #if targetEnvironment(macCatalyst)
+                                .lineLimit(1...10)
+                                .font(.system(size: 15))
+                                #else
                                 .lineLimit(1...6)
+                                #endif
                                 .autocorrectionDisabled()
                                 .focused($isInputFocused)
                                 .submitLabel(.send)
                                 .onSubmit {
+                                    // On Mac, Enter sends (Shift+Enter = newline handled by system)
                                     if canSend { sendMessage() }
                                 }
                                 .disabled(!appState.isModelLoaded && !AppState.isScreenshotMode)
@@ -1595,6 +1838,15 @@ struct ChatView: View {
                             .disabled(isGenerating || speechManager.isTranscribing)
                         }
                         .padding(.horizontal, 16)
+                        #if targetEnvironment(macCatalyst)
+                        .padding(.vertical, 12)
+                        .background(Color.surfaceElevated)
+                        .clipShape(RoundedRectangle(cornerRadius: 16))
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 16)
+                                .stroke(Color.subtleSeparator, lineWidth: 0.5)
+                        )
+                        #else
                         .padding(.vertical, 10)
                         .background(Color.chatInputBackgroundDynamic)
                         .clipShape(RoundedRectangle(cornerRadius: 20))
@@ -1602,6 +1854,7 @@ struct ChatView: View {
                             RoundedRectangle(cornerRadius: 20)
                                 .stroke(Color.chatBorderDynamic, lineWidth: 1)
                         )
+                        #endif
 
                         // Expand button (top-right corner) - only show when 3+ lines
                         if inputLineCount >= 3 {
@@ -1647,12 +1900,10 @@ struct ChatView: View {
                         }) {
                             ZStack {
                                 if isGenerating {
-                                    // Stop button when generating
                                     Image(systemName: "stop.fill")
                                         .font(.system(size: 14, weight: .bold))
                                         .foregroundColor(.white)
                                 } else {
-                                    // Send arrow
                                     Image(systemName: "arrow.up")
                                         .font(.system(size: 16, weight: .bold))
                                         .foregroundColor(.white)
@@ -1660,12 +1911,16 @@ struct ChatView: View {
                             }
                             .frame(width: 36, height: 36)
                             .background(
-                                canSend ? Color.blue :
-                                isGenerating ? Color.red :
-                                Color.gray.opacity(0.4)
+                                canSend
+                                    ? LinearGradient(colors: [.blue, .blue.opacity(0.85)], startPoint: .top, endPoint: .bottom)
+                                    : isGenerating
+                                        ? LinearGradient(colors: [.red, .red.opacity(0.85)], startPoint: .top, endPoint: .bottom)
+                                        : LinearGradient(colors: [.gray.opacity(0.4), .gray.opacity(0.3)], startPoint: .top, endPoint: .bottom)
                             )
                             .clipShape(Circle())
+                            .shadow(color: canSend ? .blue.opacity(0.3) : .clear, radius: 6, y: 2)
                         }
+                        .buttonStyle(.plain)
                         .disabled(!canSend && !isGenerating)
                     }
                 }  // end of non-recording else
@@ -1673,10 +1928,22 @@ struct ChatView: View {
             .padding(.horizontal, 16)
             .padding(.vertical, 12)
         }
+        #if targetEnvironment(macCatalyst)
+        .padding(.horizontal, 8)
+        .padding(.bottom, 8)
+        .background(
+            RoundedRectangle(cornerRadius: 20)
+                .fill(.ultraThinMaterial)
+                .shadow(color: .black.opacity(0.06), radius: 16, y: -2)
+        )
+        .overlay(
+            RoundedRectangle(cornerRadius: 20)
+                .stroke(Color.glassBorder, lineWidth: 0.5)
+        )
+        .padding(.horizontal, 12)
+        .padding(.bottom, 8)
+        #endif
         .animation(nil, value: isInputFocused)
-        // .sheet(item: $showingAPIKeyOnboarding) { mode in
-        //     APIKeyOnboardingView(mode: mode)
-        // }
         .onChange(of: ChatModeManager.shared.pendingOnboarding) { _, newValue in
             if let mode = newValue {
                 showingAPIKeyOnboarding = mode
@@ -1738,7 +2005,12 @@ struct ChatView: View {
         savePendingMessage(trimmedText)
         appState.saveConversationsImmediately()
 
-        // NOW clear UI and hide keyboard
+        // Dismiss focus BEFORE clearing text — on iOS 26 the TextField won't visually
+        // clear via binding while it still has focus (liquid-glass text engine retains state).
+        isInputFocused = false
+        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+
+        // NOW clear UI
         inputText = ""
         UserDefaults.standard.removeObject(forKey: "chat_draft_input")
         attachedImages = []
@@ -1747,10 +2019,6 @@ struct ChatView: View {
         attachedPDFImages = []
         attachedPDFPageCount = 0
         attachedWebContent = nil
-        isInputFocused = false
-
-        // Force keyboard dismissal
-        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
 
         // Update title for first message
         if appState.currentConversation?.messages.count == 1 {
@@ -1976,20 +2244,19 @@ struct ChatView: View {
     private func startUpdateTimer() {
         updateTimer?.invalidate()
         // Update display every 100ms (~10fps) for smoother streaming while staying efficient.
-        // Uses CADisplayLink-aligned timer for reduced CPU wake-ups.
+        // Added to .common RunLoop mode so it keeps firing during scroll/tracking interactions.
         // The StreamingBuffer class is non-observable, so only this timer triggers SwiftUI updates.
-        updateTimer = Timer.scheduledTimer(withTimeInterval: 0.10, repeats: true) { _ in
+        let timer = Timer(timeInterval: 0.10, repeats: true) { _ in
             let bufferText = streamingBuffer.text
-            // Only update if content has actually changed (avoid redundant SwiftUI diffs)
+            // Only update if content has actually changed (avoid redundant SwiftUI diffs).
+            // Direct assignment without withTransaction — using withTransaction(disablesAnimations:)
+            // from a timer callback can conflict with iOS 26's animation pipeline and freeze the UI.
             if displayedResponse.count != bufferText.count {
-                // Use transaction to skip all implicit animations during rapid updates
-                var transaction = Transaction()
-                transaction.disablesAnimations = true
-                withTransaction(transaction) {
-                    displayedResponse = bufferText
-                }
+                displayedResponse = bufferText
             }
         }
+        RunLoop.main.add(timer, forMode: .common)
+        updateTimer = timer
     }
 
     private func stopUpdateTimer() {
@@ -2084,13 +2351,25 @@ struct ChatMessageRow: View {
             if isUser {
                 // User message - right aligned with bubble
                 HStack {
+                    #if targetEnvironment(macCatalyst)
+                    Spacer(minLength: 120)
+                    #else
                     Spacer(minLength: 60)
+                    #endif
                     Text(message.content)
                         .textSelection(.enabled)
+                        #if targetEnvironment(macCatalyst)
+                        .font(.system(size: 15))
+                        .padding(.horizontal, 18)
+                        .padding(.vertical, 14)
+                        .background(Color.chatUserBubbleDynamic)
+                        .clipShape(RoundedRectangle(cornerRadius: 18))
+                        #else
                         .padding(.horizontal, 16)
                         .padding(.vertical, 12)
                         .background(Color.chatUserBubbleDynamic)
                         .clipShape(RoundedRectangle(cornerRadius: 20))
+                        #endif
                         .contextMenu {
                             Button(action: {
                                 UIPasteboard.general.string = message.content
@@ -2103,7 +2382,11 @@ struct ChatMessageRow: View {
                         }
                 }
                 .padding(.horizontal, 16)
+                #if targetEnvironment(macCatalyst)
+                .padding(.vertical, 10)
+                #else
                 .padding(.vertical, 8)
+                #endif
             } else {
                 // Assistant message - left aligned, no bubble
                 VStack(alignment: .leading, spacing: 12) {
@@ -2115,6 +2398,10 @@ struct ChatMessageRow: View {
                     // Main content
                     Text(parseMarkdown(message.content))
                         .textSelection(.enabled)
+                        #if targetEnvironment(macCatalyst)
+                        .font(.system(size: 15))
+                        .lineSpacing(4)
+                        #endif
                         .contextMenu {
                             Button(action: {
                                 UIPasteboard.general.string = message.content
@@ -2135,7 +2422,11 @@ struct ChatMessageRow: View {
                     actionButtons
                 }
                 .padding(.horizontal, 16)
+                #if targetEnvironment(macCatalyst)
+                .padding(.vertical, 14)
+                #else
                 .padding(.vertical, 12)
+                #endif
             }
         }
         .sheet(isPresented: $showingFeedbackConsent) {
@@ -2198,51 +2489,51 @@ struct ChatMessageRow: View {
     }
 
     private var actionButtons: some View {
-        HStack(spacing: 16) {
-            // Copy button
-            Button(action: copyToClipboard) {
-                HStack(spacing: 4) {
-                    Image(systemName: showCopiedFeedback ? "checkmark" : "doc.on.doc")
-                        .font(.system(size: 16))
-                    if showCopiedFeedback {
-                        Text(String(localized: "common.copied"))
-                            .font(.system(size: 12))
-                    }
-                }
-                .foregroundStyle(showCopiedFeedback ? .green : Color.chatSecondaryText)
-            }
+        HStack(spacing: 4) {
+            actionButton(
+                icon: showCopiedFeedback ? "checkmark" : "doc.on.doc",
+                activeColor: showCopiedFeedback ? .green : nil,
+                action: copyToClipboard
+            )
 
-            // Speech button
-            Button(action: toggleSpeech) {
-                Image(systemName: isSpeaking ? "stop.fill" : "speaker.wave.2")
-                    .font(.system(size: 16))
-                    .foregroundStyle(isSpeaking ? .blue : Color.chatSecondaryText)
-            }
+            actionButton(
+                icon: isSpeaking ? "stop.fill" : "speaker.wave.2",
+                activeColor: isSpeaking ? .blue : nil,
+                action: toggleSpeech
+            )
 
-            // Thumbs up
-            Button(action: { giveFeedback(.positive) }) {
-                Image(systemName: feedbackGiven == .positive ? "hand.thumbsup.fill" : "hand.thumbsup")
-                    .font(.system(size: 16))
-                    .foregroundStyle(feedbackGiven == .positive ? .green : Color.chatSecondaryText)
-            }
+            actionButton(
+                icon: feedbackGiven == .positive ? "hand.thumbsup.fill" : "hand.thumbsup",
+                activeColor: feedbackGiven == .positive ? .green : nil,
+                action: { giveFeedback(.positive) }
+            )
 
-            // Thumbs down
-            Button(action: { giveFeedback(.negative) }) {
-                Image(systemName: feedbackGiven == .negative ? "hand.thumbsdown.fill" : "hand.thumbsdown")
-                    .font(.system(size: 16))
-                    .foregroundStyle(feedbackGiven == .negative ? .red : Color.chatSecondaryText)
-            }
+            actionButton(
+                icon: feedbackGiven == .negative ? "hand.thumbsdown.fill" : "hand.thumbsdown",
+                activeColor: feedbackGiven == .negative ? .red : nil,
+                action: { giveFeedback(.negative) }
+            )
 
-            // Share button
-            Button(action: shareContent) {
-                Image(systemName: "square.and.arrow.up")
-                    .font(.system(size: 16))
-                    .foregroundStyle(Color.chatSecondaryText)
-            }
+            actionButton(
+                icon: "square.and.arrow.up",
+                activeColor: nil,
+                action: shareContent
+            )
 
             Spacer()
         }
         .padding(.top, 4)
+    }
+
+    private func actionButton(icon: String, activeColor: Color?, action: @escaping () -> Void) -> some View {
+        Button(action: action) {
+            Image(systemName: icon)
+                .font(.system(size: 13, weight: .medium))
+                .foregroundStyle(activeColor ?? Color.chatSecondaryText)
+                .frame(width: 30, height: 26)
+                .contentShape(Rectangle())
+        }
+        .buttonStyle(.plain)
     }
 
     private func copyToClipboard() {
@@ -2434,6 +2725,10 @@ struct StreamingMessageRow: View {
                 HStack(alignment: .bottom, spacing: 0) {
                     Text(parseStreamingMarkdown(parsedContent.content))
                         .textSelection(.enabled)
+                        #if targetEnvironment(macCatalyst)
+                        .font(.system(size: 15))
+                        .lineSpacing(4)
+                        #endif
 
                     // Cursor
                     Rectangle()
@@ -2456,7 +2751,11 @@ struct StreamingMessageRow: View {
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(.horizontal, 16)
+        #if targetEnvironment(macCatalyst)
+        .padding(.vertical, 14)
+        #else
         .padding(.vertical, 12)
+        #endif
     }
 
     private var thinkingInProgress: some View {
@@ -2548,11 +2847,15 @@ struct TypingIndicatorRow: View {
     @State private var isBreathing = false
 
     var body: some View {
-        HStack(spacing: 8) {
-            // Single breathing dot (ChatGPT style)
+        HStack(spacing: 10) {
+            // Breathing dot
             Circle()
                 .fill(statusText != nil ? Color.green.opacity(0.6) : Color(.systemGray4))
+                #if targetEnvironment(macCatalyst)
+                .frame(width: 22, height: 22)
+                #else
                 .frame(width: 20, height: 20)
+                #endif
                 .scaleEffect(isBreathing ? 1.15 : 0.85)
                 .opacity(isBreathing ? 1.0 : 0.6)
                 .animation(
@@ -2561,17 +2864,24 @@ struct TypingIndicatorRow: View {
                     value: isBreathing
                 )
 
-            // Optional status text (e.g. "chatweb.ai で処理中..." in chatweb mode)
             if let text = statusText {
                 Text(text)
+                    #if targetEnvironment(macCatalyst)
+                    .font(.system(size: 14, weight: .medium))
+                    #else
                     .font(.system(size: 13, weight: .medium))
+                    #endif
                     .foregroundStyle(.green)
             }
 
             Spacer()
         }
         .padding(.horizontal, 16)
+        #if targetEnvironment(macCatalyst)
+        .padding(.vertical, 16)
+        #else
         .padding(.vertical, 12)
+        #endif
         .onAppear {
             isBreathing = true
         }
@@ -2920,6 +3230,24 @@ struct ConversationListView: View {
                     .tint(.blue)
                 }
                 .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+                    Button(role: .destructive) {
+                        if appState.currentConversation?.id == conversation.id {
+                            appState.currentConversation = nil
+                        }
+                        appState.conversations.removeAll { $0.id == conversation.id }
+                    } label: {
+                        Label(String(localized: "common.delete"), systemImage: "trash")
+                    }
+                }
+                // Context menu (works on Mac where swipe actions don't)
+                .contextMenu {
+                    Button {
+                        conversationToExport = conversation
+                        showingExportOptions = true
+                    } label: {
+                        Label(String(localized: "common.share"), systemImage: "square.and.arrow.up")
+                    }
+                    Divider()
                     Button(role: .destructive) {
                         if appState.currentConversation?.id == conversation.id {
                             appState.currentConversation = nil
@@ -3541,23 +3869,35 @@ struct ReadyWelcomeView: View {
     @State private var appeared = false
 
     var body: some View {
-        VStack(spacing: 16) {
+        VStack(spacing: 20) {
             // App icon and greeting
-            Image(systemName: "bubble.left.and.bubble.right.fill")
-                .font(.system(size: 48))
-                .foregroundStyle(
-                    LinearGradient(
-                        colors: [.blue, .purple],
-                        startPoint: .topLeading,
-                        endPoint: .bottomTrailing
+            ZStack {
+                Circle()
+                    .fill(
+                        .linearGradient(
+                            colors: [.blue.opacity(0.12), .purple.opacity(0.12)],
+                            startPoint: .topLeading,
+                            endPoint: .bottomTrailing
+                        )
                     )
-                )
-                .scaleEffect(appeared ? 1 : 0.5)
-                .opacity(appeared ? 1 : 0)
+                    .frame(width: 88, height: 88)
 
-            VStack(spacing: 6) {
+                Image(systemName: "bubble.left.and.bubble.right.fill")
+                    .font(.system(size: 38))
+                    .foregroundStyle(
+                        LinearGradient(
+                            colors: [.blue, .purple],
+                            startPoint: .topLeading,
+                            endPoint: .bottomTrailing
+                        )
+                    )
+            }
+            .scaleEffect(appeared ? 1 : 0.5)
+            .opacity(appeared ? 1 : 0)
+
+            VStack(spacing: 8) {
                 Text(String(localized: "welcome.greeting"))
-                    .font(.system(size: 22, weight: .semibold))
+                    .font(.system(size: 26, weight: .bold, design: .rounded))
 
                 Text(String(localized: "welcome.subtitle"))
                     .font(.system(size: 15))
@@ -3565,6 +3905,15 @@ struct ReadyWelcomeView: View {
             }
             .opacity(appeared ? 1 : 0)
             .offset(y: appeared ? 0 : 10)
+
+            #if targetEnvironment(macCatalyst)
+            // Mac: hint for Enter key
+            Text("Enter で送信 · Shift+Enter で改行")
+                .font(.system(size: 12))
+                .foregroundStyle(.tertiary)
+                .padding(.top, 8)
+                .opacity(appeared ? 1 : 0)
+            #endif
         }
         .onAppear {
             withAnimation(.spring(response: 0.6, dampingFraction: 0.8)) {
