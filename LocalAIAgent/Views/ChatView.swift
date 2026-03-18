@@ -673,6 +673,26 @@ struct ChatView: View {
     }
 
     private var bodyWithLifecycle: some View {
+        #if targetEnvironment(macCatalyst)
+        bodyWithObservers
+        // Expose actions to Mac menu bar via FocusedValues
+        .focusedSceneValue(\.newConversation, { appState.newConversation() })
+        .focusedSceneValue(\.showSettings, { showingSettings = true })
+        .focusedSceneValue(\.showConversationList, {
+            withAnimation(.spring(response: 0.3)) { showingConversationList.toggle() }
+        })
+        .focusedSceneValue(\.showChatWebConnect, { showingChatWebConnect = true })
+        .focusedSceneValue(\.stopGeneration, {
+            appState.shouldStopGeneration = true
+            generationTask?.cancel()
+        })
+        .focusedSceneValue(\.isGenerating, isGenerating)
+        #else
+        bodyWithObservers
+        #endif
+    }
+
+    private var bodyWithObservers: some View {
         bodyWithAlertsAndOverlays
         // Handle pending quick question from widget and restore draft
         .onAppear {
@@ -804,20 +824,6 @@ struct ChatView: View {
         .onReceive(NotificationCenter.default.publisher(for: .voiceConversationTapToSend)) { _ in
             stopVoiceConversationListeningAndSend()
         }
-        #if targetEnvironment(macCatalyst)
-        // Expose actions to Mac menu bar via FocusedValues
-        .focusedSceneValue(\.newConversation, { appState.newConversation() })
-        .focusedSceneValue(\.showSettings, { showingSettings = true })
-        .focusedSceneValue(\.showConversationList, {
-            withAnimation(.spring(response: 0.3)) { showingConversationList.toggle() }
-        })
-        .focusedSceneValue(\.showChatWebConnect, { showingChatWebConnect = true })
-        .focusedSceneValue(\.stopGeneration, {
-            appState.shouldStopGeneration = true
-            generationTask?.cancel()
-        })
-        .focusedSceneValue(\.isGenerating, isGenerating)
-        #endif
     }
 
     private func handleAttachmentTap() {
@@ -4064,7 +4070,7 @@ struct ChatWebOnboardingCard: View {
                     )
                     chatWebFeatureRow(
                         icon: "sparkles",
-                        text: String(localized: "chatweb.onboarding.feature3", defaultValue: "GPT-4o・Claude・Gemini を即座に利用")
+                        text: String(localized: "chatweb.onboarding.feature3", defaultValue: "最先端クラウドAIモデルを即座に利用")
                     )
                 }
 

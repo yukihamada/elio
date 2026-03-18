@@ -113,7 +113,7 @@ struct UpgradeElioProView: View {
                 icon: "cloud.fill",
                 iconColor: .blue,
                 title: "すべてのクラウドモデルで優先アクセス",
-                subtitle: "Claude, GPT-4o, Gemini など"
+                subtitle: "最先端クラウドAIモデル"
             )
             Divider().background(.white.opacity(0.1))
             featureRow(

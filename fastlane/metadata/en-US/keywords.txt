@@ -1,1 +1,1 @@
-AI,chat,offline,free,privacy,voice,assistant,business,GPT,local,MCP,calendar,Japanese
+AI,chat,offline,free,privacy,voice,assistant,business,local,MCP,calendar,Japanese,secure

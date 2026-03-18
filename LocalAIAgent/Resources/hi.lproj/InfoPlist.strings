@@ -1,12 +1,12 @@
 /* InfoPlist.strings (Hindi) */
 
-"NSCalendarsUsageDescription" = "ElioChat आपके कैलेंडर का उपयोग इवेंट पढ़ने और बनाने के लिए करता है।";
-"NSContactsUsageDescription" = "ElioChat आपके संपर्कों को खोजने और दिखाने के लिए उपयोग करता है।";
-"NSPhotoLibraryUsageDescription" = "ElioChat को आपकी फ़ोटो लाइब्रेरी तक पहुँच की आवश्यकता है।";
-"NSLocationWhenInUseUsageDescription" = "ElioChat स्थान-आधारित सुविधाएँ प्रदान करने के लिए आपके स्थान का उपयोग करता है।";
-"NSRemindersUsageDescription" = "ElioChat आपके रिमाइंडर पढ़ने और नए बनाने के लिए उपयोग करता है।";
-"NSCameraUsageDescription" = "ElioChat फ़ोटो लेने और AI को भेजने के लिए कैमरे का उपयोग करता है।";
-"NSMicrophoneUsageDescription" = "ElioChat वॉइस इनपुट के लिए माइक्रोफ़ोन का उपयोग करता है।";
-"NSSpeechRecognitionUsageDescription" = "ElioChat आवाज़ को टेक्स्ट में बदलने के लिए स्पीच रिकग्निशन का उपयोग करता है।";
-"NSPhotoLibraryAddUsageDescription" = "ElioChat जनरेट की गई छवियों को आपकी फ़ोटो लाइब्रेरी में सहेजता है।";
-"NSLocalNetworkUsageDescription" = "ElioChat पास के उपकरणों से जुड़ने और AI इन्फ़रेंस साझा करने के लिए लोकल नेटवर्क का उपयोग करता है।";
+"NSCalendarsUsageDescription" = "ElioChat कैलेंडर इवेंट पढ़ता और बनाता है ताकि आप AI से अपने शेड्यूल के बारे में पूछ सकें। उदाहरण के लिए, \"आज मेरी कौन सी मीटिंग हैं?\" कहें और अपने आगामी इवेंट देखें।";
+"NSContactsUsageDescription" = "जब आप AI से लोगों के बारे में पूछते हैं तो ElioChat आपके संपर्कों में खोजता है। उदाहरण के लिए, \"तनाका का फ़ोन नंबर क्या है?\" कहकर संपर्क विवरण देखें।";
+"NSPhotoLibraryUsageDescription" = "ElioChat आपकी फ़ोटो लाइब्रेरी तक पहुँचता है ताकि आप AI के साथ विश्लेषण के लिए छवियाँ साझा कर सकें। उदाहरण के लिए, एक फ़ोटो चुनें और पूछें \"इस तस्वीर में क्या है?\"";
+"NSLocationWhenInUseUsageDescription" = "ElioChat स्थान-आधारित प्रश्नों का उत्तर देने के लिए आपके वर्तमान स्थान का उपयोग करता है। उदाहरण के लिए, \"मैं अभी कहाँ हूँ?\" पूछकर अपना पता प्राप्त करें।";
+"NSRemindersUsageDescription" = "ElioChat AI बातचीत के माध्यम से रिमाइंडर पढ़ता और बनाता है। उदाहरण के लिए, \"मुझे सुबह 10 बजे कूड़ा निकालने की याद दिलाओ\" कहकर नया रिमाइंडर बनाएँ।";
+"NSCameraUsageDescription" = "ElioChat AI विश्लेषण के लिए फ़ोटो लेने के लिए कैमरे का उपयोग करता है। उदाहरण के लिए, किसी दस्तावेज़ की फ़ोटो लें और AI से उसका सारांश माँगें।";
+"NSMicrophoneUsageDescription" = "ElioChat बातचीत में वॉइस मैसेज रिकॉर्ड करने और स्पीच को टेक्स्ट में बदलने के लिए माइक्रोफ़ोन का उपयोग करता है। उदाहरण के लिए, टाइप करने के बजाय माइक्रोफ़ोन बटन टैप करके मैसेज बोलें।";
+"NSSpeechRecognitionUsageDescription" = "ElioChat AI बातचीत के लिए आपकी आवाज़ को टेक्स्ट में बदलने के लिए डिवाइस पर स्पीच रिकग्निशन का उपयोग करता है। उदाहरण के लिए, स्वाभाविक रूप से बोलें और अपने शब्दों को टाइप किए गए मैसेज के रूप में देखें।";
+"NSPhotoLibraryAddUsageDescription" = "ElioChat AI द्वारा बनाई गई छवियों को आपकी फ़ोटो लाइब्रेरी में सहेजता है। उदाहरण के लिए, जब AI एक छवि बनाता है, तो उसे फ़ोटो में स्टोर करने के लिए सहेजें पर टैप करें।";
+"NSLocalNetworkUsageDescription" = "ElioChat पास के उपकरणों से जुड़ने और AI इन्फ़रेंस साझा करने के लिए लोकल नेटवर्क का उपयोग करता है। उदाहरण के लिए, उसी Wi-Fi पर चल रहे दूसरे ElioChat डिवाइस के साथ प्रोसेसिंग पावर साझा करें।";

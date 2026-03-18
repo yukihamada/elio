@@ -1,12 +1,12 @@
 /* InfoPlist.strings (Traditional Chinese) */
 
-"NSCalendarsUsageDescription" = "ElioChat需要存取您的行事曆以讀取和建立事件。";
-"NSContactsUsageDescription" = "ElioChat需要存取您的聯絡人以搜尋和顯示。";
-"NSPhotoLibraryUsageDescription" = "ElioChat需要存取您的照片圖庫。";
-"NSLocationWhenInUseUsageDescription" = "ElioChat需要使用您的位置來提供基於位置的功能。";
-"NSRemindersUsageDescription" = "ElioChat需要存取您的提醒事項以讀取和建立提醒。";
-"NSCameraUsageDescription" = "ElioChat需要使用相機拍照並傳送給AI。";
-"NSMicrophoneUsageDescription" = "ElioChat需要使用麥克風進行語音輸入。";
-"NSSpeechRecognitionUsageDescription" = "ElioChat需要使用語音辨識將語音轉換為文字。";
-"NSPhotoLibraryAddUsageDescription" = "ElioChat需要將產生的圖片儲存到您的照片圖庫。";
-"NSLocalNetworkUsageDescription" = "ElioChat需要使用本地網路連接附近的裝置以共享AI推論。";
+"NSCalendarsUsageDescription" = "ElioChat讀取和建立行事曆事件，以便您向AI詢問行程安排。例如，說「我今天有什麼會議？」即可查看即將到來的事件。";
+"NSContactsUsageDescription" = "ElioChat在您向AI詢問聯絡人時搜尋通訊錄。例如，說「田中的電話號碼是多少？」即可查找聯絡人資訊。";
+"NSPhotoLibraryUsageDescription" = "ElioChat存取您的照片圖庫，以便您將圖片分享給AI進行分析。例如，選擇一張照片並問「這張圖片裡有什麼？」";
+"NSLocationWhenInUseUsageDescription" = "ElioChat使用您的目前位置來回答與位置相關的問題。例如，問「我現在在哪裡？」即可取得您的地址。";
+"NSRemindersUsageDescription" = "ElioChat透過AI對話讀取和建立提醒事項。例如，說「提醒我上午10點倒垃圾」即可建立新提醒。";
+"NSCameraUsageDescription" = "ElioChat使用相機拍攝照片供AI分析。例如，拍攝一份文件並讓AI為您總結內容。";
+"NSMicrophoneUsageDescription" = "ElioChat使用麥克風錄製語音訊息並在對話中將語音轉換為文字。例如，點擊麥克風按鈕即可用語音代替打字輸入訊息。";
+"NSSpeechRecognitionUsageDescription" = "ElioChat使用裝置上的語音辨識將您的語音轉換為文字，用於AI對話。例如，自然地說話，即可看到文字自動輸入。";
+"NSPhotoLibraryAddUsageDescription" = "ElioChat將AI產生的圖片儲存到您的照片圖庫。例如，當AI建立圖片時，您可以點擊儲存將其存放到相簿。";
+"NSLocalNetworkUsageDescription" = "ElioChat使用本地網路連接附近的裝置以共享AI推論。例如，與同一Wi-Fi上執行ElioChat的另一台裝置共享處理能力。";

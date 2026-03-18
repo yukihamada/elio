@@ -103,7 +103,43 @@ struct ChatWebConnectView: View {
                         .padding(.horizontal, 16)
                     }
 
-                    // QR Code to open ChatWeb.ai
+                    // QR Code (iOS only) / Link button (Mac)
+                    #if targetEnvironment(macCatalyst)
+                    // Mac: clickable link instead of QR code
+                    Button(action: {
+                        if let url = URL(string: deepLinkURL) {
+                            UIApplication.shared.open(url)
+                        }
+                    }) {
+                        HStack(spacing: 12) {
+                            Image(systemName: "link.circle.fill")
+                                .font(.system(size: 36))
+                                .foregroundStyle(.indigo)
+
+                            VStack(alignment: .leading, spacing: 4) {
+                                Text("chatweb.ai をブラウザで開く")
+                                    .font(.system(size: 15, weight: .semibold))
+                                Text(deepLinkURL)
+                                    .font(.system(size: 12))
+                                    .foregroundStyle(.secondary)
+                                    .lineLimit(1)
+                            }
+
+                            Spacer()
+
+                            Image(systemName: "arrow.up.right.square")
+                                .foregroundStyle(.secondary)
+                        }
+                        .padding(16)
+                        .frame(maxWidth: .infinity)
+                        .background(
+                            RoundedRectangle(cornerRadius: 16)
+                                .fill(Color(.tertiarySystemBackground))
+                        )
+                    }
+                    .buttonStyle(.plain)
+                    .padding(.horizontal, 16)
+                    #else
                     VStack(spacing: 12) {
                         Text(String(localized: "chatweb.qr.title"))
                             .font(.system(size: 14, weight: .semibold))
@@ -132,6 +168,7 @@ struct ChatWebConnectView: View {
                             .fill(Color(.tertiarySystemBackground))
                     )
                     .padding(.horizontal, 16)
+                    #endif
 
                     // First-time connection bonus badge
                     if !hasReceivedBonus {
@@ -271,7 +308,7 @@ struct ChatWebConnectView: View {
                     // Benefits
                     VStack(alignment: .leading, spacing: 8) {
                         Label(
-                            String(localized: "chatweb.benefit.models", defaultValue: "Access GPT-4o, Claude, Gemini & more"),
+                            String(localized: "chatweb.benefit.models", defaultValue: "Access top cloud AI models & more"),
                             systemImage: "sparkles"
                         )
                         Label(

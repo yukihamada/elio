@@ -132,10 +132,10 @@ enum APIKeyProvider: String, CaseIterable, Identifiable {
         case .chatweb: return "Elio公式 - Rust製超高速API"
         case .teai: return "Elio公式 - プライバシー重視AI"
         case .groq: return "超高速推論 (Llama, Mixtral)"
-        case .openai: return "GPT-4o, GPT-4o-mini, o1"
+        case .openai: return "Advanced reasoning models"
         case .anthropic: return "Claude Sonnet 4.5, Claude 3.5"
         case .google: return "Gemini 2.0 Flash, Gemini 1.5 Pro"
-        case .openrouter: return "200+ models (Claude, GPT, Llama, etc.)"
+        case .openrouter: return "200+ models (Claude, Llama, Gemma, etc.)"
         }
     }
 

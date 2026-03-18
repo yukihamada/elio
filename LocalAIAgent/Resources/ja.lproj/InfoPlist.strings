@@ -1,12 +1,12 @@
 /* InfoPlist.strings (Japanese) */
 
-"NSCalendarsUsageDescription" = "ElioChatがカレンダーの予定を読み書きするために使用します。";
-"NSContactsUsageDescription" = "ElioChatが連絡先を検索・表示するために使用します。";
-"NSPhotoLibraryUsageDescription" = "ElioChatが写真ライブラリにアクセスするために使用します。";
-"NSLocationWhenInUseUsageDescription" = "ElioChatが現在地を取得するために使用します。";
-"NSRemindersUsageDescription" = "ElioChatがリマインダーを読み書きするために使用します。";
-"NSCameraUsageDescription" = "ElioChatが写真を撮影してAIに送信するために使用します。";
-"NSMicrophoneUsageDescription" = "ElioChatが音声入力を行うために使用します。";
-"NSSpeechRecognitionUsageDescription" = "ElioChatが音声をテキストに変換するために使用します。";
-"NSPhotoLibraryAddUsageDescription" = "ElioChatが生成した画像を保存するために使用します。";
-"NSLocalNetworkUsageDescription" = "ElioChatが近くのデバイスと接続してAI推論を共有するために使用します。";
+"NSCalendarsUsageDescription" = "ElioChatがカレンダーの予定を読み書きするために使用します。例えば「今日の予定を教えて」と聞くと、今日のイベントを表示します。";
+"NSContactsUsageDescription" = "ElioChatがAIとの会話で連絡先を検索するために使用します。例えば「田中さんの電話番号は？」と聞くと、連絡先を検索します。";
+"NSPhotoLibraryUsageDescription" = "ElioChatがAIに画像を送信して分析するために使用します。例えば写真を選択して「この写真は何？」とAIに質問できます。";
+"NSLocationWhenInUseUsageDescription" = "ElioChatが位置情報に基づく質問に回答するために使用します。例えば「今どこにいる？」と聞くと、現在地の住所を表示します。";
+"NSRemindersUsageDescription" = "ElioChatがAIとの会話でリマインダーを読み書きするために使用します。例えば「明日10時にゴミ出し」と言うと、リマインダーを自動作成します。";
+"NSCameraUsageDescription" = "ElioChatがカメラで撮影した写真をAIに送信して分析するために使用します。例えば書類を撮影して「これを要約して」とAIに質問できます。";
+"NSMicrophoneUsageDescription" = "ElioChatが音声メッセージを録音し、会話中に音声をテキストに変換するために使用します。例えばマイクボタンをタップして、キーボード入力の代わりに声でメッセージを送れます。";
+"NSSpeechRecognitionUsageDescription" = "ElioChatがデバイス上で音声認識を行い、AIとの会話で音声をテキストに変換するために使用します。例えば自然に話すだけで、文字が入力されます。";
+"NSPhotoLibraryAddUsageDescription" = "ElioChatがAIで生成した画像を写真ライブラリに保存するために使用します。例えばAIが作成した画像を「保存」タップでフォトライブラリに保存できます。";
+"NSLocalNetworkUsageDescription" = "ElioChatが近くのデバイスと接続してAI推論を共有するために使用します。例えば同じWi-Fi上の別のElioChatデバイスと処理を分散できます。";

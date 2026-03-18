@@ -599,7 +599,7 @@
 "chatmode.chatweb.desc" = "ChatWeb.ai \U2022 빠른 클라우드 AI";
 "chatmode.private.desc" = "신뢰할 수 있는 기기 \U2022 내 네트워크";
 "chatmode.fast.desc" = "Groq API \U2022 초고속";
-"chatmode.genius.desc" = "GPT-4o/Claude \U2022 최고 품질";
+"chatmode.genius.desc" = "Cloud AI \U2022 최고 품질";
 "chatmode.public.desc" = "커뮤니티 \U2022 공유 컴퓨팅";
 // MARK: - Inference Errors
 "error.backend.not.ready" = "백엔드가 준비되지 않았습니다";

@@ -115,13 +115,13 @@ struct APIKeyOnboardingView: View {
     private var explainerText: String {
         mode == .fast
             ? "Groq APIを使った超高速推論モード。自分のAPIキーを設定するか、Elioトークンで利用できます。"
-            : "OpenAI、Anthropic、Geminiなど最高峰のAIモデルを利用。自分のAPIキーを設定するか、Elioトークンで利用できます。"
+            : "最高峰のクラウドAIモデルを利用。自分のAPIキーを設定するか、Elioトークンで利用できます。"
     }
 
     private var apiKeyOptionText: String {
         mode == .fast
             ? "Groq APIキーを設定。プロバイダー料金のみで利用可能。"
-            : "OpenAI、Anthropic、Google等のAPIキーを設定。プロバイダー料金のみで利用可能。"
+            : "クラウドAIプロバイダーのAPIキーを設定。プロバイダー料金のみで利用可能。"
     }
 
     private func markOnboardingSeen() {

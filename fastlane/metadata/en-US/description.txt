@@ -1,11 +1,11 @@
 Completely Free - No Ads
 Privacy-First AI Chat That Works Offline
-Safe for confidential business data. OK even if your company bans ChatGPT.
+Safe for confidential business data. OK even if your company bans cloud AI services.
 
 --- 3 Revolutionary Features ---
 
 * Fully Offline & Private
-Works without internet (even in Airplane Mode). Conversations stay on device only, zero server transmission. Safe for companies that prohibit ChatGPT.
+Works without internet (even in Airplane Mode). Conversations stay on device only, zero server transmission. Safe for companies that prohibit cloud AI services.
 
 * 30+ AI Models to choose from
 Qwen3, Gemma 3, Phi-4, Llama 3.2 in GGUF format. Vision AI for images, Voice input with WhisperKit. Japanese-optimized models included.
@@ -48,12 +48,12 @@ Vision Models:
 - Siri Shortcuts: "Hey Siri, ask ElioChat"
 - Dark/Light Mode: Auto-switches
 
---- ElioChat vs ChatGPT ---
+--- ElioChat vs Cloud AI ---
 
-Offline: ElioChat works in Airplane Mode / ChatGPT requires internet
-Data: ElioChat zero transmission / ChatGPT sent to cloud
-Privacy: ElioChat device only / ChatGPT stored on servers
-MCP: ElioChat 13 types / ChatGPT not supported
+Offline: ElioChat works in Airplane Mode / Cloud AI requires internet
+Data: ElioChat zero transmission / Cloud AI sent to servers
+Privacy: ElioChat device only / Cloud AI stored on servers
+MCP: ElioChat 13 types / Cloud AI limited or not supported
 
 --- Perfect For ---
 

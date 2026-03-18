@@ -1,12 +1,12 @@
 /* InfoPlist.strings (French) */
 
-"NSCalendarsUsageDescription" = "ElioChat utilise votre calendrier pour lire et créer des événements.";
-"NSContactsUsageDescription" = "ElioChat utilise vos contacts pour les rechercher et les afficher.";
-"NSPhotoLibraryUsageDescription" = "ElioChat a besoin d'accéder à votre photothèque.";
-"NSLocationWhenInUseUsageDescription" = "ElioChat utilise votre position pour fournir des fonctionnalités basées sur la localisation.";
-"NSRemindersUsageDescription" = "ElioChat utilise vos rappels pour les lire et en créer.";
-"NSCameraUsageDescription" = "ElioChat utilise l'appareil photo pour prendre des photos et les envoyer à l'IA.";
-"NSMicrophoneUsageDescription" = "ElioChat utilise le microphone pour la saisie vocale.";
-"NSSpeechRecognitionUsageDescription" = "ElioChat utilise la reconnaissance vocale pour convertir la voix en texte.";
-"NSPhotoLibraryAddUsageDescription" = "ElioChat enregistre les images générées dans votre photothèque.";
-"NSLocalNetworkUsageDescription" = "ElioChat utilise le réseau local pour se connecter aux appareils à proximité et partager l'inférence IA.";
+"NSCalendarsUsageDescription" = "ElioChat lit et crée des événements de calendrier pour que vous puissiez interroger l'IA sur votre emploi du temps. Par exemple, dites « Quelles réunions ai-je aujourd'hui ? » pour voir vos événements.";
+"NSContactsUsageDescription" = "ElioChat recherche dans vos contacts lorsque vous posez des questions sur des personnes à l'IA. Par exemple, dites « Quel est le numéro de Tanaka ? » pour trouver ses coordonnées.";
+"NSPhotoLibraryUsageDescription" = "ElioChat accède à votre photothèque pour que vous puissiez partager des images avec l'IA pour analyse. Par exemple, sélectionnez une photo et demandez « Qu'y a-t-il sur cette image ? »";
+"NSLocationWhenInUseUsageDescription" = "ElioChat utilise votre position actuelle pour répondre aux questions géolocalisées. Par exemple, demandez « Où suis-je ? » pour obtenir votre adresse.";
+"NSRemindersUsageDescription" = "ElioChat lit et crée des rappels via la conversation avec l'IA. Par exemple, dites « Rappelle-moi de sortir les poubelles à 10h » pour créer un nouveau rappel.";
+"NSCameraUsageDescription" = "ElioChat utilise l'appareil photo pour capturer des photos à analyser par l'IA. Par exemple, photographiez un document et demandez à l'IA de le résumer.";
+"NSMicrophoneUsageDescription" = "ElioChat utilise le microphone pour enregistrer des messages vocaux et convertir la parole en texte dans les conversations. Par exemple, appuyez sur le bouton micro pour dicter un message au lieu de taper.";
+"NSSpeechRecognitionUsageDescription" = "ElioChat utilise la reconnaissance vocale de l'appareil pour convertir votre voix en texte pour les conversations IA. Par exemple, parlez naturellement et voyez vos mots apparaître sous forme de texte.";
+"NSPhotoLibraryAddUsageDescription" = "ElioChat enregistre les images générées par l'IA dans votre photothèque. Par exemple, lorsque l'IA crée une image, appuyez sur Enregistrer pour la stocker dans Photos.";
+"NSLocalNetworkUsageDescription" = "ElioChat utilise le réseau local pour se connecter aux appareils à proximité et partager l'inférence IA. Par exemple, partagez la puissance de calcul avec un autre appareil ElioChat sur le même Wi-Fi.";

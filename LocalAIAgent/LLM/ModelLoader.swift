@@ -1486,8 +1486,8 @@ final class ModelLoader: ObservableObject {
 
             print("[ModelLoader] Starting URLSession download task (delegate-based)...")
             let config = URLSessionConfiguration.default
-            config.timeoutIntervalForResource = 600  // 10 minutes for large model files
-            config.timeoutIntervalForRequest = 120   // 2 minutes per request
+            config.timeoutIntervalForResource = 3600  // 60 minutes for large model files (5GB+ at slow speeds)
+            config.timeoutIntervalForRequest = 300    // 5 minutes per request
             config.waitsForConnectivity = true        // Wait for network instead of failing immediately
             let session = URLSession(configuration: config, delegate: delegate, delegateQueue: nil)
             downloadSession = session
@@ -1736,6 +1736,12 @@ private final class DownloadDelegate: NSObject, URLSessionDownloadDelegate {
             completionHandler(.failure(error))
         }
         // Note: Success case is handled in didFinishDownloadingTo
+    }
+
+    func urlSession(_ session: URLSession, taskIsWaitingForConnectivity task: URLSessionTask) {
+        print("[Download] Task is waiting for connectivity - download will resume when network is available")
+        // Report waiting state via progress handler (-2 signals connectivity wait)
+        progressHandler(-2, lastBytesWritten, actualTotalSize ?? expectedSize, 0, nil)
     }
 }
 

@@ -32,7 +32,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>52</string>
+	<string>53</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 	<key>LSRequiresIPhoneOS</key>
@@ -43,23 +43,23 @@
 		<true/>
 	</dict>
 	<key>NSCalendarsUsageDescription</key>
-	<string>ElioChatがカレンダーの予定を読み書きするために使用します。</string>
+	<string>ElioChat reads and creates calendar events so you can ask the AI about your schedule. For example, say "What meetings do I have today?" to see your upcoming events.</string>
 	<key>NSCameraUsageDescription</key>
-	<string>ElioChatが写真を撮影してAIに送信するために使用します。</string>
+	<string>ElioChat uses the camera to capture photos for AI analysis. For example, you can take a photo of a document and ask the AI to summarize it.</string>
 	<key>NSContactsUsageDescription</key>
-	<string>ElioChatが連絡先を検索・表示するために使用します。</string>
+	<string>ElioChat searches your contacts when you ask the AI about people. For example, say "What is Tanaka's phone number?" to look up contact details.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>ElioChatが現在地を取得するために使用します。</string>
+	<string>ElioChat uses your current location to answer location-based questions. For example, ask "Where am I right now?" to get your address.</string>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>ElioChatが音声入力を行うために使用します。</string>
+	<string>ElioChat uses the microphone to record your voice messages and convert speech to text in conversations. For example, tap the microphone button to dictate a message instead of typing.</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>ElioChatが生成した画像を保存するために使用します。</string>
+	<string>ElioChat saves AI-generated images to your photo library. For example, when the AI creates an image, you can tap Save to store it in your Photos.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>ElioChatが写真ライブラリにアクセスするために使用します。</string>
+	<string>ElioChat accesses your photo library so you can share images with the AI for analysis. For example, select a photo and ask "What is in this picture?"</string>
 	<key>NSRemindersUsageDescription</key>
-	<string>ElioChatがリマインダーを読み書きするために使用します。</string>
+	<string>ElioChat reads and creates reminders through AI conversation. For example, say "Remind me to take out the trash at 10 AM" to create a new reminder.</string>
 	<key>NSSpeechRecognitionUsageDescription</key>
-	<string>ElioChatが音声をテキストに変換するために使用します。</string>
+	<string>ElioChat uses on-device speech recognition to convert your voice into text for AI conversations. For example, speak naturally and see your words appear as a typed message.</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

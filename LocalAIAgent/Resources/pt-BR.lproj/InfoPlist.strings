@@ -1,12 +1,12 @@
 /* InfoPlist.strings (Portuguese - Brazil) */
 
-"NSCalendarsUsageDescription" = "O ElioChat usa seu calendário para ler e criar eventos.";
-"NSContactsUsageDescription" = "O ElioChat usa seus contatos para pesquisar e exibi-los.";
-"NSPhotoLibraryUsageDescription" = "O ElioChat precisa de acesso à sua biblioteca de fotos.";
-"NSLocationWhenInUseUsageDescription" = "O ElioChat usa sua localização para fornecer recursos baseados em localização.";
-"NSRemindersUsageDescription" = "O ElioChat usa seus lembretes para ler e criar novos.";
-"NSCameraUsageDescription" = "O ElioChat usa a câmera para tirar fotos e enviá-las para a IA.";
-"NSMicrophoneUsageDescription" = "O ElioChat usa o microfone para entrada de voz.";
-"NSSpeechRecognitionUsageDescription" = "O ElioChat usa o reconhecimento de voz para converter voz em texto.";
-"NSPhotoLibraryAddUsageDescription" = "O ElioChat salva imagens geradas na sua biblioteca de fotos.";
-"NSLocalNetworkUsageDescription" = "O ElioChat usa a rede local para se conectar a dispositivos próximos e compartilhar a inferência de IA.";
+"NSCalendarsUsageDescription" = "O ElioChat lê e cria eventos do calendário para que você possa perguntar à IA sobre sua agenda. Por exemplo, diga \"Que reuniões tenho hoje?\" para ver seus próximos eventos.";
+"NSContactsUsageDescription" = "O ElioChat pesquisa seus contatos quando você pergunta à IA sobre pessoas. Por exemplo, diga \"Qual é o telefone do Tanaka?\" para buscar dados de contato.";
+"NSPhotoLibraryUsageDescription" = "O ElioChat acessa sua biblioteca de fotos para que você possa compartilhar imagens com a IA para análise. Por exemplo, selecione uma foto e pergunte \"O que tem nesta imagem?\"";
+"NSLocationWhenInUseUsageDescription" = "O ElioChat usa sua localização atual para responder perguntas baseadas em localização. Por exemplo, pergunte \"Onde estou agora?\" para obter seu endereço.";
+"NSRemindersUsageDescription" = "O ElioChat lê e cria lembretes através de conversas com IA. Por exemplo, diga \"Me lembre de tirar o lixo às 10h\" para criar um novo lembrete.";
+"NSCameraUsageDescription" = "O ElioChat usa a câmera para capturar fotos para análise da IA. Por exemplo, tire uma foto de um documento e peça à IA para resumi-lo.";
+"NSMicrophoneUsageDescription" = "O ElioChat usa o microfone para gravar mensagens de voz e converter fala em texto nas conversas. Por exemplo, toque no botão do microfone para ditar uma mensagem em vez de digitar.";
+"NSSpeechRecognitionUsageDescription" = "O ElioChat usa o reconhecimento de voz do dispositivo para converter sua voz em texto para conversas com IA. Por exemplo, fale naturalmente e veja suas palavras aparecerem como texto digitado.";
+"NSPhotoLibraryAddUsageDescription" = "O ElioChat salva imagens geradas pela IA na sua biblioteca de fotos. Por exemplo, quando a IA cria uma imagem, toque em Salvar para armazená-la em Fotos.";
+"NSLocalNetworkUsageDescription" = "O ElioChat usa a rede local para se conectar a dispositivos próximos e compartilhar a inferência de IA. Por exemplo, compartilhe o poder de processamento com outro dispositivo ElioChat na mesma rede Wi-Fi.";

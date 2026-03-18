@@ -1,12 +1,12 @@
 /* InfoPlist.strings (Arabic) */
 
-"NSCalendarsUsageDescription" = "يستخدم ElioChat التقويم لقراءة وإنشاء الأحداث.";
-"NSContactsUsageDescription" = "يستخدم ElioChat جهات الاتصال للبحث عنها وعرضها.";
-"NSPhotoLibraryUsageDescription" = "يحتاج ElioChat إلى الوصول إلى مكتبة الصور الخاصة بك.";
-"NSLocationWhenInUseUsageDescription" = "يستخدم ElioChat موقعك لتوفير ميزات تعتمد على الموقع.";
-"NSRemindersUsageDescription" = "يستخدم ElioChat التذكيرات لقراءتها وإنشاء تذكيرات جديدة.";
-"NSCameraUsageDescription" = "يستخدم ElioChat الكاميرا لالتقاط الصور وإرسالها إلى الذكاء الاصطناعي.";
-"NSMicrophoneUsageDescription" = "يستخدم ElioChat الميكروفون للإدخال الصوتي.";
-"NSSpeechRecognitionUsageDescription" = "يستخدم ElioChat التعرف على الكلام لتحويل الصوت إلى نص.";
-"NSPhotoLibraryAddUsageDescription" = "يحفظ ElioChat الصور المُنشأة في مكتبة الصور الخاصة بك.";
-"NSLocalNetworkUsageDescription" = "يستخدم ElioChat الشبكة المحلية للاتصال بالأجهزة القريبة ومشاركة استدلال الذكاء الاصطناعي.";
+"NSCalendarsUsageDescription" = "يقرأ ElioChat أحداث التقويم وينشئها حتى تتمكن من سؤال الذكاء الاصطناعي عن جدولك. على سبيل المثال، قل \"ما اجتماعاتي اليوم؟\" لعرض أحداثك القادمة.";
+"NSContactsUsageDescription" = "يبحث ElioChat في جهات اتصالك عندما تسأل الذكاء الاصطناعي عن أشخاص. على سبيل المثال، قل \"ما رقم هاتف تاناكا؟\" للبحث عن تفاصيل الاتصال.";
+"NSPhotoLibraryUsageDescription" = "يصل ElioChat إلى مكتبة صورك لمشاركة الصور مع الذكاء الاصطناعي لتحليلها. على سبيل المثال، اختر صورة واسأل \"ماذا في هذه الصورة؟\"";
+"NSLocationWhenInUseUsageDescription" = "يستخدم ElioChat موقعك الحالي للإجابة على الأسئلة المتعلقة بالموقع. على سبيل المثال، اسأل \"أين أنا الآن؟\" للحصول على عنوانك.";
+"NSRemindersUsageDescription" = "يقرأ ElioChat التذكيرات وينشئها من خلال محادثة الذكاء الاصطناعي. على سبيل المثال، قل \"ذكرني بإخراج القمامة الساعة 10 صباحاً\" لإنشاء تذكير جديد.";
+"NSCameraUsageDescription" = "يستخدم ElioChat الكاميرا لالتقاط صور لتحليل الذكاء الاصطناعي. على سبيل المثال، التقط صورة لمستند واطلب من الذكاء الاصطناعي تلخيصه.";
+"NSMicrophoneUsageDescription" = "يستخدم ElioChat الميكروفون لتسجيل الرسائل الصوتية وتحويل الكلام إلى نص في المحادثات. على سبيل المثال، انقر على زر الميكروفون لإملاء رسالة بدلاً من الكتابة.";
+"NSSpeechRecognitionUsageDescription" = "يستخدم ElioChat التعرف على الكلام في الجهاز لتحويل صوتك إلى نص لمحادثات الذكاء الاصطناعي. على سبيل المثال، تحدث بشكل طبيعي وشاهد كلماتك تظهر كنص مكتوب.";
+"NSPhotoLibraryAddUsageDescription" = "يحفظ ElioChat الصور التي أنشأها الذكاء الاصطناعي في مكتبة صورك. على سبيل المثال، عندما ينشئ الذكاء الاصطناعي صورة، انقر على حفظ لتخزينها في الصور.";
+"NSLocalNetworkUsageDescription" = "يستخدم ElioChat الشبكة المحلية للاتصال بالأجهزة القريبة ومشاركة استدلال الذكاء الاصطناعي. على سبيل المثال، شارك قوة المعالجة مع جهاز ElioChat آخر على نفس شبكة Wi-Fi.";

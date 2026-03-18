@@ -174,7 +174,7 @@ struct TokenEconomyDashboardView: View {
                     color: .blue
                 )
                 revenueRow(
-                    mode: "Genius (GPT-4o)",
+                    mode: "Genius (Cloud AI)",
                     cost: 5,
                     apiCost: 0.94,
                     color: .purple

@@ -599,7 +599,7 @@
 "chatmode.chatweb.desc" = "ChatWeb.ai \U2022 ذكاء اصطناعي سحابي سريع";
 "chatmode.private.desc" = "أجهزة موثوقة \U2022 شبكتك";
 "chatmode.fast.desc" = "Groq API \U2022 فائق السرعة";
-"chatmode.genius.desc" = "GPT-4o/Claude \U2022 أفضل جودة";
+"chatmode.genius.desc" = "Cloud AI \U2022 أفضل جودة";
 "chatmode.public.desc" = "المجتمع \U2022 حوسبة مشتركة";
 // MARK: - Inference Errors
 "error.backend.not.ready" = "الخلفية غير جاهزة";

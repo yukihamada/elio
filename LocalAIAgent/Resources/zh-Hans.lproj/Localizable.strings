@@ -599,7 +599,7 @@
 "chatmode.chatweb.desc" = "ChatWeb.ai \U2022 快速云端AI";
 "chatmode.private.desc" = "受信任设备 \U2022 你的网络";
 "chatmode.fast.desc" = "Groq API \U2022 超快速";
-"chatmode.genius.desc" = "GPT-4o/Claude \U2022 最高质量";
+"chatmode.genius.desc" = "Cloud AI \U2022 最高质量";
 "chatmode.public.desc" = "社区 \U2022 共享计算";
 // MARK: - Inference Errors
 "error.backend.not.ready" = "后端未就绪";

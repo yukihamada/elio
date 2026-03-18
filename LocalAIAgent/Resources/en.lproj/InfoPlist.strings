@@ -1,12 +1,12 @@
 /* InfoPlist.strings (English) */
 
-"NSCalendarsUsageDescription" = "ElioChat uses your calendar to read and write events.";
-"NSContactsUsageDescription" = "ElioChat uses your contacts to search and display them.";
-"NSPhotoLibraryUsageDescription" = "ElioChat needs access to your photo library.";
-"NSLocationWhenInUseUsageDescription" = "ElioChat uses your location to provide location-based features.";
-"NSRemindersUsageDescription" = "ElioChat uses your reminders to read and write them.";
-"NSCameraUsageDescription" = "ElioChat uses the camera to take photos and send them to the AI.";
-"NSMicrophoneUsageDescription" = "ElioChat uses the microphone for voice input.";
-"NSSpeechRecognitionUsageDescription" = "ElioChat uses speech recognition to convert voice to text.";
-"NSPhotoLibraryAddUsageDescription" = "ElioChat saves generated images to your photo library.";
-"NSLocalNetworkUsageDescription" = "ElioChat uses the local network to connect with nearby devices for shared AI inference.";
+"NSCalendarsUsageDescription" = "ElioChat reads and creates calendar events so you can ask the AI about your schedule. For example, say \"What meetings do I have today?\" to see your upcoming events.";
+"NSContactsUsageDescription" = "ElioChat searches your contacts when you ask the AI about people. For example, say \"What is Tanaka's phone number?\" to look up contact details.";
+"NSPhotoLibraryUsageDescription" = "ElioChat accesses your photo library so you can share images with the AI for analysis. For example, select a photo and ask \"What is in this picture?\"";
+"NSLocationWhenInUseUsageDescription" = "ElioChat uses your current location to answer location-based questions. For example, ask \"Where am I right now?\" to get your address.";
+"NSRemindersUsageDescription" = "ElioChat reads and creates reminders through AI conversation. For example, say \"Remind me to take out the trash at 10 AM\" to create a new reminder.";
+"NSCameraUsageDescription" = "ElioChat uses the camera to capture photos for AI analysis. For example, you can take a photo of a document and ask the AI to summarize it.";
+"NSMicrophoneUsageDescription" = "ElioChat uses the microphone to record your voice messages and convert speech to text in conversations. For example, tap the microphone button to dictate a message instead of typing.";
+"NSSpeechRecognitionUsageDescription" = "ElioChat uses on-device speech recognition to convert your voice into text for AI conversations. For example, speak naturally and see your words appear as a typed message.";
+"NSPhotoLibraryAddUsageDescription" = "ElioChat saves AI-generated images to your photo library. For example, when the AI creates an image, you can tap Save to store it in your Photos.";
+"NSLocalNetworkUsageDescription" = "ElioChat uses the local network to connect with nearby devices for shared AI inference. For example, share processing power with another device running ElioChat on the same Wi-Fi.";

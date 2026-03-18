@@ -49,7 +49,7 @@ enum ChatMode: String, CaseIterable, Codable, Identifiable {
         case .fast:
             return String(localized: "chatmode.fast.desc", defaultValue: "1トークン • Groq超高速推論")
         case .genius:
-            return String(localized: "chatmode.genius.desc", defaultValue: "5トークン • GPT-4o/Claude/Gemini最高品質")
+            return String(localized: "chatmode.genius.desc", defaultValue: "5トークン • Cloud AI 最高品質")
         case .publicP2P:
             return String(localized: "chatmode.public.desc", defaultValue: "無料〜2トークン • 一般的に安全 • コミュニティ共有")
         case .p2pMesh:
@@ -160,7 +160,7 @@ enum CloudProvider: String, CaseIterable, Codable, Identifiable {
 
     var displayName: String {
         switch self {
-        case .openai: return "OpenAI (GPT-4o)"
+        case .openai: return "OpenAI"
         case .anthropic: return "Anthropic (Claude 3.5)"
         case .google: return "Google (Gemini 1.5)"
         case .openrouter: return "OpenRouter (200+ models)"

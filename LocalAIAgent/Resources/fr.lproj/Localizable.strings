@@ -599,7 +599,7 @@
 "chatmode.chatweb.desc" = "ChatWeb.ai \U2022 IA cloud rapide";
 "chatmode.private.desc" = "Appareils de confiance \U2022 Votre réseau";
 "chatmode.fast.desc" = "Groq API \U2022 Ultra rapide";
-"chatmode.genius.desc" = "GPT-4o/Claude \U2022 Meilleure qualité";
+"chatmode.genius.desc" = "Cloud AI \U2022 Meilleure qualité";
 "chatmode.public.desc" = "Communauté \U2022 Calcul partagé";
 // MARK: - Inference Errors
 "error.backend.not.ready" = "Le backend n'est pas prêt";
