@@ -62,14 +62,14 @@ final class ChatWebBackend: InferenceBackend, ObservableObject {
 
         var streamURL: String {
             switch self {
-            case .chatweb: return "https://api.chatweb.ai/api/v1/chat/stream"
+            case .chatweb: return "https://chatweb.ai/api/v1/chat"
             case .teai: return "https://api.teai.io/api/v1/chat/stream"
             }
         }
 
         var registerURL: String {
             switch self {
-            case .chatweb: return "https://api.chatweb.ai/api/v1/devices/register"
+            case .chatweb: return "https://chatweb.ai/api/v1/devices/register"
             case .teai: return "https://api.teai.io/api/v1/devices/register"
             }
         }

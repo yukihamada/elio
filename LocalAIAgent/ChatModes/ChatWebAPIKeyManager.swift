@@ -47,7 +47,7 @@ final class ChatWebAPIKeyManager: ObservableObject {
         case generating
     }
 
-    private let registerURL = "https://api.chatweb.ai/api/v1/devices/register"
+    private let registerURL = "https://chatweb.ai/api/v1/devices/register"
 
     private init() {}
 
