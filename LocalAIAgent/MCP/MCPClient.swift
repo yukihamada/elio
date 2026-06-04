@@ -31,6 +31,13 @@ final class MCPClient: ObservableObject {
         registerServer(NotesServer())
         registerServer(EmergencyKnowledgeBaseServer())
         registerServer(NewsServer())
+        registerServer(CodeExecutionServer())
+        registerServer(DeviceControlServer())
+        #if !targetEnvironment(macCatalyst)
+        registerServer(HealthKitServer())
+        registerServer(MotionServer())
+        #endif
+        registerServer(MusicServer())
         // Translation requires iOS 18.0+ and uses SwiftUI view modifiers
         // Disabled for now - needs UI-based implementation
         // if #available(iOS 18.0, *) {
@@ -40,6 +47,12 @@ final class MCPClient: ObservableObject {
 
     private func updateServerInfos() {
         serverInfos = servers.values.map { $0.toServerInfo() }
+    }
+
+    /// Recompute published server infos (e.g. after a remote server's async tool
+    /// discovery has populated its cache).
+    func refreshServerInfos() {
+        updateServerInfos()
     }
 
     func listAllTools(enabledServers: Set<String>) -> [MCPTool] {

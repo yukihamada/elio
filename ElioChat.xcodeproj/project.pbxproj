@@ -25,6 +25,10 @@
 		015 /* MCPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115 /* MCPClient.swift */; };
 		016 /* MCPProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116 /* MCPProtocol.swift */; };
 		017 /* MCPServerRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117 /* MCPServerRegistry.swift */; };
+		RMCPB001 /* RemoteMCPServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = RMCP001 /* RemoteMCPServer.swift */; };
+		RMCPB002 /* RemoteMCPServerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = RMCP002 /* RemoteMCPServerManager.swift */; };
+		RMCPB003 /* RemoteMCPServerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = RMCP003 /* RemoteMCPServerView.swift */; };
+		RMCPB004 /* RemoteMCPServerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = RMCP004 /* RemoteMCPServerTests.swift */; };
 		018 /* FileSystemServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118 /* FileSystemServer.swift */; };
 		019 /* CalendarServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119 /* CalendarServer.swift */; };
 		020 /* RemindersServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120 /* RemindersServer.swift */; };
@@ -43,15 +47,29 @@
 		035 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136 /* AboutView.swift */; };
 		036 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 140 /* Localizable.strings */; };
 		037 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 137 /* NetworkMonitor.swift */; };
+		075937863B23D2A30BC20FD5 /* Transformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F325427CDF79757F71F4695 /* Transformer.swift */; };
+		12D86DFE22142B2F0B1750FE /* Sampler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79266B03A5FCBD9A562671F7 /* Sampler.swift */; };
+		224C102D7F9E703404EA6305 /* Tensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BDE139FCF8F74C47EFA1AF /* Tensor.swift */; };
+		283C7D6F8E40A272A323ABE5 /* SwiftLLMBenchmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB472E3BDFC633199CC40D6 /* SwiftLLMBenchmark.swift */; };
 		2BB9F1F219DC53CD365E057B /* MacAboutBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7545764FC314BC41BDCFD6 /* MacAboutBridge.swift */; };
 		32F957E1072AE040998CB503 /* SpeculativeBackend.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3425F549F53E154683E4DB9 /* SpeculativeBackend.swift */; };
+		3CDB8CC5DB54A12DE94A09AB /* SwiftInference.swift in Sources */ = {isa = PBXBuildFile; fileRef = C268CB6E32A9619D6D59722C /* SwiftInference.swift */; };
+		3E9BE6E2F045F7E70216C7D9 /* BuiltinTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = D23C3EB92209FF80EDBC54B2 /* BuiltinTools.swift */; };
 		3F2AD87B83A871ECF3AEE72B /* MessagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B105EDF08C8690D3B8739D45 /* MessagesView.swift */; };
+		3F607013A3E80EC9F2233D67 /* GGUFParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A67FBE65B1972BAC1592A9 /* GGUFParser.swift */; };
 		60B47A4DC9139314BB0DC2C9 /* ModelSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F274E62F73576596B9AD3FA /* ModelSettings.swift */; };
+		6C796FB92E262301207E1AFA /* BenchmarkTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015408895CB1DBF3042C154A /* BenchmarkTest.swift */; };
 		705 /* ScreenshotMockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 704 /* ScreenshotMockData.swift */; };
 		7D3A20EA65A3530286F7DD7E /* ModelSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D655A6B9516B5885047F78E7 /* ModelSettingsView.swift */; };
 		81532C268A329161B26DBE93 /* SystemPromptLocalizations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BDE308F3DED07B71816FFD /* SystemPromptLocalizations.swift */; };
+		855432B55F8B9C5E765EA2A6 /* BPETokenizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A7FAEA7083B2EDCAA48BD1 /* BPETokenizer.swift */; };
 		94C05C178CA153A1939D6A74 /* FriendsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D41BE8854F717C4639B435 /* FriendsManager.swift */; };
+		99E935D23180736318178307 /* BuiltinMemoStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3118DF0FD69BE20CD05B8CEB /* BuiltinMemoStore.swift */; };
+		A10000000000000000000001 /* AgentProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000002 /* AgentProfile.swift */; };
 		A1B2C3D4E5F6A7B8C9D0E1F2 /* ModelSwitcherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6E7F8A9B0C1D2E3F4A5B6C7 /* ModelSwitcherView.swift */; };
+		A20000000000000000000001 /* AgentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000002 /* AgentManager.swift */; };
+		A2B0C1ED6A6E198A4AD905B4 /* BenchmarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19AACC9C84F3F4EF3AD79FC /* BenchmarkView.swift */; };
+		A30000000000000000000001 /* AgentListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30000000000000000000002 /* AgentListView.swift */; };
 		A9628879BDB8049211EFE389 /* ElioCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70786D242F8A6246D5B14A7 /* ElioCommands.swift */; };
 		AD18E45C310E417CD140100C /* MessagingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A512831715040998464FBFC7 /* MessagingManager.swift */; };
 		APPINTENT001 /* AppIntents.swift in Sources */ = {isa = PBXBuildFile; fileRef = APPINTENT002 /* AppIntents.swift */; };
@@ -61,6 +79,8 @@
 		BF338E7FC2A3E11D16ECCEC8 /* DirectChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CFBAD2E97F48CFE480561BF /* DirectChatView.swift */; };
 		BKTST001 /* BackendTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BKTST002 /* BackendTests.swift */; };
 		C071F3E0693DCB31C15C6052 /* InferenceServerSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF9F48FF6CEC6C9BA8BE74B /* InferenceServerSettingsView.swift */; };
+		C0E2BB01CB48B8F9EA656BCE /* ToolRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A5EE86A8E85CFF68BEBBC3 /* ToolRouter.swift */; };
+		C10000000000000000000001 /* CodeExecutionServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10000000000000000000002 /* CodeExecutionServer.swift */; };
 		C1D2E3F4A5B6C7D8E9F0A1B2 /* AnonymousMessagingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C2D3E4F5A6B7C8D9E0F1A2 /* AnonymousMessagingTests.swift */; };
 		C544459FE815E0F64608424A /* ElioFocusedValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 472DEFE070C3C9FAE5F7987C /* ElioFocusedValues.swift */; };
 		C60A36CCF98A62B5906FE569 /* VisionModelDownloadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED5CCB34FA4BFAD3E5BEBD2 /* VisionModelDownloadView.swift */; };
@@ -78,6 +98,7 @@
 		CWBACK001 /* ChatWebBackend.swift in Sources */ = {isa = PBXBuildFile; fileRef = CWBACK002 /* ChatWebBackend.swift */; };
 		CWCONV001 /* ChatWebConnectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CWCONV002 /* ChatWebConnectView.swift */; };
 		CWLOGV001 /* ChatWebLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CWLOGV002 /* ChatWebLoginView.swift */; };
+		D10000000000000000000001 /* DeviceControlServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10000000000000000000002 /* DeviceControlServer.swift */; };
 		DEPINDASH001 /* DePINDashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEPINDASH002 /* DePINDashboardView.swift */; };
 		DEPINRPT001 /* DePINReporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEPINRPT002 /* DePINReporter.swift */; };
 		DEVID001 /* DeviceIdentityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEVID002 /* DeviceIdentityManager.swift */; };
@@ -86,11 +107,16 @@
 		DOCPICKER001 /* DocumentPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = DOCPICKER002 /* DocumentPicker.swift */; };
 		DQMGR001 /* DistributedQueryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DQMGR002 /* DistributedQueryManager.swift */; };
 		DQVIEW001 /* DistributedQueryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DQVIEW002 /* DistributedQueryView.swift */; };
+		E10000000000000000000001 /* HealthKitServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10000000000000000000002 /* HealthKitServer.swift */; };
 		E1F2A3B4C5D6E7F8A9B0C1D2 /* UnifiedConnectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A2B3C4D5E6F7A8B9C0D1E2 /* UnifiedConnectView.swift */; };
+		E20000000000000000000001 /* MusicServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20000000000000000000002 /* MusicServer.swift */; };
+		E2414EA37C01D9A1673BDAF3 /* DirectLlamaEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D9A940CB412E5488FC737C /* DirectLlamaEngine.swift */; };
+		E30000000000000000000001 /* MotionServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E30000000000000000000002 /* MotionServer.swift */; };
 		E8FEAD3110B72464A21351F5 /* DeveloperThanksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9FD5E3BB7666D07F90B6FE /* DeveloperThanksView.swift */; };
 		EBRGATE001 /* EBRTokenGate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBRGATE002 /* EBRTokenGate.swift */; };
 		EMERKB001 /* EmergencyKnowledgeBaseServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EMERKB002 /* EmergencyKnowledgeBaseServer.swift */; };
 		EMERQV001 /* EmergencyQuickActionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EMERQV002 /* EmergencyQuickActionsView.swift */; };
+		F10000000000000000000001 /* A2AProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10000000000000000000002 /* A2AProtocol.swift */; };
 		F9B5BA92A297C87B4C263A10 /* ModelSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08FCD261ECDF172B6D58D847 /* ModelSelectorView.swift */; };
 		FC0C7203D357908E50F1A581 /* InferenceServerConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898DD0FF4816A2F2288E27CD /* InferenceServerConfig.swift */; };
 		FEEDCON01 /* FeedbackConsentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEEDCON02 /* FeedbackConsentView.swift */; };
@@ -109,6 +135,8 @@
 		MDTHEME001 /* MarkdownTheme+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = MDTHEME002 /* MarkdownTheme+Custom.swift */; };
 		MDVIEW003 /* MarkdownView in Frameworks */ = {isa = PBXBuildFile; productRef = MDVIEW002 /* MarkdownView */; };
 		MLTST001 /* ModelLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = MLTST002 /* ModelLoaderTests.swift */; };
+		MLX00004 /* MLXInference.swift in Sources */ = {isa = PBXBuildFile; fileRef = MLX00003 /* MLXInference.swift */; };
+		MLX00005 /* MLXLLM in Frameworks */ = {isa = PBXBuildFile; productRef = MLX00002 /* MLXLLM */; };
 		MMTST001 /* MessagingManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = MMTST002 /* MessagingManagerTests.swift */; };
 		MSGSHR001 /* MessageShareService.swift in Sources */ = {isa = PBXBuildFile; fileRef = MSGSHR002 /* MessageShareService.swift */; };
 		NEWSAPI001 /* NewsAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = NEWSAPI002 /* NewsAPIClient.swift */; };
@@ -202,9 +230,12 @@
 
 /* Begin PBXFileReference section */
 		0029EE8B5241B7E21DF91D5A /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = ml.lproj/Localizable.strings; sourceTree = "<group>"; };
+		015408895CB1DBF3042C154A /* BenchmarkTest.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BenchmarkTest.swift; sourceTree = "<group>"; };
 		015BAF31CA17B08E03B86370 /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = ms.lproj/Localizable.strings; sourceTree = "<group>"; };
 		02C88DD1647B3FE7CD3BF6D5 /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = lv.lproj/Localizable.strings; sourceTree = "<group>"; };
 		03381B1A3E027ECC9D1FEE76 /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = my.lproj/Localizable.strings; sourceTree = "<group>"; };
+		06A7FAEA7083B2EDCAA48BD1 /* BPETokenizer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BPETokenizer.swift; sourceTree = "<group>"; };
+		07A5EE86A8E85CFF68BEBBC3 /* ToolRouter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ToolRouter.swift; sourceTree = "<group>"; };
 		08FCD261ECDF172B6D58D847 /* ModelSelectorView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ModelSelectorView.swift; path = ModelSelectorView.swift; sourceTree = "<group>"; };
 		0C9FD5E3BB7666D07F90B6FE /* DeveloperThanksView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DeveloperThanksView.swift; sourceTree = "<group>"; };
 		0E46A3EE6581F4478C52E995 /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = et.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -228,6 +259,10 @@
 		1152BA28C34804F55EBF0F15 /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = gu.lproj/Localizable.strings; sourceTree = "<group>"; };
 		116 /* MCPProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MCPProtocol.swift; sourceTree = "<group>"; };
 		117 /* MCPServerRegistry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MCPServerRegistry.swift; sourceTree = "<group>"; };
+		RMCP001 /* RemoteMCPServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteMCPServer.swift; sourceTree = "<group>"; };
+		RMCP002 /* RemoteMCPServerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteMCPServerManager.swift; sourceTree = "<group>"; };
+		RMCP003 /* RemoteMCPServerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteMCPServerView.swift; sourceTree = "<group>"; };
+		RMCP004 /* RemoteMCPServerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteMCPServerTests.swift; sourceTree = "<group>"; };
 		118 /* FileSystemServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSystemServer.swift; sourceTree = "<group>"; };
 		119 /* CalendarServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarServer.swift; sourceTree = "<group>"; };
 		120 /* RemindersServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemindersServer.swift; sourceTree = "<group>"; };
@@ -249,6 +284,7 @@
 		141 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		142 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		15DE1364A66E372968BE4AF1 /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = uk.lproj/Localizable.strings; sourceTree = "<group>"; };
+		18BDE139FCF8F74C47EFA1AF /* Tensor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Tensor.swift; sourceTree = "<group>"; };
 		18D41BE8854F717C4639B435 /* FriendsManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FriendsManager.swift; path = Social/FriendsManager.swift; sourceTree = "<group>"; };
 		1B7545764FC314BC41BDCFD6 /* MacAboutBridge.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MacAboutBridge.swift; path = MacAboutBridge.swift; sourceTree = "<group>"; };
 		1CA3493F8ED1E8131EB8787A /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = ha.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -256,9 +292,11 @@
 		1CFBAD2E97F48CFE480561BF /* DirectChatView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DirectChatView.swift; path = DirectChatView.swift; sourceTree = "<group>"; };
 		1D59F588E9B6877DA4E247B2 /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = nl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		1FADB9B2F9F41B3ADA3D8A2E /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = sw.lproj/Localizable.strings; sourceTree = "<group>"; };
+		2119D7CADEC4539AA87FAA08 /* ToolRouter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ToolRouter.swift; path = LocalAIAgent/Agent/ToolRouter.swift; sourceTree = "<group>"; };
 		211B5DBF35E441607B9C229A /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = vi.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2344B74877AEDD7F51A60638 /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = ne.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2B62E9A3FDFB8019643C6460 /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = ta.lproj/Localizable.strings; sourceTree = "<group>"; };
+		3118DF0FD69BE20CD05B8CEB /* BuiltinMemoStore.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BuiltinMemoStore.swift; sourceTree = "<group>"; };
 		3247A906BED05B9DEABC6E2C /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = am.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3365EB32D1D544654F55F68E /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = km.lproj/Localizable.strings; sourceTree = "<group>"; };
 		37364513C5FBFB4564633833 /* SpeculativeVerifier.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SpeculativeVerifier.swift; path = SpeculativeVerifier.swift; sourceTree = "<group>"; };
@@ -275,18 +313,25 @@
 		5255A2A7704C69E3996970FA /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		591CAE68142A0971FDA6F2A8 /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = sk.lproj/Localizable.strings; sourceTree = "<group>"; };
 		5E8903B05CB12922F4296C10 /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = ig.lproj/Localizable.strings; sourceTree = "<group>"; };
+		6902FE1199189FB636465508 /* BenchmarkView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BenchmarkView.swift; path = LocalAIAgent/Views/BenchmarkView.swift; sourceTree = "<group>"; };
+		6A0C40CECBB0013C82EDCD34 /* BuiltinTools.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BuiltinTools.swift; path = LocalAIAgent/Agent/BuiltinTools.swift; sourceTree = "<group>"; };
 		6C890A3AFC51E29A85B2CC61 /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = is.lproj/Localizable.strings; sourceTree = "<group>"; };
 		6E70A5B9D33DDC949FA1736B /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = bg.lproj/Localizable.strings; sourceTree = "<group>"; };
+		6FB472E3BDFC633199CC40D6 /* SwiftLLMBenchmark.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SwiftLLMBenchmark.swift; sourceTree = "<group>"; };
 		704 /* ScreenshotMockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotMockData.swift; sourceTree = "<group>"; };
 		72478AD68FC4B35064DFB2EB /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = da.lproj/Localizable.strings; sourceTree = "<group>"; };
 		740E9F58437D50A4CCD952F8 /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = hu.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7679EE190D8971AA9FB64894 /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = lt.lproj/Localizable.strings; sourceTree = "<group>"; };
 		76BDE308F3DED07B71816FFD /* SystemPromptLocalizations.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SystemPromptLocalizations.swift; sourceTree = "<group>"; };
+		79266B03A5FCBD9A562671F7 /* Sampler.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Sampler.swift; sourceTree = "<group>"; };
 		7B94204565AC4FF4F458668F /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = fa.lproj/Localizable.strings; sourceTree = "<group>"; };
+		7F325427CDF79757F71F4695 /* Transformer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Transformer.swift; sourceTree = "<group>"; };
 		7F5FFA1C3F24638CF82FC4F1 /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = hr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		84B2596D81B38151D72EC147 /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = sq.lproj/Localizable.strings; sourceTree = "<group>"; };
 		84B3BBE1E1991BFA462BE14B /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = af.lproj/Localizable.strings; sourceTree = "<group>"; };
+		86D9A940CB412E5488FC737C /* DirectLlamaEngine.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DirectLlamaEngine.swift; sourceTree = "<group>"; };
 		898DD0FF4816A2F2288E27CD /* InferenceServerConfig.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = InferenceServerConfig.swift; path = InferenceServerConfig.swift; sourceTree = "<group>"; };
+		8B199E88EAAD4CEA12DE14CC /* DirectLlamaEngine.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DirectLlamaEngine.swift; path = LocalAIAgent/LLM/DirectLlamaEngine.swift; sourceTree = "<group>"; };
 		8F274E62F73576596B9AD3FA /* ModelSettings.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ModelSettings.swift; sourceTree = "<group>"; };
 		91D9833BA13FDD02724E72DD /* LLMConversationTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LLMConversationTests.swift; sourceTree = "<group>"; };
 		9458ACDF5C7161AC775AA024 /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = sv.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -294,6 +339,9 @@
 		9A81CC1B9D74555189349E3F /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = el.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A0166C58451C9D5CC66396BD /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = sl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A033E850E0A7075A3D2E40F8 /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = eu.lproj/Localizable.strings; sourceTree = "<group>"; };
+		A10000000000000000000002 /* AgentProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgentProfile.swift; sourceTree = "<group>"; };
+		A20000000000000000000002 /* AgentManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgentManager.swift; sourceTree = "<group>"; };
+		A30000000000000000000002 /* AgentListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgentListView.swift; sourceTree = "<group>"; };
 		A506FF68BD35B600440F7BF1 /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = so.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A512831715040998464FBFC7 /* MessagingManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MessagingManager.swift; path = Social/MessagingManager.swift; sourceTree = "<group>"; };
 		A70786D242F8A6246D5B14A7 /* ElioCommands.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ElioCommands.swift; path = ElioCommands.swift; sourceTree = "<group>"; };
@@ -303,16 +351,20 @@
 		B1C2D3E4F5A6B7C8D9E0F1A2 /* AnonymousMessagingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnonymousMessagingTests.swift; sourceTree = "<group>"; };
 		B3425F549F53E154683E4DB9 /* SpeculativeBackend.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SpeculativeBackend.swift; path = SpeculativeBackend.swift; sourceTree = "<group>"; };
 		B6BA22092F132EEA00C7353F /* LocalAIAgent.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LocalAIAgent.entitlements; sourceTree = "<group>"; };
+		B8A67FBE65B1972BAC1592A9 /* GGUFParser.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = GGUFParser.swift; sourceTree = "<group>"; };
 		BA5C00BA92BADDD9DFA8698B /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = tr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		BE086B2F9F33EE29A9BCAB08 /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = sr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		BKTST002 /* BackendTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackendTests.swift; sourceTree = "<group>"; };
 		BRIDGING001 /* LocalAIAgent-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LocalAIAgent-Bridging-Header.h"; sourceTree = "<group>"; };
 		C02F9A3D3BF1EDCECCEED684 /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = bn.lproj/Localizable.strings; sourceTree = "<group>"; };
 		C080387BC6FB92C9A515D20C /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = kn.lproj/Localizable.strings; sourceTree = "<group>"; };
+		C10000000000000000000002 /* CodeExecutionServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeExecutionServer.swift; sourceTree = "<group>"; };
 		C1C8AF4FE191B8AFBC9BE8DE /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = si.lproj/Localizable.strings; sourceTree = "<group>"; };
+		C268CB6E32A9619D6D59722C /* SwiftInference.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SwiftInference.swift; sourceTree = "<group>"; };
 		C335D866785F22C0FE4E2DBB /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = bs.lproj/Localizable.strings; sourceTree = "<group>"; };
 		C89D86BBB260686B614BC7B7 /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = mk.lproj/Localizable.strings; sourceTree = "<group>"; };
 		C9B8657ADFE05597384208E6 /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = he.lproj/Localizable.strings; sourceTree = "<group>"; };
+		CD841F8482539ECDD98154E2 /* BuiltinMemoStore.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BuiltinMemoStore.swift; path = LocalAIAgent/Agent/BuiltinMemoStore.swift; sourceTree = "<group>"; };
 		CHATMODE002 /* ChatMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMode.swift; sourceTree = "<group>"; };
 		CHATMODEMGR002 /* ChatModeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatModeManager.swift; sourceTree = "<group>"; };
 		CHTST002 /* ChatModeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatModeTests.swift; sourceTree = "<group>"; };
@@ -326,7 +378,9 @@
 		CWBACK002 /* ChatWebBackend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatWebBackend.swift; sourceTree = "<group>"; };
 		CWCONV002 /* ChatWebConnectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatWebConnectView.swift; sourceTree = "<group>"; };
 		CWLOGV002 /* ChatWebLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatWebLoginView.swift; sourceTree = "<group>"; };
+		D10000000000000000000002 /* DeviceControlServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceControlServer.swift; sourceTree = "<group>"; };
 		D1BDD3EC9F8220E0B71087A3 /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = pl.lproj/Localizable.strings; sourceTree = "<group>"; };
+		D23C3EB92209FF80EDBC54B2 /* BuiltinTools.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BuiltinTools.swift; sourceTree = "<group>"; };
 		D5364FA639C7CEC7FBCE629F /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = yo.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D655A6B9516B5885047F78E7 /* ModelSettingsView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ModelSettingsView.swift; sourceTree = "<group>"; };
 		D6E7F8A9B0C1D2E3F4A5B6C7 /* ModelSwitcherView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ModelSwitcherView.swift; path = ModelSwitcherView.swift; sourceTree = "<group>"; };
@@ -338,14 +392,20 @@
 		DOCPICKER002 /* DocumentPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentPicker.swift; sourceTree = "<group>"; };
 		DQMGR002 /* DistributedQueryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistributedQueryManager.swift; sourceTree = "<group>"; };
 		DQVIEW002 /* DistributedQueryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistributedQueryView.swift; sourceTree = "<group>"; };
+		E10000000000000000000002 /* HealthKitServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitServer.swift; sourceTree = "<group>"; };
+		E19AACC9C84F3F4EF3AD79FC /* BenchmarkView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BenchmarkView.swift; sourceTree = "<group>"; };
+		E20000000000000000000002 /* MusicServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicServer.swift; sourceTree = "<group>"; };
 		E2A98D262BC8C21D6F1D8F48 /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = cs.lproj/Localizable.strings; sourceTree = "<group>"; };
+		E30000000000000000000002 /* MotionServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionServer.swift; sourceTree = "<group>"; };
 		E6EE49F28609C51FC5142020 /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = zu.lproj/Localizable.strings; sourceTree = "<group>"; };
+		E9CB97DA7983CAD4CE34DBB3 /* BenchmarkTest.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BenchmarkTest.swift; path = LocalAIAgent/LLM/BenchmarkTest.swift; sourceTree = "<group>"; };
 		EAF9F48FF6CEC6C9BA8BE74B /* InferenceServerSettingsView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = InferenceServerSettingsView.swift; path = InferenceServerSettingsView.swift; sourceTree = "<group>"; };
 		EBF338BCF436AF620054E443 /* CloudAIConsentView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CloudAIConsentView.swift; sourceTree = "<group>"; };
 		EBRGATE002 /* EBRTokenGate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EBRTokenGate.swift; sourceTree = "<group>"; };
 		EED5CCB34FA4BFAD3E5BEBD2 /* VisionModelDownloadView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = VisionModelDownloadView.swift; sourceTree = "<group>"; };
 		EMERKB002 /* EmergencyKnowledgeBaseServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmergencyKnowledgeBaseServer.swift; sourceTree = "<group>"; };
 		EMERQV002 /* EmergencyQuickActionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmergencyQuickActionsView.swift; sourceTree = "<group>"; };
+		F10000000000000000000002 /* A2AProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = A2AProtocol.swift; sourceTree = "<group>"; };
 		F134925799D70830635A1CDD /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = ur.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F1A2B3C4D5E6F7A8B9C0D1E2 /* UnifiedConnectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnifiedConnectView.swift; sourceTree = "<group>"; };
 		FEEDCON02 /* FeedbackConsentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackConsentView.swift; sourceTree = "<group>"; };
@@ -363,6 +423,7 @@
 		LDGSRV002 /* LedgerServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LedgerServer.swift; sourceTree = "<group>"; };
 		MDTHEME002 /* MarkdownTheme+Custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MarkdownTheme+Custom.swift"; sourceTree = "<group>"; };
 		MLTST002 /* ModelLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelLoaderTests.swift; sourceTree = "<group>"; };
+		MLX00003 /* MLXInference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLXInference.swift; sourceTree = "<group>"; };
 		MMTST002 /* MessagingManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagingManagerTests.swift; sourceTree = "<group>"; };
 		MSGSHR002 /* MessageShareService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageShareService.swift; sourceTree = "<group>"; };
 		NEWSAPI002 /* NewsAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsAPIClient.swift; sourceTree = "<group>"; };
@@ -433,6 +494,7 @@
 				B63B0EBF2F1214F5006BCDD0 /* LlamaSwift in Frameworks */,
 				MDVIEW003 /* MarkdownView in Frameworks */,
 				WHISPER001 /* WhisperKit in Frameworks */,
+				MLX00005 /* MLXLLM in Frameworks */,
 				SHERPAFW001 /* sherpa-onnx.xcframework in Frameworks */,
 				ONNXFW001 /* onnxruntime.xcframework in Frameworks */,
 			);
@@ -562,6 +624,7 @@
 				MDTHEME002 /* MarkdownTheme+Custom.swift */,
 				105 /* SettingsView.swift */,
 				106 /* MCPServerListView.swift */,
+				RMCP003 /* RemoteMCPServerView.swift */,
 				107 /* ModelSelectionView.swift */,
 				135 /* OnboardingView.swift */,
 				ONBCHAT002 /* OnboardingChatView.swift */,
@@ -600,6 +663,9 @@
 				F1A2B3C4D5E6F7A8B9C0D1E2 /* UnifiedConnectView.swift */,
 				DQVIEW002 /* DistributedQueryView.swift */,
 				EBF338BCF436AF620054E443 /* CloudAIConsentView.swift */,
+				A30000000000000000000002 /* AgentListView.swift */,
+				6902FE1199189FB636465508 /* BenchmarkView.swift */,
+				E19AACC9C84F3F4EF3AD79FC /* BenchmarkView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -610,6 +676,14 @@
 				108 /* AgentOrchestrator.swift */,
 				109 /* ToolParser.swift */,
 				110 /* ConversationManager.swift */,
+				A20000000000000000000002 /* AgentManager.swift */,
+				F10000000000000000000002 /* A2AProtocol.swift */,
+				2119D7CADEC4539AA87FAA08 /* ToolRouter.swift */,
+				6A0C40CECBB0013C82EDCD34 /* BuiltinTools.swift */,
+				CD841F8482539ECDD98154E2 /* BuiltinMemoStore.swift */,
+				07A5EE86A8E85CFF68BEBBC3 /* ToolRouter.swift */,
+				D23C3EB92209FF80EDBC54B2 /* BuiltinTools.swift */,
+				3118DF0FD69BE20CD05B8CEB /* BuiltinMemoStore.swift */,
 			);
 			path = Agent;
 			sourceTree = "<group>";
@@ -619,6 +693,7 @@
 			children = (
 				111 /* CoreMLInference.swift */,
 				130 /* LlamaInference.swift */,
+				MLX00003 /* MLXInference.swift */,
 				112 /* ModelLoader.swift */,
 				ODR002 /* OnDemandResourceManager.swift */,
 				113 /* Tokenizer.swift */,
@@ -627,6 +702,11 @@
 				SHERPA002 /* SherpaOnnx.swift */,
 				REAZON002 /* ReazonSpeechManager.swift */,
 				KOKORO002 /* KokoroTTSManager.swift */,
+				C71CD1A5AF0230534026DC1D /* SwiftLLM */,
+				8B199E88EAAD4CEA12DE14CC /* DirectLlamaEngine.swift */,
+				E9CB97DA7983CAD4CE34DBB3 /* BenchmarkTest.swift */,
+				86D9A940CB412E5488FC737C /* DirectLlamaEngine.swift */,
+				015408895CB1DBF3042C154A /* BenchmarkTest.swift */,
 			);
 			path = LLM;
 			sourceTree = "<group>";
@@ -637,6 +717,8 @@
 				115 /* MCPClient.swift */,
 				116 /* MCPProtocol.swift */,
 				117 /* MCPServerRegistry.swift */,
+				RMCP001 /* RemoteMCPServer.swift */,
+				RMCP002 /* RemoteMCPServerManager.swift */,
 				320 /* Servers */,
 			);
 			path = MCP;
@@ -652,6 +734,7 @@
 				PROMPTTMPL002 /* PromptTemplate.swift */,
 				SKILL002 /* Skill.swift */,
 				NEWSMOD002 /* NewsModels.swift */,
+				A10000000000000000000002 /* AgentProfile.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -749,6 +832,8 @@
 			isa = PBXGroup;
 			children = (
 				118 /* FileSystemServer.swift */,
+				C10000000000000000000002 /* CodeExecutionServer.swift */,
+				D10000000000000000000002 /* DeviceControlServer.swift */,
 				119 /* CalendarServer.swift */,
 				120 /* RemindersServer.swift */,
 				121 /* ContactsServer.swift */,
@@ -761,6 +846,9 @@
 				EMERKB002 /* EmergencyKnowledgeBaseServer.swift */,
 				WEATHER002 /* WeatherServer.swift */,
 				NEWSSRV002 /* NewsServer.swift */,
+				E10000000000000000000002 /* HealthKitServer.swift */,
+				E20000000000000000000002 /* MusicServer.swift */,
+				E30000000000000000000002 /* MotionServer.swift */,
 			);
 			path = Servers;
 			sourceTree = "<group>";
@@ -812,6 +900,21 @@
 				37364513C5FBFB4564633833 /* SpeculativeVerifier.swift */,
 			);
 			path = Backends;
+			sourceTree = "<group>";
+		};
+		C71CD1A5AF0230534026DC1D /* SwiftLLM */ = {
+			isa = PBXGroup;
+			children = (
+				06A7FAEA7083B2EDCAA48BD1 /* BPETokenizer.swift */,
+				B8A67FBE65B1972BAC1592A9 /* GGUFParser.swift */,
+				79266B03A5FCBD9A562671F7 /* Sampler.swift */,
+				C268CB6E32A9619D6D59722C /* SwiftInference.swift */,
+				6FB472E3BDFC633199CC40D6 /* SwiftLLMBenchmark.swift */,
+				18BDE139FCF8F74C47EFA1AF /* Tensor.swift */,
+				7F325427CDF79757F71F4695 /* Transformer.swift */,
+			);
+			name = SwiftLLM;
+			path = SwiftLLM;
 			sourceTree = "<group>";
 		};
 		CFCF5DE988424C50DEC4E4BB /* Games */ = {
@@ -922,6 +1025,7 @@
 				TKTST002 /* TokenManagerTests.swift */,
 				TPTST002 /* ToolParserTests.swift */,
 				PIIFLT004 /* PIIFilterTests.swift */,
+				RMCP004 /* RemoteMCPServerTests.swift */,
 			);
 			path = LocalAIAgentTests;
 			sourceTree = "<group>";
@@ -968,6 +1072,7 @@
 				B63B0EBF2F121377006BCDD0 /* LlamaSwift */,
 				MDVIEW002 /* MarkdownView */,
 				WHISPER002 /* WhisperKit */,
+				MLX00002 /* MLXLLM */,
 			);
 			productName = LocalAIAgent;
 			productReference = 100 /* LocalAIAgent.app */;
@@ -1103,6 +1208,7 @@
 				B63B0EBE2F121377006BCDD0 /* XCLocalSwiftPackageReference "llama-local" */,
 				MDVIEW001 /* XCLocalSwiftPackageReference "MarkdownView" */,
 				WHISPER005 /* XCRemoteSwiftPackageReference "WhisperKit" */,
+				MLX00001 /* XCRemoteSwiftPackageReference "mlx-swift-lm" */,
 			);
 			productRefGroup = 302 /* Products */;
 			projectDirPath = "";
@@ -1168,7 +1274,12 @@
 				015 /* MCPClient.swift in Sources */,
 				016 /* MCPProtocol.swift in Sources */,
 				017 /* MCPServerRegistry.swift in Sources */,
+				RMCPB001 /* RemoteMCPServer.swift in Sources */,
+				RMCPB002 /* RemoteMCPServerManager.swift in Sources */,
+				RMCPB003 /* RemoteMCPServerView.swift in Sources */,
 				018 /* FileSystemServer.swift in Sources */,
+				C10000000000000000000001 /* CodeExecutionServer.swift in Sources */,
+				D10000000000000000000001 /* DeviceControlServer.swift in Sources */,
 				019 /* CalendarServer.swift in Sources */,
 				020 /* RemindersServer.swift in Sources */,
 				021 /* ContactsServer.swift in Sources */,
@@ -1179,6 +1290,7 @@
 				027 /* Conversation.swift in Sources */,
 				028 /* MCPTool.swift in Sources */,
 				029 /* LlamaInference.swift in Sources */,
+				MLX00004 /* MLXInference.swift in Sources */,
 				WHISPER003 /* WhisperManager.swift in Sources */,
 				LANG001 /* LanguageManager.swift in Sources */,
 				030 /* ThemeManager.swift in Sources */,
@@ -1281,6 +1393,26 @@
 				C544459FE815E0F64608424A /* ElioFocusedValues.swift in Sources */,
 				A9628879BDB8049211EFE389 /* ElioCommands.swift in Sources */,
 				2BB9F1F219DC53CD365E057B /* MacAboutBridge.swift in Sources */,
+				A10000000000000000000001 /* AgentProfile.swift in Sources */,
+				A20000000000000000000001 /* AgentManager.swift in Sources */,
+				F10000000000000000000001 /* A2AProtocol.swift in Sources */,
+				A30000000000000000000001 /* AgentListView.swift in Sources */,
+				E10000000000000000000001 /* HealthKitServer.swift in Sources */,
+				E20000000000000000000001 /* MusicServer.swift in Sources */,
+				E30000000000000000000001 /* MotionServer.swift in Sources */,
+				855432B55F8B9C5E765EA2A6 /* BPETokenizer.swift in Sources */,
+				3F607013A3E80EC9F2233D67 /* GGUFParser.swift in Sources */,
+				12D86DFE22142B2F0B1750FE /* Sampler.swift in Sources */,
+				3CDB8CC5DB54A12DE94A09AB /* SwiftInference.swift in Sources */,
+				283C7D6F8E40A272A323ABE5 /* SwiftLLMBenchmark.swift in Sources */,
+				224C102D7F9E703404EA6305 /* Tensor.swift in Sources */,
+				075937863B23D2A30BC20FD5 /* Transformer.swift in Sources */,
+				E2414EA37C01D9A1673BDAF3 /* DirectLlamaEngine.swift in Sources */,
+				6C796FB92E262301207E1AFA /* BenchmarkTest.swift in Sources */,
+				C0E2BB01CB48B8F9EA656BCE /* ToolRouter.swift in Sources */,
+				3E9BE6E2F045F7E70216C7D9 /* BuiltinTools.swift in Sources */,
+				99E935D23180736318178307 /* BuiltinMemoStore.swift in Sources */,
+				A2B0C1ED6A6E198A4AD905B4 /* BenchmarkView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1302,6 +1434,7 @@
 				PSTST001 /* PrivateServerManagerTests.swift in Sources */,
 				SYTST001 /* SyncManagerTests.swift in Sources */,
 				TKTST001 /* TokenManagerTests.swift in Sources */,
+				RMCPB004 /* RemoteMCPServerTests.swift in Sources */,
 				TPTST001 /* ToolParserTests.swift in Sources */,
 				PIIFLT003 /* PIIFilterTests.swift in Sources */,
 			);
@@ -1930,7 +2063,7 @@
 				CODE_SIGN_ENTITLEMENTS = LocalAIAgent/LocalAIAgent.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 53;
+				CURRENT_PROJECT_VERSION = 57;
 				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = NO;
 				DEVELOPMENT_TEAM = 5BV85JW8US;
 				ENABLE_PREVIEWS = YES;
@@ -1953,7 +2086,7 @@
 					"@executable_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 1.2.40;
+				MARKETING_VERSION = 1.2.43;
 				PRODUCT_BUNDLE_IDENTIFIER = love.elio.app;
 				PRODUCT_MODULE_NAME = LocalAIAgent;
 				PRODUCT_NAME = ElioChat;
@@ -1975,7 +2108,7 @@
 				CODE_SIGN_ENTITLEMENTS = LocalAIAgent/LocalAIAgent.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 53;
+				CURRENT_PROJECT_VERSION = 57;
 				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = NO;
 				DEVELOPMENT_TEAM = 5BV85JW8US;
 				ENABLE_PREVIEWS = YES;
@@ -1998,7 +2131,7 @@
 					"@executable_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 1.2.40;
+				MARKETING_VERSION = 1.2.43;
 				PRODUCT_BUNDLE_IDENTIFIER = love.elio.app;
 				PRODUCT_MODULE_NAME = LocalAIAgent;
 				PRODUCT_NAME = ElioChat;
@@ -2017,11 +2150,11 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 53;
+				CURRENT_PROJECT_VERSION = 57;
 				DEVELOPMENT_TEAM = 5BV85JW8US;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				MARKETING_VERSION = 1.2.40;
+				MARKETING_VERSION = 1.2.43;
 				PRODUCT_BUNDLE_IDENTIFIER = love.elio.app.tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
@@ -2036,11 +2169,11 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 53;
+				CURRENT_PROJECT_VERSION = 57;
 				DEVELOPMENT_TEAM = 5BV85JW8US;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				MARKETING_VERSION = 1.2.40;
+				MARKETING_VERSION = 1.2.43;
 				PRODUCT_BUNDLE_IDENTIFIER = love.elio.app.tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
@@ -2054,11 +2187,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 53;
+				CURRENT_PROJECT_VERSION = 57;
 				DEVELOPMENT_TEAM = 5BV85JW8US;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				MARKETING_VERSION = 1.2.40;
+				MARKETING_VERSION = 1.2.43;
 				PRODUCT_BUNDLE_IDENTIFIER = love.elio.app.uitests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
@@ -2072,11 +2205,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 53;
+				CURRENT_PROJECT_VERSION = 57;
 				DEVELOPMENT_TEAM = 5BV85JW8US;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				MARKETING_VERSION = 1.2.40;
+				MARKETING_VERSION = 1.2.43;
 				PRODUCT_BUNDLE_IDENTIFIER = love.elio.app.uitests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
@@ -2139,6 +2272,14 @@
 /* End XCLocalSwiftPackageReference section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		MLX00001 /* XCRemoteSwiftPackageReference "mlx-swift-lm" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ml-explore/mlx-swift-lm.git";
+			requirement = {
+				kind = exactVersion;
+				version = 2.29.2;
+			};
+		};
 		WHISPER005 /* XCRemoteSwiftPackageReference "WhisperKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/argmaxinc/WhisperKit.git";
@@ -2159,6 +2300,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = MDVIEW001 /* XCLocalSwiftPackageReference "MarkdownView" */;
 			productName = MarkdownView;
+		};
+		MLX00002 /* MLXLLM */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = MLX00001 /* XCRemoteSwiftPackageReference "mlx-swift-lm" */;
+			productName = MLXLLM;
 		};
 		WHISPER002 /* WhisperKit */ = {
 			isa = XCSwiftPackageProductDependency;

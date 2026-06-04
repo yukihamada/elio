@@ -156,6 +156,39 @@ struct MCPServerListView: View {
 
     private var customServersSection: some View {
         VStack(alignment: .leading, spacing: 12) {
+            SectionHeader(title: "外部MCPサーバー", icon: "globe", color: .blue)
+
+            NavigationLink(destination: RemoteMCPServerView().environmentObject(appState)) {
+                HStack(spacing: 14) {
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 10)
+                            .fill(Color.blue.opacity(0.1))
+                            .frame(width: 44, height: 44)
+                        Image(systemName: "globe")
+                            .font(.system(size: 20, weight: .medium))
+                            .foregroundStyle(.blue)
+                    }
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text("リモートMCPサーバー")
+                            .font(.system(size: 16, weight: .semibold))
+                            .foregroundStyle(.primary)
+                        Text("ATSM・Koe・MU・JiuFlow など外部サーバーに接続")
+                            .font(.system(size: 13))
+                            .foregroundStyle(.secondary)
+                    }
+                    Spacer()
+                    Image(systemName: "chevron.right")
+                        .font(.system(size: 12, weight: .semibold))
+                        .foregroundStyle(.tertiary)
+                }
+                .padding(14)
+                .background(
+                    RoundedRectangle(cornerRadius: 16)
+                        .fill(Color(.secondarySystemBackground))
+                )
+            }
+            .buttonStyle(.plain)
+
             SectionHeader(title: "カスタム連携", icon: "plus.circle.fill", color: .green)
 
             NavigationLink(destination: CustomMCPServerView()) {

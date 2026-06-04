@@ -72,6 +72,60 @@ final class KeychainManager {
     func hasAPIKey(for provider: APIKeyProvider) -> Bool {
         getAPIKey(for: provider) != nil
     }
+
+    // MARK: - Generic Secret Storage (arbitrary account key)
+
+    /// Store an arbitrary secret (e.g. a remote MCP server bearer token) under a custom account key.
+    func setSecret(_ value: String, account: String) throws {
+        let data = value.data(using: .utf8)!
+        try? deleteSecret(account: account)
+
+        let query: [String: Any] = [
+            kSecClass as String: kSecClassGenericPassword,
+            kSecAttrService as String: service,
+            kSecAttrAccount as String: account,
+            kSecValueData as String: data,
+            kSecAttrAccessible as String: kSecAttrAccessibleAfterFirstUnlock
+        ]
+
+        let status = SecItemAdd(query as CFDictionary, nil)
+        guard status == errSecSuccess else {
+            throw KeychainError.unableToStore(status)
+        }
+    }
+
+    /// Retrieve an arbitrary secret stored under a custom account key.
+    func getSecret(account: String) -> String? {
+        let query: [String: Any] = [
+            kSecClass as String: kSecClassGenericPassword,
+            kSecAttrService as String: service,
+            kSecAttrAccount as String: account,
+            kSecReturnData as String: true,
+            kSecMatchLimit as String: kSecMatchLimitOne
+        ]
+
+        var result: AnyObject?
+        let status = SecItemCopyMatching(query as CFDictionary, &result)
+        guard status == errSecSuccess,
+              let data = result as? Data,
+              let value = String(data: data, encoding: .utf8) else {
+            return nil
+        }
+        return value
+    }
+
+    /// Delete an arbitrary secret stored under a custom account key.
+    func deleteSecret(account: String) throws {
+        let query: [String: Any] = [
+            kSecClass as String: kSecClassGenericPassword,
+            kSecAttrService as String: service,
+            kSecAttrAccount as String: account
+        ]
+        let status = SecItemDelete(query as CFDictionary)
+        guard status == errSecSuccess || status == errSecItemNotFound else {
+            throw KeychainError.unableToDelete(status)
+        }
+    }
 }
 
 // MARK: - API Key Providers
@@ -92,7 +146,7 @@ enum APIKeyProvider: String, CaseIterable, Identifiable {
         case .chatweb: return "chatweb.ai"
         case .teai: return "teai.io"
         case .groq: return "Groq"
-        case .openai: return "OpenAI"
+        case .openai: return "Cloud AI"
         case .anthropic: return "Anthropic"
         case .google: return "Google AI"
         case .openrouter: return "OpenRouter"

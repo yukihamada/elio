@@ -488,9 +488,35 @@ final class AppState: ObservableObject {
     }
 
     private func setupMCPClient() {
-        mcpClient = MCPClient()
-        mcpClient?.registerBuiltInServers()
+        let client = MCPClient()
+        client.registerBuiltInServers()
+        // Restore saved remote MCP servers and register them. Enabled ones also
+        // join enabledMCPServers so the agent loop can route tools to them.
+        let manager = RemoteMCPServerManager.shared
+        manager.registerAll(with: client)
+        for config in manager.configs where config.isEnabled {
+            enabledMCPServers.insert(config.id)
+        }
+        mcpClient = client
     }
+
+    /// Re-register remote MCP servers after the user changes them in Settings, and
+    /// sync the enabled set. Refreshes tool caches for newly-enabled servers.
+    func reloadRemoteMCPServers() {
+        guard let client = mcpClient else { return }
+        let manager = RemoteMCPServerManager.shared
+        for config in manager.configs {
+            client.unregisterServer(id: config.id)
+            enabledMCPServers.remove(config.id)
+        }
+        manager.registerAll(with: client)
+        for config in manager.configs where config.isEnabled {
+            enabledMCPServers.insert(config.id)
+        }
+    }
+
+    /// Expose the shared MCP client to settings views for connection tests.
+    var mcpClientRef: MCPClient? { mcpClient }
 
     /// Check if any model is downloaded, if not, initiate ODR download for ElioChat
     func ensureInitialModelAvailable() async {
