@@ -12,6 +12,31 @@ final class MCPClient: ObservableObject {
         updateServerInfos()
     }
 
+    /// All tool names currently exposed by registered built-in (non-remote) servers.
+    /// Used to reject remote tools that would shadow a built-in tool.
+    func builtInToolNames() -> Set<String> {
+        var names = Set<String>()
+        for server in servers.values where !(server is RemoteMCPServer) {
+            for tool in server.listTools() {
+                names.insert(tool.name)
+            }
+        }
+        return names
+    }
+
+    /// Tool names exposed by every registered server EXCEPT the one with `excludingServerId`.
+    /// Used to reject a remote tool that collides with any already-registered server
+    /// (built-in or another remote), preserving first-registered-wins semantics.
+    func toolNames(excludingServerId: String) -> Set<String> {
+        var names = Set<String>()
+        for (sid, server) in servers where sid != excludingServerId {
+            for tool in server.listTools() {
+                names.insert(tool.name)
+            }
+        }
+        return names
+    }
+
     func unregisterServer(id: String) {
         servers.removeValue(forKey: id)
         updateServerInfos()
@@ -78,10 +103,16 @@ final class MCPClient: ObservableObject {
         arguments: [String: JSONValue],
         enabledServers: Set<String>
     ) async throws -> MCPResult {
-        // ツール名からサーバーを特定
-        for (serverId, server) in servers where enabledServers.contains(serverId) {
-            let tools = server.listTools()
-            if tools.contains(where: { $0.name == fullToolName }) {
+        // Deterministic resolution order: built-in (non-remote) servers are always
+        // searched BEFORE remote ones, so a remote server can never hijack a
+        // built-in tool name (e.g. `read_file`) by claiming it. `servers` is an
+        // unordered dictionary, so without this split the winner would be random.
+        let enabled = servers.filter { enabledServers.contains($0.key) }.map { $0.value }
+        let ordered = enabled.filter { !($0 is RemoteMCPServer) }
+                    + enabled.filter { $0 is RemoteMCPServer }
+
+        for server in ordered {
+            if server.listTools().contains(where: { $0.name == fullToolName }) {
                 return try await server.callTool(name: fullToolName, arguments: arguments)
             }
         }

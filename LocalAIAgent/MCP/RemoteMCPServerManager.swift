@@ -97,8 +97,11 @@ final class RemoteMCPServerManager: ObservableObject {
             guard let server = try? makeServer(for: config) else { continue }
             client.registerServer(server)
             if config.isEnabled {
+                // Snapshot the names already claimed by built-in + previously
+                // registered servers so colliding remote tools get dropped.
+                let reserved = client.toolNames(excludingServerId: server.id)
                 Task {
-                    _ = try? await server.refreshTools()
+                    _ = try? await server.refreshTools(reservedNames: reserved)
                     // Force MCPClient to recompute serverInfos with the discovered tools.
                     await MainActor.run { client.refreshServerInfos() }
                 }
