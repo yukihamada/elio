@@ -531,19 +531,22 @@ final class AppState: ObservableObject {
             return // User already has a model
         }
 
-        // No models available - initiate ODR download for ElioChat
-        let eliochatModelId = "eliochat-1.7b-jp-v2"
+        // No models available - initiate download for the default ElioChat model.
+        // NOTE: was "eliochat-1.7b-jp-v2", which doesn't exist in the catalog, so the
+        // guard below silently returned and the initial auto-download never started.
+        let eliochatModelId = "eliochat-1.7b-v3"
         guard let eliochatModel = modelLoader.availableModels.first(where: { $0.id == eliochatModelId }) else {
+            logError("AppState", "Default model \(eliochatModelId) not found in catalog — initial download skipped", [:])
             return
         }
 
-        // Start ODR download in background
+        // Start download in background
         Task {
             do {
                 try await modelLoader.downloadModel(eliochatModel)
-                logInfo("AppState", "ElioChat model downloaded via ODR", [:])
+                logInfo("AppState", "ElioChat model downloaded", [:])
             } catch {
-                logError("AppState", "Failed to download ElioChat via ODR: \(error.localizedDescription)", [:])
+                logError("AppState", "Failed to download ElioChat: \(error.localizedDescription)", [:])
             }
         }
     }

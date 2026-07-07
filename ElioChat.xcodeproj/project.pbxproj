@@ -107,7 +107,6 @@
 		DOCPICKER001 /* DocumentPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = DOCPICKER002 /* DocumentPicker.swift */; };
 		DQMGR001 /* DistributedQueryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DQMGR002 /* DistributedQueryManager.swift */; };
 		DQVIEW001 /* DistributedQueryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DQVIEW002 /* DistributedQueryView.swift */; };
-		E10000000000000000000001 /* HealthKitServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10000000000000000000002 /* HealthKitServer.swift */; };
 		E1F2A3B4C5D6E7F8A9B0C1D2 /* UnifiedConnectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A2B3C4D5E6F7A8B9C0D1E2 /* UnifiedConnectView.swift */; };
 		E20000000000000000000001 /* MusicServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20000000000000000000002 /* MusicServer.swift */; };
 		E2414EA37C01D9A1673BDAF3 /* DirectLlamaEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D9A940CB412E5488FC737C /* DirectLlamaEngine.swift */; };
@@ -392,7 +391,6 @@
 		DOCPICKER002 /* DocumentPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentPicker.swift; sourceTree = "<group>"; };
 		DQMGR002 /* DistributedQueryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistributedQueryManager.swift; sourceTree = "<group>"; };
 		DQVIEW002 /* DistributedQueryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistributedQueryView.swift; sourceTree = "<group>"; };
-		E10000000000000000000002 /* HealthKitServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitServer.swift; sourceTree = "<group>"; };
 		E19AACC9C84F3F4EF3AD79FC /* BenchmarkView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BenchmarkView.swift; sourceTree = "<group>"; };
 		E20000000000000000000002 /* MusicServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicServer.swift; sourceTree = "<group>"; };
 		E2A98D262BC8C21D6F1D8F48 /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = cs.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -846,7 +844,6 @@
 				EMERKB002 /* EmergencyKnowledgeBaseServer.swift */,
 				WEATHER002 /* WeatherServer.swift */,
 				NEWSSRV002 /* NewsServer.swift */,
-				E10000000000000000000002 /* HealthKitServer.swift */,
 				E20000000000000000000002 /* MusicServer.swift */,
 				E30000000000000000000002 /* MotionServer.swift */,
 			);
@@ -1397,7 +1394,6 @@
 				A20000000000000000000001 /* AgentManager.swift in Sources */,
 				F10000000000000000000001 /* A2AProtocol.swift in Sources */,
 				A30000000000000000000001 /* AgentListView.swift in Sources */,
-				E10000000000000000000001 /* HealthKitServer.swift in Sources */,
 				E20000000000000000000001 /* MusicServer.swift in Sources */,
 				E30000000000000000000001 /* MotionServer.swift in Sources */,
 				855432B55F8B9C5E765EA2A6 /* BPETokenizer.swift in Sources */,

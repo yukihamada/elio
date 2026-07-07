@@ -17,7 +17,7 @@
 	<key>CFBundlePackageType</key>
 	<string>$(PRODUCT_BUNDLE_PACKAGE_TYPE)</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.2.41</string>
+	<string>1.3.0</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -32,16 +32,22 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>54</string>
+	<string>57</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
 	<dict>
-		<key>NSAllowsArbitraryLoads</key>
+		<!-- 公開インターネット通信は TLS 必須(任意 http を全面許可しない)。リモートMCPはコード側で https-only を強制済み。
+		     P2P推論・近接探索・ローカル台帳サーバ(IPリテラル/.local)のための平文ローカル通信のみ許可する。 -->
+		<key>NSAllowsLocalNetworking</key>
 		<true/>
 	</dict>
+	<key>NSMotionUsageDescription</key>
+	<string>ElioChat uses motion sensors to detect your activity (walking, running, stationary) and provide context-aware AI responses. For example, ask "How many steps have I taken today?"</string>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>ElioChat accesses your music library to control playback and provide song information. For example, ask "What song is playing?" or say "Play my favorites playlist."</string>
 	<key>NSCalendarsUsageDescription</key>
 	<string>ElioChat reads and creates calendar events so you can ask the AI about your schedule. For example, say "What meetings do I have today?" to see your upcoming events.</string>
 	<key>NSCameraUsageDescription</key>
