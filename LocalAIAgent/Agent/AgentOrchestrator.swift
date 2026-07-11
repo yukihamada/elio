@@ -5,10 +5,11 @@ import Network
 final class AgentOrchestrator: ObservableObject {
     @Published private(set) var isProcessing = false
     @Published private(set) var currentStep: AgentStep?
+    @Published private(set) var activeAgent: AgentProfile?  // Auto-detected agent for current message
 
     private let llm: CoreMLInference
     private let mcpClient: MCPClient
-    private let maxIterations = 10
+    private let maxIterations = 1  // Single pass only — no tool loop to prevent MainActor hangs
     private var modelId: String?
     private let settingsManager = ModelSettingsManager.shared
 
@@ -43,7 +44,7 @@ final class AgentOrchestrator: ObservableObject {
     var modelFamily: ModelFamily {
         guard let id = modelId?.lowercased() else { return .other }
         // qwen3 family: Qwen-based models and their fine-tunes
-        let isQwen = id.contains("qwen") || id.contains("eliochat") ||
+        let isQwen = id.contains("qwen") || id.contains("eliochat") || id.contains("futa") ||
                      id.contains("tinyswallow") || id.contains("nemotron") ||
                      id.contains("jan-nano") || id.contains("rakuten") ||
                      (id.contains("deepseek") && id.contains("qwen"))
@@ -68,7 +69,7 @@ final class AgentOrchestrator: ObservableObject {
         case .small:
             return enabledServers.intersection(["websearch", "calendar", "news"])
         case .medium:
-            return enabledServers.intersection(["websearch", "calendar", "news", "reminders", "notes"])
+            return enabledServers.intersection(["websearch", "calendar", "news", "reminders", "notes", "code_execution"])
         case .large, .xlarge:
             return enabledServers
         }
@@ -80,9 +81,12 @@ final class AgentOrchestrator: ObservableObject {
         enabledServers: Set<String>
     ) async throws -> String {
         isProcessing = true
-        defer { isProcessing = false }
+        defer { isProcessing = false; activeAgent = nil }
 
-        let systemPrompt = buildSystemPrompt(enabledServers: enabledServers)
+        // LLM-based agent auto-detection
+        let agent = detectAgent(for: message)
+        activeAgent = agent
+        let systemPrompt = buildSystemPrompt(enabledServers: enabledServers, agent: agent)
 
         var workingHistory = history
         var iteration = 0
@@ -178,7 +182,46 @@ final class AgentOrchestrator: ObservableObject {
         UserDefaults.standard.string(forKey: "custom_system_prompt") ?? ""
     }
 
-    private func buildSystemPrompt(enabledServers: Set<String>) -> String {
+    // MARK: - Auto Agent Detection (keyword-based)
+
+    /// Fast keyword matching for agent selection. No LLM call needed.
+    func detectAgent(for message: String) -> AgentProfile? {
+        // If user manually pinned an agent (not default), respect that
+        if let selected = AgentManager.shared.selectedAgent,
+           AgentManager.shared.selectedAgentId != nil,
+           selected.name != "アシスタント" {
+            return selected
+        }
+
+        let lower = message.lowercased()
+        let agents = AgentManager.shared.agents
+        let keywords: [(String, [String])] = [
+            ("フィットネスコーチ", ["歩数", "心拍", "睡眠", "ワークアウト", "運動", "健康", "体重", "ダイエット"]),
+            ("DJ", ["音楽", "曲", "再生", "プレイリスト", "次の曲", "音量"]),
+            ("コーダー", ["コード", "バグ", "プログラム", "関数", "エラー", "debug", "swift", "python"]),
+            ("翻訳者", ["翻訳", "英訳", "和訳", "英語にして", "日本語にして", "translate"]),
+            ("スケジュール管理", ["予定", "カレンダー", "リマインダー", "会議", "スケジュール"]),
+            ("リサーチャー", ["調べ", "検索", "最新", "ニュース"]),
+            ("料理アシスタント", ["レシピ", "料理", "献立", "食材"]),
+            ("データアナリスト", ["計算", "統計", "平均", "集計", "数式"]),
+            ("メンタルケア", ["つらい", "悩み", "不安", "ストレス", "落ち込"]),
+            ("旅行プランナー", ["旅行", "観光", "ホテル", "フライト"]),
+            ("学習チューター", ["勉強", "宿題", "解き方", "微分", "積分"]),
+            ("ビジネスメール", ["メール", "議事録", "報告書", "企画書"]),
+            ("小説家", ["小説", "物語", "シナリオ", "創作"]),
+            ("セキュリティ顧問", ["パスワード", "セキュリティ", "フィッシング", "詐欺"]),
+            ("ニュースキャスター", ["今日のニュース", "速報", "時事"]),
+        ]
+
+        for (name, words) in keywords {
+            if words.filter({ lower.contains($0) }).count >= 2 {
+                return agents.first(where: { $0.name == name })
+            }
+        }
+        return nil
+    }
+
+    private func buildSystemPrompt(enabledServers: Set<String>, agent: AgentProfile?) -> String {
         let tier = modelTier()
         let filtered = filteredServers(enabledServers)
         let family = modelFamily
@@ -191,7 +234,9 @@ final class AgentOrchestrator: ObservableObject {
         let webSearchEnabled = filtered.contains("websearch")
         let calendarEnabled = filtered.contains("calendar")
 
+        let agentName = agent?.name ?? "アシスタント"
         print("[AgentOrchestrator] Model: \(modelId ?? "unknown"), tier: \(String(describing: tier)), family: \(family)")
+        print("[AgentOrchestrator] Agent: \(agentName) (auto-detected)")
         print("[AgentOrchestrator] Enabled: \(enabledServers) → Filtered: \(filtered)")
 
         var basePrompt: String
@@ -211,6 +256,13 @@ final class AgentOrchestrator: ObservableObject {
                 tier: tier,
                 family: family
             )
+        }
+
+        // Append auto-detected agent's prompt
+        let agentPrompt = agent?.systemPrompt ?? ""
+        if !agentPrompt.isEmpty {
+            let agentHeader = isJapanese ? "\n\n# エージェント: \(agentName)\n" : "\n\n# Agent: \(agentName)\n"
+            basePrompt += agentHeader + agentPrompt
         }
 
         // Append custom prompt if set
@@ -530,14 +582,21 @@ extension AgentOrchestrator {
         onToolCall: @escaping (String) -> Void
     ) async throws -> String {
         isProcessing = true
-        defer { isProcessing = false }
+        defer { isProcessing = false; activeAgent = nil }
 
-        let systemPrompt = buildSystemPrompt(enabledServers: enabledServers)
+        // LLM-based agent auto-detection
+        onToolCall("agent:選択中...")
+        let agent = detectAgent(for: message)
+        activeAgent = agent
+        if let agent = agent {
+            onToolCall("agent:\(agent.name)")
+        } else {
+            onToolCall("agent:アシスタント")
+        }
 
-        // Debug: Log enabled servers and web search status
-        print("[AgentOrchestrator] Enabled servers: \(enabledServers)")
-        print("[AgentOrchestrator] Web search enabled: \(enabledServers.contains("websearch"))")
-        print("[AgentOrchestrator] Is online: \(isOnline)")
+        let systemPrompt = buildSystemPrompt(enabledServers: enabledServers, agent: agent)
+
+        print("[AgentOrchestrator] LLM selected agent: \(agent?.name ?? "アシスタント")")
         print("[AgentOrchestrator] User message: \(message.prefix(100))")
 
         var workingHistory = history
@@ -549,9 +608,15 @@ extension AgentOrchestrator {
             iteration += 1
             currentStep = .thinking
 
+            // On follow-up iterations (after tool results), clear streamed text
+            // so the model generates a fresh response incorporating tool results
+            if iteration > 1 {
+                finalResponse = ""
+                onToolCall("[step:\(iteration)/\(maxIterations)]")
+            }
+
             buffer = ""
 
-            // Get model settings (with enableThinking for <think> tag support)
             let settings: ModelSettings
             if let modelId = modelId {
                 settings = settingsManager.settings(for: modelId)
@@ -560,7 +625,9 @@ extension AgentOrchestrator {
             }
 
             var toolCallDetected = false
+            var inThinkBlock = false  // Suppress <think>...</think> from stream
 
+            // Simple streaming: pass tokens through, skip <think> and tool_call blocks
             _ = try await llm.generateWithMessages(
                 messages: workingHistory,
                 systemPrompt: systemPrompt,
@@ -568,42 +635,29 @@ extension AgentOrchestrator {
             ) { token in
                 buffer += token
 
-                // Stop streaming to UI if tool call is detected (either format)
+                // Suppress tool call blocks
                 if buffer.contains("<tool_call>") || buffer.contains("<|python_tag|>") {
                     toolCallDetected = true
                     return
                 }
+                if toolCallDetected { return }
 
-                // Also detect bare JSON tool calls (for smaller models)
-                // Look for pattern like {"name": "...", "arguments": ...}
-                if buffer.contains("\"name\"") && buffer.contains("\"arguments\"") && buffer.contains("}") {
-                    // Check if we have a complete JSON object
-                    if buffer.lastIndex(of: "}") != nil {
-                        let afterThink = buffer.range(of: "</think>").map { String(buffer[$0.upperBound...]) } ?? buffer
-                        if afterThink.contains("{") && afterThink.contains("}") {
-                            toolCallDetected = true
-                            return
-                        }
-                    }
+                // Enter think block
+                if token.contains("<think>") { inThinkBlock = true }
+                // Exit think block
+                if inThinkBlock && token.contains("</think>") {
+                    inThinkBlock = false
+                    return  // Don't emit the </think> line
                 }
+                // Suppress everything inside think block
+                if inThinkBlock { return }
 
-                if !toolCallDetected {
-                    onToken(token)
-                }
+                onToken(token)
             }
 
-            // Debug: Log raw model output to check if tool calls are being generated
-            print("[AgentOrchestrator] Raw buffer (first 500 chars): \(String(buffer.prefix(500)))")
-            print("[AgentOrchestrator] Tool call detected during streaming: \(toolCallDetected)")
-            if buffer.contains("<tool_call>") {
-                print("[AgentOrchestrator] Found <tool_call> tag!")
-            }
-            if buffer.contains("<|python_tag|>") {
-                print("[AgentOrchestrator] Found <|python_tag|> token (Llama3 format)!")
-            }
-            if buffer.contains("\"name\"") && buffer.contains("\"arguments\"") {
-                print("[AgentOrchestrator] Found bare JSON tool call pattern!")
-            }
+            print("[AgentOrchestrator] Iteration \(iteration) buffer (\(buffer.count) chars): \(String(buffer.prefix(300)))")
+            let hasToolCallTag = buffer.contains("<tool_call>")
+            print("[AgentOrchestrator] toolCallDetected=\(toolCallDetected), hasToolCallTag=\(hasToolCallTag)")
 
             let parsedContents = ResponseParser.parse(buffer)
             var hasToolCall = false
@@ -612,8 +666,6 @@ extension AgentOrchestrator {
             for content in parsedContents {
                 switch content {
                 case .text(let text):
-                    // If we've already processed a tool call, ignore any text after it
-                    // (small models may hallucinate responses instead of waiting for tool results)
                     if !toolCallProcessed {
                         finalResponse += text
                     }
@@ -622,7 +674,7 @@ extension AgentOrchestrator {
                     hasToolCall = true
                     toolCallProcessed = true
                     currentStep = .callingTool(name)
-                    onToolCall("ツール実行中: \(name)")
+                    onToolCall("tool_start:\(name)")
 
                     let toolResult = await executeToolCall(
                         name: name,
@@ -630,28 +682,32 @@ extension AgentOrchestrator {
                         enabledServers: enabledServers
                     )
 
+                    // Notify UI of tool result
+                    let resultPreview = String(toolResult.content.prefix(200))
+                    onToolCall("tool_result:\(name):\(toolResult.isError ? "error" : "ok"):\(resultPreview)")
+
+                    let toolCall = ToolCall(name: name, arguments: arguments)
                     let assistantMessage = Message(
                         role: .assistant,
                         content: buffer,
-                        toolCalls: [ToolCall(name: name, arguments: arguments)]
+                        toolCalls: [toolCall]
                     )
                     workingHistory.append(assistantMessage)
 
-                    // HOTFIX: Return tool result immediately to prevent freeze
-                    currentStep = nil
-                    return toolResult.content.trimmingCharacters(in: .whitespacesAndNewlines)
+                    let toolMessage = Message(
+                        role: .tool,
+                        content: toolResult.content,
+                        toolResults: [ToolResult(
+                            toolCallId: toolCall.id,
+                            content: toolResult.content,
+                            isError: toolResult.isError
+                        )]
+                    )
+                    workingHistory.append(toolMessage)
 
-                    // Original code (disabled):
-                    // let toolMessage = Message(
-                    //     role: .tool,
-                    //     content: toolResult.content,
-                    //     toolResults: [ToolResult(
-                    //         toolCallId: assistantMessage.toolCalls!.first!.id,
-                    //         content: toolResult.content,
-                    //         isError: toolResult.isError
-                    //     )]
-                    // )
-                    // workingHistory.append(toolMessage)
+                    // Yield to prevent main actor starvation, then break to re-invoke LLM
+                    await Task.yield()
+                    break
 
                 case .thinking:
                     continue
@@ -664,6 +720,6 @@ extension AgentOrchestrator {
         }
 
         currentStep = nil
-        return finalResponse.trimmingCharacters(in: .whitespacesAndNewlines)
+        return finalResponse
     }
 }

@@ -266,17 +266,36 @@ struct RemoteMCPServerEditView: View {
         tokenLoaded = true
     }
 
+    /// Normalize and validate the entered URL. Only `https://` is accepted —
+    /// the bearer token must never travel over a cleartext connection.
+    private func normalizedURLString() -> String {
+        urlString.trimmingCharacters(in: .whitespacesAndNewlines)
+    }
+
+    private func isValidHTTPSURL(_ s: String) -> Bool {
+        guard let url = URL(string: s), url.scheme?.lowercased() == "https", url.host != nil else {
+            return false
+        }
+        return true
+    }
+
     private func currentConfig() -> RemoteMCPServerConfig {
-        var c = config ?? RemoteMCPServerConfig(name: name, urlString: urlString,
+        var c = config ?? RemoteMCPServerConfig(name: name, urlString: normalizedURLString(),
                                                 isEnabled: true,
                                                 requiresToken: !token.isEmpty)
         c.name = name
-        c.urlString = urlString
+        c.urlString = normalizedURLString()
         c.requiresToken = !token.isEmpty || c.requiresToken
         return c
     }
 
     private func save() {
+        let url = normalizedURLString()
+        guard isValidHTTPSURL(url) else {
+            testIsError = true
+            testResult = "URLは https:// で始まる必要があります"
+            return
+        }
         let c = currentConfig()
         // Pass token (possibly empty -> clears) only when editing the token field is meaningful.
         manager.addOrUpdate(c, token: token)
@@ -288,6 +307,11 @@ struct RemoteMCPServerEditView: View {
         testing = true
         testResult = nil
         defer { testing = false }
+        guard isValidHTTPSURL(normalizedURLString()) else {
+            testIsError = true
+            testResult = "URLは https:// で始まる必要があります"
+            return
+        }
         do {
             let probe = currentConfig()
             let server = try RemoteMCPServer(config: probe, token: token.isEmpty ? nil : token)
