@@ -65,7 +65,7 @@ final class ChatModeManager: ObservableObject {
         // Configure mesh backend with local backend
         meshBackend?.setLocalBackend(localBackend)
         // Configure speculative backend if a draft model (small/fast) is available
-        if let llamaInference = inference as? LlamaInference {
+        if let llamaInference = inference.llamaInference {
             speculativeBackend?.configureDraftModel(llamaInference)
         }
     }

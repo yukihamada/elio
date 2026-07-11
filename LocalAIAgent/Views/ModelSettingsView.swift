@@ -211,27 +211,7 @@ struct ModelSettingsView: View {
                     onChange: { selectedPreset = .custom }
                 )
 
-                Divider().padding(.leading, 16)
-
-                // Enable Thinking
-                HStack {
-                    VStack(alignment: .leading, spacing: 2) {
-                        Text(String(localized: "settings.parameter.thinking"))
-                            .font(.system(size: 15))
-                        Text(String(localized: "settings.parameter.thinking.description"))
-                            .font(.system(size: 12))
-                            .foregroundStyle(.secondary)
-                    }
-
-                    Spacer()
-
-                    Toggle("", isOn: $enableThinking)
-                        .labelsHidden()
-                        .onChange(of: enableThinking) { _, _ in
-                            selectedPreset = .custom
-                        }
-                }
-                .padding(16)
+                // Thinking toggle hidden — disabled by default
             }
             .background(
                 RoundedRectangle(cornerRadius: 16)
