@@ -15,6 +15,14 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 
 ## Mac
 
+### mac create_app
+
+```sh
+[bundle exec] fastlane mac create_app
+```
+
+Create macOS app on App Store Connect
+
 ### mac build
 
 ```sh
@@ -83,6 +91,14 @@ Deploy to TestFlight
 ```
 
 Deploy to App Store
+
+### ios submit_review
+
+```sh
+[bundle exec] fastlane ios submit_review
+```
+
+Submit already-uploaded build for App Store review
 
 ### ios sync_certificates
 

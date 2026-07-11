@@ -10,7 +10,7 @@ Training/data_viewer.html
 Frameworks/llama.xcframework
 
 # SwiftPM per-user data
-*.swiftpm/xcode/xcuserdata/
+**/.swiftpm/xcode/xcuserdata/
 
 # Firebase credentials
 fastlane/firebase/service-account.json
