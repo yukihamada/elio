@@ -85,7 +85,9 @@ final class KeychainManager {
             kSecAttrService as String: service,
             kSecAttrAccount as String: account,
             kSecValueData as String: data,
-            kSecAttrAccessible as String: kSecAttrAccessibleAfterFirstUnlock
+            // Generic secrets (e.g. remote MCP bearer tokens) are bound to this
+            // device and never synced to iCloud / migrated to a new device.
+            kSecAttrAccessible as String: kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly
         ]
 
         let status = SecItemAdd(query as CFDictionary, nil)

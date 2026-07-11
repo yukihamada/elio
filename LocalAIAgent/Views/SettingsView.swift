@@ -14,6 +14,8 @@ struct SettingsView: View {
     @State private var showingChatWebLogin = false
     @AppStorage("custom_system_prompt") private var customSystemPrompt: String = ""
     @AppStorage("chatwebModeEnabled") private var chatwebModeEnabled: Bool = false
+    @AppStorage("cloudAIConsentGiven") private var cloudAIConsentGiven: Bool = false
+    @State private var showCloudAIConsent = false
     @State private var showDeveloperDashboard = UserDefaults.standard.bool(forKey: "showDeveloperDashboard")
     @State private var showingTokenEconomyDashboard = false
     @State private var showingUpgradeElioProView = false
@@ -87,6 +89,9 @@ struct SettingsView: View {
 
                         // Language Section
                         languageSection
+
+                        // Agent Section
+                        agentSection
 
                         // System Prompt Section
                         systemPromptSection
@@ -433,10 +438,31 @@ struct SettingsView: View {
                 .padding(.vertical, 14)
                 .onChange(of: chatwebModeEnabled) { _, newValue in
                     if newValue {
-                        ChatModeManager.shared.setMode(.chatweb)
+                        if cloudAIConsentGiven {
+                            ChatModeManager.shared.setMode(.chatweb)
+                        } else {
+                            // Revert toggle and show consent dialog
+                            chatwebModeEnabled = false
+                            showCloudAIConsent = true
+                        }
                     } else {
                         ChatModeManager.shared.setMode(.local)
                     }
+                }
+                .sheet(isPresented: $showCloudAIConsent) {
+                    CloudAIConsentView(
+                        onAgree: {
+                            cloudAIConsentGiven = true
+                            chatwebModeEnabled = true
+                            ChatModeManager.shared.setMode(.chatweb)
+                            showCloudAIConsent = false
+                        },
+                        onCancel: {
+                            showCloudAIConsent = false
+                        }
+                    )
+                    .presentationDetents([.medium, .large])
+                    .presentationDragIndicator(.hidden)
                 }
 
                 if chatwebModeEnabled {
@@ -1396,6 +1422,60 @@ struct SettingsView: View {
             Button(String(localized: "common.ok")) {}
         } message: {
             Text(String(localized: "settings.language.changed.message"))
+        }
+    }
+
+    // MARK: - Agent Section
+
+    @State private var showingAgentList = false
+
+    private var agentSection: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            ModernSectionHeader(title: "エージェント", icon: "brain", gradient: [.indigo, .purple])
+
+            Button(action: { showingAgentList = true }) {
+                HStack(spacing: 12) {
+                    if let agent = AgentManager.shared.selectedAgent {
+                        ZStack {
+                            Circle()
+                                .fill(agent.color.opacity(0.15))
+                                .frame(width: 36, height: 36)
+                            Image(systemName: agent.icon)
+                                .font(.system(size: 16))
+                                .foregroundStyle(agent.color)
+                        }
+                        VStack(alignment: .leading, spacing: 2) {
+                            Text(agent.name)
+                                .font(.system(size: 14, weight: .semibold))
+                                .foregroundStyle(.primary)
+                            Text(agent.description)
+                                .font(.system(size: 11))
+                                .foregroundStyle(.secondary)
+                                .lineLimit(1)
+                        }
+                    } else {
+                        Image(systemName: "sparkles")
+                            .foregroundStyle(.indigo)
+                        Text("エージェントを選択")
+                            .foregroundStyle(.primary)
+                    }
+                    Spacer()
+                    Image(systemName: "chevron.right")
+                        .font(.system(size: 12, weight: .semibold))
+                        .foregroundStyle(.tertiary)
+                }
+                .padding(12)
+            }
+            .buttonStyle(.plain)
+            .modernCard(cornerRadius: 16)
+
+            Text("エージェントごとに異なるプロンプト・ツール・性格を設定できます")
+                .font(.caption)
+                .foregroundStyle(.secondary)
+                .padding(.horizontal, 4)
+        }
+        .sheet(isPresented: $showingAgentList) {
+            AgentListView()
         }
     }
 

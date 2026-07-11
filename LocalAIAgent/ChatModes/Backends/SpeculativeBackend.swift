@@ -32,9 +32,9 @@ final class SpeculativeBackend: InferenceBackend {
 
     // MARK: - Initialization
 
-    init(draftModel: LlamaInference? = nil, meshManager: MeshP2PManager = .shared, fallbackBackend: LocalBackend? = nil) {
+    init(draftModel: LlamaInference? = nil, meshManager: MeshP2PManager? = nil, fallbackBackend: LocalBackend? = nil) {
         self.draftModel = draftModel
-        self.meshManager = meshManager
+        self.meshManager = meshManager ?? MeshP2PManager.shared
         self.fallbackBackend = fallbackBackend
     }
 
