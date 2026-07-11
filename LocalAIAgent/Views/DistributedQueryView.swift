@@ -781,49 +781,50 @@ final class DistributedQueryViewModel: ObservableObject {
     func execute(query: String) async -> DistributedQueryUIResult? {
         phase = .preparing
 
-        // PII filter pass
-        let (filtered, redactedCount) = PIIFilter.filter(query, level: .standard)
+        // Count PII redactions for UI display (submitQuery re-filters internally)
+        let (_, redactedCount) = PIIFilter.filter(query, level: .standard)
         redactedItemCount = redactedCount
 
-        // Broadcast to peers
-        let peers = MeshP2PManager.shared.connectedPeers
-        let peerCount = peers.count
+        let peerCount = MeshP2PManager.shared.connectedPeers.count
         guard peerCount > 0 else {
             phase = .error("No peers connected")
             return nil
         }
 
-        phase = .broadcasting(peerCount: peerCount)
+        let maxPeers = min(peerCount, 5)
+        phase = .broadcasting(peerCount: maxPeers)
+        phase = .collecting(received: 0, total: maxPeers)
 
-        // Simulate collection (real implementation dispatches via MeshP2PManager)
-        var responses: [IndividualResponse] = []
-        let peerArray = Array(peers)
-        for i in 0..<peerCount {
-            try? await Task.sleep(nanoseconds: 300_000_000) // 0.3s per peer
-            phase = .collecting(received: i + 1, total: peerCount)
-            // Placeholder response
-            responses.append(IndividualResponse(
-                responderHash: peerArray[i].id,
-                qualityScore: Double.random(in: 0.5...1.0),
-                modelInfo: peerArray[i].capability.modelName,
-                processingTimeMs: Int.random(in: 200...2000),
-                isOutlier: Double.random(in: 0...1) < 0.1
-            ))
-        }
+        // Real distributed query via DistributedQueryManager
+        let result = await DistributedQueryManager.shared.submitQuery(query, maxPeers: maxPeers)
 
         phase = .aggregating
-        try? await Task.sleep(nanoseconds: 500_000_000) // 0.5s aggregation
 
-        // Build aggregated result
-        let avgQuality = responses.map(\.qualityScore).reduce(0, +) / Double(responses.count)
-        let result = DistributedQueryUIResult(
-            summary: "Distributed answer for: \(filtered)",
-            consensusScore: avgQuality,
+        guard !result.responses.isEmpty, let best = result.bestResponse else {
+            phase = .error("No responses received from network")
+            return nil
+        }
+
+        // Map to UI model; mark outliers as responses with confidence < 50% of average
+        let avgConf = result.averageConfidence
+        let responses = result.responses.map { r in
+            IndividualResponse(
+                responderHash: r.responderHash,
+                qualityScore: r.confidence,
+                modelInfo: r.modelInfo,
+                processingTimeMs: r.processingTimeMs,
+                isOutlier: avgConf > 0 && r.confidence < avgConf * 0.5
+            )
+        }
+
+        let uiResult = DistributedQueryUIResult(
+            summary: best.responseText,
+            consensusScore: result.averageConfidence,
             individualResponses: responses
         )
 
         phase = .complete
-        return result
+        return uiResult
     }
 
     /// Reset to idle state.

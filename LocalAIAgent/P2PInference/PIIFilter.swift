@@ -88,88 +88,46 @@ enum PIIFilter {
 
     // MARK: - Compiled Regex Patterns (cached as static lets)
 
+    private static func makeRegex(_ pattern: String) -> NSRegularExpression {
+        do {
+            return try NSRegularExpression(pattern: pattern, options: [])
+        } catch {
+            fatalError("PIIFilter: invalid regex pattern '\(pattern)': \(error)")
+        }
+    }
+
     /// Japanese mobile phone: 090/080/070-XXXX-XXXX (with or without hyphens)
-    private static let phoneMobileRegex: NSRegularExpression = {
-        // cSpell:disable
-        try! NSRegularExpression(
-            pattern: #"0[789]0[- ]?\d{4}[- ]?\d{4}"#,
-            options: []
-        )
-        // cSpell:enable
-    }()
+    // cSpell:disable
+    private static let phoneMobileRegex = makeRegex(#"0[789]0[- ]?\d{4}[- ]?\d{4}"#)
+    // cSpell:enable
 
     /// Japanese landline phone: 0X-XXXX-XXXX, 0XX-XXX-XXXX, etc.
-    private static let phoneLandlineRegex: NSRegularExpression = {
-        try! NSRegularExpression(
-            pattern: #"0\d{1,4}[- ]?\d{1,4}[- ]?\d{4}"#,
-            options: []
-        )
-    }()
+    private static let phoneLandlineRegex = makeRegex(#"0\d{1,4}[- ]?\d{1,4}[- ]?\d{4}"#)
 
     /// Email address
-    private static let emailRegex: NSRegularExpression = {
-        try! NSRegularExpression(
-            pattern: #"[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}"#,
-            options: []
-        )
-    }()
+    private static let emailRegex = makeRegex(#"[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}"#)
 
     /// Japanese postal code: 〒XXX-XXXX or XXX-XXXX
-    private static let postalCodeRegex: NSRegularExpression = {
-        try! NSRegularExpression(
-            pattern: #"〒?\d{3}[- ]\d{4}"#,
-            options: []
-        )
-    }()
+    private static let postalCodeRegex = makeRegex(#"〒?\d{3}[- ]\d{4}"#)
 
     /// Japanese prefecture + city address pattern:
     /// XX県XX市, XX府XX市, XX都XX区, 北海道XX市, etc.
-    private static let prefectureCityRegex: NSRegularExpression = {
-        try! NSRegularExpression(
-            pattern: #"(?:北海道|(?:東京|大阪|京都)府|.{2,3}県).{1,6}(?:市|区|町|村|郡)"#,
-            options: []
-        )
-    }()
+    private static let prefectureCityRegex = makeRegex(#"(?:北海道|(?:東京|大阪|京都)府|.{2,3}県).{1,6}(?:市|区|町|村|郡)"#)
 
     /// Japanese ward/town address pattern: XX区XX町X丁目
-    private static let wardTownRegex: NSRegularExpression = {
-        try! NSRegularExpression(
-            pattern: #".{1,4}区.{1,6}(?:町|丁目)"#,
-            options: []
-        )
-    }()
+    private static let wardTownRegex = makeRegex(#".{1,4}区.{1,6}(?:町|丁目)"#)
 
     /// My Number (Individual Number): exactly 12 digits
-    private static let mynumberRegex: NSRegularExpression = {
-        try! NSRegularExpression(
-            pattern: #"(?<!\d)\d{12}(?!\d)"#,
-            options: []
-        )
-    }()
+    private static let mynumberRegex = makeRegex(#"(?<!\d)\d{12}(?!\d)"#)
 
     /// Credit card number: 16 digits (with optional spaces/hyphens between groups of 4)
-    private static let creditCardRegex: NSRegularExpression = {
-        try! NSRegularExpression(
-            pattern: #"(?<!\d)\d{4}[- ]?\d{4}[- ]?\d{4}[- ]?\d{4}(?!\d)"#,
-            options: []
-        )
-    }()
+    private static let creditCardRegex = makeRegex(#"(?<!\d)\d{4}[- ]?\d{4}[- ]?\d{4}[- ]?\d{4}(?!\d)"#)
 
     /// Common Japanese full names: 2-4 kanji surname + space + 2-4 kanji given name
-    private static let japaneseNameRegex: NSRegularExpression = {
-        try! NSRegularExpression(
-            pattern: #"[\p{Han}]{2,4}[\s　][\p{Han}]{2,4}"#,
-            options: []
-        )
-    }()
+    private static let japaneseNameRegex = makeRegex(#"[\p{Han}]{2,4}[\s　][\p{Han}]{2,4}"#)
 
     /// IPv4 address
-    private static let ipv4Regex: NSRegularExpression = {
-        try! NSRegularExpression(
-            pattern: #"(?<!\d)(?:(?:25[0-5]|2[0-4]\d|[01]?\d\d?)\.){3}(?:25[0-5]|2[0-4]\d|[01]?\d\d?)(?!\d)"#,
-            options: []
-        )
-    }()
+    private static let ipv4Regex = makeRegex(#"(?<!\d)(?:(?:25[0-5]|2[0-4]\d|[01]?\d\d?)\.){3}(?:25[0-5]|2[0-4]\d|[01]?\d\d?)(?!\d)"#)
 
     /// All pattern definitions mapped by category.
     private static let patternsByCategory: [(PIICategory, [NSRegularExpression])] = [

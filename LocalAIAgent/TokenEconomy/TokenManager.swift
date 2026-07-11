@@ -17,6 +17,10 @@ final class TokenManager: ObservableObject {
     @Published private(set) var totalSpent: Int = 0
     @Published private(set) var transactions: [TokenTransaction] = []
 
+    /// On-chain ENAI balance (updated via refreshENAIBalance)
+    @Published private(set) var enaiBalance: Double = 0.0
+    @Published private(set) var isRefreshingENAI: Bool = false
+
     // MARK: - Persistence Keys
 
     private let balanceKey = "token_balance"
@@ -32,6 +36,33 @@ final class TokenManager: ObservableObject {
     static let proMonthlyTokens = 5000
     static let p2pEarnRate = 1
     static let relayEarnRate = 1
+
+    // MARK: - Quality-Based Reward Calculation
+
+    /// Calculate DePIN reward based on response quality, speed, model size, and uptime.
+    /// Returns 1-6 tokens per query.
+    static func calculateReward(
+        responseTimeMs: Double,
+        confidence: Double,
+        isLargeModel: Bool,
+        uptimeHours: Double
+    ) -> Int {
+        var reward = 1 // base reward
+
+        // Speed bonus: under 2 seconds = +1
+        if responseTimeMs < 2000 { reward += 1 }
+
+        // Confidence bonus: > 0.8 = +1
+        if confidence > 0.8 { reward += 1 }
+
+        // Large model bonus: 9B+ = +2 (higher quality inference)
+        if isLargeModel { reward += 2 }
+
+        // Uptime bonus: 24h+ continuous = +1
+        if uptimeHours >= 24 { reward += 1 }
+
+        return reward // max ~6 tokens per query
+    }
 
     private init() {
         loadState()
@@ -116,6 +147,50 @@ final class TokenManager: ObservableObject {
         transactions.insert(transaction, at: 0)
 
         saveState()
+    }
+
+    /// Fetch on-chain ENAI balance for the connected wallet.
+    func refreshENAIBalance() async {
+        guard let wallet = await EBRTokenGate.shared.walletAddress, !wallet.isEmpty else { return }
+        isRefreshingENAI = true
+        defer { isRefreshingENAI = false }
+
+        let rpcURL = URL(string: "https://api.mainnet-beta.solana.com")!
+        let body: [String: Any] = [
+            "jsonrpc": "2.0", "id": 1,
+            "method": "getTokenAccountsByOwner",
+            "params": [
+                wallet,
+                ["mint": EBRTokenGate.enaiMintAddress],
+                ["encoding": "jsonParsed"]
+            ]
+        ]
+        guard let data = try? JSONSerialization.data(withJSONObject: body) else { return }
+        var request = URLRequest(url: rpcURL)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = data
+        request.timeoutInterval = 15
+
+        guard let (responseData, _) = try? await URLSession.shared.data(for: request),
+              let json = try? JSONSerialization.jsonObject(with: responseData) as? [String: Any],
+              let result = json["result"] as? [String: Any],
+              let accounts = result["value"] as? [[String: Any]] else { return }
+
+        var total: UInt64 = 0
+        for account in accounts {
+            if let accountData = account["account"] as? [String: Any],
+               let parsed = accountData["data"] as? [String: Any],
+               let info = parsed["parsed"] as? [String: Any],
+               let tokenInfo = info["info"] as? [String: Any],
+               let tokenAmount = tokenInfo["tokenAmount"] as? [String: Any],
+               let amountStr = tokenAmount["amount"] as? String,
+               let amount = UInt64(amountStr) {
+                total += amount
+            }
+        }
+        // ENAI has 6 decimals
+        enaiBalance = Double(total) / 1_000_000.0
     }
 
     /// Get transactions for the current week
@@ -220,6 +295,7 @@ enum EarnReason: String {
     case referral = "Referral Bonus"
     case chatWebBonus = "ChatWeb.ai Connection Bonus"
     case developerThanks = "Developer Thanks ❤️"
+    case depinNode = "DePIN Node Reward"
 }
 
 enum SubscriptionTier: String, Codable, CaseIterable, Identifiable {

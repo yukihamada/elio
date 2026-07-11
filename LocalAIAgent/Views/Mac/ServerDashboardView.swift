@@ -5,23 +5,31 @@ struct ServerDashboardView: View {
     @ObservedObject private var serverManager = PrivateServerManager.shared
     @ObservedObject private var tokenManager = TokenManager.shared
     @State private var animateGradient = false
+    @State private var selectedTab: DashboardTab = .depin
+
+    enum DashboardTab: String, CaseIterable {
+        case depin = "DePIN Node"
+        case server = "P2P Server"
+    }
 
     var body: some View {
-        ScrollView {
-            VStack(spacing: 24) {
-                // MARK: - Hero Status Card
-                heroCard
-
-                // MARK: - Stats Grid
-                statsGrid
-
-                // MARK: - Connection Info
-                connectionCard
-
-                // MARK: - Token Economy
-                tokenCard
+        VStack(spacing: 0) {
+            // Tab picker
+            Picker("Dashboard", selection: $selectedTab) {
+                ForEach(DashboardTab.allCases, id: \.self) { tab in
+                    Text(tab.rawValue).tag(tab)
+                }
             }
-            .padding(24)
+            .pickerStyle(.segmented)
+            .padding(.horizontal, 24)
+            .padding(.top, 16)
+
+            switch selectedTab {
+            case .depin:
+                DePINDashboardView()
+            case .server:
+                serverContent
+            }
         }
         .background(Color.chatBackgroundDynamic)
         .navigationTitle(String(localized: "mac.server.dashboard.title", defaultValue: "Server Dashboard"))
@@ -29,6 +37,18 @@ struct ServerDashboardView: View {
             withAnimation(.easeInOut(duration: 3).repeatForever(autoreverses: true)) {
                 animateGradient = true
             }
+        }
+    }
+
+    private var serverContent: some View {
+        ScrollView {
+            VStack(spacing: 24) {
+                heroCard
+                statsGrid
+                connectionCard
+                tokenCard
+            }
+            .padding(24)
         }
     }
 
