@@ -117,6 +117,7 @@
 		EMERQV001 /* EmergencyQuickActionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EMERQV002 /* EmergencyQuickActionsView.swift */; };
 		F10000000000000000000001 /* A2AProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10000000000000000000002 /* A2AProtocol.swift */; };
 		F9B5BA92A297C87B4C263A10 /* ModelSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08FCD261ECDF172B6D58D847 /* ModelSelectorView.swift */; };
+		358E6A61777042BAFB464CA1 /* ChatWebModelSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A75820B8B3B091D541C724 /* ChatWebModelSelectorView.swift */; };
 		FC0C7203D357908E50F1A581 /* InferenceServerConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898DD0FF4816A2F2288E27CD /* InferenceServerConfig.swift */; };
 		FEEDCON01 /* FeedbackConsentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEEDCON02 /* FeedbackConsentView.swift */; };
 		FEEDMGR001 /* FeedbackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEEDMGR002 /* FeedbackManager.swift */; };
@@ -236,6 +237,7 @@
 		06A7FAEA7083B2EDCAA48BD1 /* BPETokenizer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BPETokenizer.swift; sourceTree = "<group>"; };
 		07A5EE86A8E85CFF68BEBBC3 /* ToolRouter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ToolRouter.swift; sourceTree = "<group>"; };
 		08FCD261ECDF172B6D58D847 /* ModelSelectorView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ModelSelectorView.swift; path = ModelSelectorView.swift; sourceTree = "<group>"; };
+		02A75820B8B3B091D541C724 /* ChatWebModelSelectorView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ChatWebModelSelectorView.swift; path = ChatWebModelSelectorView.swift; sourceTree = "<group>"; };
 		0C9FD5E3BB7666D07F90B6FE /* DeveloperThanksView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DeveloperThanksView.swift; sourceTree = "<group>"; };
 		0E46A3EE6581F4478C52E995 /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = et.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0E95A5FF764597D92E800362 /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = ro.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -653,6 +655,7 @@
 				0C9FD5E3BB7666D07F90B6FE /* DeveloperThanksView.swift */,
 				A9A3EC8083CC21D29D2DA7BA /* ChatWebQuickToggle.swift */,
 				08FCD261ECDF172B6D58D847 /* ModelSelectorView.swift */,
+				02A75820B8B3B091D541C724 /* ChatWebModelSelectorView.swift */,
 				D6E7F8A9B0C1D2E3F4A5B6C7 /* ModelSwitcherView.swift */,
 				B105EDF08C8690D3B8739D45 /* MessagesView.swift */,
 				1CFBAD2E97F48CFE480561BF /* DirectChatView.swift */,
@@ -1366,6 +1369,7 @@
 				DF3D9B5843EBF999962CB910 /* ChatWebQuickToggle.swift in Sources */,
 				81532C268A329161B26DBE93 /* SystemPromptLocalizations.swift in Sources */,
 				F9B5BA92A297C87B4C263A10 /* ModelSelectorView.swift in Sources */,
+				358E6A61777042BAFB464CA1 /* ChatWebModelSelectorView.swift in Sources */,
 				A1B2C3D4E5F6A7B8C9D0E1F2 /* ModelSwitcherView.swift in Sources */,
 				94C05C178CA153A1939D6A74 /* FriendsManager.swift in Sources */,
 				AD18E45C310E417CD140100C /* MessagingManager.swift in Sources */,

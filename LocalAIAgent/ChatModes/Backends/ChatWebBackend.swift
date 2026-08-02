@@ -103,6 +103,9 @@ final class ChatWebBackend: InferenceBackend, ObservableObject {
         ("claude-haiku-3-5", "Claude Haiku 3.5", false),
         ("gpt-4o", "Cloud AI Advanced", false),
         ("gpt-4o-mini", "Cloud AI Fast", false),
+        ("moonshotai/kimi-k3", "キミ (Kimi K3) ✦ Pro", true),
+        ("deepseek/deepseek-v4-flash", "ディープシーク (DeepSeek V4-Flash) ✦ Pro", true),
+        ("claude-sonnet-5", "クロード (Claude Sonnet 5) ✦ Pro", true),
     ]
 
     /// Persistent session ID for conversation continuity

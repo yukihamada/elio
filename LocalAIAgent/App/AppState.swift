@@ -37,6 +37,7 @@ final class AppState: ObservableObject {
     @Published var isEmergencyMode = false
     @Published var errorMessage: String?
     @Published var isGenerating = false  // Track if currently generating response
+    @Published var agentStatus: String? = nil  // Current tool/agent call status (e.g. "tool_start:name"), shown by AgentProgressRow
     @Published var inferenceMode: InferenceMode = .auto
     @Published var isInitialLoading = true  // Suppress UI during initial startup
     @Published var shouldStopGeneration = false  // Flag to stop generation
@@ -737,7 +738,7 @@ final class AppState: ObservableObject {
 
         // Set generating flag immediately
         isGenerating = true
-        defer { isGenerating = false }
+        defer { isGenerating = false; agentStatus = nil }
 
         if currentConversation == nil {
             currentConversation = Conversation()
@@ -772,6 +773,7 @@ final class AppState: ObservableObject {
                     },
                     onToolCall: { toolInfo in
                         // Tool call notification (could show in UI)
+                        self.agentStatus = toolInfo
                         logInfo("Tool", "Tool call: \(toolInfo)")
                     }
                 )
@@ -847,7 +849,7 @@ final class AppState: ObservableObject {
 
         // Set generating flag immediately
         isGenerating = true
-        defer { isGenerating = false }
+        defer { isGenerating = false; agentStatus = nil }
 
         // Update conversation title if this is the first message
         currentConversation?.updatedAt = Date()
@@ -871,6 +873,7 @@ final class AppState: ObservableObject {
                         onToken(token)
                     },
                     onToolCall: { toolInfo in
+                        self.agentStatus = toolInfo
                         logInfo("Tool", "Tool call: \(toolInfo)")
                     }
                 )

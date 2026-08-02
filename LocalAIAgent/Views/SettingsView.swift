@@ -12,6 +12,7 @@ struct SettingsView: View {
     @State private var showLanguageChangeAlert = false
     @State private var showingPromptEditor = false
     @State private var showingChatWebLogin = false
+    @State private var showingChatWebModelSelector = false
     @AppStorage("custom_system_prompt") private var customSystemPrompt: String = ""
     @AppStorage("chatwebModeEnabled") private var chatwebModeEnabled: Bool = false
     @AppStorage("cloudAIConsentGiven") private var cloudAIConsentGiven: Bool = false
@@ -651,42 +652,51 @@ struct SettingsView: View {
                     Divider()
                         .padding(.leading, 56)
 
-                    // Model selection picker
-                    HStack(spacing: 12) {
-                        Image(systemName: "cpu")
-                            .font(.system(size: 16))
-                            .foregroundStyle(.secondary)
-                            .frame(width: 28)
+                    // Model selection: opens a clean full-screen list (ChatWebModelSelectorView)
+                    // instead of the old inline dropdown menu.
+                    Button(action: { showingChatWebModelSelector = true }) {
+                        HStack(spacing: 12) {
+                            Image(systemName: "cpu")
+                                .font(.system(size: 16))
+                                .foregroundStyle(.secondary)
+                                .frame(width: 28)
 
-                        Text(String(localized: "chatweb.model", defaultValue: "Model"))
-                            .font(.system(size: 15))
-                            .foregroundStyle(.primary)
+                            Text(String(localized: "chatweb.model", defaultValue: "Model"))
+                                .font(.system(size: 15))
+                                .foregroundStyle(.primary)
 
-                        Spacer()
+                            Spacer()
 
-                        Picker("", selection: Binding(
-                            get: { syncManager.selectedChatWebModel ?? "auto" },
-                            set: { newValue in
-                                // Check if selected model requires Pro subscription
-                                let selectedModel = ChatWebBackend.availableModels.first { $0.id == newValue }
-                                if selectedModel?.requiresPro == true && subscriptionManager.subscriptionStatus != .elioPro {
-                                    // Redirect to upgrade instead of selecting
-                                    showingUpgradeElioProView = true
-                                } else {
+                            Text(ChatWebBackend.availableModels.first { $0.id == (syncManager.selectedChatWebModel ?? "auto") }?.name.replacingOccurrences(of: " ✦ Pro", with: "") ?? "Auto")
+                                .font(.system(size: 14))
+                                .foregroundStyle(.secondary)
+                                .lineLimit(1)
+
+                            Image(systemName: "chevron.right")
+                                .font(.system(size: 12, weight: .semibold))
+                                .foregroundStyle(.tertiary)
+                        }
+                        .contentShape(Rectangle())
+                    }
+                    .buttonStyle(.plain)
+                    .padding(.horizontal, 16)
+                    .padding(.vertical, 10)
+                    .sheet(isPresented: $showingChatWebModelSelector) {
+                        ChatWebModelSelectorView(
+                            selectedModel: Binding(
+                                get: { syncManager.selectedChatWebModel ?? "auto" },
+                                set: { newValue in
                                     syncManager.selectedChatWebModel = newValue == "auto" ? nil : newValue
                                     ChatModeManager.shared.setChatWebModel(newValue)
                                 }
+                            ),
+                            isPro: subscriptionManager.subscriptionStatus == .elioPro,
+                            onSelectRequiresPro: {
+                                showingChatWebModelSelector = false
+                                showingUpgradeElioProView = true
                             }
-                        )) {
-                            ForEach(ChatWebBackend.availableModels, id: \.id) { model in
-                                Text(model.name).tag(model.id)
-                            }
-                        }
-                        .pickerStyle(.menu)
-                        .tint(.indigo)
+                        )
                     }
-                    .padding(.horizontal, 16)
-                    .padding(.vertical, 10)
 
                     // Upgrade to ElioChat Pro (shown when not subscribed)
                     if subscriptionManager.subscriptionStatus != .elioPro {
