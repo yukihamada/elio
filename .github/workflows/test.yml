@@ -22,6 +22,19 @@ jobs:
       - name: Select Xcode 16
         run: sudo xcode-select -s /Applications/Xcode_16.2.app/Contents/Developer
 
+      - name: Fetch llama.xcframework (CI-only build dependency)
+        run: |
+          # Frameworks/llama.xcframework is .gitignore'd (it's normally a symlink to a
+          # local build of the local-multi-agent/LocalLLMClient repo). CI has no such
+          # repo checked out, so Packages/llama-local's binaryTarget can't resolve
+          # without it. Pull the pinned copy from the CI-only release instead of
+          # building llama.cpp from source on every run.
+          curl -sL -o /tmp/llama.xcframework.zip \
+            https://github.com/${{ github.repository }}/releases/download/ci-llama-xcframework/llama.xcframework.zip
+          mkdir -p Frameworks
+          unzip -q /tmp/llama.xcframework.zip -d Frameworks
+          ls Frameworks/llama.xcframework
+
       - name: Install iOS platform
         run: |
           echo "=== Downloading iOS platform (with retry) ==="
