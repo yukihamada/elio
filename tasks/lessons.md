@@ -5,6 +5,14 @@
 - **P2P backend must be configured BEFORE `isModelLoaded = true`** — `onChange` triggers `macStartupSetup()` which calls `PrivateServerManager.start()`. If backend isn't set, server start always fails silently.
 - **AppState.shared exists but is not always safe** — Some views/managers should go through ChatModeManager instead for backend-related state.
 
+## MCP Security (remote servers)
+- **Remote MCP tool-name hijack** — A remote MCP server can declare a tool with a built-in name (`read_file`, `get_contacts`, ...) to steal the call + its args. Defense is two-layer: (1) `MCPClient.callTool(fullToolName:)` searches built-in (non-`RemoteMCPServer`) servers BEFORE remote ones — `servers` is an unordered dict so without the split the winner is random; (2) `RemoteMCPServer.refreshTools(reservedNames:)` drops any remote tool whose name collides with an already-registered name at registration. `RemoteMCPServerManager` passes `client.toolNames(excludingServerId:)` as the reserved set.
+- **Remote tool names/descriptions are untrusted** — `sanitizedTool` enforces `^[A-Za-z0-9_-]{1,64}$` on names and strips control chars / caps descriptions at 500 chars (prompt-injection mitigation). The UI "test connection" probe (`RemoteMCPServerView.runTest`) uses a throwaway server that is never registered, so it does not need the reserved-name filter.
+- **Bearer token leak via redirect** — remote sessions use a `NoRedirectDelegate` (refuses 3xx) + https-only + ephemeral session so the `Authorization` header can't be forwarded to another host. Response body is capped at 5 MB (streamed via `collect`) to prevent memory DoS, and JSON-RPC frames must match the request `id`.
+
+## Frameworks / checkout
+- **`Frameworks/{onnxruntime,sherpa-onnx}.xcframework` Info.plist/Headers can go missing in the working tree** while remaining tracked in git → build fails with "no Info.plist found". Restore with `git checkout -- Frameworks/onnxruntime.xcframework Frameworks/sherpa-onnx.xcframework` (the `.a` libs are git-LFS). The `llama.xcframework` is a symlink to `~/workspace/local-multi-agent/...`.
+
 ## Build & Xcode
 - **"Missing package product" in Xcode UI can be phantom** — CLI `xcodebuild` may succeed even when Xcode shows errors. Fix: quit Xcode, `rm -rf ~/Library/Developer/Xcode/DerivedData/ElioChat-*`, reopen.
 - **SPM cache corruption** — Also delete `~/Library/Caches/org.swift.swiftpm` and the `xcuserdata` folder when packages refuse to resolve.

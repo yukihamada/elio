@@ -12,7 +12,12 @@ final class CoreMLInference: ObservableObject {
     private var tokenizer: Tokenizer?
     private var config: ModelConfig
     private var isGGUFModel = false
-    private var llamaInference: LlamaInference?
+    private var isMLXModel = false
+    private(set) var llamaInference: LlamaInference?
+    private var mlxInference: MLXInference?
+    /// Direct llama.cpp engine (NOU-ported) for ToolRouter and benchmarks.
+    /// Shares the same model file but uses raw C API with KV cache preservation.
+    private(set) var directEngine: DirectLlamaEngine?
 
     struct ModelConfig {
         let name: String
@@ -59,10 +64,15 @@ final class CoreMLInference: ObservableObject {
     func unload() {
         llamaInference?.unload()
         llamaInference = nil
+        mlxInference?.unload()
+        mlxInference = nil
+        directEngine?.unload()
+        directEngine = nil
         model = nil
         tokenizer = nil
         isLoaded = false
         isGGUFModel = false
+        isMLXModel = false
         ggufModelPath = nil
     }
 
@@ -81,6 +91,18 @@ final class CoreMLInference: ObservableObject {
 
         tokenizer = try await Tokenizer.load(for: config.name)
 
+        isGGUFModel = false
+        isLoaded = true
+    }
+
+    /// Load an MLX model from HuggingFace hub ID (e.g. "mlx-community/Qwen3.5-2B-MLX-4bit")
+    func loadMLXModel(hubId: String) async throws {
+        if isLoaded { unload() }
+
+        mlxInference = MLXInference()
+        try await mlxInference?.loadModel(hubId: hubId)
+
+        isMLXModel = true
         isGGUFModel = false
         isLoaded = true
     }
@@ -105,6 +127,8 @@ final class CoreMLInference: ObservableObject {
         } else if nameLower.contains("nemotron") {
             // NVIDIA Nemotron-Nano (Mamba-2 + Transformer hybrid, Tekken tokenizer)
             llamaConfig = .nemotron
+        } else if nameLower.contains("qwen3.5") || nameLower.contains("qwen35") {
+            llamaConfig = .qwen35
         } else if nameLower.contains("qwen") || nameLower.contains("eliochat") {
             // ElioChat is based on Qwen3, so use the same config
             llamaConfig = .qwen3
@@ -121,6 +145,19 @@ final class CoreMLInference: ObservableObject {
 
         isGGUFModel = true
         isLoaded = true
+
+        // Also initialize DirectLlamaEngine for ToolRouter (lightweight, shares GPU)
+        // Note: DirectLlamaEngine creates its own model/context, so only init on demand
+        // to avoid doubling memory usage. Use loadDirectEngine() when needed.
+    }
+
+    /// Load the DirectLlamaEngine (NOU-ported) for ToolRouter and benchmarks.
+    /// This creates a separate model instance, so call only when needed.
+    func loadDirectEngine() async throws {
+        guard let url = ggufModelPath else { return }
+        let engine = DirectLlamaEngine()
+        try await engine.loadModel(from: url)
+        self.directEngine = engine
     }
 
     private func compileModelIfNeeded(_ url: URL) async throws -> URL {
@@ -352,6 +389,18 @@ final class CoreMLInference: ObservableObject {
         isGenerating = true
         defer { isGenerating = false }
 
+        // Use MLX inference if model is MLX format
+        if isMLXModel, let mlx = mlxInference {
+            return try await mlx.generate(
+                prompt: prompt,
+                maxTokens: settings.maxTokens,
+                temperature: settings.temperature,
+                topP: settings.topP,
+                repetitionPenalty: settings.repeatPenalty,
+                onToken: onToken
+            )
+        }
+
         // Use GGUF inference if model is GGUF format
         if isGGUFModel, let llamaInference = llamaInference {
             return try await llamaInference.generate(
@@ -404,6 +453,17 @@ final class CoreMLInference: ObservableObject {
         } else {
             // Append custom prompt to base prompt
             effectiveSystemPrompt = systemPrompt + "\n\n" + settings.systemPrompt
+        }
+
+        // Use MLX inference for MLX models
+        if isMLXModel, let mlx = mlxInference {
+            return try await mlx.generateWithMessages(
+                messages: messages,
+                systemPrompt: effectiveSystemPrompt,
+                settings: settings,
+                enableThinking: settings.enableThinking,
+                onToken: onToken
+            )
         }
 
         // Use llama.cpp's formatChatPrompt for GGUF models

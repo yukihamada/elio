@@ -26,7 +26,9 @@ final class NewsAPIClient {
         limit: Int = 10,
         cursor: String? = nil
     ) async throws -> NewsArticlesResponse {
-        var components = URLComponents(string: "\(baseURL)/api/articles")!
+        guard var components = URLComponents(string: "\(baseURL)/api/articles") else {
+            throw NewsAPIError.invalidURL
+        }
         var queryItems: [URLQueryItem] = [
             URLQueryItem(name: "limit", value: "\(limit)")
         ]
@@ -38,7 +40,8 @@ final class NewsAPIClient {
         }
         components.queryItems = queryItems
 
-        let request = buildRequest(url: components.url!)
+        guard let url = components.url else { throw NewsAPIError.invalidURL }
+        let request = buildRequest(url: url)
         let (data, response) = try await session.data(for: request)
         try validateResponse(response)
         return try decoder.decode(NewsArticlesResponse.self, from: data)
@@ -46,13 +49,16 @@ final class NewsAPIClient {
 
     /// Search articles by query
     func searchArticles(query: String, limit: Int = 10) async throws -> NewsArticlesResponse {
-        var components = URLComponents(string: "\(baseURL)/api/search")!
+        guard var components = URLComponents(string: "\(baseURL)/api/search") else {
+            throw NewsAPIError.invalidURL
+        }
         components.queryItems = [
             URLQueryItem(name: "q", value: query),
             URLQueryItem(name: "limit", value: "\(limit)")
         ]
 
-        let request = buildRequest(url: components.url!)
+        guard let url = components.url else { throw NewsAPIError.invalidURL }
+        let request = buildRequest(url: url)
         let (data, response) = try await session.data(for: request)
         try validateResponse(response)
         return try decoder.decode(NewsArticlesResponse.self, from: data)
@@ -60,12 +66,15 @@ final class NewsAPIClient {
 
     /// Get a summarized news digest for the given time period
     func summarizeNews(minutes: Int = 60) async throws -> String {
-        var components = URLComponents(string: "\(baseURL)/api/summarize")!
+        guard var components = URLComponents(string: "\(baseURL)/api/summarize") else {
+            throw NewsAPIError.invalidURL
+        }
         components.queryItems = [
             URLQueryItem(name: "minutes", value: "\(minutes)")
         ]
 
-        let request = buildRequest(url: components.url!)
+        guard let url = components.url else { throw NewsAPIError.invalidURL }
+        let request = buildRequest(url: url)
         let (data, response) = try await session.data(for: request)
         try validateResponse(response)
 
@@ -99,11 +108,14 @@ final class NewsAPIClient {
 // MARK: - Errors
 
 enum NewsAPIError: Error, LocalizedError {
+    case invalidURL
     case invalidResponse
     case serverError(Int)
 
     var errorDescription: String? {
         switch self {
+        case .invalidURL:
+            return "Invalid news API URL"
         case .invalidResponse:
             return "Invalid response from news server"
         case .serverError(let code):

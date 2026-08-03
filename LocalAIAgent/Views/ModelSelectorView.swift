@@ -68,14 +68,14 @@ struct ModelSelectorView: View {
             return [
                 ModelInfo(
                     id: "gpt-4o",
-                    name: "GPT-4o",
+                    name: "Advanced",
                     description: "最新の高性能モデル（128K context）",
                     inputCost: 2.5,
                     outputCost: 10
                 ),
                 ModelInfo(
                     id: "gpt-4o-mini",
-                    name: "GPT-4o Mini",
+                    name: "Advanced Mini",
                     description: "コスパ最強の高速モデル",
                     inputCost: 0.15,
                     outputCost: 0.6
@@ -154,8 +154,8 @@ struct ModelSelectorView: View {
                 ),
                 ModelInfo(
                     id: "openai/gpt-4o",
-                    name: "GPT-4o",
-                    description: "OpenAI経由（128K context）",
+                    name: "Advanced",
+                    description: "クラウドAI（128K context）",
                     inputCost: 2.5,
                     outputCost: 10
                 ),
@@ -189,5 +189,5 @@ struct ModelInfo {
 
 #Preview {
     @Previewable @State var selectedModel = "gpt-4o"
-    ModelSelectorView(provider: .openai, selectedModel: $selectedModel)
+    ModelSelectorView(provider: .openai, selectedModel: $selectedModel)  // Internal API ID unchanged
 }

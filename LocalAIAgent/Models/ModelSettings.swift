@@ -38,17 +38,17 @@ struct ModelSettings: Codable, Equatable {
     var kvCacheTypeK: KVCacheQuantType
     var kvCacheTypeV: KVCacheQuantType
 
-    /// Default settings
+    /// Default settings — KV Cache Q4_0 for speed, Q8_0 only for K (quality-sensitive)
     static let `default` = ModelSettings(
         temperature: 0.7,
         topP: 0.9,
         topK: 40,
         maxTokens: 1024,
-        repeatPenalty: 1.1,
+        repeatPenalty: 1.15,  // NOU-tuned: prevents repetition loops better than 1.1
         enableThinking: false,
         systemPrompt: "",
         kvCacheTypeK: .q8_0,
-        kvCacheTypeV: .q8_0
+        kvCacheTypeV: .q4_0
     )
 
     /// Preset for creative writing

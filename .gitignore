@@ -1,5 +1,17 @@
 Training/venv/
 
+# Training pipeline artifacts (large generated datasets/logs; regenerate via Training/run_pipeline.sh)
+Training/*.json
+Training/*.log
+Training/__pycache__/
+Training/data_viewer.html
+
+# Locally-built llama.xcframework (symlink to LocalLLMClient build output; see Packages/llama-local/Package.swift)
+Frameworks/llama.xcframework
+
+# SwiftPM per-user data
+**/.swiftpm/xcode/xcuserdata/
+
 # Firebase credentials
 fastlane/firebase/service-account.json
 
@@ -23,6 +35,7 @@ firebase-test-build/
 fastlane/report.xml
 fastlane/Preview.html
 fastlane/screenshots/**/
+fastlane/test_output/
 
 # Provisioning profiles (auto-downloaded)
 *.mobileprovision

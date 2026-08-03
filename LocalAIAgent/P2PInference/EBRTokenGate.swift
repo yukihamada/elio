@@ -12,8 +12,11 @@ final class EBRTokenGate: ObservableObject {
 
     // MARK: - Constants
 
-    /// EBR SPL Token mint address on Solana mainnet
+    /// EBR SPL Token mint address on Solana mainnet (legacy gate token)
     static let ebrMintAddress = "E1JxwaWRd8nw8vDdWMdqwdbXGBshqDcnTcinHzNMqg2Y"
+
+    /// ENAI SPL Token mint address on Solana mainnet (DePIN reward token)
+    static let enaiMintAddress = "8CeusiVAeibuBGv5xcf7kt7JQZzqwTS5pD7u2CfyoWnL"
 
     /// Minimum EBR balance required for ledger server eligibility
     static let minimumBalance: UInt64 = 1_000

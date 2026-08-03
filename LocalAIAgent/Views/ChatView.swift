@@ -25,6 +25,7 @@ struct ChatView: View {
     @State private var displayedResponse = ""  // Batched display for smoother UI
     @State private var updateTimer: Timer?
     @State private var generationTask: Task<Void, Never>?
+    @State private var generationID: Int = 0  // Incremented on each new generation to detect stale cleanup
     @State private var lastSentText: String = ""  // For restoring on cancel
     @State private var showingAttachmentOptions = false
     @State private var showingImagePicker = false
@@ -61,7 +62,7 @@ struct ChatView: View {
     @StateObject private var settingsManager = ModelSettingsManager.shared
     // TTS Manager (separate from voice recognition speechManager)
     @StateObject private var ttsManager = SpeechManager.shared
-    // Voice conversation mode (interactive voice chat like ChatGPT)
+    // Voice conversation mode (interactive voice chat)
     @State private var isVoiceConversationMode = false
     @State private var voiceConversationState: VoiceConversationState = .idle
     // Expanded text input (fullscreen editor)
@@ -1417,6 +1418,12 @@ struct ChatView: View {
                     }
 
                     if isGenerating {
+                        // Agent progress indicator (tool calls in progress)
+                        if let status = appState.agentStatus {
+                            AgentProgressRow(status: status)
+                                .id("agent-progress")
+                        }
+
                         if !displayedResponse.isEmpty {
                             StreamingMessageRow(text: displayedResponse)
                                 .id("streaming")
@@ -1430,6 +1437,7 @@ struct ChatView: View {
                                 .id("typing")
                         }
                     }
+
                 }
                 .padding(.vertical, 16)
                 #if targetEnvironment(macCatalyst)
@@ -1742,7 +1750,7 @@ struct ChatView: View {
                 }
 
                 if isVoiceRecording {
-                    // ChatGPT-style voice recording UI - unified pill with no gaps
+                    // Voice recording UI - unified pill with no gaps
                     HStack(spacing: 0) {
                         // Stop button (left) - stops and transcribes
                         Button(action: {
@@ -1898,14 +1906,21 @@ struct ChatView: View {
                     } else {
                         // Send button (when has text or attachments)
                         Button(action: {
-                            if isGenerating {
+                            if isGenerating && canSendText {
+                                // Has text while generating: stop old generation and send new message
+                                stopGeneration()
+                                Task { @MainActor in
+                                    try? await Task.sleep(nanoseconds: 150_000_000)
+                                    sendMessage()
+                                }
+                            } else if isGenerating {
                                 stopGeneration()
                             } else {
                                 sendMessage()
                             }
                         }) {
                             ZStack {
-                                if isGenerating {
+                                if isGenerating && !canSendText {
                                     Image(systemName: "stop.fill")
                                         .font(.system(size: 14, weight: .bold))
                                         .foregroundColor(.white)
@@ -1917,7 +1932,7 @@ struct ChatView: View {
                             }
                             .frame(width: 36, height: 36)
                             .background(
-                                canSend
+                                canSend || (isGenerating && canSendText)
                                     ? LinearGradient(colors: [.blue, .blue.opacity(0.85)], startPoint: .top, endPoint: .bottom)
                                     : isGenerating
                                         ? LinearGradient(colors: [.red, .red.opacity(0.85)], startPoint: .top, endPoint: .bottom)
@@ -1965,12 +1980,20 @@ struct ChatView: View {
         (appState.isModelLoaded || AppState.isScreenshotMode)
     }
 
+    /// True when there's text/attachment to send (regardless of generation state).
+    /// Used to show send-arrow even while generating, enabling stop-and-resend.
+    private var canSendText: Bool {
+        (!inputText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty || !attachedImages.isEmpty || attachedPDFText != nil || attachedWebContent != nil) &&
+        (appState.isModelLoaded || AppState.isScreenshotMode)
+    }
+
     private func hasRequiredAPIKey() -> Bool {
         return true // Temporarily disabled
         // ChatModeManager.shared.hasRequiredAPIKey(for: ChatModeManager.shared.currentMode)
     }
 
     private func sendMessage() {
+        print("[ChatView] sendMessage called, isGenerating=\(isGenerating), canSend=\(canSend)")
         let trimmedText = inputText.trimmingCharacters(in: .whitespacesAndNewlines)
         let hasImages = !attachedImages.isEmpty
         let hasPDF = attachedPDFText != nil
@@ -1990,7 +2013,7 @@ struct ChatView: View {
         // Set isGenerating IMMEDIATELY so cancel button activates right away
         isGenerating = true
         streamingBuffer.text = ""
-        displayedResponse = ""
+        displayedResponse = ""  // Clear previous response so conversation bubble becomes visible
         hasTriggeredResponseHaptic = false  // Reset for new response
 
         // Add user message IMMEDIATELY (before async processing) for instant UI feedback
@@ -2054,13 +2077,13 @@ struct ChatView: View {
     private func savePendingMessage(_ text: String) {
         UserDefaults.standard.set(text, forKey: "pending_message")
         UserDefaults.standard.set(appState.currentConversation?.id.uuidString, forKey: "pending_conversation_id")
-        UserDefaults.standard.synchronize()
+        // synchronize() is deprecated since iOS 12 and blocks the main thread — omit it
     }
 
     private func clearPendingMessage() {
         UserDefaults.standard.removeObject(forKey: "pending_message")
         UserDefaults.standard.removeObject(forKey: "pending_conversation_id")
-        UserDefaults.standard.synchronize()
+        // synchronize() is deprecated since iOS 12 and blocks the main thread — omit it
     }
 
     private func checkForPendingMessage() {
@@ -2107,6 +2130,12 @@ struct ChatView: View {
         savedWebContent: WebContent?
     ) {
         // isGenerating is already set in sendMessage() for immediate cancel button activation
+        // Reset stop flag in case it was left over from a previous stop/background event
+        appState.shouldStopGeneration = false
+        LlamaInference.abortFlag = false
+        // Assign a new generation ID so stale cleanup tasks don't clobber this generation.
+        generationID += 1
+        let myGenerationID = generationID
         // Start timer for streaming updates
         startUpdateTimer()
 
@@ -2167,7 +2196,9 @@ struct ChatView: View {
                 streamingBuffer.text += token
             }
 
-            // Final update
+            // Final update — skip if a newer generation has already started
+            guard generationID == myGenerationID else { return }
+
             stopUpdateTimer()
             displayedResponse = streamingBuffer.text
 
@@ -2176,12 +2207,13 @@ struct ChatView: View {
 
             // Small delay then clear
             try? await Task.sleep(nanoseconds: 50_000_000)
+            guard generationID == myGenerationID else { return }
             isGenerating = false
+            print("[ChatView] isGenerating=false, inputText='\(inputText.prefix(20))', canSend=\(canSend)")
             streamingBuffer.text = ""
             displayedResponse = ""
             generationTask = nil
 
-            // 会話完了を記録（レビュー促進用）
             ReviewManager.shared.recordConversationCompleted()
         }
     }
@@ -2192,6 +2224,8 @@ struct ChatView: View {
         generationTask = nil
         stopUpdateTimer()
 
+        // Abort the LLM inference loop (runs on DispatchQueue, not Swift Task)
+        LlamaInference.abortFlag = true
         // Set flag to stop LLM generation in AppState
         appState.shouldStopGeneration = true
 
@@ -2847,6 +2881,107 @@ struct StreamingMessageRow: View {
 }
 
 // MARK: - Typing Indicator Row
+
+// MARK: - Agent Progress Row
+
+struct AgentProgressRow: View {
+    let status: String
+    @State private var isPulsing = false
+
+    private var isAgent: Bool { status.hasPrefix("agent:") }
+    private var agentName: String? {
+        if status.hasPrefix("agent:") { return String(status.dropFirst("agent:".count)) }
+        return nil
+    }
+
+    private var toolName: String {
+        if status.hasPrefix("tool_start:") {
+            return String(status.dropFirst("tool_start:".count))
+        } else if status.hasPrefix("tool_result:") {
+            let parts = status.dropFirst("tool_result:".count).split(separator: ":", maxSplits: 2)
+            return String(parts.first ?? "")
+        } else if status.hasPrefix("[step:") {
+            return ""
+        }
+        return ""
+    }
+
+    private var isResult: Bool { status.hasPrefix("tool_result:") }
+    private var isError: Bool { status.contains(":error:") }
+    private var stepInfo: String? {
+        if status.hasPrefix("[step:") {
+            return String(status.dropFirst(1).dropLast(1))
+        }
+        return nil
+    }
+
+    private var icon: String {
+        let name = toolName.lowercased()
+        if name.contains("websearch") || name.contains("web_search") { return "magnifyingglass" }
+        if name.contains("calendar") { return "calendar" }
+        if name.contains("reminder") { return "checklist" }
+        if name.contains("weather") { return "cloud.sun" }
+        if name.contains("news") { return "newspaper" }
+        if name.contains("note") { return "note.text" }
+        if name.contains("file") || name.contains("filesystem") { return "folder" }
+        if name.contains("location") { return "location" }
+        if name.contains("contact") { return "person.crop.circle" }
+        return "gearshape"
+    }
+
+    private var label: String {
+        let name = toolName.lowercased()
+        if name.contains("websearch") || name.contains("web_search") { return "Web検索" }
+        if name.contains("calendar") { return "カレンダー" }
+        if name.contains("reminder") { return "リマインダー" }
+        if name.contains("weather") { return "天気" }
+        if name.contains("news") { return "ニュース" }
+        if name.contains("note") { return "メモ" }
+        if name.contains("file") || name.contains("filesystem") { return "ファイル" }
+        if name.contains("location") { return "位置情報" }
+        if name.contains("contact") { return "連絡先" }
+        return toolName
+    }
+
+    var body: some View {
+        HStack(spacing: 8) {
+            if let name = agentName {
+                // Agent auto-detected indicator
+                Image(systemName: "brain.head.profile")
+                    .font(.system(size: 12))
+                    .foregroundStyle(.indigo)
+                Text(name)
+                    .font(.system(size: 12, weight: .semibold))
+                    .foregroundStyle(.indigo)
+                Text("が対応")
+                    .font(.system(size: 11))
+                    .foregroundStyle(.secondary)
+            } else if let step = stepInfo {
+                Image(systemName: "brain")
+                    .font(.system(size: 12))
+                    .foregroundStyle(.purple)
+                Text(step)
+                    .font(.system(size: 12, weight: .medium))
+                    .foregroundStyle(.purple)
+            } else {
+                Image(systemName: icon)
+                    .font(.system(size: 12))
+                    .foregroundStyle(isResult ? (isError ? .red : .green) : .orange)
+                    .scaleEffect(isPulsing && !isResult ? 1.2 : 1.0)
+                    .animation(.easeInOut(duration: 0.6).repeatForever(autoreverses: true), value: isPulsing)
+
+                Text(isResult ? "\(label) \(isError ? "!" : "OK")" : "\(label)...")
+                    .font(.system(size: 12, weight: .medium))
+                    .foregroundStyle(isResult ? (isError ? .red : .green) : .orange)
+            }
+
+            Spacer()
+        }
+        .padding(.horizontal, 16)
+        .padding(.vertical, 6)
+        .onAppear { isPulsing = true }
+    }
+}
 
 struct TypingIndicatorRow: View {
     var statusText: String? = nil

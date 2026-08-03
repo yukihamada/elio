@@ -283,7 +283,7 @@ final class SubscriptionManager: ObservableObject {
             body["user_id"] = uid
         }
 
-        guard let url = URL(string: "https://api.chatweb.ai/api/v1/partner/verify-subscription"),
+        guard let url = URL(string: "https://chatweb.ai/api/v1/partner/verify-subscription"),
               let httpBody = try? JSONSerialization.data(withJSONObject: body) else { return }
 
         var request = URLRequest(url: url)

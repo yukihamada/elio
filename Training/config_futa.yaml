@@ -1,0 +1,63 @@
+# Futa-2B SFT Training Configuration
+# ====================================
+# Base model: Qwen3.5-2B-Instruct (fine-tuned for Japanese thinking + tool calling)
+
+model:
+  name: "Qwen/Qwen3.5-2B-Instruct"
+  max_seq_length: 4096
+  dtype: "bfloat16"
+  load_in_4bit: true
+  trust_remote_code: true
+
+lora:
+  r: 32
+  alpha: 64
+  dropout: 0.05
+  target_modules:
+    - q_proj
+    - k_proj
+    - v_proj
+    - o_proj
+    - gate_proj
+    - up_proj
+    - down_proj
+  bias: "none"
+
+data:
+  train_file: "merged_v6.json"
+  eval_file: "eval_v6.json"
+  format: "chatml"          # <|im_start|>role\ncontent<|im_end|>
+  max_length: 4096
+  eval_split: 0.1           # used only if eval_file doesn't exist
+
+training:
+  output_dir: "./futa-2b-v1-lora"
+  num_epochs: 3
+  batch_size: 4
+  gradient_accumulation_steps: 4
+  learning_rate: 2.0e-4
+  lr_scheduler: "cosine"
+  warmup_ratio: 0.1
+  weight_decay: 0.01
+  max_grad_norm: 1.0
+  bf16: true
+  gradient_checkpointing: true
+  save_strategy: "steps"
+  save_steps: 200
+  save_total_limit: 3
+  logging_steps: 10
+  eval_steps: 200
+  seed: 42
+  optim: "adamw_8bit"       # unsloth optimized
+
+wandb:
+  enabled: true
+  project: "futa-2b"
+  run_name: "sft-v1"
+  tags: ["qwen3.5", "japanese", "tool-calling"]
+
+export:
+  merge_lora: true
+  output_dir: "./futa-2b-v1-merged"
+  push_to_hub: false
+  hub_model_id: "enablerdao/futa-2b-v1"

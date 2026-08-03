@@ -39,7 +39,13 @@ struct LocalAIAgentApp: App {
                 .onChange(of: appState.isModelLoaded) { _, _ in
                     updateWidgetData()
                     #if targetEnvironment(macCatalyst)
-                    Task { await appState.macStartupSetup() }
+                    Task {
+                        do {
+                            await appState.macStartupSetup()
+                        } catch {
+                            print("[MacCatalyst] macStartupSetup failed: \(error.localizedDescription)")
+                        }
+                    }
                     #endif
                 }
                 .onChange(of: appState.currentConversation) { _, _ in
@@ -58,7 +64,10 @@ struct LocalAIAgentApp: App {
 
                     #if targetEnvironment(macCatalyst)
                     // Mac: Keep app running when last window is closed (DePIN node stays active in Dock)
-                    configureMacWindowBehavior()
+                    // Deferred to next run loop to ensure window scene is fully initialized
+                    DispatchQueue.main.async {
+                        configureMacWindowBehavior()
+                    }
                     #endif
                 }
         }
@@ -73,9 +82,11 @@ struct LocalAIAgentApp: App {
     private func configureMacWindowBehavior() {
         // UIKit bridge: applicationShouldTerminateAfterLastWindowClosed = false
         // On macCatalyst, this keeps the DePIN node running even when the window is closed.
-        if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
-            windowScene.sizeRestrictions?.minimumSize = CGSize(width: 600, height: 500)
+        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else {
+            print("[MacCatalyst] No window scene available yet - skipping size configuration")
+            return
         }
+        windowScene.sizeRestrictions?.minimumSize = CGSize(width: 600, height: 500)
     }
     #endif
 
@@ -156,9 +167,7 @@ struct LocalAIAgentApp: App {
                 appState.shouldStopGeneration = true
             }
 
-            Task {
-                await appState.saveConversations()
-            }
+            appState.saveConversations()
 
             // Note: We intentionally DON'T unload the model here
             // iOS will automatically purge memory if needed

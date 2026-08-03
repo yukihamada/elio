@@ -15,8 +15,8 @@ languages([
 ])
 
 # プロジェクト設定
-project("./LocalAIAgent.xcodeproj")
-scheme("LocalAIAgentUITests")
+project("./ElioChat.xcodeproj")
+scheme("ElioChat")
 
 # 出力設定
 output_directory("./fastlane/screenshots")

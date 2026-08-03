@@ -101,17 +101,16 @@ final class LlamaInference: ObservableObject {
         let bosTokenId: Int32
 
         // Dynamic context size based on device tier
-        // Note: Minimum 6144 required for system prompt + tools description (~3000 tokens)
         private static var deviceContextSize: UInt32 {
             switch DeviceTier.current {
             case .ultra:
-                return 8192   // 8GB+ RAM devices can handle larger context
+                return 8192   // 8GB+
             case .high:
-                return 8192   // 8GB RAM devices
+                return 8192   // 8GB
             case .medium:
-                return 6144   // 6GB RAM devices
+                return 6144   // 6GB
             case .low:
-                return 6144   // 4GB RAM devices - need enough for system prompt
+                return 4096   // 4GB
             }
         }
 
@@ -121,6 +120,15 @@ final class LlamaInference: ObservableObject {
                 contextSize: deviceContextSize,
                 eosTokenId: 151645,
                 bosTokenId: 151643
+            )
+        }
+
+        static var qwen35: Config {
+            Config(
+                name: "Qwen3.5",
+                contextSize: deviceContextSize,
+                eosTokenId: 248046,
+                bosTokenId: 248055
             )
         }
 
@@ -161,7 +169,15 @@ final class LlamaInference: ObservableObject {
         }
     }
 
+    // Prompt cache: reuse KV cache when system prompt is unchanged
+    private var cachedPromptTokens: [llama_token] = []
+    private var cachedPromptHash: Int = 0
+
     private var config: Config
+
+    /// Set to true from any thread to abort the current inference loop.
+    /// Reset automatically at the start of each generate() call.
+    nonisolated(unsafe) static var abortFlag = false
 
     init(config: Config = .qwen3) {
         self.config = config
@@ -170,6 +186,9 @@ final class LlamaInference: ObservableObject {
         setenv("GGML_METAL_NO_CONCURRENCY", "1", 1)
         // Additional Metal stability settings for A18 Pro
         setenv("GGML_METAL_FULL_THREADS", "0", 1)
+        // Disable Metal Residency Sets — crashes on macOS 14 (AGXG14GDevice
+        // does not respond to newResidencySetWithDescriptor:error:, API is macOS 15+)
+        setenv("GGML_METAL_NO_RESIDENCY", "1", 1)
         // Set Metal resource path for optimized kernel loading
         setenv("GGML_METAL_PATH_RESOURCES", Bundle.main.bundlePath, 1)
         // Initialize llama backend
@@ -275,10 +294,19 @@ final class LlamaInference: ObservableObject {
 
             // Context parameters - optimized for speed on iOS
             var contextParams = llama_context_default_params()
-            contextParams.n_ctx = contextSize
+            // Use our desired context size; if model reports 0 for train ctx, use our config
+            let modelTrainCtx = llama_model_n_ctx_train(model)
+            let finalCtx: UInt32
+            if modelTrainCtx > 0 {
+                finalCtx = min(contextSize, UInt32(modelTrainCtx))
+            } else {
+                finalCtx = contextSize  // Model doesn't report train ctx, use our setting
+            }
+            contextParams.n_ctx = max(finalCtx, 2048)  // At least 2048
+            print("[LlamaInference] Context: requested=\(contextSize), model_train=\(modelTrainCtx), effective=\(contextParams.n_ctx)")
             // Larger batch sizes for faster prompt processing
-            contextParams.n_batch = min(1024, contextSize)  // Increased from 512
-            contextParams.n_ubatch = 512  // Increased micro-batch for better throughput
+            contextParams.n_batch = contextParams.n_ctx  // Process entire context in one batch if possible
+            contextParams.n_ubatch = min(1024, contextParams.n_ctx)  // Large micro-batch for throughput
             // Use all performance cores for maximum speed
             let perfCores = max(4, ProcessInfo.processInfo.activeProcessorCount)
             contextParams.n_threads = Int32(perfCores)
@@ -349,6 +377,7 @@ final class LlamaInference: ObservableObject {
             throw LlamaError.modelNotLoaded
         }
 
+        Self.abortFlag = false  // Reset abort flag before each inference
         isGenerating = true
         defer { isGenerating = false }
 
@@ -366,21 +395,30 @@ final class LlamaInference: ObservableObject {
             throw LlamaError.tokenizationFailed
         }
 
-        // Check for context overflow before processing
-        let maxContextWithBuffer = Int(config.contextSize) - maxTokens
-        if promptTokens.count > maxContextWithBuffer {
-            logWarning("LLM", "Context overflow detected", [
-                "tokenCount": "\(promptTokens.count)",
-                "maxContext": "\(maxContextWithBuffer)"
-            ])
-            throw LlamaError.contextOverflow(tokenCount: promptTokens.count, maxContext: maxContextWithBuffer)
+        // Check for context overflow — use actual context size from llama.cpp
+        let actualCtxSize = Int(llama_n_ctx(context))
+        let maxContextWithBuffer = actualCtxSize - maxTokens
+        // Auto-truncate if prompt exceeds context: keep system prompt (first 30%) + latest messages
+        var finalPromptTokens = promptTokens
+        if promptTokens.count > maxContextWithBuffer && maxContextWithBuffer > 0 {
+            let overflow = promptTokens.count - maxContextWithBuffer
+            let keepFront = maxContextWithBuffer * 30 / 100
+            let keepBack = maxContextWithBuffer - keepFront
+            let frontSlice = Array(promptTokens.prefix(keepFront))
+            let backSlice = Array(promptTokens.suffix(keepBack))
+            finalPromptTokens = frontSlice + backSlice
+            print("[LlamaInference] Auto-truncated: \(promptTokens.count) → \(finalPromptTokens.count) tokens (overflow: \(overflow))")
         }
+
+        // Prompt cache disabled for stability (qwen35 hybrid arch has issues with KV cache manipulation)
+        let skipTokens = 0
 
         // Capture all values needed by the background queue
         let capturedContext = context
         let capturedVocab = vocab
         let capturedEosTokenId = currentConfig.eosTokenId
         let capturedTokenBuffer = tokenBuffer  // copy of reusable buffer
+        let capturedSkipTokens = skipTokens
 
         // Run ENTIRE inference (prompt processing + token generation) on background queue.
         // This keeps the main thread completely free for UI during inference.
@@ -390,7 +428,8 @@ final class LlamaInference: ObservableObject {
                     let result = try Self.inferenceLoop(
                         context: capturedContext,
                         vocab: capturedVocab,
-                        promptTokens: promptTokens,
+                        promptTokens: finalPromptTokens,
+                        skipTokens: capturedSkipTokens,
                         maxTokens: maxTokens,
                         temperature: temperature,
                         topP: topP,
@@ -418,6 +457,7 @@ final class LlamaInference: ObservableObject {
         context: OpaquePointer,
         vocab: OpaquePointer,
         promptTokens: [llama_token],
+        skipTokens: Int = 0,
         maxTokens: Int,
         temperature: Float,
         topP: Float,
@@ -428,14 +468,14 @@ final class LlamaInference: ObservableObject {
         tokenBufferSize: Int,
         onToken: @escaping @MainActor (String) -> Void
     ) throws -> String {
-        // Clear memory
+        // Always clear KV cache for a fresh start (safest for all architectures)
         let memory = llama_get_memory(context)
         llama_memory_clear(memory, true)
 
-        // Process prompt in chunks
+        // Process prompt in chunks, skipping already-cached prefix
         let batchSize = 512
         let totalTokens = promptTokens.count
-        var processedTokens = 0
+        var processedTokens = skipTokens
 
         while processedTokens < totalTokens {
             let chunkSize = min(batchSize, totalTokens - processedTokens)
@@ -466,6 +506,7 @@ final class LlamaInference: ObservableObject {
                 llama_sampler_chain_add(sampler, llama_sampler_init_penalties(64, repeatPenalty, 0.0, 0.0))
             }
             llama_sampler_chain_add(sampler, llama_sampler_init_top_k(topK))
+            llama_sampler_chain_add(sampler, llama_sampler_init_min_p(0.05, 1))  // Prune low-probability tokens early
             llama_sampler_chain_add(sampler, llama_sampler_init_top_p(topP, 1))
             llama_sampler_chain_add(sampler, llama_sampler_init_temp(temperature))
             llama_sampler_chain_add(sampler, llama_sampler_init_dist(UInt32.random(in: 0..<UInt32.max)))
@@ -488,8 +529,9 @@ final class LlamaInference: ObservableObject {
         let dispatchInterval = 4  // Dispatch to UI every N tokens
 
         for _ in 0..<maxTokens {
-            // Check cancellation every 8 tokens to reduce overhead
-            if tokensSinceLastDispatch % 8 == 0 && Task.isCancelled { break }
+            // Check abort every 8 tokens to reduce overhead.
+            // Task.isCancelled doesn't work here (DispatchQueue, not Swift task context).
+            if tokensSinceLastDispatch % 8 == 0 && LlamaInference.abortFlag { break }
 
             // Sample next token
             let newToken = llama_sampler_sample(sampler, context, -1)
@@ -518,12 +560,15 @@ final class LlamaInference: ObservableObject {
                 tokensSinceLastDispatch += 1
 
                 // Batch UI dispatches: send accumulated text every N tokens
-                // or immediately if it contains a newline (for visual line breaks)
+                // or immediately if it contains a newline (for visual line breaks).
+                // Use Task { @MainActor in } instead of DispatchQueue.main.async to properly
+                // hop to the MainActor via Swift concurrency — required on iOS 26 / Swift 6
+                // where GCD-dispatched @MainActor closures may be double-queued.
                 if tokensSinceLastDispatch >= dispatchInterval || validText.contains("\n") {
                     let textToSend = pendingUIText
                     pendingUIText = ""
                     tokensSinceLastDispatch = 0
-                    DispatchQueue.main.async {
+                    Task { @MainActor in
                         onToken(textToSend)
                     }
                 }
@@ -539,7 +584,7 @@ final class LlamaInference: ObservableObject {
                         // Flush any pending UI text before returning
                         if !pendingUIText.isEmpty {
                             let textToSend = pendingUIText
-                            DispatchQueue.main.async {
+                            Task { @MainActor in
                                 onToken(textToSend)
                             }
                         }
@@ -561,7 +606,7 @@ final class LlamaInference: ObservableObject {
         // Flush any remaining pending UI text
         if !pendingUIText.isEmpty {
             let textToSend = pendingUIText
-            DispatchQueue.main.async {
+            Task { @MainActor in
                 onToken(textToSend)
             }
         }
@@ -571,7 +616,7 @@ final class LlamaInference: ObservableObject {
             if let finalText = String(bytes: pendingBytes, encoding: .utf8), !finalText.isEmpty {
                 generatedText += finalText
                 let text = finalText
-                DispatchQueue.main.async {
+                Task { @MainActor in
                     onToken(text)
                 }
             }
@@ -689,7 +734,7 @@ final class LlamaInference: ObservableObject {
         return ("", remainingBytes)
     }
 
-    func formatChatPrompt(messages: [Message], systemPrompt: String, enableThinking: Bool = true) -> String {
+    func formatChatPrompt(messages: [Message], systemPrompt: String, enableThinking: Bool = false) -> String {
         var prompt = ""
         let modelMetadataName = config.name.lowercased()
         let modelFileName = modelPath?.lastPathComponent.lowercased() ?? ""
@@ -697,7 +742,8 @@ final class LlamaInference: ObservableObject {
         // Check both metadata name and filename for model identification
         // Filename takes priority (e.g., "eliochat-1.7b.gguf" should be treated as ElioChat even if metadata says "Photon")
         let isElioChat = modelFileName.contains("eliochat") || modelMetadataName.contains("eliochat")
-        let isQwen = modelMetadataName.contains("qwen") || modelFileName.contains("qwen")
+        let isQwen = modelMetadataName.contains("qwen") || modelFileName.contains("qwen") ||
+                     modelFileName.contains("futa") || modelMetadataName.contains("futa")
         let isDeepSeekQwen = modelMetadataName.contains("deepseek") && modelMetadataName.contains("qwen")
         let isDeepSeekLlama = modelMetadataName.contains("deepseek") && modelMetadataName.contains("llama")
         let isPhoton = modelMetadataName.contains("photon") && !isElioChat  // Don't treat as Photon if it's ElioChat
@@ -753,11 +799,11 @@ final class LlamaInference: ObservableObject {
                 let role = message.role == .user ? "user" : "assistant"
                 prompt += "<|im_start|>\(role)\n\(message.content)<|im_end|>\n"
             }
-            // Enable thinking mode for Qwen3/ElioChat by starting with <think>
             if enableThinking {
                 prompt += "<|im_start|>assistant\n<think>\n"
             } else {
-                prompt += "<|im_start|>assistant\n"
+                // <think></think> forces Qwen3 to skip the thinking phase entirely
+                prompt += "<|im_start|>assistant\n<think></think>\n"
             }
         } else if isPhoton {
             // Photon (Qwen-based) - does NOT support thinking mode (only if not identified as ElioChat)

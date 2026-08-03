@@ -8,7 +8,7 @@ enum ChatMode: String, CaseIterable, Codable, Identifiable {
     case chatweb = "chatweb"       // ChatWeb.ai cloud API (fast, no API key needed)
     case privateP2P = "private"    // Nearby permitted/trusted devices
     case fast = "fast"             // Groq API
-    case genius = "genius"         // Cloud APIs (OpenAI/Anthropic/Google)
+    case genius = "genius"         // Cloud APIs (multiple providers)
     case publicP2P = "public"      // Anyone's P2P server
     case p2pMesh = "mesh"          // Offline Intelligence Grid - mesh network
     case speculative = "speculative" // Speculative Decoding - Draft + P2P Verification
@@ -160,7 +160,7 @@ enum CloudProvider: String, CaseIterable, Codable, Identifiable {
 
     var displayName: String {
         switch self {
-        case .openai: return "OpenAI"
+        case .openai: return "Cloud AI"
         case .anthropic: return "Anthropic (Claude 3.5)"
         case .google: return "Google (Gemini 1.5)"
         case .openrouter: return "OpenRouter (200+ models)"

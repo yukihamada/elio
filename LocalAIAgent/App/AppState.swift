@@ -37,6 +37,7 @@ final class AppState: ObservableObject {
     @Published var isEmergencyMode = false
     @Published var errorMessage: String?
     @Published var isGenerating = false  // Track if currently generating response
+    @Published var agentStatus: String? = nil  // Current tool/agent call status (e.g. "tool_start:name"), shown by AgentProgressRow
     @Published var inferenceMode: InferenceMode = .auto
     @Published var isInitialLoading = true  // Suppress UI during initial startup
     @Published var shouldStopGeneration = false  // Flag to stop generation
@@ -531,19 +532,22 @@ final class AppState: ObservableObject {
             return // User already has a model
         }
 
-        // No models available - initiate ODR download for ElioChat
-        let eliochatModelId = "eliochat-1.7b-jp-v2"
+        // No models available - initiate download for the default ElioChat model.
+        // NOTE: was "eliochat-1.7b-jp-v2", which doesn't exist in the catalog, so the
+        // guard below silently returned and the initial auto-download never started.
+        let eliochatModelId = "eliochat-1.7b-v3"
         guard let eliochatModel = modelLoader.availableModels.first(where: { $0.id == eliochatModelId }) else {
+            logError("AppState", "Default model \(eliochatModelId) not found in catalog — initial download skipped", [:])
             return
         }
 
-        // Start ODR download in background
+        // Start download in background
         Task {
             do {
                 try await modelLoader.downloadModel(eliochatModel)
-                logInfo("AppState", "ElioChat model downloaded via ODR", [:])
+                logInfo("AppState", "ElioChat model downloaded", [:])
             } catch {
-                logError("AppState", "Failed to download ElioChat via ODR: \(error.localizedDescription)", [:])
+                logError("AppState", "Failed to download ElioChat: \(error.localizedDescription)", [:])
             }
         }
     }
@@ -734,7 +738,7 @@ final class AppState: ObservableObject {
 
         // Set generating flag immediately
         isGenerating = true
-        defer { isGenerating = false }
+        defer { isGenerating = false; agentStatus = nil }
 
         if currentConversation == nil {
             currentConversation = Conversation()
@@ -769,6 +773,7 @@ final class AppState: ObservableObject {
                     },
                     onToolCall: { toolInfo in
                         // Tool call notification (could show in UI)
+                        self.agentStatus = toolInfo
                         logInfo("Tool", "Tool call: \(toolInfo)")
                     }
                 )
@@ -844,7 +849,7 @@ final class AppState: ObservableObject {
 
         // Set generating flag immediately
         isGenerating = true
-        defer { isGenerating = false }
+        defer { isGenerating = false; agentStatus = nil }
 
         // Update conversation title if this is the first message
         currentConversation?.updatedAt = Date()
@@ -868,6 +873,7 @@ final class AppState: ObservableObject {
                         onToken(token)
                     },
                     onToolCall: { toolInfo in
+                        self.agentStatus = toolInfo
                         logInfo("Tool", "Tool call: \(toolInfo)")
                     }
                 )

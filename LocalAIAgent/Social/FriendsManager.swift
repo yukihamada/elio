@@ -219,7 +219,7 @@ final class FriendsManager: ObservableObject {
         }
         let adjectives = ["Swift", "Quiet", "Bright", "Cool", "Kind", "Bold", "Calm", "Zen"]
         let nouns = ["Fox", "Owl", "Bear", "Cat", "Star", "Moon", "Wave", "Wind"]
-        let name = "\(adjectives.randomElement()!) \(nouns.randomElement()!) \(Int.random(in: 10...99))"
+        let name = "\(adjectives.randomElement() ?? "Swift") \(nouns.randomElement() ?? "Fox") \(Int.random(in: 10...99))"
         UserDefaults.standard.set(name, forKey: key)
         return name
     }

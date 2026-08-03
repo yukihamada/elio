@@ -94,6 +94,12 @@ final class LedgerServer: ObservableObject {
             txtRecord["modelCapability"] = currentModelCapability()
             txtRecord["availableMemoryGB"] = String(format: "%.1f", availableMemoryGB())
 
+            // Add reputation score to TXT record
+            let reputationEntries = NodeReputation.shared.txtRecordEntries()
+            for (key, value) in reputationEntries {
+                txtRecord[key] = value
+            }
+
             listener?.service = NWListener.Service(
                 name: deviceName(),
                 type: serviceType,
@@ -120,6 +126,9 @@ final class LedgerServer: ObservableObject {
             activationTime = Date()
             startUptimeTimer()
             startRevalidationTimer()
+
+            // Start reputation tracking
+            NodeReputation.shared.startUptimeTracking()
 
             print("[LedgerServer] Activated on port \(defaultPort)")
 
@@ -160,6 +169,9 @@ final class LedgerServer: ObservableObject {
         connectedClients = 0
         activationTime = nil
         processedQueryIds.removeAll()
+
+        // Stop reputation tracking
+        NodeReputation.shared.stopUptimeTracking()
 
         saveStats()
         print("[LedgerServer] Deactivated")
@@ -327,11 +339,49 @@ final class LedgerServer: ObservableObject {
             sendError(to: connection, message: "Failed to encode result")
         }
 
-        // 6. Record stats
+        // 6. Record stats with quality-based rewards
         queriesServed += 1
-        let earned = max(responses.count, 1)
+
+        let avgConfidenceVal = enriched.avgConfidence
+        let processingTime = Double(enriched.processingTimeMs)
+        let isLarge = isLargeModel()
+        let uptimeHrs = uptime / 3600.0
+
+        let earned = TokenManager.calculateReward(
+            responseTimeMs: processingTime,
+            confidence: avgConfidenceVal,
+            isLargeModel: isLarge,
+            uptimeHours: uptimeHrs
+        )
         tokensEarned += earned
-        tokenManager.earn(earned, reason: .p2pServing)
+        tokenManager.earn(earned, reason: .depinNode)
+
+        // Record reputation metrics
+        let reputation = NodeReputation.shared
+        reputation.recordSuccess(confidence: avgConfidenceVal, responseTimeMs: processingTime)
+
+        // Record on-chain reward proof
+        let queryHashStr = query.id.uuidString
+        let responseHashStr = ledgerResult.queryId.uuidString
+        OnChainRewards.shared.recordQueryReward(
+            queryHash: queryHashStr,
+            responseHash: responseHashStr,
+            tokensEarned: earned,
+            confidence: avgConfidenceVal,
+            responseTimeMs: processingTime
+        )
+
+        // Report to chatweb.ai DePIN API for on-chain ENAI reward
+        let nodeWallet = await EBRTokenGate.shared.walletAddress ?? ""
+        let proofTimestamp = Int(Date().timeIntervalSince1970)
+        Task {
+            await DePINReporter.reportQuery(
+                nodeWallet: nodeWallet,
+                queryHash: queryHashStr,
+                proofTimestamp: proofTimestamp
+            )
+        }
+
         saveStats()
     }
 
@@ -476,6 +526,15 @@ final class LedgerServer: ObservableObject {
     private func currentModelCapability() -> String {
         let capability = PrivateServerManager.shared.getComputeCapability()
         return capability.modelName ?? (capability.hasLocalLLM ? "local" : "none")
+    }
+
+    /// Check if the loaded model is 7B+ parameters (for reward bonus)
+    private func isLargeModel() -> Bool {
+        let capability = PrivateServerManager.shared.getComputeCapability()
+        guard let name = capability.modelName?.lowercased() else { return false }
+        // Models with 7B+ parameters
+        return name.contains("9b") || name.contains("8b") || name.contains("7b")
+            || name.contains("nemotron") || name.contains("llama-3")
     }
 
     private func availableMemoryGB() -> Float {

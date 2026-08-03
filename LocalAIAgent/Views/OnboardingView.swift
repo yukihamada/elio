@@ -49,10 +49,10 @@ struct OnboardingView: View {
             // Use smallest model for testing
             return modelLoader.availableModels.first { $0.id == "qwen3-0.6b" }
         }
-        // Prefer Futa 2B v1 > ElioChat v3 > Qwen3 1.7B as fallback
-        return modelLoader.availableModels.first { $0.id == "futa-2b-v1" }
+        // Prefer Qwen3.5 2B > Futa 2B v1 > ElioChat v3 as fallback
+        return modelLoader.availableModels.first { $0.id == "qwen3.5-2b" }
+            ?? modelLoader.availableModels.first { $0.id == "futa-2b-v1" }
             ?? modelLoader.availableModels.first { $0.id == "eliochat-1.7b-v3" }
-            ?? modelLoader.availableModels.first { $0.id == "qwen3-1.7b" }
     }
 
     private var visionModel: ModelLoader.ModelInfo? {

@@ -115,7 +115,7 @@ final class RemoteMCPServerManager: ObservableObject {
     /// page, so the real MU endpoint `mcp.wearmu.com/mcp` is used instead.
     static let presets: [RemoteMCPServerConfig] = [
         RemoteMCPServerConfig(id: "preset_atsm", name: "ATSM 焚き火",
-                              urlString: "https://atsm.wtf/mcp",
+                              urlString: "https://takibi.wtf/mcp",
                               icon: "flame.fill", isEnabled: false, requiresToken: true),
         RemoteMCPServerConfig(id: "preset_koe", name: "Koe 声",
                               urlString: "https://mcp.koe.live/mcp",
@@ -131,7 +131,19 @@ final class RemoteMCPServerManager: ObservableObject {
                               icon: "house.fill", isEnabled: false, requiresToken: false),
         RemoteMCPServerConfig(id: "preset_news", name: "news.xyz",
                               urlString: "https://news.xyz/mcp",
-                              icon: "newspaper.fill", isEnabled: false, requiresToken: false)
+                              icon: "newspaper.fill", isEnabled: false, requiresToken: false),
+        RemoteMCPServerConfig(id: "preset_kamishibai", name: "KAMISHIBAI",
+                              urlString: "https://kamishibai.tv/mcp",
+                              icon: "book.pages.fill", isEnabled: false, requiresToken: true),
+        RemoteMCPServerConfig(id: "preset_adflow", name: "AdFlow",
+                              urlString: "https://adflow.tools/mcp",
+                              icon: "megaphone.fill", isEnabled: false, requiresToken: true),
+        RemoteMCPServerConfig(id: "preset_pon", name: "ポン電子契約",
+                              urlString: "https://pon-sign.fly.dev/mcp",
+                              icon: "signature", isEnabled: false, requiresToken: false),
+        RemoteMCPServerConfig(id: "preset_koelive", name: "koe.live",
+                              urlString: "https://koe.live/mcp",
+                              icon: "antenna.radiowaves.left.and.right", isEnabled: false, requiresToken: false)
     ]
 
     /// Presets not yet added to the saved list.

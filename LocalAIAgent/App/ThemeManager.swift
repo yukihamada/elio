@@ -51,7 +51,7 @@ final class ThemeManager: ObservableObject {
 // MARK: - Theme Colors
 
 extension Color {
-    // ChatGPT-style colors
+    // Chat UI colors
     static let chatBackground = Color("ChatBackground")
     static let chatUserBubble = Color("UserBubble")
     static let chatInputBackground = Color("InputBackground")

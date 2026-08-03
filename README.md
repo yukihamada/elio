@@ -630,9 +630,9 @@ open ElioChat.xcodeproj
 ### テスト
 
 ```bash
-# 135件のユニットテスト
+# 171件のユニットテスト
 xcodebuild test -project ElioChat.xcodeproj -scheme ElioChat \
-  -testPlan UnitTests -destination 'platform=iOS Simulator,name=iPhone 16'
+  -destination 'platform=iOS Simulator,name=iPhone 16 Pro'
 ```
 
 ### アーキテクチャ

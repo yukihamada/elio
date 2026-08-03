@@ -68,7 +68,11 @@ final class PrivateServerManager: ObservableObject {
             let parameters = NWParameters.tcp
             parameters.allowLocalEndpointReuse = true
 
-            listener = try NWListener(using: parameters, on: NWEndpoint.Port(rawValue: defaultPort)!)
+            guard let port = NWEndpoint.Port(rawValue: defaultPort) else {
+                throw NSError(domain: "PrivateServerManager", code: -1,
+                              userInfo: [NSLocalizedDescriptionKey: "Invalid port: \(defaultPort)"])
+            }
+            listener = try NWListener(using: parameters, on: port)
 
             // Set up Bonjour advertising with pairing code and Elio ID in TXT record
             var txtRecord = NWTXTRecord()

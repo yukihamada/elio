@@ -68,7 +68,9 @@ platform :mac do
     )
 
     # upload_to_testflight doesn't find maccatalyst bundle ID; use altool directly
-    sh "xcrun altool --upload-app -f '#{lane_context[SharedValues::IPA_OUTPUT_PATH]}' -t osx --apiKey 5KT46G9Y29 --apiIssuer e0d22675-afb3-45f0-a821-06b477f44da0 -k #{File.expand_path('~/.appstoreconnect/private_keys/AuthKey_5KT46G9Y29.p8')}"
+    # Mac Catalyst builds produce a .pkg file, not an .ipa — use PKG_OUTPUT_PATH
+    pkg_path = lane_context[SharedValues::PKG_OUTPUT_PATH] || File.expand_path("../build/Elio.pkg", __dir__)
+    sh "xcrun altool --upload-app -f '#{pkg_path}' -t osx --apiKey 5KT46G9Y29 --apiIssuer e0d22675-afb3-45f0-a821-06b477f44da0 -k #{File.expand_path('~/.appstoreconnect/private_keys/AuthKey_5KT46G9Y29.p8')}"
 
     clean_build_artifacts
   end
@@ -336,8 +338,8 @@ platform :ios do
   desc "Capture screenshots using snapshot"
   lane :screenshots do
     capture_screenshots(
-      project: "LocalAIAgent.xcodeproj",
-      scheme: "LocalAIAgentUITests",
+      project: "ElioChat.xcodeproj",
+      scheme: "ElioChat",
       devices: [
         "iPhone 16 Pro Max",
         "iPhone 16 Pro",

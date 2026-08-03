@@ -37,7 +37,7 @@ final class Tokenizer {
         ]
 
         for i in 0..<256 {
-            vocab[String(UnicodeScalar(i)!)] = i
+            if let scalar = UnicodeScalar(i) { vocab[String(scalar)] = i }
         }
 
         for (token, id) in specialTokens {
@@ -60,7 +60,7 @@ final class Tokenizer {
         ]
 
         for i in 0..<256 {
-            vocab[String(UnicodeScalar(i)!)] = i
+            if let scalar = UnicodeScalar(i) { vocab[String(scalar)] = i }
         }
 
         for (token, id) in specialTokens {
@@ -81,7 +81,7 @@ final class Tokenizer {
         ]
 
         for i in 0..<256 {
-            vocab[String(UnicodeScalar(i)!)] = i
+            if let scalar = UnicodeScalar(i) { vocab[String(scalar)] = i }
         }
 
         for (token, id) in specialTokens {
@@ -95,7 +95,7 @@ final class Tokenizer {
         var vocab: [String: Int] = [:]
 
         for i in 0..<256 {
-            vocab[String(UnicodeScalar(i)!)] = i
+            if let scalar = UnicodeScalar(i) { vocab[String(scalar)] = i }
         }
 
         return Tokenizer(vocab: vocab, merges: [], specialTokens: [:])

@@ -83,9 +83,11 @@ final class ChatWebAPIKeyManager: ObservableObject {
             keyStatus = .valid
             lastError = nil
 
-            // Haptic feedback
+            // Haptic feedback (iOS only — UIFeedbackGenerator unavailable on Mac Catalyst 26+)
+            #if !targetEnvironment(macCatalyst)
             let generator = UINotificationFeedbackGenerator()
             generator.notificationOccurred(.success)
+            #endif
 
         } catch {
             keyStatus = .invalid
@@ -144,7 +146,7 @@ final class ChatWebAPIKeyManager: ObservableObject {
     func validateKey() async -> Bool {
         guard let apiKey = apiKey else { return false }
 
-        let url = URL(string: "https://api.chatweb.ai/api/v1/auth/me")!
+        let url = URL(string: "https://chatweb.ai/api/v1/auth/me")!
         var request = URLRequest(url: url)
         request.setValue("Bearer \(apiKey)", forHTTPHeaderField: "Authorization")
 

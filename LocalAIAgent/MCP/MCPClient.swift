@@ -59,7 +59,8 @@ final class MCPClient: ObservableObject {
         registerServer(CodeExecutionServer())
         registerServer(DeviceControlServer())
         #if !targetEnvironment(macCatalyst)
-        registerServer(HealthKitServer())
+        // HealthKitServer removed: HealthKit capability was dropped for App Store
+        // guideline 2.5.1 (see 39a88eae) and must not be reintroduced.
         registerServer(MotionServer())
         #endif
         registerServer(MusicServer())

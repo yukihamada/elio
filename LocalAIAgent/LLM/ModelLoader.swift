@@ -209,6 +209,8 @@ final class ModelLoader: ObservableObject {
         let category: ModelCategory
         let supportsVision: Bool
         let defaultSystemPrompt: String  // Default system prompt for this model
+        let isMLX: Bool  // True = MLX format (downloaded from HF hub), False = GGUF
+        let mlxHubId: String?  // HuggingFace hub ID for MLX models (e.g. "mlx-community/Qwen3.5-2B-MLX-4bit")
 
         struct ModelConfigData: Codable {
             let maxContextLength: Int
@@ -229,7 +231,9 @@ final class ModelLoader: ObservableObject {
             tier: ModelTier,
             category: ModelCategory = .others,
             supportsVision: Bool = false,
-            defaultSystemPrompt: String = ""
+            defaultSystemPrompt: String = "",
+            isMLX: Bool = false,
+            mlxHubId: String? = nil
         ) {
             self.id = id
             self.name = name
@@ -243,6 +247,8 @@ final class ModelLoader: ObservableObject {
             self.category = category
             self.supportsVision = supportsVision
             self.defaultSystemPrompt = defaultSystemPrompt
+            self.isMLX = isMLX
+            self.mlxHubId = mlxHubId
         }
 
         // Check if this model is recommended for the given device tier
@@ -408,7 +414,7 @@ final class ModelLoader: ObservableObject {
                 description: "⚡ 超高速起動。シンプルな質問・単語変換・短い要約向け。複雑な推論は苦手。",
                 descriptionEn: "⚡ Fastest startup. Best for simple Q&A, word lookup & short summaries. Not for complex tasks.",
                 size: "約500MB",
-                sizeBytes: 500_000_000,
+                sizeBytes: 396_705_472,
                 downloadURL: "https://huggingface.co/unsloth/Qwen3-0.6B-GGUF/resolve/main/Qwen3-0.6B-Q4_K_M.gguf",
                 config: ModelInfo.ModelConfigData(
                     maxContextLength: 40960,
@@ -469,6 +475,172 @@ final class ModelLoader: ObservableObject {
                 ),
                 tier: .xlarge,
                 category: .recommended
+            ),
+
+            // ==================== QWEN 3.5 (最新世代) ====================
+            // Qwen 3.5: ネイティブマルチモーダル + エージェント対応、Qwen3から大幅改善
+            ModelInfo(
+                id: "qwen3.5-0.8b",
+                name: "Qwen3.5 0.8B",
+                description: "⚡ Qwen3.5最小モデル。Qwen3-0.6Bより33%大きく精度向上。シンプルな質問・要約向け。",
+                descriptionEn: "⚡ Smallest Qwen3.5. 33% larger than Qwen3-0.6B with better accuracy. For simple Q&A & summaries.",
+                size: "約530MB",
+                sizeBytes: 533_000_000,
+                downloadURL: "https://huggingface.co/unsloth/Qwen3.5-0.8B-GGUF/resolve/main/Qwen3.5-0.8B-Q4_K_M.gguf",
+                config: ModelInfo.ModelConfigData(
+                    maxContextLength: 262144,
+                    vocabularySize: 248320,
+                    eosTokenId: 248046,
+                    bosTokenId: 248055
+                ),
+                tier: .tiny,
+                category: .recommended
+            ),
+            ModelInfo(
+                id: "qwen3.5-2b",
+                name: "Qwen3.5 2B",
+                description: "🌟 新世代の軽量モデル。Qwen3-1.7Bを超える性能。日常会話・翻訳・コード補完に最適。",
+                descriptionEn: "🌟 New-gen lightweight. Surpasses Qwen3-1.7B. Great for daily chat, translation & code completion.",
+                size: "約1.3GB",
+                sizeBytes: 1_280_000_000,
+                downloadURL: "https://huggingface.co/bartowski/Qwen_Qwen3.5-2B-GGUF/resolve/main/Qwen_Qwen3.5-2B-Q4_K_M.gguf",
+                config: ModelInfo.ModelConfigData(
+                    maxContextLength: 262144,
+                    vocabularySize: 248320,
+                    eosTokenId: 248046,
+                    bosTokenId: 248055
+                ),
+                tier: .medium,
+                category: .recommended
+            ),
+            ModelInfo(
+                id: "qwen3.5-4b",
+                name: "Qwen3.5 4B",
+                description: "🔥 Qwen3.5の中核モデル。複雑な推論・コード生成・多言語対応が大幅強化。iPhone 15 Pro推奨。",
+                descriptionEn: "🔥 Qwen3.5 core model. Much stronger reasoning, coding & multilingual. iPhone 15 Pro recommended.",
+                size: "約2.7GB",
+                sizeBytes: 2_740_000_000,
+                downloadURL: "https://huggingface.co/unsloth/Qwen3.5-4B-GGUF/resolve/main/Qwen3.5-4B-Q4_K_M.gguf",
+                config: ModelInfo.ModelConfigData(
+                    maxContextLength: 262144,
+                    vocabularySize: 248320,
+                    eosTokenId: 248046,
+                    bosTokenId: 248055
+                ),
+                tier: .large,
+                category: .recommended
+            ),
+            ModelInfo(
+                id: "qwen3.5-9b",
+                name: "Qwen3.5 9B",
+                description: "🏆 Qwen3.5最強テキストモデル。長文・高度推論・学術・コード全てに対応。8GB RAM以上推奨。",
+                descriptionEn: "🏆 Strongest Qwen3.5 text model. Excels at long text, advanced reasoning, academic & code. 8GB+ RAM.",
+                size: "約5.7GB",
+                sizeBytes: 5_680_000_000,
+                downloadURL: "https://huggingface.co/unsloth/Qwen3.5-9B-GGUF/resolve/main/Qwen3.5-9B-Q4_K_M.gguf",
+                config: ModelInfo.ModelConfigData(
+                    maxContextLength: 262144,
+                    vocabularySize: 248320,
+                    eosTokenId: 248046,
+                    bosTokenId: 248055
+                ),
+                tier: .xlarge,
+                category: .recommended
+            ),
+
+            // ==================== QWEN 3.5 MLX (Apple Silicon最適化) ====================
+            ModelInfo(
+                id: "qwen3.5-2b-mlx",
+                name: "Qwen3.5 2B MLX",
+                description: "🍎 Apple Silicon最適化版。GGUF版より20-40%高速。日常会話・翻訳・コード補完に最適。",
+                descriptionEn: "🍎 Apple Silicon optimized. 20-40% faster than GGUF. Great for daily chat & coding.",
+                size: "約1.3GB",
+                sizeBytes: 1_300_000_000,
+                downloadURL: "",  // MLX models use hubId instead
+                config: ModelInfo.ModelConfigData(
+                    maxContextLength: 262144,
+                    vocabularySize: 248320,
+                    eosTokenId: 248046,
+                    bosTokenId: 248055
+                ),
+                tier: .medium,
+                category: .recommended,
+                isMLX: true,
+                mlxHubId: "mlx-community/Qwen3.5-2B-MLX-4bit"
+            ),
+            ModelInfo(
+                id: "qwen3.5-4b-mlx",
+                name: "Qwen3.5 4B MLX",
+                description: "🍎 Apple Silicon最適化版。複雑な推論・コード生成が高速。iPhone 15 Pro推奨。",
+                descriptionEn: "🍎 Apple Silicon optimized. Fast complex reasoning & code. iPhone 15 Pro recommended.",
+                size: "約2.5GB",
+                sizeBytes: 2_500_000_000,
+                downloadURL: "",
+                config: ModelInfo.ModelConfigData(
+                    maxContextLength: 262144,
+                    vocabularySize: 248320,
+                    eosTokenId: 248046,
+                    bosTokenId: 248055
+                ),
+                tier: .large,
+                category: .recommended,
+                isMLX: true,
+                mlxHubId: "mlx-community/Qwen3.5-4B-MLX-4bit"
+            ),
+            ModelInfo(
+                id: "qwen3.5-9b-mlx",
+                name: "Qwen3.5 9B MLX",
+                description: "🍎 Apple Silicon最適化版。最強性能を最高速度で。8GB RAM以上推奨。",
+                descriptionEn: "🍎 Apple Silicon optimized. Best performance at maximum speed. 8GB+ RAM.",
+                size: "約5.5GB",
+                sizeBytes: 5_500_000_000,
+                downloadURL: "",
+                config: ModelInfo.ModelConfigData(
+                    maxContextLength: 262144,
+                    vocabularySize: 248320,
+                    eosTokenId: 248046,
+                    bosTokenId: 248055
+                ),
+                tier: .xlarge,
+                category: .recommended,
+                isMLX: true,
+                mlxHubId: "mlx-community/Qwen3.5-9B-MLX-4bit"
+            ),
+
+            // ==================== QWEN 3.5 SPEED (高速版) ====================
+            ModelInfo(
+                id: "qwen3.5-2b-iq3xxs",
+                name: "Qwen3.5 2B IQ3_XXS",
+                description: "🚀 Qwen3.5高速版。Q4_K_Mより30-50%速い。品質は若干下がるがチャットには十分。",
+                descriptionEn: "🚀 Qwen3.5 speed edition. 30-50% faster than Q4_K_M with slight quality tradeoff.",
+                size: "約930MB",
+                sizeBytes: 932_000_000,
+                downloadURL: "https://huggingface.co/unsloth/Qwen3.5-2B-GGUF/resolve/main/Qwen3.5-2B-UD-IQ3_XXS.gguf",
+                config: ModelInfo.ModelConfigData(
+                    maxContextLength: 262144,
+                    vocabularySize: 248320,
+                    eosTokenId: 248046,
+                    bosTokenId: 248055
+                ),
+                tier: .small,
+                category: .efficient
+            ),
+            ModelInfo(
+                id: "qwen3.5-4b-iq3xxs",
+                name: "Qwen3.5 4B IQ3_XXS",
+                description: "🚀 Qwen3.5-4B高速版。省メモリで高品質。iPhone 13/14/15でも快適に動作。",
+                descriptionEn: "🚀 Qwen3.5-4B speed edition. Memory-efficient, runs well on iPhone 13/14/15.",
+                size: "約1.9GB",
+                sizeBytes: 1_950_000_000,
+                downloadURL: "https://huggingface.co/unsloth/Qwen3.5-4B-GGUF/resolve/main/Qwen3.5-4B-UD-IQ3_XXS.gguf",
+                config: ModelInfo.ModelConfigData(
+                    maxContextLength: 262144,
+                    vocabularySize: 248320,
+                    eosTokenId: 248046,
+                    bosTokenId: 248055
+                ),
+                tier: .medium,
+                category: .efficient
             ),
 
             // ==================== MEMORY-EFFICIENT (省メモリ版) ====================
@@ -1174,6 +1346,10 @@ final class ModelLoader: ObservableObject {
     }
 
     func isModelDownloaded(_ modelId: String) -> Bool {
+        // MLX models are downloaded on-demand from HF hub (cached by MLX framework)
+        if let info = availableModels.first(where: { $0.id == modelId }), info.isMLX {
+            return true  // MLX handles its own caching; always "available"
+        }
         let ggufPath = modelsDirectory.appendingPathComponent("\(modelId).gguf")
         let modelPath = modelsDirectory.appendingPathComponent("\(modelId).mlpackage")
         let compiledPath = modelsDirectory.appendingPathComponent("\(modelId).mlmodelc")
@@ -1207,11 +1383,13 @@ final class ModelLoader: ObservableObject {
             throw error
         }
 
-        // Check if ODR is available for this model
+        // Check if ODR is available for this model (iOS only — ODR unreliable on Mac Catalyst)
+        #if !targetEnvironment(macCatalyst)
         if OnDemandResourceManager.isODRSupported(for: model.id) {
             try await downloadModelViaODR(model)
             return
         }
+        #endif
 
         // Fallback to URL Session download
         try await downloadModelViaURLSession(model)
@@ -1330,15 +1508,24 @@ final class ModelLoader: ObservableObject {
 
     /// Download model using URL Session (direct HTTP download) with retry
     private func downloadModelViaURLSession(_ model: ModelInfo) async throws {
-        let maxRetries = 3
+        let maxRetries = 5
         var lastError: Error?
+        var resumeData: Data?
 
         for attempt in 1...maxRetries {
             do {
-                try await downloadModelViaURLSessionOnce(model)
+                try await downloadModelViaURLSessionOnce(model, resumeData: resumeData)
                 return  // Success
             } catch {
                 lastError = error
+                // Capture resume data (stall cancel / transient network error) so the next
+                // attempt continues from the partial download instead of restarting at 0%.
+                if let rd = (error as NSError).userInfo[NSURLSessionDownloadTaskResumeData] as? Data {
+                    resumeData = rd
+                    print("[ModelLoader] Captured resume data (\(rd.count) bytes) — next attempt resumes partial download")
+                } else {
+                    resumeData = nil
+                }
                 print("[ModelLoader] Download attempt \(attempt)/\(maxRetries) failed: \(error.localizedDescription)")
                 if attempt < maxRetries {
                     let delay = UInt64(pow(2.0, Double(attempt))) * 1_000_000_000  // Exponential backoff
@@ -1351,7 +1538,7 @@ final class ModelLoader: ObservableObject {
     }
 
     /// Single download attempt
-    private func downloadModelViaURLSessionOnce(_ model: ModelInfo) async throws {
+    private func downloadModelViaURLSessionOnce(_ model: ModelInfo, resumeData: Data? = nil) async throws {
         guard let url = URL(string: model.downloadURL) else {
             throw ModelLoaderError.invalidURL
         }
@@ -1381,14 +1568,20 @@ final class ModelLoader: ObservableObject {
         downloadProgressInfo = newInfo
         print("[ModelLoader] Initial progress set for \(model.id) - keys now: \(Array(downloadProgressInfo.keys))")
 
+        var downloadSucceeded = false
         defer {
             isDownloading = false
-            // Set progress to 100% before removing (allow UI to update)
-            var finalProgress = downloadProgress
-            finalProgress[model.id] = 1.0
-            downloadProgress = finalProgress
+            if downloadSucceeded {
+                // Set progress to 100% before removing (allow UI to update)
+                var finalProgress = downloadProgress
+                finalProgress[model.id] = 1.0
+                downloadProgress = finalProgress
+            }
+            // On failure, do NOT fake 100% — the retry loop (or the caller's error
+            // handling) owns the UI state; showing 1.0 here made failed downloads
+            // look complete for 0.5s before vanishing.
 
-            // Delay removal to allow UI to see 100%
+            // Delay removal to allow UI to see the final state
             Task { @MainActor in
                 try? await Task.sleep(nanoseconds: 500_000_000) // 0.5 second delay
                 var newProgress = self.downloadProgress
@@ -1408,7 +1601,7 @@ final class ModelLoader: ObservableObject {
 
         // Use URLSessionDownloadTask with delegate for progress
         // Pass actual size for accurate progress calculation
-        let (tempURL, _) = try await downloadWithProgress(from: url, modelId: model.id, expectedSize: actualSize)
+        let (tempURL, _) = try await downloadWithProgress(from: url, modelId: model.id, expectedSize: actualSize, resumeData: resumeData)
 
         // Determine file extension from URL or response
         let fileExtension = url.pathExtension.lowercased()
@@ -1434,9 +1627,11 @@ final class ModelLoader: ObservableObject {
             }
             try fileManager.moveItem(at: tempURL, to: destinationPath)
         }
+
+        downloadSucceeded = true
     }
 
-    private func downloadWithProgress(from url: URL, modelId: String, expectedSize: Int64) async throws -> (URL, URLResponse) {
+    private func downloadWithProgress(from url: URL, modelId: String, expectedSize: Int64, resumeData: Data? = nil) async throws -> (URL, URLResponse) {
         // Keep a strong reference to the session to prevent deallocation
         var downloadSession: URLSession?
 
@@ -1494,7 +1689,14 @@ final class ModelLoader: ObservableObject {
 
             // Use delegate-based download task (NO completion handler)
             // This ensures didWriteData delegate method gets called
-            let task = session.downloadTask(with: url)
+            let task: URLSessionDownloadTask
+            if let resumeData {
+                print("[ModelLoader] Resuming download from partial data (\(resumeData.count) bytes of resume info)")
+                task = session.downloadTask(withResumeData: resumeData)
+            } else {
+                task = session.downloadTask(with: url)
+            }
+            delegate.attach(task: task)
             task.resume()
         }
     }
@@ -1640,6 +1842,16 @@ private final class DownloadDelegate: NSObject, URLSessionDownloadDelegate {
     private var lastBytesWritten: Int64 = 0
     private var speedSamples: [Double] = []  // 速度のサンプルを保持して平滑化
     private var lastLoggedPercent: Int = -1  // 重複ログ防止
+    private var lastProgressTime: Date = Date()  // For stall detection
+    private var stallTimer: DispatchSourceTimer?  // Stall detection timer
+    private let stallTimeoutSeconds: Double = 90  // Cancel download if no progress for 90s
+    private var completionCalled = false  // Prevent double completion
+    private weak var task: URLSessionDownloadTask?  // For resume-data cancellation on stall
+
+    /// Attach the download task so stall cancellation can produce resume data
+    func attach(task: URLSessionDownloadTask) {
+        self.task = task
+    }
 
     init(expectedSize: Int64,
          progressHandler: @escaping (Double, Int64, Int64, Double, TimeInterval?) -> Void,
@@ -1648,22 +1860,66 @@ private final class DownloadDelegate: NSObject, URLSessionDownloadDelegate {
         self.progressHandler = progressHandler
         self.completionHandler = completionHandler
         super.init()
+        startStallDetection()
+    }
+
+    deinit {
+        stallTimer?.cancel()
+    }
+
+    private func startStallDetection() {
+        let timer = DispatchSource.makeTimerSource(queue: .global(qos: .utility))
+        timer.schedule(deadline: .now() + stallTimeoutSeconds, repeating: stallTimeoutSeconds)
+        timer.setEventHandler { [weak self] in
+            guard let self else { return }
+            let elapsed = Date().timeIntervalSince(self.lastProgressTime)
+            if elapsed >= self.stallTimeoutSeconds && !self.completionCalled {
+                print("[Download] Stall detected: no progress for \(Int(elapsed))s — cancelling for retry")
+                self.stallTimer?.cancel()
+                self.stallTimer = nil
+                if let task = self.task {
+                    // Cancel producing resume data; didCompleteWithError then fires with
+                    // NSURLSessionDownloadTaskResumeData in userInfo so the retry loop
+                    // resumes from the partial download instead of restarting at 0%.
+                    task.cancel(byProducingResumeData: { _ in })
+                } else {
+                    let error = NSError(domain: NSURLErrorDomain, code: NSURLErrorTimedOut,
+                                        userInfo: [NSLocalizedDescriptionKey: "Download stalled (no progress for \(Int(elapsed))s)"])
+                    self.fireCompletion(.failure(error))
+                }
+            }
+        }
+        timer.resume()
+        stallTimer = timer
+    }
+
+    private func fireCompletion(_ result: Result<URL, Error>) {
+        guard !completionCalled else { return }
+        completionCalled = true
+        stallTimer?.cancel()
+        stallTimer = nil
+        completionHandler(result)
     }
 
     func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didWriteData bytesWritten: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64) {
         let now = Date()
+        lastProgressTime = now  // Reset stall detection on any progress
         if startTime == nil {
             startTime = now
             lastUpdateTime = now
             // Log first callback with size info
             print("[Download] First callback - serverSize: \(totalBytesExpectedToWrite), expectedSize: \(expectedSize)")
-            // Lock in server-provided size on first callback for accurate progress
+            // Lock in server-provided size on first callback for accurate progress.
+            // Use the larger of server-provided and expected size to avoid progress > 100%
+            // caused by HuggingFace CDN redirect / Content-Encoding mismatches on iPad.
             if totalBytesExpectedToWrite > 0 {
-                actualTotalSize = totalBytesExpectedToWrite
+                actualTotalSize = max(totalBytesExpectedToWrite, expectedSize)
             }
         }
 
-        // Use server-provided size (most accurate), then expected size from model info
+        // Use actual total size (adjusted on first callback), then expected size from model info.
+        // totalBytesExpectedToWrite from URLSession can be -1 (NSURLSessionTransferSizeUnknown)
+        // when the server uses chunked transfer encoding or doesn't send Content-Length.
         let totalSize: Int64
         if let actual = actualTotalSize, actual > 0 {
             totalSize = actual
@@ -1699,10 +1955,12 @@ private final class DownloadDelegate: NSObject, URLSessionDownloadDelegate {
         let averageSpeed = speedSamples.isEmpty ? 0 : speedSamples.reduce(0, +) / Double(speedSamples.count)
 
         // 残り時間計算
-        let remainingBytes = totalSize - totalBytesWritten
+        let remainingBytes = max(totalSize - totalBytesWritten, 0)
         let eta: TimeInterval? = averageSpeed > 0 ? TimeInterval(remainingBytes) / averageSpeed : nil
 
-        let progress = Double(totalBytesWritten) / Double(totalSize)
+        // Clamp progress to [0, 0.99] here; 1.0 is only set by didFinishDownloadingTo
+        // to avoid the download appearing stuck when size estimates diverge.
+        let progress = min(Double(totalBytesWritten) / Double(totalSize), 0.99)
 
         // Log progress every 10% (without duplicates)
         let percentProgress = Int(progress * 100)
@@ -1715,27 +1973,37 @@ private final class DownloadDelegate: NSObject, URLSessionDownloadDelegate {
             print("[Download] \(String(format: "%.1f", mbWritten))MB / \(String(format: "%.1f", mbTotal))MB (\(percentProgress)%) - \(String(format: "%.1f", mbps)) MB/s")
         }
 
-        progressHandler(min(progress, 1.0), totalBytesWritten, totalSize, averageSpeed, eta)
+        progressHandler(progress, totalBytesWritten, totalSize, averageSpeed, eta)
     }
 
     func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
-        print("[Download] Finished downloading to: \(location.path)")
-        // Move to a persistent temp location before returning
+        lastProgressTime = Date()
+        let fileSize = (try? FileManager.default.attributesOfItem(atPath: location.path)[.size] as? Int64) ?? 0
+        print("[Download] Finished downloading to: \(location.path) (fileSize: \(fileSize) bytes)")
+        progressHandler(1.0, fileSize, fileSize, 0, nil)
+
         let persistentTemp = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
         do {
             try FileManager.default.moveItem(at: location, to: persistentTemp)
-            completionHandler(.success(persistentTemp))
+            fireCompletion(.success(persistentTemp))
         } catch {
-            completionHandler(.failure(error))
+            fireCompletion(.failure(error))
         }
     }
 
     func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
         if let error = error {
-            print("[Download] Completed with error: \(error.localizedDescription)")
-            completionHandler(.failure(error))
+            let hasResumeData = (error as NSError).userInfo[NSURLSessionDownloadTaskResumeData] != nil
+            print("[Download] Completed with error: \(error.localizedDescription) (resumeData: \(hasResumeData))")
+            fireCompletion(.failure(error))
         }
         // Note: Success case is handled in didFinishDownloadingTo
+    }
+
+    func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didResumeAtOffset fileOffset: Int64, expectedTotalBytes: Int64) {
+        lastProgressTime = Date()
+        lastBytesWritten = fileOffset
+        print("[Download] Resumed at offset \(fileOffset) / \(expectedTotalBytes) bytes")
     }
 
     func urlSession(_ session: URLSession, taskIsWaitingForConnectivity task: URLSessionTask) {
@@ -1769,6 +2037,20 @@ extension ModelLoader {
     func loadModel(named modelId: String) async throws -> CoreMLInference {
         guard let modelInfo = availableModels.first(where: { $0.id == modelId }) else {
             throw ModelLoaderError.modelNotFound
+        }
+
+        // MLX models: load directly from HuggingFace hub
+        if modelInfo.isMLX, let hubId = modelInfo.mlxHubId {
+            let config = CoreMLInference.ModelConfig(
+                name: modelInfo.name,
+                maxContextLength: modelInfo.config.maxContextLength,
+                vocabularySize: modelInfo.config.vocabularySize,
+                eosTokenId: modelInfo.config.eosTokenId,
+                bosTokenId: modelInfo.config.bosTokenId
+            )
+            let inference = CoreMLInference(config: config)
+            try await inference.loadMLXModel(hubId: hubId)
+            return inference
         }
 
         // Check for GGUF file first

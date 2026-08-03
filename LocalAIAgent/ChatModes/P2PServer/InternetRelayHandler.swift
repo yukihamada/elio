@@ -10,6 +10,7 @@ final class InternetRelayHandler {
     // MARK: - Security
 
     private let allowedDomains: Set<String> = [
+        "chatweb.ai",
         "api.chatweb.ai",
         "api.openai.com",
         "api.anthropic.com",

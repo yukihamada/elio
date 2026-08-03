@@ -62,7 +62,7 @@ final class ChatWebBackend: InferenceBackend, ObservableObject {
 
         var streamURL: String {
             switch self {
-            case .chatweb: return "https://chatweb.ai/api/v1/chat"
+            case .chatweb: return "https://chatweb.ai/api/v1/chat/stream"
             case .teai: return "https://api.teai.io/api/v1/chat/stream"
             }
         }
@@ -101,17 +101,20 @@ final class ChatWebBackend: InferenceBackend, ObservableObject {
         ("nvidia/NVIDIA-Nemotron-Nano-9B-v2-Japanese", "Nemotron 9B Japanese ✦ Pro", true),
         ("claude-sonnet-4-5", "Claude Sonnet 4.5", false),
         ("claude-haiku-3-5", "Claude Haiku 3.5", false),
-        ("gpt-4o", "GPT-4o", false),
-        ("gpt-4o-mini", "GPT-4o Mini", false),
+        ("gpt-4o", "Cloud AI Advanced", false),
+        ("gpt-4o-mini", "Cloud AI Fast", false),
+        ("moonshotai/kimi-k3", "キミ (Kimi K3) ✦ Pro", true),
+        ("deepseek/deepseek-v4-flash", "ディープシーク (DeepSeek V4-Flash) ✦ Pro", true),
+        ("claude-sonnet-5", "クロード (Claude Sonnet 5) ✦ Pro", true),
     ]
 
     /// Persistent session ID for conversation continuity
     private var sessionId: String {
         let key = "chatweb_session_id"
-        if let existing = UserDefaults.standard.string(forKey: key) {
+        if let existing = UserDefaults.standard.string(forKey: key), existing.contains(":") {
             return existing
         }
-        let newId = "elio-\(UUID().uuidString.prefix(12).lowercased())"
+        let newId = "api:\(UUID().uuidString.prefix(12).lowercased())"
         UserDefaults.standard.set(newId, forKey: key)
         return newId
     }
@@ -229,10 +232,10 @@ final class ChatWebBackend: InferenceBackend, ObservableObject {
             body["system_prompt"] = systemPrompt
         }
 
-        // Add model selection if specified
-        if let model = selectedModel {
-            body["model"] = model
-        }
+        // Default to shitate/orchestrator: a high-accuracy, low-cost cascade model that
+        // logged-in Free plan users get for free up to 10 requests/day (then falls back to
+        // normal credit billing). Explicit user selection (Settings > Model) always wins.
+        body["model"] = selectedModel ?? "shitate/orchestrator"
 
         request.httpBody = try JSONSerialization.data(withJSONObject: body)
         return request
@@ -307,10 +310,18 @@ final class ChatWebBackend: InferenceBackend, ObservableObject {
                 onToken(text)
             }
 
+        case "content_chunk":
+            // Streaming format: {"type":"content_chunk","text":"..."}
+            if let text = json["text"] as? String {
+                fullResponse += text
+                onToken(text)
+            }
+
         case "content":
-            // Legacy format: {"type":"content","content":"..."}
-            if let content = json["content"] as? String {
-                fullResponse += content
+            // Final full response: {"type":"content","content":"..."}
+            // Only use if no content_chunk tokens were received (fallback/timeout case)
+            if let content = json["content"] as? String, fullResponse.isEmpty {
+                fullResponse = content
                 onToken(content)
             }
 
@@ -372,6 +383,19 @@ final class ChatWebBackend: InferenceBackend, ObservableObject {
                     object: nil,
                     userInfo: userInfo
                 )
+            }
+
+        case "error":
+            // Server error: {"type":"error","content":"...","action":"upgrade"?}
+            // The free cascade trial / out-of-credits paths return HTTP 200 (not 402)
+            // for streaming responses, signaling the same condition via this action
+            // field instead — mirror the 402 handling below so the upgrade sheet shows.
+            if json["action"] as? String == "upgrade" {
+                NotificationCenter.default.post(name: .chatWebInsufficientCredits, object: nil)
+            }
+            if let content = json["content"] as? String, fullResponse.isEmpty {
+                fullResponse = content
+                onToken(content)
             }
 
         default:

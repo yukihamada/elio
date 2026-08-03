@@ -137,6 +137,76 @@ Japanese & English. Voice data never leaves your device.
 
 <br>
 
+## &#127775; More Features
+
+<table>
+<tr>
+<td width="33%" valign="top">
+
+### &#127760; Real-time Interpreter
+
+**19-language AI translation.**
+
+Speak → transcribe → translate → read aloud.
+Perfect for travel and international business.
+
+</td>
+<td width="33%" valign="top">
+
+### &#128274; Digital Vault
+
+**AES-256 + biometric lock.**
+
+Store passports, cards, and documents with military-grade encryption — Face ID / Touch ID protected, auto-locks in 5 min.
+
+</td>
+<td width="33%" valign="top">
+
+### &#128506; Offline Disaster Map
+
+**Shelter database built-in.**
+
+Find evacuation shelters offline for earthquakes, floods, and more. Walking route guidance, barrier-free filters.
+
+</td>
+</tr>
+<tr>
+<td width="33%" valign="top">
+
+### &#128172; P2P Messaging
+
+**Server-free DM.**
+
+Direct messages over local network with delivery receipts, online presence, and message queuing when offline.
+
+</td>
+<td width="33%" valign="top">
+
+### &#128176; Token Economy
+
+**Earn tokens by sharing compute.**
+
+Run a model on Mac, serve inference to other users, and accumulate ENAI tokens on Solana.
+
+</td>
+<td width="33%" valign="top">
+
+### &#128722; Skill Marketplace
+
+**Extend AI with community skills.**
+
+Install skills built by the community. Publish your own. Curator rank system and OG Founder badges.
+
+</td>
+</tr>
+</table>
+
+<br>
+
+---
+
+<br>
+
 ## &#128640; ElioChat vs ChatGPT
 
 <table>
@@ -155,6 +225,8 @@ Japanese & English. Voice data never leaves your device.
 <tr><td><strong>&#128190; Data Storage</strong></td><td align="center">Device only</td><td align="center">On servers</td></tr>
 <tr><td><strong>&#128279; MCP Integration</strong></td><td align="center">13 types</td><td align="center">Not supported</td></tr>
 <tr><td><strong>&#128421; P2P Inference</strong></td><td align="center">Mac collaboration</td><td align="center">Not supported</td></tr>
+<tr><td><strong>&#127760; Real-time Interpreter</strong></td><td align="center">19 languages</td><td align="center">Not supported</td></tr>
+<tr><td><strong>&#128274; Encrypted Vault</strong></td><td align="center">AES-256 + Face ID</td><td align="center">Not supported</td></tr>
 <tr><td><strong>&#128176; Price</strong></td><td align="center"><strong>Completely free</strong></td><td align="center">$20/month</td></tr>
 </tbody>
 </table>
@@ -293,9 +365,9 @@ open ElioChat.xcodeproj
 ### Test
 
 ```bash
-# 135 unit tests
+# 171 unit tests
 xcodebuild test -project ElioChat.xcodeproj -scheme ElioChat \
-  -testPlan UnitTests -destination 'platform=iOS Simulator,name=iPhone 16'
+  -destination 'platform=iOS Simulator,name=iPhone 16 Pro'
 ```
 
 ### Architecture
