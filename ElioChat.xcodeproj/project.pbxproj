@@ -1206,7 +1206,7 @@
 			mainGroup = 300;
 			packageReferences = (
 				B63B0EBE2F121377006BCDD0 /* XCLocalSwiftPackageReference "llama-local" */,
-				MDVIEW001 /* XCLocalSwiftPackageReference "MarkdownView" */,
+				MDVIEW001 /* XCRemoteSwiftPackageReference "MarkdownView" */,
 				WHISPER005 /* XCRemoteSwiftPackageReference "WhisperKit" */,
 				MLX00001 /* XCRemoteSwiftPackageReference "mlx-swift-lm" */,
 			);
@@ -2265,13 +2265,17 @@
 			isa = XCLocalSwiftPackageReference;
 			relativePath = "Packages/llama-local";
 		};
-		MDVIEW001 /* XCLocalSwiftPackageReference "MarkdownView" */ = {
-			isa = XCLocalSwiftPackageReference;
-			relativePath = Packages/MarkdownView;
-		};
 /* End XCLocalSwiftPackageReference section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		MDVIEW001 /* XCRemoteSwiftPackageReference "MarkdownView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/LiYanan2004/MarkdownView.git";
+			requirement = {
+				kind = exactVersion;
+				version = 1.7.0;
+			};
+		};
 		MLX00001 /* XCRemoteSwiftPackageReference "mlx-swift-lm" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ml-explore/mlx-swift-lm.git";
@@ -2298,7 +2302,7 @@
 		};
 		MDVIEW002 /* MarkdownView */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = MDVIEW001 /* XCLocalSwiftPackageReference "MarkdownView" */;
+			package = MDVIEW001 /* XCRemoteSwiftPackageReference "MarkdownView" */;
 			productName = MarkdownView;
 		};
 		MLX00002 /* MLXLLM */ = {
