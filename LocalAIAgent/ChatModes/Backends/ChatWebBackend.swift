@@ -96,13 +96,16 @@ final class ChatWebBackend: InferenceBackend, ObservableObject {
     }()
 
     /// Available models that can be selected (populated externally)
+    /// IDs verified live against https://teai.io/api/v1/models (2026-08-03). The old
+    /// "nvidia/NVIDIA-Nemotron-Nano-9B-v2-Japanese" id is no longer in that catalog
+    /// (dead RunPod-era entry) — replaced with the current Nemotron 3 Nano.
     static let availableModels: [(id: String, name: String, requiresPro: Bool)] = [
         ("auto", "Auto (server default)", false),
-        ("nvidia/NVIDIA-Nemotron-Nano-9B-v2-Japanese", "Nemotron 9B Japanese ✦ Pro", true),
-        ("claude-sonnet-4-5", "Claude Sonnet 4.5", false),
-        ("claude-haiku-3-5", "Claude Haiku 3.5", false),
-        ("gpt-4o", "Cloud AI Advanced", false),
-        ("gpt-4o-mini", "Cloud AI Fast", false),
+        ("nvidia/Nemotron-3-Nano-30B-A3B", "Nemotron 3 Nano ✦ Pro", true),
+        ("claude-sonnet-4-6", "Claude Sonnet 4.6", false),
+        ("claude-haiku-4-5-20251001", "Claude Haiku 4.5", false),
+        ("openai/gpt-5.6-sol", "Cloud AI Advanced", false),
+        ("openai/gpt-5.4-mini", "Cloud AI Fast", false),
         ("moonshotai/kimi-k3", "キミ (Kimi K3) ✦ Pro", true),
         ("deepseek/deepseek-v4-flash", "ディープシーク (DeepSeek V4-Flash) ✦ Pro", true),
         ("claude-sonnet-5", "クロード (Claude Sonnet 5) ✦ Pro", true),
