@@ -232,10 +232,10 @@ final class ChatWebBackend: InferenceBackend, ObservableObject {
             body["system_prompt"] = systemPrompt
         }
 
-        // Add model selection if specified
-        if let model = selectedModel {
-            body["model"] = model
-        }
+        // Default to shitate/orchestrator: a high-accuracy, low-cost cascade model that
+        // logged-in Free plan users get for free up to 10 requests/day (then falls back to
+        // normal credit billing). Explicit user selection (Settings > Model) always wins.
+        body["model"] = selectedModel ?? "shitate/orchestrator"
 
         request.httpBody = try JSONSerialization.data(withJSONObject: body)
         return request
@@ -386,7 +386,13 @@ final class ChatWebBackend: InferenceBackend, ObservableObject {
             }
 
         case "error":
-            // Server error: {"type":"error","content":"..."}
+            // Server error: {"type":"error","content":"...","action":"upgrade"?}
+            // The free cascade trial / out-of-credits paths return HTTP 200 (not 402)
+            // for streaming responses, signaling the same condition via this action
+            // field instead — mirror the 402 handling below so the upgrade sheet shows.
+            if json["action"] as? String == "upgrade" {
+                NotificationCenter.default.post(name: .chatWebInsufficientCredits, object: nil)
+            }
             if let content = json["content"] as? String, fullResponse.isEmpty {
                 fullResponse = content
                 onToken(content)
