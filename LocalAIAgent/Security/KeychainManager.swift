@@ -202,7 +202,8 @@ enum APIKeyProvider: String, CaseIterable, Identifiable {
         case .anthropic: return .anthropic
         case .google: return .google
         case .openrouter: return .openrouter
-        case .chatweb, .teai, .groq: return nil
+        case .teai: return .teai
+        case .chatweb, .groq: return nil
         }
     }
 }
