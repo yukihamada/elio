@@ -35,7 +35,66 @@ struct ModelSelectorView: View {
                                             Text("入力: $\(String(format: "%.2f", model.inputCost))/1M")
                                             Text("•")
                                             Text("出力: $\(String(format: "%.2f", model.outputCost))/1M")
-                                        }
+        case .teai:
+            return [
+                ModelInfo(
+                    id: "teai/auto",
+                    name: "teai Auto",
+                    description: "用途に応じて最適モデルを自動選択",
+                    inputCost: 0,
+                    outputCost: 0
+                ),
+                ModelInfo(
+                    id: "anthropic/claude-sonnet-5",
+                    name: "Claude Sonnet 5",
+                    description: "Anthropic最新の高性能モデル",
+                    inputCost: 3,
+                    outputCost: 15
+                ),
+                ModelInfo(
+                    id: "anthropic/claude-opus-4.8",
+                    name: "Claude Opus 4.8",
+                    description: "最高性能モデル",
+                    inputCost: 15,
+                    outputCost: 75
+                ),
+                ModelInfo(
+                    id: "openai/gpt-5.5",
+                    name: "GPT-5.5",
+                    description: "OpenAI最新モデル",
+                    inputCost: 5,
+                    outputCost: 15
+                ),
+                ModelInfo(
+                    id: "google/gemini-3.5-flash",
+                    name: "Gemini 3.5 Flash",
+                    description: "Google製・高速モデル",
+                    inputCost: 0.3,
+                    outputCost: 1.2
+                ),
+                ModelInfo(
+                    id: "deepseek/deepseek-v4-flash",
+                    name: "DeepSeek V4 Flash",
+                    description: "低コスト高性能モデル",
+                    inputCost: 0.3,
+                    outputCost: 0.9
+                ),
+                ModelInfo(
+                    id: "qwen/qwen3.8-max",
+                    name: "Qwen 3.8 Max",
+                    description: "Alibaba製オープンモデル",
+                    inputCost: 1,
+                    outputCost: 3
+                ),
+                ModelInfo(
+                    id: "moonshotai/kimi-k3",
+                    name: "Kimi K3",
+                    description: "Moonshot AI製モデル",
+                    inputCost: 1,
+                    outputCost: 3
+                ),
+            ]
+        }
                                         .font(.caption2)
                                         .foregroundStyle(.tertiary)
                                     } else {

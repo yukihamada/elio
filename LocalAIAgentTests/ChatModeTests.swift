@@ -148,11 +148,12 @@ final class ChatModeTests: XCTestCase {
     }
 
     func testCloudProviderCaseIterable() {
-        XCTAssertEqual(CloudProvider.allCases.count, 4)
+        XCTAssertEqual(CloudProvider.allCases.count, 5)
         XCTAssertTrue(CloudProvider.allCases.contains(.openai))
         XCTAssertTrue(CloudProvider.allCases.contains(.anthropic))
         XCTAssertTrue(CloudProvider.allCases.contains(.google))
         XCTAssertTrue(CloudProvider.allCases.contains(.openrouter))
+        XCTAssertTrue(CloudProvider.allCases.contains(.teai))
     }
 
     func testCloudProviderIdentifiable() {
@@ -160,6 +161,16 @@ final class ChatModeTests: XCTestCase {
         XCTAssertEqual(CloudProvider.anthropic.id, "anthropic")
         XCTAssertEqual(CloudProvider.google.id, "google")
         XCTAssertEqual(CloudProvider.openrouter.id, "openrouter")
+        XCTAssertEqual(CloudProvider.teai.id, "teai")
+    }
+
+    func testTeaiProvider() {
+        let provider = CloudProvider.teai
+        XCTAssertEqual(provider.rawValue, "teai")
+        XCTAssertFalse(provider.displayName.isEmpty)
+        XCTAssertEqual(provider.defaultModel, "teai/auto")
+        XCTAssertEqual(provider.baseURL, "https://api.teai.io/v1")
+        XCTAssertEqual(provider.apiKeyProvider, .teai)
     }
 
     func testOpenRouterProvider() {

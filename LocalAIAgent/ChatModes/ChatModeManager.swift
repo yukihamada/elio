@@ -317,6 +317,8 @@ final class ChatModeManager: ObservableObject {
                 return keychain.hasAPIKey(for: .google)
             case .openrouter:
                 return keychain.hasAPIKey(for: .openrouter)
+            case .teai:
+                return keychain.hasAPIKey(for: .teai)
             }
         }
     }
