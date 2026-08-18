@@ -16,6 +16,7 @@ private class StreamingBuffer {
 struct ChatView: View {
     @EnvironmentObject var appState: AppState
     @EnvironmentObject var themeManager: ThemeManager
+    @EnvironmentObject var syncManager: SyncManager
     @StateObject private var networkMonitor = NetworkMonitor.shared
     @State private var inputText = ""
     @State private var isGenerating = false
@@ -1264,6 +1265,27 @@ struct ChatView: View {
                 Image(systemName: "exclamationmark.triangle.fill")
                     .font(.system(size: 14))
                     .foregroundStyle(.orange)
+            }
+
+            // Credit balance indicator (only in cloud/ChatWeb mode)
+            if ChatModeManager.shared.isChatWebMode && syncManager.creditsRemaining > 0 {
+                HStack(spacing: 4) {
+                    Image(systemName: "sparkles")
+                        .font(.system(size: 10, weight: .semibold))
+                    Text("\(syncManager.creditsRemaining)")
+                        .font(.system(size: 12, weight: .semibold))
+                }
+                .foregroundStyle(.green)
+                .padding(.horizontal, 8)
+                .padding(.vertical, 4)
+                .background(
+                    Capsule()
+                        .fill(Color.green.opacity(0.1))
+                )
+                .overlay(
+                    Capsule()
+                        .stroke(Color.green.opacity(0.3), lineWidth: 0.5)
+                )
             }
         }
     }
