@@ -684,6 +684,7 @@ struct ChatView: View {
         }
     }
 
+    @ViewBuilder
     private var bodyWithLifecycle: some View {
         #if targetEnvironment(macCatalyst)
         bodyWithObservers
