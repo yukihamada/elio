@@ -94,6 +94,39 @@
 "settings.airplane.mode" = "機内モードで動作中";
 "settings.offline.ready" = "オフライン対応";
 
+// MARK: - Parental Control
+"settings.parental.section" = "ペアレンタルコントロール";
+"parental.enabled_toggle" = "ペアレンタルコントロールを有効にする";
+"parental.filter_level" = "コンテンツフィルタリングレベル";
+"parental.filter_level.strict" = "厳格 (R-18, 暴力, 自傷行為をブロック)";
+"parental.filter_level.moderate" = "中程度 (R-18をブロック, 自傷行為は警告)";
+"parental.filter_level.lenient" = "緩やか (R-18をブロック, その他はAIが判断)";
+"parental.child_age" = "お子様の年齢";
+"parental.blocked_keywords" = "ブロックワード";
+"parental.hint" = "お子様がAIを安全に利用するための設定です。Face ID/Touch IDで保護されます。";
+"parental.auth.title" = "ペアレンタルコントロールの認証";
+"parental.auth.description" = "設定を変更するにはFace IDまたはTouch IDで認証してください。";
+"parental.auth.button" = "認証";
+"parental.auth.failed" = "認証に失敗しました。";
+"parental.auth.no_biometrics" = "Face ID/Touch IDが利用できません。";
+"parental.auth.reason" = "ペアレンタルコントロールの設定変更";
+"parental.blocked_keywords.title" = "ブロックワード管理";
+"parental.blocked_keywords.add_section_header" = "新しいブロックワードを追加";
+"parental.blocked_keywords.add_placeholder" = "例: 死ね, 殺す";
+"parental.blocked_keywords.list_section_header" = "登録済みブロックワード";
+"parental.blocked_keywords.empty_list" = "ブロックワードは登録されていません";
+"parental.blocked_alert_title" = "不適切なメッセージ";
+"parental.blocked_alert_message" = "このメッセージはペアレンタルコントロール設定によりブロックされました。";
+"parental.server_name" = "ペアレンタルコントロール";
+"parental.server_description" = "お子様のAI利用を管理する機能";
+"parental.tool.report_description" = "不適切なコンテンツを報告し、親に通知します。";
+"parental.tool.report_content_description" = "報告されるコンテンツの内容";
+"parental.tool.report_reason_description" = "報告理由";
+"parental.tool.report_success" = "不適切なコンテンツを報告しました。";
+"parental.tool.suggest_guidance_description" = "特定のトピックについて親の指導が必要な場合に提案します。";
+"parental.tool.suggest_guidance_topic_description" = "指導が必要なトピック";
+"parental.tool.suggest_guidance_success" = "親の指導が必要なトピックを提案しました。";
+
 // MARK: - Model States
 "model.status.downloading" = "ダウンロード中... %d%%";
 "model.status.loading" = "読み込み中...";

@@ -94,6 +94,39 @@
 "settings.airplane.mode" = "Running in Airplane Mode";
 "settings.offline.ready" = "Offline Ready";
 
+// MARK: - Parental Control
+"settings.parental.section" = "Parental Controls";
+"parental.enabled_toggle" = "Enable Parental Controls";
+"parental.filter_level" = "Content Filtering Level";
+"parental.filter_level.strict" = "Strict (Block R-18, violence, self-harm)";
+"parental.filter_level.moderate" = "Moderate (Block R-18, warn on self-harm)";
+"parental.filter_level.lenient" = "Lenient (Block R-18, AI decides others)";
+"parental.child_age" = "Child's Age";
+"parental.blocked_keywords" = "Blocked Keywords";
+"parental.hint" = "Settings to help your child use AI safely. Protected by Face ID/Touch ID.";
+"parental.auth.title" = "Parental Control Authentication";
+"parental.auth.description" = "Authenticate with Face ID or Touch ID to change settings.";
+"parental.auth.button" = "Authenticate";
+"parental.auth.failed" = "Authentication failed.";
+"parental.auth.no_biometrics" = "Face ID/Touch ID is not available.";
+"parental.auth.reason" = "Change parental control settings";
+"parental.blocked_keywords.title" = "Blocked Keywords";
+"parental.blocked_keywords.add_section_header" = "Add New Blocked Keyword";
+"parental.blocked_keywords.add_placeholder" = "e.g., kill, die";
+"parental.blocked_keywords.list_section_header" = "Registered Blocked Keywords";
+"parental.blocked_keywords.empty_list" = "No blocked keywords registered";
+"parental.blocked_alert_title" = "Inappropriate Message";
+"parental.blocked_alert_message" = "This message was blocked by parental control settings.";
+"parental.server_name" = "Parental Control";
+"parental.server_description" = "Manage your child's AI usage";
+"parental.tool.report_description" = "Report inappropriate content and notify parents.";
+"parental.tool.report_content_description" = "Content to be reported";
+"parental.tool.report_reason_description" = "Reason for report";
+"parental.tool.report_success" = "Reported inappropriate content.";
+"parental.tool.suggest_guidance_description" = "Suggest when parental guidance is needed for a topic.";
+"parental.tool.suggest_guidance_topic_description" = "Topic requiring guidance";
+"parental.tool.suggest_guidance_success" = "Suggested topic requiring parental guidance.";
+
 // MARK: - Model States
 "model.status.downloading" = "Downloading... %d%%";
 "model.status.loading" = "Loading...";

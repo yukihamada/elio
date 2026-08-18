@@ -35,6 +35,20 @@ final class AppState: ObservableObject {
     @Published var currentConversation: Conversation?
     @Published var enabledMCPServers: Set<String> = ["filesystem", "calendar", "reminders", "websearch", "weather", "notes", "emergency_kb", "news"]
     @Published var isEmergencyMode = false
+    // Parental Control
+    @Published var isParentalControlEnabled: Bool = UserDefaults.standard.bool(forKey: "isParentalControlEnabled") {
+        didSet { UserDefaults.standard.set(isParentalControlEnabled, forKey: "isParentalControlEnabled") }
+    }
+    @Published var parentalControlFilterLevel: ParentalControlFilterLevel = ParentalControlFilterLevel(rawValue: UserDefaults.standard.string(forKey: "parentalControlFilterLevel") ?? "moderate") ?? .moderate {
+        didSet { UserDefaults.standard.set(parentalControlFilterLevel.rawValue, forKey: "parentalControlFilterLevel") }
+    }
+    @Published var parentalControlBlockedKeywords: [String] = UserDefaults.standard.stringArray(forKey: "parentalControlBlockedKeywords") ?? [] {
+        didSet { UserDefaults.standard.set(parentalControlBlockedKeywords, forKey: "parentalControlBlockedKeywords") }
+    }
+    @Published var childAge: Int = UserDefaults.standard.integer(forKey: "childAge") == 0 ? 10 : UserDefaults.standard.integer(forKey: "childAge") {
+        didSet { UserDefaults.standard.set(childAge, forKey: "childAge") }
+    }
+
     @Published var errorMessage: String?
     @Published var isGenerating = false  // Track if currently generating response
     @Published var agentStatus: String? = nil  // Current tool/agent call status (e.g. "tool_start:name"), shown by AgentProgressRow
@@ -596,7 +610,7 @@ final class AppState: ObservableObject {
             lastUsedModel = modelName
 
             if let llm = llmEngine, let mcp = mcpClient {
-                orchestrator = AgentOrchestrator(llm: llm, mcpClient: mcp, modelId: modelName)
+                orchestrator = AgentOrchestrator(llm: llm, mcpClient: mcp, appState: self, modelId: modelName)
             }
         } catch {
             errorMessage = error.localizedDescription

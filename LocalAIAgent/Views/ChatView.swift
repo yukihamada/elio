@@ -99,6 +99,11 @@ struct ChatView: View {
     @State private var showingAPIKeyOnboarding: ChatMode?
     // Model switcher (top-left)
     @State private var showingModelSwitcher = false
+    // Parental Control Alerts
+    @State private var showingParentalBlockedAlert = false
+    @State private var parentalBlockedAlertTitle: String = ""
+    @State private var parentalBlockedAlertMessage: String = ""
+
     // Crash recovery banner
     @State private var showRecoveryBanner = false
 
@@ -552,6 +557,11 @@ struct ChatView: View {
             if let error = webContentError {
                 Text(error)
             }
+        }
+        .alert(parentalBlockedAlertTitle, isPresented: $showingParentalBlockedAlert) {
+            Button("OK", role: .cancel) {}
+        } message: {
+            Text(parentalBlockedAlertMessage)
         }
         .overlay {
             // Speech model download progress
@@ -1019,6 +1029,12 @@ struct ChatView: View {
 
         // Show easter egg
         showingDeveloperThanks = true
+    }
+
+    private func showAlert(title: String, message: String) {
+        parentalBlockedAlertTitle = title
+        parentalBlockedAlertMessage = message
+        showingParentalBlockedAlert = true
     }
 
     private func startVoiceConversationListening() {

@@ -9,6 +9,7 @@ final class AgentOrchestrator: ObservableObject {
 
     private let llm: CoreMLInference
     private let mcpClient: MCPClient
+    private let appState: AppState // Add AppState dependency
     private let maxIterations = 1  // Single pass only — no tool loop to prevent MainActor hangs
     private var modelId: String?
     private let settingsManager = ModelSettingsManager.shared
@@ -31,9 +32,10 @@ final class AgentOrchestrator: ObservableObject {
         case other   // Gemma, Phi, Granite, ELYZA, Swallow, etc.
     }
 
-    init(llm: CoreMLInference, mcpClient: MCPClient, modelId: String? = nil) {
+    init(llm: CoreMLInference, mcpClient: MCPClient, appState: AppState, modelId: String? = nil) {
         self.llm = llm
         self.mcpClient = mcpClient
+        self.appState = appState // Initialize AppState
         self.modelId = modelId
     }
 
@@ -246,7 +248,11 @@ final class AgentOrchestrator: ObservableObject {
                 webSearchEnabled: webSearchEnabled,
                 calendarEnabled: calendarEnabled,
                 tier: tier,
-                family: family
+                family: family,
+                isParentalControlEnabled: appState.isParentalControlEnabled,
+                parentalControlFilterLevel: appState.parentalControlFilterLevel,
+                childAge: appState.childAge,
+                blockedKeywords: appState.parentalControlBlockedKeywords
             )
         } else {
             basePrompt = buildEnglishSystemPrompt(
@@ -254,7 +260,11 @@ final class AgentOrchestrator: ObservableObject {
                 webSearchEnabled: webSearchEnabled,
                 calendarEnabled: calendarEnabled,
                 tier: tier,
-                family: family
+                family: family,
+                isParentalControlEnabled: appState.isParentalControlEnabled,
+                parentalControlFilterLevel: appState.parentalControlFilterLevel,
+                childAge: appState.childAge,
+                blockedKeywords: appState.parentalControlBlockedKeywords
             )
         }
 
@@ -279,7 +289,11 @@ final class AgentOrchestrator: ObservableObject {
         webSearchEnabled: Bool,
         calendarEnabled: Bool,
         tier: ModelTier?,
-        family: ModelFamily
+        family: ModelFamily,
+        isParentalControlEnabled: Bool,
+        parentalControlFilterLevel: ParentalControlFilterLevel,
+        childAge: Int,
+        blockedKeywords: [String]
     ) -> String {
         let effectiveTier = tier ?? .large
         let date = formattedDate()
@@ -401,6 +415,29 @@ final class AgentOrchestrator: ObservableObject {
             """)
         }
 
+        // 8. Parental control guardrails (only when enabled)
+        if isParentalControlEnabled {
+            var parentalSection = "# ペアレンタルコントロール\n"
+            parentalSection += "子供（\(childAge)歳）が利用しています。以下のガイドラインに従ってください:\n"
+            switch parentalControlFilterLevel {
+            case .strict:
+                parentalSection += "- 暴力的・性的・不適切なコンテンツは一切生成しない\n"
+                parentalSection += "- 危険な行為や違法行為を助長しない\n"
+                parentalSection += "- 個人情報の収集・共有を求めない\n"
+                parentalSection += "- 不適切な話題には「その話題はお答えできません」と丁寧に断る\n"
+            case .moderate:
+                parentalSection += "- 暴力的・性的なコンテンツは避ける\n"
+                parentalSection += "- 危険な行為は注意喚起を添える\n"
+                parentalSection += "- 個人情報の共有は最小限に\n"
+            case .lenient:
+                parentalSection += "- 明らかに有害なコンテンツのみ避ける\n"
+            }
+            if !blockedKeywords.isEmpty {
+                parentalSection += "- 以下のキーワードは使用しない: \(blockedKeywords.joined(separator: ", "))\n"
+            }
+            sections.append(parentalSection)
+        }
+
         return sections.joined(separator: "\n\n")
     }
 
@@ -409,7 +446,11 @@ final class AgentOrchestrator: ObservableObject {
         webSearchEnabled: Bool,
         calendarEnabled: Bool,
         tier: ModelTier?,
-        family: ModelFamily
+        family: ModelFamily,
+        isParentalControlEnabled: Bool,
+        parentalControlFilterLevel: ParentalControlFilterLevel,
+        childAge: Int,
+        blockedKeywords: [String]
     ) -> String {
         let effectiveTier = tier ?? .large
         let date = formattedDate()
@@ -526,6 +567,29 @@ final class AgentOrchestrator: ObservableObject {
             5. Set the location argument if a venue/address is mentioned
             6. Include supplementary info in the notes argument
             """)
+        }
+
+        // 8. Parental control guardrails (only when enabled)
+        if isParentalControlEnabled {
+            var parentalSection = "# Parental Control\n"
+            parentalSection += "A child (\(childAge) years old) is using this. Follow these guidelines:\n"
+            switch parentalControlFilterLevel {
+            case .strict:
+                parentalSection += "- Never generate violent, sexual, or inappropriate content\n"
+                parentalSection += "- Do not encourage dangerous or illegal activities\n"
+                parentalSection += "- Do not ask to collect or share personal information\n"
+                parentalSection += "- Politely decline inappropriate topics with 'I cannot answer that topic'\n"
+            case .moderate:
+                parentalSection += "- Avoid violent and sexual content\n"
+                parentalSection += "- Add warnings for dangerous activities\n"
+                parentalSection += "- Minimize personal information sharing\n"
+            case .lenient:
+                parentalSection += "- Only avoid clearly harmful content\n"
+            }
+            if !blockedKeywords.isEmpty {
+                parentalSection += "- Do not use the following keywords: \(blockedKeywords.joined(separator: ", "))\n"
+            }
+            sections.append(parentalSection)
         }
 
         return sections.joined(separator: "\n\n")
