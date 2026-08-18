@@ -160,7 +160,7 @@ struct UpgradeElioProView: View {
         .padding(16)
         .background(
             isPro
-                ? LinearGradient(colors: [.green.opacity(0.2), .teal.opacity(0.1)], startPoint: .top, endPoint: .bottom)
+                ? Color.green.opacity(0.2)
                 : Color.white.opacity(0.03)
         )
         .clipShape(RoundedRectangle(cornerRadius: 16))
