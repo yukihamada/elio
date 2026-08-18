@@ -216,6 +216,9 @@ platform :ios do
 
   desc "Deploy to App Store"
   lane :release do
+    # Fetch and install provisioning profiles
+    match(type: "appstore")
+
     # Download llama.xcframework if missing
     unless File.directory?("Frameworks/llama.xcframework")
       UI.message("Downloading llama.xcframework...")
@@ -235,13 +238,6 @@ platform :ios do
       in_house: false
     )
 
-    # Get latest provisioning profile from App Store Connect
-    get_provisioning_profile(
-      api_key: api_key,
-      app_identifier: "love.elio.app",
-      team_id: "5BV85JW8US"
-    )
-
     # Build the app with automatic signing
     build_app(
       project: "ElioChat.xcodeproj",
@@ -251,7 +247,10 @@ platform :ios do
       destination: "generic/platform=iOS",
       sdk: "iphoneos",
       export_options: {
-        signingStyle: "automatic",
+        signingStyle: "manual",
+        provisioningProfiles: {
+          "love.elio.app" => "match AppStore love.elio.app"
+        },
         teamID: "5BV85JW8US"
       },
       verbose: true
