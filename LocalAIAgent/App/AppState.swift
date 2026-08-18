@@ -748,7 +748,11 @@ final class AppState: ObservableObject {
             modelId: currentModelId,
             currentDateTime: currentDateTime,
             recentConversations: Array(recentConversations),
-            isEmergencyMode: isEmergencyMode
+            isEmergencyMode: isEmergencyMode,
+            isParentalControlEnabled: isParentalControlEnabled,
+            parentalControlFilterLevel: parentalControlFilterLevel,
+            childAge: childAge,
+            blockedKeywords: parentalControlBlockedKeywords
         )
     }
 

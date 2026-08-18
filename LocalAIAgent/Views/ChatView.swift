@@ -119,7 +119,7 @@ struct ChatView: View {
         bodyWithLifecycle
     }
 
-    // MARK: - Mac Sidebar Layout
+    // MARK: - Sidebar Layout (Mac & iPad)
 
     #if targetEnvironment(macCatalyst)
     private var macBodyWithSidebar: some View {
@@ -138,6 +138,7 @@ struct ChatView: View {
         }
         .animation(.spring(response: 0.3, dampingFraction: 0.9), value: showingConversationList)
     }
+    #endif
 
     private var macSidebarView: some View {
         VStack(spacing: 0) {
@@ -250,7 +251,6 @@ struct ChatView: View {
             return formatter.string(from: date)
         }
     }
-    #endif
 
     // MARK: - Body Breakdown (split for Swift type-checker performance)
 
@@ -711,6 +711,7 @@ struct ChatView: View {
 
     // MARK: - iPad Sidebar Layout
 
+    @ViewBuilder
     private var iPadBodyWithSidebar: some View {
         HStack(spacing: 0) {
             // Slide-over sidebar
