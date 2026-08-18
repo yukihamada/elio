@@ -700,8 +700,32 @@ struct ChatView: View {
         })
         .focusedSceneValue(\.isGenerating, isGenerating)
         #else
-        bodyWithObservers
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            // iPad: show sidebar layout similar to Mac Catalyst
+            iPadBodyWithSidebar
+        } else {
+            bodyWithObservers
+        }
         #endif
+    }
+
+    // MARK: - iPad Sidebar Layout
+
+    private var iPadBodyWithSidebar: some View {
+        HStack(spacing: 0) {
+            // Slide-over sidebar
+            if showingConversationList {
+                macSidebarView
+                    .frame(width: 280)
+                    .transition(.move(edge: .leading))
+
+                Divider()
+            }
+
+            // Main chat area
+            mainContent
+        }
+        .animation(.spring(response: 0.3, dampingFraction: 0.9), value: showingConversationList)
     }
 
     private var bodyWithObservers: some View {
