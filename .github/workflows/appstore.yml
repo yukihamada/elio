@@ -59,7 +59,7 @@ jobs:
           xcodebuild test \
             -project ElioChat.xcodeproj \
             -scheme ElioChat \
-            -destination 'platform=iOS Simulator,name=iPhone 15 Pro' \
+            -destination 'platform=iOS Simulator,name=iPhone 16 Pro' \
             -only-testing:LocalAIAgentTests \
             CODE_SIGN_IDENTITY="" \
             CODE_SIGNING_REQUIRED=NO
