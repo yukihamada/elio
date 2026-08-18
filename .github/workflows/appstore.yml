@@ -46,6 +46,16 @@ jobs:
 
       - name: Run Unit Tests
         run: |
+          # Download llama.xcframework if missing
+          if [ ! -d "Frameworks/llama.xcframework" ]; then
+            echo "Downloading llama.xcframework..."
+            curl -L -o /tmp/llama.zip "https://github.com/ggml-org/llama.cpp/releases/download/b10472/llama-b10472-xcframework.zip"
+            unzip -q /tmp/llama.zip -d /tmp/llama
+            mkdir -p Frameworks
+            cp -R /tmp/llama/llama.xcframework Frameworks/ 2>/dev/null || cp -R /tmp/llama/*.xcframework Frameworks/
+            rm -rf /tmp/llama /tmp/llama.zip
+          fi
+
           xcodebuild test \
             -project ElioChat.xcodeproj \
             -scheme ElioChat \
@@ -111,6 +121,16 @@ jobs:
 
       - name: Resolve packages
         run: |
+          # Download llama.xcframework if missing
+          if [ ! -d "Frameworks/llama.xcframework" ]; then
+            echo "Downloading llama.xcframework..."
+            curl -L -o /tmp/llama.zip "https://github.com/ggml-org/llama.cpp/releases/download/b10472/llama-b10472-xcframework.zip"
+            unzip -q /tmp/llama.zip -d /tmp/llama
+            mkdir -p Frameworks
+            cp -R /tmp/llama/llama.xcframework Frameworks/ 2>/dev/null || cp -R /tmp/llama/*.xcframework Frameworks/
+            rm -rf /tmp/llama /tmp/llama.zip
+          fi
+
           xcodebuild -resolvePackageDependencies \
             -project ElioChat.xcodeproj \
             -scheme ElioChat
