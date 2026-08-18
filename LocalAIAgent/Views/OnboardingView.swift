@@ -99,11 +99,8 @@ struct OnboardingView: View {
 
                         privacyPage
                             .tag(2)
-
-                        getStartedPage
-                            .tag(3)
                     }
-                    .tabViewStyle(.page(indexDisplayMode: currentPage == 3 ? .never : .always))
+                    .tabViewStyle(.page(indexDisplayMode: .always))
 
                     // Bottom buttons (only show for pages 0-2, page 3 has its own buttons)
                     if currentPage < 3 {
@@ -181,6 +178,11 @@ struct OnboardingView: View {
             // Start Goro animation
             withAnimation(.easeInOut(duration: 1.5).repeatForever(autoreverses: true)) {
                 goroAnimation = true
+            }
+
+            // Immediately complete onboarding, default to cloud mode, and start background download
+            DispatchQueue.main.async { // Ensure UI updates on main thread
+                completeOnboardingImmediately()
             }
         }
     }
@@ -755,8 +757,10 @@ struct OnboardingView: View {
     }
 
     private func completeOnboarding() {
-        // Load the downloaded model before completing
+        // This function is now only called after all downloads are complete (if any)
+        // and the user has gone through the interactive chat flow.
         Task {
+            // Load the downloaded model before completing
             if let text = textModel {
                 do {
                     try await appState.loadModel(named: text.id)
@@ -772,6 +776,38 @@ struct OnboardingView: View {
                 dismiss()
             }
         }
+    }
+
+    /// Complete onboarding immediately and start background download if needed.
+    private func completeOnboardingImmediately() {
+        // Default to Cloud AI (ChatWeb or teai) for immediate use
+        let chatModeManager = ChatModeManager.shared
+        if chatModeManager.currentMode == .local { // Only switch if still on local
+            chatModeManager.setMode(.chatweb) // Default to chatweb for immediate access
+        }
+
+        // Start background download for local model if not already downloaded
+        Task {
+            if let text = textModel, !modelLoader.isModelDownloaded(text.id) {
+                await MainActor.run { 
+                    currentDownloadingModel = text.id // Indicate what's downloading
+                }
+                do {
+                    try await modelLoader.downloadModel(text)
+                    await MainActor.run { 
+                        textModelDownloaded = true
+                        print("[OnboardingView] Background model download completed")
+                    }
+                } catch {
+                    print("[OnboardingView] Background model download failed: \(error)")
+                    // Handle error, e.g., show a persistent notification
+                }
+            }
+        }
+
+        justCompletedOnboarding = true
+        hasCompletedOnboarding = true
+        dismiss()
     }
 }
 

@@ -553,6 +553,15 @@ final class AppState: ObservableObject {
     }
 
     func loadModel(named modelName: String) async throws {
+        // If current mode is not local, skip loading the local model to allow immediate chat
+        if ChatModeManager.shared.currentMode != .local {
+            print("[AppState] Skipping local model load because chat mode is not local.")
+            currentModelId = modelName
+            isModelLoaded = false
+            isLoading = false
+            return
+        }
+
         // Unload any existing model first to free GPU memory
         if isModelLoaded {
             unloadModel()
