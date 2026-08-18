@@ -28,6 +28,9 @@ struct UpgradeElioProView: View {
                         // Hero
                         heroSection
 
+                        // Comparison table (Free vs Pro)
+                        comparisonSection
+
                         // Feature list
                         featuresSection
 
@@ -89,6 +92,82 @@ struct UpgradeElioProView: View {
                     .multilineTextAlignment(.center)
             }
         }
+    }
+
+    // MARK: - Comparison Table
+
+    private var comparisonSection: some View {
+        VStack(spacing: 16) {
+            Text("プラン比較")
+                .font(.system(size: 18, weight: .bold, design: .rounded))
+                .foregroundStyle(.white)
+
+            HStack(alignment: .top, spacing: 0) {
+                // Free column
+                planColumn(
+                    title: "無料",
+                    price: "¥0",
+                    features: [
+                        "ローカルAIモデル（オンデバイス）",
+                        "チャット（無料で開始）",
+                        "トークン制（月次リセット）",
+                        "標準クラウドアクセス"
+                    ],
+                    isPro: false
+                )
+
+                // Pro column (highlighted)
+                planColumn(
+                    title: "Pro",
+                    price: "¥2,900/月",
+                    features: [
+                        "Nemotron 9B 使い放題",
+                        "毎月 30,000 クレジット",
+                        "すべてのクラウドモデル優先",
+                        "追加のプロ機能"
+                    ],
+                    isPro: true
+                )
+            }
+            .frame(maxWidth: .infinity)
+        }
+    }
+
+    private func planColumn(title: String, price: String, features: [String], isPro: Bool) -> some View {
+        VStack(alignment: .leading, spacing: 12) {
+            VStack(alignment: .leading, spacing: 4) {
+                Text(title)
+                    .font(.system(size: 18, weight: .bold, design: .rounded))
+                    .foregroundStyle(isPro ? .white : .white.opacity(0.8))
+                Text(price)
+                    .font(.system(size: 16, weight: .semibold))
+                    .foregroundStyle(isPro ? .green : .white.opacity(0.6))
+            }
+
+            ForEach(features, id: \.self) { feature in
+                HStack(alignment: .top, spacing: 8) {
+                    Image(systemName: isPro ? "checkmark.circle.fill" : "checkmark.circle")
+                        .font(.system(size: 14))
+                        .foregroundStyle(isPro ? .green : .white.opacity(0.5))
+                    Text(feature)
+                        .font(.system(size: 13))
+                        .foregroundStyle(.white.opacity(isPro ? 0.9 : 0.6))
+                        .fixedSize(horizontal: false, vertical: true)
+                }
+            }
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(16)
+        .background(
+            isPro
+                ? LinearGradient(colors: [.green.opacity(0.2), .teal.opacity(0.1)], startPoint: .top, endPoint: .bottom)
+                : Color.white.opacity(0.03)
+        )
+        .clipShape(RoundedRectangle(cornerRadius: 16))
+        .overlay(
+            RoundedRectangle(cornerRadius: 16)
+                .stroke(isPro ? Color.green.opacity(0.6) : Color.white.opacity(0.1), lineWidth: isPro ? 2 : 1)
+        )
     }
 
     // MARK: - Features
