@@ -35,6 +35,20 @@ final class AppState: ObservableObject {
     @Published var currentConversation: Conversation?
     @Published var enabledMCPServers: Set<String> = ["filesystem", "calendar", "reminders", "websearch", "weather", "notes", "emergency_kb", "news"]
     @Published var isEmergencyMode = false
+    // Parental Control
+    @Published var isParentalControlEnabled: Bool = UserDefaults.standard.bool(forKey: "isParentalControlEnabled") {
+        didSet { UserDefaults.standard.set(isParentalControlEnabled, forKey: "isParentalControlEnabled") }
+    }
+    @Published var parentalControlFilterLevel: ParentalControlFilterLevel = ParentalControlFilterLevel(rawValue: UserDefaults.standard.string(forKey: "parentalControlFilterLevel") ?? "moderate") ?? .moderate {
+        didSet { UserDefaults.standard.set(parentalControlFilterLevel.rawValue, forKey: "parentalControlFilterLevel") }
+    }
+    @Published var parentalControlBlockedKeywords: [String] = UserDefaults.standard.stringArray(forKey: "parentalControlBlockedKeywords") ?? [] {
+        didSet { UserDefaults.standard.set(parentalControlBlockedKeywords, forKey: "parentalControlBlockedKeywords") }
+    }
+    @Published var childAge: Int = UserDefaults.standard.integer(forKey: "childAge") == 0 ? 10 : UserDefaults.standard.integer(forKey: "childAge") {
+        didSet { UserDefaults.standard.set(childAge, forKey: "childAge") }
+    }
+
     @Published var errorMessage: String?
     @Published var isGenerating = false  // Track if currently generating response
     @Published var agentStatus: String? = nil  // Current tool/agent call status (e.g. "tool_start:name"), shown by AgentProgressRow
@@ -553,6 +567,15 @@ final class AppState: ObservableObject {
     }
 
     func loadModel(named modelName: String) async throws {
+        // If current mode is not local, skip loading the local model to allow immediate chat
+        if ChatModeManager.shared.currentMode != .local {
+            print("[AppState] Skipping local model load because chat mode is not local.")
+            currentModelId = modelName
+            isModelLoaded = false
+            isLoading = false
+            return
+        }
+
         // Unload any existing model first to free GPU memory
         if isModelLoaded {
             unloadModel()
@@ -587,7 +610,7 @@ final class AppState: ObservableObject {
             lastUsedModel = modelName
 
             if let llm = llmEngine, let mcp = mcpClient {
-                orchestrator = AgentOrchestrator(llm: llm, mcpClient: mcp, modelId: modelName)
+                orchestrator = AgentOrchestrator(llm: llm, mcpClient: mcp, appState: self, modelId: modelName)
             }
         } catch {
             errorMessage = error.localizedDescription
@@ -725,7 +748,11 @@ final class AppState: ObservableObject {
             modelId: currentModelId,
             currentDateTime: currentDateTime,
             recentConversations: Array(recentConversations),
-            isEmergencyMode: isEmergencyMode
+            isEmergencyMode: isEmergencyMode,
+            isParentalControlEnabled: isParentalControlEnabled,
+            parentalControlFilterLevel: parentalControlFilterLevel,
+            childAge: childAge,
+            blockedKeywords: parentalControlBlockedKeywords
         )
     }
 

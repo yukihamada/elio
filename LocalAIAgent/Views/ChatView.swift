@@ -16,6 +16,7 @@ private class StreamingBuffer {
 struct ChatView: View {
     @EnvironmentObject var appState: AppState
     @EnvironmentObject var themeManager: ThemeManager
+    @EnvironmentObject var syncManager: SyncManager
     @StateObject private var networkMonitor = NetworkMonitor.shared
     @State private var inputText = ""
     @State private var isGenerating = false
@@ -98,6 +99,11 @@ struct ChatView: View {
     @State private var showingAPIKeyOnboarding: ChatMode?
     // Model switcher (top-left)
     @State private var showingModelSwitcher = false
+    // Parental Control Alerts
+    @State private var showingParentalBlockedAlert = false
+    @State private var parentalBlockedAlertTitle: String = ""
+    @State private var parentalBlockedAlertMessage: String = ""
+
     // Crash recovery banner
     @State private var showRecoveryBanner = false
 
@@ -113,7 +119,7 @@ struct ChatView: View {
         bodyWithLifecycle
     }
 
-    // MARK: - Mac Sidebar Layout
+    // MARK: - Sidebar Layout (Mac & iPad)
 
     #if targetEnvironment(macCatalyst)
     private var macBodyWithSidebar: some View {
@@ -132,6 +138,7 @@ struct ChatView: View {
         }
         .animation(.spring(response: 0.3, dampingFraction: 0.9), value: showingConversationList)
     }
+    #endif
 
     private var macSidebarView: some View {
         VStack(spacing: 0) {
@@ -244,7 +251,6 @@ struct ChatView: View {
             return formatter.string(from: date)
         }
     }
-    #endif
 
     // MARK: - Body Breakdown (split for Swift type-checker performance)
 
@@ -552,6 +558,11 @@ struct ChatView: View {
                 Text(error)
             }
         }
+        .alert(parentalBlockedAlertTitle, isPresented: $showingParentalBlockedAlert) {
+            Button("OK", role: .cancel) {}
+        } message: {
+            Text(parentalBlockedAlertMessage)
+        }
         .overlay {
             // Speech model download progress
             if speechManager.isDownloading {
@@ -673,6 +684,7 @@ struct ChatView: View {
         }
     }
 
+    @ViewBuilder
     private var bodyWithLifecycle: some View {
         #if targetEnvironment(macCatalyst)
         bodyWithObservers
@@ -689,8 +701,33 @@ struct ChatView: View {
         })
         .focusedSceneValue(\.isGenerating, isGenerating)
         #else
-        bodyWithObservers
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            // iPad: show sidebar layout similar to Mac Catalyst
+            iPadBodyWithSidebar
+        } else {
+            bodyWithObservers
+        }
         #endif
+    }
+
+    // MARK: - iPad Sidebar Layout
+
+    @ViewBuilder
+    private var iPadBodyWithSidebar: some View {
+        HStack(spacing: 0) {
+            // Slide-over sidebar
+            if showingConversationList {
+                macSidebarView
+                    .frame(width: 280)
+                    .transition(.move(edge: .leading))
+
+                Divider()
+            }
+
+            // Main chat area
+            mainContent
+        }
+        .animation(.spring(response: 0.3, dampingFraction: 0.9), value: showingConversationList)
     }
 
     private var bodyWithObservers: some View {
@@ -1020,6 +1057,12 @@ struct ChatView: View {
         showingDeveloperThanks = true
     }
 
+    private func showAlert(title: String, message: String) {
+        parentalBlockedAlertTitle = title
+        parentalBlockedAlertMessage = message
+        showingParentalBlockedAlert = true
+    }
+
     private func startVoiceConversationListening() {
         guard isVoiceConversationMode else { return }
 
@@ -1264,6 +1307,27 @@ struct ChatView: View {
                 Image(systemName: "exclamationmark.triangle.fill")
                     .font(.system(size: 14))
                     .foregroundStyle(.orange)
+            }
+
+            // Credit balance indicator (only in cloud/ChatWeb mode)
+            if ChatModeManager.shared.isChatWebMode && syncManager.creditsRemaining > 0 {
+                HStack(spacing: 4) {
+                    Image(systemName: "sparkles")
+                        .font(.system(size: 10, weight: .semibold))
+                    Text("\(syncManager.creditsRemaining)")
+                        .font(.system(size: 12, weight: .semibold))
+                }
+                .foregroundStyle(.green)
+                .padding(.horizontal, 8)
+                .padding(.vertical, 4)
+                .background(
+                    Capsule()
+                        .fill(Color.green.opacity(0.1))
+                )
+                .overlay(
+                    Capsule()
+                        .stroke(Color.green.opacity(0.3), lineWidth: 0.5)
+                )
             }
         }
     }

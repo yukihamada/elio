@@ -93,7 +93,7 @@ extension Color {
     static var chatSecondaryText: Color {
         Color(UIColor { traitCollection in
             traitCollection.userInterfaceStyle == .dark
-                ? UIColor(red: 0.6, green: 0.6, blue: 0.6, alpha: 1)
+                ? UIColor(red: 0.7, green: 0.7, blue: 0.7, alpha: 1) // #b3b3b3 (AA contrast on #121212)
                 : UIColor(red: 0.4, green: 0.4, blue: 0.4, alpha: 1)
         })
     }

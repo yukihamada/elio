@@ -21,6 +21,7 @@ struct SettingsView: View {
     @State private var showingTokenEconomyDashboard = false
     @State private var showingUpgradeElioProView = false
     @StateObject private var subscriptionManager = SubscriptionManager.shared
+    @State private var showParentalAuth = false
 
     // Models grouped by category (ElioChat always first)
     private func modelsForCategory(_ category: ModelCategory) -> [ModelLoader.ModelInfo] {
@@ -72,6 +73,9 @@ struct SettingsView: View {
 
                         // Model Section
                         modelSection
+
+                        // Parental Control Section
+                        parentalControlSection
 
                         // Inference Mode Section
                         inferenceModeSection
@@ -539,6 +543,91 @@ struct SettingsView: View {
         }
     }
 
+    // MARK: - Parental Control Section
+
+    private var parentalControlSection: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            ModernSectionHeader(
+                title: String(localized: "settings.parental.section"),
+                icon: "lock.shield.fill",
+                gradient: [.red, .orange]
+            )
+
+            VStack(spacing: 0) {
+                // Parental Control Enabled Toggle
+                Toggle(isOn: Binding(
+                    get: { appState.isParentalControlEnabled },
+                    set: { newValue in
+                        if newValue {
+                            // 認証が必要 — トグルはまだONにしない
+                            showParentalAuth = true
+                        } else {
+                            appState.isParentalControlEnabled = false
+                        }
+                    }
+                )) {
+                    Label(String(localized: "parental.enabled_toggle"), systemImage: "lock.shield.fill")
+                }
+                .tint(.red)
+                .padding(.horizontal, 16)
+                .padding(.vertical, 14)
+
+                if appState.isParentalControlEnabled {
+                    Divider().padding(.leading, 56)
+
+                    // Filter Level Picker
+                    Picker(selection: $appState.parentalControlFilterLevel) {
+                        ForEach(ParentalControlFilterLevel.allCases) { level in
+                            Text(level.localizedName).tag(level)
+                        }
+                    } label: {
+                        Label(String(localized: "parental.filter_level"), systemImage: "line.horizontal.3.decrease.circle.fill")
+                    }
+                    .pickerStyle(.menu)
+                    .padding(.horizontal, 16)
+                    .padding(.vertical, 10)
+
+                    Divider().padding(.leading, 56)
+
+                    // Child Age Input
+                    HStack {
+                        Label(String(localized: "parental.child_age"), systemImage: "person.fill")
+                        Spacer()
+                        TextField("", value: $appState.childAge, formatter: NumberFormatter())
+                            .keyboardType(.numberPad)
+                            .frame(width: 50)
+                            .multilineTextAlignment(.trailing)
+                    }
+                    .padding(.horizontal, 16)
+                    .padding(.vertical, 10)
+
+                    Divider().padding(.leading, 56)
+
+                    // Blocked Keywords Navigation Link
+                    NavigationLink(destination: BlockedKeywordsView().environmentObject(appState)) {
+                        HStack {
+                            Label(String(localized: "parental.blocked_keywords"), systemImage: "text.badge.xmark")
+                            Spacer()
+                            Image(systemName: "chevron.right")
+                                .font(.system(size: 14, weight: .semibold))
+                                .foregroundStyle(.secondary)
+                        }
+                        .padding(.horizontal, 16)
+                        .padding(.vertical, 14)
+                    }
+                }
+            }
+            .background(
+                RoundedRectangle(cornerRadius: 16)
+                    .fill(Color(.secondarySystemBackground))
+            )
+            .overlay(
+                RoundedRectangle(cornerRadius: 16)
+                    .stroke(Color.subtleSeparator, lineWidth: 0.5)
+            )
+        }
+    }
+
     // MARK: - Inference Mode Section
 
     private var inferenceModeSection: some View {
@@ -736,6 +825,10 @@ struct SettingsView: View {
                         .sheet(isPresented: $showingUpgradeElioProView) {
                             UpgradeElioProView()
                                 .environmentObject(syncManager)
+                        }
+                        .sheet(isPresented: $showParentalAuth) {
+                            ParentalControlAuthView()
+                                .environmentObject(appState)
                         }
                     }
 

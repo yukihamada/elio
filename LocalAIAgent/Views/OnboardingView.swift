@@ -72,7 +72,7 @@ struct OnboardingView: View {
                     // Animated Goro mascot
                     AppLogo(isAnimating: true, size: 100)
 
-                    Text("ElioChatを準備中...")
+                    Text(String(localized: "onboarding.welcome.loading"))
                         .font(.title3.weight(.medium))
                         .foregroundStyle(.primary)
 
@@ -99,11 +99,8 @@ struct OnboardingView: View {
 
                         privacyPage
                             .tag(2)
-
-                        getStartedPage
-                            .tag(3)
                     }
-                    .tabViewStyle(.page(indexDisplayMode: currentPage == 3 ? .never : .always))
+                    .tabViewStyle(.page(indexDisplayMode: .always))
 
                     // Bottom buttons (only show for pages 0-2, page 3 has its own buttons)
                     if currentPage < 3 {
@@ -113,7 +110,7 @@ struct OnboardingView: View {
                                     currentPage += 1
                                 }
                             }) {
-                                Text("次へ")
+                                Text(String(localized: "onboarding.next"))
                                     .font(.headline)
                                     .frame(maxWidth: .infinity)
                                     .padding(.vertical, 16)
@@ -181,6 +178,11 @@ struct OnboardingView: View {
             // Start Goro animation
             withAnimation(.easeInOut(duration: 1.5).repeatForever(autoreverses: true)) {
                 goroAnimation = true
+            }
+
+            // Immediately complete onboarding, default to cloud mode, and start background download
+            DispatchQueue.main.async { // Ensure UI updates on main thread
+                completeOnboardingImmediately()
             }
         }
     }
@@ -306,12 +308,12 @@ struct OnboardingView: View {
             // Feature badges
             VStack(spacing: 12) {
                 HStack(spacing: 12) {
-                    FeatureBadge(icon: "airplane", text: "オフライン", color: .green)
-                    FeatureBadge(icon: "lock.shield.fill", text: "プライベート", color: .blue)
+                    FeatureBadge(icon: "airplane", text: String(localized: "onboarding.welcome.badge.offline"), color: .green)
+                    FeatureBadge(icon: "lock.shield.fill", text: String(localized: "onboarding.welcome.badge.private"), color: .blue)
                 }
                 HStack(spacing: 12) {
-                    FeatureBadge(icon: "sparkles", text: "日本語最適化", color: .purple)
-                    FeatureBadge(icon: "bolt.fill", text: "高速", color: .orange)
+                    FeatureBadge(icon: "sparkles", text: String(localized: "onboarding.welcome.badge.japanese"), color: .purple)
+                    FeatureBadge(icon: "bolt.fill", text: String(localized: "onboarding.welcome.badge.fast"), color: .orange)
                 }
             }
             .padding(.top, 8)
@@ -330,7 +332,7 @@ struct OnboardingView: View {
             HStack(alignment: .top, spacing: 12) {
                 AppLogo(isAnimating: goroAnimation, size: 60)
 
-                Text("私ができることを\n紹介しますね！")
+                    Text(String(localized: "onboarding.features.hello"))
                     .font(.subheadline)
                     .padding(12)
                     .background(Color(.secondarySystemBackground))
@@ -356,14 +358,14 @@ struct OnboardingView: View {
                 AnimatedFeatureRow(
                     icon: "cpu.fill",
                     iconColor: .purple,
-                    title: "独自のAIモデル",
-                    description: "日本語に最適化した専用モデル"
+                    title: String(localized: "onboarding.feature.ownmodel"),
+                    description: String(localized: "onboarding.feature.ownmodel.desc")
                 )
                 AnimatedFeatureRow(
                     icon: "slider.horizontal.3",
                     iconColor: .orange,
-                    title: "複数モデル対応",
-                    description: "用途に合わせてモデル切り替え"
+                    title: String(localized: "onboarding.feature.multimodel"),
+                    description: String(localized: "onboarding.feature.multimodel.desc")
                 )
             }
 
@@ -416,7 +418,7 @@ struct OnboardingView: View {
             HStack(spacing: 6) {
                 Image(systemName: "checkmark.seal.fill")
                     .foregroundStyle(.green)
-                Text("100% ローカル処理")
+                Text(String(localized: "onboarding.privacy.local"))
                     .font(.footnote.weight(.medium))
             }
             .padding(.horizontal, 14)
@@ -755,8 +757,10 @@ struct OnboardingView: View {
     }
 
     private func completeOnboarding() {
-        // Load the downloaded model before completing
+        // This function is now only called after all downloads are complete (if any)
+        // and the user has gone through the interactive chat flow.
         Task {
+            // Load the downloaded model before completing
             if let text = textModel {
                 do {
                     try await appState.loadModel(named: text.id)
@@ -772,6 +776,38 @@ struct OnboardingView: View {
                 dismiss()
             }
         }
+    }
+
+    /// Complete onboarding immediately and start background download if needed.
+    private func completeOnboardingImmediately() {
+        // Default to Cloud AI (ChatWeb or teai) for immediate use
+        let chatModeManager = ChatModeManager.shared
+        if chatModeManager.currentMode == .local { // Only switch if still on local
+            chatModeManager.setMode(.chatweb) // Default to chatweb for immediate access
+        }
+
+        // Start background download for local model if not already downloaded
+        Task {
+            if let text = textModel, !modelLoader.isModelDownloaded(text.id) {
+                await MainActor.run { 
+                    currentDownloadingModel = text.id // Indicate what's downloading
+                }
+                do {
+                    try await modelLoader.downloadModel(text)
+                    await MainActor.run { 
+                        textModelDownloaded = true
+                        print("[OnboardingView] Background model download completed")
+                    }
+                } catch {
+                    print("[OnboardingView] Background model download failed: \(error)")
+                    // Handle error, e.g., show a persistent notification
+                }
+            }
+        }
+
+        justCompletedOnboarding = true
+        hasCompletedOnboarding = true
+        dismiss()
     }
 }
 

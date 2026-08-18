@@ -155,6 +155,7 @@ enum CloudProvider: String, CaseIterable, Codable, Identifiable {
     case anthropic = "anthropic"
     case google = "google"
     case openrouter = "openrouter"
+    case teai = "teai"
 
     var id: String { rawValue }
 
@@ -164,6 +165,7 @@ enum CloudProvider: String, CaseIterable, Codable, Identifiable {
         case .anthropic: return "Anthropic (Claude 3.5)"
         case .google: return "Google (Gemini 1.5)"
         case .openrouter: return "OpenRouter (200+ models)"
+        case .teai: return "teai.io (300+ models)"
         }
     }
 
@@ -173,6 +175,7 @@ enum CloudProvider: String, CaseIterable, Codable, Identifiable {
         case .anthropic: return "sparkles"
         case .google: return "globe"
         case .openrouter: return "arrow.triangle.branch"
+        case .teai: return "bolt.circle"
         }
     }
 
@@ -183,6 +186,7 @@ enum CloudProvider: String, CaseIterable, Codable, Identifiable {
         case .anthropic: return "claude-3-5-sonnet-20241022"
         case .google: return "gemini-1.5-pro"
         case .openrouter: return "anthropic/claude-3.5-sonnet"
+        case .teai: return "teai/auto"
         }
     }
 
@@ -193,6 +197,7 @@ enum CloudProvider: String, CaseIterable, Codable, Identifiable {
         case .anthropic: return "https://api.anthropic.com/v1"
         case .google: return "https://generativelanguage.googleapis.com/v1beta"
         case .openrouter: return "https://openrouter.ai/api/v1"
+        case .teai: return "https://api.teai.io/v1"
         }
     }
 
@@ -203,6 +208,7 @@ enum CloudProvider: String, CaseIterable, Codable, Identifiable {
         case .anthropic: return .anthropic
         case .google: return .google
         case .openrouter: return .openrouter
+        case .teai: return .teai
         }
     }
 }

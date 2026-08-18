@@ -10,7 +10,11 @@ struct SystemPromptLocalizations {
         modelId: String? = nil,
         currentDateTime: String,
         recentConversations: [String],
-        isEmergencyMode: Bool
+        isEmergencyMode: Bool,
+        isParentalControlEnabled: Bool,
+        parentalControlFilterLevel: ParentalControlFilterLevel,
+        childAge: Int,
+        blockedKeywords: [String]
     ) -> String {
         let prompt = basePrompt(for: languageCode, currentDateTime: currentDateTime, recentConversations: recentConversations)
 
@@ -20,7 +24,16 @@ struct SystemPromptLocalizations {
         }
 
         if isEmergencyMode {
-            return fullPrompt + "\n\n" + emergencyModeAddition(for: languageCode)
+            fullPrompt += "\n\n" + emergencyModeAddition(for: languageCode)
+        }
+
+        if isParentalControlEnabled {
+            fullPrompt += "\n\n" + parentalControlAddition(
+                for: languageCode,
+                filterLevel: parentalControlFilterLevel,
+                childAge: childAge,
+                blockedKeywords: blockedKeywords
+            )
         }
 
         return fullPrompt
@@ -1152,6 +1165,47 @@ struct SystemPromptLocalizations {
             - Present steps numbered and concisely
             - Actively use emergency knowledge base (emergency_kb) tools
             - For life-threatening cases, always advise calling emergency services
+            """
+        }
+    }
+
+    // MARK: - Parental Control Addition
+
+    static func parentalControlAddition(
+        for languageCode: String,
+        filterLevel: ParentalControlFilterLevel,
+        childAge: Int,
+        blockedKeywords: [String]
+    ) -> String {
+        let filterLevelText: String
+        let blockedKeywordsText = blockedKeywords.isEmpty ? "" : ", および以下のキーワード: \(blockedKeywords.joined(separator: ", "))"
+
+        switch filterLevel {
+        case .strict:
+            filterLevelText = "厳格なフィルタリング（R-18、暴力、自傷行為をブロック）"
+        case .moderate:
+            filterLevelText = "中程度のフィルタリング（R-18をブロック、自傷行為は警告）"
+        case .lenient:
+            filterLevelText = "緩やかなフィルタリング（R-18をブロック、その他はAIが判断）"
+        }
+
+        if languageCode == "ja" {
+            return """
+            【ペアレンタルコントロール】子供（\(childAge)歳）が利用しています。以下のガイドラインに従ってください:
+            - \(filterLevelText)\(blockedKeywordsText)
+            - 暴力的・性的・不適切なコンテンツは一切生成しない
+            - 危険な行為や違法行為を助長しない
+            - 個人情報の収集・共有を求めない
+            - 不適切な話題には「その話題はお答えできません」と丁寧に断る
+            """
+        } else {
+            return """
+            [PARENTAL CONTROL] A child (\(childAge) years old) is using this. Follow these guidelines:
+            - \(filterLevelText)\(blockedKeywordsText)
+            - Never generate violent, sexual, or inappropriate content
+            - Do not encourage dangerous or illegal activities
+            - Do not ask to collect or share personal information
+            - Politely decline inappropriate topics with "I cannot answer that topic"
             """
         }
     }
