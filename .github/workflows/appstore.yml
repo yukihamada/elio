@@ -52,7 +52,7 @@ jobs:
             curl -L -o /tmp/llama.zip "https://github.com/ggml-org/llama.cpp/releases/download/b10472/llama-b10472-xcframework.zip"
             unzip -q /tmp/llama.zip -d /tmp/llama
             mkdir -p Frameworks
-            cp -R /tmp/llama/llama.xcframework Frameworks/ 2>/dev/null || cp -R /tmp/llama/*.xcframework Frameworks/
+            cp -R /tmp/llama/build-apple/llama.xcframework Frameworks/
             rm -rf /tmp/llama /tmp/llama.zip
           fi
 
@@ -127,7 +127,7 @@ jobs:
             curl -L -o /tmp/llama.zip "https://github.com/ggml-org/llama.cpp/releases/download/b10472/llama-b10472-xcframework.zip"
             unzip -q /tmp/llama.zip -d /tmp/llama
             mkdir -p Frameworks
-            cp -R /tmp/llama/llama.xcframework Frameworks/ 2>/dev/null || cp -R /tmp/llama/*.xcframework Frameworks/
+            cp -R /tmp/llama/build-apple/llama.xcframework Frameworks/
             rm -rf /tmp/llama /tmp/llama.zip
           fi
 
