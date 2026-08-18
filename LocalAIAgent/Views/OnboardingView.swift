@@ -72,7 +72,7 @@ struct OnboardingView: View {
                     // Animated Goro mascot
                     AppLogo(isAnimating: true, size: 100)
 
-                    Text("ElioChatを準備中...")
+                    Text(String(localized: "onboarding.welcome.loading"))
                         .font(.title3.weight(.medium))
                         .foregroundStyle(.primary)
 
@@ -110,7 +110,7 @@ struct OnboardingView: View {
                                     currentPage += 1
                                 }
                             }) {
-                                Text("次へ")
+                                Text(String(localized: "onboarding.next"))
                                     .font(.headline)
                                     .frame(maxWidth: .infinity)
                                     .padding(.vertical, 16)
@@ -308,12 +308,12 @@ struct OnboardingView: View {
             // Feature badges
             VStack(spacing: 12) {
                 HStack(spacing: 12) {
-                    FeatureBadge(icon: "airplane", text: "オフライン", color: .green)
-                    FeatureBadge(icon: "lock.shield.fill", text: "プライベート", color: .blue)
+                    FeatureBadge(icon: "airplane", text: String(localized: "onboarding.welcome.badge.offline"), color: .green)
+                    FeatureBadge(icon: "lock.shield.fill", text: String(localized: "onboarding.welcome.badge.private"), color: .blue)
                 }
                 HStack(spacing: 12) {
-                    FeatureBadge(icon: "sparkles", text: "日本語最適化", color: .purple)
-                    FeatureBadge(icon: "bolt.fill", text: "高速", color: .orange)
+                    FeatureBadge(icon: "sparkles", text: String(localized: "onboarding.welcome.badge.japanese"), color: .purple)
+                    FeatureBadge(icon: "bolt.fill", text: String(localized: "onboarding.welcome.badge.fast"), color: .orange)
                 }
             }
             .padding(.top, 8)
@@ -332,7 +332,7 @@ struct OnboardingView: View {
             HStack(alignment: .top, spacing: 12) {
                 AppLogo(isAnimating: goroAnimation, size: 60)
 
-                Text("私ができることを\n紹介しますね！")
+                    Text(String(localized: "onboarding.features.hello"))
                     .font(.subheadline)
                     .padding(12)
                     .background(Color(.secondarySystemBackground))
@@ -358,14 +358,14 @@ struct OnboardingView: View {
                 AnimatedFeatureRow(
                     icon: "cpu.fill",
                     iconColor: .purple,
-                    title: "独自のAIモデル",
-                    description: "日本語に最適化した専用モデル"
+                    title: String(localized: "onboarding.feature.ownmodel"),
+                    description: String(localized: "onboarding.feature.ownmodel.desc")
                 )
                 AnimatedFeatureRow(
                     icon: "slider.horizontal.3",
                     iconColor: .orange,
-                    title: "複数モデル対応",
-                    description: "用途に合わせてモデル切り替え"
+                    title: String(localized: "onboarding.feature.multimodel"),
+                    description: String(localized: "onboarding.feature.multimodel.desc")
                 )
             }
 
@@ -418,7 +418,7 @@ struct OnboardingView: View {
             HStack(spacing: 6) {
                 Image(systemName: "checkmark.seal.fill")
                     .foregroundStyle(.green)
-                Text("100% ローカル処理")
+                Text(String(localized: "onboarding.privacy.local"))
                     .font(.footnote.weight(.medium))
             }
             .padding(.horizontal, 14)

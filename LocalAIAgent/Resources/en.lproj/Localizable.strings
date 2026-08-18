@@ -129,6 +129,18 @@
 // MARK: - Onboarding
 "onboarding.welcome.title" = "Welcome to ElioChat";
 "onboarding.welcome.subtitle" = "Your private AI assistant";
+"onboarding.welcome.loading" = "Preparing ElioChat...";
+"onboarding.welcome.badge.offline" = "Offline";
+"onboarding.welcome.badge.private" = "Private";
+"onboarding.welcome.badge.japanese" = "Japanese-optimized";
+"onboarding.welcome.badge.fast" = "Fast";
+"onboarding.next" = "Next";
+"onboarding.features.hello" = "Let me show you\nwhat I can do!";
+"onboarding.feature.ownmodel" = "Our own AI model";
+"onboarding.feature.ownmodel.desc" = "A dedicated model optimized for Japanese";
+"onboarding.feature.multimodel" = "Multiple models";
+"onboarding.feature.multimodel.desc" = "Switch models to fit your needs";
+"onboarding.privacy.local" = "100% On-device";
 "onboarding.features.title" = "Truly Private AI";
 "onboarding.feature.offline" = "Works in Airplane Mode";
 "onboarding.feature.offline.desc" = "Use it on flights or underground";

@@ -129,6 +129,18 @@
 // MARK: - Onboarding
 "onboarding.welcome.title" = "ElioChatへようこそ";
 "onboarding.welcome.subtitle" = "あなたの秘密を守るAIアシスタント";
+"onboarding.welcome.loading" = "ElioChatを準備中...";
+"onboarding.welcome.badge.offline" = "オフライン";
+"onboarding.welcome.badge.private" = "プライベート";
+"onboarding.welcome.badge.japanese" = "日本語最適化";
+"onboarding.welcome.badge.fast" = "高速";
+"onboarding.next" = "次へ";
+"onboarding.features.hello" = "私ができることを\n紹介しますね！";
+"onboarding.feature.ownmodel" = "独自のAIモデル";
+"onboarding.feature.ownmodel.desc" = "日本語に最適化した専用モデル";
+"onboarding.feature.multimodel" = "複数モデル対応";
+"onboarding.feature.multimodel.desc" = "用途に合わせてモデル切り替え";
+"onboarding.privacy.local" = "100% ローカル処理";
 "onboarding.features.title" = "完全プライベートAI";
 "onboarding.feature.offline" = "機内モードでも動作";
 "onboarding.feature.offline.desc" = "地下鉄や飛行機でも使える";

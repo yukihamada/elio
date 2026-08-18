@@ -19,6 +19,16 @@ struct ModelSelectorView: View {
                             dismiss()
                         }) {
                             HStack {
+                                // Model icon
+                                ZStack {
+                                    Circle()
+                                        .fill(model.iconColor.opacity(0.15))
+                                        .frame(width: 40, height: 40)
+                                    Image(systemName: model.icon)
+                                        .font(.system(size: 18))
+                                        .foregroundStyle(model.iconColor)
+                                }
+
                                 VStack(alignment: .leading, spacing: 4) {
                                     Text(model.name)
                                         .font(.headline)
@@ -244,6 +254,8 @@ struct ModelInfo {
     let description: String
     let inputCost: Double  // per 1M tokens (USD)
     let outputCost: Double
+    var icon: String = "cpu.fill"
+    var iconColor: Color = .blue
 }
 
 #Preview {
