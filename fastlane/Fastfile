@@ -216,11 +216,12 @@ platform :ios do
 
   desc "Deploy to App Store"
   lane :release do
-    # Use local API key file for local execution
+    # Use environment variables for CI, fallback to local file
     api_key = app_store_connect_api_key(
-      key_id: "5KT46G9Y29",
-      issuer_id: "e0d22675-afb3-45f0-a821-06b477f44da0",
-      key_filepath: File.expand_path("~/.appstoreconnect/private_keys/AuthKey_5KT46G9Y29.p8"),
+      key_id: ENV["APP_STORE_CONNECT_API_KEY_ID"] || "5KT46G9Y29",
+      issuer_id: ENV["APP_STORE_CONNECT_ISSUER_ID"] || "e0d22675-afb3-45f0-a821-06b477f44da0",
+      key_content: ENV["APP_STORE_CONNECT_API_KEY"],
+      key_filepath: ENV["APP_STORE_CONNECT_API_KEY"] ? nil : File.expand_path("~/.appstoreconnect/private_keys/AuthKey_5KT46G9Y29.p8"),
       in_house: false
     )
 
