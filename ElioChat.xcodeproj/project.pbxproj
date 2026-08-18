@@ -9,9 +9,12 @@
 /* Begin PBXBuildFile section */
 		001 /* LocalAIAgentApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 101 /* LocalAIAgentApp.swift */; };
 		002 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 102 /* AppState.swift */; };
+		PARENTALCTRL002 /* ParentalControlFilterLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = PARENTALCTRL001 /* ParentalControlFilterLevel.swift */; };
 		003 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 103 /* ChatView.swift */; };
 		004 /* MessageBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104 /* MessageBubble.swift */; };
 		005 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105 /* SettingsView.swift */; };
+		BLOCKEDKW002 /* BlockedKeywordsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BLOCKEDKW001 /* BlockedKeywordsView.swift */; };
+		PARENTALAUTH002 /* ParentalControlAuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = PARENTALAUTH001 /* ParentalControlAuthView.swift */; };
 		006 /* MCPServerListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106 /* MCPServerListView.swift */; };
 		007 /* ModelSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 107 /* ModelSelectionView.swift */; };
 		008 /* AgentOrchestrator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 108 /* AgentOrchestrator.swift */; };
@@ -244,9 +247,12 @@
 		100 /* LocalAIAgent.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LocalAIAgent.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		101 /* LocalAIAgentApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalAIAgentApp.swift; sourceTree = "<group>"; };
 		102 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		PARENTALCTRL001 /* ParentalControlFilterLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentalControlFilterLevel.swift; sourceTree = "<group>"; };
 		103 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
 		104 /* MessageBubble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageBubble.swift; sourceTree = "<group>"; };
 		105 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		BLOCKEDKW001 /* BlockedKeywordsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockedKeywordsView.swift; sourceTree = "<group>"; };
+		PARENTALAUTH001 /* ParentalControlAuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentalControlAuthView.swift; sourceTree = "<group>"; };
 		106 /* MCPServerListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MCPServerListView.swift; sourceTree = "<group>"; };
 		107 /* ModelSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelSelectionView.swift; sourceTree = "<group>"; };
 		108 /* AgentOrchestrator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgentOrchestrator.swift; sourceTree = "<group>"; };
@@ -611,6 +617,7 @@
 				SHAREDDATAMGR002 /* SharedDataManager.swift */,
 				FEEDSVC02 /* FeedbackService.swift */,
 				SYNC002 /* SyncManager.swift */,
+				PARENTALCTRL001 /* ParentalControlFilterLevel.swift */,
 				A7F5A8D316A63DAB0AEFFF2C /* Mac */,
 			);
 			path = App;
@@ -651,6 +658,8 @@
 				OGVERIFY002 /* OGVerificationView.swift */,
 				CURPROFILE002 /* CuratorProfileView.swift */,
 				SKILLREV002 /* SkillReviewView.swift */,
+				BLOCKEDKW001 /* BlockedKeywordsView.swift */,
+				PARENTALAUTH001 /* ParentalControlAuthView.swift */,
 				MACVIEWS001 /* Mac */,
 				0C9FD5E3BB7666D07F90B6FE /* DeveloperThanksView.swift */,
 				A9A3EC8083CC21D29D2DA7BA /* ChatWebQuickToggle.swift */,
@@ -1256,11 +1265,14 @@
 				001 /* LocalAIAgentApp.swift in Sources */,
 				APPINTENT001 /* AppIntents.swift in Sources */,
 				002 /* AppState.swift in Sources */,
+				PARENTALCTRL002 /* ParentalControlFilterLevel.swift in Sources */,
 				705 /* ScreenshotMockData.swift in Sources */,
 				003 /* ChatView.swift in Sources */,
 				004 /* MessageBubble.swift in Sources */,
 				MDTHEME001 /* MarkdownTheme+Custom.swift in Sources */,
 				005 /* SettingsView.swift in Sources */,
+				BLOCKEDKW002 /* BlockedKeywordsView.swift in Sources */,
+				PARENTALAUTH002 /* ParentalControlAuthView.swift in Sources */,
 				006 /* MCPServerListView.swift in Sources */,
 				007 /* ModelSelectionView.swift in Sources */,
 				008 /* AgentOrchestrator.swift in Sources */,
