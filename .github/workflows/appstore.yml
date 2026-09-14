@@ -103,6 +103,28 @@ jobs:
           gem install fastlane
           fastlane --version
 
+      - name: Write App Store Connect API key
+        # fastlane/Matchfile has `api_key_path("./fastlane/api_key.json")`. The file is not
+        # committed, so CI must materialise it from secrets or `match` fails with
+        # "Couldn't find API key JSON file at path './fastlane/api_key.json'".
+        env:
+          APP_STORE_CONNECT_API_KEY_ID: ${{ secrets.APP_STORE_CONNECT_API_KEY_ID }}
+          APP_STORE_CONNECT_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}
+          APP_STORE_CONNECT_API_KEY: ${{ secrets.APP_STORE_CONNECT_API_KEY }}
+        run: |
+          mkdir -p ./fastlane
+          python3 - "$APP_STORE_CONNECT_API_KEY" <<'PY' > ./fastlane/api_key.json
+          import json, sys
+          print(json.dumps({
+              "key_id": __import__("os").environ["APP_STORE_CONNECT_API_KEY_ID"],
+              "issuer_id": __import__("os").environ["APP_STORE_CONNECT_ISSUER_ID"],
+              "key": sys.argv[1],
+              "in_house": False,
+          }))
+          PY
+          python3 -c "import json;d=json.load(open('./fastlane/api_key.json'));assert d['key_id'] and d['issuer_id'] and d['key'].startswith('-----BEGIN'), d"
+          echo "api_key.json written"
+
       - name: Install certificates
         env:
           CERTIFICATE_BASE64: ${{ secrets.CERTIFICATE_BASE64 }}
