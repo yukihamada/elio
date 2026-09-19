@@ -122,9 +122,14 @@ final class ModelLoaderTests: XCTestCase {
         evidence["streamedOutput"] = streamed
         evidence["streamCallbacks"] = callbacks
         try checkpoint("inference_completed")
-        XCTAssertFalse(output.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
-        XCTAssertGreaterThan(callbacks, 0)
-        XCTAssertTrue(output.contains("4"), "Arithmetic smoke prompt must produce the answer")
+        // Async XCTest assertions do not reliably stop control flow even with
+        // continueAfterFailure=false. Never persist "passed" after an issue.
+        guard !output.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty,
+              callbacks > 0, output.contains("4"), testRun?.failureCount == 0 else {
+            try checkpoint("validation_failed")
+            throw NSError(domain: "ElioFullModelVerification", code: 1,
+                          userInfo: [NSLocalizedDescriptionKey: "Generated output failed the arithmetic smoke check; inspect evidence"])
+        }
         try checkpoint("passed")
         print("FULL_MODEL_RESULT: \(String(data: try Data(contentsOf: evidenceURL), encoding: .utf8)!)")
         #else

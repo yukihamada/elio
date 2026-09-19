@@ -2,9 +2,10 @@
 
 ## CI-only real-model verification — 2026-09-20
 - [x] Read production download/load/inference, fixture script, and existing UI tests.
-- [ ] Add opt-in simulator integration test using the real 1,257,875,104-byte ElioChat model; record SHA-256, progress, load and generated output.
-- [ ] Run on GitHub Actions only; preserve xcresult and staged JSON evidence even on failure.
-- [ ] Report simulator coverage separately from physical-device, TestFlight, UI and interrupted-download coverage.
+- [x] Add opt-in simulator integration test using the real 1,257,875,104-byte ElioChat model; record SHA-256, progress, load and generated output.
+- [x] Run on GitHub Actions only; preserve xcresult and staged JSON evidence even on failure (35456866815: full DL/hash/load complete, generated gibberish; test FAILED).
+- [x] Report simulator coverage separately from physical-device, TestFlight, UI and interrupted-download coverage (tasks/full-model-verification-20260920.md).
+- [ ] Diagnose invalid generated output before claiming iOS inference/review readiness (CPU reference vs simulator Metal vs model; not yet isolated).
 
 - [x] Read lessons, latest main, and original Apple rejection notifications.
 - [x] Exercise download failure paths with small fixtures; fix verified defects (8 cases pass locally and on Xcode 26.2 CI).
