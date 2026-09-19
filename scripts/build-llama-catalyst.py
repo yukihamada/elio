@@ -34,8 +34,13 @@ subprocess.run(["cmake", "--build", str(build), "--config", "Release", "-j", "3"
 xcframework = root / "Frameworks/llama.xcframework"
 identifier = "ios-arm64-maccatalyst"
 framework = xcframework / identifier / "llama.framework"
-(framework / "Headers").mkdir(parents=True)
-(framework / "Modules").mkdir()
+version = framework / "Versions/A"
+(version / "Headers").mkdir(parents=True)
+(version / "Modules").mkdir()
+(version / "Resources").mkdir()
+(framework / "Versions/Current").symlink_to("A")
+for name in ("Headers", "Modules", "Resources", "llama"):
+    (framework / name).symlink_to(f"Versions/Current/{name}")
 # Match upstream's public C umbrella; ggml-cpp.h is C++ and cannot be imported
 # by Swift's C module scanner.
 for relative in ("include/llama.h", "ggml/include/ggml.h", "ggml/include/ggml-opt.h",
@@ -57,7 +62,7 @@ libraries = sorted(build.rglob("*.a"))
 assert any(p.name == "libllama.a" for p in libraries), "llama static library missing"
 subprocess.run(["xcrun", "libtool", "-static", "-o", str(framework / "llama"),
                 *map(str, libraries)], check=True)
-with (framework / "Info.plist").open("wb") as file:
+with (version / "Resources/Info.plist").open("wb") as file:
     plistlib.dump({"CFBundleExecutable": "llama", "CFBundleIdentifier": "org.ggml.llama",
                   "CFBundleName": "llama", "CFBundlePackageType": "FMWK",
                   "CFBundleShortVersionString": "1.0", "CFBundleVersion": "1",
