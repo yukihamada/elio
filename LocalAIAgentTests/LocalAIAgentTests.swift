@@ -37,6 +37,10 @@ final class LocalAIAgentTests: XCTestCase {
     func testModelInfoHasValidDownloadURL() throws {
         let modelLoader = ModelLoader()
         for model in modelLoader.availableModels {
+            if model.isMLX {
+                XCTAssertFalse(model.mlxHubId?.isEmpty ?? true, "MLX model \(model.id) needs a Hub ID")
+                continue
+            }
             XCTAssertTrue(model.downloadURL.hasPrefix("https://"), "Model \(model.id) should have HTTPS URL")
             XCTAssertNotNil(URL(string: model.downloadURL), "Model \(model.id) should have valid URL")
         }
