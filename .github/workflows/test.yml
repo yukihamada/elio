@@ -4,6 +4,15 @@ on:
   push:
     branches: [master, develop, main]
   workflow_dispatch:
+    inputs:
+      upload:
+        description: 'Upload verified builds to ASC (never submit for review)'
+        type: boolean
+        default: false
+      build_number:
+        description: 'New CFBundleVersion for upload'
+        type: string
+        default: '58'
   pull_request:
     branches: [master, main]
 
@@ -142,3 +151,36 @@ jobs:
             build/mac-launch.log
             ~/Library/Logs/DiagnosticReports/ElioChat*
           retention-days: 14
+
+  upload:
+    name: Upload verified ${{ matrix.platform }} build
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.upload }}
+    needs: build
+    runs-on: macos-26
+    timeout-minutes: 45
+    environment: production
+    strategy:
+      fail-fast: false
+      matrix:
+        platform: [ios, mac]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: true
+      - name: Select Xcode 26.2
+        run: sudo xcode-select -s /Applications/Xcode_26.2.app/Contents/Developer
+      - name: Fetch iOS llama dependency
+        run: |
+          curl --fail --silent --show-error --location -o "$RUNNER_TEMP/llama.zip" \
+            https://github.com/${{ github.repository }}/releases/download/ci-llama-xcframework/llama.xcframework.zip
+          unzip -q "$RUNNER_TEMP/llama.zip" -d Frameworks
+      - name: Build Mac Catalyst dependency
+        if: matrix.platform == 'mac'
+        run: python3 scripts/build-llama-catalyst.py
+      - name: Archive, audit and upload only
+        env:
+          BUILD_NUMBER: ${{ inputs.build_number }}
+          APP_STORE_CONNECT_API_KEY_ID: ${{ secrets.APP_STORE_CONNECT_API_KEY_ID }}
+          APP_STORE_CONNECT_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}
+          APP_STORE_CONNECT_API_KEY: ${{ secrets.APP_STORE_CONNECT_API_KEY }}
+        run: python3 scripts/upload-review-build.py '${{ matrix.platform }}'
