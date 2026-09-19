@@ -1,4 +1,6 @@
 import XCTest
+import Combine
+import CryptoKit
 @testable import LocalAIAgent
 
 @MainActor
@@ -17,6 +19,116 @@ final class ModelLoaderTests: XCTestCase {
     }
 
     // MARK: - Available Models Tests
+
+    /// Opt-in only: the workflow injects this flag into the simulator xctestrun.
+    func testRealModelDownloadLoadAndInference() async throws {
+        #if targetEnvironment(simulator)
+        guard ProcessInfo.processInfo.environment["ELIO_CI_FULL_MODEL"] == "1" else {
+            throw XCTSkip("Real 1.26 GB download is allowed only in the explicit CI job")
+        }
+        continueAfterFailure = false
+        let model = try XCTUnwrap(modelLoader.getModelInfo("eliochat-1.7b-v3"))
+        let expectedBytes: Int64 = 1_257_875_104
+        let expectedSHA = "82652c12c33044a23e66f55fc8ecdb67bd05bb5a968b7a1f4134ee086ba5638a"
+        let evidenceURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+            .appendingPathComponent("full-model-evidence.json")
+        var evidence: [String: Any] = [
+            "model": model.id, "url": model.downloadURL,
+            "expectedBytes": expectedBytes, "expectedSHA256": expectedSHA,
+            "environment": "iOS Simulator; production auto inference mode",
+            "physicalMemory": ProcessInfo.processInfo.physicalMemory,
+            "os": ProcessInfo.processInfo.operatingSystemVersionString,
+            "physicalDeviceVerified": false, "resumeVerified": false,
+            "uiVerified": false, "testFlightBinaryVerified": false
+        ]
+        func checkpoint(_ stage: String) throws {
+            evidence["stage"] = stage
+            let data = try JSONSerialization.data(withJSONObject: evidence, options: [.prettyPrinted, .sortedKeys])
+            try data.write(to: evidenceURL, options: .atomic)
+            print("FULL_MODEL_STAGE: \(stage)")
+        }
+        defer {
+            if let data = try? Data(contentsOf: evidenceURL) {
+                let attachment = XCTAttachment(data: data, uniformTypeIdentifier: "public.json")
+                attachment.name = "full-model-evidence.json"
+                attachment.lifetime = .keepAlways
+                add(attachment)
+            }
+        }
+        XCTAssertFalse(modelLoader.isModelDownloaded(model.id), "Requires a fresh simulator, not a cached model")
+        try checkpoint("download_started")
+        let start = Date()
+        var milestones: [[String: Any]] = []
+        var lastBucket = -1
+        let observation = modelLoader.$downloadProgressInfo.sink { info in
+            guard let progress = info[model.id] else { return }
+            let bucket = Int(progress.progress * 100)
+            if bucket >= 90 && bucket > lastBucket {
+                lastBucket = bucket
+                milestones.append(["percent": progress.progress * 100,
+                                   "bytes": progress.bytesDownloaded,
+                                   "total": progress.totalBytes,
+                                   "seconds": Date().timeIntervalSince(start)])
+                print("FULL_MODEL_PROGRESS: \(bucket)% bytes=\(progress.bytesDownloaded) total=\(progress.totalBytes)")
+            }
+        }
+        defer { observation.cancel() }
+        try await modelLoader.downloadModel(model)
+        evidence["downloadSeconds"] = Date().timeIntervalSince(start)
+        evidence["progressMilestones"] = milestones
+        evidence["completionProgress"] = modelLoader.downloadProgress[model.id]
+        XCTAssertTrue(modelLoader.isModelDownloaded(model.id))
+        XCTAssertFalse(modelLoader.isDownloading)
+        let path = try XCTUnwrap(modelLoader.getModelPath(model.id))
+        let bytes = try XCTUnwrap(try FileManager.default.attributesOfItem(atPath: path.path)[.size] as? NSNumber).int64Value
+        evidence["actualBytes"] = bytes
+        try checkpoint("download_completed")
+        XCTAssertEqual(bytes, expectedBytes)
+        let handle = try FileHandle(forReadingFrom: path)
+        defer { try? handle.close() }
+        var hasher = SHA256()
+        while let chunk = try handle.read(upToCount: 4 * 1024 * 1024), !chunk.isEmpty {
+            hasher.update(data: chunk)
+        }
+        let sha = hasher.finalize().map { String(format: "%02x", $0) }.joined()
+        evidence["actualSHA256"] = sha
+        try checkpoint("hash_computed")
+        XCTAssertEqual(sha, expectedSHA)
+        let loadStart = Date()
+        try checkpoint("load_started")
+        let inference = try await modelLoader.loadModel(named: model.id)
+        defer { inference.unload() }
+        evidence["loadSeconds"] = Date().timeIntervalSince(loadStart)
+        XCTAssertTrue(inference.isLoaded)
+        try checkpoint("load_completed")
+        let prompt = "<|im_start|>system\nAnswer briefly. /no_think<|im_end|>\n<|im_start|>user\nWhat is 2 + 2? Reply with the number only.<|im_end|>\n<|im_start|>assistant\n"
+        evidence["prompt"] = prompt
+        let generationStart = Date()
+        var streamed = ""
+        var callbacks = 0
+        var firstTokenSeconds: Double?
+        try checkpoint("inference_started")
+        let output = try await inference.generate(prompt: prompt, maxTokens: 64, temperature: 0,
+                                                  stopSequences: ["<|im_end|>"]) { token in
+            if firstTokenSeconds == nil { firstTokenSeconds = Date().timeIntervalSince(generationStart) }
+            streamed += token
+            callbacks += 1
+        }
+        evidence["inferenceSeconds"] = Date().timeIntervalSince(generationStart)
+        evidence["firstTokenSeconds"] = firstTokenSeconds
+        evidence["output"] = output
+        evidence["streamedOutput"] = streamed
+        evidence["streamCallbacks"] = callbacks
+        try checkpoint("inference_completed")
+        XCTAssertFalse(output.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
+        XCTAssertGreaterThan(callbacks, 0)
+        XCTAssertTrue(output.contains("4"), "Arithmetic smoke prompt must produce the answer")
+        try checkpoint("passed")
+        print("FULL_MODEL_RESULT: \(String(data: try Data(contentsOf: evidenceURL), encoding: .utf8)!)")
+        #else
+        throw XCTSkip("CI iOS Simulator only")
+        #endif
+    }
 
     func testAvailableModelsNotEmpty() throws {
         XCTAssertFalse(modelLoader.availableModels.isEmpty, "Should have available models")

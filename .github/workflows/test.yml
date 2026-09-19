@@ -5,6 +5,10 @@ on:
     branches: [master, develop, main]
   workflow_dispatch:
     inputs:
+      full_model:
+        description: 'CI simulator: real 1.26 GB download, load and local inference (no upload)'
+        type: boolean
+        default: false
       upload:
         description: 'Upload verified builds to ASC (never submit for review)'
         type: boolean
@@ -76,6 +80,7 @@ jobs:
           xcodebuild -showsdks | grep -q "iphoneos" || { echo "ERROR: iOS SDK not available"; exit 1; }
 
       - name: Build missing llama Mac Catalyst slice
+        if: ${{ !inputs.full_model }}
         run: python3 scripts/build-llama-catalyst.py
 
       - name: Show Xcode version
@@ -101,6 +106,7 @@ jobs:
             -scheme ElioChat
 
       - name: Build
+        if: ${{ !inputs.full_model }}
         run: |
           xcodebuild build \
             -project ElioChat.xcodeproj \
@@ -112,9 +118,11 @@ jobs:
             CODE_SIGNING_REQUIRED=NO
 
       - name: Audit iOS binary for HealthKit
+        if: ${{ !inputs.full_model }}
         run: python3 scripts/audit-review-app.py build/ios-review/Build/Products/Debug-iphoneos/ElioChat.app
 
       - name: Build Mac Catalyst release
+        if: ${{ !inputs.full_model }}
         run: |
           xcodebuild build \
             -project ElioChat.xcodeproj \
@@ -125,10 +133,12 @@ jobs:
             CODE_SIGNING_ALLOWED=NO
 
       - name: Audit and launch Mac Catalyst release
+        if: ${{ !inputs.full_model }}
         run: |
           python3 scripts/audit-review-app.py build/mac-review/Build/Products/Release-maccatalyst/ElioChat.app --launch
 
       - name: Run Tests
+        if: ${{ !inputs.full_model }}
         run: |
           # Get first available iPhone simulator
           SIMULATOR=$(xcrun simctl list devices available --json | python3 -c 'import json,sys; d=json.load(sys.stdin); print(next(v["udid"] for runtime,devices in d["devices"].items() if runtime.endswith("iOS-26-2") for v in devices if "iPhone" in v["name"]))')
@@ -150,6 +160,10 @@ jobs:
             xcrun xcresulttool get test-results summary --path TestResults.xcresult
           fi
 
+      - name: Real model simulator integration
+        if: inputs.full_model
+        run: python3 scripts/test-full-model-simulator.py
+
       - name: Upload review verification evidence
         if: always()
         uses: actions/upload-artifact@v4
@@ -157,13 +171,15 @@ jobs:
           name: review-verification
           path: |
             TestResults.xcresult
+            build/full-model-evidence.json
+            build/full-model-environment.json
             build/mac-launch.log
             ~/Library/Logs/DiagnosticReports/ElioChat*
           retention-days: 14
 
   upload:
     name: Upload verified ${{ matrix.platform }} build
-    if: ${{ github.event_name == 'workflow_dispatch' && inputs.upload }}
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.upload && !inputs.full_model }}
     needs: build
     runs-on: macos-26
     timeout-minutes: 45
