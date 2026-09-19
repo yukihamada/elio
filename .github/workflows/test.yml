@@ -38,6 +38,9 @@ jobs:
       - name: Test model download recovery with local fixtures
         run: python3 scripts/test-model-download.py
 
+      - name: Prepare Catalyst-compatible MarkdownView
+        run: python3 scripts/prepare-markdown.py
+
       - name: Fetch llama.xcframework (CI-only build dependency)
         run: |
           # Frameworks/llama.xcframework is .gitignore'd (it's normally a symlink to a
@@ -174,6 +177,8 @@ jobs:
           curl --fail --silent --show-error --location -o "$RUNNER_TEMP/llama.zip" \
             https://github.com/${{ github.repository }}/releases/download/ci-llama-xcframework/llama.xcframework.zip
           unzip -q "$RUNNER_TEMP/llama.zip" -d Frameworks
+      - name: Prepare Catalyst-compatible MarkdownView
+        run: python3 scripts/prepare-markdown.py
       - name: Build Mac Catalyst dependency
         if: matrix.platform == 'mac'
         run: python3 scripts/build-llama-catalyst.py

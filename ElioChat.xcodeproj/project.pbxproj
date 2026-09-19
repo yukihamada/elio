@@ -2281,12 +2281,8 @@
 
 /* Begin XCRemoteSwiftPackageReference section */
 		MDVIEW001 /* XCRemoteSwiftPackageReference "MarkdownView" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/LiYanan2004/MarkdownView.git";
-			requirement = {
-				kind = exactVersion;
-				version = 1.7.0;
-			};
+			isa = XCLocalSwiftPackageReference;
+			relativePath = "Packages/MarkdownView";
 		};
 		MLX00001 /* XCRemoteSwiftPackageReference "mlx-swift-lm" */ = {
 			isa = XCRemoteSwiftPackageReference;
