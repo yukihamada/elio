@@ -24,10 +24,17 @@ prompt = "<|im_start|>system\nAnswer briefly. /no_think<|im_end|>\n<|im_start|>u
 results = {"version": "b8500", "commit": subprocess.check_output(["git", "-C", str(source), "rev-parse", "HEAD"], text=True).strip(),
            "sha256": hashlib.file_digest(model.open("rb"), "sha256").hexdigest(), "runs": []}
 for backend, layers in [("native-cpu", "0"), ("native-metal", "99")]:
-    for template, text in [("original", prompt), ("no-thinking", prompt + "<think></think>\n")]:
+    for template, text in [("no-thinking", prompt + "<think></think>\n"), ("original", prompt)]:
         start = time.monotonic()
-        completed = subprocess.run([str(build / "bin/llama-simple"), "-m", str(model), "-n", "64",
-                                    "-ngl", layers, text], capture_output=True, text=True, timeout=240)
+        try:
+            completed = subprocess.run([str(build / "bin/llama-simple"), "-m", str(model), "-n", "64",
+                                        "-ngl", layers, text], capture_output=True, text=True, timeout=300)
+        except subprocess.TimeoutExpired as error:
+            # A reference timeout is evidence, not a reason to lose all partial
+            # Metal diagnostics or skip the next comparison.
+            completed = subprocess.CompletedProcess(error.cmd, 124,
+                (error.stdout or b"").decode(errors="replace"),
+                (error.stderr or b"").decode(errors="replace"))
         name = f"model-reference-{backend}-{template}"
         Path(f"build/{name}.log").write_text(completed.stderr)
         results["runs"].append({"backend": backend, "template": template, "prompt": text,

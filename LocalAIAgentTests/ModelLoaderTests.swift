@@ -95,6 +95,7 @@ final class ModelLoaderTests: XCTestCase {
         evidence["actualSHA256"] = sha
         try checkpoint("hash_computed")
         XCTAssertEqual(sha, expectedSHA)
+        XCTAssertEqual(InferenceMode.auto.gpuLayers, 0, "Simulator must use the verified CPU backend")
         // Diagnostic comparison: same simulator binary/model/tokenizer, CPU
         // layer allocation vs the unchanged production auto path below.
         var comparisons: [[String: Any]] = []
@@ -144,10 +145,29 @@ final class ModelLoaderTests: XCTestCase {
         // Async XCTest assertions do not reliably stop control flow even with
         // continueAfterFailure=false. Never persist "passed" after an issue.
         guard !output.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty,
-              callbacks > 0, output.contains("4"), testRun?.failureCount == 0 else {
+              callbacks > 0, output.contains("4"),
+              output.components(separatedBy: "</think>").last?.trimmingCharacters(in: .whitespacesAndNewlines) == "4",
+              testRun?.failureCount == 0 else {
             try checkpoint("validation_failed")
             throw NSError(domain: "ElioFullModelVerification", code: 1,
                           userInfo: [NSLocalizedDescriptionKey: "Generated output failed the arithmetic smoke check; inspect evidence"])
+        }
+        // Exercise a second generation on the same loaded context, including
+        // the app's production message formatter and non-ASCII tokenizer path.
+        let japaneseStart = Date()
+        var japaneseSettings = ModelSettings.precise
+        japaneseSettings.temperature = 0
+        japaneseSettings.maxTokens = 64
+        let japanese = try await inference.generateWithMessages(
+            messages: [Message(role: .user, content: "日本の首都はどこですか？都市名だけ日本語で答えてください。")],
+            systemPrompt: "簡潔に答えてください。", settings: japaneseSettings) { _ in }
+        evidence["japaneseOutput"] = japanese
+        evidence["japaneseSeconds"] = Date().timeIntervalSince(japaneseStart)
+        try checkpoint("japanese_completed")
+        guard japanese.contains("東京"), !japanese.contains("odeoen") else {
+            try checkpoint("validation_failed")
+            throw NSError(domain: "ElioFullModelVerification", code: 2,
+                          userInfo: [NSLocalizedDescriptionKey: "Japanese factual answer failed"])
         }
         try checkpoint("passed")
         print("FULL_MODEL_RESULT: \(String(data: try Data(contentsOf: evidenceURL), encoding: .utf8)!)")

@@ -44,6 +44,12 @@ enum InferenceMode: String, CaseIterable, Codable {
 
     /// Number of GPU layers to use (device-aware)
     var gpuLayers: Int32 {
+        #if targetEnvironment(simulator)
+        // The simulator exposes an MTL0 device even without usable llama Metal
+        // compute support. Real-model CPU/Metal A/B (run 35458861049) produced
+        // correct text only on CPU; memory size is not a GPU capability check.
+        return 0
+        #else
         switch self {
         case .auto, .gpu:
             // Device-aware GPU layer allocation based on available memory (cached)
@@ -51,6 +57,7 @@ enum InferenceMode: String, CaseIterable, Codable {
         case .cpu: return 0           // No GPU layers
         case .hybrid: return 20       // Some layers on GPU
         }
+        #endif
     }
 
     /// Cached GPU layers calculation (computed once at startup)
