@@ -95,6 +95,25 @@ final class ModelLoaderTests: XCTestCase {
         evidence["actualSHA256"] = sha
         try checkpoint("hash_computed")
         XCTAssertEqual(sha, expectedSHA)
+        // Diagnostic comparison: same simulator binary/model/tokenizer, CPU
+        // layer allocation vs the unchanged production auto path below.
+        var comparisons: [[String: Any]] = []
+        let originalPrompt = "<|im_start|>system\nAnswer briefly. /no_think<|im_end|>\n<|im_start|>user\nWhat is 2 + 2? Reply with the number only.<|im_end|>\n<|im_start|>assistant\n"
+        do {
+            let cpu = LlamaInference(config: .qwen3)
+            cpu.inferenceMode = .cpu
+            try await cpu.loadModel(from: path)
+            defer { cpu.unload() }
+            for prompt in [originalPrompt, originalPrompt + "<think></think>\n"] {
+                let began = Date()
+                let answer = try await cpu.generate(prompt: prompt, maxTokens: 16, temperature: 0) { _ in }
+                comparisons.append(["backend": "simulator cpu layers; existing context settings",
+                                    "prompt": prompt, "output": answer, "seconds": Date().timeIntervalSince(began)])
+                evidence["comparisons"] = comparisons
+                try checkpoint("cpu_comparison")
+                print("CPU_COMPARISON: \(answer)")
+            }
+        }
         let loadStart = Date()
         try checkpoint("load_started")
         let inference = try await modelLoader.loadModel(named: model.id)

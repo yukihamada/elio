@@ -173,6 +173,7 @@ jobs:
             TestResults.xcresult
             build/full-model-evidence.json
             build/full-model-environment.json
+            build/model-reference*
             build/mac-launch.log
             ~/Library/Logs/DiagnosticReports/ElioChat*
           retention-days: 14

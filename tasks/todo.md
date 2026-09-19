@@ -1,6 +1,8 @@
 # App Review recovery — 2026-09-19
 
 ## CI-only real-model verification — 2026-09-20
+- [ ] Compare simulator CPU/Metal and pinned b8500 native CPU/Metal with identical file/prompts; inspect GGUF tokenizer/template metadata.
+- [ ] Fix measured root cause and verify correct arithmetic plus Japanese output without relaxing assertions.
 - [x] Read production download/load/inference, fixture script, and existing UI tests.
 - [x] Add opt-in simulator integration test using the real 1,257,875,104-byte ElioChat model; record SHA-256, progress, load and generated output.
 - [x] Run on GitHub Actions only; preserve xcresult and staged JSON evidence even on failure (35456866815: full DL/hash/load complete, generated gibberish; test FAILED).

@@ -93,6 +93,9 @@ struct LocalAIAgentApp: App {
         if evidence.exists():
             shutil.copyfile(evidence, build / evidence.name)
             print(evidence.read_text(), flush=True)
+        model = Path(container) / "Documents/Models/eliochat-1.7b-v3.gguf"
+        if model.exists():
+            subprocess.run(["python3", "scripts/compare-model-reference.py", str(model)], check=True)
     result = json.loads((build / "full-model-evidence.json").read_text())
     if result.get("stage") != "passed":
         raise RuntimeError("The real-model test did not reach its final assertions")
