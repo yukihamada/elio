@@ -35,9 +35,14 @@ identifier = "ios-arm64-maccatalyst"
 framework = xcframework / identifier / "llama.framework"
 (framework / "Headers").mkdir(parents=True)
 (framework / "Modules").mkdir()
-for headers in (source / "include", source / "ggml/include"):
-    for header in headers.glob("*.h"):
-        shutil.copy2(header, framework / "Headers" / header.name)
+# Match upstream's public C umbrella; ggml-cpp.h is C++ and cannot be imported
+# by Swift's C module scanner.
+for relative in ("include/llama.h", "ggml/include/ggml.h", "ggml/include/ggml-opt.h",
+                 "ggml/include/ggml-alloc.h", "ggml/include/ggml-backend.h",
+                 "ggml/include/ggml-metal.h", "ggml/include/ggml-cpu.h",
+                 "ggml/include/ggml-blas.h", "ggml/include/gguf.h"):
+    header = source / relative
+    shutil.copy2(header, framework / "Headers" / header.name)
 (framework / "Modules/module.modulemap").write_text('''framework module llama {
     umbrella "Headers"
     link "c++"
