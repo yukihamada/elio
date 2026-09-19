@@ -14,7 +14,9 @@ struct ElioCommands: Commands {
 
     var body: some Commands {
         // MARK: File Menu
-        CommandGroup(after: .newItem) {
+        // Replace the system Cmd-N item; adding a second Cmd-N command makes
+        // UIKit's Catalyst menu validation throw during application launch.
+        CommandGroup(replacing: .newItem) {
             Button("New Conversation") {
                 newConversation?()
             }
