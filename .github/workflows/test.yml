@@ -29,7 +29,7 @@ jobs:
   build:
     name: Build & Test
     runs-on: macos-26
-    timeout-minutes: 40
+    timeout-minutes: 60
 
     steps:
       - name: Checkout
@@ -131,8 +131,9 @@ jobs:
       - name: Run Tests
         run: |
           # Get first available iPhone simulator
-          SIMULATOR=$(xcrun simctl list devices available --json | python3 -c 'import json,sys; d=json.load(sys.stdin); print(next(v["udid"] for devices in d["devices"].values() for v in devices if "iPhone" in v["name"]))')
+          SIMULATOR=$(xcrun simctl list devices available --json | python3 -c 'import json,sys; d=json.load(sys.stdin); print(next(v["udid"] for runtime,devices in d["devices"].items() if runtime.endswith("iOS-26-2") for v in devices if "iPhone" in v["name"]))')
           echo "Using simulator: $SIMULATOR"
+          xcrun simctl bootstatus "$SIMULATOR" -b
 
           xcodebuild test \
             -project ElioChat.xcodeproj \
