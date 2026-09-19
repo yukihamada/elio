@@ -58,6 +58,9 @@ jobs:
           xcodebuild -showsdks
           xcodebuild -showsdks | grep -q "iphoneos" || { echo "ERROR: iOS SDK not available"; exit 1; }
 
+      - name: Build missing llama Mac Catalyst slice
+        run: python3 scripts/build-llama-catalyst.py
+
       - name: Show Xcode version
         run: xcodebuild -version
 

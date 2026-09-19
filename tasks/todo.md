@@ -5,7 +5,9 @@
 - [x] Audit HealthKit source/metadata references (removed in July commit e7ca4a0).
 - [x] Verify locally without model/framework downloads, then use Xcode 26 CI (run 35415431976 failed at existing AppIntents utterance validation).
 - [x] Commit/push isolated branch; fix the CI-discovered utterance error without restarting CI.
-- [ ] Obtain permission for a new CI run, then complete binary HealthKit audit, full tests, and Mac Catalyst launch verification.
+- [x] Obtain permission for new corrected CI runs (2026-09-19 explicit continuation).
+- [ ] Complete binary HealthKit audit, full tests, and Mac Catalyst launch verification (run 35416255198).
+- [ ] Implement Xcode 26 upload-only delivery, upload verified iOS/macOS builds, and confirm ASC processing.
 - [ ] Retrieve Apple's Mac crash attachment and verify the exact launch root cause.
 - [ ] Submit for review only after device-level verification of rejection fixes.
 
