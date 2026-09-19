@@ -19,6 +19,21 @@ def run(*args):
 def main():
     if os.environ.get("GITHUB_ACTIONS") != "true":
         raise SystemExit("Large-model test is restricted to GitHub Actions")
+    # Hosted XCTest otherwise runs onboarding, unrelated model downloads and API
+    # registration before the test begins. Only replace the app entry point on
+    # the ephemeral runner; production ModelLoader/CoreMLInference/LlamaInference
+    # stay byte-for-byte unchanged. This is component integration, not a UI test.
+    entry = Path("LocalAIAgent/App/LocalAIAgentApp.swift")
+    if "@main\nstruct LocalAIAgentApp: App" not in entry.read_text():
+        raise RuntimeError("Unexpected app entry point")
+    entry.write_text('''import SwiftUI
+@main
+struct LocalAIAgentApp: App {
+    var body: some Scene {
+        WindowGroup { Text("CI model integration host") }
+    }
+}
+''')
     runtime = "com.apple.CoreSimulator.SimRuntime.iOS-26-2"
     simulator = run("xcrun", "simctl", "create", "Elio Full Model Verification",
                     "com.apple.CoreSimulator.SimDeviceType.iPhone-17-Pro", runtime)
@@ -30,6 +45,8 @@ def main():
         "xcode": run("xcodebuild", "-version"),
         "architecture": run("uname", "-m"),
         "physicalDevice": False,
+        "host": "CI-only minimal SwiftUI entry point; no AppState/onboarding",
+        "metalValidation": "disabled for inference timing",
     }, indent=2))
     subprocess.run(["xcrun", "simctl", "bootstatus", simulator, "-b"], check=True)
     common = ["-destination", f"platform=iOS Simulator,id={simulator}",
@@ -49,6 +66,10 @@ def main():
         if isinstance(value, dict):
             if "TestBundlePath" in value:
                 value.setdefault("EnvironmentVariables", {})["ELIO_CI_FULL_MODEL"] = "1"
+                value["EnvironmentVariables"].update({
+                    "MTL_DEBUG_LAYER": "0", "MTL_SHADER_VALIDATION": "0",
+                    "METAL_DEVICE_WRAPPER_TYPE": "0",
+                })
                 targets.append(value["TestBundlePath"])
             for child in list(value.values()):
                 inject(child)
@@ -63,7 +84,8 @@ def main():
     try:
         subprocess.run(["xcodebuild", "test-without-building", "-xctestrun", str(spec),
                         *common, "-only-testing:LocalAIAgentTests/ModelLoaderTests/testRealModelDownloadLoadAndInference",
-                        "-test-timeouts-enabled", "YES", "-maximum-test-execution-time-allowance", "1200",
+                        "-test-timeouts-enabled", "YES", "-default-test-execution-time-allowance", "1200",
+                        "-maximum-test-execution-time-allowance", "1200",
                         "-resultBundlePath", "TestResults.xcresult"], check=True)
     finally:
         container = run("xcrun", "simctl", "get_app_container", simulator, "love.elio.app", "data")

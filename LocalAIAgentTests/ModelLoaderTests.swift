@@ -27,6 +27,7 @@ final class ModelLoaderTests: XCTestCase {
             throw XCTSkip("Real 1.26 GB download is allowed only in the explicit CI job")
         }
         continueAfterFailure = false
+        executionTimeAllowance = 1200
         let model = try XCTUnwrap(modelLoader.getModelInfo("eliochat-1.7b-v3"))
         let expectedBytes: Int64 = 1_257_875_104
         let expectedSHA = "82652c12c33044a23e66f55fc8ecdb67bd05bb5a968b7a1f4134ee086ba5638a"
@@ -113,6 +114,7 @@ final class ModelLoaderTests: XCTestCase {
             if firstTokenSeconds == nil { firstTokenSeconds = Date().timeIntervalSince(generationStart) }
             streamed += token
             callbacks += 1
+            print("FULL_MODEL_TOKEN: callback=\(callbacks) elapsed=\(Date().timeIntervalSince(generationStart)) text=\(token)")
         }
         evidence["inferenceSeconds"] = Date().timeIntervalSince(generationStart)
         evidence["firstTokenSeconds"] = firstTokenSeconds
