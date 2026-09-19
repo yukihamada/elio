@@ -13,7 +13,7 @@ import subprocess
 assert os.environ.get("GITHUB_ACTIONS") == "true", "Build this dependency on GitHub, not the local Mac"
 root = pathlib.Path(__file__).resolve().parents[1]
 source = pathlib.Path(os.environ["RUNNER_TEMP"]) / "llama-catalyst-source"
-subprocess.run(["git", "clone", "--depth", "1", "--branch", "b10472",
+subprocess.run(["git", "clone", "--depth", "1", "--branch", "b8500",
                 "https://github.com/ggml-org/llama.cpp.git", str(source)], check=True)
 sdk = subprocess.check_output(["xcrun", "--sdk", "macosx", "--show-sdk-path"], text=True).strip()
 flags = f"-target arm64-apple-ios17.0-macabi -isystem {sdk}/System/iOSSupport/usr/include -iframework {sdk}/System/iOSSupport/System/Library/Frameworks"
@@ -68,4 +68,4 @@ info["AvailableLibraries"].append({"LibraryIdentifier": identifier,
     "LibraryPath": "llama.framework", "SupportedArchitectures": ["arm64"],
     "SupportedPlatform": "ios", "SupportedPlatformVariant": "maccatalyst"})
 plist.write_bytes(plistlib.dumps(info))
-print("Added real arm64 Mac Catalyst llama slice (b10472)")
+print("Added real arm64 Mac Catalyst llama slice (b8500, matching app C API)")
