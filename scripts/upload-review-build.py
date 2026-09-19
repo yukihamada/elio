@@ -46,7 +46,7 @@ try:
         # cloud distribution signing, otherwise ASC rejects the missing sandbox.
         subprocess.run(["codesign", "--force", "--sign", "-", "--entitlements",
                         "LocalAIAgent/LocalAIAgent.entitlements", str(app)], check=True)
-        signed = subprocess.check_output(["codesign", "--display", "--entitlements", "-", str(app)],
+        signed = subprocess.check_output(["codesign", "--display", "--entitlements", "-", "--xml", str(app)],
                                          stderr=subprocess.DEVNULL)
         assert plistlib.loads(signed).get("com.apple.security.app-sandbox") is True
         print("PASS: Mac archive signature includes app-sandbox=true")
