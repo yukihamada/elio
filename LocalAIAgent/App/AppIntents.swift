@@ -105,7 +105,7 @@ struct ElioChatShortcuts: AppShortcutsProvider {
             phrases: [
                 "Ask \(.applicationName)",
                 "\(.applicationName)に聞いて",
-                "ElioChatに質問"
+                "\(.applicationName)に質問"
             ],
             shortTitle: "Ask ElioChat",
             systemImageName: "brain.head.profile"

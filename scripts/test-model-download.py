@@ -67,7 +67,7 @@ for (path, shouldSucceed, estimate) in cases {
         callbackQueue: queue, stallTimeoutSeconds: 0.2,
         progressHandler: { progress, _, total, _, _ in
             if progress == 1 { reachedComplete = true }
-            if total == 128 { observedServerSize = true }
+            if progress < 1 && total == 128 { observedServerSize = true }
         },
         completionHandler: { result in
             completions += 1

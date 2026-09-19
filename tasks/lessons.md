@@ -1,5 +1,11 @@
 # Lessons Learned — elio
 
+## App Review recovery (2026-09-19)
+- Xcode 26.2 rejects any AppShortcut phrase without exactly one `\(.applicationName)` token. A hard-coded `ElioChatに質問` prevented AppIntents metadata export (Actions run 35415431976); use the applicationName interpolation.
+- A green legacy Test run was not proof tests passed: test.yml swallowed xcodebuild test failure with `|| true`. Keep failures blocking and preserve xcresult.
+- URLSession download success does not imply HTTP success. Validate status and GGUF header before moving a temporary file or reporting completion. Watchdog and delegate completion state must use one serial queue.
+- The July HealthKit removal and resume-data fix were never uploaded as of 2026-09-19: ASC still selects iOS build 57/macOS build 56 from March. Audit the built binary, not just source, before resubmission.
+
 ## Architecture
 - **LocalBackend has no .shared singleton** — access via `ChatModeManager.shared.localBackend` or use `ChatModeManager.shared.isModeAvailable(.local)`. MeshTopologyView had a crash from `LocalBackend.shared` (2024-02).
 - **P2P backend must be configured BEFORE `isModelLoaded = true`** — `onChange` triggers `macStartupSetup()` which calls `PrivateServerManager.start()`. If backend isn't set, server start always fails silently.

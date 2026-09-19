@@ -1,10 +1,12 @@
 # App Review recovery — 2026-09-19
 
 - [x] Read lessons, latest main, and original Apple rejection notifications.
-- [ ] Reproduce download failure paths with small fixtures; fix verified defects.
-- [ ] Audit HealthKit references and Mac Catalyst launch evidence.
-- [ ] Verify locally without model/framework downloads, then use Xcode 26 CI.
-- [ ] Commit/push isolated branch and record CI/distribution blockers.
+- [x] Exercise download failure paths with small fixtures; fix verified defects (8 cases pass locally and on Xcode 26.2 CI).
+- [x] Audit HealthKit source/metadata references (removed in July commit e7ca4a0).
+- [x] Verify locally without model/framework downloads, then use Xcode 26 CI (run 35415431976 failed at existing AppIntents utterance validation).
+- [x] Commit/push isolated branch; fix the CI-discovered utterance error without restarting CI.
+- [ ] Obtain permission for a new CI run, then complete binary HealthKit audit, full tests, and Mac Catalyst launch verification.
+- [ ] Retrieve Apple's Mac crash attachment and verify the exact launch root cause.
 - [ ] Submit for review only after device-level verification of rejection fixes.
 
 # Pure Swift + Metal LLM Inference Engine

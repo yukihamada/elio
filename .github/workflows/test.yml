@@ -2,7 +2,8 @@ name: Test
 
 on:
   push:
-    branches: [master, develop, main, fix/elio-review-20260919]
+    branches: [master, develop, main]
+  workflow_dispatch:
   pull_request:
     branches: [master, main]
 
@@ -86,8 +87,12 @@ jobs:
             -scheme ElioChat \
             -destination 'generic/platform=iOS' \
             -configuration Debug \
+            -derivedDataPath build/ios-review \
             CODE_SIGN_IDENTITY="" \
             CODE_SIGNING_REQUIRED=NO
+
+      - name: Audit iOS binary for HealthKit
+        run: python3 scripts/audit-review-app.py build/ios-review/Build/Products/Debug-iphoneos/ElioChat.app
 
       - name: Build Mac Catalyst release
         run: |
