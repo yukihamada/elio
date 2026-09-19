@@ -40,6 +40,16 @@ try:
     info = plistlib.loads(info_path.read_bytes())
     assert info["CFBundleVersion"] == number
     assert info["CFBundleShortVersionString"] == "1.2.43"
+    if platform == "mac":
+        # An unsigned archive has no signed entitlements for Xcode's export
+        # re-signing to preserve. Attach the existing app entitlements before
+        # cloud distribution signing, otherwise ASC rejects the missing sandbox.
+        subprocess.run(["codesign", "--force", "--sign", "-", "--entitlements",
+                        "LocalAIAgent/LocalAIAgent.entitlements", str(app)], check=True)
+        signed = subprocess.check_output(["codesign", "--display", "--entitlements", "-", str(app)],
+                                         stderr=subprocess.DEVNULL)
+        assert plistlib.loads(signed).get("com.apple.security.app-sandbox") is True
+        print("PASS: Mac archive signature includes app-sandbox=true")
     subprocess.run(["xcodebuild", "-exportArchive", "-archivePath", str(archive),
                     "-exportPath", str(export), "-exportOptionsPlist", str(options),
                     "-allowProvisioningUpdates", "-authenticationKeyPath", str(key),

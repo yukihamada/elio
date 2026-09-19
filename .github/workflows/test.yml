@@ -13,6 +13,11 @@ on:
         description: 'New CFBundleVersion for upload'
         type: string
         default: '58'
+      platforms:
+        description: 'Platforms to upload (both, ios, mac)'
+        type: choice
+        options: [both, ios, mac]
+        default: both
   pull_request:
     branches: [master, main]
 
@@ -165,7 +170,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        platform: [ios, mac]
+        platform: ${{ fromJSON(inputs.platforms == 'mac' && '["mac"]' || inputs.platforms == 'ios' && '["ios"]' || '["ios","mac"]') }}
     steps:
       - uses: actions/checkout@v4
         with:
