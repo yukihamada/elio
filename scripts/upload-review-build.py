@@ -28,10 +28,14 @@ options.write_bytes(plistlib.dumps({
     "teamID": "5BV85JW8US", "uploadSymbols": True, "manageAppVersionAndBuildNumber": False,
 }))
 destination = "generic/platform=iOS" if platform == "ios" else "generic/platform=macOS,variant=Mac Catalyst"
+signing = (["CODE_SIGNING_ALLOWED=YES", "CODE_SIGN_IDENTITY=-", "CODE_SIGN_STYLE=Manual",
+            "DEVELOPMENT_TEAM=", "PROVISIONING_PROFILE_SPECIFIER=", "ENABLE_APP_SANDBOX=YES",
+            "CODE_SIGN_INJECT_BASE_ENTITLEMENTS=NO"] if platform == "mac"
+           else ["CODE_SIGNING_ALLOWED=NO"])
 try:
     subprocess.run(["xcodebuild", "archive", "-project", "ElioChat.xcodeproj", "-scheme", "ElioChat",
                     "-configuration", "Release", "-destination", destination,
-                    "-archivePath", str(archive), "CODE_SIGNING_ALLOWED=NO",
+                    "-archivePath", str(archive), *signing,
                     "MARKETING_VERSION=1.2.43", f"CURRENT_PROJECT_VERSION={number}",
                     "ARCHS=arm64"], check=True)
     app = archive / "Products/Applications/ElioChat.app"
@@ -41,11 +45,9 @@ try:
     assert info["CFBundleVersion"] == number
     assert info["CFBundleShortVersionString"] == "1.2.43"
     if platform == "mac":
-        # An unsigned archive has no signed entitlements for Xcode's export
-        # re-signing to preserve. Attach the existing app entitlements before
-        # cloud distribution signing, otherwise ASC rejects the missing sandbox.
-        subprocess.run(["codesign", "--force", "--sign", "-", "--entitlements",
-                        "LocalAIAgent/LocalAIAgent.entitlements", str(app)], check=True)
+        # Xcode must archive with signing enabled so its distribution metadata
+        # records the entitlements too; post-archive codesign alone is discarded
+        # by export's cloud signing pipeline.
         signed = subprocess.check_output(["codesign", "--display", "--entitlements", "-", "--xml", str(app)],
                                          stderr=subprocess.DEVNULL)
         assert plistlib.loads(signed).get("com.apple.security.app-sandbox") is True
