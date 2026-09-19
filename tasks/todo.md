@@ -1,13 +1,13 @@
 # App Review recovery — 2026-09-19
 
 ## CI-only real-model verification — 2026-09-20
-- [ ] Compare simulator CPU/Metal and pinned b8500 native CPU/Metal with identical file/prompts; inspect GGUF tokenizer/template metadata.
-- [ ] Fix measured root cause and verify correct arithmetic plus Japanese output without relaxing assertions.
+- [x] Compare simulator CPU/Metal and pinned b8500 native CPU/Metal with identical file/prompts; inspect GGUF tokenizer/template metadata (35458861049; native Metal timeout retained).
+- [x] Fix measured simulator GPU selection cause and verify correct arithmetic plus Japanese output without relaxing assertions (c55a713, 35460934037; ordinary regression 35463074103).
 - [x] Read production download/load/inference, fixture script, and existing UI tests.
 - [x] Add opt-in simulator integration test using the real 1,257,875,104-byte ElioChat model; record SHA-256, progress, load and generated output.
 - [x] Run on GitHub Actions only; preserve xcresult and staged JSON evidence even on failure (35456866815: full DL/hash/load complete, generated gibberish; test FAILED).
 - [x] Report simulator coverage separately from physical-device, TestFlight, UI and interrupted-download coverage (tasks/full-model-verification-20260920.md).
-- [ ] Diagnose invalid generated output before claiming iOS inference/review readiness (CPU reference vs simulator Metal vs model; not yet isolated).
+- [x] Diagnose invalid generated output: identical-binary CPU correct/Metal corrupt; simulator CPU policy fixed. Physical-device/shipping Mac inference remains unverified.
 
 - [x] Read lessons, latest main, and original Apple rejection notifications.
 - [x] Exercise download failure paths with small fixtures; fix verified defects (8 cases pass locally and on Xcode 26.2 CI).

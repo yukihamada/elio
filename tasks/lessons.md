@@ -1,6 +1,8 @@
 # Lessons Learned — elio
 
 ## App Review recovery (2026-09-19)
+- Hosted macos-26 iOS simulator exposes MTL0 with no simdgroup support and zero recommended GPU working set. Real 1.26GB model generated garbage on Metal but correct answers with the identical binary/prompt at 0 GPU layers (35458861049). Use CPU for simulator; do not generalize this to physical-device GPU failure. Fix c55a713 passes arithmetic/Japanese (35460934037).
+- A green comparison workflow can contain deliberately captured reference timeouts. Native Metal reference returncode124 is NOT a successful Mac inference test. Preserve per-experiment verdicts.
 - Xcode 26.2 rejects any AppShortcut phrase without exactly one `\(.applicationName)` token. A hard-coded `ElioChatに質問` prevented AppIntents metadata export (Actions run 35415431976); use the applicationName interpolation.
 - A green legacy Test run was not proof tests passed: test.yml swallowed xcodebuild test failure with `|| true`. Keep failures blocking and preserve xcresult.
 - URLSession download success does not imply HTTP success. Validate status and GGUF header before moving a temporary file or reporting completion. Watchdog and delegate completion state must use one serial queue.
