@@ -1,3 +1,12 @@
+# App Review recovery — 2026-09-19
+
+- [x] Read lessons, latest main, and original Apple rejection notifications.
+- [ ] Reproduce download failure paths with small fixtures; fix verified defects.
+- [ ] Audit HealthKit references and Mac Catalyst launch evidence.
+- [ ] Verify locally without model/framework downloads, then use Xcode 26 CI.
+- [ ] Commit/push isolated branch and record CI/distribution blockers.
+- [ ] Submit for review only after device-level verification of rejection fixes.
+
 # Pure Swift + Metal LLM Inference Engine
 
 ## 概要

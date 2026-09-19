@@ -1488,6 +1488,7 @@ final class ModelLoader: ObservableObject {
         // Create a delegate that converts redirects to HEAD requests
         let delegate = HeadRedirectDelegate()
         let session = URLSession(configuration: config, delegate: delegate, delegateQueue: nil)
+        defer { session.invalidateAndCancel() }
 
         var request = URLRequest(url: url)
         request.httpMethod = "HEAD"
@@ -1495,7 +1496,7 @@ final class ModelLoader: ObservableObject {
 
         do {
             let (_, response) = try await session.data(for: request)
-            if let httpResponse = response as? HTTPURLResponse {
+            if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 {
                 let contentLength = httpResponse.expectedContentLength
                 print("[ModelLoader] HEAD request (status: \(httpResponse.statusCode)) - Content-Length: \(contentLength)")
                 return contentLength > 0 ? contentLength : nil
@@ -1513,6 +1514,7 @@ final class ModelLoader: ObservableObject {
         var resumeData: Data?
 
         for attempt in 1...maxRetries {
+            try Task.checkCancellation()
             do {
                 try await downloadModelViaURLSessionOnce(model, resumeData: resumeData)
                 return  // Success
@@ -1530,7 +1532,7 @@ final class ModelLoader: ObservableObject {
                 if attempt < maxRetries {
                     let delay = UInt64(pow(2.0, Double(attempt))) * 1_000_000_000  // Exponential backoff
                     print("[ModelLoader] Retrying in \(Int(pow(2.0, Double(attempt)))) seconds...")
-                    try? await Task.sleep(nanoseconds: delay)
+                    try await Task.sleep(nanoseconds: delay)
                 }
             }
         }
@@ -1636,8 +1638,16 @@ final class ModelLoader: ObservableObject {
         var downloadSession: URLSession?
 
         return try await withCheckedThrowingContinuation { continuation in
+            // The watchdog and URLSession callbacks must serialize access to the
+            // completion flag and progress timestamps (including final file move).
+            let callbackQueue = DispatchQueue(label: "love.elio.model-download")
+            let delegateQueue = OperationQueue()
+            delegateQueue.maxConcurrentOperationCount = 1
+            delegateQueue.underlyingQueue = callbackQueue
             let delegate = DownloadDelegate(
                 expectedSize: expectedSize,
+                validatesGGUF: url.pathExtension.lowercased() == "gguf",
+                callbackQueue: callbackQueue,
                 progressHandler: { [weak self] progress, bytesWritten, totalBytes, speed, eta in
                     Task { @MainActor in
                         guard let self = self else { return }
@@ -1684,7 +1694,7 @@ final class ModelLoader: ObservableObject {
             config.timeoutIntervalForResource = 3600  // 60 minutes for large model files (5GB+ at slow speeds)
             config.timeoutIntervalForRequest = 300    // 5 minutes per request
             config.waitsForConnectivity = true        // Wait for network instead of failing immediately
-            let session = URLSession(configuration: config, delegate: delegate, delegateQueue: nil)
+            let session = URLSession(configuration: config, delegate: delegate, delegateQueue: delegateQueue)
             downloadSession = session
 
             // Use delegate-based download task (NO completion handler)
@@ -1836,6 +1846,8 @@ private final class DownloadDelegate: NSObject, URLSessionDownloadDelegate {
     private let progressHandler: (Double, Int64, Int64, Double, TimeInterval?) -> Void
     private let completionHandler: (Result<URL, Error>) -> Void
     private let expectedSize: Int64
+    private let validatesGGUF: Bool
+    private let callbackQueue: DispatchQueue
     private var actualTotalSize: Int64?  // Server-provided size (updated on first callback)
     private var startTime: Date?
     private var lastUpdateTime: Date?
@@ -1844,7 +1856,7 @@ private final class DownloadDelegate: NSObject, URLSessionDownloadDelegate {
     private var lastLoggedPercent: Int = -1  // 重複ログ防止
     private var lastProgressTime: Date = Date()  // For stall detection
     private var stallTimer: DispatchSourceTimer?  // Stall detection timer
-    private let stallTimeoutSeconds: Double = 90  // Cancel download if no progress for 90s
+    private let stallTimeoutSeconds: Double
     private var completionCalled = false  // Prevent double completion
     private weak var task: URLSessionDownloadTask?  // For resume-data cancellation on stall
 
@@ -1854,9 +1866,15 @@ private final class DownloadDelegate: NSObject, URLSessionDownloadDelegate {
     }
 
     init(expectedSize: Int64,
+         validatesGGUF: Bool = false,
+         callbackQueue: DispatchQueue,
+         stallTimeoutSeconds: Double = 90,
          progressHandler: @escaping (Double, Int64, Int64, Double, TimeInterval?) -> Void,
          completionHandler: @escaping (Result<URL, Error>) -> Void) {
         self.expectedSize = expectedSize
+        self.validatesGGUF = validatesGGUF
+        self.callbackQueue = callbackQueue
+        self.stallTimeoutSeconds = stallTimeoutSeconds
         self.progressHandler = progressHandler
         self.completionHandler = completionHandler
         super.init()
@@ -1868,7 +1886,7 @@ private final class DownloadDelegate: NSObject, URLSessionDownloadDelegate {
     }
 
     private func startStallDetection() {
-        let timer = DispatchSource.makeTimerSource(queue: .global(qos: .utility))
+        let timer = DispatchSource.makeTimerSource(queue: callbackQueue)
         timer.schedule(deadline: .now() + stallTimeoutSeconds, repeating: stallTimeoutSeconds)
         timer.setEventHandler { [weak self] in
             guard let self else { return }
@@ -1909,11 +1927,10 @@ private final class DownloadDelegate: NSObject, URLSessionDownloadDelegate {
             lastUpdateTime = now
             // Log first callback with size info
             print("[Download] First callback - serverSize: \(totalBytesExpectedToWrite), expectedSize: \(expectedSize)")
-            // Lock in server-provided size on first callback for accurate progress.
-            // Use the larger of server-provided and expected size to avoid progress > 100%
-            // caused by HuggingFace CDN redirect / Content-Encoding mismatches on iPad.
+            // The catalog/HEAD size is only an estimate. Prefer the GET response;
+            // taking max(expected, actual) leaves a completed transfer near 90%.
             if totalBytesExpectedToWrite > 0 {
-                actualTotalSize = max(totalBytesExpectedToWrite, expectedSize)
+                actualTotalSize = totalBytesExpectedToWrite
             }
         }
 
@@ -1977,14 +1994,29 @@ private final class DownloadDelegate: NSObject, URLSessionDownloadDelegate {
     }
 
     func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
+        guard !completionCalled else { return }
         lastProgressTime = Date()
         let fileSize = (try? FileManager.default.attributesOfItem(atPath: location.path)[.size] as? Int64) ?? 0
         print("[Download] Finished downloading to: \(location.path) (fileSize: \(fileSize) bytes)")
-        progressHandler(1.0, fileSize, fileSize, 0, nil)
-
         let persistentTemp = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
         do {
+            // URLSession considers HTTP error pages successful downloads. Never
+            // install those as models or report 100% before validating the file.
+            guard let response = downloadTask.response as? HTTPURLResponse,
+                  response.statusCode == 200 || response.statusCode == 206 else {
+                throw URLError(.badServerResponse)
+            }
+            guard fileSize > 0 else { throw URLError(.zeroByteResource) }
+            if validatesGGUF {
+                let handle = try FileHandle(forReadingFrom: location)
+                defer { try? handle.close() }
+                guard fileSize >= 24,
+                      try handle.read(upToCount: 4) == Data("GGUF".utf8) else {
+                    throw URLError(.cannotDecodeContentData)
+                }
+            }
             try FileManager.default.moveItem(at: location, to: persistentTemp)
+            progressHandler(1.0, fileSize, fileSize, 0, nil)
             fireCompletion(.success(persistentTemp))
         } catch {
             fireCompletion(.failure(error))

@@ -250,8 +250,8 @@ struct OnboardingView: View {
                         }
                     }
 
+                    defer { progressTask.cancel() }
                     try await modelLoader.downloadModel(text)
-                    progressTask.cancel()
 
                     await MainActor.run {
                         textModelDownloaded = true
